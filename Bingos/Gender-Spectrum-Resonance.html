@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#8a4d6a">
+  <title>性别身份与认同光谱 · 共鸣刻度卡</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: #f6f4f1;
+      color: #1a1a2e;
+      min-height: 100vh;
+      padding: 28px 16px 60px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    /* 头部 */
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    .header h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(20px, 5vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .header h1 em {
+      color: #8a4d6a;
+      font-style: normal;
+    }
+
+    .sub {
+      margin-top: 8px;
+      font-size: clamp(11.5px, 2.5vw, 13px);
+      color: #888899;
+    }
+
+    /* 提示 */
+    .tip {
+      background: #fff;
+      border-left: 4px solid #8a4d6a;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 20px;
+      line-height: 1.65;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 图例 (0 / 25% / 50% / 75% / 100%) */
+    .legend {
+      display: flex;
+      gap: 12px 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      background: rgba(138, 77, 106, 0.08);
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+
+    .ldot {
+      width: 26px;
+      height: 26px;
+      border-radius: 40px;
+      background: #f0f0f0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid #ccc;
+      color: #555;
+    }
+
+    .ldot.lv25 {
+      background: #f6eef2;
+      border-color: #d5b8c5;
+      color: #8a4d6a;
+    }
+
+    .ldot.lv50 {
+      background: #efe0e8;
+      border-color: #c698ae;
+      color: #7a425d;
+    }
+
+    .ldot.lv75 {
+      background: #e6cfdd;
+      border-color: #b17897;
+      color: #643650;
+    }
+
+    .ldot.lv100 {
+      background: #d3b6c8;
+      border-color: #8a4d6a;
+      color: #4e223a;
+      font-weight: 800;
+    }
+
+    .ldot.lv0::after {
+      content: '0';
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .ldot.lv25::after {
+      content: '25%';
+    }
+
+    .ldot.lv50::after {
+      content: '50%';
+    }
+
+    .ldot.lv75::after {
+      content: '75%';
+    }
+
+    .ldot.lv100::after {
+      content: '100%';
+    }
+
+    /* 重置按钮 */
+    .reset-btn {
+      display: block;
+      margin: 0 auto 24px;
+      padding: 8px 28px;
+      border: 1.5px solid #e0ccd6;
+      border-radius: 40px;
+      background: white;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: #8a4d6a;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .reset-btn:hover {
+      background: #f6eff3;
+      border-color: #8a4d6a;
+    }
+
+    /* 区域卡片 */
+    .section {
+      margin-bottom: 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      background: #fff;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      color: white;
+      position: relative;
+    }
+
+    .sec-badge {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 19px;
+      font-weight: 700;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec-info h2 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .sec-info p {
+      font-size: 11px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* 板块共鸣显示（右上角） */
+    .sec-stats {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .sec-stats span:first-child {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .sec-stats .sec-ratio {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .sec-stats small {
+      font-size: 10px;
+      font-weight: 500;
+      margin-left: 2px;
+    }
+
+    .sec-A .sec-head {
+      background: linear-gradient(120deg, #8a4d6a, #c7a3b5);
+    }
+
+    .sec-B .sec-head {
+      background: linear-gradient(120deg, #4d6a86, #a1b6c7);
+    }
+
+    .sec-C .sec-head {
+      background: linear-gradient(120deg, #6b7b5a, #b4bfa4);
+    }
+
+    .sec-D .sec-head {
+      background: linear-gradient(120deg, #9a7a4b, #cbb58b);
+    }
+
+    /* GRID 默认5列 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid #eee;
+    }
+
+    .cell {
+      position: relative;
+      cursor: pointer;
+      padding: 14px 8px 12px;
+      text-align: center;
+      border: 1px solid #f2efe9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      transition: all 0.1s ease;
+      min-height: 112px;
+      background: white;
+    }
+
+    .cell:active {
+      transform: scale(0.96);
+    }
+
+    .cell-icon {
+      font-size: 26px;
+      line-height: 1;
+      transition: transform 0.1s;
+    }
+
+    .cell:hover .cell-icon {
+      transform: scale(1.05);
+    }
+
+    .cell-text {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #4b4b60;
+      font-weight: 500;
+      max-width: 98%;
+    }
+
+    /* 圆环标识（百分比） */
+    .ring {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 30px;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      border: 1.5px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      transition: all 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .cell .ring::after {
+      content: attr(data-label);
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+
+    /* 等级背景 (0,25,50,75,100) + 主题色深化 */
+    .cell[data-level="0"] {
+      background: white;
+    }
+
+    .cell[data-level="25"] {
+      background: #fdfafb;
+    }
+
+    .cell[data-level="50"] {
+      background: #fbf5f8;
+    }
+
+    .cell[data-level="75"] {
+      background: #f7eef3;
+    }
+
+    .cell[data-level="100"] {
+      background: #f0e2ea;
+    }
+
+    .sec-A .cell[data-level="25"] {
+      background: rgba(138, 77, 106, 0.06);
+    }
+
+    .sec-A .cell[data-level="50"] {
+      background: rgba(138, 77, 106, 0.12);
+    }
+
+    .sec-A .cell[data-level="75"] {
+      background: rgba(138, 77, 106, 0.22);
+    }
+
+    .sec-A .cell[data-level="100"] {
+      background: rgba(138, 77, 106, 0.34);
+    }
+
+    .sec-A .cell[data-level="25"] .cell-text {
+      color: #7a425d;
+      font-weight: 500;
+    }
+
+    .sec-A .cell[data-level="50"] .cell-text {
+      color: #643650;
+      font-weight: 500;
+    }
+
+    .sec-A .cell[data-level="75"] .cell-text {
+      color: #542b45;
+      font-weight: 550;
+    }
+
+    .sec-A .cell[data-level="100"] .cell-text {
+      color: #4e223a;
+      font-weight: 600;
+    }
+
+    .sec-B .cell[data-level="25"] {
+      background: rgba(77, 106, 134, 0.06);
+    }
+
+    .sec-B .cell[data-level="50"] {
+      background: rgba(77, 106, 134, 0.12);
+    }
+
+    .sec-B .cell[data-level="75"] {
+      background: rgba(77, 106, 134, 0.22);
+    }
+
+    .sec-B .cell[data-level="100"] {
+      background: rgba(77, 106, 134, 0.34);
+    }
+
+    .sec-B .cell[data-level="25"] .cell-text {
+      color: #3f5a74;
+    }
+
+    .sec-B .cell[data-level="50"] .cell-text {
+      color: #354c63;
+    }
+
+    .sec-B .cell[data-level="75"] .cell-text {
+      color: #2c3f52;
+    }
+
+    .sec-B .cell[data-level="100"] .cell-text {
+      color: #223342;
+      font-weight: 600;
+    }
+
+    .sec-C .cell[data-level="25"] {
+      background: rgba(107, 123, 90, 0.06);
+    }
+
+    .sec-C .cell[data-level="50"] {
+      background: rgba(107, 123, 90, 0.12);
+    }
+
+    .sec-C .cell[data-level="75"] {
+      background: rgba(107, 123, 90, 0.22);
+    }
+
+    .sec-C .cell[data-level="100"] {
+      background: rgba(107, 123, 90, 0.34);
+    }
+
+    .sec-C .cell[data-level="25"] .cell-text {
+      color: #566348;
+    }
+
+    .sec-C .cell[data-level="50"] .cell-text {
+      color: #4c5840;
+    }
+
+    .sec-C .cell[data-level="75"] .cell-text {
+      color: #414c36;
+    }
+
+    .sec-C .cell[data-level="100"] .cell-text {
+      color: #333b2b;
+      font-weight: 600;
+    }
+
+    .sec-D .cell[data-level="25"] {
+      background: rgba(154, 122, 75, 0.06);
+    }
+
+    .sec-D .cell[data-level="50"] {
+      background: rgba(154, 122, 75, 0.12);
+    }
+
+    .sec-D .cell[data-level="75"] {
+      background: rgba(154, 122, 75, 0.22);
+    }
+
+    .sec-D .cell[data-level="100"] {
+      background: rgba(154, 122, 75, 0.34);
+    }
+
+    .sec-D .cell[data-level="25"] .cell-text {
+      color: #7d6340;
+    }
+
+    .sec-D .cell[data-level="50"] .cell-text {
+      color: #6f5738;
+    }
+
+    .sec-D .cell[data-level="75"] .cell-text {
+      color: #604b30;
+    }
+
+    .sec-D .cell[data-level="100"] .cell-text {
+      color: #4f3f27;
+      font-weight: 600;
+    }
+
+    /* 圆环各等级颜色 */
+    .cell[data-level="0"] .ring {
+      border-color: #dbdbdb;
+      background: #fafafaaa;
+    }
+
+    .cell[data-level="0"] .ring::after {
+      content: "0";
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .cell[data-level="25"] .ring {
+      border-color: #d5b8c5;
+      background: #ffffffdd;
+    }
+
+    .cell[data-level="25"] .ring::after {
+      content: "25%";
+      color: #8a4d6a;
+    }
+
+    .cell[data-level="50"] .ring {
+      border-color: #c698ae;
+      background: #fbf5f8;
+    }
+
+    .cell[data-level="50"] .ring::after {
+      content: "50%";
+      color: #7a425d;
+      font-weight: 800;
+    }
+
+    .cell[data-level="75"] .ring {
+      border-color: #b17897;
+      background: #f7eef3;
+    }
+
+    .cell[data-level="75"] .ring::after {
+      content: "75%";
+      color: #643650;
+      font-weight: 800;
+    }
+
+    .cell[data-level="100"] .ring {
+      border-color: #8a4d6a;
+      background: #f0e2ea;
+    }
+
+    .cell[data-level="100"] .ring::after {
+      content: "100%";
+      color: #4e223a;
+      font-weight: 800;
+    }
+
+    /* 底部简版提醒卡片 */
+    .footer {
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px 24px;
+      margin-top: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .footer h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer ul {
+      padding-left: 20px;
+      font-size: 12.5px;
+      color: #5a5a70;
+      line-height: 1.9;
+    }
+
+    /* 响应式 */
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cell {
+        min-height: 118px;
+        padding: 12px 5px 8px;
+      }
+
+      .cell-icon {
+        font-size: 22px;
+      }
+
+      .ring {
+        width: 24px;
+        height: 24px;
+        top: 4px;
+        right: 4px;
+      }
+
+      .ring::after {
+        font-size: 7.5px;
+      }
+
+      .sec-stats {
+        padding: 3px 8px;
+        font-size: 11px;
+      }
+
+      .sec-stats .sec-ratio {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .cell-text {
+        font-size: 10px;
+      }
+    }
+  </style>
+
+  <style id="prism-back-home-style">
+    .prism-back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid rgba(24, 33, 47, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #415469;
+      font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    .prism-back-home:hover {
+      color: #18212f;
+      border-color: rgba(24, 33, 47, 0.26);
+    }
+
+    @media (max-width: 520px) {
+      .prism-back-home {
+        top: 10px;
+        left: 10px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="page">
+    <div class="header">
+      <h1>性别身份与认同<em>光谱</em> · 共鸣刻度卡</h1>
+      <p class="sub">性别不是二选一的单选题。每一句都是光谱上的坐标，刻度由你定义</p>
+    </div>
+
+    <div class="tip">
+      🌈 <strong>刻度指南</strong> ：点击任意格子，依次切换 25% → 50% → 75% → 100% → 归零。<br>
+      每个板块右上角会实时显示该板块的“共鸣强度”（平均契合百分比）。没有对错，只有真实。
+    </div>
+
+    <!-- 简化图例 -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="ldot lv0"></div><span>0% 无感</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv25"></div><span>25% 轻微</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv50"></div><span>50% 中度</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv75"></div><span>75% 强烈</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv100"></div><span>100% 完全共鸣</span>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetBtn">↺ 重置全部刻度</button>
+
+    <!-- 板块 A B C D 会由js动态渲染，右上角统计也动态注入 -->
+    <div id="sections-container"></div>
+
+    <div class="footer">
+      <h4>🌱 光谱心语</h4>
+      <ul>
+        <li>你的性别身份不需要符合任何人的期待，包括“足够像某种性别”的标准</li>
+        <li>流变化、模糊、多重、不确定……这些本身就是一种真实的性别存在方式</li>
+        <li>刻度是为了帮你看见自己，不是用来评判自己够不够“标准”</li>
+        <li>你可以随时改变格子上的共鸣程度——自我认识本身就是流动的</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const items = {
+      A: [
+        "🏷️ 对我来说，性别更像一种内在的私人感受，而不是由生理结构决定的",
+        "🪞 照镜子时，偶尔或经常会产生一种“这具身体不太对劲”的割裂感（身体焦虑）",
+        "👽 有时候觉得“性别”这个概念本身就像某种外星语言，我很难产生共鸣",
+        "⚖️ 传统的“男性”或“女性”框架对我来说都太狭隘了，我哪边都不想选",
+        "🔍 我花了很多精力去解构和重塑“我是谁”，这是一条少有人走的探索之路",
+        "🌡️ 我的性别感知是模糊的，就像一团无法被精准定义的星云",
+        "🌌 我觉得自己处于男女两极的“中间地带”，或者是完全跳脱出来的第三维度",
+        "📦 出生证明上被分配的性别，并不能真实反映我灵魂的样貌",
+        "✨ 当别人使用非二元代词（如Ta/They）称呼我时，我会感到一种深层的性别愉悦",
+        "🎭 我的内在气质是极其多元的，既有刚硬的一面，也有柔软的一面",
+        "🫧 “做自己”的前提，是允许自己身上存在那些看似“矛盾”的性别特质",
+        "❤️ 我可以接纳并爱护现在的身体，但这并不意味着我认同社会赋予它的性别期待",
+        "🌫️ 被强制要求在问卷上勾选“男/女”时，那个瞬间总是让我感到轻微的不适或荒谬",
+        "🕊️ 我不再执着于给自己找一个绝对准确的性别词汇，接纳了这种“无法定义”",
+        "🗝️ 第一次了解到“非二元/性别酷儿”等词汇时，有一种漫长跋涉后终于找到同类的释然"
+      ],
+      B: [
+        "👗 我的衣柜就像一个调色盘，跨越了社会常规的“男装”与“女装”界限",
+        "🪟 购物时我完全无视性别的分区，只看这件衣服是否符合我今天的自我表达",
+        "💄 化妆、束胸或改变造型，对我来说不是为了迎合主流，而是为了塑造真实的自己",
+        "🧥 有时候我会刻意打扮得雌雄莫辨（Androgynous），享受别人无法一眼看穿的状态",
+        "🎤 我对自己的嗓音、语气或笑声很敏感，有时会下意识地去调整它们",
+        "🕺 我的肢体语言和行为举止，经常会自然流露出不符合出生性别期待的特质",
+        "✂️ 改变发型是我夺回身体自主权、宣告性别认同的重要仪式",
+        "📸 我抗拒别人仅仅通过外貌、穿搭和照片，就武断地预设我的性别和性格",
+        "✨ 当我的外在呈现与内在性别感受完美契合时，我会感到极其自信和充满力量",
+        "📛 我为自己起了一个新的名字（或昵称），这个名字让我感觉更像我自己",
+        "🗣️ 在安全的社交场合，我会主动告知别人我的代词，或鼓励大家使用中性称呼",
+        "🎮 在游戏里捏脸或选择虚拟化身时，我倾向于选择跨性别或非二元的角色",
+        "🩰 我曾因为外表不够“男/女”，在理发店、服装店遭受过异样的眼光或被“纠正”",
+        "🎬 那些打破性别刻板印象的公众人物或虚构角色，是支撑我勇敢表达的灵感来源",
+        "🧵 身上某些不符合常规性别预期的配饰，是我隐秘而骄傲的身份徽章"
+      ],
+      C: [
+        "👂 在餐厅或公共场合被服务员叫“帅哥/美女”或“先生/女士”时，内心会咯噔一下",
+        "🚻 公共卫生间和更衣室是我的焦虑源泉——总担心走错或引来不友好的审视",
+        "🏥 在医疗、银行等系统中，因证件性别与外貌/认同不符而遭遇过尴尬或麻烦",
+        "🙊 面临“出柜”困境：不知道该不该向新朋友解释身份，怕麻烦也怕被拒绝",
+        "👨‍👩‍👧 面对原生家庭的传统观念，常常感到深深的无力感或只能选择沉默伪装",
+        "💔 因为性别表达不符合主流，在亲密关系或交友中遭遇过误解甚至直接排斥",
+        "🛡️ 为了在不友好的环境（如特定职场或长辈面前）保护自己，我熟练掌握了“性别伪装”",
+        "🗣️ 经常被迫成为“科普大使”，需要一遍遍向别人解释我的存在，这让我感到疲惫",
+        "🎓 现有的社会语言系统极其匮乏，很难精准传达我真实的性别状态",
+        "📋 听到诸如“男人就该有男人的样子”或“女孩子别太野”的话语时，会感到生理性厌恶",
+        "🫂 在这个强调二元对立的社会里，有时会感到深深的边缘化和难以言说的孤独",
+        "🏠 只有在特定的酷儿（Queer）社群或安全空间里，我才能卸下防备，彻底放松呼吸",
+        "🌱 看到企业、学校或公共设施开始提供“性别友善/无性别”选项时，会觉得被尊重",
+        "🤝 结识了能够无条件接纳我真实样貌的“选择性家人（Chosen Family）”，治愈了我",
+        "✊ 每当看到社会上打压性别少数群体的新闻，都会感到愤怒并伴随着切身的危机感"
+      ],
+      D: [
+        "🌊 我的性别是流动的（Genderfluid）：在不同时期甚至不同日子里，感受都有所不同",
+        "🌬️ 我更倾向于无性别（Agender）：觉得自己的灵魂和“性别”这个概念完全没有关联",
+        "🎭 我同时包含多种性别特质（双性别/泛性别），它们在我体内和谐共存，并不冲突",
+        "🌘 我觉得自己只有一部分属于某种性别（半性别 Demigender），其余部分则是另一种状态",
+        "🔁 曾经以为自己是A性别，后来觉得是B，现在又觉得是C——我的认知一直在自然进化",
+        "🚫 我不认为从出生性别跨越到另一种常规性别是唯一的终点，我想要的是自由",
+        "🌈 性别对我而言不是一条非黑即白的线，而是一个充满无限可能的光谱",
+        "🧩 我允许自己处于“探索中（Questioning）”的状态，不急于给自己钉死一个终极标签",
+        "💡 发现自己的性别认知发生变化时，不再感到恐慌，而是带着好奇去迎接新的自己",
+        "🤝 像“性别酷儿”“非二元”这些词汇是帮我认知自我的工具，而不是禁锢我的新牢笼",
+        "💭 某些时候我偏向阳刚，某些时候偏向阴柔，这都是100%真实的我，没有哪一面是伪装",
+        "🔮 哪怕一辈子都在探索、一辈子都没有一个固定答案，我也觉得这样的人生很酷",
+        "🗺️ 抛弃了“必须弄清楚自己到底算男算女”的执念后，我获得了前所未有的心理解脱",
+        "🌟 我的性别身份不需要任何人（包括医疗机构或心理医生）的“盖章认证”才算数",
+        "💎 这张卡片让我确认：无论我处于光谱的哪一个坐标，我都是完整、自洽且极其珍贵的"
+      ]
+    };
+
+    // 板块名称和配色主题
+    const sectionsMeta = [
+      { id: 'A', title: '内在性别感受', subtitle: '你如何感受自己的性别', colorClass: 'sec-A' },
+      { id: 'B', title: '外在表达与实践', subtitle: '你如何呈现性别身份', colorClass: 'sec-B' },
+      { id: 'C', title: '社会语境与边界', subtitle: '在外部环境中的经历', colorClass: 'sec-C' },
+      { id: 'D', title: '光谱与流动性', subtitle: '非二元 / 流动 / 无性别', colorClass: 'sec-D' }
+    ];
+
+    // 存储所有cell的弱引用（用于更新统计）
+    let sectionCells = { A: [], B: [], C: [], D: [] };
+    let statsElements = {}; // 存储每个板块的百分比显示元素
+
+    // 等级 -> 分数 (0,25,50,75,100)
+    function levelToScore(level) {
+      const l = parseInt(level);
+      if (l === 25) return 25;
+      if (l === 50) return 50;
+      if (l === 75) return 75;
+      if (l === 100) return 100;
+      return 0;
+    }
+
+    // 下一等级 (0→25→50→75→100→0)
+    function nextLevel(current) {
+      const order = [0, 25, 50, 75, 100];
+      let idx = order.indexOf(current);
+      if (idx === -1) return 25;
+      const nextIdx = (idx + 1) % order.length;
+      return order[nextIdx];
+    }
+
+    // 更新指定板块的统计 (共鸣百分比)
+    function updateSectionStats(sectionId) {
+      const cells = sectionCells[sectionId];
+      if (!cells || cells.length === 0) return;
+      let totalScore = 0;
+      cells.forEach(cell => {
+        const levelVal = parseInt(cell.getAttribute('data-level') || '0');
+        totalScore += levelToScore(levelVal);
+      });
+      const maxPossible = cells.length * 100;
+      let percent = maxPossible === 0 ? 0 : (totalScore / maxPossible) * 100;
+      percent = Math.round(percent);
+      const statsSpan = statsElements[sectionId];
+      if (statsSpan) {
+        statsSpan.innerText = percent;
+      }
+    }
+
+    // 更新所有板块统计
+    function updateAllSectionsStats() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        updateSectionStats(sec);
+      }
+    }
+
+    // 更新单个cell的ring显示
+    function updateRingLabel(cell) {
+      const level = parseInt(cell.getAttribute('data-level')) || 0;
+      const ringDiv = cell.querySelector('.ring');
+      if (!ringDiv) return;
+      let showTxt = '';
+      if (level === 0) showTxt = '0';
+      else if (level === 25) showTxt = '25%';
+      else if (level === 50) showTxt = '50%';
+      else if (level === 75) showTxt = '75%';
+      else if (level === 100) showTxt = '100%';
+      ringDiv.setAttribute('data-label', showTxt);
+    }
+
+    // 处理点击格子
+    function handleCellClick(e) {
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+      const curLevel = parseInt(cell.getAttribute('data-level')) || 0;
+      const newLevel = nextLevel(curLevel);
+      cell.setAttribute('data-level', newLevel);
+      updateRingLabel(cell);
+
+      // 找出该格子所属板块并更新统计
+      const sectionDiv = cell.closest('.section');
+      if (sectionDiv) {
+        const secClass = Array.from(sectionDiv.classList).find(c => c.startsWith('sec-'));
+        let secId = null;
+        if (secClass === 'sec-A') secId = 'A';
+        else if (secClass === 'sec-B') secId = 'B';
+        else if (secClass === 'sec-C') secId = 'C';
+        else if (secClass === 'sec-D') secId = 'D';
+        if (secId) updateSectionStats(secId);
+      }
+      // 微动效
+      cell.style.transform = 'scale(0.97)';
+      setTimeout(() => { if (cell) cell.style.transform = ''; }, 120);
+    }
+
+    // 重置所有格子
+    function resetAll() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 渲染整个页面 (动态构建四个板块)
+    function buildFullPage() {
+      const container = document.getElementById('sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+      // 清空存储
+      sectionCells = { A: [], B: [], C: [], D: [] };
+      statsElements = {};
+
+      sectionsMeta.forEach(meta => {
+        const { id, title, subtitle, colorClass } = meta;
+        const itemsList = items[id];
+        if (!itemsList) return;
+
+        // 创建section元素
+        const section = document.createElement('div');
+        section.className = `section ${colorClass}`;
+
+        // head部分（包含右上角统计占位）
+        const secHead = document.createElement('div');
+        secHead.className = 'sec-head';
+        secHead.innerHTML = `
+        <div class="sec-badge">${id}</div>
+        <div class="sec-info">
+          <h2>${title}</h2>
+          <p>${subtitle}</p>
+        </div>
+        <div class="sec-stats">
+          <span>板块共鸣</span>
+          <span class="sec-ratio" id="stats-${id}">0</span><small>%</small>
+        </div>
+      `;
+        section.appendChild(secHead);
+
+        // grid容器
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+
+        // 生成格子
+        itemsList.forEach(rawText => {
+          // 以第一个空格为界，分离 Emoji 和纯文本
+          const spaceIndex = rawText.indexOf(' ');
+          let emoji = '';
+          let pureText = '';
+
+          if (spaceIndex !== -1) {
+            emoji = rawText.slice(0, spaceIndex).trim();
+            pureText = rawText.slice(spaceIndex + 1).trim();
+          } else {
+            // 兼容万一没有空格的情况
+            emoji = rawText.slice(0, 2);
+            pureText = rawText.slice(2);
+          }
+
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.setAttribute('data-level', '0');
+
+          // 将分离后的 emoji 和 pureText 分别填入对应容器
+          cell.innerHTML = `
+          <div class="ring" data-label="0"></div>
+          <div class="cell-icon">${emoji}</div>
+          <div class="cell-text">${pureText}</div>
+        `;
+          grid.appendChild(cell);
+          sectionCells[id].push(cell);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+
+        // 保存统计显示元素引用
+        const statsSpan = document.getElementById(`stats-${id}`);
+        if (statsSpan) statsElements[id] = statsSpan;
+      });
+
+      // 添加全局点击委托 (因为grid是动态生成的，直接监听父容器)
+      const sectionsContainer = document.getElementById('sections-container');
+      if (sectionsContainer) {
+        sectionsContainer.addEventListener('click', (e) => {
+          const cell = e.target.closest('.cell');
+          if (cell) handleCellClick(e);
+        });
+      }
+
+      // 重置按钮
+      const resetBtn = document.getElementById('resetBtn');
+      if (resetBtn) {
+        // 避免重复绑定
+        const newBtn = resetBtn.cloneNode(true);
+        resetBtn.parentNode.replaceChild(newBtn, resetBtn);
+        newBtn.addEventListener('click', () => {
+          resetAll();
+        });
+      } else {
+        const btn = document.getElementById('resetBtn');
+        if (btn) btn.addEventListener('click', resetAll);
+      }
+
+      // 初始化所有环 & 统计归零
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 页面启动
+    buildFullPage();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,864 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>性取向自评量表</title>
+	<style>
+		:root {
+			--accent: #2f6f73;
+			--accent-2: #7c6db0;
+			--accent-dark: #214f52;
+			--tint: #eef8f6;
+			--tint-2: #f4f1fb;
+			--ink: #24324a;
+			--soft: #64748b;
+			--line: #e2e8f0;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+			line-height: 1.7;
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 20px;
+			background: linear-gradient(180deg, #f7fafb 0%, #f4f7fb 52%, #f8fafc 100%);
+			color: #263241;
+		}
+
+		h1,
+		h2,
+		h3 {
+			color: var(--ink);
+		}
+
+		a {
+			color: var(--accent);
+		}
+
+		.section {
+			background-color: #fff;
+			padding: 25px;
+			margin-bottom: 25px;
+			border-radius: 16px;
+			border: 1px solid rgba(47, 111, 115, 0.08);
+			box-shadow: 0 4px 14px rgba(36, 50, 74, 0.05);
+		}
+
+		.intro,
+		.explanation,
+		.note-box {
+			background-color: var(--tint);
+			padding: 20px 24px;
+			border-left: 6px solid var(--accent);
+			margin-bottom: 20px;
+			font-size: 0.95em;
+			border-radius: 12px;
+		}
+
+		.question {
+			margin-bottom: 28px;
+		}
+
+		.question-title {
+			display: block;
+			font-weight: 600;
+			margin-bottom: 8px;
+			font-size: 1.05em;
+			color: var(--ink);
+			cursor: pointer;
+			user-select: none;
+			padding: 10px 14px;
+			border-radius: 12px;
+		}
+
+		.question-title:hover {
+			background-color: var(--tint-2);
+		}
+
+		.q-number {
+			color: var(--accent);
+			font-weight: 700;
+			margin-right: 8px;
+		}
+
+		.question select {
+			width: 230px;
+			padding: 10px;
+			border-radius: 6px;
+			border: 1px solid #cbd5e1;
+			font-size: 1em;
+			background-color: #f9fbfd;
+		}
+
+		.explanation {
+			display: none;
+			margin-top: 12px;
+			background: linear-gradient(135deg, #eef8f6 0%, #f4f1fb 100%);
+			border-left-color: var(--accent-2);
+		}
+
+		.explanation.show {
+			display: block;
+		}
+
+		.global-progress {
+			position: sticky;
+			top: 0;
+			background: rgba(255, 255, 255, 0.94);
+			padding: 10px 15px;
+			border-bottom: 1px solid #e9ecef;
+			z-index: 10;
+			border-radius: 0 0 12px 12px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+			backdrop-filter: blur(12px);
+		}
+
+		.progress {
+			font-size: 0.9em;
+			color: #555;
+			margin-bottom: 5px;
+		}
+
+		.progress-bar {
+			width: 100%;
+			background-color: #e0e0e0;
+			border-radius: 5px;
+			overflow: hidden;
+			margin-bottom: 8px;
+		}
+
+		.progress-bar-fill {
+			height: 12px;
+			background-color: var(--accent);
+			transition: width 0.3s ease;
+		}
+
+		details {
+			margin-bottom: 15px;
+			background-color: #f9fbfd;
+			padding: 10px;
+			border-radius: 6px;
+		}
+
+		summary {
+			cursor: pointer;
+			font-weight: 700;
+			color: var(--accent);
+		}
+
+		button {
+			background-color: var(--accent);
+			color: white;
+			padding: 12px 28px;
+			border: none;
+			border-radius: 40px;
+			cursor: pointer;
+			margin-right: 15px;
+			margin-bottom: 8px;
+			font-size: 0.95em;
+			font-weight: 500;
+		}
+
+		button:hover {
+			background-color: var(--accent-dark);
+		}
+
+		.result {
+			display: none;
+			background-color: var(--tint-2);
+			padding: 30px;
+			border-radius: 24px;
+			margin-top: 30px;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+			border: 1px solid rgba(47, 111, 115, 0.14);
+		}
+
+		.result table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0;
+			margin-top: 16px;
+			border-radius: 16px;
+			overflow: hidden;
+		}
+
+		.result th,
+		.result td {
+			padding: 12px;
+			text-align: left;
+			border: none;
+		}
+
+		.result th {
+			background-color: var(--accent);
+			color: white;
+		}
+
+		.result td {
+			border-bottom: 1px solid var(--line);
+		}
+
+		.result tr:nth-child(even) {
+			background-color: #f9fbfd;
+		}
+
+		.analysis-card {
+			background-color: #fff;
+			border-radius: 8px;
+			padding: 20px;
+			margin-bottom: 18px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+		}
+
+		.bar {
+			height: 10px;
+			background: rgba(0, 0, 0, 0.06);
+			border-radius: 999px;
+			overflow: hidden;
+			margin-top: 8px;
+		}
+
+		.bar span {
+			display: block;
+			height: 10px;
+			background: linear-gradient(90deg, var(--accent), var(--accent-2));
+		}
+
+		@media (max-width: 650px) {
+			body {
+				padding: 14px;
+			}
+
+			button {
+				width: 100%;
+				margin-right: 0;
+			}
+
+			.section,
+			.result {
+				padding: 18px;
+			}
+
+			.question select {
+				width: 100%;
+			}
+		}
+	</style>
+	<link rel="stylesheet" href="./scale-common.css">
+	<script>window.PRISM_SCALE_CONFIG = { id: 'sexual-orientation', title: '性取向自评量表', formId: 'sexualOrientationQuiz', storageKey: 'sexualOrientationQuizAnswers', totalQuestions: 60, resultId: 'result' };</script>
+	<script src="./scale-common.js" defer></script>
+</head>
+
+<body>
+	<a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+	<div class="global-progress">
+		<p class="progress" id="globalProgressText">进度：0/60</p>
+		<div class="progress-bar">
+			<div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+		</div>
+	</div>
+
+	<h1>性取向自评量表</h1>
+
+	<div class="intro">
+		<h2>关键概念与使用指南</h2>
+		<p><strong>性吸引（Sexual
+				Attraction）</strong>：对特定对象产生的、以性接触或性行为为指向的心理与生理驱动力。它通常表现为希望与对方发生性行为或进行具有性意味的亲密身体接触，并可能伴随生理反应（如心跳加速、生理唤起）或心理兴奋（如性幻想的涌现）。
+			性吸引是一种由内向外、以他人为对象、以性为取向的主动心理动力，有别于单纯的外貌欣赏（审美吸引）、情感依恋（情感吸引）或浪漫渴望（浪漫吸引）。值得注意的是，性吸引并非总是与浪漫吸引同步出现——有些人可能对某人产生性吸引却无浪漫情感，反之亦然。
+			例如：当您看到某人时，会不由自主地产生与之发生性行为的想象，并感受到强烈的生理或心理渴望，这种体验通常即为性吸引。
+		</p>
+		<p><strong>为了更好地理解和区分性吸引与其他类型的吸引，在此简要介绍几种常见吸引类型：</strong></p>
+		<ul>
+			<li><strong>浪漫吸引（Romantic
+					Attraction）</strong>：对特定对象产生的、以恋爱关系和浪漫互动为核心的内在渴望，通常表现为希望与对方约会、建立恋爱关系、成为彼此特别的人，或想象共同生活、表达爱意、拥有浪漫承诺。浪漫吸引可以与性吸引同时出现，也可以彼此分离。
+			</li>
+			<li><strong>情感吸引（Emotional
+					Attraction）</strong>：被某人的内心世界、性格、思想或情感深度吸引，并希望与对方建立信任、倾诉、理解和情绪支持的深层连接。情感吸引可以构成亲密关系的重要基础，但本身不必然包含浪漫或性欲望。
+			</li>
+			<li><strong>柏拉图式吸引（Platonic
+					Attraction）</strong>：渴望与某人建立深厚、稳定且非浪漫的友谊关系，强调陪伴、共同兴趣、价值观契合和彼此同行。它可能非常强烈，却不一定指向恋爱或性接触。</li>
+			<li><strong>审美吸引（Aesthetic
+					Attraction）</strong>：单纯地欣赏他人的外貌、气质、风格、声音、肢体语言或整体美感，觉得对方“好看”“有魅力”或“像艺术品一样值得欣赏”，但并不伴随想恋爱、想触碰或想发生性关系的欲望。
+			</li>
+			<li><strong>感官吸引（Sensual
+					Attraction）</strong>：渴望与某人进行非性的身体亲密接触，例如拥抱、牵手、依偎、轻抚或靠近，以获得舒适、安全感、温暖或放松。感官吸引的核心是触觉亲密，不必然涉及性唤起或性欲望。
+			</li>
+		</ul>
+		<p><strong>重要提示：</strong>这些吸引类型可以独立存在，也可以同时发生。例如：您可能对某人同时产生浪漫吸引和审美吸引，但没有性吸引；也可能对某人产生性吸引，却并不想与其建立浪漫关系。本量表专门评估<strong>性吸引的方向与触发线索</strong>，请在做题时尽量专注于这种特定类型的吸引力。
+			如果您在性别相关性吸引、性征吸引和气质吸引上整体分数都很低，本表会提示无性恋/无性恋谱系倾向，建议结合 <a href="./Asexual-Spectrum-Scale.html">无性恋谱系自评量表</a> 进一步探索。
+		</p>
+		<p><strong>性取向（Sexual
+				Orientation）</strong>：在本量表中主要指“性吸引的方向”与“被什么线索触发”。它不等同于性经历、性幻想题材、自慰内容、恋爱意愿、婚育选择、道德立场或社会期待。一个人可以没有相关性经历但仍然清楚自己的性吸引方向，也可能有过某类性经历但并不真正对该类对象产生稳定性吸引。
+			性取向并不总是只由“对方身份标签”决定。有些人的性吸引更受性别认同影响，有些人更受性别表达（女性气质、男性气质、中性/混合表达）、身体性征、声音、气味、肢体语言、互动方式或关系张力影响。本量表会分别评估女性/女性气质、男性/男性气质、非二元/中性/混合表达，以及更具体的身体性征、气质和互动线索如何参与性吸引。
+		</p>
+		<details>
+			<summary>点击查看（附详细解释）</summary>
+			<ul>
+				<li><strong>异性恋（Heterosexual）</strong>：性吸引主要指向与自己不同的性别，通常在二元性别语境下使用。</li>
+				<li><strong>同性恋（Gay / Lesbian）</strong>：性吸引主要指向与自己相同的性别。例如：女性主要被女性吸引可称为女同性恋，男性主要被男性吸引可称为男同性恋。</li>
+				<li><strong>双性恋（Bisexual）</strong>：性吸引可指向两个或以上性别，且这些吸引不必完全对称。一个双性恋者可能更常被某一性别吸引，但仍然真实地对其他性别产生性吸引。双性恋并不意味着“一定只承认男女二元”，许多双性恋者也会将非二元/多元性别纳入自己的吸引范围。
+				</li>
+				<li><strong>多性恋（Polysexual）</strong>：性吸引可指向多个性别或多种性别表达，但不一定指向所有性别。它强调吸引范围的多元性，同时保留“某些性别更容易触发吸引、某些性别较少或不会触发”的可能性。
+				</li>
+				<li><strong>泛性恋（Pansexual）</strong>：性吸引不以对方性别作为核心筛选条件，更容易被“这个人本身”、气质、互动、关系张力或整体人格吸引。泛性恋并不等于“对所有人都有吸引”，而是指性别分类对吸引产生的影响较小或不是第一位。
+				</li>
+				<li><strong>酷儿（Queer）</strong>：一种较开放、反规范、可包含多种非主流性取向经验的自我描述。它适合那些不想被异/同/双/泛等标签完全框住，或认为自己的吸引体验具有复杂性、流动性、政治性或反分类意味的人。
+				</li>
+				<li><strong>无性恋（Asexual）</strong>：完全或几乎不体验指向他人的性吸引，但可能仍有浪漫、情感、审美、感官吸引，也可能有亲密关系、伴侣关系或不同的性行为态度。无性恋不等于没有爱、没有身体感受、没有性欲、不能恋爱或不能建立关系。
+				</li>
+				<li><strong>灰性恋（Greysexual）</strong>：性吸引很少、很弱、模糊、短暂或只在少数特殊情境下出现。灰性恋常位于无性恋与有性恋之间，不一定能用“有/没有性吸引”二分描述。</li>
+				<li><strong>半性恋（Demisexual）</strong>：通常需要深度情感连接、信任、长期熟悉或特定关系基础后，才可能出现性吸引。半性恋并不是“比较慢热”这么简单，重点是没有情感连接时通常不会产生性吸引。
+				</li>
+				<li><strong>探索中 /
+						疑问中（Questioning）</strong>：尚未确定自己的性吸引方向，或正在重新理解过去经验与当下感受的人。探索中不是“不成熟”或“没有答案”，而是一种有效的自我认识阶段。</li>
+				<li><strong>流动性取向（Sexually
+						Fluid）</strong>：性吸引的方向、强度或标签在不同人生阶段、关系情境、心理状态或社会环境中发生变化。流动并不等于“不真实”，而是说明您的吸引模式可能更像一条随时间变化的轨迹。
+				</li>
+				<li><strong>无标签 / 开放标签（Unlabeled /
+						Label-Open）</strong>：不使用固定取向标签，或只用“目前主要被……吸引”“也可能被……吸引”“暂时不确定”等描述性语言来理解自己。对于体验复杂、低频、流动或仍在探索的人，这种方式可能比强行选择单一标签更贴近真实。
+				</li>
+			</ul>
+		</details>
+		<p><strong>使用指南</strong>：本自查表共有60道题目，所有均为必答题，分为五个部分，旨在帮助所有人系统评估自身性吸引的方向、整体强度、性征/气质/表达线索、社会脚本影响、探索/流动状态，以及对不同吸引类型的辨别清晰度。每个题目请根据您的真实感受选择0-5分。如果您不确定，可以回想过去几年中较稳定、较自发的体验，而不是只依据一次特殊经历、外界期待或“我应该喜欢谁”的社会脚本。
+			请不要把“觉得好看”“想成为TA那样的人”“想被TA认可”“支持某种身份”“愿意和TA做朋友”直接算作性吸引；也不要因为现实中没有机会发生关系，就把内在吸引判为不存在。不要为了符合某个标签而调高或调低分数，也不要把政治立场、审美好奇、身体好奇或圈层期待等同于性吸引。更可靠的线索包括自发欲望、性幻想、身体兴奋、想发生性意味触碰，以及把对方纳入性伴侣可能范围。性吸引也可以低频、条件性、阶段性或模糊，本量表允许使用“主要/也会/很少/需要条件/暂时不确定”等开放描述。
+			完成作答后，点击“计算结果”按钮，即可查看初步标签、各部分得分、详细维度分析和个性化建议。本表仅作为自我探索工具，<strong>非专业医疗诊断</strong>，也不用于证明或否定任何身份。我们鼓励您在安静的环境中慢慢作答，这是一个温柔的自我对话过程，帮助您更好地认识内在的自己。
+		</p>
+		<p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+	</div>
+
+	<form id="sexualOrientationQuiz">
+		<div id="questionsContainer"></div>
+		<div class="scale-actions">
+			<button type="button" onclick="calculateResult()">计算结果</button>
+			<button type="button" onclick="resetQuiz()">重置问卷</button>
+			<button type="button" onclick="saveResultText()">保存文本结果</button>
+			<button type="button" onclick="saveResultImage()">保存图片结果</button>
+		</div>
+	</form>
+
+	<div id="result" class="result"></div>
+
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script>
+		const TOTAL_QUESTIONS = 60;
+		const STORAGE_KEY = 'sexualOrientationQuizAnswers';
+		const options = [
+			['0', '完全不符合'],
+			['1', '基本不符合'],
+			['2', '偶尔符合'],
+			['3', '有时符合'],
+			['4', '经常符合'],
+			['5', '非常符合']
+		];
+
+		const sections = [
+			{
+				title: '第一部分：女性/女性气质相关性吸引（1-12题）',
+				desc: '评估女性身份、女性气质、女性化表达或女性相关身体/互动线索是否会触发你的性吸引。',
+				questions: [
+					['我曾对女性产生明确的性吸引：想与对方发生性行为或带有性意味的亲密接触。', '关注性指向的吸引，不是单纯欣赏、认同、羡慕或想做朋友。'],
+					['我看到某些女性时，会自发出现带有性意味的幻想或画面。', '“自发”指不需要刻意思考就会出现的性相关联想或冲动。'],
+					['我会把女性视为可能的性对象/性伴侣候选，而不仅是欣赏或好感。', '即使你不会真的行动，这里评估的是内在吸引范围。'],
+					['女性化的身体线索、气质或肢体语言会触发我明显的性兴奋。', '性兴奋可以是身体反应，也可以是强烈的心理兴奋。'],
+					['如果与女性建立亲密关系，我会把“性”视为自然可能发生的一部分。', '这题不是问是否必须发生性行为，而是问性是否进入你的关系脚本。'],
+					['在过去几年里，我对女性产生性吸引的频率不算罕见。', '请按整体经验判断，不需要精确统计。'],
+					['我会因为女性气质、女性化表达或女性相关互动方式产生明显的“想靠近/想触碰”的性冲动。', '关键是性指向的身体亲密冲动，而不是普通亲近。'],
+					['我对女性相关线索的性吸引并不限于某一种女性类型，而是可能被多种女性风格触发。', '用于区分“只对特定类型有效”和“女性整体都可能进入吸引范围”。'],
+					['与女性的拥抱、亲吻或更亲密触碰，会让我明确感到它与性/欲望相关。', '如果体验更像温暖、安全感或感官舒适，这题可偏低。'],
+					['当女性向我表达暧昧/性兴趣时，我的性吸引通常会被增强或更容易出现。', '这题捕捉回应性吸引。'],
+					['我能区分“我喜欢女性的外貌/风格”和“我想与女性发生性关系”。', '这有助于避免把审美欣赏误认成性吸引。'],
+					['当我想到与女性发生性行为时，我整体感受更偏期待/兴奋，而不是强烈抗拒或空白。', '这里看总体情绪基调，不要求你一定想行动。']
+				]
+			},
+			{
+				title: '第二部分：男性/男性气质相关性吸引（13-24题）',
+				desc: '评估男性身份、男性气质、男性化表达或男性相关身体/互动线索是否会触发你的性吸引。',
+				questions: [
+					['我曾对男性产生明确的性吸引：想与对方发生性行为或带有性意味的亲密接触。', '关注真实吸引，而不是“我应该喜欢男性”或社会默认。'],
+					['我看到某些男性时，会自发出现带有性意味的幻想或画面。', '自发幻想比为了验证自己而强迫想象更有参考价值。'],
+					['我会把男性视为可能的性对象/性伴侣候选，而不仅是欣赏或好感。', '这题看男性是否进入你的性吸引范围。'],
+					['男性化的身体线索、气质或肢体语言会触发我明显的性兴奋。', '请区分性兴奋、紧张、崇拜、害怕和社会压力。'],
+					['如果与男性建立亲密关系，我会把“性”视为自然可能发生的一部分。', '如果你只能想象浪漫或陪伴，却很难想象性，这题可偏低。'],
+					['在过去几年里，我对男性产生性吸引的频率不算罕见。', '请按近几年真实出现的频率作答。'],
+					['我会因为男性气质、男性化表达或男性相关互动方式产生明显的“想靠近/想触碰”的性冲动。', '这里强调性意味的触碰冲动，而非安全感或依赖。'],
+					['我对男性相关线索的性吸引并不限于某一种男性类型，而是可能被多种男性风格触发。', '如果只对非常特定的男性表达有效，可给中低分。'],
+					['与男性的拥抱、亲吻或更亲密触碰，会让我明确感到它与性/欲望相关。', '如果更多是感官或情感亲密，这题不必高。'],
+					['当男性向我表达暧昧/性兴趣时，我的性吸引通常会被增强或更容易出现。', '这题用于识别回应性吸引。'],
+					['我能区分“我认可/欣赏男性”和“我确实想与男性发生性关系”。', '尤其适用于被默认脚本影响的人。'],
+					['当我想到与男性发生性行为时，我整体感受更偏期待/兴奋，而不是强烈抗拒或空白。', '请按真实情绪基调作答。']
+				]
+			},
+			{
+				title: '第三部分：非二元/中性/混合表达相关性吸引（25-36题）',
+				desc: '评估非二元、性别酷儿、流动性别、中性表达、混合表达或难以二分的性别呈现是否会触发你的性吸引。',
+				questions: [
+					['我曾对非二元、性别酷儿、流动性别或难以二分的人产生明确的性吸引。', '如果现实接触较少，可以根据真实接触、作品、想象情境综合判断。'],
+					['中性、双性化、混合表达或不易被二分的性别表达可能触发我的性吸引。', '这题看你是否会被中性、混合或不易二分的表达触发性吸引。'],
+					['我会把非二元/中性/混合表达的人视为可能的性对象/性伴侣候选。', '支持多元性别不等于性吸引；这里问的是吸引本身。'],
+					['当对方不适合被简单归为“男/女”时，我的性吸引不会自动消失。', '如果未知或混合性别会让性吸引中断，这题可偏低。'],
+					['中性或混合的身体、气质、声音、穿着或肢体语言可能让我产生性兴奋。', '请关注性指向的兴奋，而不是好奇或赞赏。'],
+					['在过去几年里，我对非二元/中性/混合表达对象产生过不止一次性吸引。', '现实接触机会会影响得分，低分不必过度解释。'],
+					['即使我不能立即判断对方性别，我仍可能对TA产生性吸引。', '这题与“性别必须先被归类”相对。'],
+					['非二元/中性/混合表达的人向我表达暧昧/性兴趣时，我也可能出现相应的性吸引。', '用于捕捉回应性吸引。'],
+					['与非二元/中性/混合表达对象的亲密触碰，在我这里也可能呈现性/欲望意味。', '如果主要是审美或情感吸引，可给低分。'],
+					['当我对某人产生性吸引时，我不需要先把TA归类成男或女。', '高分常与泛性恋/不限性别体验相关。'],
+					['我能区分“认同/支持多元性别”和“确实会被非二元/中性/混合表达触发性吸引”。', '这题帮助避免把价值观当成吸引证据。'],
+					['当我想到与非二元/中性/混合表达对象发生性行为时，整体更偏期待/兴奋而非抗拒或空白。', '请按真实身体和心理反应作答。']
+				]
+			},
+			{
+				title: '第四部分：身体性征、性别气质与吸引触发点（37-48题）',
+				desc: '评估身体性征、性别表达、女性气质、男性气质、中性气质、声音、气味、姿态、互动方式等线索如何触发或削弱你的性吸引。',
+				questions: [
+					['对我来说，身体性征（如胸部、阴茎、外阴、体毛、体态等）会明显影响性吸引是否出现。', '这里不是要求你评价身体优劣，而是看身体性征是否是吸引触发点。'],
+					['我会被女性气质、男性气质、中性气质或混合气质本身触发性吸引。', '这题把“气质/表达”作为独立线索，而不是只看身份标签。'],
+					['声音、气味、姿态、动作方式或肢体语言，比抽象性别标签更能触发我的性吸引。', '用于捕捉更具体、更身体化的吸引线索。'],
+					['同一性别内部，不同身体性征或气质表达会让我产生非常不同的性吸引反应。', '高分说明你需要比“男/女/非二元”更细的描述。'],
+					['我更看重具体的人、气质与互动，而不是“这个性别我能不能喜欢”。', '这题判断性别标签是否退居次要。'],
+					['即使对方的性别标签符合我的取向，如果身体性征或气质线索不对，我也很难产生性吸引。', '这题用于识别“标签符合但触发点不符合”的情况。'],
+					['即使对方的性别标签不是我原本预期会被吸引的类型，如果气质/身体/互动强烈触发我，我仍可能产生性吸引。', '高分提示吸引可能比标签更灵活。'],
+					['我对性吸引的判断常常来自身体反应、欲望画面或想触碰的冲动，而不是先想对方属于哪个身份。', '用于区分身体经验与理性分类。'],
+					['我曾因为社会期待、家庭或同伴压力，而怀疑或修正过自己的性吸引判断。', '这题捕捉外部压力造成的判断干扰。'],
+					['我可能因为“应该喜欢某类人”的脚本，而高估或低估过自己的真实吸引。', '例如强制异性恋、圈层期待、身份标签压力等。'],
+					['我可能因为羞耻、恐惧或内化偏见，而压抑/否认过自己对某些性别、性征或气质的性吸引。', '高分提示结果解读时要考虑压抑和回避。'],
+					['如果不考虑家庭、同伴、宗教、社会评价或安全风险，我对自己性吸引触发点的判断会更清楚。', '高分提示外部压力可能正在遮挡真实体验。']
+				]
+			},
+			{
+				title: '第五部分：整体性吸引强度、无性恋线索与标签整合（49-60题）',
+				desc: '用于判断整体性吸引是否较低，并区分无性恋/灰性恋/半性恋线索、幻想、经历、浪漫/审美/感官吸引与标签叙述。',
+				questions: [
+					['我能把“有过性经历/没有性经历”和“我会被哪些人性吸引”分开看待。', '性经历受机会、安全、文化和关系状态影响，不等于取向本身。'],
+					['我能区分“性幻想内容”和“现实中我真正想接近/发生性关系的对象”。', '幻想可能抽象或角色化，不必直接等同现实取向。'],
+					['我能区分“浪漫心动/想谈恋爱”和“想发生性接触”的差别。', '浪漫吸引和性吸引可以同步，也可以分离。'],
+					['我能区分“觉得某人好看/有魅力”和“想与TA发生带有性意味的亲密接触”。', '审美吸引很容易被误读成性吸引。'],
+					['我能区分“想拥抱/依偎的舒适感”和“带有性唤起或性欲望的触碰冲动”。', '感官亲密可以很强烈，但不一定是性吸引。'],
+					['我很少或几乎不会对任何性别、性征或性别气质产生自发的性吸引。', '高分是无性恋/无性恋谱系的重要线索。'],
+					['我即使能欣赏某些人的外貌、气质或魅力，也通常不会进一步产生性欲望。', '用于区分审美吸引强、性吸引低的情况。'],
+					['我的性吸引如果出现，通常也很低频、短暂、微弱或高度依赖特殊条件。', '高分更接近灰性恋或条件性吸引线索。'],
+					['我通常需要深度情感连接、信任或长期熟悉后，才可能出现性吸引。', '高分提示半性恋/情感条件性吸引线索。'],
+					['我对某些性别、性征或气质的吸引可能很少出现，但一旦出现就很明确。', '低频不等于不存在。'],
+					['我对自己的性吸引证据有相对稳定的判断标准，例如自发幻想、身体反应、想触碰、关系脚本等。', '高分通常意味着方向判断更稳定。'],
+					['无论最终使用哪个标签，我都希望结果帮助我更准确地理解自己，而不是把自己固定住。', '用于生成更适合你的整合建议。']
+				]
+			}
+		];
+
+		function getQuestionFocus(questionNumber) {
+			if ([1, 13, 25].includes(questionNumber)) return '这里问的是是否曾经出现过明确的性吸引。重点不是你是否发生过性行为、是否愿意立刻行动、是否有过相关关系经验，而是这类对象是否曾经进入你的性欲望范围。可以参考自发性幻想、想发生性意味触碰、身体兴奋、关系中自然包含性的想象等线索。';
+			if ([2, 14].includes(questionNumber)) return '这里把自发幻想作为线索。自发幻想通常比刻意测试、为了证明自己而强迫想象，更能反映吸引方向。若某类对象只在你“努力想象自己应该喜欢TA”时才出现，而平时没有自然浮现，分数应更保守。';
+			if ([3, 15].includes(questionNumber)) return '这里关注的是某一性别方向是否进入你的性吸引范围，而不是要求你对任何人的身份进行额外分类。请按你对女性或男性相关对象的真实性吸引经验作答，重点看是否会产生性幻想、欲望、身体兴奋或性意味亲密想象。';
+			if ([4, 16, 29].includes(questionNumber)) return '这里关注身体或心理层面的性兴奋。它可以是生理唤起，也可以是明确的欲望感、性幻想被点燃、想靠近并发生带有性意味的触碰。请把它与紧张、害羞、崇拜、害怕、审美震撼或社交兴奋区分开。';
+			if ([5, 17].includes(questionNumber)) return '这里问的是关系想象中的“性是否自然可进入”。你不需要真的想立即发生性行为，也不需要认同性关系必须发生；题目只评估当你想象与这类对象建立亲密关系时，性是否会自然成为可能选项。';
+			if ([6, 18, 30].includes(questionNumber)) return '这里看频率而不是单次强度。低频不等于不存在，但如果几年内几乎没有可回忆的例子，分数就应该更低。若出现次数少但每次都很明确，可以在本题保守作答，并在第58题反映“低频但明确”。';
+			if ([7, 19].includes(questionNumber)) return '这里的“想靠近/想触碰”必须带有性意味。普通亲近、想拥抱取暖、想获得认可、想被照顾、想成为朋友，不能直接算作高分。更可靠的线索是触碰想象本身带有欲望、身体兴奋或性幻想。';
+			if ([8, 20].includes(questionNumber)) return '这里不是要求你对所有类型都平均有吸引，而是看吸引是否只依赖一个非常狭窄的模板。若你会被多种女性/男性风格吸引，说明该方向较稳定；若只对极少数高度特定类型有效，可以给中低分。';
+			if ([9, 21, 33].includes(questionNumber)) return '这里用亲密触碰来区分性吸引与感官吸引。拥抱、亲吻、依偎可以是非性的，也可以带有性意味。关键不是动作本身，而是你是否感到欲望、性兴奋、想继续走向更性化的接触。';
+			if ([10, 22, 32].includes(questionNumber)) return '这里捕捉回应性吸引。有些人的性吸引不是先自发出现，而是在对方表达暧昧、欲望、邀请或明确兴趣后被唤起。若你经常需要对方信号作为触发条件，这一题可以较高。';
+			if ([11, 23, 35].includes(questionNumber)) return '这里是在做证据校准。认同、欣赏、羡慕、支持、审美喜欢、希望被对方认可，都不必自动等于性吸引。高分表示你能把这些体验拆开，而不是把所有强烈感受都归入性吸引。';
+			if ([12, 24, 36].includes(questionNumber)) return '这里看你面对“与这类对象发生性行为”的总体情绪基调。期待、兴奋、好奇、平静、空白、压力、抗拒都可以如实反映。题目不要求你真的想行动，而是看这种想象是否与欲望相容。';
+			if ([28, 31, 34].includes(questionNumber)) return '这里问性别分类是否是吸引发生的前置条件。若你必须先确认对方属于某个性别才会继续产生吸引，分数可偏低；若吸引常常先于分类出现，或你并不需要清楚知道对方性别，分数可偏高。';
+			if ([37, 38, 39, 40, 42, 43, 44].includes(questionNumber)) return '这一组关注身体性征、气质、声音、气味、姿态、动作方式、互动张力等线索如何影响性吸引。它们用于补足“只按性别身份分类”的不足，因为很多人的吸引不是被抽象标签触发，而是被具体身体和表达线索触发。';
+			if ([45, 46, 47, 48].includes(questionNumber)) return '这一组评估社会脚本和安全压力。高分不说明你的吸引“不真实”，而是提示家庭、同伴、宗教、圈层期待、强制异性恋或身份标签压力可能干扰了你的判断。解读时应提高自发身体经验的权重。';
+			if ([49, 50, 51, 52, 53].includes(questionNumber)) return '这一组用于区分性经历、幻想、浪漫、审美、感官亲密与性吸引。它们可能彼此重叠，但不能简单等同。辨别越清楚，结果越适合作为方向判断；辨别越模糊，结果越适合作为进一步自我观察的线索。';
+			if ([54, 55, 56, 57].includes(questionNumber)) return '这一组用于识别无性恋谱系线索：整体性吸引很少、低频、微弱、条件性强，或需要深度情感连接后才出现。高分不代表“有问题”，而是说明你的性吸引可能不符合主流有性恋脚本。';
+			if ([58, 59, 60].includes(questionNumber)) return '这一组帮助整合结果。低频但明确的吸引、稳定的证据标准、开放的标签态度，都会影响结果呈现方式。你可以使用“主要/也会/很少/需要条件/暂时不确定”等描述，而不是强迫自己立刻固定身份。';
+			return '请按近几年较稳定、较真实的体验作答。少见不等于不真实，但反复出现的体验权重更高；一次非常特殊的例外可以参考，但不应压过长期模式。';
+		}
+
+		function buildExplanation(questionNumber, baseExplanation) {
+			return `<p><strong>题目在问：</strong>${getQuestionFocus(questionNumber)}</p>
+				<p><strong>作答提示：</strong>${baseExplanation}</p>`;
+		}
+
+		function renderQuestions() {
+			const container = document.getElementById('questionsContainer');
+			let questionNumber = 1;
+			container.innerHTML = sections.map(section => {
+				const questionsHtml = section.questions.map(([text, explanation]) => {
+					const selectHtml = options.map(([value, label]) => `<option value="${value}">${value} - ${label}</option>`).join('');
+					const html = `<div class="question">
+						<div class="question-title" onclick="toggleExplanation(this)">
+							<span class="q-number">${questionNumber}.</span>${text}
+						</div>
+						<select name="q${questionNumber}">
+							<option value="" disabled selected>请选择...</option>
+							${selectHtml}
+						</select>
+						<div class="explanation">${buildExplanation(questionNumber, explanation)}</div>
+					</div>`;
+					questionNumber++;
+					return html;
+				}).join('');
+				return `<div class="section"><h2>${section.title}</h2><p>${section.desc}</p>${questionsHtml}</div>`;
+			}).join('');
+		}
+
+		function toggleExplanation(el) {
+			const explanation = el.parentElement.querySelector('.explanation');
+			if (!explanation) return;
+			const isOpen = explanation.classList.contains('show');
+			document.querySelectorAll('.explanation').forEach(exp => exp.classList.remove('show'));
+			if (!isOpen) explanation.classList.add('show');
+		}
+
+		document.addEventListener('click', function (e) {
+			if (!e.target.closest('.question')) document.querySelectorAll('.explanation').forEach(exp => exp.classList.remove('show'));
+		});
+
+		function updateProgress() {
+			const form = document.getElementById('sexualOrientationQuiz');
+			let completed = 0;
+			for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+				if (form.elements[`q${i}`] && form.elements[`q${i}`].value !== '') completed++;
+			}
+			const percentage = (completed / TOTAL_QUESTIONS) * 100;
+			document.getElementById('globalProgressText').textContent = `进度：${completed}/${TOTAL_QUESTIONS}`;
+			document.getElementById('globalProgressBar').style.width = percentage + '%';
+		}
+
+		function saveAnswersToLocalStorage() {
+			const form = document.getElementById('sexualOrientationQuiz');
+			const answers = {};
+			for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+				const select = form.elements[`q${i}`];
+				if (select) answers[`q${i}`] = select.value;
+			}
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+		}
+
+		function loadAnswersFromLocalStorage() {
+			const saved = localStorage.getItem(STORAGE_KEY);
+			if (!saved) return;
+			const answers = JSON.parse(saved);
+			const form = document.getElementById('sexualOrientationQuiz');
+			for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+				const select = form.elements[`q${i}`];
+				if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== '') select.value = answers[`q${i}`];
+			}
+			updateProgress();
+		}
+
+		function getScores() {
+			const form = document.getElementById('sexualOrientationQuiz');
+			const scores = {};
+			for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+				const el = form.elements[`q${i}`];
+				if (!el || el.value === '') {
+					alert(`请完成第 ${i} 题后再计算结果。`);
+					return null;
+				}
+				scores[`q${i}`] = parseInt(el.value, 10);
+			}
+			return scores;
+		}
+
+		function mean(values) {
+			return values.reduce((sum, value) => sum + value, 0) / values.length;
+		}
+
+		function avg(scores, nums) {
+			return mean(nums.map(num => scores[`q${num}`]));
+		}
+
+		function getLevel(score) {
+			if (score >= 4.0) return '很高';
+			if (score >= 3.0) return '较高';
+			if (score >= 2.0) return '中等';
+			if (score >= 1.0) return '偏低';
+			return '很低';
+		}
+
+		function getIntensity(score) {
+			if (score >= 4.5) return { text: '非常强烈', color: '#16a34a' };
+			if (score >= 3.5) return { text: '中等偏强', color: '#22c55e' };
+			if (score >= 2.5) return { text: '中等', color: '#f59e0b' };
+			if (score >= 1.5) return { text: '中等偏弱', color: '#f97316' };
+			return { text: '微弱', color: '#ef4444' };
+		}
+
+		function renderBar(score) {
+			const pct = Math.max(0, Math.min(100, (score / 5) * 100));
+			return `<div class="bar"><span style="width:${pct}%"></span></div>`;
+		}
+
+		function getOrientationLabel(ctx) {
+			if (ctx.overallSexualAttraction < 1.5 || (ctx.maxAvg < 1.2 && ctx.embodiedSpecificity < 1.5) || (ctx.maxAvg < 1.8 && ctx.aceSpectrumSignal >= 3.4)) {
+				return {
+					title: '无性恋/无性恋谱系倾向（整体性吸引很低）',
+					desc: '你的性别相关吸引、身体性征吸引和气质触发线索整体都偏低，且无性恋谱系线索较明显。这并不表示你不能有浪漫、审美、情感或感官亲密需求，而是说明“想与他人发生性接触”的内在吸引可能较少或很少出现。'
+				};
+			}
+			if (ctx.aceSpectrumSignal >= 3.6 && ctx.overallSexualAttraction < 2.4) {
+				return {
+					title: '灰性恋/条件性性吸引倾向',
+					desc: '你的性吸引并非完全缺席，但整体强度、频率或自发性偏低，可能更依赖特定条件、深度情感连接或少数明确对象。建议结合无性恋谱系量表进一步区分灰性恋、半性恋或其他条件性吸引模式。'
+				};
+			}
+
+			const active = [];
+			if (ctx.avgWomen >= 2.6) active.push('women');
+			if (ctx.avgMen >= 2.6) active.push('men');
+			if (ctx.avgNb >= 2.6) active.push('nb');
+			const panish = ctx.personCenteredAttraction >= 3.6;
+			const strongEmbodied = ctx.embodiedSpecificity >= 3.6;
+			const questioning = ctx.labelFlexibility >= 3.8;
+			const fluid = ctx.lowFrequencyClear >= 4 || ctx.conditionalAttraction >= 3.6;
+
+			if (active.length === 0) {
+				return {
+					title: '整体性吸引较弱或方向暂不清晰',
+					desc: '你对女性/女性气质、男性/男性气质、非二元/中性混合表达的评分都未明显高于中位水平。可能是性吸引本身较少、体验较低频，或仍在辨别不同吸引类型。'
+				};
+			}
+
+			if (active.length === 1) {
+				const g = active[0];
+				const targetName = g === 'women' ? '女性/女性气质' : g === 'men' ? '男性/男性气质' : '非二元/中性/混合表达';
+				const notes = [questioning ? '你也更适合用开放或比例化语言描述自己。' : '', fluid ? '你的吸引可能具有低频、条件性或阶段性特点。' : ''].filter(Boolean).join('');
+				return {
+					title: `主要被${targetName}吸引（单向倾向）`,
+					desc: `你的评分显示性吸引主要集中在${targetName}，其他方向相对较弱。${panish ? '不过你在“更看具体的人/气质/互动”上也较高，说明这个单向倾向可能不是僵硬的身份筛选。' : ''}${strongEmbodied ? '你的身体性征或气质触发点也较明显，建议进一步记录具体是什么线索在起作用。' : ''}${notes}`
+				};
+			}
+
+			const targets = [];
+			if (active.includes('women')) targets.push('女性/女性气质');
+			if (active.includes('men')) targets.push('男性/男性气质');
+			if (active.includes('nb')) targets.push('非二元/中性/混合表达');
+			const title = panish ? '泛性恋/不限性别倾向（更看具体的人与互动）' : active.includes('nb') ? '多性恋倾向（吸引覆盖多个性别/表达）' : '双性恋倾向（同时被女性与男性相关线索吸引）';
+			const notes = [questioning ? '你仍可能更适合开放标签。' : '', fluid ? '你的体验也可能具有低频、条件性或流动性。' : ''].filter(Boolean).join('');
+			return {
+				title: `${title}（主要覆盖：${targets.join('、')}）`,
+				desc: `你的评分显示性吸引可能同时指向${targets.join('、')}。${panish ? '性别标签不像你的第一筛选条件，更接近“不限性别/看人本身”的结构。' : '不同方向强度不对称也很常见，并不影响多向取向的成立。'}${strongEmbodied ? '同时，身体性征或气质触发点对你可能很重要。' : ''}${notes}`
+			};
+		}
+
+		function getContext(scores) {
+			const avgWomen = avg(scores, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+			const avgMen = avg(scores, [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
+			const avgNb = avg(scores, [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]);
+			const embodiedSpecificity = avg(scores, [37, 38, 39, 40, 42, 43, 44]);
+			const personCenteredAttraction = avg(scores, [39, 41, 43, 44]);
+			const socialPressure = avg(scores, [45, 46, 47, 48]);
+			const aceSpectrumSignal = avg(scores, [54, 55, 56, 57]);
+			const conditionalAttraction = avg(scores, [56, 57]);
+			const overallSexualAttraction = mean([avgWomen, avgMen, avgNb, embodiedSpecificity, personCenteredAttraction]);
+			return {
+				scores,
+				avgWomen,
+				avgMen,
+				avgNb,
+				maxAvg: Math.max(avgWomen, avgMen, avgNb),
+				embodiedSpecificity,
+				personCenteredAttraction,
+				socialPressure,
+				aceSpectrumSignal,
+				conditionalAttraction,
+				overallSexualAttraction,
+				distinctionClarity: avg(scores, [49, 50, 51, 52, 53]),
+				labelFlexibility: avg(scores, [58, 59, 60]),
+				lowFrequencyClear: scores.q58
+			};
+		}
+
+		function row(name, score, hint) {
+			return `<tr><td>${name}</td><td>${score.toFixed(2)}</td><td>${hint}</td></tr>`;
+		}
+
+		function buildAnalysisCard(title, score, body, details = '') {
+			const intensity = getIntensity(score);
+			return `<div class="analysis-card">
+				<h4 style="color: var(--accent); margin-top: 0;">${title}（${score.toFixed(2)}/5.0）</h4>
+				<p><strong>强度评估：</strong><span style="color:${intensity.color}; font-weight:700;">${intensity.text}</span>（${getLevel(score)}）</p>
+				${renderBar(score)}
+				<p>${body}</p>
+				${details}
+			</div>`;
+		}
+
+		function generateDetailedAnalysis(ctx) {
+			const scores = ctx.scores;
+			let html = `<div style="background-color:#f9f9f9; border-radius:10px; padding:25px; margin-top:20px;">
+				<h3>详细维度分析</h3>
+				<p style="color:#555;">以下把方向、身体/气质触发点、无性恋谱系线索、外部压力、辨别清晰度和标签整合分开呈现。</p>`;
+
+			html += buildAnalysisCard('1. 女性/女性气质相关性吸引', ctx.avgWomen,
+				ctx.avgWomen >= 3.2 ? '女性、女性气质或女性相关线索明显进入你的性吸引范围，且并非偶发。' : ctx.avgWomen >= 2.0 ? '女性/女性气质相关吸引存在，但可能更依赖具体情境、类型或关系互动。' : '女性/女性气质相关吸引整体较弱，可能偏向其他方向，或整体性吸引较低。',
+				`<ul><li>自发幻想：第2题 ${scores.q2}/5</li><li>女性是否进入性吸引范围：第3题 ${scores.q3}/5</li><li>女性化身体/气质线索：第4题 ${scores.q4}/5</li><li>总体情绪基调：第12题 ${scores.q12}/5</li></ul>`);
+
+			html += buildAnalysisCard('2. 男性/男性气质相关性吸引', ctx.avgMen,
+				ctx.avgMen >= 3.2 ? '男性、男性气质或男性相关线索明显进入你的性吸引范围，且并非偶发。' : ctx.avgMen >= 2.0 ? '男性/男性气质相关吸引存在，但可能更依赖特定类型、回应信号或情境。' : '男性/男性气质相关吸引整体较弱；若社会脚本压力高，可特别留意是否有高估或压低。',
+				`<ul><li>自发幻想：第14题 ${scores.q14}/5</li><li>男性是否进入性吸引范围：第15题 ${scores.q15}/5</li><li>男性化身体/气质线索：第16题 ${scores.q16}/5</li><li>总体情绪基调：第24题 ${scores.q24}/5</li></ul>`);
+
+			html += buildAnalysisCard('3. 非二元/中性/混合表达相关性吸引', ctx.avgNb,
+				ctx.avgNb >= 3.2 ? '你的性吸引范围明显覆盖非二元、中性或混合表达对象。' : ctx.avgNb >= 2.0 ? '你可能对非二元/中性/混合表达有一定开放度，但强度受接触机会和具体表达影响。' : '此维度偏低不必直接理解为排除，也可能是现实接触或证据不足。',
+				`<ul><li>中性/混合表达：第26题 ${scores.q26}/5</li><li>不先归类性别：第34题 ${scores.q34}/5</li><li>频率线索：第30题 ${scores.q30}/5</li><li>总体情绪基调：第36题 ${scores.q36}/5</li></ul>`);
+
+			html += buildAnalysisCard('4. 身体性征、性别气质与具体触发点', ctx.embodiedSpecificity,
+				ctx.embodiedSpecificity >= 3.6 ? '你的性吸引明显受身体性征、性别气质、声音、姿态、动作或互动方式影响。' : ctx.embodiedSpecificity >= 2.4 ? '你可能既会参考身份标签，也会参考身体/气质/互动等具体线索。' : '身体性征或气质触发点在你的性吸引结构中可能不是主轴，或整体性吸引本来就较低。',
+				`<ul><li>身体性征影响：第37题 ${scores.q37}/5</li><li>性别气质影响：第38题 ${scores.q38}/5</li><li>声音/气味/姿态影响：第39题 ${scores.q39}/5</li><li>标签之外的触发：第43题 ${scores.q43}/5</li></ul>`);
+
+			html += buildAnalysisCard('5. 无性恋谱系线索', ctx.aceSpectrumSignal,
+				ctx.aceSpectrumSignal >= 3.6 ? '你有明显无性恋谱系线索：性吸引可能整体少、弱、低频、条件性强，或需要深度情感连接才出现。' : ctx.aceSpectrumSignal >= 2.4 ? '你可能有部分低频或条件性吸引线索，但仍需结合前三个方向维度一起看。' : '无性恋谱系线索不突出，若前三个方向维度有明显高分，可优先理解为性吸引方向差异。',
+				`<ul><li>很少对任何性别/性征/气质产生性吸引：第54题 ${scores.q54}/5</li><li>审美强但性吸引弱：第55题 ${scores.q55}/5</li><li>低频/微弱/条件性：第56题 ${scores.q56}/5</li><li>深度情感后才可能出现：第57题 ${scores.q57}/5</li></ul>`);
+
+			html += buildAnalysisCard('6. 社会脚本压力与压抑影响', ctx.socialPressure,
+				ctx.socialPressure >= 3.6 ? '外部评价、家庭/同伴期待或内化偏见可能正在干扰你的取向判断。建议优先参考身体反应、自发幻想和想触碰的冲动。' : '外部压力对结果的干扰相对有限，你的方向判断通常更稳定。',
+				`<ul><li>社会期待影响：第45题 ${scores.q45}/5</li><li>“应该喜欢”脚本：第46题 ${scores.q46}/5</li><li>压抑/否认：第47题 ${scores.q47}/5</li><li>去除外部评价后更清楚：第48题 ${scores.q48}/5</li></ul>`);
+
+			html += buildAnalysisCard('7. 吸引类型辨别清晰度', ctx.distinctionClarity,
+				ctx.distinctionClarity >= 3.6 ? '你较能区分性吸引、浪漫吸引、审美吸引、感官吸引、幻想与经历，结果可信度更高。' : '你可能仍在辨别不同吸引类型。建议把具体体验分成“想看、想靠近、想恋爱、想性接触”等项目记录。',
+				`<ul><li>经历与取向分开：第49题 ${scores.q49}/5</li><li>幻想与现实分开：第50题 ${scores.q50}/5</li><li>浪漫与性分开：第51题 ${scores.q51}/5</li><li>审美与性分开：第52题 ${scores.q52}/5</li><li>感官与性分开：第53题 ${scores.q53}/5</li></ul>`);
+
+			html += buildAnalysisCard('8. 标签整合与开放描述', ctx.labelFlexibility,
+				ctx.labelFlexibility >= 3.6 ? '你更适合用比例、倾向、条件和开放标签描述自己，而不是只用单一标签概括。' : '你可能更需要一个相对稳定的标签，再用分量表细节修正它。',
+				`<ul><li>低频但明确：第58题 ${scores.q58}/5</li><li>证据标准：第59题 ${scores.q59}/5</li><li>结果用于理解而非固定：第60题 ${scores.q60}/5</li></ul>`);
+
+			html += '</div>';
+			return html;
+		}
+
+		function generateSuggestions(ctx, label) {
+			let html = `<div class="note-box" style="margin-top:20px;">
+				<h3>个性化建议</h3>
+				<p>以下建议不是要求你立刻选择一个身份标签，而是帮助你把性吸引拆成可观察的线索：方向、强度、触发条件、身体反应、社会脚本影响，以及你对标签的使用偏好。</p>
+				<ol>`;
+
+			if (ctx.overallSexualAttraction < 1.8 || ctx.aceSpectrumSignal >= 3.6) {
+				html += '<li><strong>先确认整体性吸引强度：</strong>你的方向判断可能受整体性吸引偏低、低频或条件性出现影响。建议结合无性恋谱系量表继续区分无性恋、灰性恋、半性恋、低频但明确的性吸引，以及审美/浪漫很强但性吸引很低的情况。</li>';
+			} else {
+				html += '<li><strong>用模式替代自我证明：</strong>不要只问“我到底是什么”，也问“我在什么情境、对什么人、以什么方式出现性吸引”。例如：是被身份标签触发，还是被身体性征、气质、声音、姿态、互动张力或关系安全感触发。</li>';
+			}
+
+			if (ctx.distinctionClarity < 2.6) html += '<li><strong>先拆分吸引类型：</strong>记录每次被触动时，你是想看TA、想靠近TA、想和TA恋爱、想被TA认可，还是想发生性接触。很多误判来自把审美吸引、浪漫吸引、感官吸引和性吸引混成同一种“喜欢”。</li>';
+			if (ctx.socialPressure >= 3.6) html += '<li><strong>处理外部脚本：</strong>如果你长期处于“应该喜欢谁”的压力里，建议把身体信号、自发幻想、真实靠近冲动作为更高权重证据，同时降低家庭期待、同伴评价、圈层标签压力对结果的影响。</li>';
+			if (ctx.personCenteredAttraction >= 3.6) html += '<li><strong>如果你更偏不限性别：</strong>可以用“我更看具体的人、气质和互动”解释自己，不必急着在泛/双/多之间二选一。你也可以先使用“不限性别倾向”“更看人本身”这类描述性语言。</li>';
+			else if (ctx.embodiedSpecificity >= 3.6) html += '<li><strong>如果身体/气质线索很重要：</strong>把身份类别和具体触发点分栏记录，例如身体性征、声音、气质、姿态、互动方式。这样能避免把复杂吸引压缩成“只喜欢某个性别”。</li>';
+			if (ctx.labelFlexibility >= 3.6 || ctx.conditionalAttraction >= 3.6 || ctx.lowFrequencyClear >= 4) html += '<li><strong>允许探索、条件性和低频：</strong>少见不等于不真实，必须满足特定条件才出现也不等于你测错了。可以使用“主要/也会/很少/需要情感连接/目前不确定”等比例化、条件化描述。</li>';
+			html += `<li><strong>当前结果的使用方式：</strong>初步标签为“${label.title}”。建议把它当成当前阶段的地图，而不是身份判决书。若未来经历、关系状态或自我理解发生变化，可以重新作答并比较变化。</li></ol></div>`;
+			return html;
+		}
+
+		function renderResult(ctx) {
+			const label = getOrientationLabel(ctx);
+			const resultDiv = document.getElementById('result');
+			const caution = ctx.socialPressure >= 3.6 ? `<div class="analysis-card" style="border-left:6px solid var(--accent);"><h3 style="margin-top:0;">结果解读的特别提醒</h3><p>你的社会脚本压力或压抑影响较高。看结论时，建议优先相信自发幻想、身体兴奋、想触碰的冲动等更难被“应该”伪装的线索。</p></div>` : '';
+
+			resultDiv.innerHTML = `
+				<h2 id="scoreSummary">结果概览</h2>
+				<p id="typeJudgment"><strong>初步标签：</strong>${label.title}</p>
+				<p id="mainInterpretation">${label.desc}</p>
+				<div class="analysis-card">
+					<h3 style="margin-top:0;">如何阅读这个结果</h3>
+					<p>本结果优先呈现你的<strong>性吸引结构</strong>，而不是要求你立刻采用某个身份标签。请重点看三个层面：第一，你的性吸引主要指向哪些性别或性别表达；第二，身体性征、气质、声音、姿态、互动张力等具体线索是否比身份标签更重要；第三，整体性吸引是否偏低、低频或条件性出现。</p>
+					<p>如果某个方向分数高，说明该方向较可能进入你的性吸引范围；如果所有方向都低，同时无性恋谱系线索较高，则更应优先考虑无性恋、灰性恋、半性恋或条件性吸引。若社会脚本压力高，建议把结果视为初步线索，而不是最终判断。</p>
+				</div>
+				${caution}
+				<h3 id="sectionScores">分量表结果</h3>
+				<table>
+					<tr><th>维度</th><th>平均分（0-5）</th><th>解读</th></tr>
+					${row('女性/女性气质相关性吸引', ctx.avgWomen, getLevel(ctx.avgWomen))}
+					${row('男性/男性气质相关性吸引', ctx.avgMen, getLevel(ctx.avgMen))}
+					${row('非二元/中性/混合表达相关性吸引', ctx.avgNb, getLevel(ctx.avgNb))}
+					${row('身体性征/性别气质触发点', ctx.embodiedSpecificity, getLevel(ctx.embodiedSpecificity))}
+					${row('更看具体的人/互动', ctx.personCenteredAttraction, getLevel(ctx.personCenteredAttraction))}
+					${row('无性恋谱系线索', ctx.aceSpectrumSignal, getLevel(ctx.aceSpectrumSignal))}
+					${row('社会脚本压力/压抑影响', ctx.socialPressure, getLevel(ctx.socialPressure))}
+					${row('吸引类型辨别清晰度', ctx.distinctionClarity, getLevel(ctx.distinctionClarity))}
+					${row('标签弹性与叙述偏好', ctx.labelFlexibility, getLevel(ctx.labelFlexibility))}
+				</table>
+				<h3>使用建议</h3>
+				<ul>
+					<li>本量表用于自我探索，不用于诊断或证明任何身份。</li>
+					<li>如果性别相关吸引、性征吸引和气质吸引都偏低，结果可以直接指向无性恋/无性恋谱系倾向。</li>
+					<li>如果辨别清晰度偏低，先记录具体体验，再回头看取向标签。</li>
+				</ul>
+				<div id="detailedAnalysis">${generateDetailedAnalysis(ctx)}</div>
+				<div id="personalizedSuggestions">${generateSuggestions(ctx, label)}</div>
+			`;
+			resultDiv.style.display = 'block';
+			resultDiv.scrollIntoView({ behavior: 'smooth' });
+		}
+
+		function calculateResult() {
+			const scores = getScores();
+			if (!scores) return;
+			renderResult(getContext(scores));
+		}
+
+		function resetQuiz() {
+			if (!confirm('确定要清除全部作答与本地保存吗？')) return;
+			const form = document.getElementById('sexualOrientationQuiz');
+			for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+				if (form.elements[`q${i}`]) form.elements[`q${i}`].value = '';
+			}
+			localStorage.removeItem(STORAGE_KEY);
+			document.getElementById('result').style.display = 'none';
+			document.getElementById('result').innerHTML = '';
+			updateProgress();
+		}
+
+		function saveResultText() {
+			const resultDiv = document.getElementById('result');
+			if (resultDiv.style.display !== 'block') {
+				alert('请先计算结果再保存！');
+				return;
+			}
+			const resultText = [
+				'性取向（性吸引方向）自评量表结果',
+				'================================',
+				'',
+				document.getElementById('typeJudgment').innerText,
+				'',
+				document.getElementById('mainInterpretation').innerText,
+				'',
+				document.getElementById('sectionScores').nextElementSibling.innerText,
+				'',
+				document.getElementById('detailedAnalysis').innerText,
+				'',
+				document.getElementById('personalizedSuggestions').innerText
+			].join('\n');
+			const blob = new Blob([resultText.trim()], { type: 'text/plain;charset=utf-8' });
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = '性取向自评结果.txt';
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+			URL.revokeObjectURL(url);
+		}
+
+		async function saveResultImage() {
+			const resultDiv = document.getElementById('result');
+			if (resultDiv.style.display !== 'block') {
+				alert('请先计算结果再保存！');
+				return;
+			}
+			if (typeof html2canvas !== 'function') {
+				alert('图片保存组件尚未加载完成，请稍后再试。');
+				return;
+			}
+			const canvas = await html2canvas(resultDiv, { scale: 2, backgroundColor: '#f4f1fb' });
+			const link = document.createElement('a');
+			link.download = '性取向自评结果.png';
+			link.href = canvas.toDataURL('image/png');
+			link.click();
+		}
+
+		renderQuestions();
+		loadAnswersFromLocalStorage();
+		updateProgress();
+
+		document.getElementById('sexualOrientationQuiz').addEventListener('change', function () {
+			updateProgress();
+			saveAnswersToLocalStorage();
+		});
+	</script>
+</body>
+
+</html>

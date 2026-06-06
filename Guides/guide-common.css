@@ -1,0 +1,650 @@
+/* Shared guide layout for long-form concept pages. */
+:root {
+      --ink: #0b1220;
+      --paper: #f7f8fc;
+      --cream: #eef1f9;
+      --accent: #5b4de3;
+      --accent-2: #0f766e;
+      --muted: #475569;
+      --border: #c8d0df;
+      --accent-light: #eceaff;
+      --focus: rgba(91, 77, 227, 0.7);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+    }
+
+    body {
+      background: var(--paper) !important;
+      color: var(--ink) !important;
+      font-family: 'Noto Serif SC', serif !important;
+      line-height: 1.8 !important;
+      min-height: 100vh;
+    }
+
+    .typora-export-content {
+      display: block !important;
+    }
+
+    .typora-export-sidebar {
+      display: none !important;
+    }
+
+    #write {
+      max-width: none !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      font-size: 16px !important;
+    }
+
+    #write :is(p, li) {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    #write :is(table, pre) {
+      max-width: 100%;
+    }
+
+    #write figure,
+    #write .table-figure {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #write pre {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #write h1,
+    #write h2,
+    #write h3,
+    #write h4,
+    #write h5,
+    #write h6,
+    #write p,
+    #write ul,
+    #write ol {
+      margin: 0;
+      padding: 0;
+    }
+
+    #write p,
+    #write li,
+    #write span {
+      white-space: normal !important;
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 40px,
+          rgba(255, 255, 255, 0.02) 40px,
+          rgba(255, 255, 255, 0.02) 41px);
+    }
+
+    .header-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: rgba(15, 118, 110, 0.95);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 6vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+      position: relative;
+    }
+
+    header h1 .title-gender {
+      color: var(--accent);
+    }
+
+    .header-sub {
+      font-size: 0.85rem;
+      color: rgba(247, 248, 252, 0.6);
+      letter-spacing: 0.1em;
+      margin-top: 1rem;
+      font-family: 'Space Mono', monospace;
+      position: relative;
+    }
+
+    .header-ornament {
+      margin: 2rem auto 0;
+      width: 64px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(91, 77, 227, 0.9), transparent);
+      position: relative;
+    }
+
+    .intro-section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 3.2rem 2rem 2rem;
+    }
+
+    .intro-section p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .intro-section strong {
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 2rem 0;
+    }
+
+    .main-content {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .category-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .category-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .category-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      justify-items: center;
+    }
+
+    .toc-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-items: stretch;
+    }
+
+    .term-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 1.85rem;
+      position: relative;
+      color: var(--ink);
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .term-card.highlight {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+    }
+
+    .term-card.highlight .term-en {
+      color: var(--accent);
+    }
+
+    .term-card.highlight .term-desc {
+      color: rgba(247, 248, 252, 0.78);
+    }
+
+    .term-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 18px 18px 0;
+      border-color: transparent var(--border) transparent transparent;
+    }
+
+    .term-card.highlight .term-corner {
+      border-color: transparent rgba(91, 77, 227, 0.95) transparent transparent;
+    }
+
+    .term-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(91, 77, 227, 0.95);
+      display: block;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+
+    .term-zh {
+      font-size: 0.7rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.85rem;
+    }
+
+    .term-card.highlight .term-zh {
+      color: rgba(247, 248, 252, 0.55);
+    }
+
+    .term-desc {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      font-weight: 300;
+      color: #1f2937;
+    }
+
+    .term-card.highlight .term-desc {
+      color: rgba(247, 248, 252, 0.8);
+    }
+
+    #write .term-desc :is(h2, h3, h4, h5, h6)[data-level] {
+      margin: 1.05rem 0 0.55rem;
+      line-height: 1.35;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    #write .term-card.highlight .term-desc :is(h2, h3, h4, h5, h6)[data-level] {
+      color: rgba(247, 248, 252, 0.92);
+    }
+
+    #write .term-desc :is(h2, h3, h4, h5, h6)[data-level="2"] {
+      padding-left: 0.85rem;
+      font-size: 0.98rem;
+    }
+
+    #write .term-desc :is(h2, h3, h4, h5, h6)[data-level="3"] {
+      padding-left: 1.7rem;
+      font-size: 0.96rem;
+    }
+
+    #write .term-desc :is(h2, h3, h4, h5, h6)[data-level="4"] {
+      padding-left: 2.55rem;
+      font-size: 0.94rem;
+    }
+
+    #write .term-desc :is(h2, h3, h4, h5, h6)[data-level="5"] {
+      padding-left: 3.4rem;
+      font-size: 0.92rem;
+    }
+
+    #write .term-desc :is(h2, h3, h4, h5, h6)[data-level]::before {
+      content: none !important;
+    }
+
+    #write .card-num {
+      margin-right: 0.35em;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8em;
+      letter-spacing: 0.04em;
+      color: rgba(91, 77, 227, 0.95);
+    }
+
+    #write .term-desc p {
+      margin: 0.85rem 0;
+    }
+
+    #write .term-desc p+p {
+      margin-top: 0.55rem;
+    }
+
+    #write .term-desc ul,
+    #write .term-desc ol {
+      margin: 0.85rem 0 0.45rem;
+      padding-left: 1.2rem;
+    }
+
+    #write .term-desc li {
+      margin: 0.25rem 0;
+    }
+
+    #write .term-desc .guide-note {
+      margin: 1rem 0;
+      padding: 0.95rem 1rem;
+      border-left: 3px solid rgba(91, 77, 227, 0.75);
+      background: rgba(91, 77, 227, 0.07);
+      color: #334155;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    #write .term-card.highlight .term-desc .guide-note {
+      border-left-color: rgba(140, 132, 255, 0.95);
+      background: rgba(247, 248, 252, 0.08);
+      color: rgba(247, 248, 252, 0.88);
+    }
+
+    #write .term-desc .guide-note p {
+      margin: 0.35rem 0;
+    }
+
+    #write .term-desc .guide-note-title {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(91, 77, 227, 0.95);
+    }
+
+    #write .term-card.highlight .term-desc .guide-note-title {
+      color: rgba(180, 176, 255, 0.96);
+    }
+
+    .toc-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .term-card.toc-card:not(.highlight):hover {
+      background: rgba(91, 77, 227, 0.06);
+      border-color: rgba(91, 77, 227, 0.35);
+    }
+
+    .toc-card:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .floating-toc {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .toc-toggle-btn {
+      background: rgba(11, 18, 32, 0.92);
+      border: 1px solid rgba(91, 77, 227, 0.75);
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+      color: rgba(247, 248, 252, 0.92);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .toc-toggle-btn:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .toc-panel {
+      position: absolute;
+      bottom: 66px;
+      right: 0;
+      width: 300px;
+      max-width: 85vw;
+      background: var(--cream);
+      border: 1px solid rgba(91, 77, 227, 0.65);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+      padding: 1.2rem 0.85rem;
+      border-radius: 0;
+      max-height: min(70vh, 520px);
+      overflow: auto;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .toc-panel.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .toc-panel-header {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .toc-close-icon {
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .toc-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-list li {
+      margin: 0.65rem 0;
+    }
+
+    .toc-list a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.86rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0.55rem 0.65rem;
+      border-left: 2px solid transparent;
+    }
+
+    .toc-list a:hover {
+      background: rgba(91, 77, 227, 0.08);
+      border-left-color: rgba(91, 77, 227, 0.65);
+      color: rgba(15, 118, 110, 0.95);
+    }
+
+    .toc-list a[aria-current="true"] {
+      background: rgba(91, 77, 227, 0.09);
+      border-left-color: rgba(91, 77, 227, 0.85);
+      color: rgba(15, 118, 110, 0.95);
+    }
+
+    .toc-index {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(91, 77, 227, 0.9);
+      font-weight: 700;
+      width: 24px;
+      display: inline-block;
+      letter-spacing: 0;
+    }
+
+    .toc-title {
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    .term-tags,
+    .term-tag {
+      display: none !important;
+    }
+
+    body.guide-building #write {
+      opacity: 0;
+    }
+
+    body.guide-ready #write {
+      opacity: 1;
+      transition: opacity 0.16s ease;
+    }
+
+    .prism-back-home {
+      position: fixed;
+      top: calc(16px + env(safe-area-inset-top, 0px));
+      left: calc(16px + env(safe-area-inset-left, 0px));
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid rgba(24, 33, 47, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #415469;
+      font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    .prism-back-home:hover {
+      color: #18212f;
+      border-color: rgba(24, 33, 47, 0.26);
+    }
+    @media (max-width: 600px) {
+      .terms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #write .card-num {
+        display: none;
+      }
+
+      header {
+        padding: 3.4rem 1.4rem 2.6rem;
+      }
+
+      .intro-section {
+        padding: 2.6rem 1.4rem 1.6rem;
+      }
+
+      .main-content {
+        padding: 0 1.4rem 3.4rem;
+      }
+
+      .term-card {
+        padding: 1.35rem;
+      }
+
+      .floating-toc {
+        bottom: 16px;
+        right: 16px;
+      }
+
+      .toc-toggle-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+      }
+
+      .toc-panel {
+        bottom: 62px;
+        width: min(92vw, 360px);
+      }
+
+      .toc-list a {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.4rem;
+      }
+
+      .prism-back-home {
+        top: calc(10px + env(safe-area-inset-top, 0px));
+        left: calc(10px + env(safe-area-inset-left, 0px));
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      #write {
+        font-size: 15px !important;
+      }
+
+      header {
+        padding: 3rem 1.1rem 2.3rem;
+      }
+
+      .intro-section {
+        padding: 2.2rem 1.1rem 1.4rem;
+      }
+
+      .main-content {
+        padding: 0 1.1rem 3.1rem;
+      }
+
+      .term-en {
+        font-size: 1.35rem;
+      }
+
+      .term-desc {
+        font-size: 0.88rem;
+      }
+
+      .toc-toggle-btn {
+        width: 46px;
+        height: 46px;
+      }
+    }

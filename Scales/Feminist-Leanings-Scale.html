@@ -1,0 +1,1158 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>女权主义流派倾向自评量表</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fffefc;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #c2410c;
+        }
+
+        h3 {
+            border-bottom: 2px solid #f97316;
+            padding-bottom: 6px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.25em;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            color: #c2410c;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px 14px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .question-title:hover {
+            background-color: #fff0e6;
+        }
+
+        .q-number {
+            color: #f97316;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .question select {
+            width: 280px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.95em;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        .intro,
+        .explanation {
+            background-color: #fff7ed;
+            padding: 24px 28px;
+            border-left: 6px solid #f97316;
+            margin-bottom: 25px;
+            font-size: 0.98em;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 12px;
+            font-size: 0.95em;
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        .result {
+            display: none;
+            background-color: #fffcf8;
+            padding: 40px;
+            border-radius: 24px;
+            margin-top: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .result-top-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 25px;
+            align-items: stretch;
+            margin-bottom: 30px;
+        }
+
+        .radar-container {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #FFE0B2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .radar-wrapper {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1 / 1;
+        }
+
+        .result table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .result th {
+            background-color: #f97316;
+            color: white;
+            padding: 14px 16px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .result td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #fed7aa;
+            font-size: 0.95em;
+        }
+
+        .result tr:last-child td {
+            border-bottom: none;
+        }
+
+        .result tr:nth-child(even) {
+            background-color: #fff3ea;
+        }
+
+        button {
+            background-color: #f97316;
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-right: 15px;
+            margin-bottom: 10px;
+            font-size: 0.98em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+        }
+
+        button:hover {
+            background-color: #ea580c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+        }
+
+        .global-progress {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 252, 248, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-bottom: 1px solid #fde2c4;
+            z-index: 10;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .progress {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #c2410c;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #f97316;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .insight-card {
+            background-color: #fff;
+            border-left: 4px solid #f97316;
+            padding: 24px 28px;
+            margin: 25px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid #fef08a;
+            border-color: #ffedd5;
+        }
+
+        .insight-card h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            border-bottom: none;
+            color: #9a3412;
+        }
+
+        .theory-tag {
+            display: inline-flex;
+            align-items: center;
+            background: #FFF0E0;
+            color: #c2410c;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            border: 1px solid #fed7aa;
+        }
+
+        .action-box {
+            background: #fff7ed;
+            padding: 28px;
+            border-radius: 12px;
+            border-left: 4px solid #f97316;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        @media (max-width: 850px) {
+            .result-top-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .radar-wrapper {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            button {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .question select {
+                width: 100%;
+            }
+
+            .result {
+                padding: 20px;
+            }
+        }
+
+        /* === 修复 html2canvas 中文标点重叠 === */
+        .result .insight-card p,
+        .result .action-box p,
+        .result .insight-card li {
+            letter-spacing: 0.045em !important;
+            word-spacing: 0.08em;
+            line-height: 1.85 !important;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif !important;
+        }
+
+        .result .insight-card strong,
+        .result .action-box strong {
+            letter-spacing: 0.02em !important;
+        }
+
+        .result .insight-card p span.book-name,
+        .result .insight-card p span.score-text {
+            display: inline-block;
+            padding: 0 2px;
+            letter-spacing: 0.03em;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<link rel="stylesheet" href="./scale-common.css">
+	<script>window.PRISM_SCALE_CONFIG = { id: 'feminist-leanings', title: '女权主义流派倾向自评量表', formId: 'feminismQuiz', storageKey: 'feminismQuizAnswers', totalQuestions: 70, resultId: 'result' };</script>
+	<script src="./scale-common.js" defer></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+    <div class="global-progress">
+        <p class="progress" id="globalProgressText">进度：0/70</p>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <h1>女权主义流派倾向自评量表</h1>
+
+    <div class="intro">
+        <h2>关键概念与使用指南</h2>
+        <p><strong>女权主义并非单一理念</strong>，而是一个由多个相互交织、彼此补充、偶尔也存在张力的思想谱系构成的连续光谱。本量表用于帮助你从<strong>法律平等、父权批判、阶级分析、交叉压迫、文化伦理、性别解构、生态共生与去殖民视角</strong>等维度，观察自己更接近哪些流派倾向。
+        </p>
+        <p><strong>为了更好地理解各大流派，我们在此简要介绍量表涉及的八个核心倾向：</strong></p>
+        <ul>
+            <li><strong>自由女权主义（Liberal Feminism）</strong>：聚焦法律平等、教育机会、职场天花板，主张在现有民主和市场框架内通过渐进改革消除性别歧视。</li>
+            <li><strong>激进女权主义（Radical Feminism）</strong>：将父权制视为最根本的压迫结构，强调对身体、性、生殖以及家庭领域的权力批判，主张彻底的性别秩序颠覆。</li>
+            <li><strong>社会主义/马克思主义女权（Socialist/Marxist Feminism）</strong>：剖析资本主义与父权制的共谋，关注无偿再生产劳动、阶级剥削以及经济结构对女性命运的塑造。
+            </li>
+            <li><strong>交叉性女权主义（Intersectional Feminism）</strong>：拒绝将女性视为同质群体，强调种族、阶级、性取向、残障等身份轴线如何在具体情境中交织成独特的压迫模式。
+            </li>
+            <li><strong>文化/差异女权主义（Cultural/Difference Feminism）</strong>：重估传统被贬低的女性特质（关怀、合作、和平），主张以女性伦理重构社会价值体系。</li>
+            <li><strong>酷儿/后结构女权（Queer/Poststructural Feminism）</strong>：解构“女性”本质与男女二元框架，认为性别是流动的表演，关注边缘身体对规范的颠覆力。</li>
+            <li><strong>生态女权主义（Ecofeminism）</strong>：揭示父权制对自然环境的掠夺与对女性身体控制的内在同构性，追求人与非人世界的非支配关系。</li>
+            <li><strong>后殖民/全球南方女权（Postcolonial/Global South
+                    Feminism）</strong>：批判西方中心主义叙事，揭示帝国主义、全球化资本与在地父权制对第三世界女性的协同压迫，主张去殖民化视角。</li>
+        </ul>
+        <p><strong>使用指南</strong>：本量表共包含70道核心议题陈述，覆盖“制度改良与结构重塑”、“本质主义与认同建构”、“阶级、种族与去殖民”、“身体政治、生态与照护伦理”、“符号、语言与文化再现”、“具体议题与行动策略（一）”、“具体议题与行动策略（二）”七个维度。每道题请根据您过去几年的真实观念选择0-5分（0分=完全不认同，5分=完全认同，<strong>无绝对中立选项</strong>）。点击题目可展开详细解释，包括该题的测量焦点、高分倾向以及情境示例。完成所有题目后，点击“计算结果”即可获得您的流派匹配度雷达图、认识论分析、潜在理论盲区及深度阅读建议。本工具仅供学术自我探索，结果无优劣之分。
+        </p>
+        <p><strong>作答提示</strong>：不同流派的张力恰恰反映了性别议题的复杂性，若您对某一观念的极度认同，可能会自动导致对立流派权重的下降。请尽可能根据第一直觉作答，避免过度权衡“应该”持什么立场。建议在安静环境中完成，预计耗时15-20分钟。<strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。</strong>建议使用电脑端浏览，并优先选择谷歌
+            Chrome 浏览器或微软 Edge 浏览器。
+        </p>
+    </div>
+
+    <form id="feminismQuiz">
+        <div id="questionsContainer"></div>
+        <div class="scale-actions">
+            <button type="button" onclick="calculateResult()">计算结果</button>
+            <button type="button" class="btn-secondary" onclick="resetForm()">重置问卷</button>
+            <button type="button" class="btn-secondary" onclick="saveResultText()">保存文本结果</button>
+            <button type="button" class="btn-secondary" onclick="saveResultImage()">保存图片结果</button>
+        </div>
+    </form>
+
+    <div class="result" id="result">
+        <h2 style="text-align: center; font-size: 1.8em; margin-top: 0; margin-bottom: 35px;">理论倾向深度评估报告</h2>
+        <div class="result-top-grid">
+            <div id="scoreSummary"></div>
+            <div class="radar-container">
+                <div class="radar-wrapper">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="typeJudgment"></div>
+        <div id="mainInterpretation"></div>
+        <div id="deepPersonalAnalysis"></div>
+        <div id="sectionScores"></div>
+        <div id="personalizedSuggestions"></div>
+    </div>
+
+    <script>
+        // 流派基础定义 
+        const categoriesMap = {
+            liberal: { name: "自由女权主义", desc: "主张在现有民主和市场框架内，通过法律改革、教育和平等机会来消除性别歧视，强调个体的理性与选择自由。" },
+            radical: { name: "激进女权主义", desc: "认为社会的基本矛盾是父权制，性别压迫是所有压迫的根源。强调对身体、性、生殖及深层社会权力的根本性变革。" },
+            socialist: { name: "社会主义/马克思主义女权", desc: "将性别压迫与资本主义剥削紧密结合，认为女性的无偿再生产劳动是资本积累的基础，主张颠覆经济和阶级结构。" },
+            intersectional: { name: "交叉性女权主义", desc: "反对将女性视为同质化群体，强调种族、阶层、性取向、残障等身份轴线如何在特定语境下交织，形成多重压迫。" },
+            cultural: { name: "文化/差异女权主义", desc: "拒绝男权社会对「女性气质」的贬低，主张重估和赞颂女性的传统特质（如关护、和平、合作），建立基于女性伦理的社会。" },
+            queer: { name: "酷儿/后结构女权", desc: "受后结构主义影响，解构了稳定的「女性」本质和男女二元对立，认为性别是一种持续的社会展演，关注身份的流动性和边缘群体的颠覆力。" },
+            eco: { name: "生态女权主义", desc: "指出父权制对自然环境的掠夺与对女性身体的控制在底层逻辑上是同构的，主张建立人与自然、人与人之间非支配的共生关系。" },
+            postcolonial: { name: "后殖民/全球南方女权", desc: "批判第一世界女权主义的普遍化倾向，关注帝国主义、全球化资本和在地父权制如何协同压迫第三世界女性，强调去殖民化视角。" }
+        };
+
+        // 完整70题题库（实证校准权重版）
+        // 权重说明：
+        // 正权重：高分认同该题 → 增加对应流派得分
+        // 负权重：高分认同该题 → 降低对应流派得分（捕捉流派间真实理论对立）
+        // 校准原则：主载荷 3~5，次载荷 1~2，拮抗载荷 -1 ~ -3
+        // 归一化基准仅取各流派"净正权重总量"，负权重通过调整分母确保量表公平
+        const fullQuestions = [
+            // 第一部分：制度改良与结构重塑（1-10题）
+            { id: 1, sectionIndex: 0, weights: { liberal: 4, intersectional: 1, radical: -1, socialist: -1 }, text: "如果现行法律和政策能够完全保障女性的升学、就业和同工同酬，性别不平等问题在多数情况下便可通过体制内改革得到显著改善，但仍需关注边缘群体的特殊处境。", focus: "考察对法律/形式平等的信任度及交叉敏感性。", meaning: "高度认同渐进改良路径；高分同时意味着与结构彻底批判流派存在分歧。", example: "支持《反就业歧视法》作为主要解决方案，但需补充交叉性条款。" },
+            { id: 2, sectionIndex: 0, weights: { radical: 4, cultural: 1, liberal: -2 }, text: "即使法律做到绝对中立，只要「男主外、女主内」的文化心理和核心家庭模式不被打破，压迫依然存在于私人领域和日常文化规范中。", focus: "考察对私人领域权力的批判。", meaning: "认为压迫深植于日常生活与父权文化规范；高分意味着对自由女权「法律够了」立场的否定。", example: "强调「个人的即政治的」，主张家庭内部权力革命。" },
+            { id: 3, sectionIndex: 0, weights: { socialist: 4, intersectional: 2, liberal: -2 }, text: "推动更多女性进入企业高管层，在资本主义利润导向和企业所有制未改变的前提下，往往仅使少数精英受益，而难以从根本上改善广大女性劳动者的结构性剥削。", focus: "阶级分析在精英平权议题上的应用。", meaning: "反对脱离经济结构的性别平权；高分对倡导精英晋升的自由女权产生拮抗。", example: "主张将多样性配额与工会运动同步推进。" },
+            { id: 4, sectionIndex: 0, weights: { liberal: 4, radical: -2, socialist: -2 }, text: "在现有民主体制框架内，通过选举、立法和违宪审查等合法途径推进平权，是最稳定可持续的路径。", focus: "政治行动的体制内倾向。", meaning: "相信渐进改革的有效性；高分与主张彻底结构变革的流派呈对立关系。", example: "重视议会席位、投票权及司法诉讼的策略运用。" },
+            { id: 5, sectionIndex: 0, weights: { radical: 4, queer: -1 }, text: "色情业和选美比赛对女性身体的展示与评判，在多数当代语境下仍反映并强化了父权制的客体化逻辑，即使当事人声称出于自愿，也需置于更大权力结构中考察。", focus: "对性商品化的结构批判。", meaning: "质疑不平等结构下「自由选择」的绝对性；高分与强调情欲自主的酷儿框架部分对立。", example: "支持对色情业进行监管，同时保障从业者劳动权益。" },
+            { id: 6, sectionIndex: 0, weights: { socialist: 4, liberal: -2 }, text: "当代许多标榜「独立女性」的消费主义话语（如「爱自己就买XXX」），实际上是资本转移女性抗争能量的工具。", focus: "批判消费主义对女权的裹挟。", meaning: "警惕市场逻辑对抗争的消解；高分直接质疑自由市场语境下的个体选择叙事。", example: "反感借女权之名进行的商业营销。" },
+            { id: 7, sectionIndex: 0, weights: { radical: 3, eco: 1 }, text: "社会对「女性安全」的保护（如规定女性不宜从事危险职业），往往同时构成了对女性行动自由的隐性规训。", focus: "批判保护主义背后的父权逻辑。", meaning: "揭露善意保护可能带有的规训功能。", example: "反对以保护为由实施的宵禁或职业排除。" },
+            { id: 8, sectionIndex: 0, weights: { liberal: 4, intersectional: 1, eco: -1 }, text: "成年女性在充分知情同意的前提下拥有选择堕胎或继续妊娠的生殖自主权，法律应优先保护这一个体权利，而非以宗教、道德或集体利益为由进行限制。", focus: "考察对生殖权利的自由主义身体自主立场。", meaning: "坚持个体选择自由在法律框架内的优先性。", example: "支持类似罗诉韦德案的宪法保护，或推动中国语境下更完善的生殖健康立法。" },
+            { id: 9, sectionIndex: 0, weights: { socialist: 3, postcolonial: 2, liberal: -2 }, text: "在贫富差距悬殊的社会中，「自愿代孕」很难真正摆脱经济胁迫的底色，物质条件深刻塑造了选择的空间，尤其在全球南方背景下。", focus: "指出经济不平等对「自由选择」的制约及跨国维度。", meaning: "强调物质条件决定选择的真实性；高分对纯粹意志论的自由女权产生拮抗。", example: "关注底层女性在经济压力下的生育处境。" },
+            { id: 10, sectionIndex: 0, weights: { eco: 3, postcolonial: 2 }, text: "气候危机中全球南方女性往往承担最沉重的适应劳动（如取水、农业），这要求女权主义必须将生态正义与去殖民视角结合，而非仅停留在西方环保叙事。", focus: "生态女权与后殖民的交叉。", meaning: "强调环境退化的性别化与殖民化后果。", example: "关注孟加拉国或撒哈拉以南非洲女性在气候适应中的角色。" },
+
+            // 第二部分：本质主义与认同建构（11-20题）
+            { id: 11, sectionIndex: 1, weights: { queer: 4, cultural: -2, radical: -1 }, text: "性别（Gender）是一种不断重复的社会表演，并不存在内在固定的「男性特质」或「女性特质」；但某些文化语境下，传统女性特质仍可作为抵抗资源。", focus: "测试对巴特勒性别展演理论的接受度及文化互补。", meaning: "彻底解构性别的本质性；高分与文化女权「女性特质有本质价值」的立场产生对立。", example: "认为「女人味」是后天习得与模仿，而非天生。" },
+            { id: 12, sectionIndex: 1, weights: { radical: 4, queer: -2 }, text: "不论性别角色如何被建构，基于女性特有生理结构（如月经、怀孕、哺乳）所承受的压迫是客观物质现实，不能被单纯「解构」掉。", focus: "对生理基础和唯物主义的坚持。", meaning: "警惕后现代解构导致政治主体流失；高分与酷儿理论的彻底解构立场直接对立。", example: "坚持女性生理经验的独特性与不可抹除性。" },
+            { id: 13, sectionIndex: 1, weights: { queer: 4, radical: -2 }, text: "生理性别（Sex）的二元划分同样带有社会建构色彩，科学对「男性/女性」的定义本身受到意识形态影响，但在医疗实践中需谨慎处理生理差异。", focus: "将建构主义推向生理领域并兼顾现实。", meaning: "打破自然与文化的绝对界限；高分与激进女权坚持生理唯物主义的立场直接对立。", example: "关注间性人被医疗强行归入二元类别的经历。" },
+            { id: 14, sectionIndex: 1, weights: { cultural: 4, eco: 1 }, text: "与其要求女性适应以竞争为核心的职场文化，不如重塑职场，使之真正接纳合作、关怀与同理心等价值，同时考虑生态可持续的组织模式。", focus: "对女性特质的重估与制度重塑。", meaning: "反对同化，主张差异基础上的平等；高分对「女性融入现有体制」的自由女权路径产生质疑。", example: "提倡管理学中的「关怀型领导力」研究。" },
+            { id: 15, sectionIndex: 1, weights: { queer: 3, cultural: -3 }, text: "将关怀、和平等特质归结为女性的「天性」，可能在无意中强化父权刻板期待，即使这些特质被用于抵抗，也需警惕本质主义的陷阱。", focus: "对文化女权主义本质主义倾向的批判。", meaning: "警惕任何形式的性别本质化论述；高分直接构成对文化/差异女权核心命题的反驳。", example: "反对以「母爱是天性」来为女性照护负担的不平等分配辩护。" },
+            { id: 16, sectionIndex: 1, weights: { cultural: 4, radical: 1, queer: -2 }, text: "母职经验（孕育和抚养生命）赋予了女性独特的认识论视角，使其对相互依存和脆弱性有更深的体察。", focus: "肯定母职经验的正面哲学价值。", meaning: "将传统束缚转化为伦理资源；高分与彻底去本质化的酷儿视角产生对立。", example: "支持基于关怀伦理的社会政策设计。" },
+            { id: 17, sectionIndex: 1, weights: { queer: 4, intersectional: 1, radical: -3 }, text: "跨性别女性的性别认同应当被法律和社会平等承认，她们进入女性空间的权利不应受到质疑，但需同时考虑不同群体在历史压迫经验上的差异。", focus: "对跨性别包容性与「女性」定义边界的测试。", meaning: "认为性别认同高于出生时的生理指派；高分与强调顺性别女性生理压迫特殊性的激进女权立场产生最直接对立。", example: "反对以「生理安全」为由排除跨性别女性的政策。" },
+            { id: 18, sectionIndex: 1, weights: { radical: 4, intersectional: 1, queer: -3 }, text: "跨性别女性与顺性别女性在生命历程中所经历的系统性压迫形式存在重要差异，这种差异应当在政治行动中被认真对待。", focus: "强调压迫经验的历史性和身体特殊性。", meaning: "主张在特定政治场合区分不同女性的经验；高分与酷儿理论「认同高于生理」的核心立场直接对立。", example: "对以性别认同完全替代生理性别作为政策依据持审慎态度。" },
+            { id: 19, sectionIndex: 1, weights: { queer: 4, radical: -2 }, text: "逐步废除强制性的男女二元身份登记制度，为有需要的人提供更多元的性别选项，是值得追求的政策方向。", focus: "测试去分类化的政治理想。", meaning: "追求更多元的制度性别选项；高分对坚守统计/政策二元性别框架的流派产生拮抗。", example: "支持护照及官方文件增设X性别选项。" },
+            { id: 20, sectionIndex: 1, weights: { radical: 3, liberal: 1, queer: -3 }, text: "若在法律和统计数据中过度淡化「男女」差异，可能导致针对女性的性暴力、薪资差距等议题难以被准确记录和追踪。", focus: "强调统计和政策层面的务实需要。", meaning: "指出去分类化可能掩盖结构性压迫数据；高分对去分类化的酷儿主张形成实质性反驳。", example: "坚持医疗、犯罪及就业统计必须保留生理性别数据。" },
+
+            // 第三部分：阶级、种族与去殖民（21-30题）
+            { id: 21, sectionIndex: 2, weights: { intersectional: 4, postcolonial: 2, radical: -1 }, text: "一个白人中产女性在职场遭遇的性别天花板，与底层少数族裔女工面临的生存压力，是性质不同的处境，不能用同一框架简单比较。", focus: "测试交叉性分析视角的敏感度。", meaning: "拒绝将性别作为唯一压迫轴线；高分质疑将所有女性处境普遍化的自由/激进女权单轴分析。", example: "认为「姐妹情谊」必须建立在承认内部差异之上。" },
+            { id: 22, sectionIndex: 2, weights: { postcolonial: 4, liberal: -2 }, text: "西方女权主义者试图去「拯救」伊斯兰世界戴头巾的女性，这种叙事往往带有帝国主义式的文化傲慢。", focus: "对西方救世主情结的批判。", meaning: "尊重不同文化语境下女性的主体性；高分直接质疑普遍主义自由女权的跨文化推广。", example: "指出头巾在某些历史时期也承载了反殖民的政治意涵。" },
+            { id: 23, sectionIndex: 2, weights: { socialist: 4, intersectional: 1 }, text: "探讨性别问题时，无薪家务劳动如何系统性地补贴了资本积累，是不可绕过的核心议题。", focus: "马克思主义女权主义的核心论点。", meaning: "将私领域劳动纳入宏观经济批判；高分对回避阶级分析的自由女权形成直接对立。", example: "支持「家务劳动有偿化」运动。" },
+            { id: 24, sectionIndex: 2, weights: { intersectional: 4, postcolonial: 1, radical: -1 }, text: "「天下女人是一家」的普遍呼吁，有时会在无意中掩盖拥有特权的女性对边缘女性的剥削关系。", focus: "对普适主义姐妹情谊的解构。", meaning: "关注女性内部存在的权力差异；高分质疑自由女权和激进女权忽视内部特权的做法。", example: "指出中产白人女性雇主与少数族裔家政工之间的权力不对等。" },
+            { id: 25, sectionIndex: 2, weights: { postcolonial: 4, socialist: 2 }, text: "跨国资本将高污染、低人权的生产环节转移到全球南方，是对第三世界贫困女性的系统性剥削。", focus: "将资本批判拓展至全球化维度。", meaning: "关注跨国剥削链条底端的女性处境。", example: "关注孟加拉国制衣女工的劳动条件与生存状态。" },
+            { id: 26, sectionIndex: 2, weights: { postcolonial: 4, liberal: -3 }, text: "部分国际非政府组织（NGO）在发展中国家推行的性别平权项目，携带了西方特定的价值预设，与当地语境存在张力。", focus: "对国际干预和人权话语的审视。", meaning: "强调在地经验与本土化抵抗的重要性；高分对自由女权主导的国际推广模式产生显著拮抗。", example: "批评附带特定意识形态条件的对外援助项目。" },
+            { id: 27, sectionIndex: 2, weights: { socialist: 4 }, text: "婚姻制度在历史上的形成，与私有财产的传承需要密不可分，这一物质基础至今仍影响着性别关系的结构。", focus: "对婚姻制度的唯物主义历史分析。", meaning: "视婚姻制度为财产秩序的历史产物。", example: "参照恩格斯《家庭、私有制和国家的起源》的分析框架。" },
+            { id: 28, sectionIndex: 2, weights: { intersectional: 4, radical: 1 }, text: "在制定反性骚扰政策时，必须考虑到残障女性、非异性恋女性可能面临的特殊骚扰形式，避免以主流经验代替所有人的需求。", focus: "政策制定中的边缘视角纳入。", meaning: "防止主流群体的经验遮蔽边缘处境。", example: "关注聋哑女性遭遇暴力时在求助渠道上的特殊困境。" },
+            { id: 29, sectionIndex: 2, weights: { liberal: 3, intersectional: 2, postcolonial: -1 }, text: "尽管女性内部存在阶级和种族差异，所有女性共同面对的男权压迫仍构成跨越这些差异的团结基础，但在具体行动中需优先考虑最边缘群体的声音。", focus: "对普适性性别联盟的坚持与细微差异的体认。", meaning: "认为性别压迫的共同性具有优先的政治意义；高分在一定程度上与极度强调差异的后殖民视角形成张力。", example: "呼吁建立超越阶级和种族的性别权利统一战线。" },
+            { id: 30, sectionIndex: 2, weights: { socialist: 4, cultural: -1 }, text: "只要女性无法在经济上获得与男性同等的资源和机会，文化层面的平权讨论就难以落实为实质改变。", focus: "强调物质基础的决定性作用。", meaning: "优先解决经济不平等；高分对侧重文化/话语层面的流派产生轻微拮抗。", example: "认为消除贫困比纠正媒体上的性别歧视更为紧迫。" },
+
+            // 第四部分：身体政治、生态与照护伦理（31-40题）
+            { id: 31, sectionIndex: 3, weights: { eco: 4, radical: 1 }, text: "现代工业文明「征服自然」的发展逻辑，与父权社会控制女性身体的逻辑在底层共享同一套支配思维。", focus: "生态女权主义的核心同构论。", meaning: "将生态危机与性别压迫理解为同源；高分与相信技术/体制进步的自由女权产生对立。", example: "批评以破坏生态为代价的科技发展观。" },
+            { id: 32, sectionIndex: 3, weights: { eco: 4, cultural: 2 }, text: "在追求高科技解决方案（如人造子宫、基因编辑）的同时，我们也应认真对待自然生命节律和传统照护知识的价值。", focus: "对技术理性的反思与伦理补充。", meaning: "警惕将技术进步等同于人类解放；高分对相信技术赋能女性的自由女权产生拮抗。", example: "提倡自然分娩、母乳喂养和在地化生活方式的可及性。" },
+            { id: 33, sectionIndex: 3, weights: { radical: 4, eco: 1 }, text: "现代生殖医疗技术（如试管婴儿、产前检测）在扩大女性选择的同时，也将女性的生育过程纳入了以男性为主导的医疗体系管控之中。", focus: "对医疗建制权力结构的批判。", meaning: "揭示技术背后存在的权力关系。", example: "指出妇产科历史中对女性生育自主经验的挤压。" },
+            { id: 34, sectionIndex: 3, weights: { eco: 4, postcolonial: 2 }, text: "气候危机中受害最深的往往是在全球南方负责供水、耕作和照料家庭的女性，生态议题与性别正义密不可分。", focus: "气候正义与性别正义的交汇。", meaning: "关注环境退化的性别化后果。", example: "聚焦水资源短缺地区由女性承担的步行取水劳动。" },
+            { id: 35, sectionIndex: 3, weights: { cultural: 4 }, text: "现代社会的战争与系统性暴力，与过度推崇竞争、支配等价值观有关，而这些价值观长期以来被标记为「男性气质」的核心。", focus: "从文化差异视角批判支配性价值体系。", meaning: "认为注入关怀与合作等价值有助于减少暴力。", example: "研究女性领导人执政风格与政策和平倾向之间的关系。" },
+            { id: 36, sectionIndex: 3, weights: { radical: 4, intersectional: 1 }, text: "性暴力不只是个别施害者的犯罪，它还发挥着在社会层面恐吓和限制所有女性行动自由的结构性功能。", focus: "对性暴力的结构性分析。", meaning: "将个体暴力理解为维持性别秩序的系统性工具。", example: "指出对性暴力的恐惧如何限制了女性的夜间出行。" },
+            { id: 37, sectionIndex: 3, weights: { socialist: 4, intersectional: 1 }, text: "平台经济（如外卖、网约车）中的女性劳动者面临算法控制和无偿情感劳动，这正是资本主义与父权制共谋的当代形式。", focus: "当代劳动形式的阶级-性别批判。", meaning: "强调新经济结构对女性再生产劳动的剥削。", example: "支持平台工人集体组织与算法透明化运动。" },
+            { id: 38, sectionIndex: 3, weights: { eco: 4 }, text: "动物的受苦——尤其是工厂化养殖中母畜的生殖能力被工具化——与女性被支配的逻辑存在内在关联，值得女权主义关注。", focus: "生态女权对动物权利的延伸关怀。", meaning: "将反支配的视野扩展至非人类物种。", example: "反对乳制品行业对母牛的强制泌乳和母子分离。" },
+            { id: 39, sectionIndex: 3, weights: { cultural: 4, queer: 1 }, text: "直觉、情感和身体体验作为认识世界的方式，在主流知识体系中长期被贬低，这与对「女性气质」的贬低密切相关。", focus: "对西方理性中心主义认识论的批判。", meaning: "主张感性与情感经验具有认识论价值。", example: "推动将女性经验和情感知识纳入学术研究范式。" },
+            { id: 40, sectionIndex: 3, weights: { socialist: 4 }, text: "即使国家提供完善的公共托育服务，只要资本主义职场的超时劳动结构不变，女性依然无法真正摆脱双重负担。", focus: "指出单纯福利政策的结构性局限。", meaning: "要求同时改变劳动时间和劳动强度本身；高分对「改良式」自由女权政策路径产生拮抗。", example: "主张大幅缩短法定工作时间作为解放女性劳动的前提。" },
+
+            // 第五部分：符号、语言与文化再现（41-50题）
+            { id: 41, sectionIndex: 4, weights: { radical: 3, queer: 1 }, text: "语言体系（如以「他」泛指全人类）在符号层面将女性设定为附属或例外，这种结构本身就是压迫的一部分。", focus: "语言与符号权力的批判。", meaning: "认为语言本身内嵌了权力不对等。", example: "支持使用性别包容性语言或推动语言改革。" },
+            { id: 42, sectionIndex: 4, weights: { queer: 4, radical: -2, cultural: -1 }, text: "性取向并不是非此即彼的固定分类，人的情欲具有流动性，且受历史和文化环境的深刻塑造。", focus: "对固化性取向分类的解构。", meaning: "拒绝本质化的性向标签体系；高分与强调女性群体固定边界的激进女权/文化女权产生对立。", example: "认同情欲流动性理论，不以单一标签定义自身性向。" },
+            { id: 43, sectionIndex: 4, weights: { cultural: 4, queer: -1 }, text: "女性之间的互助、友谊与情感联结，能够提供竞争性社会结构所压制的独特滋养，这种共同体价值值得被珍视。", focus: "对女性共同体和情感联结的重视。", meaning: "肯定女性内部建立的纽带具有独特的伦理和政治意义；高分对去本质化的酷儿视角产生轻微拮抗。", example: "推崇意识觉醒小组和女性互助网络的实践价值。" },
+            { id: 44, sectionIndex: 4, weights: { postcolonial: 4, eco: 1 }, text: "全球北方主导的环保议程（如要求发展中国家迅速弃用廉价能源）往往没有充分考虑全球南方底层女性的生计影响。", focus: "环保政策与后殖民现实的冲突。", meaning: "揭示第一世界环保话语可能携带的权力不对等；高分质疑以普遍主义推广的自由女权/生态女权的西方视角。", example: "反对不顾当地生计的「一刀切」能源转型政策。" },
+            { id: 45, sectionIndex: 4, weights: { intersectional: 4, cultural: -1 }, text: "评价一部影视或文学作品是否具有女权意识，需要同时检视它如何处理阶级、种族和性取向，而不仅是女性角色是否「强大」。", focus: "文艺批评的交叉性视角。", meaning: "拒绝单一性别维度的文艺评价标准；高分对仅聚焦性别单轴的批评框架产生拮抗。", example: "批判仅以白人中产女性视角为主的「大女主」叙事。" },
+            { id: 46, sectionIndex: 4, weights: { cultural: 4, queer: 1 }, text: "「成功」的定义（权力、财富、社会地位）是按照特定价值观建构的，女性完全有理由质疑并拒绝这种单一的成功标准。", focus: "对主流成功叙事的解构。", meaning: "肯定女性追求不同生命价值的合法性；高分对以「进入权力机构」为目标的自由女权产生拮抗。", example: "赞同退出竞争性职场、投入社区照护或创意工作的生活选择。" },
+            { id: 47, sectionIndex: 4, weights: { socialist: 4 }, text: "若不建立全民可及的医疗、养老和托育等公共服务体系，个别女性的经济独立只是少数人的特权，而非普遍解放。", focus: "强调福利国家在女性解放中的必要性。", meaning: "将性别解放与社会保障体系的建设绑定；高分对「个体奋斗式」自由女权产生拮抗。", example: "主张照护责任必须通过公共政策加以社会化。" },
+            { id: 48, sectionIndex: 4, weights: { eco: 4, socialist: 2 }, text: "土地私有制与父权制在历史上同步形成，二者共同依赖于将自然和女性贬低为可被占有和支配的「资源」的逻辑。", focus: "追溯私有制与父权的共同历史根源。", meaning: "将土地权利与女性解放视为相互关联的议题。", example: "反对大规模土地掠夺和农业的大资本化。" },
+            { id: 49, sectionIndex: 4, weights: { radical: 4 }, text: "浪漫爱和婚姻的主流叙事，往往遮蔽了女性在亲密关系中的无偿付出和权力不对等，使其显得「自然」而非「政治」。", focus: "对浪漫爱神话的批判性分析。", meaning: "揭示情感叙事背后可能的权力结构；高分对相信知情选择可保障平等关系的自由女权产生拮抗。", example: "解构「真爱」叙事对家庭劳动不平等分配的美化功能。" },
+            { id: 50, sectionIndex: 4, weights: { queer: 4, radical: -1 }, text: "「出柜」叙事本身预设了异性恋为需要被坦白的默认规范，这种框架对非规范性向者施加了一种隐性的规训压力。", focus: "对身份政治主流叙事的后现代批判。", meaning: "质疑「出柜」作为唯一政治行动路径的合理性。", example: "探索拒绝被主流社会凝视和确认的其他反抗方式。" },
+
+            // 第六部分：具体议题与行动策略（一）（51-60题）
+            { id: 51, sectionIndex: 5, weights: { postcolonial: 4, intersectional: 2, liberal: -2 }, text: "要求全球所有女性遵循同一套解放标准（如必须外出工作才算独立），忽视了不同文化和物质条件下主体性的多元形式。", focus: "反对普遍主义的单一解放模式。", meaning: "承认不同文化语境中女性自主的多元实践；高分直接对普遍主义倾向的自由女权产生强烈拮抗。", example: "尊重选择保留传统生活方式的原住民和农村女性。" },
+            { id: 52, sectionIndex: 5, weights: { liberal: 4, cultural: 1, socialist: -2, radical: -1 }, text: "如果女性在充分了解选项的前提下选择回归家庭做全职主妇，这种选择与外出就业具有同等的尊严和正当性，但需考虑结构性约束。", focus: "个人自由选择的核心地位。", meaning: "只要是充分知情下的自主选择即具正当性；高分与认为家庭选择根植于结构剥削的社会主义女权产生对立。", example: "认为全职主妇不应被视为「依附」，而是一种平等的生活方式选择。" },
+            { id: 53, sectionIndex: 5, weights: { socialist: 4 }, text: "「兼顾家庭与事业」的期待，是将原本应由社会共同承担的再生产成本转嫁给女性个人的叙事，而非真正的自由。", focus: "揭露「兼顾」神话的结构性剥削本质。", meaning: "反对将双重负担美化为女性能力；高分对将「兼顾」视为个人选择的自由女权产生拮抗。", example: "批评将职业与育儿同时压给女性的社会期待结构。" },
+            { id: 54, sectionIndex: 5, weights: { intersectional: 4 }, text: "在制定反家暴、反性骚扰政策时，必须同时纳入LGBTQ+女性、残障女性、移民女性面临的特殊暴力形式，避免以顺性别异性恋中产女性的经验作为唯一标准。", focus: "政策设计中的交叉性视角纳入。", meaning: "防止主流经验遮蔽边缘群体的独特压迫模式。", example: "关注残障女性在报警或庇护所的可及性，以及移民女性遭遇伴侣暴力时的额外移民风险。" },
+            { id: 55, sectionIndex: 5, weights: { radical: 4 }, text: "父权制赋予男性群体系统性特权，单靠部分男性的良知觉醒难以从根本上改变这种权力结构。", focus: "对依赖男性盟友策略的批判性反思。", meaning: "认为权力转移需要结构性变革而非个体道德改善；高分对依赖「男女共进」的自由女权改良路径产生质疑。", example: "主张女性建立相对独立的组织力量和政治空间。" },
+            { id: 56, sectionIndex: 5, weights: { queer: 4, cultural: -2, radical: -1 }, text: "将性格特质贴上「阳刚」或「阴柔」的标签，预设了性别二元框架，这种标签本身就对不符合规范者施加了压力。", focus: "语言和概念层面的去性别化。", meaning: "消除日常语言中内嵌的性别二元预设；高分对区分男女特质的文化女权产生拮抗。", example: "质疑「女汉子」「娘炮」等词语对性别规范的强化功能。" },
+            { id: 57, sectionIndex: 5, weights: { cultural: 4, queer: -1 }, text: "女性更倾向于建立共识、维护关系的沟通方式，代表了一种不同于对抗式辩论的有价值的公共话语形态。", focus: "对不同沟通风格的差异性评估。", meaning: "肯定关系导向型沟通在公共事务中的价值；高分与拒绝本质化性别特质的酷儿视角产生轻微对立。", example: "提倡在政治协商和社区治理中引入更多倾听与共识构建机制。" },
+            { id: 58, sectionIndex: 5, weights: { eco: 4, postcolonial: 2 }, text: "发展由女性主导的本地小规模农业合作社，是连接生态可持续与性别平权的有效在地实践路径之一。", focus: "基层生态行动主义与性别视角的结合。", meaning: "将经济替代方案与生态女权主义理论落实为具体行动。", example: "关注印度「九种种子」运动等女性主导的种子保存与农业实践。" },
+            { id: 59, sectionIndex: 5, weights: { liberal: 4, intersectional: 1 }, text: "媒体呈现更多样化的女性形象——不同职业、体型、族裔、年龄——有助于打破刻板印象并拓宽女性的社会想象空间。", focus: "媒体再现与角色模型理论。", meaning: "相信可见性对改变社会规范具有正面效应。", example: "支持影视行业增加多元背景女性主角及幕后创作者。" },
+            { id: 60, sectionIndex: 5, weights: { intersectional: 4 }, text: "同性恋平权运动内部，白人中产男同性恋者的诉求（如婚姻权、财产权）有时主导了议程，而边缘酷儿女性的生存困境被忽视。", focus: "平权运动内部的权力结构反思。", meaning: "关注运动议程中谁的声音被代表、谁的被遮蔽。", example: "批评主流骄傲游行的商业化与中产化趋势。" },
+
+            // 第七部分：具体议题与行动策略（二）（61-70题）
+            { id: 61, sectionIndex: 6, weights: { postcolonial: 4, liberal: -2 }, text: "「普世人权」的标准形成于特定历史语境，将其直接套用于非西方社会的女性处境时，需要审慎考量文化和权力背景。", focus: "解构人权话语的普遍适用性与历史脉络。", meaning: "强调人权标准的在地化解读与实践；高分直接质疑将自由主义普世框架跨文化推广的做法。", example: "反思以外部干预方式处理其他文化传统时的权力关系。" },
+            { id: 62, sectionIndex: 6, weights: { radical: 4, queer: 1 }, text: "异性恋不只是一种个人性取向，它作为社会制度运作，通过多种机制奖励符合规范者、惩罚偏离者。", focus: "艾德丽安·里奇强制异性恋理论的核心论点。", meaning: "将性规范视为维持性别权力的结构性工具；高分对自由女权「个人选择」框架产生拮抗。", example: "分析单身、离异或非异性恋女性面临的隐形社会压力与经济惩罚。" },
+            { id: 63, sectionIndex: 6, weights: { socialist: 4 }, text: "解决产假、痛经假导致女性就业受挫的更根本办法，是将生育成本通过立法社会化，由全社会共同承担而非压给个别企业或女性。", focus: "通过社会化机制解决生育的经济代价。", meaning: "把生理成本转化为需要集体承担的社会成本。", example: "提倡生育基金全员缴纳制度，打破企业因雇用女性而产生的歧视动机。" },
+            { id: 64, sectionIndex: 6, weights: { queer: 4, radical: -2 }, text: "社会不仅要求人们认同固定的性别，还要求外表、行为和性取向与之完全匹配，这套三位一体的规范对不符合者造成持续压力。", focus: "对巴特勒异性恋矩阵三重规范的批判。", meaning: "主张生理性别、性别认同和性别表达的彻底解绑；高分与坚持生理性别政治意义的激进女权产生对立。", example: "支持变装（Drag）表演作为对性别规范的戏仿性颠覆实践。" },
+            { id: 65, sectionIndex: 6, weights: { liberal: 4, socialist: -1, radical: -1 }, text: "无论一个人的性别认同如何，只要具备相应能力，就不应在求职和晋升中受到任何形式的性别歧视。", focus: "绩效主义和机会均等的核心原则。", meaning: "强调以能力而非性别作为职业评价标准；高分与认为个体晋升无法解决结构性问题的流派产生轻微对立。", example: "支持盲审简历、结构化面试等系统性反歧视招聘机制。" },
+            { id: 66, sectionIndex: 6, weights: { cultural: 4, queer: -1, socialist: -1 }, text: "关怀伦理——将照护、连接与责任置于道德核心——提供了一种有别于权利本位和利益最大化的价值框架，值得被认真对待。", focus: "关怀伦理作为替代性道德框架的价值。", meaning: "肯定关怀伦理对主流道德哲学的补充和挑战；高分对去本质化的酷儿框架和纯阶级框架产生轻微拮抗。", example: "将关怀伦理应用于医疗、教育、环境政策的制定与评价中。" },
+            { id: 67, sectionIndex: 6, weights: { eco: 4, radical: 1 }, text: "现代医疗将分娩高度程序化和干预化，使女性在生育过程中处于被动地位，这值得从身体自主的角度加以反思。", focus: "对医疗化分娩的生态女权主义批判。", meaning: "倡导在安全保障前提下恢复产妇的自主权与能动性；高分对相信医疗技术赋权女性的自由女权产生拮抗。", example: "关注助产士体系、居家分娩等替代性生育支持方式的可及性。" },
+            { id: 68, sectionIndex: 6, weights: { intersectional: 4, postcolonial: 1 }, text: "反家暴政策若不考虑少数族裔女性报警后可能带来的额外风险（如其伴侣遭受警察暴力），就可能对这些女性造成新的伤害。", focus: "执法政策与交叉压迫冲突困境的呈现。", meaning: "指出国家干预机制可能对边缘群体产生次生伤害；高分质疑「国家保护」叙事的普遍适用性。", example: "强调反家暴政策设计必须纳入种族和移民身份的交叉视角。" },
+            { id: 69, sectionIndex: 6, weights: { radical: 4, queer: 1 }, text: "代孕制度化的背后，往往隐含着「血脉传承」的父权文化逻辑，这一文化前提本身值得被批判性审视，同时需考虑跨文化语境下的差异。", focus: "从文化批判角度审视代孕需求的根源。", meaning: "指出对基因后代的执念与父权制血统观念的关系。", example: "追问为何「必须要有自己基因的孩子」这一前提本身很少被质疑。" },
+            { id: 70, sectionIndex: 6, weights: { postcolonial: 4, intersectional: 2 }, text: "全球女权运动的议程必须将身处战乱、制裁和帝国主义剥削下的边缘地区女性声音真正纳入进来，而非以「普世」旗帜将其遮蔽。", focus: "重申反帝反殖民视角在全球女权运动中的重要性。", meaning: "主张真正的国际主义需要优先倾听最边缘的声音；高分对以西方议程主导全球女权叙事的自由女权产生拮抗。", example: "关注巴勒斯坦、阿富汗、也门等地女性的具体处境与政治主张。" }
+        ];
+
+        // 归一化：计算每个流派的理论最大/最小可能得分（考虑正负权重）
+        // 分值范围 0-5
+        const categoryMaxScores = {};
+        const categoryMinScores = {};
+        Object.keys(categoriesMap).forEach(k => {
+            categoryMaxScores[k] = 0;
+            categoryMinScores[k] = 0;
+        });
+
+        fullQuestions.forEach(q => {
+            Object.keys(q.weights || {}).forEach(cat => {
+                const w = q.weights[cat];
+                if (w > 0) {
+                    // 正权重：拿满分（5）贡献最大
+                    categoryMaxScores[cat] += w * 5;
+                } else if (w < 0) {
+                    // 负权重：拿满分（5）会使得分更小，因此理论最小值需要加上 w * 5
+                    categoryMinScores[cat] += w * 5;
+                }
+            });
+        });
+
+        const sections = [
+            { title: "第一部分：制度改良与结构重塑（1-10题）", desc: "本部分探讨法律改革的边界、个体能动性与结构压迫的关系，以及资本主义消费话语对女权抗争的渗透。" },
+            { title: "第二部分：本质主义与认同建构（11-20题）", desc: "本部分聚焦生理与社会性别的建构性争议、女性气质的定义权、跨性别议题以及性别统计与政策之间的张力。" },
+            { title: "第三部分：阶级、种族与去殖民（21-30题）", desc: "本部分检验交叉性分析、无薪家务劳动的经济维度、全球化资本剥削以及国际女权议程中的殖民逻辑。" },
+            { title: "第四部分：身体政治、生态与照护伦理（31-40题）", desc: "本部分探讨工业文明与父权制的同构逻辑、生育技术的权力关系、气候正义的性别维度以及情感与直觉的认识论价值。" },
+            { title: "第五部分：符号、文化与价值体系（41-50题）", desc: "本部分涵盖语言的性别权力、情欲流动、文艺批评的交叉视角、主流成功叙事的解构以及女性共同体的伦理意义。" },
+            { title: "第六部分：具体议题与行动策略（一）（51-60题）", desc: "本部分关注文化普遍主义、生活方式选择的正当性、代孕伦理的复杂性、媒体再现以及运动内部的权力反思。" },
+            { title: "第七部分：具体议题与行动策略（二）（61-70题）", desc: "本部分探讨人权话语的历史性、生育成本的社会化机制、性别规范的三重捆绑、医疗化批判与跨国团结的实践情境。" }
+        ];
+
+        let radarChart = null;
+        const STORAGE_KEY = 'feminismQuizAnswers';
+
+        // 本地存储操作 
+        function saveAnswersToLocalStorage() {
+            const form = document.getElementById('feminismQuiz');
+            const answers = {};
+            for (let q of fullQuestions) {
+                const select = form.elements[`q${q.id}`];
+                if (select && select.value !== "") {
+                    answers[q.id] = select.value;
+                }
+            }
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+        }
+
+        function loadAnswersFromLocalStorage() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) return;
+            try {
+                const answers = JSON.parse(saved);
+                const form = document.getElementById('feminismQuiz');
+                for (let q of fullQuestions) {
+                    const val = answers[q.id];
+                    if (val !== undefined) {
+                        const select = form.elements[`q${q.id}`];
+                        if (select) select.value = val;
+                    }
+                }
+                updateProgress();
+            } catch (e) { console.warn("读取本地存储失败", e); }
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+
+        // 生成表单
+        function initForm() {
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = "";
+            for (let sIdx = 0; sIdx < sections.length; sIdx++) {
+                const sec = sections[sIdx];
+                const secDiv = document.createElement("div");
+                secDiv.className = "section";
+                secDiv.innerHTML = `<h2>${sec.title}</h2><p style="color: #666; margin-bottom: 20px;">${sec.desc}</p>`;
+                const qs = fullQuestions.filter(q => q.sectionIndex === sIdx).sort((a, b) => a.id - b.id);
+                qs.forEach(q => {
+                    const qDiv = document.createElement("div");
+                    qDiv.className = "question";
+                    qDiv.innerHTML = `
+                    <div class="question-title" onclick="toggleExplanation(this)">
+                        <span class="q-number">${q.id}.</span> ${q.text}
+                    </div>
+                    <select name="q${q.id}" data-id="${q.id}">
+                        <option value="" disabled selected>请选择您的认同程度……</option>
+                        <option value="0">0 - 完全不认同</option>
+                        <option value="1">1 - 比较不认同</option>
+                        <option value="2">2 - 中立偏不认同</option>
+                        <option value="3">3 - 中立偏认同</option>
+                        <option value="4">4 - 比较认同</option>
+                        <option value="5">5 - 完全认同</option>
+                    </select>
+                    <div class="explanation">
+                        <p><strong>本题用意：</strong>${q.focus}</p>
+                        <p><strong>高分倾向：</strong>${q.meaning}</p>
+                        <p><strong>情境示例：</strong>${q.example}</p>
+                    </div>
+                `;
+                    const selectEl = qDiv.querySelector('select');
+                    selectEl.addEventListener('change', () => {
+                        updateProgress();
+                        saveAnswersToLocalStorage();
+                    });
+                    secDiv.appendChild(qDiv);
+                });
+                container.appendChild(secDiv);
+            }
+            // 加载已保存答案
+            loadAnswersFromLocalStorage();
+        }
+
+        window.toggleExplanation = function (titleElement) {
+            const exp = titleElement.parentElement.querySelector('.explanation');
+            if (exp.classList.contains('show')) {
+                exp.classList.remove('show');
+            } else {
+                document.querySelectorAll('.explanation').forEach(el => el.classList.remove('show'));
+                exp.classList.add('show');
+            }
+        };
+
+        function updateProgress() {
+            const form = document.getElementById('feminismQuiz');
+            let completed = 0;
+            for (let q of fullQuestions) {
+                if (form.elements[`q${q.id}`] && form.elements[`q${q.id}`].value !== "") completed++;
+            }
+            const percent = (completed / fullQuestions.length) * 100;
+            document.getElementById('globalProgressText').textContent = `进度：${completed}/${fullQuestions.length}`;
+            document.getElementById('globalProgressBar').style.width = percent + '%';
+        }
+
+        function getDetailedEpistemology(key) {
+            const map = {
+                liberal: "制度设计的不完善、法律权利的缺失以及公共领域参与度的不足。您倾向于相信通过立法改革、教育机会平等和反歧视政策就能逐步消除性别不平等，并将个体的选择自由视为核心价值。",
+                radical: "父权制作为一种独立的、根深蒂固的权力结构对女性身体和性别的系统性控制。您认为性别压迫是所有压迫的根源，必须通过颠覆家庭、性及文化领域的父权秩序才能实现解放。",
+                socialist: "资本主义经济体系与父权制的共谋，特别是对女性再生产劳动的无偿剥削。您关注经济结构、阶级分配以及家务劳动的商品化，认为性别解放必须与资本主义的废除同步。",
+                intersectional: "种族、阶层、性别、残障等多重身份压迫体系在特定情境下的复杂交织。您拒绝单一维度的分析，注重边缘群体内部的差异性以及系统性压迫的叠加效应。",
+                cultural: "男权社会对传统女性气质和照护伦理的系统性贬低与边缘化。您主张重新评价关怀、合作等价值，并以女性伦理重塑社会评价体系。",
+                queer: "基于异性恋本位、异性恋霸权和生理决定论所强加的二元性别分类制度。您致力于解构稳定的性别身份，关注性别表演、流动的欲望以及对规范的反叛。",
+                eco: "父权资本主义对自然环境的掠夺与对女性身体控制之间同构的支配逻辑。您将生态危机与性别压迫视为同一世界观的结果，主张建立非支配的共生关系。",
+                postcolonial: "西方中心主义叙事对全球南方女性经验的普遍化、抹杀与帝国主义剥削。您警惕女权运动中的殖民逻辑，强调在地经验、去殖民化以及跨国资本批判。"
+            };
+            return map[key];
+        }
+
+        function getDetailedBlindSpot(key) {
+            const map = {
+                liberal: "过于依赖现存体制的修补，可能忽视资本主义和父权制底层的结构性压迫；容易将中产阶级女性的诉求普遍化，忽略底层、边缘女性面临的复合困境。",
+                radical: "在强调女性经验的普适性时，可能忽略种族、阶级和地缘的交叉差异；与跨性别权益存在张力，且对家庭结构的彻底否定可能忽视部分女性在家庭中寻求安全感的现实。",
+                socialist: "在强调经济基础决定论时，可能低估文化、身体政治及个人身份认同的独立作用机制，对性、情感领域的压迫分析相对薄弱。",
+                intersectional: "过度强调整体压迫结构的无限细分，可能在实践中面临行动主体碎片化的困境，较难形成统一的动员口号与政治联盟。",
+                cultural: "将某种特质本质化为女性美德，可能反而强化传统的性别刻板印象，并忽略女性内部对女性特质的复杂体验与拒绝。",
+                queer: "彻底解构性别主体，可能在客观的、基于生理性别的物质剥削面前失去有力的政治集结基础，且理论语言较为抽象，与基层运动有一定距离。",
+                eco: "将女性与自然本质化地联系在一起，容易陷入另一种本质主义，且面临过度浪漫化前工业社会的风险，对技术可能带来的解放性使用评估不足。",
+                postcolonial: "在抵御西方文化霸权的过程中，有时会对本土文化内部的父权制压迫采取妥协或相对主义态度，可能削弱对特定社区内性别暴力的批判力度。"
+            };
+            return map[key];
+        }
+
+        const tensionMap = {
+            liberal: { tense: ["radical", "socialist"], ally: ["intersectional", "queer"], tenseName: "激进/社会主义女权", allyName: "交叉性/酷儿女权" },
+            radical: { tense: ["queer", "liberal"], ally: ["socialist", "cultural"], tenseName: "酷儿/自由女权", allyName: "社会主义/文化女权" },
+            socialist: { tense: ["liberal", "cultural"], ally: ["intersectional", "radical"], tenseName: "自由/文化女权", allyName: "交叉性/激进女权" },
+            intersectional: { tense: ["liberal", "radical"], ally: ["postcolonial", "socialist"], tenseName: "自由/激进女权", allyName: "后殖民/社会主义女权" },
+            cultural: { tense: ["queer", "socialist"], ally: ["eco", "radical"], tenseName: "酷儿/社会主义女权", allyName: "生态/激进女权" },
+            queer: { tense: ["radical", "cultural"], ally: ["intersectional", "postcolonial"], tenseName: "激进/文化女权", allyName: "交叉性/后殖民女权" },
+            eco: { tense: ["liberal", "socialist"], ally: ["cultural", "postcolonial"], tenseName: "自由/社会主义女权", allyName: "文化/后殖民女权" },
+            postcolonial: { tense: ["liberal", "radical"], ally: ["intersectional", "eco"], tenseName: "自由/激进女权", allyName: "交叉性/生态女权" }
+        };
+
+        const activismMap = {
+            liberal: "法律倡导与议会游说、教育改革、反歧视诉讼、女性领导力培育项目",
+            radical: "意识觉醒小组、反色情运动、庇护所建设、批判浪漫爱与婚姻制度",
+            socialist: "劳工运动与工会参与、家务有偿化倡导、反资本主义联合行动、托育与生育政策游说",
+            intersectional: "交叉性政策分析、边缘社群组织工作、反对多重歧视的法律倡导、运动内部的权力问责",
+            cultural: "关怀伦理推广、女性艺术与书写空间、非暴力沟通培训、母职价值倡议",
+            queer: "性别表演与变装实践、性别登记制度改革、酷儿理论教育推广、去病理化倡导",
+            eco: "在地生态农业实践、反大型开发项目、气候正义运动、传统知识与土地权保护",
+            postcolonial: "去殖民化课程建设、全球南方女性联结网络、反帝国主义援助批判、本土知识体系复兴"
+        };
+
+        const coreClaimsMap = {
+            liberal: ["性别平等的关键是法律面前的机会均等", "个人选择与自由意志是核心价值", "民主体制内的渐进改革是可行路径"],
+            radical: ["父权制是独立且首要的压迫结构", "身体政治与私人领域本身即政治", "必须颠覆而非修补现有性别秩序"],
+            socialist: ["性别压迫与阶级剥削密不可分", "无偿再生产劳动是资本积累的隐形基础", "解放需要同时废除资本主义与父权制"],
+            intersectional: ["压迫从不以单一轴线运作", "女性内部存在复杂的权力差异", "必须倾听最边缘化的声音才能看见全局"],
+            cultural: ["女性气质包含被低估的伦理与认知资源", "关怀与和平价值应当重塑社会标准", "差异不是劣势，而是另一种力量"],
+            queer: ["性别是持续的社会表演而非内在本质", "二元性别框架本身就是压迫装置", "边缘身份对规范具有颠覆性的政治潜力"],
+            eco: ["对自然的征服与对女性的支配同构同源", "生态危机与性别压迫不可分割地处理", "非支配的共生关系是另一种文明可能"],
+            postcolonial: ["西方女权叙事本身携带殖民主义逻辑", "第三世界女性面对多重且相互强化的压迫", "去殖民化是女权运动不可回避的议程"]
+        };
+
+        const booksMap = {
+            liberal: {
+                classics: ['玛丽·沃斯通克拉夫特《女权辩护：关于政治和道德问题的批评》', '贝蒂·弗里丹《女性的奥秘》', '玛莎·努斯鲍姆《女性与人类发展：能力进路的研究》'],
+                contemporary: ['谢丽尔·桑德伯格《向前一步：女性，工作及领导意志》', '克劳迪娅·戈尔丁《事业还是家庭？女性追求平等的百年旅程》', '安·玛丽·斯劳特《我们为什么不能拥有一切？女性：工作与家庭的平衡》'],
+                challenge: [
+                    '贝尔·胡克斯《女权主义理论：从边缘到中心》——挑战自由女权的阶级与种族盲视',
+                    '南希·弗雷泽《正义的尺度：全球化世界中政治空间的再认识》——挑战自由女权的普遍主义框架，引入再分配与承认的二元视角'
+                ]
+            },
+            radical: {
+                classics: ['凯特·米利特《性政治》', '舒拉米斯·费尔斯通《性的辩证法》', '苏珊·布朗米勒《违背我们的意愿：男人、女人与强奸》'],
+                contemporary: ['凯瑟琳·麦金农《迈向女性主义的国家理论》', '艾德丽安·里奇《女人所生：作为体验与成规的母性》', '安德丽娅·德沃金《色情文学：男人摆布女人》'],
+                challenge: [
+                    '朱迪斯·巴特勒《性别麻烦：女性主义与身份的颠覆》——从内部挑战激进女权的本质主义预设',
+                    '西尔维娅·费代里奇《凯列班与女巫：妇女、身体与原始积累》——以历史唯物主义视角质疑激进女权对阶级与资本分析的弱化'
+                ]
+            },
+            socialist: {
+                classics: ['西尔维娅·费代里奇《凯列班与女巫：妇女、身体与原始积累》', '海蒂·哈特曼《马克思主义与女性主义的不快婚姻》', '莉丝·沃格尔《马克思主义与女性受压迫：趋向统一的理论》'],
+                contemporary: ['南希·弗雷泽《食人资本主义》', '蒂蒂·巴塔查里亚《社会再生产理论：重绘阶级，重思压迫》', '西尔维娅·费代里奇《重赋世界魅力：女性主义与公地政治》'],
+                challenge: [
+                    '金伯利·克伦肖《绘制边缘：交叉性、身份政治与针对有色人种女性的暴力》——提醒阶级分析不能化约种族与性别的独立运作',
+                    '朱迪斯·巴特勒《性别麻烦：女性主义与身份的颠覆》——从后结构主义挑战社会主义女权的经济决定论与身份固化'
+                ]
+            },
+            intersectional: {
+                classics: ['金伯利·克伦肖《绘制边缘：交叉性、身份政治与针对有色人种女性的暴力》', '帕特里夏·希尔·柯林斯《黑人女性主义思想：知识、意识与赋权政治》', '贝尔·胡克斯《女权主义理论：从边缘到中心》'],
+                contemporary: ['奥德丽·洛德《局外姐妹》', '安吉拉·戴维斯《女性、种族与阶级》', '罗克珊·盖伊《坏女性主义者》'],
+                challenge: [
+                    '南希·弗雷泽《正义的尺度：全球化世界中政治空间的再认识》——追问交叉性分析如何转化为可操作的政治主张',
+                    '钱德拉·莫汉蒂《在西方的目光下：女性主义学术与殖民话语》——强调交叉性分析必须纳入后殖民维度，避免以西方为中心'
+                ]
+            },
+            cultural: {
+                classics: ['卡罗尔·吉利根《不同的声音：心理学理论与女性发展》', '内尔·诺丁斯《关怀：伦理学与道德教育的关系性视角》', '萨拉·拉迪克《母性思考：迈向和平政治》'],
+                contemporary: ['琼·特隆托《道德界限：关怀伦理的政治争论》', '维吉尼亚·赫尔德《关怀伦理学》', '塞尔玛·塞文惠森《公民身份与关怀伦理》'],
+                challenge: [
+                    '朱迪斯·巴特勒《性别麻烦：女性主义与身份的颠覆》——质疑将关怀等特质归结为女性本性的论断',
+                    '西尔维娅·费代里奇《凯列班与女巫：妇女、身体与原始积累》——批判文化女权对女性特质的美化忽视了物质压迫的历史根源'
+                ]
+            },
+            queer: {
+                classics: ['朱迪斯·巴特勒《性别麻烦：女性主义与身份的颠覆》', '朱迪斯·巴特勒《身体之重：论"性别"的话语界限》', '伊芙·科索夫斯基·塞吉维克《男人之间：英国文学与男性同性社会性欲望》'],
+                contemporary: ['杰克（朱迪斯）·哈伯斯坦《在酷儿的时间与地点：跨性别身体，亚文化生活》', '保罗·B·普雷西亚多《睾酮瘾君子：医药色情时代的性、医药和生命政治》', '唐娜·哈拉维《类人猿、赛博格和女人：自然的重塑》'],
+                challenge: [
+                    '西尔维娅·费代里奇《凯列班与女巫：妇女、身体与原始积累》——追问解构主体时如何保有对物质压迫的批判',
+                    '凯瑟琳·麦金农《迈向女性主义的国家理论》——从激进女权角度批判酷儿理论对性别不平等物质性的忽视'
+                ]
+            },
+            eco: {
+                classics: ['卡洛琳·麦茜特《自然之死：妇女、生态和科学革命》', '瓦尔·普拉姆伍德《女性主义与对自然的主宰》', '范达娜·席瓦《活着：印度的女性、生态与生存》'],
+                contemporary: ['唐娜·哈拉维《与麻烦共存：在克苏鲁世制造亲缘》', '罗宾·沃尔·基默尔《编结茅香：来自印第安文明的古老智慧与植物的启迪》', '玛丽亚·米斯《父权制与资本积累：国际劳动分工中的女性》'],
+                challenge: [
+                    '西尔维娅·费代里奇《重赋世界魅力：女性主义与公地政治》——探讨生态女权与共同体实践的物质基础',
+                    '唐娜·哈拉维《类人猿、赛博格和女人》——挑战生态女权对自然与技术的二元对立，提出赛博格女性主义'
+                ]
+            },
+            postcolonial: {
+                classics: ['钱德拉·莫汉蒂《在西方的目光下：女性主义学术与殖民话语》', '佳亚特里·斯皮瓦克《属下能说话吗？一个思想史的反思》', '莱拉·艾哈迈德《无声的革命》'],
+                contemporary: ['奇玛曼达·恩戈兹·阿迪契《我们都应该是女性主义者》', '法蒂玛·梅尔尼西《揭开面纱：穆斯林社会中的男性-女性动态》', '萨巴·马哈茂德《虔诚的政治》'],
+                challenge: [
+                    '贝尔·胡克斯《女权主义理论：从边缘到中心》——反思后殖民立场如何与全球女权运动保持张力而不沦为相对主义',
+                    '佳亚特里·斯皮瓦克《后殖民理性批判：正在消失的的当下历史》——后殖民理论内部的自我批判，反思知识精英与庶民政治的距离'
+                ]
+            }
+        };
+
+        function generateDeepInsight(normalized, answersMap) {
+            const top = normalized[0];
+            const second = normalized[1];
+            const third = normalized[2];
+            const lowest = normalized[normalized.length - 1];
+            const tension = tensionMap[top.key];
+
+            let html = `<div class="insight-card">
+            <h3>一、 认识论基础</h3>
+            <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的认知框架中，性别不平等的根源主要被理解为：${getDetailedEpistemology(top.key)}</p>`;
+
+            if (second && second.score > 50) {
+                html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样大量吸收了该流派的分析框架——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的思考中形成了富有张力的共存。</p>`;
+            }
+            if (third && third.score > 45) {
+                html += `<p>「<strong>${third.name}</strong>」（${third.score}%）作为第三倾向出现，进一步印证了您思想体系的多元层次：${getDetailedEpistemology(third.key).substring(0, 80)}这一面向在您面对具体议题时往往也会浮现。</p>`;
+            }
+            html += `</div>`;
+
+            html += `<div class="insight-card">
+            <h3>二、 核心命题确认</h3>
+            <p>根据您的作答模式，以下命题最能代表您当前的理论立场：</p>
+            <ul style="margin:0; padding-left:20px; line-height:2;">
+              ${coreClaimsMap[top.key].map(c => `<li>${c}</li>`).join('')}
+              ${second && second.score > 50 ? coreClaimsMap[second.key].slice(0, 1).map(c => `<li style="color:#666; font-style:italic;">（兼容思考）${c}</li>`).join('') : ''}
+            </ul></div>`;
+
+            html += `<div class="insight-card">
+            <h3>三、 潜在理论盲区与内在张力</h3>
+            <p>${getDetailedBlindSpot(top.key)}</p>
+            <p><strong>与其他流派的张力：</strong>您的立场与「${tension.tenseName}」之间存在较明显的理论分歧——${top.key === 'liberal' ? '后者认为您所依赖的法律与市场框架本身就是父权资本主义的产物，形式平等不等于实质解放。' :
+                    top.key === 'radical' ? '酷儿女权批评您可能将女性本质化，忽略性别流动性；自由女权则认为您对家庭和性的批判走得过远，忽略了个体能动性。' :
+                        top.key === 'socialist' ? '自由女权担忧您对个体选择的轻视；文化女权则认为您的阶级分析框架未能充分重视女性特质本身的伦理价值。' :
+                            top.key === 'intersectional' ? '自由女权认为交叉分析过于碎片化，难以形成有效政治联盟；激进女权则担心性别分析被稀释。' :
+                                top.key === 'cultural' ? '酷儿女权指出您对女性特质的肯定可能恰恰巩固了父权制赋予的分类；社会主义女权认为这忽略了物质结构的决定作用。' :
+                                    top.key === 'queer' ? '激进女权认为解构主体会导致政治集结困难，在应对具体物质性暴力时力量有限；文化女权觉得您否定了真实存在的性别差异经验。' :
+                                        top.key === 'eco' ? '自由女权认为生态女权对技术的警惕妨碍了女性进入科技领域；社会主义女权认为单纯的生态叙事可能回避了阶级剥削的核心矛盾。' :
+                                            '自由女权认为文化相对主义有时成为庇护本土父权的借口；激进女权则担心后殖民视角使针对特定文化中性别暴力的批判丧失了立足点。'
+                }</p>
+            <p><strong>潜在的思想盟友：</strong>「${tension.allyName}」与您的立场在多个核心前提上高度兼容，理论对话空间较大，可深入参照比较。</p>
+            </div>`;
+
+            let contradictions = [];
+            let strongAgrees = [];
+            for (let q of fullQuestions) {
+                let score = answersMap[q.id];
+                if (score !== undefined) {
+                    if (score <= 1 && q.category === top.key) {
+                        contradictions.push({ text: q.text.substring(0, 70) + "…", score });
+                    } else if (score >= 4 && q.category === lowest.key) {
+                        strongAgrees.push({ text: q.text.substring(0, 70) + "…", score });
+                    }
+                }
+            }
+            html += `<div class="insight-card"><h3>四、 个体思想画像及溢出分析</h3>`;
+            if (contradictions.length > 0) {
+                html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留或抵触，说明您的立场并非全盘接收，而是具有独立思辨性：</p>
+                <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
+                  ${contradictions.slice(0, 4).map(c => `<li>「${c.text}」（得分：${c.score}）</li>`).join('')}
+                </ul>`;
+            } else {
+                html += `<p><strong>对主导流派的高度一致：</strong>您在「${top.name}」的全部核心议题上保持了高度一致，显示出对该理论体系的深度内化，较少存在内部张力。</p>`;
+            }
+            if (strongAgrees.length > 0) {
+                html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>您在整体得分最低的「${lowest.name}」中，仍对以下议题表示较强认同。留意这些溢出点，它们可能代表您思想中尚未充分展开的面向：</p>
+                <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
+                  ${strongAgrees.slice(0, 3).map(c => `<li>「${c.text}」（得分：${c.score}）</li>`).join('')}
+                </ul>`;
+            }
+            html += `</div>`;
+
+            let lowRec = '';
+            if (lowest.key === 'liberal') lowRec = '《女权辩护》（沃斯通克拉夫特）——作为自由女权的奠基文本，重新理解平等的历史与多重含义。';
+            else if (lowest.key === 'radical') lowRec = '《性政治》（米利特）——重新理解权力如何渗透日常关系与私领域。';
+            else if (lowest.key === 'socialist') lowRec = '《凯列班与女巫》（费代里奇）——追溯资本主义原始积累与女性压迫之间的历史共谋。';
+            else if (lowest.key === 'intersectional') lowRec = '《绘制边缘》（克伦肖）——通过具体法律案例理解交叉性的现实意涵。';
+            else if (lowest.key === 'cultural') lowRec = '《不同的声音》（吉利根）——重新评估关怀伦理作为道德哲学资源的可能性。';
+            else if (lowest.key === 'queer') lowRec = '《性别麻烦》（巴特勒）——挑战性别概念的自然化，理解表演性理论的政治含义。';
+            else if (lowest.key === 'eco') lowRec = '《自然之死》（麦茜特）——追溯机械自然观的兴起与对女性及自然支配的深层关联。';
+            else lowRec = '《在西方的目光下》（莫汉蒂）——正面挑战女权运动中的殖民主义认知模式。';
+
+            html += `<div class="insight-card"><h3>五、 认知对照：最低匹配流派分析</h3>
+            <p>您得分最低的流派是「<strong>${lowest.name}</strong>」（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
+            <p><strong>为何权重较低？</strong>您对该流派的低认同，往往并非源于无知，而是反映了某种更深层的前提分歧——${lowest.key === 'liberal' ? '您可能认为，仅仅修补规则而不触动结构，无法实现真正的解放。' :
+                    lowest.key === 'radical' ? '您可能对父权制高于一切的单一轴线分析感到不足，或不认同其对异性恋制度的彻底批判。' :
+                        lowest.key === 'socialist' ? '您可能不认为经济结构是压迫的决定性根源，或者认为文化、身体层面的变革同样不可化约。' :
+                            lowest.key === 'intersectional' ? '您可能倾向于寻找更统一的压迫叙事，或认为过度细分会消解政治行动的集聚力。' :
+                                lowest.key === 'cultural' ? '您可能担忧女性特质的本质化会反向强化刻板印象，或认为差异叙事本身是父权制的产物。' :
+                                    lowest.key === 'queer' ? '您可能认为解构主体在面对现实物质压迫时，缺乏足够的政治集结基础。' :
+                                        lowest.key === 'eco' ? '您可能对将女性与自然本质化联系的论述持审慎态度，或认为技术有潜力成为解放工具而非压迫装置。' :
+                                            '您可能认为文化相对主义有时为地方性的父权实践提供了庇护，或更偏向于普世性的人权框架。'
+                }</p>
+            <p><strong>扩展建议：</strong>阅读该流派的一手文本往往会发现，它所批判的恰恰是您当前框架中最容易忽视的那部分现实。建议可从以下切入点开始阅读：${lowRec}</p></div>`;
+
+            return html;
+        }
+
+        window.calculateResult = function () {
+            const form = document.getElementById('feminismQuiz');
+            // 检查完整性
+            for (let q of fullQuestions) {
+                if (!form.elements[`q${q.id}`] || form.elements[`q${q.id}`].value === "") {
+                    alert(`请完成第 ${q.id} 题后再生成报告。`);
+                    return;
+                }
+            }
+
+            // 初始化实际得分 sums
+            const sums = {};
+            Object.keys(categoriesMap).forEach(k => { sums[k] = 0; });
+            const answers = {};
+
+            fullQuestions.forEach(q => {
+                const val = parseInt(form.elements[`q${q.id}`].value, 10);
+                answers[q.id] = val;
+
+                if (q.weights) {
+                    Object.keys(q.weights).forEach(cat => {
+                        sums[cat] += val * q.weights[cat];
+                    });
+                }
+            });
+
+            // 归一化：基于理论最大/最小
+            let normalized = Object.keys(categoriesMap).map(key => {
+                const maxScore = categoryMaxScores[key];
+                const minScore = categoryMinScores[key];
+                const range = maxScore - minScore;
+                let scorePercent = 0;
+                if (range > 0) {
+                    scorePercent = ((sums[key] - minScore) / range) * 100;
+                }
+                // 保险钳位（理论上不会超出，但避免浮点误差）
+                scorePercent = Math.max(0, Math.min(100, scorePercent));
+                return {
+                    key,
+                    name: categoriesMap[key].name,
+                    score: Math.round(scorePercent * 10) / 10,
+                    desc: categoriesMap[key].desc
+                };
+            }).sort((a, b) => b.score - a.score);
+
+            // ----- 数据来源改用 normalized -----
+            const topScore = normalized[0].score;
+            const topTies = normalized.filter(n => Math.abs(n.score - topScore) <= 1);
+            const tieOthers = topTies.filter(t => t.key !== normalized[0].key);
+
+            const above60 = normalized.filter(n => n.score >= 60).length;
+            const above40 = normalized.filter(n => n.score >= 40).length;
+            let typeLabel, typeDesc;
+            if (above60 >= 5) {
+                typeLabel = "高度交叉融合型";
+                typeDesc = "您在五个或以上流派中均达到明显偏好水平，拒绝被任何单一理论框定，能灵活切换分析视角。";
+            } else if (above60 >= 3) {
+                typeLabel = "多维兼容型";
+                typeDesc = "您吸收了多个流派的核心洞见，形成具有综合性的个人视角，既有明确重心，又不拒绝其他框架。";
+            } else if (above40 >= 5) {
+                typeLabel = "温和折衷型";
+                typeDesc = "您对大多数流派保持开放性，尚未形成特别鲜明的核心倾向，处于主动探索或刻意规避教条的阶段。";
+            } else {
+                typeLabel = "立场鲜明型";
+                typeDesc = "您的理论认同高度集中于少数流派，具有清晰的思想重心和内聚性，能快速形成一致的政治表达。";
+            }
+
+            let summaryHtml = `<div style="background:linear-gradient(135deg,#FFF3E6,#FFFcf8); padding:28px; border-radius:16px; border-left:6px solid #f97316; box-shadow:0 4px 12px rgba(249,115,22,0.05); height:100%; display:flex; flex-direction:column; justify-content:center;">
+              <div style="font-size:1.25em; font-weight:700; color:#c2410c; margin-bottom:16px;">您的核心理论坐标</div>
+              <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                <span style="background:#f97316; color:#fff; padding:8px 18px; border-radius:30px; font-weight:600; font-size:1.05em; box-shadow:0 2px 4px rgba(249,115,22,0.3);">
+                  主导倾向：${normalized[0].name} · ${normalized[0].score}%
+                </span>
+                ${tieOthers.length > 0 ?
+                    `<span style="background:#fff0e6; color:#c2410c; padding:8px 18px; border-radius:30px; font-weight:500; font-size:0.95em; border:1px solid #FFCC99;">
+                        并列倾向：${tieOthers.map(t => `${t.name} · ${t.score}%`).join('、')}
+                    </span>` :
+                    `<span style="background:#fff0e6; color:#c2410c; padding:8px 18px; border-radius:30px; font-weight:500; font-size:0.95em; border:1px solid #FFCC99;">
+                        次要倾向：${normalized[1].name} · ${normalized[1].score}%
+                    </span>`
+                }
+              </div>
+              <div style="font-size:0.95em; color:#78350f; line-height:1.6; margin-bottom:16px; background:rgba(255,255,255,0.6); padding:10px 14px; border-radius:8px;">
+                <strong>最低匹配：</strong>${normalized[normalized.length - 1].name}（${normalized[normalized.length - 1].score}%）&nbsp;·&nbsp;
+                <strong>极差跨度：</strong>${(normalized[0].score - normalized[normalized.length - 1].score).toFixed(1)}分
+                <div style="font-size:0.85em; color:#92400e; margin-top:6px; opacity:0.9;">
+                    注：极差跨度是指您最高匹配流派与最低匹配流派之间的分数差值。差值越大，说明您的理论倾向越聚焦、立场越鲜明；差值越小，说明您倾向于综合吸收各流派观点，思想具有较高的包容性与折衷性。
+                </div>
+              </div>
+              <div style="border-top:1px solid #FFD4A8; padding-top:16px;">
+                <div style="font-size:1em; font-weight:600; color:#c2410c; margin-bottom:8px;">分类画像：${typeLabel}</div>
+                <div style="font-size:0.92em; color:#555; line-height:1.6;">${typeDesc}</div>
+                <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;">
+                  ${normalized.filter(n => n.score >= 60).map(n => `<span class="theory-tag">• ${n.name} ${n.score}%</span>`).join('')}
+                  ${normalized.filter(n => n.score >= 40 && n.score < 60).map(n => `<span class="theory-tag" style="background:#f9fafb; color:#6b7280; border-color:#e5e7eb; font-weight:400;">◦ ${n.name} ${n.score}%</span>`).join('')}
+                </div>
+              </div>
+              <div style="font-size:0.88em; color:#9a3412; margin-top:16px; opacity:0.85; font-style:italic;">本报告将从认识论基础、潜在理论盲区、个体思想画像及深度阅读导航等维度为您展开全面解析。</div>
+            </div>`;
+            document.getElementById('scoreSummary').innerHTML = summaryHtml;
+
+            const spread = normalized[0].score - normalized[normalized.length - 1].score;
+            let judgmentHtml = `<h3>理论光谱定性解读</h3>`;
+            judgmentHtml += `<p>您的性别观念坐标系以<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '为核心主轴'}</strong>构建，`;
+            if (normalized[0].score >= 80) judgmentHtml += `对该流派的基础预设与分析框架展现出高度一致的认同（${normalized[0].score}%），具备系统性的批判性思维，理论立场极为鲜明。您不只是倾向该流派，而是真正以其认识论框架来观察和判断性别议题。`;
+            else if (normalized[0].score >= 65) judgmentHtml += `在该流派核心命题上已形成清晰的价值坐标（${normalized[0].score}%），立场坚定但仍保持对其他视角的开放性。您的思考既有中心，又不排斥周边的补充框架。`;
+            else if (normalized[0].score >= 50) judgmentHtml += `对该流派表现出温和偏向（${normalized[0].score}%），但同时吸纳了多个流派的解释力。您的立场尚在形成中，对不同理论方案持情境化而非原则性的判断。`;
+            else judgmentHtml += `各流派得分相对接近，尚未形成单一的主导倾向（最高仅 ${normalized[0].score}%）。这可能意味着您处于积极的探索阶段，或者刻意抵制教条式的理论认同。`;
+
+            judgmentHtml += ` 从雷达图的分布形态来看，您的思想光谱${spread > 50 ? `极差达 ${spread.toFixed(1)} 分，呈现出<strong>高度清晰的倾向性轮廓</strong>` : spread > 30 ? `极差为 ${spread.toFixed(1)} 分，呈现出<strong>有重心的梯度分布</strong>` : `极差仅 ${spread.toFixed(1)} 分，各轴向分布<strong>相当均衡</strong>`}。</p>`;
+
+            judgmentHtml += `<p><strong>历史谱系定位：</strong>${normalized[0].key === 'liberal' ? '自由女权主义是最早建制化的女权流派，根植于启蒙理性与自由主义传统。您的立场在政治上往往是最具操作性和制度可见性的，能够在主流政治框架中获得盟友，但也面临来自各激进流派关于体制共谋的批评。' :
+                normalized[0].key === 'radical' ? '激进女权主义在20世纪60-70年代第二波女权运动中达到高峰，将女权主义政治化推向了最彻底的形态。您的立场常常是论辩中最引人不安的声音，因为它拒绝任何对现状的安慰性妥协。' :
+                    normalized[0].key === 'socialist' ? '社会主义女权主义在第二波运动中作为对自由主义的左翼批判而兴起，努力将性别政治与阶级政治缝合在一起。您的立场在当代资本主义矛盾激化的背景下正在经历复兴，费代里奇等人的再生产劳动理论获得了新的时代回响。' :
+                        normalized[0].key === 'intersectional' ? '交叉性框架由金伯利·克伦肖在1989年正式命名，是第三波和第四波女权运动的核心理论贡献。您的立场代表了当代女权主义的主流学术前沿，但也面临来自各方的批评——左翼批评其碎片化，右翼将其视为意识形态靶子。' :
+                            normalized[0].key === 'cultural' ? '文化女权主义与差异女权主义在70-80年代作为对激进女权的修正而兴起，拒绝平等等于同化的逻辑。您的立场在当代伦理学、护理学和和平研究中有重要影响，但在后结构主义盛行的学院环境中常受到本质主义的批评。' :
+                                normalized[0].key === 'queer' ? '酷儿理论在90年代后结构主义思潮中兴起，以巴特勒的《性别麻烦》为标志性文本。您的立场代表了女权主义与性别理论的哲学前沿，与相关权利运动深度交织，但与部分激进女权之间存在持续论战。' :
+                                    normalized[0].key === 'eco' ? '生态女权主义在1970年代环保运动中兴起。您的立场在气候正义运动高涨的当下获得了新的政治能见度，将性别分析引入了地球危机的讨论中。' :
+                                        '后殖民女权主义在去殖民化运动与第三世界女权主义思潮的交汇处成形。您的立场在全球化批判和去殖民理论复兴的语境下极具时代相关性，代表了对西方中心主义的持续抵抗。'
+                }</p>`;
+            document.getElementById('typeJudgment').innerHTML = judgmentHtml;
+
+            const books = booksMap[normalized[0].key];
+            let mainHtml = `<h3>核心特征与学术脉络</h3>
+            <p>${categoriesMap[normalized[0].key].desc}</p>
+            <p><strong>行动主义实践路径：</strong>认同「${normalized[0].name}」的人通常在以下领域中将理论转化为实践：${activismMap[normalized[0].key]}。</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
+              <div style="background:#fffcf8; padding:20px; border-radius:12px; border-top:4px solid #f97316; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
+                <strong style="color:#c2410c; font-size:1.05em;">奠基性经典</strong>
+                <ul style="margin:12px 0 0; padding-left:20px; line-height:2; font-size:0.95em;">
+                  ${books.classics.map(b => `<li>${b}</li>`).join('')}
+                </ul>
+              </div>
+              <div style="background:#fff7ed; padding:20px; border-radius:12px; border-top:4px solid #fb923c; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
+                <strong style="color:#c2410c; font-size:1.05em;">当代延伸阅读</strong>
+                <ul style="margin:12px 0 0; padding-left:20px; line-height:2; font-size:0.95em;">
+                  ${books.contemporary.map(b => `<li>${b}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+            <div style="background:#fff1f2; padding:18px 24px; border-radius:12px; margin-top:20px; border-left:4px solid #f43f5e; font-size:0.95em; color:#881337;">
+              <strong style="font-size:1.05em;">建设性挑战读物：</strong><br>${books.challenge[0]}<br>${books.challenge[1]}
+            </div>`;
+            document.getElementById('mainInterpretation').innerHTML = mainHtml;
+
+            drawRadar(normalized);
+            const deepPersonal = generateDeepInsight(normalized, answers);
+            document.getElementById('deepPersonalAnalysis').innerHTML = deepPersonal;
+
+            let tableHtml = `<h3>各流派数据分布详情</h3><table><thead><tr><th>排名</th><th>理论流派</th><th>匹配度</th><th>强度评级</th><th>基础定义</th></tr></thead><tbody>`;
+            normalized.forEach((item, idx) => {
+                let level = item.score >= 90 ? "深度认同" : item.score >= 80 ? "高度认同" : item.score >= 70 ? "较为认同" : item.score >= 60 ? "基本认同" : item.score >= 50 ? "部分认同" : item.score >= 40 ? "略微认同" : "不太认同";
+                tableHtml += `<tr><td>${idx + 1}</td><td><strong>${item.name}</strong></td><td>${item.score}%</td><td>${level}</td><td style="font-size:0.9em; line-height:1.5;">${item.desc}</td></tr>`;
+            });
+            tableHtml += `</tbody></table>`;
+            document.getElementById('sectionScores').innerHTML = tableHtml;
+
+            const lowest = normalized[normalized.length - 1];
+            const reflectQ = fullQuestions.filter(q => q.category === normalized[0].key && answers[q.id] !== undefined)
+                .sort((a, b) => answers[a.id] - answers[b.id])[0];
+
+            let suggestHtml = `<h3>深度反思与行动建议</h3>
+            <div class="action-box" style="margin-top:0;">
+              <p style="margin-top:0;"><strong>1. 深化主导立场</strong><br>
+              系统阅读「${normalized[0].name}」的奠基文本，不只是接受其结论，而是追溯其核心论证链条：${normalized[0].key === 'liberal' ? '从沃斯通克拉夫特的理性平等论，到密尔的自由主义女权，再到当代的能力取径（努斯鲍姆），梳理该流派在三个世纪里如何回应批评、自我更新。' :
+                    normalized[0].key === 'radical' ? '从米利特对性权力的命名，到费尔斯通对生殖技术的乌托邦想象，再到麦金农对法律的批判，追踪激进女权如何在坚持父权制优先性的前提下分裂出多个支流。' :
+                        normalized[0].key === 'socialist' ? '从恩格斯的家庭起源论，到哈特曼的双重体系论，再到费代里奇的共同体经济学，理解社会主义女权如何持续更新自身的经济分析工具。' :
+                            normalized[0].key === 'intersectional' ? '从克伦肖的法律交叉性，到柯林斯的矩阵压迫论，再到当代的交叉性政策分析，思考交叉性如何从法律描述工具演变为完整的社会分析框架。' :
+                                normalized[0].key === 'cultural' ? '从吉利根对科尔伯格道德发展理论的挑战，到诺丁斯的关怀伦理教育，再到当代对关怀经济的倡议，理解文化女权如何在差异即劣势与差异即资源之间寻找立足点。' :
+                                    normalized[0].key === 'queer' ? '从巴特勒对性别表演性的哲学论证，到塞吉维克的同性社会欲望分析，再到近年跨性别理论的发展，追踪酷儿理论如何在去稳定化的同时形成新的政治集结方式。' :
+                                        normalized[0].key === 'eco' ? '从麦茜特的历史考古，到普拉姆伍德的价值二元论批判，再到哈拉维的赛博女权主义，理解生态女权如何在本质主义与后人类主义之间的张力中演进。' :
+                                            '从莫汉蒂对第三世界女性的话语分析，到斯皮瓦克的庶民研究，再到当代的去殖民女权行动主义，追踪后殖民女权如何在批判帝国主义的同时处理本地父权的复杂性。'
+                }</p>
+              <p><strong>2. 主动接触挑战性他者</strong><br>
+              建议投入时间重点阅读「${lowest.name}」的一本入门文本（见上方建议）。阅读时暂缓批判，尝试追问：<em>该流派能看见什么，是我目前的框架所遗漏的？</em>这一练习的目的并非动摇立场，而是让自身的理论坐标建立在更广阔的视野之上。</p>
+              <p><strong>3. 具体议题的交叉演练</strong><br>
+              从量表中挑选一个您在作答时最感踌躇的议题（得分处于2-3分之间），尝试分别用您的主导流派和得分最低的流派为其撰写一段分析。比较两段分析的焦点差异，观察理论框架如何决定了我们对现实的看见与看不见。</p>
+              <p><strong>4. 在地实践连接</strong><br>
+              根据您的主导倾向，可考虑关注或参与以下类型的社会实践：${activismMap[normalized[0].key]}。理论的生命力在于行动，抽象概念在具体社会情境中的摩擦往往能带来阅读所无法企及的深刻体悟。</p>
+              ${reflectQ ? `<p><strong>5. 个人思想边界探测</strong><br>
+              建议以此题作为自我检视的起点：「${reflectQ.text}」（您的得分：${answers[reflectQ.id]}）。这是您在主导流派中认同度偏低的议题之一——探究此处产生抵触或保留的具体原因，撰写一段自我对话，这往往是发现个人女权哲学边界的最有效切口。</p>` : ''}
+            </div>`;
+            document.getElementById('personalizedSuggestions').innerHTML = suggestHtml;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        function drawRadar(dataArr) {
+            const canvas = document.getElementById("radarChart");
+            if (!canvas) return;
+            if (radarChart) radarChart.destroy();
+            const ctx = canvas.getContext('2d');
+            radarChart = new Chart(ctx, {
+                type: "radar",
+                data: {
+                    labels: dataArr.map(d => d.name.split('/')[0]),
+                    datasets: [{
+                        label: "流派匹配度 (%)",
+                        data: dataArr.map(d => d.score),
+                        backgroundColor: "rgba(47, 111, 115, 0.15)",
+                        borderColor: "#2f6f73",
+                        pointBackgroundColor: "#7c6db0",
+                        borderWidth: 2,
+                        pointBorderColor: "#fff",
+                        pointHoverBackgroundColor: "#fff",
+                        pointHoverBorderColor: "#2f6f73"
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        r: {
+                            suggestedMin: 0,
+                            max: 100,
+                            ticks: { stepSize: 20, backdropColor: 'transparent' },
+                            grid: { color: '#e5e7eb' },
+                            angleLines: { color: '#e5e7eb' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        window.resetForm = function () {
+            if (confirm("确定要重置所有选项并清空报告吗？重置也会清除本地自动保存的进度。")) {
+                const form = document.getElementById('feminismQuiz');
+                for (let q of fullQuestions) {
+                    const select = form.elements[`q${q.id}`];
+                    if (select) select.value = "";
+                }
+                clearLocalStorage();
+                updateProgress();
+                document.getElementById('result').style.display = 'none';
+                if (radarChart) {
+                    radarChart.destroy();
+                    radarChart = null;
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        window.saveResultText = function () {
+            if (document.getElementById('result').style.display !== 'block') { alert("请先完成评估并生成报告。"); return; }
+            let content = "女权主义流派倾向深度评估报告\n\n";
+            ["scoreSummary", "typeJudgment", "mainInterpretation", "deepPersonalAnalysis", "sectionScores", "personalizedSuggestions"].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) content += el.innerText + "\n\n====\n\n";
+            });
+            const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = "女权主义流派倾向评估报告.txt";
+            a.click();
+            URL.revokeObjectURL(a.href);
+        };
+
+        window.saveResultImage = async function () {
+            if (document.getElementById('result').style.display !== 'block') { alert("请先完成评估并生成报告。"); return; }
+            const element = document.getElementById('result');
+            const originalOverflow = element.style.overflow;
+            element.style.overflow = 'visible';
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = '生成中，请稍候...';
+            btn.disabled = true;
+            try {
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    backgroundColor: "#f4f1fb",
+                    useCORS: true,
+                    logging: false,
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight
+                });
+                const link = document.createElement('a');
+                link.download = "女权主义流派倾向评估报告.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            } catch (err) {
+                console.error("生成图片失败", err);
+                alert("生成图片失败，请检查浏览器权限或网络。");
+            } finally {
+                element.style.overflow = originalOverflow;
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        };
+
+        // 启动表单
+        initForm();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#7a6597">
+  <title>无浪漫/无性恋谱系 · 共鸣刻度卡</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: #f6f4f1;
+      color: #1a1a2e;
+      min-height: 100vh;
+      padding: 28px 16px 60px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    /* 头部 */
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    .header h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(20px, 5vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .header h1 em {
+      color: #7a6597;
+      font-style: normal;
+    }
+
+    .sub {
+      margin-top: 8px;
+      font-size: clamp(11.5px, 2.5vw, 13px);
+      color: #888899;
+    }
+
+    /* 提示 */
+    .tip {
+      background: #fff;
+      border-left: 4px solid #7a6597;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 20px;
+      line-height: 1.65;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 图例 (0 / 25% / 50% / 75% / 100%) */
+    .legend {
+      display: flex;
+      gap: 12px 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      background: rgba(122, 101, 151, 0.08);
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+
+    .ldot {
+      width: 26px;
+      height: 26px;
+      border-radius: 40px;
+      background: #f0f0f0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid #ccc;
+      color: #555;
+    }
+
+    .ldot.lv25 {
+      background: #f2edf7;
+      border-color: #c7b4d6;
+      color: #7a6597;
+    }
+
+    .ldot.lv50 {
+      background: #e9dff2;
+      border-color: #ad93c6;
+      color: #6b578a;
+    }
+
+    .ldot.lv75 {
+      background: #dfd0ea;
+      border-color: #9272b5;
+      color: #5b477a;
+    }
+
+    .ldot.lv100 {
+      background: #cbb7dc;
+      border-color: #7a6597;
+      color: #47355f;
+      font-weight: 800;
+    }
+
+    .ldot.lv0::after {
+      content: '0';
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .ldot.lv25::after {
+      content: '25%';
+    }
+
+    .ldot.lv50::after {
+      content: '50%';
+    }
+
+    .ldot.lv75::after {
+      content: '75%';
+    }
+
+    .ldot.lv100::after {
+      content: '100%';
+    }
+
+    /* 重置按钮 */
+    .reset-btn {
+      display: block;
+      margin: 0 auto 24px;
+      padding: 8px 28px;
+      border: 1.5px solid #d6cde0;
+      border-radius: 40px;
+      background: white;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: #7a6597;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .reset-btn:hover {
+      background: #f2eef6;
+      border-color: #7a6597;
+    }
+
+    /* 区域卡片 */
+    .section {
+      margin-bottom: 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      background: #fff;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      color: white;
+      position: relative;
+    }
+
+    .sec-badge {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 19px;
+      font-weight: 700;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec-info h2 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .sec-info p {
+      font-size: 11px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* 板块共鸣显示（右上角） */
+    .sec-stats {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .sec-stats span:first-child {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .sec-stats .sec-ratio {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .sec-stats small {
+      font-size: 10px;
+      font-weight: 500;
+      margin-left: 2px;
+    }
+
+    .sec-A .sec-head {
+      background: linear-gradient(120deg, #7a6597, #a793bf);
+    }
+
+    .sec-B .sec-head {
+      background: linear-gradient(120deg, #5f7a63, #9ab09c);
+    }
+
+    .sec-C .sec-head {
+      background: linear-gradient(120deg, #3e6b86, #86a9bf);
+    }
+
+    .sec-D .sec-head {
+      background: linear-gradient(120deg, #a07052, #caa88d);
+    }
+
+    /* GRID 默认5列 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid #eee;
+    }
+
+    .cell {
+      position: relative;
+      cursor: pointer;
+      padding: 14px 8px 12px;
+      text-align: center;
+      border: 1px solid #f2efe9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      transition: all 0.1s ease;
+      min-height: 112px;
+      background: white;
+    }
+
+    .cell:active {
+      transform: scale(0.96);
+    }
+
+    .cell-icon {
+      font-size: 26px;
+      line-height: 1;
+      transition: transform 0.1s;
+    }
+
+    .cell:hover .cell-icon {
+      transform: scale(1.05);
+    }
+
+    .cell-text {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #4b4b60;
+      font-weight: 500;
+      max-width: 98%;
+    }
+
+    /* 圆环标识（百分比） */
+    .ring {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 30px;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      border: 1.5px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      transition: all 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .cell .ring::after {
+      content: attr(data-label);
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+
+    /* 等级背景 (0,25,50,75,100) + 主题色深化 */
+    .cell[data-level="0"] {
+      background: white;
+    }
+
+    .cell[data-level="25"] {
+      background: #fbf9fd;
+    }
+
+    .cell[data-level="50"] {
+      background: #f6f1fb;
+    }
+
+    .cell[data-level="75"] {
+      background: #f1eaf8;
+    }
+
+    .cell[data-level="100"] {
+      background: #e9e0f2;
+    }
+
+    .sec-A .cell[data-level="25"] {
+      background: rgba(122, 101, 151, 0.06);
+    }
+
+    .sec-A .cell[data-level="50"] {
+      background: rgba(122, 101, 151, 0.12);
+    }
+
+    .sec-A .cell[data-level="75"] {
+      background: rgba(122, 101, 151, 0.22);
+    }
+
+    .sec-A .cell[data-level="100"] {
+      background: rgba(122, 101, 151, 0.34);
+    }
+
+    .sec-A .cell[data-level="25"] .cell-text {
+      color: #6b578a;
+      font-weight: 500;
+    }
+
+    .sec-A .cell[data-level="50"] .cell-text {
+      color: #5b477a;
+      font-weight: 500;
+    }
+
+    .sec-A .cell[data-level="75"] .cell-text {
+      color: #4f3d6e;
+      font-weight: 550;
+    }
+
+    .sec-A .cell[data-level="100"] .cell-text {
+      color: #47355f;
+      font-weight: 600;
+    }
+
+    .sec-B .cell[data-level="25"] {
+      background: rgba(95, 122, 99, 0.06);
+    }
+
+    .sec-B .cell[data-level="50"] {
+      background: rgba(95, 122, 99, 0.12);
+    }
+
+    .sec-B .cell[data-level="75"] {
+      background: rgba(95, 122, 99, 0.22);
+    }
+
+    .sec-B .cell[data-level="100"] {
+      background: rgba(95, 122, 99, 0.34);
+    }
+
+    .sec-B .cell[data-level="25"] .cell-text {
+      color: #4e6653;
+    }
+
+    .sec-B .cell[data-level="50"] .cell-text {
+      color: #445a48;
+    }
+
+    .sec-B .cell[data-level="75"] .cell-text {
+      color: #3a4e3f;
+    }
+
+    .sec-B .cell[data-level="100"] .cell-text {
+      color: #2e3f33;
+      font-weight: 600;
+    }
+
+    .sec-C .cell[data-level="25"] {
+      background: rgba(62, 107, 134, 0.06);
+    }
+
+    .sec-C .cell[data-level="50"] {
+      background: rgba(62, 107, 134, 0.12);
+    }
+
+    .sec-C .cell[data-level="75"] {
+      background: rgba(62, 107, 134, 0.22);
+    }
+
+    .sec-C .cell[data-level="100"] {
+      background: rgba(62, 107, 134, 0.34);
+    }
+
+    .sec-C .cell[data-level="25"] .cell-text {
+      color: #345a72;
+    }
+
+    .sec-C .cell[data-level="50"] .cell-text {
+      color: #2c4d63;
+    }
+
+    .sec-C .cell[data-level="75"] .cell-text {
+      color: #234153;
+    }
+
+    .sec-C .cell[data-level="100"] .cell-text {
+      color: #1b3442;
+      font-weight: 600;
+    }
+
+    .sec-D .cell[data-level="25"] {
+      background: rgba(160, 112, 82, 0.06);
+    }
+
+    .sec-D .cell[data-level="50"] {
+      background: rgba(160, 112, 82, 0.12);
+    }
+
+    .sec-D .cell[data-level="75"] {
+      background: rgba(160, 112, 82, 0.22);
+    }
+
+    .sec-D .cell[data-level="100"] {
+      background: rgba(160, 112, 82, 0.34);
+    }
+
+    .sec-D .cell[data-level="25"] .cell-text {
+      color: #8a5f45;
+    }
+
+    .sec-D .cell[data-level="50"] .cell-text {
+      color: #7a533c;
+    }
+
+    .sec-D .cell[data-level="75"] .cell-text {
+      color: #6b4732;
+    }
+
+    .sec-D .cell[data-level="100"] .cell-text {
+      color: #5a3b29;
+      font-weight: 600;
+    }
+
+    /* 圆环各等级颜色 */
+    .cell[data-level="0"] .ring {
+      border-color: #dbdbdb;
+      background: #fafafaaa;
+    }
+
+    .cell[data-level="0"] .ring::after {
+      content: "0";
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .cell[data-level="25"] .ring {
+      border-color: #c7b4d6;
+      background: #ffffffdd;
+    }
+
+    .cell[data-level="25"] .ring::after {
+      content: "25%";
+      color: #7a6597;
+    }
+
+    .cell[data-level="50"] .ring {
+      border-color: #ad93c6;
+      background: #f6f1fb;
+    }
+
+    .cell[data-level="50"] .ring::after {
+      content: "50%";
+      color: #6b578a;
+      font-weight: 800;
+    }
+
+    .cell[data-level="75"] .ring {
+      border-color: #9272b5;
+      background: #f1eaf8;
+    }
+
+    .cell[data-level="75"] .ring::after {
+      content: "75%";
+      color: #5b477a;
+      font-weight: 800;
+    }
+
+    .cell[data-level="100"] .ring {
+      border-color: #7a6597;
+      background: #e9e0f2;
+    }
+
+    .cell[data-level="100"] .ring::after {
+      content: "100%";
+      color: #47355f;
+      font-weight: 800;
+    }
+
+    /* 底部简版提醒卡片 */
+    .footer {
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px 24px;
+      margin-top: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .footer h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer ul {
+      padding-left: 20px;
+      font-size: 12.5px;
+      color: #5a5a70;
+      line-height: 1.9;
+    }
+
+    /* 响应式 */
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cell {
+        min-height: 118px;
+        padding: 12px 5px 8px;
+      }
+
+      .cell-icon {
+        font-size: 22px;
+      }
+
+      .ring {
+        width: 24px;
+        height: 24px;
+        top: 4px;
+        right: 4px;
+      }
+
+      .ring::after {
+        font-size: 7.5px;
+      }
+
+      .sec-stats {
+        padding: 3px 8px;
+        font-size: 11px;
+      }
+
+      .sec-stats .sec-ratio {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .cell-text {
+        font-size: 10px;
+      }
+    }
+  </style>
+
+  <style id="prism-back-home-style">
+    .prism-back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid rgba(24, 33, 47, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #415469;
+      font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    .prism-back-home:hover {
+      color: #18212f;
+      border-color: rgba(24, 33, 47, 0.26);
+    }
+
+    @media (max-width: 520px) {
+      .prism-back-home {
+        top: 10px;
+        left: 10px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="page">
+    <div class="header">
+      <h1>无浪漫/无性恋<em>谱系</em> · 共鸣刻度卡</h1>
+      <p class="sub">没有一条线能定义你。每一句都是光谱坐标，共鸣程度由你定义</p>
+    </div>
+
+    <div class="tip">
+      🌈 <strong>刻度指南</strong> ：点击任意格子，依次切换 25% → 50% → 75% → 100% → 归零。<br>
+      每个板块右上角会实时显示该板块的“共鸣强度”（平均契合百分比）。不计算总积分，只关乎你的自我觉察。
+    </div>
+
+    <!-- 简化图例 -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="ldot lv0"></div><span>0% 无感</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv25"></div><span>25% 轻微</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv50"></div><span>50% 中度</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv75"></div><span>75% 强烈</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv100"></div><span>100% 完全共鸣</span>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetBtn">↺ 重置全部刻度</button>
+
+    <!-- 板块 A B C D 会由js动态渲染，右上角统计也动态注入 -->
+    <div id="sections-container"></div>
+
+    <div class="footer">
+      <h4>⭐ 光谱心语</h4>
+      <ul>
+        <li>没有哪一行/列/区域能单独定义你，每个板块都只是你的一部分</li>
+        <li>你的体验真实而完整，不需要活成“典型样本”</li>
+        <li>刻度是为了帮你看见自己，不必与他人比较高低</li>
+        <li>你可以随时改变格子上的共鸣程度，自我认识是流动的</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const items = {
+      A: [
+        "🚫 几乎从来不会对别人产生性方面的兴趣",
+        "❓ 完全搞不懂别人为什么会看脸就心动",
+        "📖 比起真人，更容易对动漫/小说角色产生好感",
+        "⭐ 心动更偏向欣赏对方的思想、性格，和身体无关",
+        "🕐 就算偶尔有感觉，也像一闪而过的信号，转瞬消失",
+        "🔍 经常琢磨自己到底会被哪种特质吸引",
+        "👥 必须先和对方建立很深的信任，才可能产生吸引",
+        "🔒 有性冲动，但完全不想和别人一起",
+        "≠ 想靠近对方，但完全没有性行为的想法",
+        "🌀 搞不懂为什么大家总把性看得那么重要",
+        "🪞 看到别人觉得好看，但没有任何想进一步的冲动",
+        "🎯 对性的好奇更像'学术研究'，而非真实欲望",
+        "💡 在情感上很难区分'喜欢一个人'和'欣赏一个人'的差别",
+        "🧠 智识上的共鸣比外貌更能引发我的兴趣",
+        "🌊 吸引感来了又走，像浪一样，自己控制不了规律"
+      ],
+      B: [
+        "🛡️ 讨厌别人拿我的外貌身体开和性相关的玩笑/标签",
+        "✋ 对身体接触、暴露身体有很明确的底线",
+        "🤗 很喜欢和信任的人拥抱、牵手这类不带性意味的亲密",
+        "😶 一听到性暗示、荤段子，就下意识躲开/不想回应",
+        "🚷 不管关系多好，都不想发展到发生性行为",
+        "👁️ 看别人的身体，更像在看风景/物品，完全没有欲望",
+        "🙁 完全get不到性在亲密关系里到底有什么意义",
+        "💧 对接吻、体液接触这类事，会觉得不舒服/接受不了",
+        "🧊 情绪上很想亲近一个人，但一旦涉及肢体接触又会退缩",
+        "👤 别人想要的性，和我想要的亲密完全不是一回事",
+        "🌸 享受被照顾、被陪伴，但不需要性来表达亲密",
+        "💬 偶尔配合聊性话题，但内心始终像个旁观者",
+        "🏃 当关系有发展成性关系的苗头，会想逃离或中断",
+        "🎨 欣赏人体之美更偏向艺术审美，而非欲望驱动",
+        "🤝 愿意为伴侣配合，但内心并不真正渴望性行为"
+      ],
+      C: [
+        "💔 几乎从来不会产生'想谈恋爱'的心动感",
+        "❔ 搞不懂自己对别人的好感，到底是友情还是爱情",
+        "🏠 比起情侣，更想要像好朋友、搭档一样的长期关系",
+        "📋 对约会、送花、官宣这些恋爱'套路'完全没兴趣",
+        "💙 比起和对象在一起，一个人待着更舒服、更不焦虑",
+        "💭 想要有人陪、有人关心，但完全不想进入恋爱关系",
+        "🔖 反感别人用'男朋友/女朋友'标签定义我们的关系",
+        "🎭 看别人谈恋爱，就像在看一部和自己无关的剧",
+        "🔀 很向往 QPR（酷儿柏拉图式关系）——非恋爱却有深度的亲密关系",
+        "🤔 经常在想：我是不是真的不会对人产生浪漫心动？",
+        "🎵 听情歌、看恋爱情节，理性上懂，但完全没有代入感",
+        "⏳ 被人喜欢时，感到压力大于感动",
+        "🧭 觉得友情比爱情更稳固、更值得长期投入",
+        "🌙 偶尔会有心动，但转瞬即逝、难以维持",
+        "🗺️ 有时会想：也许我从来没有真正'爱'过任何人？"
+      ],
+      D: [
+        "🌅 只有在非常特定的情况下，才会产生吸引",
+        "〰️ 对别人的吸引忽有忽无，自己也摸不准规律",
+        "🔑 就算有吸引，也特别微弱，而且很快就消失了",
+        "🖥️ 看小说/视频里的亲密会有感觉，但现实里完全不想尝试",
+        "🎮 比起现实中的人，对虚构角色的好感多得多",
+        "🧩 没有一个标签能100%描述我，总觉得自己'卡在中间'",
+        "🔄 有时觉得自己是aro/ace，过段时间又觉得不是，一直在变",
+        "📡 不知道从哪里开始理解自己，但每看到一个描述都忍不住点头",
+        "🏷️ 不执着于给自己贴标签，只把它们当成理解自己的工具",
+        "🌈 觉得自己不是'绝对的有/没有'，而是在光谱中间",
+        "🌫️ 情感状态常常是模糊的，很难用清晰的词描述",
+        "🪐 感觉自己对感情的运作方式和别人生活在不同星球",
+        "📦 把自己放入主流恋爱模式，会感到窒息或格格不入",
+        "🕊️ 看到这张卡的时候，感到一种'终于被看见'的松动",
+        "🌱 还在探索中，不急于定义，但愿意继续认识自己"
+      ]
+    };
+
+    // 板块名称和配色主题
+    const sectionsMeta = [
+      { id: 'A', title: '吸引体验', subtitle: '性吸引 · 核心维度', colorClass: 'sec-A' },
+      { id: 'B', title: '身体与边界', subtitle: '身体感受 · 个人边界', colorClass: 'sec-B' },
+      { id: 'C', title: '浪漫维度 (Aro)', subtitle: '浪漫吸引 · 关系脚本', colorClass: 'sec-C' },
+      { id: 'D', title: '灰谱与特殊体验', subtitle: '模糊地带 · 光谱中间', colorClass: 'sec-D' }
+    ];
+
+    // 存储所有cell的弱引用（用于更新统计）
+    let sectionCells = { A: [], B: [], C: [], D: [] };
+    let statsElements = {}; // 存储每个板块的百分比显示元素
+
+    // 等级 -> 分数 (0,25,50,75,100)
+    function levelToScore(level) {
+      const l = parseInt(level);
+      if (l === 25) return 25;
+      if (l === 50) return 50;
+      if (l === 75) return 75;
+      if (l === 100) return 100;
+      return 0;
+    }
+
+    // 下一等级 (0→25→50→75→100→0)
+    function nextLevel(current) {
+      const order = [0, 25, 50, 75, 100];
+      let idx = order.indexOf(current);
+      if (idx === -1) return 25;
+      const nextIdx = (idx + 1) % order.length;
+      return order[nextIdx];
+    }
+
+    // 更新指定板块的统计 (共鸣百分比)
+    function updateSectionStats(sectionId) {
+      const cells = sectionCells[sectionId];
+      if (!cells || cells.length === 0) return;
+      let totalScore = 0;
+      cells.forEach(cell => {
+        const levelVal = parseInt(cell.getAttribute('data-level') || '0');
+        totalScore += levelToScore(levelVal);
+      });
+      const maxPossible = cells.length * 100;
+      let percent = maxPossible === 0 ? 0 : (totalScore / maxPossible) * 100;
+      percent = Math.round(percent);
+      const statsSpan = statsElements[sectionId];
+      if (statsSpan) {
+        statsSpan.innerText = percent;
+      }
+    }
+
+    // 更新所有板块统计
+    function updateAllSectionsStats() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        updateSectionStats(sec);
+      }
+    }
+
+    // 更新单个cell的ring显示
+    function updateRingLabel(cell) {
+      const level = parseInt(cell.getAttribute('data-level')) || 0;
+      const ringDiv = cell.querySelector('.ring');
+      if (!ringDiv) return;
+      let showTxt = '';
+      if (level === 0) showTxt = '0';
+      else if (level === 25) showTxt = '25%';
+      else if (level === 50) showTxt = '50%';
+      else if (level === 75) showTxt = '75%';
+      else if (level === 100) showTxt = '100%';
+      ringDiv.setAttribute('data-label', showTxt);
+    }
+
+    // 处理点击格子
+    function handleCellClick(e) {
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+      const curLevel = parseInt(cell.getAttribute('data-level')) || 0;
+      const newLevel = nextLevel(curLevel);
+      cell.setAttribute('data-level', newLevel);
+      updateRingLabel(cell);
+
+      // 找出该格子所属板块并更新统计
+      const sectionDiv = cell.closest('.section');
+      if (sectionDiv) {
+        const secClass = Array.from(sectionDiv.classList).find(c => c.startsWith('sec-'));
+        let secId = null;
+        if (secClass === 'sec-A') secId = 'A';
+        else if (secClass === 'sec-B') secId = 'B';
+        else if (secClass === 'sec-C') secId = 'C';
+        else if (secClass === 'sec-D') secId = 'D';
+        if (secId) updateSectionStats(secId);
+      }
+      // 微动效
+      cell.style.transform = 'scale(0.97)';
+      setTimeout(() => { if (cell) cell.style.transform = ''; }, 120);
+    }
+
+    // 重置所有格子
+    function resetAll() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 渲染整个页面 (动态构建四个板块)
+    function buildFullPage() {
+      const container = document.getElementById('sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+      // 清空存储
+      sectionCells = { A: [], B: [], C: [], D: [] };
+      statsElements = {};
+
+      sectionsMeta.forEach(meta => {
+        const { id, title, subtitle, colorClass } = meta;
+        const itemsList = items[id];
+        if (!itemsList) return;
+
+        // 创建section元素
+        const section = document.createElement('div');
+        section.className = `section ${colorClass}`;
+
+        // head部分（包含右上角统计占位）
+        const secHead = document.createElement('div');
+        secHead.className = 'sec-head';
+        secHead.innerHTML = `
+        <div class="sec-badge">${id}</div>
+        <div class="sec-info">
+          <h2>${title}</h2>
+          <p>${subtitle}</p>
+        </div>
+        <div class="sec-stats">
+          <span>板块共鸣</span>
+          <span class="sec-ratio" id="stats-${id}">0</span><small>%</small>
+        </div>
+      `;
+        section.appendChild(secHead);
+
+        // grid容器
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+
+        // 生成格子
+        itemsList.forEach(rawText => {
+          // 以第一个空格为界，分离 Emoji 和纯文本
+          const spaceIndex = rawText.indexOf(' ');
+          let emoji = '';
+          let pureText = '';
+
+          if (spaceIndex !== -1) {
+            emoji = rawText.slice(0, spaceIndex).trim();
+            pureText = rawText.slice(spaceIndex + 1).trim();
+          } else {
+            // 兼容万一没有空格的情况
+            emoji = rawText.slice(0, 2);
+            pureText = rawText.slice(2);
+          }
+
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.setAttribute('data-level', '0');
+
+          // 将分离后的 emoji 和 pureText 分别填入对应容器
+          cell.innerHTML = `
+          <div class="ring" data-label="0"></div>
+          <div class="cell-icon">${emoji}</div>
+          <div class="cell-text">${pureText}</div>
+        `;
+          grid.appendChild(cell);
+          sectionCells[id].push(cell);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+
+        // 保存统计显示元素引用
+        const statsSpan = document.getElementById(`stats-${id}`);
+        if (statsSpan) statsElements[id] = statsSpan;
+      });
+
+      // 添加全局点击委托 (因为grid是动态生成的，直接监听父容器)
+      const sectionsContainer = document.getElementById('sections-container');
+      if (sectionsContainer) {
+        sectionsContainer.addEventListener('click', (e) => {
+          const cell = e.target.closest('.cell');
+          if (cell) handleCellClick(e);
+        });
+      }
+
+      // 重置按钮
+      const resetBtn = document.getElementById('resetBtn');
+      if (resetBtn) {
+        // 避免重复绑定
+        const newBtn = resetBtn.cloneNode(true);
+        resetBtn.parentNode.replaceChild(newBtn, resetBtn);
+        newBtn.addEventListener('click', () => {
+          resetAll();
+        });
+      } else {
+        const btn = document.getElementById('resetBtn');
+        if (btn) btn.addEventListener('click', resetAll);
+      }
+
+      // 初始化所有环 & 统计归零
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 页面启动
+    buildFullPage();
+  </script>
+</body>
+
+</html>

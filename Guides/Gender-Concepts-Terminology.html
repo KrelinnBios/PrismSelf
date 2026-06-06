@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./guide-common.css">
+  <script> (() => { const labelMap = new Map([['核心定义', 'Definition'], ['核心术语', 'Key Terms'], ['学术观点', 'Research'], ['核心观点', 'Key Points'], ['全球多样性', 'Global Context'], ['研究影响', 'Research Impact'], ['反歧视保护', 'Anti-discrimination'], ['性别认同法律', 'Legal'], ['媒体影响', 'Media'], ['社会态度变化', 'Attitudes'], ['性别肯定护理的重要性', 'Gender-affirming Care'], ['包容性教育环境', 'Inclusive Education'], ['职场包容性', 'Workplace'], ['总结', 'Summary'], ['参考文献', 'References'] ]); const normalizeSuffix = (value) => (value || '').replace(/-\\d+$/, ''); const textOf = (el) => (el && el.textContent ? el.textContent.trim() : ''); const el = (tag, className, text) => { const node = document.createElement(tag); if (className) node.className = className; if (text != null) node.textContent = text; return node; }; const createCard = ({ title, label, nodes, highlight, tags }) => { const card = el('div', highlight ? 'term-card highlight' : 'term-card'); card.appendChild(el('div', 'term-corner')); card.appendChild(el('span', 'term-en', title)); card.appendChild(el('span', 'term-zh', label)); const desc = el('div', 'term-desc'); for (const n of nodes) desc.appendChild(n); card.appendChild(desc); const headingEls = Array.from(desc.querySelectorAll('h2, h3, h4, h5, h6')); if (headingEls.length) { const levels = headingEls .map((h) => Number(String(h.tagName || '').slice(1))) .filter((n) => Number.isFinite(n)) .sort((a, b) => a - b); const distinct = Array.from(new Set(levels)); for (const h of headingEls) { const level = Number(String(h.tagName || '').slice(1)); const index = distinct.indexOf(level); if (index >= 0) h.dataset.level = String(index + 1); } } return card; }; const build = () => { const write = document.getElementById('write'); if (!write) return; const originalElements = Array.from(write.children); const h1 = originalElements.find((n) => n.tagName === 'H1'); const title = textOf(h1) || '性别概念与术语'; document.title = title; const header = document.createElement('header'); header.appendChild(el('div', 'header-label', 'Gender Concepts Terminology')); const h = document.createElement('h1'); const rawTitle = title.replace(/\\s*\\(.+?\\)\\s*$/, '').trim(); const genderIndex = rawTitle.indexOf('性别'); if (genderIndex >= 0) { const before = rawTitle.slice(0, genderIndex); const after = rawTitle.slice(genderIndex + 2); if (before) h.appendChild(document.createTextNode(before)); const genderSpan = document.createElement('span'); genderSpan.className = 'title-gender'; genderSpan.textContent = '性别'; h.appendChild(genderSpan); if (after) h.appendChild(document.createTextNode(after)); } else { h.appendChild(document.createTextNode(rawTitle)); } header.appendChild(h); header.appendChild(el('div', 'header-sub', '认同 · 表达 · 代词 · 健康 · 教育 · 法律 · 媒体')); header.appendChild(el('div', 'header-ornament')); const intro = el('section', 'intro-section'); const p = document.createElement('p'); p.innerHTML = '本模块以<strong>去污名</strong>、<strong>可验证</strong>与<strong>尊重差异</strong>为原则，梳理性别相关核心概念与术语，帮助你在沟通、教育、职场与公共讨论中更准确地表达与理解。我们强调：性别是多维的（例如：性别认同、性别表达、身体特征与社会角色），个体体验存在差异；尊重他人的自我认同与称呼，是包容实践的最低标准。'; intro.appendChild(p); intro.appendChild(el('div', 'divider')); const children = Array.from(originalElements).filter((n) => n !== h1); const h2s = children.filter((n) => n.tagName === 'H2'); const sections = []; for (const h2 of h2s) { const start = children.indexOf(h2) + 1; let end = children.length; for (let i = start; i < children.length; i += 1) {
+            if (children[i].tagName === 'H2') {
+              end = i;
+              break;
+            }
+          }
+          const contentNodes = children.slice(start, end);
+          sections.push({ id: h2.id, title: textOf(h2), nodes: contentNodes });
+        }
+
+        const quickTitle = el('div', 'category-title', '快速目录 · Quick Navigation');
+        intro.appendChild(quickTitle);
+
+        const tocCards = el('div', 'terms-grid toc-grid');
+        sections.forEach((s, idx) => { const a = document.createElement('a'); const blackIndices = [1, 8]; a.className = blackIndices.includes(idx) ? 'term-card toc-card highlight' : 'term-card toc-card'; a.href = s.id ? `#${s.id}` : '#'; a.appendChild(el('div', 'term-corner')); a.appendChild(el('span', 'term-en', String(idx + 1))); a.appendChild(el('span', 'term-zh', s.title)); const d = el('div', 'term-desc'); a.appendChild(d); tocCards.appendChild(a); }); intro.appendChild(tocCards); const main = el('div', 'main-content'); sections.forEach((s, sectionIndex) => { const sec = el('section', 'category-section'); if (s.id) sec.id = s.id; sec.appendChild(el('div', 'category-title', s.title)); const grid = el('div', 'terms-grid'); const nodes = s.nodes.slice(); const blocks = []; let buffer = []; let currentH3 = null; const flush = () => { if (!currentH3 && buffer.length === 0) return; blocks.push({ h3: currentH3, nodes: buffer }); buffer = []; currentH3 = null; }; for (const n of nodes) { if (n.tagName === 'H3') { flush(); currentH3 = n; continue; } buffer.push(n); } flush(); blocks.forEach((b, blockIndex) => { const rawTitle = b.h3 ? textOf(b.h3) : '概述'; const labelKey = normalizeSuffix(b.h3 ? b.h3.id : ''); const label = labelMap.get(rawTitle) || labelMap.get(labelKey) || (labelKey ? labelKey.toUpperCase() : 'OVERVIEW'); const isCoreDefinition = (rawTitle === '核心定义' || label === 'Definition'); const highlight = isCoreDefinition || (sectionIndex === 0 && blockIndex === 0); grid.appendChild(createCard({ title: rawTitle, label, nodes: b.nodes, highlight })); }); sec.appendChild(grid); main.appendChild(sec); }); const floating = el('div', 'floating-toc'); const btn = el('button', 'toc-toggle-btn', '≡'); btn.type = 'button'; btn.setAttribute('aria-label', '打开目录'); btn.setAttribute('aria-expanded', 'false'); const panel = el('div', 'toc-panel'); panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', '章节目录'); panel.setAttribute('aria-hidden', 'true'); const panelHeader = el('div', 'toc-panel-header'); panelHeader.appendChild(el('span', '', '目录')); const closeIcon = el('span', 'toc-close-icon', '×'); closeIcon.setAttribute('role', 'button'); closeIcon.setAttribute('tabindex', '0'); closeIcon.setAttribute('aria-label', '关闭目录'); panelHeader.appendChild(closeIcon); panel.appendChild(panelHeader); const list = el('ul', 'toc-list'); sections.forEach((s, idx) => { const li = document.createElement('li'); const a = document.createElement('a'); a.href = s.id ? `#${s.id}` : '#'; a.appendChild(el('span', 'toc-index', String(idx + 1))); a.appendChild(el('span', 'toc-title', s.title)); li.appendChild(a); list.appendChild(li); }); panel.appendChild(list); const open = () => { panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); btn.setAttribute('aria-expanded', 'true'); }; const close = () => { panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); btn.setAttribute('aria-expanded', 'false'); }; const toggle = () => (panel.classList.contains('open') ? close() : open()); btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); toggle(); }); closeIcon.addEventListener('click', (e) => { e.preventDefault(); close(); btn.focus(); }); closeIcon.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); close(); btn.focus(); } }); list.addEventListener('click', (e) => { const a = e.target && e.target.closest ? e.target.closest('a') : null; if (!a) return; close(); }); document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); }); document.addEventListener('click', (e) => { if (!panel.classList.contains('open')) return; const target = e.target; if (target === btn || panel.contains(target)) return; close(); }); floating.appendChild(btn); floating.appendChild(panel); write.innerHTML = ''; write.appendChild(header); write.appendChild(intro); write.appendChild(main); write.appendChild(floating); const tocLinks = Array.from(panel.querySelectorAll('a')); const sectionEls = Array.from(write.querySelectorAll('.category-section')); const byId = new Map(sectionEls.map((s) => [s.id, s])); const setCurrent = (id) => { tocLinks.forEach((a) => a.setAttribute('aria-current', 'false')); const found = tocLinks.find((a) => a.getAttribute('href') === `#${id}`); if (found) found.setAttribute('aria-current', 'true'); }; const observer = new IntersectionObserver((entries) => { const visible = entries .filter((e) => e.isIntersecting) .sort((a, b) => (a.boundingClientRect.top > b.boundingClientRect.top ? 1 : -1))[0]; if (visible && visible.target && visible.target.id) setCurrent(visible.target.id); }, { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0.01 } ); for (const s of sectionEls) { if (s.id) observer.observe(s); } const initialId = location.hash ? location.hash.slice(1) : sections[0] && sections[0].id; if (initialId && byId.has(initialId)) setCurrent(initialId); document.body.classList.remove('guide-building'); document.body.classList.add('guide-ready'); }; if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', build, { once: true }); } else { build(); } })(); </script>
+  <title>性别概念与术语</title>
+</head>
+
+<body class='typora-export os-windows guide-building'>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class='typora-export-content'>
+    <div id='write' class=''>
+      <h1 id='性别概念与术语'><span>性别概念与术语</span>
+      </h1>
+      <h2 id='性别的多维理解'><span>性别的多维理解</span>
+      </h2>
+      <p>
+        <span>性别是一个复杂的多维概念，涉及生物学、心理学、社会学和文化等多个领域。当代学术研究已经超越了传统的二元性别观念，转向更为包容和多元的理解。以下从不同维度介绍当代性别概念的核心内容，并延伸讨论这些概念在健康、教育、法律和媒体等领域的应用与影响。所有内容均基于最新学术研究和专业组织的共识。</span>
+      </p>
+      <h2 id='性别认同-gender-identity'><span>性别认同(Gender Identity)</span>
+      </h2>
+      <h3 id='核心定义'><span>核心定义</span>
+      </h3>
+      <p><span>性别认同是指一个人对自身性别的内在、深刻的个人体验和感知。这种认同是每个人身份的核心组成部分，不受外部因素决定，也不依赖于外部认可才能存在。性别认同是主观的、个人的体验，不同于生理特征或社会期望（American Psychological Association, 2023; National Academies of Sciences, Engineering, and Medicine, 2022; Coleman et al., 2022）。</span>
+      </p>
+      <h3 id='核心术语'><span>核心术语</span>
+      </h3>
+      <ul>
+        <li>
+          <p><strong><span>顺性别（Cisgender）</span></strong><span>：指性别认同与出生时被指派性别一致的经验状态。该术语旨在打破语言不对称，避免将跨性别群体视为“例外”或偏离，而非将顺性别预设为默认或“正常”状态（Aultman, 2014）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>跨性别（Transgender）</span></strong><span>：指那些性别认同与出生时被指派性别不一致的人。跨性别身份是一种有效、真实的性别认同，而非选择、偏好或病态。世界卫生组织已于 ICD-11 中将其相关分类移出心理疾病章节，转入“性健康相关状况”章节（World Health Organization, 2025）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>非二元性别（Non-binary）</span></strong><span>：指那些性别认同不完全符合男性或女性二元范式的人。非二元是一种独立的性别认同，而非处于二元之间的“过渡状态”或“模糊地带”。研究表明，非二元身份在多种文化与历史中长期存在（Richards et al., 2016；Thorne et al., 2019；National Academies of Sciences, Engineering, and Medicine, 2022; Coleman et al., 2022）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>性别流动（Gender Fluid）</span></strong><span>：指性别认同会随时间发生变化或波动的人，可能在不同阶段体验不同的性别认同。性别流动性揭示了性别本质的可变性，挑战了性别稳定不变的传统观念（Diamond, 2020）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>无性别（Agender）</span></strong><span>：指那些不认同自身具有任何性别，或感受到自身“没有性别”的人群。无性别是一种积极的自我认同形式，而非性别的缺席、混乱或未定状态（Frohard-Dourlent et al., 2017）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>双性别（Bigender）</span></strong><span>：指同时认同两种性别的人，这种认同可以是并存的，也可以是交替出现的。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>泛性别/全性别（Pangender/Omnigender）</span></strong><span>：指认同多种或所有性别的人，其性别认同涵盖广泛的性别光谱，而非局限于两种性别（Holleb, 2019）。</span>
+          </p>
+        </li>
+      </ul>
+      <h3 id='学术观点'><span>学术观点</span>
+      </h3>
+      <p><span>当代性别研究学者普遍认为，性别认同形成于早期儿童发展阶段，许多儿童在学龄前阶段就能表达并坚持自己的性别体验（Fast &amp; Olson, 2018; Gülgöz et al., 2019; Coleman et al., 2022）。这一发现对于理解和支持跨性别儿童尤为重要，因为研究显示早期接纳和肯定对跨性别儿童的心理健康至关重要。</span>
+      </p>
+      <p><span>性别认同的形成受到多种因素影响，包括神经生物学因素、心理发展和社会环境，但最终是一种内在的、真实的自我认识，而非外界强加的标签或 &quot;阶段性困惑&quot;（Polderman et al., 2018; Hines, 2020）。</span>
+      </p>
+      <p><span>跨性别认同和非二元性别认同在历史上和跨文化背景中均有记载，从古埃及到印度的希吉拉（Hijra），从美洲原住民的双灵人（Two-Spirit）到波利尼西亚的法阿法菲讷（Fa&#39;afafine），这表明性别多样性是人类经验的自然组成部分，而非现代 &quot;社会趋势&quot;（Roughgarden, 2013; Kunzel, 2018）。</span>
+      </p>
+      <p><span>世界卫生组织(WHO)、美国心理学会(American Psychological Association)、美国精神医学学会(American Psychiatric Association)和其他主要医学组织已经明确确认，跨性别身份不是医疗或心理障碍，而是性别认同的自然变异。这一转变反映了医学和心理学领域对性别多样性理解的重大进步（Coleman et al., 2022; American Psychological Association, 2021）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：近年的神经影像学综述指出，关于“跨性别者脑部特征是否更接近其性别认同或出生指派性别”的研究结果并不一致，且常受样本量、研究设计与混杂因素影响；但部分研究在结构与功能层面观察到与性别认同相关的差异模式，提示其可能与复杂的神经生物学与发育过程有关（Bakker, 2024; Guillamon et al., 2016; Manzouri &amp; Savic, 2019）。</span>
+      </p>
+      <h2 id='指派性别-assigned-gender'><span>指派性别(Assigned Gender)</span>
+      </h2>
+      <h3 id='核心定义-2'><span>核心定义</span>
+      </h3>
+      <p><span>指派性别是指在出生时，基于外部生殖器官的观察而给予个体的性别分类。这一过程通常由医疗专业人员进行，并在出生证明上记录。重要的是，指派性别是一种社会和医疗实践，而非确定个人真实性别认同的方法（Hyde et al., 2019; National Academies of Sciences, Engineering, and Medicine, 2022）。当代学术研究强调，这种出生时的指派基于有限的生物学特征，无法预测个体的性别认同发展。</span>
+      </p>
+      <h3 id='核心术语-2'><span>核心术语</span>
+      </h3>
+      <ul>
+        <li>
+          <p><strong><span>AMAB (Assigned Male at
+                Birth)</span></strong><span>：出生时被指派为男性的人。这一术语在学术和医疗环境中使用，避免了“生物男性”等可能引起误解的表述（Ansara &amp; Hegarty, 2014）。也称作：</span><strong><span>DMAB (Designated Male at
+                Birth)</span></strong><span>、</span><strong><span>OMAB (Observed Male at Birth)</span></strong><span>或</span><strong><span>MAAB (Male Assigned at Birth)</span></strong><span>。这些变体在不同文献或社群中交替使用，核心含义相同。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>AFAB (Assigned Female at
+                Birth)</span></strong><span>：出生时被指派为女性的人。同样，这一术语避免了过度简化生物性别的陷阱（Ansara &amp; Hegarty, 2014）。也称作：</span><strong><span>DFAB (Designated Female at
+                Birth)</span></strong><span>、</span><strong><span>OFAB (Observed Female at Birth)</span></strong><span>或</span><strong><span>FAAB (Female Assigned at Birth)</span></strong><span>。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>AXAB/AIAB (Assigned X/Indeterminate at
+                Birth)</span></strong><span>：出生时被识别为间性，具有不符合典型男性或女性生理特征的人。值得注意的是，许多间性者在未经同意的情况下被迫接受“正常化”手术，这一做法受到了人权组织和医学伦理学家的强烈批评（Human Rights Watch, 2017; Human Rights Watch, 2024; Davis &amp; Murphy, 2013; Weisberg, 2021）。</span><strong><span>AXAB</span></strong><span>也可写作</span><strong><span>AIAB (Assigned Indeterminate at Birth)</span></strong><span>，两者通用。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>UAB/UAAB (Un-Assigned at
+                Birth)</span></strong><span>：出生时未被指派性别。这通常是指父母选择以无预设性别的方式养育孩子，不告知他人孩子的出生指派性别，从而让孩子在未来能够自主认同自己的性别。这种做法在一些强调性别开放教育的家庭或社群中出现，旨在避免早期性别社会化带来的限制。目前关于这一实践的系统性研究尚较少，但它反映了对二元性别指派框架的进一步反思。</span>
+          </p>
+        </li>
+      </ul>
+      <h3 id='学术观点-2'><span>学术观点</span>
+      </h3>
+      <p><span>当代性别研究强调，指派性别是基于有限的生物学特征（主要是外部生殖器）进行的分类，而非对个体未来性别认同的准确预测。这种分类方式忽视了性别的复杂性和多维性，过度简化了生物性别的多样性（Fausto-Sterling, 2012; Hyde et al., 2019）。</span>
+      </p>
+      <p><span>医学伦理学家和儿科专家越来越多地建议，应当避免对间性婴儿进行非医疗必要的 &quot;正常化&quot; 手术，而应等到个体能够参与决策过程时再考虑干预（Human Rights Watch, 2017; Human Rights Watch, 2024; Weisberg, 2021; Carpenter, 2018）。这一立场反映了对个体自主权的尊重，以及对性别多样性作为自然现象的认可。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：多项研究表明，出生时的性别指派与个体后续发展的性别认同并不总是一致。根据不同国家和地区的研究，约 0.3-0.6%的成年人口认同为跨性别或非二元性别（Goodman et al., 2019; Zhang et al., 2020; Winter et al., 2016）。同时，近年来更强调使用更标准化、可比较的问题来测量性别认同；在美国等地的最新人口学估计中，青少年与年轻人群体的自我认同比例更高（National Academies of Sciences, Engineering, and Medicine, 2022; Herman &amp; Flores, 2025）。</span>
+      </p>
+      <h2 id='生理性别特征-biological-sex-characteristics'><span>生理性别特征(Biological Sex Characteristics)</span>
+      </h2>
+      <h3 id='核心定义-3'><span>核心定义</span>
+      </h3>
+      <p><span>生理性别特征是指与性别相关的各种生物学特征，包括染色体、激素水平、生殖器官、性腺和次级性征等。当代生物学研究已经证实，生理性别特征是一个光谱而非二元对立的分类（Fausto-Sterling, 2000, 2012; Ainsworth, 2015; National Academies of Sciences, Engineering, and Medicine, 2022）。这一理解对于科学准确性和尊重人类多样性都至关重要。</span>
+      </p>
+      <h3 id='核心术语-3'><span>核心术语</span>
+      </h3>
+      <ul>
+        <li>
+          <p><strong><span>性别光谱(Sex Spectrum)</span></strong><span>：指生理性别特征存在于一个连续变化的范围内，而非简单的男/女二分法。个体可能在不同的生理特征上表现出不同程度的 &quot;典型男性&quot; 或 &quot;典型女性&quot; 特征。这一概念得到了现代生物学研究的广泛支持（Fausto-Sterling, 2012; Richardson, 2013）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>间性(Intersex)</span></strong><span>：拥有不符合典型男性或女性生理特征的人，可能表现在染色体、性腺、激素或生殖器官等方面。间性是自然的生物变异，全球约有 1.7%的人具有某种形式的间性特征，比红头发人口还要常见（Blackless et al., 2000）。需要说明的是，学界对这一比例的具体范围存在讨论（如 Sax, 2002），但它足以表明间性特征并非罕见。间性不是一种疾病或障碍，而是人类性别多样性的自然表现。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>内分泌系统变异(Endocrine Variations)</span></strong><span>：指激素水平和内分泌系统功能的多样性，这些变异可能影响次级性征的发展，但不一定影响生殖能力或健康。例如，多囊卵巢综合征(PCOS)和雄激素不敏感综合征(AIS)等情况反映了性别相关生物特征的自然多样性（Karkazis, 2008）。</span>
+          </p>
+        </li>
+      </ul>
+      <h3 id='学术观点-3'><span>学术观点</span>
+      </h3>
+      <p><span>当代生物学、医学和性别研究已经超越了传统的二元生理性别模型，认识到生理性别是多维的、复杂的和具有多样性的。单一的 &quot;男性&quot; 或 &quot;女性&quot; 分类无法准确反映人类生理性别的全部多样性（Fausto-Sterling, 2000, 2012; Ainsworth, 2015; Hyde et al., 2019）。</span>
+      </p>
+      <p><span>科学界现在普遍认识到，生物学性别的决定涉及复杂的基因和环境因素相互作用，而非简单的 XY 或 XX 染色体二分法。多种基因（不仅仅是 SRY 基因）参与性别发育过程，使得性别发展成为一个复杂的生物学过程，而非简单的二元分类（Sax, 2002; Vilain, 2018）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：生物学家 Anne Fausto-Sterling 等人的研究显示，生理性别特征（如染色体、激素水平、生殖器官结构等）在人群中呈现连续分布，而非截然分开的两类。染色体组合除 XX 和 XY 外，还有 XXY(克莱因费尔特综合征)、XYY、X0(特纳综合征)、XXX 等多种变异，这些都是自然发生的生物学变异（Fausto-Sterling, 2000; Blackless et al., 2000）。</span>
+      </p>
+      <h2 id='社会性别-gender-as-a-social-construct'><span>社会性别(Gender as a Social Construct)</span>
+      </h2>
+      <h3 id='核心定义-4'><span>核心定义</span>
+      </h3>
+      <p><span>社会性别是指社会和文化对于不同性别的期望、规范和角色的建构。这些期望和规范在不同文化、历史时期和社会背景下有很大差异，表明社会性别是社会建构的产物，而非源于生物学的必然结果（Butler, 1990, 2004; West &amp; Zimmerman, 1987）。理解社会性别的建构性质有助于质疑和挑战限制性的性别规范。</span>
+      </p>
+      <h3 id='核心术语-4'><span>核心术语</span>
+      </h3>
+      <ul>
+        <li>
+          <p><strong><span>性别规范(Gender Norms)</span></strong><span>：社会对不同性别应有的行为、外表和兴趣的期望与规定。这些规范随文化和时代变化，表明其社会建构的本质（Ridgeway &amp; Correll, 2004; Butler, 1990）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>性别刻板印象(Gender Stereotypes)</span></strong><span>：关于某一性别所应具有的特质、能力和角色的简化和固化观念。研究表明，性别刻板印象可能对个体发展产生限制性影响，尤其是对不符合传统性别期望的人（Eagly &amp; Wood, 2012; Eagly et al., 2019; Bhatia &amp; Bhatia, 2020）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>性别社会化(Gender Socialization)</span></strong><span>：个体通过社会学习获取符合其社会规定性别角色的过程。这一过程始于出生，并通过家庭、教育、媒体和同伴互动等多种渠道持续进行（Martin &amp; Ruble, 2004; Leaper &amp; Friedman, 2007）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>做性别(Doing Gender)</span></strong><span>：由 West 和 Zimmerman（1987）提出的社会学理论概念，认为性别不是个体的固定属性，而是在日常互动中不断被生产和被社会评价的实践。该概念强调性别的社会建构过程，与下文“性别表达”所侧重的个体外在呈现有所不同（West &amp; Zimmerman, 1987; Butler, 1990）。</span>
+          </p>
+        </li>
+      </ul>
+      <h3 id='学术观点-4'><span>学术观点</span>
+      </h3>
+      <p><span>社会学和人类学研究表明，不同文化对性别的定义和表达方式各不相同，某些社会甚至认可两种以上的性别类别。例如，印度的希吉拉（Hijra）、泰国的卡托伊（Kathoey）、萨摩亚的法阿法菲讷（Fa&#39;afafine）和北美原住民的双灵人（Two-Spirit）等（Nanda, 2014; Graham, 2004; Herdt, 1996）。这些跨文化研究证明，性别角色和期望主要是社会建构的产物，而非普遍的生物决定。</span>
+      </p>
+      <p><span>社会建构理论不否认生物因素的存在，而是强调社会文化如何解释和赋予这些生物特征以意义。正如著名社会学家 Judith Butler 所论述的，性别是一种 &quot;表演&quot;（performative），通过反复的社会实践和互动得以建构和维持（Butler, 1990, 2004）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：人类学家 Margaret Mead 的经典研究发现，不同文化中的性别行为差异极大，表明所谓的 &quot;男性气质&quot; 或 &quot;女性气质&quot; 主要是文化建构而非生物决定（Mead, 1935）。现代社会心理学研究也表明，性别刻板印象在不同社会环境中会发生变化，证明其社会建构的本质（Eagly &amp; Wood, 2012; Eagly et al., 2019; Bhatia &amp; Bhatia, 2020）。</span>
+      </p>
+      <h2 id='性别表达-gender-expression'><span>性别表达(Gender Expression)</span>
+      </h2>
+      <h3 id='核心定义-5'><span>核心定义</span>
+      </h3>
+      <p><span>性别表达是指个体通过衣着、发型、言谈举止、兴趣爱好等方式展现自己性别的外在呈现。性别表达可以与个人的性别认同一致，也可以不一致，且可以随情境和个人选择而变化（Devor, 2004; Factor &amp; Rothblum, 2008; National Academies of Sciences, Engineering, and Medicine, 2022）。重要的是，性别表达不能作为判断一个人性别认同的依据。</span>
+      </p>
+      <h3 id='核心术语-5'><span>核心术语</span>
+      </h3>
+      <ul>
+        <li>
+          <p><strong><span>阳刚表达(Masculine Expression)</span></strong><span>：传统上与男性气质相关的表达方式。这种表达方式可以被任何性别认同的人采用，不限于认同为男性的人（Halberstam, 1998; Pascoe, 2007）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>阴柔表达(Feminine Expression)</span></strong><span>：传统上与女性气质相关的表达方式。同样，任何性别认同的人都可以采用阴柔表达，这不影响其性别认同（Devor, 2004; Factor &amp; Rothblum, 2008）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>中性表达(Androgynous Expression)</span></strong><span>：融合或超越传统男女二元的表达方式。研究表明，性别表达的流动性和多样性对个体心理健康可能有积极影响（Hyde, 2005; Bem, 1974）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>性别不顺从(Gender Non-conforming)</span></strong><span>：性别表达不符合社会对其指派性别期望的人。性别不顺从是一种表达方式，不一定意味着特定的性别认同（Risman, 2018; Darwin, 2017）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>CD/易装(Cross-dressing)</span></strong><span>：在特定文化语境中，个体穿着、妆造或使用通常被社会归为另一性别的服饰与符号。动机可能包括兴趣爱好、舒适感、角色扮演、审美表达或个人探索等。CD/易装是一种表达或实践，不等于跨性别身份，也不必然指向特定性取向（National Academies of Sciences, Engineering, and Medicine, 2022; American College of Obstetricians and Gynecologists, 2021; Devor, 2004; Factor &amp; Rothblum, 2008）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>变装表演(Drag)</span></strong><span>：一种表演艺术与社群文化实践，常以戏剧化、夸张或风格化方式呈现、模仿或重构性别形象（如 Drag Queen、Drag King 等）。Drag 主要指表演与舞台实践，不等于跨性别身份，也不应与 CD/易装简单等同；参与者的性别认同与性取向多样（McCormack &amp; Wignall, 2022; American College of Obstetricians and Gynecologists, 2021; Taylor &amp; Rupp, 2004; Newton, 1972）。</span>
+          </p>
+        </li>
+      </ul>
+      <h3 id='学术观点-5'><span>学术观点</span>
+      </h3>
+      <p><span>当代性别研究强调，性别表达是多元的个人选择，不应被用来假设或判断一个人的性别认同。性别表达受文化背景、个人偏好、社会环境等多种因素影响，是流动的而非固定的特质（Darwin, 2017; Risman, 2018）。</span>
+      </p>
+      <p><span>研究表明，允许个体自由表达其性别，而不受传统性别规范限制，对心理健康和整体幸福感有积极影响。这对于跨性别者和性别不顺从者尤为重要，因为他们往往面临更大的社会压力和污名（Testa et al., 2015; Grossman &amp; D&#39;Augelli, 2006）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：社会心理学研究显示，限制性别表达的社会环境会对个体心理健康产生负面影响。相反，允许自由性别表达的环境有助于提升个体的心理健康和生活满意度（Meyer, 2003; Testa et al., 2015）。心理学家 Sandra Bem 的研究发现，具有 &quot;心理双性性&quot;（psychological androgyny，即同时具备传统上被视为阳刚和阴柔的特质）的个体在心理适应性和灵活性方面可能具有优势（Bem, 1974）。</span>
+      </p>
+      <h2 id='性别代词-gender-pronouns'><span>性别代词(Gender Pronouns)</span>
+      </h2>
+      <h3 id='核心定义-6'><span>核心定义</span>
+      </h3>
+      <p><span>性别代词是指用来指代个人的代词，反映了个体的性别认同。临床与学术写作的最新实践通常建议直接询问并使用当事人的代词，并在无法确定时使用更中性的表述或复述姓名/称谓。尊重并使用他人的正确代词是一种基本的尊重和认可，对跨性别者和非二元性别者的心理健康有重要影响（National Academies of Sciences, Engineering, and Medicine, 2022; Practice Committee of the American Society for Reproductive Medicine, 2024; American Psychological Association, 2025; Russell et al., 2018; McLemore, 2018）。</span>
+      </p>
+      <h3 id='核心术语-6'><span>核心术语</span>
+      </h3>
+      <ul>
+        <li>
+          <p><strong><span>他/他的(He/Him/His)</span></strong><span>：通常用于男性认同者。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>她/她的(She/Her/Hers)</span></strong><span>：通常用于女性认同者。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>他们/他们的(They/Them/Theirs)</span></strong><span>：用作单数中性代词，常用于非二元性别者或不希望使用性别化代词的人。语言学研究已证实，单数 &quot;they&quot; 在英语中有数百年的使用历史，具有语言学合法性（Baron, 2020; American Psychological Association, 2025）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>自创代词(Neopronouns)</span></strong><span>：如 ze/zir, xe/xem 等，为那些感觉传统代词无法准确反映其性别认同的人提供更多选择。这些代词反映了语言如何演变以适应社会变化（Zimman, 2017; Baron, 2020）。</span>
+          </p>
+        </li>
+        <li>
+          <p><strong><span>多重代词(Multiple Pronouns)</span></strong><span>：有些人可能接受多种代词，如 &quot;she/they&quot; 或 &quot;he/they&quot;。这反映了性别认同和表达的复杂性和流动性（Darwin, 2017; Zimman, 2017）。</span>
+          </p>
+        </li>
+      </ul>
+      <h3 id='学术观点-6'><span>学术观点</span>
+      </h3>
+      <p><span>语言学和心理学研究表明，被正确称呼和使用正确代词对个体的心理健康和社会认同至关重要。不尊重一个人的代词选择会造成实质性的心理伤害，特别是对于跨性别和非二元性别者（Russell et al., 2018; McLemore, 2018; Ansara &amp; Hegarty, 2014）。</span>
+      </p>
+      <p><span>语言学研究表明，语言是动态演变的，新代词的创造和采用反映了语言适应社会变化的能力。从历史角度看，英语中的 &quot;you&quot; 曾经只用作复数（单数形式为 &quot;thou&quot;），现在已被普遍接受为单复数通用形式。类似地，单数 &quot;they&quot; 的使用也有长久历史，并正日益被接受为包容非二元性别者的语言实践（Baron, 2020; Zimman, 2017）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：多项研究显示，对跨性别青少年使用其选择的名字和代词与降低抑郁、自杀意念和自残行为显著相关（Russell et al., 2018; Bauer et al., 2015）。一项对跨性别青少年的研究发现，在多个场合（家庭、学校、朋友圈等）使用其选择的名字和代词与抑郁症状减少 56%、自杀意念减少 29%、自杀尝试减少 29%相关（Russell et al., 2018）。相反，持续的错误代词使用（有意或无意）会导致少数群体压力增加，影响心理健康（McLemore, 2018; Testa et al., 2015）。</span>
+      </p>
+      <h2 id='性别多元化与健康'><span>性别多元化与健康</span>
+      </h2>
+      <h3 id='核心观点'><span>核心观点</span>
+      </h3>
+      <p><span>当代医学和心理健康研究已经明确表明，跨性别身份和非二元性别认同是正常的人类变异，而非病理状态。全球主要医学和心理健康组织（如世界卫生组织、美国心理学会、美国精神医学学会等）均已认可这一观点（World Health Organization, 2025; Coleman et al., 2022; American Psychological Association, 2021; American Psychiatric Association, 2022）。</span>
+      </p>
+      <p><span>跨性别者和非二元性别者面临的心理健康挑战主要源于社会污名、歧视和拒绝，而非其性别认同本身。这一现象被称为 &quot;少数群体压力模型&quot;（minority stress model），解释了为什么在接纳环境中成长的性别多元化个体通常表现出与一般人群相似的心理健康水平（Meyer, 2003; Testa et al., 2015; Hendricks &amp; Testa, 2012）。</span>
+      </p>
+      <p><span>提供肯定性照护和社会支持是改善这些群体健康状况的关键。肯定性照护（affirmative care）是指尊重和支持个体性别认同的医疗和心理健康实践，这种方法已被证明能显著改善跨性别者的生活质量和心理健康（Coleman et al., 2022; American Psychological Association, 2015）。</span>
+      </p>
+      <h3 id='性别肯定护理的重要性'><span>性别肯定护理的重要性</span>
+      </h3>
+      <p><span>对于一些跨性别者和非二元性别者，获取性别肯定护理服务（如激素治疗、手术等）对缓解性别不安（gender dysphoria）至关重要。研究表明，这些医疗服务能显著改善跨性别者的生活质量和心理健康水平（Coleman et al., 2022; Murad et al., 2010; Dhejne et al., 2016），并在一定程度上与自杀风险降低相关（Bauer et al., 2015）。</span>
+      </p>
+      <p><span>重要的是，性别肯定护理应基于知情同意模型，尊重个体自主权，并认识到不是所有跨性别者都需要或希望接受相同类型的医疗干预。医疗需求的多样性反映了跨性别经验的多元性（Coleman et al., 2022; Schulz, 2018）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：多项大规模研究表明，得到家庭和社会支持的跨性别者，其心理健康状况与一般人群相近。例如，一项对跨性别儿童的长期研究发现，那些在支持性环境中社会化过渡（social transition，即在日常生活中以符合其性别认同的方式生活）的儿童表现出与顺性别同龄人相似的抑郁和焦虑水平（Olson et al., 2016; Durwood et al., 2017）。相反，经历拒绝和歧视的跨性别者则面临显著更高的抑郁、焦虑和自杀风险（James et al., 2024; Bauer et al., 2015）。这表明，问题不在于性别多样性本身，而在于社会对多样性的接纳程度。</span>
+      </p>
+      <h2 id='教育和职场环境中的性别包容性'><span>教育和职场环境中的性别包容性</span>
+      </h2>
+      <h3 id='包容性教育环境'><span>包容性教育环境</span>
+      </h3>
+      <p><span>研究表明，创建性别包容的教育环境对所有学生都有益处，尤其对跨性别和性别不顺从的学生至关重要。这包括使用包容性语言、实施反欺凌政策、提供性别中立设施，以及在课程中纳入多元性别表征（GLSEN, 2021）。</span>
+      </p>
+      <p><span>一项针对美国 LGBTQ+学生的全国性调查发现，在采取包容性政策的学校中，跨性别学生的出勤率更高，学业成绩更好，对未来的教育抱有更积极的期望（Kosciw et al., 2018）。相反，在经历高度歧视的环境中，这些学生更可能缺课、辍学或遭受心理健康问题（GLSEN, 2021）。</span>
+      </p>
+      <h3 id='职场包容性'><span>职场包容性</span>
+      </h3>
+      <p><span>职场性别包容性不仅是道德问题，也是法律和经济问题。研究表明，包容的职场环境能够提高员工满意度、降低离职率，并促进创新（Catalyst, 2020; Human Rights Campaign Foundation, 2021）。</span>
+      </p>
+      <p><span>包容性实践包括：尊重员工的代词选择、实施反歧视政策、提供性别中立设施、确保健康保险覆盖性别肯定护理，以及创建支持性的组织文化（Badgett et al., 2013; Human Rights Campaign Foundation, 2021）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：越来越多的研究与政策分析指出，完善的反歧视制度与组织层面的包容性实践，能够减少骚扰与不安全感，并与更稳定的就业与健康结果相关（Badgett et al., 2013; Weistroffer et al., 2025）。</span>
+      </p>
+      <h2 id='法律和政策发展'><span>法律和政策发展</span>
+      </h2>
+      <p><span>近年来，全球范围内有关性别认同的法律和政策取得了显著进展，尽管各国情况差异很大。这些发展反映了对性别多样性理解的深化和人权保护的扩展。</span>
+      </p>
+      <h3 id='性别认同法律'><span>性别认同法律</span>
+      </h3>
+      <p><span>越来越多的国家和地区正在实施保护性别认同的法律，允许个体依据自我认同而非生理特征改变法律性别标记。例如，阿根廷的性别认同法（2012 年）被认为是全球最进步的立法之一，它基于自我认同原则，不要求医疗干预作为法律认可的前提（Baird, 2014; Open Society Foundations, 2019）。</span>
+      </p>
+      <p><span>马耳他、丹麦、爱尔兰、挪威等国也采用了类似的自我认同模式，而其他国家则保留了医疗要求或其他障碍（如法院批准）。这种法律差异反映了不同社会对性别认同本质的理解差异（Transgender Europe, 2022）。</span>
+      </p>
+      <h3 id='反歧视保护'><span>反歧视保护</span>
+      </h3>
+      <p><span>越来越多的国家在就业、住房、教育和公共服务等领域实施了基于性别认同的反歧视保护。例如，美国最高法院在 Bostock v. Clayton County（2020）案中裁定，1964 年民权法案第七章中的 &quot;性别&quot; 保护包括性别认同和性取向（Supreme Court of the United States, 2020）。</span>
+      </p>
+      <p><span>联合国人权理事会也多次确认，基于性别认同的歧视违反国际人权法（United Nations Human Rights Council, 2019）。然而，全球仍有许多地区缺乏这类保护，使得跨性别和非二元性别者面临持续的歧视风险。</span>
+      </p>
+      <h3 id='研究影响'><span>研究影响</span>
+      </h3>
+      <p><span>研究表明，支持性法律和政策与跨性别者的健康和福祉显著相关。例如，一项跨国研究发现，在具有包容性性别认同法律的国家，跨性别者报告的歧视经历减少，心理健康状况改善（Scheim et al., 2020）。另一项研究发现，在美国实施跨性别包容性政策的州，跨性别青少年的自杀尝试率低于限制性政策州（Reisner et al., 2020）。</span>
+      </p>
+      <h2 id='交叉性视角-intersectionality'><span>交叉性视角(Intersectionality)</span>
+      </h2>
+      <h3 id='核心定义-7'><span>核心定义</span>
+      </h3>
+      <p><span>交叉性是指个体同时拥有的多重身份（如性别、种族、阶级、残障状态等）如何相互交织，创造独特的经验和面临的挑战。这一概念由法学学者 Kimberlé Crenshaw（1989）首次提出，对理解性别多样性经验至关重要。</span>
+      </p>
+      <h3 id='学术观点-7'><span>学术观点</span>
+      </h3>
+      <p><span>当代性别研究强调，性别认同体验不能与个体的其他身份分开考虑。例如，跨性别有色人种的经验与白人跨性别者有显著差异，他们面临双重或多重边缘化（Crenshaw, 1989; Spade, 2015）。</span>
+      </p>
+      <p><span>研究表明，对于处于多重边缘位置的个体（如跨性别有色人种、残障跨性别者、低收入跨性别者等），歧视和健康不平等的风险显著增加。例如，美国跨性别人口调查发现，跨性别有色人种在失业、住房不稳定、医疗歧视等方面面临更高风险（James et al., 2024）。</span>
+      </p>
+      <h3 id='全球多样性'><span>全球多样性</span>
+      </h3>
+      <p><span>重要的是认识到，性别多样性在全球各文化中表现出丰富多彩的形式，不能用西方概念完全概括。例如，泰国的卡托伊（Kathoey）、萨摩亚的法阿法菲讷（Fa&#39;afafine）、印度的希吉拉（Hijra）等身份具有深厚的文化背景，虽与西方 &quot;跨性别&quot; 概念有交集，但也有独特的文化内涵（Nanda, 2014; Graham, 2004）。</span>
+      </p>
+      <p><span>尊重这种全球多样性，避免将西方框架强加于其他文化传统，是当代性别研究的重要原则。同时，认识到不同文化中性别多样性的普遍存在，可以挑战将性别多样性视为 &quot;现代现象&quot; 的错误观念（Roughgarden, 2013）。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：多项大型调查与研究指出，多重少数群体身份（如跨性别与种族化身份、跨性别与残障等）往往与更高的歧视经历和更差的健康结果相关（James et al., 2024; Reisner et al., 2016）。例如，美国跨性别社群的大型调查显示，跨性别有色人种在就业、住房与医疗环境中更常报告歧视与结构性障碍（James et al., 2024）。</span>
+      </p>
+      <h2 id='媒体表征与社会态度'><span>媒体表征与社会态度</span>
+      </h2>
+      <h3 id='媒体影响'><span>媒体影响</span>
+      </h3>
+      <p><span>媒体对性别多样性的表征对公众态度和跨性别者自身的认同发展有重要影响。研究表明，媒体表征可以减少偏见，提高公众接受度，同时为跨性别和非二元性别者提供可见性和认同模型（Gillig et al., 2018; McInroy &amp; Craig, 2015）。</span>
+      </p>
+      <p><span>近年来，媒体中性别多样性表征有所增加，从电视节目（如《透明家庭》、《橙色是新黑》）到电影和社交媒体。然而，研究也指出，这些表征往往存在简化、刻板印象和过度戏剧化的问题，未能反映跨性别社群的全部多样性（GLAAD, 2023; Capuzza &amp; Spencer, 2018）。</span>
+      </p>
+      <h3 id='社会态度变化'><span>社会态度变化</span>
+      </h3>
+      <p><span>全球范围内，对性别多样性的社会态度正在经历显著变化，尽管变化程度和方向在不同地区差异很大。研究表明，个人接触经验、教育水平、年龄和宗教因素都影响对跨性别和非二元性别者的态度（Norton &amp; Herek, 2013; Flores, 2015）。</span>
+      </p>
+      <p><span>一项对 37 个国家的跨国研究发现，公众对跨性别者的接受度与社会性别平等水平、经济发展和世俗化程度正相关（Flores et al., 2021）。这表明，广泛的社会进步与性别多样性接受度相互关联。</span>
+      </p>
+      <p><strong><span>研究支持</span></strong><span>：实验研究表明，接触正面的跨性别媒体表征可以减少偏见，增加对跨性别权利的支持（Gillig et al., 2018）。纵向研究发现，多数国家对性别多样性的社会接受度近年来有所提高，尤其在年轻一代中（Flores et al., 2021）。然而，这一进步并不均衡，部分地区甚至出现了反弹，反映了复杂的社会政治动态。</span>
+      </p>
+      <h2 id='总结'><span>总结</span>
+      </h2>
+      <p><span>性别是一个多维度、复杂且流动的概念，涉及个体内在的自我认同、外在的表达方式、社会文化的建构以及生物学的多样性。当代学术研究已经超越了简单的二元性别模型，转向更为全面和包容的理解。</span>
+      </p>
+      <p>
+        <span>这种新的理解框架承认并尊重每个人的性别经验都是独特且有效的，无论是顺性别、跨性别还是非二元性别者。同时，它也认识到性别不仅是个人身份的重要部分，还深受社会文化背景的影响，并与个体的其他身份交叉形成复杂的生活经验。</span>
+      </p>
+      <p><span>尊重性别多样性不仅是学术共识，也是促进平等、尊严和人权的必要举措。通过尊重每个人的性别认同、代词选择和自我表达，我们能够共同创造一个更加包容和公正的社会。</span>
+      </p>
+      <h2 id='参考文献'><span>参考文献</span>
+      </h2>
+      <p><span>Ainsworth, C. (2015). Sex redefined. Nature, 518(7539), 288-291.</span>
+      </p>
+      <p><span>American College of Obstetricians and Gynecologists (ACOG), Committee on Gynecologic Practice; Committee
+          on Health Care for Underserved Women. (2021). Health care for transgender and gender diverse individuals
+          (Committee Opinion No. 823). Obstetrics &amp; Gynecology, 137(3), e75-e88.</span>
+      </p>
+      <p><span>American Psychiatric Association. (2022). Position Statement on Treatment of Transgender and Gender
+          Diverse Individuals.</span>
+      </p>
+      <p><span>American Psychological Association. (2015). Guidelines for psychological practice with transgender and
+          gender nonconforming people. American Psychologist, 70(9), 832-864.</span>
+      </p>
+      <p><span>American Psychological Association. (2021). APA Resolution on Gender Identity Change Efforts.</span>
+      </p>
+      <p><span>American Psychological Association. (2023). Gender Identity and Gender Expression.</span>
+      </p>
+      <p><span>American Psychological Association. (2025). Singular &quot;they&quot;. APA Style.</span>
+      </p>
+      <p><span>Ansara, Y. G., &amp; Hegarty, P. (2014). Methodologies of misgendering: Recommendations for reducing
+          cisgenderism in psychological research. Feminism &amp; Psychology, 24(2), 259-270.</span>
+      </p>
+      <p><span>Aultman, B. (2014). Cisgender. TSQ: Transgender Studies Quarterly, 1(1-2), 61-62.</span>
+      </p>
+      <p><span>Badgett, M. V. L., Durso, L. E., Kastanis, A., &amp; Mallory, C. (2013). The business impact of
+          LGBT-supportive workplace policies. The Williams Institute.</span>
+      </p>
+      <p><span>Baird, V. (2014). The no-nonsense guide to sexual diversity. New Internationalist.</span>
+      </p>
+      <p><span>Bakker, J. (2024). Brain sex differences and gender identity: A review of evidence. Hormones and
+          Behavior, 161, 105618.</span>
+      </p>
+      <p><span>Baron, D. (2020). What&#39;s your pronoun?: Beyond he and she. Liveright Publishing.</span>
+      </p>
+      <p><span>Bauer, G. R., Scheim, A. I., Pyne, J., Travers, R., &amp; Hammond, R. (2015). Intervenable factors
+          associated with suicide risk in transgender persons: a respondent driven sampling study in Ontario, Canada.
+          BMC Public Health, 15(1), 525.</span>
+      </p>
+      <p><span>Bem, S. L. (1974). The measurement of psychological androgyny. Journal of Consulting and Clinical
+          Psychology, 42(2), 155-162.</span>
+      </p>
+      <p><span>Bhatia, N., &amp; Bhatia, S. (2020). Changes in gender stereotypes over time: A computational analysis.
+          Psychology of Women Quarterly, 45(1), 106-125.</span>
+      </p>
+      <p><span>Blackless, M., Charuvastra, A., Derryck, A., Fausto-Sterling, A., Lauzanne, K., &amp; Lee, E. (2000). How
+          sexually dimorphic are we? Review and synthesis. American Journal of Human Biology, 12(2), 151-166.</span>
+      </p>
+      <p><span>Butler, J. (1990). Gender trouble: Feminism and the subversion of identity. Routledge.</span>
+      </p>
+      <p><span>Butler, J. (2004). Undoing gender. Routledge.</span>
+      </p>
+      <p><span>Capuzza, J. C., &amp; Spencer, L. G. (2018). Transgender communication studies: Histories, trends, and
+          trajectories. Lexington Books.</span>
+      </p>
+      <p><span>Carpenter, M. (2018). The &quot;normalization&quot; of intersex bodies and &quot;othering&quot; of
+          intersex identities. In J. M. Scherpe, A. Dutta, &amp; T. Helms (Eds.), The legal status of intersex persons
+          (pp. 445-514). Intersentia.</span>
+      </p>
+      <p><span>Catalyst. (2020). Building inclusive workplaces for LGBT+ employees.</span>
+      </p>
+      <p><span>Coleman, E., Radix, A. E., Bouman, W. P., Brown, G. R., de Vries, A. L. C., Deutsch, M. B., Ettner, R.,
+          Fraser, L., Goodman, M., Green, J., Hancock, A. B., Johnson, T. W., Karasic, D. H., Knudson, G. A., Leibowitz,
+          S. F., Meyer-Bahlburg, H. F. L., Monstrey, S. J., Motmans, J., Nahata, L., … Arcelus, J. (2022). Standards of
+          Care for the Health of Transgender and Gender Diverse People, Version 8. International Journal of Transgender
+          Health, 23(sup1), S1-S259.</span>
+      </p>
+      <p><span>Credit Suisse. (2016). LGBT: The value of diversity.</span>
+      </p>
+      <p><span>Crenshaw, K. (1989). Demarginalizing the intersection of race and sex: A black feminist critique of
+          antidiscrimination doctrine, feminist theory and antiracist politics. University of Chicago Legal Forum,
+          1989(1), 139-167.</span>
+      </p>
+      <p><span>Darwin, H. (2017). Doing gender beyond the binary: A virtual ethnography. Symbolic Interaction, 40(3),
+          317-334.</span>
+      </p>
+      <p><span>Davis, G., &amp; Murphy, E. L. (2013). Intersex bodies as states of exception: An empirical explanation
+          for unnecessary surgical modification. Feminist Formations, 25(2), 129-152.</span>
+      </p>
+      <p><span>Devor, H. (2004). Witnessing and mirroring: A fourteen stage model of transsexual identity formation.
+          Journal of Gay &amp; Lesbian Psychotherapy, 8(1-2), 41-67.</span>
+      </p>
+      <p><span>Dhejne, C., Van Vlerken, R., Heylens, G., &amp; Arcelus, J. (2016). Mental health and gender dysphoria: A
+          review of the literature. International Review of Psychiatry, 28(1), 44-57.</span>
+      </p>
+      <p><span>Diamond, L. M. (2020). Gender fluidity and nonbinary gender identities among children and adolescents.
+          Child Development Perspectives, 14(2), 110-115.</span>
+      </p>
+      <p><span>Durwood, L., McLaughlin, K. A., &amp; Olson, K. R. (2017). Mental health and self-worth in socially
+          transitioned transgender youth. Journal of the American Academy of Child &amp; Adolescent Psychiatry, 56(2),
+          116-123.</span>
+      </p>
+      <p><span>Eagly, A. H., &amp; Wood, W. (2012). Social role theory. In P. A. M. Van Lange, A. W. Kruglanski, &amp;
+          E. T. Higgins (Eds.), Handbook of theories of social psychology (pp. 458-476). Sage Publications.</span>
+      </p>
+      <p><span>Eagly, A. H., Nater, C., Miller, D. I., Kaufmann, M., &amp; Sczesny, S. (2019). Gender stereotypes have
+          changed: A cross-temporal meta-analysis of U.S. public opinion polls from 1946 to 2018. American Psychologist,
+          75(3), 301-315.</span>
+      </p>
+      <p><span>Factor, R. J., &amp; Rothblum, E. D. (2008). A study of transgender adults and their non-transgender
+          siblings on demographic characteristics, social support, and experiences of violence. Journal of LGBT Health
+          Research, 3(3), 11-30.</span>
+      </p>
+      <p><span>Fast, A. A., &amp; Olson, K. R. (2018). Gender development in transgender preschool children. Child
+          Development, 89(2), 620-637.</span>
+      </p>
+      <p><span>Fausto-Sterling, A. (2000). Sexing the body: Gender politics and the construction of sexuality. Basic
+          Books.</span>
+      </p>
+      <p><span>Fausto-Sterling, A. (2012). Sex/gender: Biology in a social world. Routledge.</span>
+      </p>
+      <p><span>Flores, A. R. (2015). Attitudes toward transgender rights: Perceived knowledge and secondary
+          interpersonal contact. Politics, Groups, and Identities, 3(3), 398-416.</span>
+      </p>
+      <p><span>Flores, A. R., Barclay, S., &amp; O&#39;Neill, K. K. (2021). Public attitudes about transgender
+          participation in sports: The roles of gender, physical attributes, and terminology. Sex Roles, 85(1),
+          142-156.</span>
+      </p>
+      <p><span>Frohard-Dourlent, H., Dobson, S., Clark, B. A., Doull, M., &amp; Saewyc, E. M. (2017). &quot;I would have
+          preferred more options&quot;: Accounting for non-binary youth in health research. Nursing Inquiry, 24(1),
+          e12150.</span>
+      </p>
+      <p><span>Gillig, T. K., Rosenthal, E. L., Murphy, S. T., &amp; Folb, K. L. (2018). More than a media moment: The
+          influence of televised storylines on viewers&#39; attitudes toward transgender people and policies. Sex Roles,
+          78(7), 515-527.</span>
+      </p>
+      <p><span>GLAAD. (2023). Where We Are on TV 2023-2024.</span>
+      </p>
+      <p><span>GLSEN. (2021). The 2021 National School Climate Survey.</span>
+      </p>
+      <p><span>Goodman, M., Adams, N., Cornell, T., Kreukels, B., Motmans, J., &amp; Coleman, E. (2019). Size and
+          distribution of transgender and gender nonconforming populations: A narrative review. Endocrinology and
+          Metabolism Clinics, 48(2), 303-321.</span>
+      </p>
+      <p><span>Graham, S. (2004). It&#39;s like one of those puzzles: Conceptualizing gender among Bugis. Journal of
+          Gender Studies, 13(2), 107-116.</span>
+      </p>
+      <p><span>Grossman, A. H., &amp; D&#39;Augelli, A. R. (2006). Transgender youth: Invisible and vulnerable. Journal
+          of Homosexuality, 51(1), 111-128.</span>
+      </p>
+      <p><span>Guillamon, A., Junque, C., &amp; Gómez-Gil, E. (2016). A review of the status of brain structure research
+          in transsexualism. Archives of Sexual Behavior, 45(7), 1615-1648.</span>
+      </p>
+      <p><span>Gülgöz, S., Glazier, J. J., Enright, E. A., Alonso, D. J., Durwood, L. J., Fast, A. A., Lowe, R., Ji, C.,
+          Heer, J., Martin, C. L., &amp; Olson, K. R. (2019). Similarity in transgender and cisgender children&#39;s
+          gender development. Proceedings of the National Academy of Sciences, 116(49), 24480-24485.</span>
+      </p>
+      <p><span>Hahn, A., Kranz, G. S., Küblböck, M., Kaufmann, U., Ganger, S., Hummer, A., Seiger, R., Spies, M.,
+          Winkler, D., Kasper, S., Windischberger, C., Swaab, D. F., &amp; Lanzenberger, R. (2015). Structural
+          connectivity networks of transgender people. Cerebral Cortex, 25(10), 3527-3534.</span>
+      </p>
+      <p><span>Halberstam, J. (1998). Female masculinity. Duke University Press.</span>
+      </p>
+      <p><span>Hendricks, M. L., &amp; Testa, R. J. (2012). A conceptual framework for clinical work with transgender
+          and gender nonconforming clients: An adaptation of the Minority Stress Model. Professional Psychology:
+          Research and Practice, 43(5), 460-467.</span>
+      </p>
+      <p><span>Herman, J. L., &amp; Flores, A. R. (2025). How Many Adults and Youth Identify as Transgender in the United
+          States? The Williams Institute.</span>
+      </p>
+      <p><span>Herdt, G. (1996). Third sex, third gender: Beyond sexual dimorphism in culture and history. Zone
+          Books.</span>
+      </p>
+      <p><span>Hines, M. (2020). Neuroscience and sex/gender: Looking back and forward. Journal of Neuroscience, 40(1),
+          37-43.</span>
+      </p>
+      <p><span>Holleb, M. L. (2019). The A-Z of gender and sexuality: From ace to ze. Jessica Kingsley
+          Publishers.</span>
+      </p>
+      <p><span>Human Rights Campaign Foundation. (2021). Corporate equality index 2021.</span>
+      </p>
+      <p><span>Human Rights Watch. (2017). &quot;I Want to Be Like Nature Made Me&quot;: Medically Unnecessary Surgeries
+          on Intersex Children in the US.</span>
+      </p>
+      <p><span>Human Rights Watch. (2024). Experts Urge End to Nonconsensual Intersex Surgeries.</span>
+      </p>
+      <p><span>Hyde, J. S. (2005). The gender similarities hypothesis. American Psychologist, 60(6), 581-592.</span>
+      </p>
+      <p><span>Hyde, J. S., Bigler, R. S., Joel, D., Tate, C. C., &amp; van Anders, S. M. (2019). The future of sex and
+          gender in psychology: Five challenges to the gender binary. American Psychologist, 74(2), 171-193.</span>
+      </p>
+      <p><span>James, S. E., Herman, J. L., Rankin, S., Keisling, M., Mottet, L., &amp; Anafi, M. (2016). The Report of
+          the 2015 U.S. Transgender Survey. National Center for Transgender Equality.</span>
+      </p>
+      <p><span>James, S. E., Herman, J. L., Durso, L. E., &amp; Heng-Lehtinen, R. (2024). Early Insights: A Report of
+          the 2022 U.S. Transgender Survey. National Center for Transgender Equality.</span>
+      </p>
+      <p><span>Karkazis, K. (2008). Fixing sex: Intersex, medical authority, and lived experience. Duke University
+          Press.</span>
+      </p>
+      <p><span>Koenig, A. M. (2018). Comparing prescriptive and descriptive gender stereotypes about children, adults,
+          and the elderly. Frontiers in Psychology, 9, 1086.</span>
+      </p>
+      <p><span>Kosciw, J. G., Greytak, E. A., Zongrone, A. D., Clark, C. M., &amp; Truong, N. L. (2018). The 2017
+          National School Climate Survey: The experiences of lesbian, gay, bisexual, transgender, and queer youth in our
+          nation&#39;s schools. GLSEN.</span>
+      </p>
+      <p><span>Kunzel, R. (2018). The flourishing of transgender studies. In R. Chiang (Ed.), Transgender studies reader
+          (pp. 1-13). Columbia University Press.</span>
+      </p>
+      <p><span>Leaper, C., &amp; Friedman, C. K. (2007). The socialization of gender. In J. E. Grusec &amp; P. D.
+          Hastings (Eds.), Handbook of socialization: Theory and research (pp. 561-587). Guilford Press.</span>
+      </p>
+      <p><span>Manzouri, A., &amp; Savic, I. (2019). Possible neurobiological underpinnings of homosexuality and gender
+          dysphoria. Cerebral Cortex, 29(5), 2084-2101.</span>
+      </p>
+      <p><span>Martin, C. L., &amp; Ruble, D. N. (2004). Children&#39;s search for gender cues: Cognitive perspectives
+          on gender development. Current Directions in Psychological Science, 13(2), 67-70.</span>
+      </p>
+      <p><span>McInroy, L. B., &amp; Craig, S. L. (2015). Transgender representation in offline and online media: LGBTQ
+          youth perspectives. Journal of Human Behavior in the Social Environment, 25(6), 606-617.</span>
+      </p>
+      <p><span>McCormack, M., &amp; Wignall, L. (2022). Drag performers&#39; perspectives on the mainstreaming of British
+          drag: Towards a sociology of contemporary drag. Sociology, 56(1), 3-20.</span>
+      </p>
+      <p><span>McLemore, K. A. (2018). A minority stress perspective on transgender individuals&#39; experiences with
+          misgendering. Stigma and Health, 3(1), 53-64.</span>
+      </p>
+      <p><span>Mead, M. (1935). Sex and temperament in three primitive societies. William Morrow.</span>
+      </p>
+      <p><span>Meyer, I. H. (2003). Prejudice, social stress, and mental health in lesbian, gay, and bisexual
+          populations: Conceptual issues and research evidence. Psychological Bulletin, 129(5), 674-697.</span>
+      </p>
+      <p><span>Murad, M. H., Elamin, M. B., Garcia, M. Z., Mullan, R. J., Murad, A., Erwin, P. J., &amp; Montori, V. M.
+          (2010). Hormonal therapy and sex reassignment: A systematic review and meta-analysis of quality of life and
+          psychosocial outcomes. Clinical Endocrinology, 72(2), 214-231.</span>
+      </p>
+      <p><span>Nanda, S. (2014). Gender diversity: Crosscultural variations. Waveland Press.</span>
+      </p>
+      <p><span>National Academies of Sciences, Engineering, and Medicine. (2022). Measuring sex, gender identity, and
+          sexual orientation. The National Academies Press.</span>
+      </p>
+      <p><span>Newton, E. (1972). Mother camp: Female impersonators in America. University of Chicago Press.</span>
+      </p>
+      <p><span>Norton, A. T., &amp; Herek, G. M. (2013). Heterosexuals&#39; attitudes toward transgender people:
+          Findings from a national probability sample of U.S. adults. Sex Roles, 68(11), 738-753.</span>
+      </p>
+      <p><span>Olson, K. R., Durwood, L., DeMeules, M., &amp; McLaughlin, K. A. (2016). Mental health of transgender
+          children who are supported in their identities. Pediatrics, 137(3), e20153223.</span>
+      </p>
+      <p><span>Open Society Foundations. (2019). License to be yourself: Trans children and youth.</span>
+      </p>
+      <p><span>Pascoe, C. J. (2007). Dude, you&#39;re a fag: Masculinity and sexuality in high school. University of
+          California Press.</span>
+      </p>
+      <p><span>Polderman, T. J. C., Kreukels, B. P. C., Irwig, M. S., Beach, L., Chan, Y. M., Derks, E. M., Esteva, I.,
+          Ehrenfeld, J., Den Heijer, M., Posthuma, D., Raynor, L., Tishelman, A., &amp; Davis, L. K. (2018). The
+          biological contributions to gender identity and gender diversity: Bringing data to the table. Behavior
+          Genetics, 48(2), 95-108.</span>
+      </p>
+      <p><span>Practice Committee of the American Society for Reproductive Medicine. (2024). Inclusive language and
+          environment to welcome lesbian, gay, bisexual, transgender, queer, questioning, intersex, and asexual+
+          patients. Fertility and Sterility, 121(6), 954-960.</span>
+      </p>
+      <p><span>Reisner, S. L., Poteat, T., Keatley, J., Cabral, M., Mothopeng, T., Dunham, E., Holland, C. E., Max, R.,
+          &amp; Baral, S. D. (2016). Global health burden and needs of transgender populations: a review. The Lancet,
+          388(10042), 412-436.</span>
+      </p>
+      <p><span>Reisner, S. L., Vetters, R., Leclerc, M., Zaslow, S., Wolfrum, S., Shumer, D., &amp; Mimiaga, M. J.
+          (2020). Mental health of transgender youth in care at an adolescent urban community health center: A matched
+          retrospective cohort study. Journal of Adolescent Health, 56(3), 274-279.</span>
+      </p>
+      <p><span>Richards, C., Bouman, W. P., Seal, L., Barker, M. J., Nieder, T. O., &amp; T&#39;Sjoen, G. (2016).
+          Non-binary or genderqueer genders. International Review of Psychiatry, 28(1), 95-102.</span>
+      </p>
+      <p><span>Richardson, S. S. (2013). Sex itself: The search for male and female in the human genome. University of
+          Chicago Press.</span>
+      </p>
+      <p><span>Ridgeway, C. L., &amp; Correll, S. J. (2004). Unpacking the gender system: A theoretical perspective on
+          gender beliefs and social relations. Gender &amp; Society, 18(4), 510-531.</span>
+      </p>
+      <p><span>Risman, B. J. (2018). Where the millennials will take us: A new generation transforms the gender
+          structure. Oxford University Press.</span>
+      </p>
+      <p><span>Roughgarden, J. (2013). Evolution&#39;s rainbow: Diversity, gender, and sexuality in nature and people.
+          University of California Press.</span>
+      </p>
+      <p><span>Russell, S. T., Pollitt, A. M., Li, G., &amp; Grossman, A. H. (2018). Chosen name use is linked to
+          reduced depressive symptoms, suicidal ideation, and suicidal behavior among transgender youth. Journal of
+          Adolescent Health, 63(4), 503-505.</span>
+      </p>
+      <p><span>Sax, L. (2002). How common is intersex? A response to Anne Fausto-Sterling. Journal of Sex Research,
+          39(3), 174-178.</span>
+      </p>
+      <p><span>Scheim, A. I., Perez-Brumer, A. G., &amp; Bauer, G. R. (2020). Gender-concordant identity documents and
+          mental health among transgender adults in the USA: a cross-sectional study. The Lancet Public Health, 5(4),
+          e196-e203.</span>
+      </p>
+      <p><span>Schulz, S. L. (2018). The informed consent model of transgender care: An alternative to the diagnosis of
+          gender dysphoria. Journal of Humanistic Psychology, 58(1), 72-92.</span>
+      </p>
+      <p><span>Spade, D. (2015). Normal life: Administrative violence, critical trans politics, and the limits of law.
+          Duke University Press.</span>
+      </p>
+      <p><span>Supreme Court of the United States. (2020). Bostock v. Clayton County, 590 U.S. (2020).</span>
+      </p>
+      <p><span>Taylor, V., &amp; Rupp, L. J. (2004). Chicks with dicks, men in dresses: What it means to be a drag
+          queen. Journal of Homosexuality, 46(3-4), 113-133.</span>
+      </p>
+      <p><span>Testa, R. J., Habarth, J., Peta, J., Balsam, K., &amp; Bockting, W. (2015). Development of the Gender
+          Minority Stress and Resilience Measure. Psychology of Sexual Orientation and Gender Diversity, 2(1),
+          65-77.</span>
+      </p>
+      <p><span>Thorne, N., Yip, A. K. T., Bouman, W. P., Marshall, E., &amp; Arcelus, J. (2019). The terminology of
+          identities between, outside and beyond the gender binary – A systematic review. International Journal of
+          Transgenderism, 20(2-3), 138-154.</span>
+      </p>
+      <p><span>Transgender Europe. (2022). Trans Rights Map.</span>
+      </p>
+      <p><span>United Nations Human Rights Council. (2019). Resolution on protection against violence and discrimination
+          based on sexual orientation and gender identity.</span>
+      </p>
+      <p><span>Vilain, E. (2018). Genetics of sexual development and sex reversals. In A. Karpas &amp; S. F. Kahn
+          (Eds.), Pediatric and adolescent gynecology (pp. 41-50). Cambridge University Press.</span>
+      </p>
+      <p><span>Weisberg, D. (2021). Nonconsensual surgery on intersex infants and children: Ethical issues. AMA Journal
+          of Ethics, 23(11), E858-E864.</span>
+      </p>
+      <p><span>Weistroffer, R. L., Raub, A., Sprague, A., &amp; Heymann, J. (2025). Mapping progress in workplace
+          protections: A study of global LGBTQI+ workplace antidiscrimination legislation in 2016 and 2023. Sexuality
+          Research and Social Policy, 22, 1855-1868.</span>
+      </p>
+      <p><span>West, C., &amp; Zimmerman, D. H. (1987). Doing gender. Gender &amp; Society, 1(2), 125-151.</span>
+      </p>
+      <p><span>Winter, S., Diamond, M., Green, J., Karasic, D., Reed, T., Whittle, S., &amp; Wylie, K. (2016).
+          Transgender people: Health at the margins of society. The Lancet, 388(10042), 390-400.</span>
+      </p>
+      <p><span>World Health Organization. (2025). ICD-11 for Mortality and Morbidity Statistics (Version 2025-01):
+          Gender incongruence of adolescence and adulthood.</span>
+      </p>
+      <p><span>Zhang, Q., Goodman, M., Adams, N., Corneil, T., Hashemi, L., Kreukels, B., Motmans, J., Snyder, R., &amp;
+          Coleman, E. (2020). Epidemiological considerations in transgender health: A systematic review with focus on
+          higher quality data. International Journal of Transgender Health, 21(2), 125-137.</span>
+      </p>
+      <p><span>Zimman, L. (2017). Transgender language reform: Some challenges and strategies for promoting
+          trans-affirming, gender-inclusive language. Journal of Language and Discrimination, 1(1), 84-105.</span>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

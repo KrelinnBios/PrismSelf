@@ -1,0 +1,672 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>性别理论核心概念全景分析表</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+.row-lv1 {
+      background: linear-gradient(135deg, #f0fdf4, #eafaf1);
+      border-left: 3px solid #15803d;
+    }
+
+    .row-lv2 {
+      background: linear-gradient(135deg, #eff6ff, #e8f0fe);
+      border-left: 3px solid #1d4ed8;
+    }
+
+    .row-lv3 {
+      background: linear-gradient(135deg, #fff7ed, #fff3e6);
+      border-left: 3px solid #ea580c;
+    }
+
+    .row-lv4 {
+      background: linear-gradient(135deg, #fef2f2, #fee8e8);
+      border-left: 3px solid #be123c;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc !important;
+    }
+
+.example-text {
+      margin-top: 8px;
+      font-size: 0.7rem;
+      color: #475569;
+      background: #f8fafc;
+      padding: 6px 8px;
+      border-radius: 12px;
+      font-style: italic;
+      border-left: 2px solid #cbd5e1;
+    }
+
+.lv1 .badge-dot {
+      background: #15803d;
+    }
+
+    .lv2 .badge-dot {
+      background: #1d4ed8;
+    }
+
+    .lv3 .badge-dot {
+      background: #ea580c;
+    }
+
+    .lv4 .badge-dot {
+      background: #be123c;
+    }
+
+@media (max-width: 780px) {
+      body {
+        padding: 12px;
+      }
+
+      .container {
+        padding: 18px 14px 32px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        display: block;
+        margin-bottom: 24px;
+        border-radius: 24px;
+        background: white;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+        padding: 16px 18px;
+        border-left: 5px solid;
+      }
+
+      .row-lv1 {
+        background: #f0fdf4;
+        border-left-color: #15803d;
+      }
+
+      .row-lv2 {
+        background: #eff6ff;
+        border-left-color: #1d4ed8;
+      }
+
+      .row-lv3 {
+        background: #fff7ed;
+        border-left-color: #ea580c;
+      }
+
+      .row-lv4 {
+        background: #fef2f2;
+        border-left-color: #be123c;
+      }
+
+      td {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.8rem;
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        width: 90px;
+        flex-shrink: 0;
+        color: #4c1d95;
+        font-size: 0.75rem;
+      }
+
+      td:first-child::before {
+        display: none;
+      }
+
+      td:first-child {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 12px;
+      }
+
+      .concept-cell {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        text-align: left;
+      }
+
+      .concept-pill {
+        flex-direction: row;
+        gap: 12px;
+        align-items: baseline;
+      }
+
+      .concept-en {
+        margin-top: 0;
+      }
+
+      .detail-btn {
+        margin-top: 0;
+        margin-left: auto;
+      }
+
+      .tag-list,
+      .example-text,
+      .badge {
+        width: auto;
+        flex: auto;
+      }
+
+      .modal-box {
+        width: 95%;
+        padding: 24px 20px;
+        max-height: 85vh;
+      }
+
+      .modal-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+    <link rel="stylesheet" href="./analysis-common.css">
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-tag">社会学 · 女性主义 · 心理学</div>
+      <h1>性别理论核心概念全景分析表</h1>
+      <p class="subtitle">客观、科学地解构性别理论中的核心机制，涵盖从宏观权力结构到微观心理互动的多维度分析框架，通过结构化模型识别并应对系统性不平等现象</p>
+      <div class="meta-row">
+        <div class="meta-item">📚 理论基石 <span>Butler; Crenshaw; Hochschild</span></div>
+        <div class="meta-item">📌 核心概念 <span>12 项精选</span></div>
+        <div class="meta-item">⚖️ 分析维度 <span>4 大体系</span></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="filter-btn active" onclick="filterTable('all', this)">全览（12）</button>
+      <button class="filter-btn" onclick="filterTable('foundation', this)">范式与基础理论（3）</button>
+      <button class="filter-btn" onclick="filterTable('structure', this)">结构与权力制度（3）</button>
+      <button class="filter-btn" onclick="filterTable('culture', this)">文化与话语表征（3）</button>
+      <button class="filter-btn" onclick="filterTable('micro', this)">心理与微观互动（3）</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="genderTable">
+        <thead>
+          <tr>
+            <th>概念</th>
+            <th>操作性定义</th>
+            <th>核心维度</th>
+            <th>典型表征与现象</th>
+            <th>理论基础与机制</th>
+            <th>潜在后果与影响</th>
+            <th>解构与应对策略</th>
+            <th>所属范畴</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-lv1" data-type="foundation">
+            <td class="concept-cell" onclick="showDetail('performativity')">
+              <div class="concept-pill"><span class="concept-name">性别表演理论</span><span class="concept-en">Gender
+                  Performativity</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('performativity')">解析 →</button>
+            </td>
+            <td>性别并非固有的生物学本质或内部现实，而是通过日常行为、言语、符号等社会实践的反复操演（performativity）而建构出的社会身份效应。</td>
+            <td>
+              <div class="tag-list"><span class="tag">反本质主义</span><span class="tag">话语建构</span><span
+                  class="tag">身份流动</span></div>
+            </td>
+            <td>无意识地调整肢体语言、着装或声调以符合特定性别的社会期待。<div class="example-text">例：在专业会议中，女性刻意压低声线以显得更具“权威感”（男性特质期待）。</div>
+            </td>
+            <td>朱迪斯·巴特勒（1990）；奥斯汀言语行为理论（Austin, 1962）；福柯的身体权力谱系学。</td>
+            <td>揭示了性别的虚构性，为多元性别表达提供了理论空间；但强制的性别展演机制会导致未达标者的社会排斥与压抑。</td>
+            <td>培养批判性元认知；创造包容越轨表达的社会空间；解构僵化死板的二元性别期待话语。</td>
+            <td><span class="badge lv1"><span class="badge-dot"></span>范式奠基</span></td>
+          </tr>
+          <tr class="row-lv1" data-type="foundation">
+            <td class="concept-cell" onclick="showDetail('intersectionality')">
+              <div class="concept-pill"><span class="concept-name">交叉性理论</span><span
+                  class="concept-en">Intersectionality</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('intersectionality')">解析 →</button>
+            </td>
+            <td>个体身份的多个维度（性别、种族、阶级、性取向等）并非独立平行存在，而是相互交织叠加，形成特定情境下独特的、非线性加和的压迫或特权结构。</td>
+            <td>
+              <div class="tag-list"><span class="tag">身份复合</span><span class="tag">非加和效应</span><span
+                  class="tag">矩阵压迫</span></div>
+            </td>
+            <td>单一议题维权运动忽视复合身份群体的特殊困境，导致其在法律或政策中隐形。<div class="example-text">例：残疾女性在求职时，遭遇的是有别于“健全女性”和“残疾男性”的独特排斥模式。
+              </div>
+            </td>
+            <td>金伯利·克伦肖（1989）；黑人女性主义法学批判；帕特里夏·希尔·柯林斯的“压迫矩阵”模型。</td>
+            <td>提供更精确的分析框架以避免政策盲区；单一维度的分析会导致处于交叉点的人群被系统性边缘化。</td>
+            <td>在政策制定中引入多维审计；避免“均值”视角的公共服务设计；强化多元视角的代表性。</td>
+            <td><span class="badge lv1"><span class="badge-dot"></span>范式奠基</span></td>
+          </tr>
+          <tr class="row-lv1" data-type="foundation">
+            <td class="concept-cell" onclick="showDetail('queer_theory')">
+              <div class="concept-pill"><span class="concept-name">酷儿理论</span><span class="concept-en">Queer
+                  Theory</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('queer_theory')">解析 →</button>
+            </td>
+            <td>一种挑战异性恋本位、异性恋霸权与二元性别分类（男女/异同）的激进认识论，主张身份的绝对流动性与碎片化，致力于解构所有被视为“正常”的规范体系。</td>
+            <td>
+              <div class="tag-list"><span class="tag">解构二元</span><span class="tag">规范批判</span><span
+                  class="tag">身份游牧</span></div>
+            </td>
+            <td>拒绝填报二元性别的官方表格；跨性别、非二元性别者的去病理化运动。<div class="example-text">例：文化作品中故意打破“王子公主”救赎叙事的非传统家庭形态展现。</div>
+            </td>
+            <td>后结构主义；福柯的性史研究；塞吉维克（Sedgwick）的反同性恋恐惧认识论。</td>
+            <td>为边缘群体赋权并打破了绝对的分类边界；拓宽了社会对亲密关系与家庭结构的想象力。</td>
+            <td>推广性别中立（Gender-neutral）语言与设施；法律体系中的性别去锚定（去强制登记）。</td>
+            <td><span class="badge lv1"><span class="badge-dot"></span>范式奠基</span></td>
+          </tr>
+
+          <tr class="row-lv2" data-type="structure">
+            <td class="concept-cell" onclick="showDetail('patriarchy')">
+              <div class="concept-pill"><span class="concept-name">父权制</span><span class="concept-en">Patriarchy</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('patriarchy')">解析 →</button>
+            </td>
+            <td>一种宏观的社会组织与权力结构，其中男性（作为群体）在政治、经济、宗教与家庭中不成比例地掌握着主导权，且男性特质在价值排序中被置于女性特质之上。</td>
+            <td>
+              <div class="tag-list"><span class="tag">权力垄断</span><span class="tag">制度偏好</span><span
+                  class="tag">价值等级</span></div>
+            </td>
+            <td>冠姓权默认归属父系；核心政治与资本决策层的压倒性性别比例失衡。<div class="example-text">例：某些语言中以男性指代全人类（Mankind），或在医疗标准制定中以男性身体为基准。
+              </div>
+            </td>
+            <td>激进女性主义理论；马克思主义女性主义（恩格斯的家庭私有制起源论）；社会结构学派。</td>
+            <td>固化社会资源分配的不平等；剥夺女性的主体地位，同时也用僵化的“男性气概”压迫男性个体。</td>
+            <td>改革财产、婚育及政治参与制度；推行平权法案与配额制；建立性别预算（Gender Budgeting）审计机制。</td>
+            <td><span class="badge lv2"><span class="badge-dot"></span>结构分析</span></td>
+          </tr>
+          <tr class="row-lv2" data-type="structure">
+            <td class="concept-cell" onclick="showDetail('glass_ceiling')">
+              <div class="concept-pill"><span class="concept-name">玻璃天花板</span><span class="concept-en">Glass
+                  Ceiling</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('glass_ceiling')">解析 →</button>
+            </td>
+            <td>由于隐性的偏见、组织文化或缺乏正式规范，导致女性及少数群体在职业晋升阶梯中遇到无法突破的高层无形障碍，即使其能力已满足条件。</td>
+            <td>
+              <div class="tag-list"><span class="tag">晋升壁垒</span><span class="tag">隐性歧视</span><span
+                  class="tag">网络排斥</span></div>
+            </td>
+            <td>企业中高层管理岗位的女性断崖式减少；被排除在高尔夫球局等非正式权力网络之外。<div class="example-text">
+                例：一位女高管业绩出色，却总被评价“缺乏领导气场（实际上是指缺乏男性特质）”而错失CEO任命。</div>
+            </td>
+            <td>社会角色理论（Eagly, 1987）；同质性偏好（Homophily）；组织行为学中的“老男孩网络”分析。</td>
+            <td>导致顶尖人才流失与组织决策视角单一（群体思维陷阱）；加剧薪酬鸿沟与长期职业倦怠。</td>
+            <td>管理层绩效与多元化指标（DEI）强制挂钩；盲审机制；提供结构化的导师与赞助人（Sponsorship）项目。</td>
+            <td><span class="badge lv2"><span class="badge-dot"></span>结构分析</span></td>
+          </tr>
+          <tr class="row-lv2" data-type="structure">
+            <td class="concept-cell" onclick="showDetail('cisnormativity')">
+              <div class="concept-pill"><span class="concept-name">顺性别本位</span><span
+                  class="concept-en">Cisnormativity</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('cisnormativity')">解析 →</button>
+            </td>
+            <td>社会制度和日常互动中默认所有人都是顺性别，并把顺性别经验视为自然、标准和无需解释的假设；当这种假设进入制度设计时，会排斥跨性别与非二元经验。</td>
+            <td>
+              <div class="tag-list"><span class="tag">默认假设</span><span class="tag">制度排斥</span><span
+                  class="tag">微观抹除</span></div>
+            </td>
+            <td>公共卫生间严格的二元划分；医疗问诊中对跨性别者病理学需求的忽视或误诊。<div class="example-text">例：填写任何社会注册表单时，只能在“男/女”两个互斥选项中做选择。</div>
+            </td>
+            <td>制度化压迫理论；医疗社会学中的生物本质主义批判；酷儿理论延伸。</td>
+            <td>导致非顺性别群体在社会系统中被边缘化或隐形化；增加此类群体的少数群体压力（Minority Stress）及自杀风险。</td>
+            <td>全系统的表单选项包容性改造；普及关于代词使用的基本尊重；公共建筑空间设计的无性别化演进。</td>
+            <td><span class="badge lv2"><span class="badge-dot"></span>结构分析</span></td>
+          </tr>
+
+          <tr class="row-lv3" data-type="culture">
+            <td class="concept-cell" onclick="showDetail('male_gaze')">
+              <div class="concept-pill"><span class="concept-name">男性凝视</span><span class="concept-en">Male Gaze</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('male_gaze')">解析 →</button>
+            </td>
+            <td>劳拉·穆尔维提出的电影理论术语。指文化产品中主导的异性恋男性视点，将女性降格为提供视觉快感的被动客体，剥夺其作为叙事主体的深度。</td>
+            <td>
+              <div class="tag-list"><span class="tag">客体化</span><span class="tag">视觉权力</span><span
+                  class="tag">主体剥夺</span></div>
+            </td>
+            <td>影视剧中频繁出现从脚部缓慢上扫至脸部的镜头；游戏角色的不合理战损暴露装。<div class="example-text">例：汽车广告中，性感女性作为跑车的“附属战利品”与商品绑定展示给男性消费者。
+              </div>
+            </td>
+            <td>精神分析电影理论（Mulvey, 1975）；视觉文化研究；客体化理论（Objectification Theory）。</td>
+            <td>促使女性内化这种凝视（自我客体化），引发身体焦虑、进食障碍及自我价值感的贬损。</td>
+            <td>支持“女性凝视”及多元视角的文化产品创作；提升媒介素养教育；拒绝消费物化女性的商业产品。</td>
+            <td><span class="badge lv3"><span class="badge-dot"></span>文化批判</span></td>
+          </tr>
+          <tr class="row-lv3" data-type="culture">
+            <td class="concept-cell" onclick="showDetail('perfect_victim')">
+              <div class="concept-pill"><span class="concept-name">完美受害者神话</span><span class="concept-en">Perfect Victim
+                  Myth</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('perfect_victim')">解析 →</button>
+            </td>
+            <td>社会对性侵或暴力受害者的不合理道德苛求：认为只有行为纯洁、衣着保守、且案发时激烈反抗、事后表现出极度悲伤的受害者，才具备值得同情和法律保护的“合法性”。</td>
+            <td>
+              <div class="tag-list"><span class="tag">荡妇羞辱</span><span class="tag">责任倒置</span><span
+                  class="tag">强奸文化</span></div>
+            </td>
+            <td>在性骚扰案件中，舆论优先追问受害者“你当时穿了什么”或“为什么大半夜还在外面”。<div class="example-text">例：家暴案件中指责受害者“你当时为什么不马上离婚”，无视权力控制与经济困境。
+              </div>
+            </td>
+            <td>公正世界谬误（Just-world Hypothesis）；责怪受害者（Victim Blaming）心理防御机制。</td>
+            <td>形成二次伤害（Secondary Victimization）；导致极高的未报案率（暗数）；实质上在为施暴者开脱罪责。</td>
+            <td>法律程序的创伤知情（Trauma-Informed）改革；公众舆论的归因纠偏教育（将焦点转向施暴者行为）。</td>
+            <td><span class="badge lv3"><span class="badge-dot"></span>文化批判</span></td>
+          </tr>
+          <tr class="row-lv3" data-type="culture">
+            <td class="concept-cell" onclick="showDetail('toxic_masculinity')">
+              <div class="concept-pill"><span class="concept-name">有毒的男性气质</span><span class="concept-en">Toxic
+                  Masculinity</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('toxic_masculinity')">解析 →</button>
+            </td>
+            <td>对男性群体具有破坏性的文化规范：要求男性必须表现出攻击性、支配欲、情感隔离（除了愤怒不能表达其他情绪）以及反感任何被视为“女性化”的行为。</td>
+            <td>
+              <div class="tag-list"><span class="tag">情感压抑</span><span class="tag">暴力崇拜</span><span
+                  class="tag">厌女连结</span></div>
+            </td>
+            <td>男孩哭泣时被训斥“像个女孩一样”；男性在健康恶化时拒绝就医以维持“硬汉”形象。<div class="example-text">例：兄弟会文化中，通过物化女性或参与危险饮酒挑战来证明和巩固集体内的阶级地位。
+              </div>
+            </td>
+            <td>霸权性男性气质理论（Connell, 1995）；社会化过程与同伴压力；性别角色紧张范式。</td>
+            <td>推高男性群体的高抑郁未诊断率、高暴力犯罪率与高自杀率；破坏其建立深层亲密关系的能力。</td>
+            <td>重塑男性气概定义（积极/包容性男性特质）；开展针对男孩的社会情感学习（SEL）；打破“男儿有泪不轻弹”的禁忌。</td>
+            <td><span class="badge lv3"><span class="badge-dot"></span>文化批判</span></td>
+          </tr>
+
+          <tr class="row-lv4" data-type="micro">
+            <td class="concept-cell" onclick="showDetail('microaggression')">
+              <div class="concept-pill"><span class="concept-name">微攻击</span><span
+                  class="concept-en">Microaggression</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('microaggression')">解析 →</button>
+            </td>
+            <td>在日常交流中，无意或有意传递的简短、高频的贬低信息。这些行为往往披着“玩笑”或“正常社交”的外衣，暗中强化着针对边缘群体的刻板印象。</td>
+            <td>
+              <div class="tag-list"><span class="tag">隐性偏见</span><span class="tag">日常损耗</span><span
+                  class="tag">意图开脱</span></div>
+            </td>
+            <td>会议中高频打断女性发言（Manterrupting）；未经同意触摸非裔的头发。<div class="example-text">
+                例：对一位女程序员说：“你长得一点都不像写代码的。”（以褒奖的口吻传达了能力质疑的偏见）。</div>
+            </td>
+            <td>隐性偏见（Implicit Bias）；日常种族主义/性别歧视理论（Sue, 2010）；千刀万剐效应（Death by a thousand cuts）。</td>
+            <td>使受害者陷入“是不是我想多了”的自我怀疑（煤气灯效应）；长期累积导致心理枯竭、免疫系统受损。</td>
+            <td>提升发话者的微观觉察力；实施“旁观者干预”策略（当场指出并温和纠正）；关注“影响”而非“意图”。</td>
+            <td><span class="badge lv4"><span class="badge-dot"></span>心理机制</span></td>
+          </tr>
+          <tr class="row-lv4" data-type="micro">
+            <td class="concept-cell" onclick="showDetail('emotional_labor')">
+              <div class="concept-pill"><span class="concept-name">情感劳动</span><span class="concept-en">Emotional
+                  Labor</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('emotional_labor')">解析 →</button>
+            </td>
+            <td>个体为了创造某种公众可见的面部和身体展示而对自身情感进行的管理。在父权框架下，这种维系和谐、照顾他人情绪的隐形劳动往往被强行指派给女性且被无偿化。</td>
+            <td>
+              <div class="tag-list"><span class="tag">隐形剥削</span><span class="tag">情绪管理</span><span
+                  class="tag">性别化分工</span></div>
+            </td>
+            <td>职场中默认女性员工负责订下午茶、缓和会议冲突；家庭中女性承担“记住所有人生日”的心理负荷。<div class="example-text">
+                例：空乘人员或护士必须时刻展现标准化的微笑与耐心，强行压抑真实的疲惫情绪（深层扮演/浅层扮演）。</div>
+            </td>
+            <td>阿莉·霍克希尔德（1983，《情绪管理的探索》）；马克思异化理论的延伸；关怀经济学。</td>
+            <td>导致情绪耗竭（Emotional Exhaustion）、真实自我与表演自我的剥离（异化）；且因其“不可见性”而不计入绩效或薪酬。</td>
+            <td>将情感劳动显性化与定价；家庭与职场中重新平均分配照护责任；划定情绪边界。</td>
+            <td><span class="badge lv4"><span class="badge-dot"></span>心理机制</span></td>
+          </tr>
+          <tr class="row-lv4" data-type="micro">
+            <td class="concept-cell" onclick="showDetail('internalized_oppression')">
+              <div class="concept-pill"><span class="concept-name">内化压迫</span><span class="concept-en">Internalized
+                  Oppression</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('internalized_oppression')">解析 →</button>
+            </td>
+            <td>被压迫群体在长期的社会化过程中，无意识地认同、吸收并执行了主流群体施加于他们的负面刻板印象与偏见，从而参与到对自己群体的歧视之中。</td>
+            <td>
+              <div class="tag-list"><span class="tag">斯德哥尔摩</span><span class="tag">同群相斥</span><span
+                  class="tag">自我限制</span></div>
+            </td>
+            <td>女性对其他女性展现出比男性更苛刻的荡妇羞辱；职场中的“蜂后综合症（Queen Bee Syndrome）”。<div class="example-text">
+                例：女学生在面临理工科挑战时，内心深处认为自己“女孩天生逻辑思维差”，从而放弃努力。</div>
+            </td>
+            <td>社会认同理论；葛兰西的“文化霸权”概念；保罗·弗莱雷《被压迫者教育学》。</td>
+            <td>形成受害者之间的底层互害；瓦解群体的政治连结能力；自我实现的预言导致潜能被压抑。</td>
+            <td>开展意识唤醒（Consciousness-raising）小组；结构性归因训练（将失败归因于系统而非自身特质）；建立支持性同温层。</td>
+            <td><span class="badge lv4"><span class="badge-dot"></span>心理机制</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panels">
+      <div class="panel"><span class="panel-icon">🏛️</span>
+        <h3>结构与制度视角</h3>
+        <p>父权制与玻璃天花板揭示了性别不平等并非个体意愿的产物，而是深嵌于法律、经济系统与组织规则中的权力分配结构。必须通过自上而下的平权制度设计予以打破。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">🎭</span>
+        <h3>文化与话语批判</h3>
+        <p>话语即权力。男性凝视与完美受害者神话通过媒介再生产，塑造了我们“如何看待”事物的滤镜。文化批判旨在夺回叙事权，解构那些被视为理所当然的社会规范。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">🧠</span>
+        <h3>心理学与微观机制</h3>
+        <p>宏观的压迫最终降维打击到个体的心理。微攻击、情感劳动与内化压迫导致了边缘群体的日常能量耗损与自我怀疑，识别这些隐蔽机制是心理干预与赋权的第一步。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">🕸️</span>
+        <h3>交叉性理论视角</h3>
+        <p>性别问题永远不是单一问题。克伦肖的理论提醒我们，阶级、种族、性取向与能力障碍在个体身上交织。脱离具体社会位置谈性别，将不可避免地忽略处于矩阵底部的失语者。</p>
+      </div>
+    </div>
+
+    <div class="legend-section">
+      <h3>分析维度标签指引</h3>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#15803d"></div>
+          <div class="legend-text"><strong>范式奠基</strong>宏观理论底座，定义了如何理解性别及其流动性特征</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#1d4ed8"></div>
+          <div class="legend-text"><strong>结构分析</strong>关注宏观政治经济、组织制度中的资源与权力分配不公</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#ea580c"></div>
+          <div class="legend-text"><strong>文化批判</strong>解析媒介、符号及大众舆论中潜移默化的刻板印象再生产</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#be123c"></div>
+          <div class="legend-text"><strong>心理机制</strong>聚焦人际互动与内在认知中的隐性剥削与心理损耗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="references">
+      <strong>📖 核心学术参考</strong>：Butler, J. (1990). <em>Gender Trouble: Feminism and the Subversion of Identity.</em>
+      Routledge. ｜ Crenshaw, K. (1989). Demarginalizing the Intersection of Race and Sex. <em>University of Chicago
+        Legal Forum.</em> ｜ Hochschild, A. R. (1983). <em>The Managed Heart: Commercialization of Human Feeling.</em> UC
+      Press. ｜ Connell, R. W. (1995). <em>Masculinities.</em> Polity Press. ｜ Mulvey, L. (1975). Visual Pleasure and
+      Narrative Cinema. <em>Screen.</em> ｜ Sue, D. W. (2010). <em>Microaggressions in Everyday Life.</em> Wiley.
+    </div>
+  </div>
+
+  <div class="modal-bg" id="modal" onclick="handleModalClick(event)">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const details = {
+      performativity: {
+        title: "性别表演理论", en: "Gender Performativity", lv: "lv1", badge: "范式奠基", sections: [
+          { h: "从'是什么'到'做什么'的转向", p: "巴特勒的革命性贡献在于，它让我们不再问'我是哪种性别'，而是问'我在做什么性别行为'。这就像演员上台——你不是'天生就是'某个角色，而是通过每一个动作、语气、着装来'成为'那个角色。" },
+          { h: "重复的力量", p: "操演的关键在于'反复'。一次穿粉色不会定义你，但如果你从小被要求'女孩就该穿粉色'，而且每次这么做都得到奖励，这种重复就会让你误以为'粉色是我的本质'。" },
+          { h: "解放的可能性", p: "如果性别是表演出来的，那意味着我们可以随时改变剧本！这就为那些想打破常规的人提供了巨大的自由——你可以选择不同的表演方式，甚至完全拒绝演出。" },
+          { h: "日常中的小革命", p: "每一次小小的反抗都是有意义的：当一个男孩喜欢上芭蕾，当一个女孩拒绝化妆，这些都是对性别剧本的改写。这些看似微小的行为，积累起来就能动摇整个社会的性别规范。" }
+        ]
+      },
+      intersectionality: {
+        title: "交叉性理论", en: "Intersectionality", lv: "lv1", badge: "范式奠基", sections: [
+          { h: "不是加法，是乘法", p: "想象一个红绿灯：红灯和绿灯不是简单的'红+绿'，而是产生了完全不同的颜色。交叉性也是如此——性别和种族交织在一起时，产生的是全新的、独特的体验。" },
+          { h: "谁在角落里？", p: "很多时候，我们只关注'主流'的边缘群体，却忘记了那些在多个边缘交叉处的人。就像在聚光灯下，最亮的地方总是最显眼，而角落里的人却容易被忽视。" },
+          { h: "你的位置决定你的视野", p: "站在山顶的人看到的风景和站在山谷的人完全不同。交叉性提醒我们，每个人的社会位置都会影响他们看到什么、经历什么，没有一种体验能代表所有人。" },
+          { h: "设计时多问一句", p: "无论是做政策、产品还是服务，都应该习惯性地问：'谁会被落下？'就像造轮椅坡道不仅帮助了轮椅使用者，也帮助了推婴儿车的人——好的设计总是考虑到更多人。" }
+        ]
+      },
+      queer_theory: {
+        title: "酷儿理论", en: "Queer Theory", lv: "lv1", badge: "范式奠基", sections: [
+          { h: "把'怪'变成力量", p: "酷儿理论最酷的地方在于，它把原本骂人的词变成了骄傲的标签。这就像有人说你'奇怪'，你笑着说'谢谢，这正是我的特点！'——它把羞辱转化成了自我认同。" },
+          { h: "挑战所有的'理所当然'", p: "酷儿理论像一个好奇的孩子，总是问'为什么一定要这样？'为什么一定要结婚？为什么一定要分男女？它不接受任何想当然的答案，而是鼓励我们重新思考一切。" },
+          { h: "身份不是标签，是流动的", p: "想象身份不是一个固定的盒子，而是一条流动的河流。酷儿理论说，你不需要永远待在同一个地方——你可以变化、成长、探索，这是你的权利。" },
+          { h: "为差异而欢呼", p: "酷儿理论不追求'每个人都一样'，而是庆祝'每个人都不一样'。它相信，一个能容纳各种差异的社会，才是更健康、更有活力的社会。" }
+        ]
+      },
+      patriarchy: {
+        title: "父权制", en: "Patriarchy", lv: "lv2", badge: "结构分析", sections: [
+          { h: "不是'男人坏'，是'系统有问题'", p: "父权制不是在骂某个具体的男人，而是在说一个让所有人都不舒服的系统。就像雾霾——不是某个人的错，而是整个环境出了问题，每个人都在受影响。" },
+          { h: "看不见的规则手册", p: "父权制像一本无形的规则手册，写着'男人应该怎样'、'女人应该怎样'。我们从小就被要求遵守这些规则，却很少问是谁写的、为什么要遵守。" },
+          { h: "它也在伤害男性", p: "父权制给男性的礼物是'特权'，但代价是'人性'。男性被要求不能哭、不能示弱、不能温柔，这就像把他们关进了一个叫'男子汉'的笼子里。" },
+          { h: "改变游戏，而不是指责玩家", p: "要打破父权制，不是去指责某个人，而是去改变游戏规则。当我们重新定义'成功'、'强大'、'好'这些词时，整个游戏就会变得不一样。" }
+        ]
+      },
+      glass_ceiling: {
+        title: "玻璃天花板", en: "Glass Ceiling", lv: "lv2", badge: "结构分析", sections: [
+          { h: "看得见，却摸不到", p: "玻璃天花板的比喻太妙了——你能看到上面的位置，觉得自己够得到，但真的往上爬时，却被一堵无形的墙挡住了。这种挫败感比根本看不到希望更难受。" },
+          { h: "不是能力问题，是'匹配度'问题", p: "很多时候，女性不是不够优秀，而是高管的'模板'本身就是按男性设计的。就像用尺子量体重——工具不对，结果自然不准确。" },
+          { h: "玻璃悬崖：上去了也不安全", p: "更讽刺的是，有时候女性终于突破了玻璃天花板，却发现自己站在玻璃悬崖上——公司遇到危机时才找你，成功了是大家的功劳，失败了全是你的错。" },
+          { h: "改变尺子，而不是削足适履", p: "与其要求女性去'适应'男性的领导风格，不如重新定义'领导力'。好的领导不一定是最强势的，也可以是最善于倾听、最能凝聚团队的。" }
+        ]
+      },
+      cisnormativity: {
+        title: "顺性别本位", en: "Cisnormativity", lv: "lv2", badge: "结构分析", sections: [
+          { h: "默认设置的陷阱", p: "顺性别本位就像手机的默认设置——我们用得久了，就忘了还可以改。它假设所有人都是顺性别，就像默认所有人都用右手写字，却没考虑到左撇子的存在。" },
+          { h: "二元厕所的尴尬", p: "公共厕所是顺性别本位最明显的体现。对非二元性别者来说，每次上厕所都像做选择题——但这两个选项都不对。这种日常的小尴尬，积累起来就是巨大的心理负担。" },
+          { h: "医疗中的'正常'标准", p: "顺性别本位甚至渗透到医疗中。很多医生只学过'正常'的男女身体，遇到跨性别患者时就不知所措。医疗应该帮助所有人，而不是只帮助'符合标准'的人。" },
+          { h: "多留一个选项", p: "改变其实可以很简单：表格里多一个'其他'或'不愿透露'的选项，卫生间里多一个无性别标识，说话时先问对方的代词。这些小改变，就能让很多人感到被看见。" }
+        ]
+      },
+      male_gaze: {
+        title: "男性凝视", en: "Male Gaze", lv: "lv3", badge: "文化批判", sections: [
+          { h: "谁在看，谁被看", p: "男性凝视就像电影院里永远坐在最佳位置的观众——摄影机总是从他的角度拍，故事总是为他讲。女性角色只是屏幕上的风景，而不是拿着遥控器的人。" },
+          { h: "内化的审视", p: "久而久之，女性自己也会变成这个观众。她们会不自觉地想：'如果我是男人，会怎么看我现在的样子？'这就像脑子里住了一个评委，时刻在打分。" },
+          { h: "女性凝视不是简单的反转", p: "女性凝视不是把男性当'花瓶'看，而是换一种看的方式。它不把人当成物体，而是当成有故事、有情感的完整的人。" },
+          { h: "重新定义'美'", p: "当我们不再只从一个角度看世界，美就变得丰富了。美可以是强壮，可以是脆弱，可以是皱纹，可以是伤疤——美是人的多样性本身。" }
+        ]
+      },
+      perfect_victim: {
+        title: "完美受害者神话", en: "Perfect Victim Myth", lv: "lv3", badge: "文化批判", sections: [
+          { h: "一个不可能的标准", p: "完美受害者的要求太苛刻了：你必须足够纯洁，但又不能太天真；必须反抗，但又不能太暴力；必须难过，但又不能崩溃。这根本不是人能做到的。" },
+          { h: "为了安全感的自我欺骗", p: "我们需要相信'好人有好报，坏人有坏报'，不然世界就太可怕了。所以当坏事发生在'不完美'的人身上时，我们宁愿相信是他们的错，这样就能保持'我是安全的'的幻觉。" },
+          { h: "二次伤害才是最痛的", p: "很多受害者说，比伤害本身更痛的是周围人的反应。当你鼓起勇气说出经历，却被问'你为什么不反抗？'、'你穿了什么？'，这就像在伤口上又撒了一把盐。" },
+          { h: "唯一的错是施暴者的错", p: "记住这个简单的原则：无论受害者做了什么、没做什么，都不是施暴的理由。错误只有一个，就是施暴者选择了伤害别人。" }
+        ]
+      },
+      toxic_masculinity: {
+        title: "有毒的男性气质", en: "Toxic Masculinity", lv: "lv3", badge: "文化批判", sections: [
+          { h: "这不是'反男性',是'反枷锁'", p: "批评有毒的男性气质，不是在骂男人，而是在骂那个把男人关进'不能哭、不能弱、不能输'笼子里的文化。我们想做的是打开笼子，让男人也能自由呼吸。" },
+          { h: "从小开始的训练", p: "男孩从小就被训练'像个男人'：摔倒了不能哭，害怕了不能说，喜欢的东西如果是'女孩的'就不能要。这种训练不是在培养'男子汉'，而是在培养一个封闭的、孤独的人。" },
+          { h: "压抑的代价", p: "情绪就像水——你不让它流出来，它就会在别的地方爆发。男性的很多健康问题：抑郁、心脏病、暴力行为，都和长期压抑情绪有关。" },
+          { h: "重新定义'勇气'", p: "真正的勇气不是不害怕，而是害怕了还能面对；不是不流泪，而是流泪了还能继续；不是不求助，而是知道什么时候需要帮助。这才是真正的强大。" }
+        ]
+      },
+      microaggression: {
+        title: "微攻击", en: "Microaggression", lv: "lv4", badge: "心理机制", sections: [
+          { h: "千刀万剐的伤害", p: "微攻击不像一记耳光那么明显，但它像无数根小针，一下一下扎你。时间久了，你可能都不记得哪一针最痛，但全身都在痛。" },
+          { h: "'我不是故意的'不是借口", p: "很多说微攻击的人会说'我不是故意的'、'你太敏感了'。但问题不在于意图，而在于影响。就像你不小心踩了别人的脚，即使不是故意的，也要道歉。" },
+          { h: "自我怀疑的开始", p: "经历多了微攻击，你会开始怀疑自己：'是我想多了吗？'、'是不是我真的有问题？'这种自我怀疑，才是最伤人的。" },
+          { h: "学会说'哎哟'", p: "不用每次都大吵大闹，但可以学会温和地指出：'你刚才那句话让我有点不舒服。'说出来不是为了指责，而是为了让对方知道，下次可以换一种说法。" }
+        ]
+      },
+      emotional_labor: {
+        title: "情感劳动", en: "Emotional Labor", lv: "lv4", badge: "心理机制", sections: [
+          { h: "看不见的工作", p: "情感劳动就像空气——平时你注意不到它，但没有它，整个房间都会让人窒息。女性做的很多'看不见的工作'：记住每个人的生日、调解矛盾、照顾大家的情绪，这些都是情感劳动。" },
+          { h: "戴面具的疲惫", p: "职场上的情感劳动更累——你必须微笑，即使你很生气；你必须耐心，即使你很烦躁；你必须照顾客户的情绪，即使客户在为难你。一天下来，面具摘下来，真实的自己已经筋疲力尽。" },
+          { h: "'天生的'是谎言", p: "人们常说女性'天生'就会照顾人，但这不是天生的，是从小训练出来的。女孩从小就被教'要乖'、'要懂事'、'要照顾别人'，这些都不是天性，是社会赋予的角色。" },
+          { h: "把劳动摆到台面上", p: "改变的第一步是'看见'。不要把情感劳动当成'理所当然'，而是承认它是工作，是需要时间和精力的。当我们看见它，才能开始重新分配它。" }
+        ]
+      },
+      internalized_oppression: {
+        title: "内化压迫", en: "Internalized Oppression", lv: "lv4", badge: "心理机制", sections: [
+          { h: "住在心里的审查官", p: "内化压迫就像住在你脑子里的审查官——不需要别人说你，你自己就会说：'我不行'、'我不配'、'我应该像别人一样'。这个审查官不是天生的，是社会放进去的。" },
+          { h: "自我厌恶的循环", p: "当你长期被说'不够好'，你会开始相信它。然后你会讨厌自己身上那些'不符合标准'的部分，甚至会讨厌那些和你一样的人。这就形成了一个自我攻击的循环。" },
+          { h: "'我不够好'的谎言", p: "内化压迫最狡猾的地方在于，它让你觉得'我不够好'是你的错，而不是系统的错。但真相是：不是你不够好，是标准本身有问题。" },
+          { h: "把审查官请出去", p: "觉醒的过程，就是把脑子里的审查官请出去的过程。你开始质疑那些'应该'，开始拥抱那些'不一样'，开始相信：我的存在本身就是合理的。" }
+        ]
+      }
+    };
+
+    function showDetail(key) {
+      const d = details[key];
+      if (!d) return;
+      let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
+      d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modal').classList.add('open');
+    }
+
+    function closeModal() { document.getElementById('modal').classList.remove('open'); }
+    function handleModalClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    function filterTable(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#genderTable tbody tr').forEach(row => {
+        const t = row.dataset.type;
+        row.style.display = (type === 'all' || t === type) ? '' : 'none';
+      });
+    }
+
+    function setDataLabels() {
+      const table = document.getElementById('genderTable');
+      const headers = [];
+      const ths = table.querySelectorAll('thead th');
+      ths.forEach(th => headers.push(th.innerText.trim()));
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((td, idx) => {
+          if (headers[idx]) td.setAttribute('data-label', headers[idx]);
+        });
+      });
+    }
+    setDataLabels();
+  </script>
+</body>
+
+</html>

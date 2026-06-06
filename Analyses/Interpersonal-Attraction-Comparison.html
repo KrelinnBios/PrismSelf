@@ -1,0 +1,731 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>人际吸引力类型全景分析表</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+.spectrum-note {
+            display: inline-block;
+            margin-top: 10px;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            color: #92400e;
+            font-size: 0.73rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+.row-body {
+            background: linear-gradient(135deg, #fff7ed, #fff3e6);
+            border-left: 3px solid #ea580c;
+        }
+
+        .row-emotion {
+            background: linear-gradient(135deg, #eff6ff, #e8f0fe);
+            border-left: 3px solid #1d4ed8;
+        }
+
+        .row-cognitive {
+            background: linear-gradient(135deg, #ecfeff, #e0f7fa);
+            border-left: 3px solid #0891b2;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc !important;
+        }
+
+.tag-sex {
+            background: #fce4ec;
+            color: #9d174d;
+            border-color: #f8bbd0;
+            font-weight: 600;
+        }
+
+        .tag-rom {
+            background: #ede7f6;
+            color: #5b21b6;
+            border-color: #d1c4e9;
+            font-weight: 600;
+        }
+
+        .tag-none {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+            font-weight: 600;
+        }
+
+        .tag-may {
+            background: #fff9c4;
+            color: #7a6000;
+            border-color: #fff176;
+            font-weight: 600;
+        }
+
+        .highlight-text {
+            margin-top: 8px;
+            font-size: 0.7rem;
+            color: #b45309;
+            background: #fffbeb;
+            padding: 6px 8px;
+            border-radius: 12px;
+            font-style: italic;
+            border-left: 2px solid #f59e0b;
+        }
+
+.lv-body .badge-dot {
+            background: #ea580c;
+        }
+
+        .lv-emotion .badge-dot {
+            background: #1d4ed8;
+        }
+
+        .lv-cognitive .badge-dot {
+            background: #0891b2;
+        }
+
+.extra-section {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 24px 20px;
+            margin: 28px 0 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .extra-section h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            color: #1e1b4b;
+        }
+
+        .extra-section>p {
+            font-size: 0.76rem;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+
+        .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .extra-card {
+            background: white;
+            border-radius: 18px;
+            padding: 16px 18px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            border-left: 4px solid #94a3b8;
+        }
+
+        .extra-card h4 {
+            font-size: 0.85rem;
+            color: #1e293b;
+            margin: 0 0 5px;
+            font-weight: 700;
+        }
+
+        .extra-card p {
+            font-size: 0.75rem;
+            color: #475569;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+.disclaimer-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 0.73rem;
+            color: #9a3412;
+            line-height: 1.5;
+        }
+
+        .disclaimer-box strong {
+            color: #c2410c;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 18px 14px 32px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                display: block;
+                margin-bottom: 24px;
+                border-radius: 24px;
+                background: white;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+                padding: 16px 18px;
+                border-left: 5px solid;
+            }
+
+            .row-body {
+                background: #fff7ed;
+                border-left-color: #ea580c;
+            }
+
+            .row-emotion {
+                background: #eff6ff;
+                border-left-color: #1d4ed8;
+            }
+
+            .row-cognitive {
+                background: #ecfeff;
+                border-left-color: #0891b2;
+            }
+
+            td {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 12px 0;
+                border-bottom: 1px solid #f1f5f9;
+                font-size: 0.8rem;
+            }
+
+            td:last-child {
+                border-bottom: none;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                width: 90px;
+                flex-shrink: 0;
+                color: #4c1d95;
+                font-size: 0.75rem;
+            }
+
+            td:first-child::before {
+                display: none;
+            }
+
+            td:first-child {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                padding-bottom: 12px;
+            }
+
+            .concept-cell {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                text-align: left;
+            }
+
+            .concept-pill {
+                flex-direction: row;
+                gap: 12px;
+                align-items: baseline;
+            }
+
+            .concept-en {
+                margin-top: 0;
+            }
+
+            .detail-btn {
+                margin-top: 0;
+                margin-left: auto;
+            }
+
+            .tag-list,
+            .highlight-text,
+            .badge {
+                width: auto;
+                flex: auto;
+            }
+
+            .modal-box {
+                width: 95%;
+                padding: 24px 20px;
+                max-height: 85vh;
+            }
+
+            .modal-title {
+                font-size: 1.4rem;
+            }
+
+            .panels {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .extra-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .legend-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .panels {
+                grid-template-columns: 1fr;
+            }
+
+            .extra-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .legend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="./analysis-common.css">
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-tag">心理学 · 性学 · 社会学 · 神经科学</div>
+            <h1>人际吸引力类型全景分析表</h1>
+            <p class="subtitle">基于分离吸引力模型（SAM）、爱情三角理论与神经生物学研究的多维度吸引力分类框架，涵盖身体感知、情感关系与认知精神三大范畴</p>
+            <span class="spectrum-note">⚠️ 分析框架说明：以下类型在经验层面常呈<strong>连续谱（continuum）</strong>，各类吸引力在现实中高度混合、边界动态流动，本表为分析工具而非分类学教科书。</span>
+            <div class="meta-row">
+                <div class="meta-item">📚 理论基石 <span>Diamond; Sternberg; AVEN</span></div>
+                <div class="meta-item">📌 核心类型 <span>8 种主要 + 12 种补充</span></div>
+                <div class="meta-item">⚖️ 分析范畴 <span>3 大体系</span></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="filter-btn active" onclick="filterTable('all', this)">全览（8）</button>
+            <button class="filter-btn" onclick="filterTable('body', this)">身体感知吸引（3）</button>
+            <button class="filter-btn" onclick="filterTable('emotion', this)">情感关系吸引（3）</button>
+            <button class="filter-btn" onclick="filterTable('cognitive', this)">认知精神吸引（2）</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="attractionTable">
+                <thead>
+                    <tr>
+                        <th>概念</th>
+                        <th>操作性定义</th>
+                        <th>核心驱动力</th>
+                        <th>神经生物学基础</th>
+                        <th>典型主观体验</th>
+                        <th>性/浪漫成分</th>
+                        <th>常见混淆</th>
+                        <th>所属范畴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row-body" data-type="body">
+                        <td class="concept-cell" onclick="showDetail('sexual')">
+                            <div class="concept-pill"><span class="concept-name">性吸引</span><span class="concept-en">Sexual Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('sexual')">解析 →</button>
+                        </td>
+                        <td>对特定对象产生的、以<strong>性接触或性行为</strong>为指向的心理与生理驱动力；通常表现为希望发生性行为、进行具有性意味的亲密身体接触，或产生明确的性幻想、身体唤起或心理兴奋。</td>
+                        <td>性欲、繁殖本能、身体渴望</td>
+                        <td>VTA-伏隔核多巴胺系统强激活；杏仁核参与情绪评估；HPG轴激素调节（睾酮/雌激素）</td>
+                        <td>看到对方时产生性幻想与生理反应，强烈想触碰或与之发生性关系。<span class="highlight-text">例：咖啡厅偶遇某人，不仅觉得好看，还立刻生出想亲近触碰的欲望。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-sex">性：核心</span><span class="tag tag-may">浪漫：可有可无</span></div></td>
+                        <td>常与审美吸引、感官吸引混淆——觉得某人"好看"或想拥抱他≠性吸引</td>
+                        <td><span class="badge lv-body"><span class="badge-dot"></span>身体感知</span></td>
+                    </tr>
+                    <tr class="row-body" data-type="body">
+                        <td class="concept-cell" onclick="showDetail('aesthetic')">
+                            <div class="concept-pill"><span class="concept-name">审美吸引</span><span class="concept-en">Aesthetic Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('aesthetic')">解析 →</button>
+                        </td>
+                        <td>单纯<strong>欣赏</strong>他人的外貌、气质、风格、声音、肢体语言或整体美感；觉得对方"好看""有魅力"或"像艺术品一样值得欣赏"；<em>不</em>伴随想恋爱、想触碰或想发生性关系的欲望。</td>
+                        <td>感知愉悦、纯粹欣赏美、无欲求附加</td>
+                        <td>视觉皮层-腹侧纹状体感知奖赏通路；顶叶审美评估区；<em>不</em>激活性欲相关区域（如丘脑前核）</td>
+                        <td>觉得对方"美得像艺术品"，心情愉悦，但没有想靠近或发展关系的冲动。<span class="highlight-text">例：看到某位演员觉得美得令人窒息，如同欣赏艺术品，但无性幻想。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-none">性：无</span><span class="tag tag-none">浪漫：无</span></div></td>
+                        <td><strong>最常被误解的类型</strong>——认为觉得某人"美"就意味着性或浪漫吸引；实际上审美吸引完全可以独立存在</td>
+                        <td><span class="badge lv-body"><span class="badge-dot"></span>身体感知</span></td>
+                    </tr>
+                    <tr class="row-body" data-type="body">
+                        <td class="concept-cell" onclick="showDetail('sensual')">
+                            <div class="concept-pill"><span class="concept-name">感官吸引</span><span class="concept-en">Sensual Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('sensual')">解析 →</button>
+                        </td>
+                        <td>渴望与某人进行<strong>非性的身体亲密接触</strong>，例如拥抱、牵手、依偎、轻抚或靠近，以获得舒适、安全感、温暖或放松；核心是触觉亲密，不必然涉及性唤起或性欲望。</td>
+                        <td>触觉舒适、身体安全感、温暖需求</td>
+                        <td>C类无髓神经纤维（CT纤维——传递轻柔触摸愉悦感）；岛叶皮层（触觉整合）；催产素大量释放</td>
+                        <td>想被对方拥抱或依偎，觉得那种肢体温度令自己极度放松与安心。<span class="highlight-text">例：在安静夜晚只想和亲密朋友依偎着看电影，感受彼此体温。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-none">性：无</span><span class="tag tag-none">浪漫：通常无</span></div></td>
+                        <td>最常被误认为是性吸引的前奏——实际上感官吸引可完全独立于性欲，存在于各类亲密关系中</td>
+                        <td><span class="badge lv-body"><span class="badge-dot"></span>身体感知</span></td>
+                    </tr>
+
+                    <tr class="row-emotion" data-type="emotion">
+                        <td class="concept-cell" onclick="showDetail('romantic')">
+                            <div class="concept-pill"><span class="concept-name">浪漫吸引</span><span class="concept-en">Romantic Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('romantic')">解析 →</button>
+                        </td>
+                        <td>对特定对象产生的、以<strong>恋爱关系和浪漫互动</strong>为核心的内在渴望；通常表现为希望约会、建立恋爱关系、成为彼此特别的人，或想象共同生活、表达爱意、拥有浪漫承诺。</td>
+                        <td>归属感、爱与被爱、专属情感联结</td>
+                        <td>多巴胺奖赏通路（早期热恋）；催产素（依恋形成）；去甲肾上腺素（心跳加速）；前扣带回皮质（心理聚焦）</td>
+                        <td>心跳加速、脑海萦绕、幻想共度未来，想成为对方最特别的存在。<span class="highlight-text">例：不断想起某人，反复幻想和他约会、表白、共度未来。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-may">性：可有可无</span><span class="tag tag-rom">浪漫：核心</span></div></td>
+                        <td>常与情感吸引混淆——深厚情感联结不等于浪漫渴望；"我想照顾他"≠喜欢他</td>
+                        <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
+                    </tr>
+                    <tr class="row-emotion" data-type="emotion">
+                        <td class="concept-cell" onclick="showDetail('emotional')">
+                            <div class="concept-pill"><span class="concept-name">情感吸引</span><span class="concept-en">Emotional Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('emotional')">解析 →</button>
+                        </td>
+                        <td>被某人的<strong>内心世界、性格、思想或情感深度</strong>吸引，并希望与对方建立信任、倾诉、理解和情绪支持的深层连接；可以构成亲密关系的重要基础。</td>
+                        <td>理解与被理解、情绪共鸣、安全依恋</td>
+                        <td>催产素与血清素系统；mPFC心智化网络；前额叶皮质（情绪调节）；岛叶（内感受共情）</td>
+                        <td>迫不及待想倾诉，觉得"他完全懂我"，感受到从未有过的被接纳感。<span class="highlight-text">例：深谈后感到被完全理解，想把所有秘密都告诉对方。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-none">性：通常无</span><span class="tag tag-may">浪漫：可能成为基础</span></div></td>
+                        <td>常与柏拉图式吸引混淆——情感依赖不等于想建立深厚友谊；两者核心驱动不同</td>
+                        <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
+                    </tr>
+                    <tr class="row-emotion" data-type="emotion">
+                        <td class="concept-cell" onclick="showDetail('platonic')">
+                            <div class="concept-pill"><span class="concept-name">柏拉图式吸引</span><span class="concept-en">Platonic Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('platonic')">解析 →</button>
+                        </td>
+                        <td>渴望与某人建立<strong>深厚、稳定且非浪漫的友谊关系</strong>；强调陪伴、共同兴趣、价值观契合和彼此同行；可能非常强烈，却不一定指向恋爱或性接触。</td>
+                        <td>陪伴感、共同兴趣、价值认同与忠诚</td>
+                        <td>催产素（亲密感）；内啡肽（接触愉悦）；默认模式网络（自他关联）；血清素（稳定感）</td>
+                        <td>只是一起发呆、散步、刷剧，不需要交心，纯粹觉得他的陪伴无比美好。<span class="highlight-text">例：和某人一起消磨时光，完全不需要深聊，纯粹觉得他的存在让你安心。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-none">性：无</span><span class="tag tag-none">浪漫：无</span></div></td>
+                        <td>与情感吸引的边界最模糊——柏拉图式更关注陪伴与共同活动，情感吸引更关注深层互通</td>
+                        <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
+                    </tr>
+
+                    <tr class="row-cognitive" data-type="cognitive">
+                        <td class="concept-cell" onclick="showDetail('intellectual')">
+                            <div class="concept-pill"><span class="concept-name">智识吸引</span><span class="concept-en">Intellectual Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('intellectual')">解析 →</button>
+                        </td>
+                        <td>被对方的<strong>思维方式、知识深度、智慧与认知独特性</strong>所吸引；渴望深度思想交流与观点碰撞；以认知层面的共鸣与刺激为核心。</td>
+                        <td>求知欲、思维被激活、观点被挑战</td>
+                        <td>前额叶皮质（认知评估）；多巴胺（智识奖励）；海马体（知识整合）；韦尼克区（语言处理）</td>
+                        <td>和他聊天三小时大脑高度兴奋，迫不及待想下次继续深入讨论。<span class="highlight-text">例：和某人聊了三小时哲学与物理，大脑高度兴奋，下次见面时迫不及待想继续。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-none">性：通常无</span><span class="tag tag-may">浪漫：可能发展</span></div></td>
+                        <td>"聊得来"常被误读为浪漫或情感吸引——智识吸引可以完全停留在认知层面而不发展</td>
+                        <td><span class="badge lv-cognitive"><span class="badge-dot"></span>认知精神</span></td>
+                    </tr>
+                    <tr class="row-cognitive" data-type="cognitive">
+                        <td class="concept-cell" onclick="showDetail('spiritual')">
+                            <div class="concept-pill"><span class="concept-name">精神吸引</span><span class="concept-en">Spiritual Attraction</span></div>
+                            <button class="detail-btn" onclick="event.stopPropagation(); showDetail('spiritual')">解析 →</button>
+                        </td>
+                        <td>被对方的<strong>生命信念、价值观深度、精神追求与存在意义框架</strong>所吸引；感受到高度的意义建构一致性与自我投射匹配——即"你像我+你理解我+你说出了我说不出的东西"。</td>
+                        <td>意义感、价值体系共鸣、自我投射契合、超越性连结体验</td>
+                        <td>默认模式网络深度激活；岛叶皮层（内感受与意义感）；与自我超越体验、敬畏感（awe）相关神经回路</td>
+                        <td>第一次深谈就感觉遇到了"灵魂镜子"，仿佛早已认识千年。<span class="highlight-text">例：他说出的每一句话都像是你一直想说却找不到的词。</span></td>
+                        <td><div class="tag-list"><span class="tag tag-none">性：通常无</span><span class="tag tag-may">浪漫：可能强化</span></div></td>
+                        <td>可能被误读为宗教情感或"着迷"（Limerence）而被病理化——实际上是独立的吸引力类型</td>
+                        <td><span class="badge lv-cognitive"><span class="badge-dot"></span>认知精神</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panels">
+            <div class="panel">
+                <span class="panel-icon">🫀</span>
+                <h3>身体感知吸引</h3>
+                <p>性吸引、审美吸引与感官吸引构成了以身体感知为核心的三类吸引力。它们分别指向性行为、视觉欣赏与非性身体亲密，三者在神经生物学上激活不同的脑区与递质系统，在体验上可完全独立存在。</p>
+            </div>
+            <div class="panel">
+                <span class="panel-icon">💙</span>
+                <h3>情感关系吸引</h3>
+                <p>浪漫吸引、情感吸引与柏拉图式吸引共享催产素-血清素系统的亲密感调节，但核心驱动力不同：浪漫指向排他性恋爱关系，情感指向深层情绪互通，柏拉图式指向纯粹陪伴与友谊。</p>
+            </div>
+            <div class="panel">
+                <span class="panel-icon">🧠</span>
+                <h3>认知精神吸引</h3>
+                <p>智识吸引与精神吸引均以前额叶-默认模式网络为核心神经基础。前者聚焦思维层面的认知共鸣与刺激，后者指向生命意义框架的深层契合，两者可独立于性取向与浪漫倾向存在。</p>
+            </div>
+        </div>
+
+        <div class="extra-section">
+            <h3>📌 更多值得关注的吸引力类型（补充说明）</h3>
+            <p>以下类型在主流学术文献中讨论较少，但在实际体验与社群文化中被广泛承认，值得单独梳理。它们进一步丰富了人际吸引力的光谱理解。</p>
+            <div class="extra-grid">
+                <div class="extra-card">
+                    <h4>🏠 安全感吸引</h4>
+                    <p>被对方带来的稳定感与安全感所吸引；渴望的不是激情而是"跟他在一起我不怕任何事"的底气。与依恋理论中的"安全基地"现象密切相关。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🌀 共鸣吸引</h4>
+                    <p>被对方与自己在审美趣味（音乐、文学、艺术）上的高度契合所吸引，介于审美吸引与智识吸引之间。"被同一首歌打动的两个人"的相遇感。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🎭 身份认同吸引</h4>
+                    <p>被对方的文化背景、群体归属或身份认同所吸引，渴望与"同类人"建立联结。在LGBTQ+社群、海外华人群体、亚文化圈子中尤为显著。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🔋 能量/气场吸引</h4>
+                    <p>被某人难以言说的存在感、气场或整体"能量"所吸引，超越外貌、才华与地位的综合感知。常见描述："他走进房间，整个空气都变了。"</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🌱 潜力吸引</h4>
+                    <p>被某人尚未完全显现的潜力与成长空间所吸引，而非当下实际状态。进化心理学将其与"配偶投资价值评估"相关联；也可能成为理想化投射的来源。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🌊 创伤连结</h4>
+                    <p>因共同经历危机、创伤或极端情境而产生的强烈连结感。<strong>注意：</strong>这并非健康的吸引力类型，而是需要被识别与处理的心理现象，是心理咨询的重要干预议题。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>⚡ 魅力吸引</h4>
+                    <p>被对方展现出的个人魅力、独特气场、感染力或存在感深度吸引。完全独立于性取向，粉丝文化中的偶像崇拜是其典型表现。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>👑 社会/地位吸引</h4>
+                    <p>被对方的社会地位、成就、能力、资源或影响力所吸引，常伴随仰慕感与学习渴望。对能力与成就的仰慕是普遍且正常的社会吸引偏好。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🎭 创造力吸引</h4>
+                    <p>被对方的创造力、艺术才华、想象力或独特创作所吸引，以创造性表达本身而非知识或外貌为核心。常见于艺术创作圈与"推し文化"中。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🌱 照料吸引</h4>
+                    <p>渴望照顾、保护、养育或支持特定对象（或渴望被其照顾），以关怀与被关怀的双向驱动为核心。与亲子依恋神经机制存在部分重叠，完全独立于性取向。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🪞 镜像吸引</h4>
+                    <p>被与自己高度相似的人所吸引——相同的创伤底色、成长背景或人格结构。容易产生强烈的"被理解感"，但也可能强化彼此的盲区与防御模式。</p>
+                </div>
+                <div class="extra-card">
+                    <h4>🌒 禁忌吸引</h4>
+                    <p>因关系本身的"不被允许性"而被强化的吸引力。心理学将其与"罗密欧与朱丽叶效应"（阻力强化渴望）相关联。移除禁忌条件后吸引力可能随之消解。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend-section">
+            <h3>分析范畴标签指引</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-bar" style="background:#ea580c"></div>
+                    <div class="legend-text"><strong>身体感知吸引</strong>以身体感知为核心：性行为指向、视觉欣赏、非性触觉亲密</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-bar" style="background:#1d4ed8"></div>
+                    <div class="legend-text"><strong>情感关系吸引</strong>以亲密关系与情感联结为核心：浪漫、深层情绪互通、纯粹陪伴</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-bar" style="background:#0891b2"></div>
+                    <div class="legend-text"><strong>认知精神吸引</strong>以思维共鸣与意义契合为核心：智识刺激、生命信念深度一致</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="references">
+            <strong>📖 核心学术参考</strong>：Diamond, L. M. (2003). What does sexual orientation orient? <em>Psychological Review</em>, 110(1), 173–192. ｜
+            Sternberg, R. J. (1986). A triangular theory of love. <em>Psychological Review</em>, 93(2), 119–135. ｜
+            Fisher, H. E. (1998). Lust, attraction, and attachment in mammalian reproduction. <em>Human Nature</em>, 9(1), 23–52. ｜
+            Bogaert, A. F. (2015). Asexuality: What it is and why it matters. <em>Journal of Sex Research</em>, 52(4), 362–379. ｜
+            AVEN (2023). <em>Split Attraction Model</em>. www.asexuality.org ｜
+            Bowlby, J. (1969). <em>Attachment and Loss, Vol. 1: Attachment</em>. Basic Books. ｜
+            Fromm, E. (1956). <em>The Art of Loving</em>. Harper &amp; Row.
+        </div>
+
+        <div class="disclaimer-box">
+            <strong>⚠️ 重要说明：</strong>本表基于分离吸引力模型（SAM）框架，旨在科学梳理人际吸引力的多维结构。<strong>各类吸引力无优劣之分</strong>，均可独立存在或组合出现。审美吸引≠性吸引，情感吸引≠浪漫吸引，智识吸引≠关系渴望。理解这些独立性有助于避免对自我与他人关系体验的误读与误判。如对性取向、浪漫倾向或关系模式有困扰，请咨询合格的专业人士。
+        </div>
+    </div>
+
+    <div class="modal-bg" id="modal" onclick="handleModalClick(event)">
+        <div class="modal-box" id="modalBox">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const details = {
+            sexual: {
+                title: "性吸引",
+                en: "Sexual Attraction",
+                lv: "lv-body",
+                badge: "身体感知吸引",
+                sections: [
+                    { h: "性吸引就像一把钥匙", p: "性吸引不是对所有人都有的万能钥匙——它更像一把特定的钥匙，只对特定的锁有反应。这把钥匙可以单独存在，不需要与其他钥匙（浪漫、审美、情感）完全无关。无性恋者的存在，就是最有力的证明。" },
+                    { h: "多巴胺的闪电", p: "VTA-伏隔核多巴胺系统就像大脑里的烟花厂——当性吸引被触发时，多巴胺不是慢慢释放，而是像烟花一样炸开。这种突增的多巴胺让你产生强烈的「想要接近」的冲动，这就是性吸引最原始的信号。" },
+                    { h: "不是只有「好看」", p: "觉得某人好看是审美吸引，想拥抱某人是感官吸引，想和某人发生性关系才是性吸引。这三者激活的是完全不同的神经通路——就像听觉、视觉、触觉是三种不同的感官一样，这三种吸引力也是三种不同的体验。" },
+                    { h: "文化如何塑造我们的欲望", p: "社会文化对性吸引的表达有强烈的塑造作用——男性的性吸引被鼓励表达，女性的性吸引表达历史上受到惩罚；异性恋本位/规范把性吸引定义为「默认方向」；媒体性化扭曲了吸引力的自然表达。理解这些文化滤镜，能帮你更清晰地看见自己真实的欲望。" }
+                ]
+            },
+            aesthetic: {
+                title: "审美吸引",
+                en: "Aesthetic Attraction",
+                lv: "lv-body",
+                badge: "身体感知吸引",
+                sections: [
+                    { h: "像欣赏一幅画", p: "审美吸引就像在美术馆里欣赏一幅画——你觉得它美，想要多看几眼，甚至想要拍照留念，但你不会想要把画下来据为己有，更不会想要和画建立关系。这就是康德说的「审美无利害性」——纯粹的感知愉悦。" },
+                    { h: "大脑的美学处理器", p: "视觉皮层-腹侧纹状体通路是大脑的「美学处理器」——它处理美，产生愉悦，但不会激活性欲相关的脑区。就像听一首好听的歌会让你愉悦，但不会让你产生性欲望一样，审美吸引也是独立的愉悦体验。" },
+                    { h: "谁定义了美？", p: "「何为美」从来不是中立的——它是种族、阶级、性别权力的映射。男性凝视把女性身体系统性地性化，导致对女性的「审美吸引」极易被误解、滑向性吸引表述。解构「觉得某人美=对某人有意思」的文化默认，是需要批判性反思的开始。" },
+                    { h: "最珍贵的独立体验", p: "审美吸引是所有吸引力类型中最常被抹除的一种——社会文化不允许「单纯欣赏美而不产生欲望。承认「我觉得你美，但我对你没意思」，是对自我体验的解放。" }
+                ]
+            },
+            sensual: {
+                title: "感官吸引",
+                en: "Sensual Attraction",
+                lv: "lv-body",
+                badge: "身体感知吸引",
+                sections: [
+                    { h: "皮肤的饥饿", p: "感官吸引是人类对温暖触觉的基本需求——就像植物需要阳光一样，我们的皮肤也需要温柔的触摸。CT纤维是专门传递轻柔触摸愉悦感的专属神经，它和性唤起的通路完全独立，从神经层面就证明了两种吸引力的分离。" },
+                    { h: "拥抱本身就是目的", p: "在亲密关系中，拥抱、依偎、牵手——这些感官接触的满足本身就是目的，不需要「升级」为性行为。无性恋者可以有强烈的感官吸引却没有任何性吸引，这清晰地告诉我们：感官吸引完全可以独立存在。" },
+                    { h: "接触的权力", p: "谁可以碰谁、怎么碰、在什么场合碰——这些「身体接触的许可结构」高度不对称。男性对女性的感官接触在历史上被默许，女性的接触主动权长期受限。不同文化对身体接触的规范差异极大——这是文化建构，不是自然本性。" },
+                    { h: "别让误解伤害关系", p: "最常见的误解是把感官吸引当成性吸引的前奏——「他想抱我，那他一定想和我发生关系」。这种误解会伤害很多真诚的情感联结。学会区分「我想抱你」和「我想和你发生关系」，是成熟关系的重要一课。" }
+                ]
+            },
+            romantic: {
+                title: "浪漫吸引",
+                en: "Romantic Attraction",
+                lv: "lv-emotion",
+                badge: "情感关系吸引",
+                sections: [
+                    { h: "想成为特别的人", p: "浪漫吸引的核心不是「我喜欢你」，而是「我想成为你最特别的人」。它包含排他性的向往——「我希望你对我和对别人不一样。这种「特别感」是浪漫吸引最独特的标识。" },
+                    { h: "热恋期只有6-18个月", p: "神经生物学告诉我们，热恋期通常持续6-18个月——多巴胺的烟花会慢慢熄灭，然后转化为以催产素-血清素系统为主的稳定依恋。认识到这一点，能帮我们避免「为什么激情退去后的失落——这不是不爱了，而是爱进入了下一个阶段。" },
+                    { h: "浪漫不是唯一的爱", p: "「浪漫爱意识形态」是现代性别不平等的重要载体——它把女性幸福与进入关系结构绑定；「把浪漫等同于关系责任」的规范压力在女性身上远强于男性；无浪漫倾向者被社会歧视。浪漫不是唯一的爱，友谊、亲情、知己之谊都是爱。" },
+                    { h: "区分「离不开」和「喜欢」", p: "「我想照顾他」、「我离不开他」、「他完全理解我」——这些可能是情感吸引或柏拉图式吸引，不必然等于浪漫吸引。判断标准很简单：你是否渴望与对方建立排他性的恋爱关系？如果是，那才是浪漫吸引。" }
+                ]
+            },
+            emotional: {
+                title: "情感吸引",
+                en: "Emotional Attraction",
+                lv: "lv-emotion",
+                badge: "情感关系吸引",
+                sections: [
+                    { h: "被看见的渴望", p: "情感吸引的核心是「被看见」——你觉得对方完全懂你，你可以在他面前脆弱，你想把所有秘密都告诉他。这是最「普世」的吸引力类型之一——几乎所有人都能体验，不依赖任何性取向或浪漫倾向。" },
+                    { h: "情感劳动的性别", p: "社会期待女性承担更多情感支持功能，导致情感吸引在不同性别身上的表达、负担与边界认知存在系统性差异。女性常被默认为情感吸引的「供给方」——这一角色期待需要被批判性审视。" },
+                    { h: "情感吸引 vs 浪漫吸引", p: "情感吸引和浪漫吸引最容易混淆——情感吸引关注的是「深层情绪互通与脆弱性敞开」，浪漫吸引关注的是「排他性恋爱关系」。两者可以共存，但核心驱动不同。情感吸引完全可以独立构成深厚友谊或知己关系。" },
+                    { h: "最持久的吸引力", p: "情感吸引通常需要多次互动积累，随时间深化，是最持久稳定的吸引类型之一。它不像浪漫吸引那样有「激情」，但像老酒一样，越陈越香。" }
+                ]
+            },
+            platonic: {
+                title: "柏拉图式吸引",
+                en: "Platonic Attraction",
+                lv: "lv-body",
+                badge: "情感关系吸引",
+                sections: [
+                    { h: "纯粹陪伴的幸福", p: "柏拉图式吸引的核心是「彼此同行」——一起做某事，一起消磨时光，不需要深聊，纯粹觉得对方的存在让你安心。古希腊的「友爱（Philia）」、东方的「知己」、孔子的「益友」理论，都指向这一吸引力类型。" },
+                    { h: "老友之谊", p: "柏拉图式吸引随共同经历积累而加深，是最为持久的吸引力类型之一——老友之谊可以历经数十年不变。催产素和内啡肽是核心神经递质——前者带来亲密感，后者带来共同活动的愉悦感。" },
+                    { h: "友谊的能见度", p: "同性之间的柏拉图式亲密在不同文化的「可见度」差异显著——异性友谊受异性恋本位/规范凝视，同性友谊在恐同文化中常遭病理化解读。「直男不应有亲密友谊」的规范是典型权力建构产物，限制了男性之间的柏拉图式亲密表达。" },
+                    { h: "别误解深厚友谊", p: "柏拉图关系被误解为「暗恋伪装」是社会对深厚友谊的普遍不信任。承认「我和他关系很好，但我对他没有浪漫或性的想法」，是对友谊本身的尊重。柏拉图式吸引更关注「一起做某事」，情感吸引更关注「彼此敞开心扉」。" }
+                ]
+            },
+            intellectual: {
+                title: "智识吸引",
+                en: "Intellectual Attraction",
+                lv: "lv-cognitive",
+                badge: "认知精神吸引",
+                sections: [
+                    { h: "大脑的兴奋", p: "智识吸引就像给大脑充电——和某人聊天三小时，大脑高度兴奋，迫不及待想下次继续。古希腊的「爱智慧（Philosophia）」、启蒙运动的「理性伴侣」理想、现代的「智识伴侣」概念，都与此相关。" },
+                    { h: "谁有资格对话？", p: "「谁被认定为智识对话值得者」本身是权力问题——历史上女性、少数族裔在智识场域长期被排斥，导致智识吸引的发生条件并不中立。精英智识圈的「门槛吸引力」也是阶级区隔机制的一部分。" },
+                    { h: "聊得来≠喜欢", p: "「聊得来」常被误读为浪漫或情感吸引——智识吸引可以完全停留在认知层面而不向关系方向发展。一个人可以同时与多人保持纯粹智识层面的深度吸引，这不需要排他性，也不必然意味着情感或浪漫的卷入。" },
+                    { h: "最持久的兴奋", p: "智识吸引通常需要一定了解后产生，随交流深度增加而持续强化，高度持久。它不像性吸引或浪漫吸引那样有强烈的生理唤起，但像一道持续发光的灯，照亮你的思维世界。" }
+                ]
+            },
+            spiritual: {
+                title: "精神吸引",
+                en: "Spiritual Attraction",
+                lv: "lv-cognitive",
+                badge: "认知精神吸引",
+                sections: [
+                    { h: "灵魂镜子", p: "精神吸引的核心是「意义建构一致性」——你像我+你理解我+你说出了我说不出的东西。各宗教与灵性传统均有对应概念：佛教的「法侣」、基督教的「灵魂伴侣」、苏菲主义的「灵性之爱」。" },
+                    { h: "小心操控", p: "精神吸引是操控性关系的高风险地带——以「灵魂契合」为名实施的精神操控（如精神虐待、邪教动力学）正是利用了此类吸引力的深层性与难以言说性。需区分真实的意义共鸣与投射性理想化。" },
+                    { h: "不是宗教，是共鸣", p: "精神吸引可能被误读为宗教情感或「着迷」（Limerence）而被病理化——实际上精神吸引是独立的吸引力类型，超越性别与性取向，可存在于任何关系形式中。精神共鸣可发生于多人，不一定排他。" },
+                    { h: "平静 vs 焦虑", p: "关键区分点在于：精神吸引带来的是深层平静与意义感，而着迷（Limerence）伴随的是焦虑与强迫性思恋。前者让你觉得「我找到了自己」，后者让你觉得「我失去了自己」。" }
+                ]
+            }
+        };
+
+        function showDetail(key) {
+            const d = details[key];
+            if (!d) return;
+            let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
+            d.sections.forEach(s => {
+                html +=
+                    `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`;
+            });
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('modal').classList.add('open');
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+        function handleModalClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        function filterTable(type, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('#attractionTable tbody tr').forEach(row => {
+                const t = row.dataset.type;
+                row.style.display = (type === 'all' || t === type) ? '' : 'none';
+            });
+        }
+
+        function setDataLabels() {
+            const table = document.getElementById('attractionTable');
+            const headers = [];
+            const ths = table.querySelectorAll('thead th');
+            ths.forEach(th => headers.push(th.innerText.trim()));
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach((td, idx) => {
+                    if (headers[idx] && !td.classList.contains('concept-cell')) {
+                        td.setAttribute('data-label', headers[idx]);
+                    }
+                });
+            });
+        }
+        setDataLabels();
+    </script>
+</body>
+
+</html>

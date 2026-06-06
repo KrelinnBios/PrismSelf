@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#3b756f">
+  <title>神经多样性 · 共鸣刻度卡</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: #f6f4f1;
+      color: #1a1a2e;
+      min-height: 100vh;
+      padding: 28px 16px 60px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    /* 头部 */
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    .header h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(20px, 5vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .header h1 em {
+      color: #3b756f;
+      font-style: normal;
+    }
+
+    .sub {
+      margin-top: 8px;
+      font-size: clamp(11.5px, 2.5vw, 13px);
+      color: #888899;
+    }
+
+    /* 提示 */
+    .tip {
+      background: #fff;
+      border-left: 4px solid #3b756f;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 20px;
+      line-height: 1.65;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 图例 (0 / 25% / 50% / 75% / 100%) */
+    .legend {
+      display: flex;
+      gap: 12px 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      background: rgba(59, 117, 111, 0.08);
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+
+    .ldot {
+      width: 26px;
+      height: 26px;
+      border-radius: 40px;
+      background: #f0f0f0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid #ccc;
+      color: #555;
+    }
+
+    .ldot.lv25 {
+      background: #eef6f5;
+      border-color: #b3d0cd;
+      color: #3b756f;
+    }
+
+    .ldot.lv50 {
+      background: #dfecea;
+      border-color: #87b6b1;
+      color: #2f615c;
+    }
+
+    .ldot.lv75 {
+      background: #cfe1df;
+      border-color: #5f9e96;
+      color: #264f4b;
+    }
+
+    .ldot.lv100 {
+      background: #b8d4d0;
+      border-color: #3b756f;
+      color: #1f3f3b;
+      font-weight: 800;
+    }
+
+    .ldot.lv0::after {
+      content: '0';
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .ldot.lv25::after {
+      content: '25%';
+    }
+
+    .ldot.lv50::after {
+      content: '50%';
+    }
+
+    .ldot.lv75::after {
+      content: '75%';
+    }
+
+    .ldot.lv100::after {
+      content: '100%';
+    }
+
+    /* 重置按钮 */
+    .reset-btn {
+      display: block;
+      margin: 0 auto 24px;
+      padding: 8px 28px;
+      border: 1.5px solid #c9ddda;
+      border-radius: 40px;
+      background: white;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: #3b756f;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .reset-btn:hover {
+      background: #eef6f5;
+      border-color: #3b756f;
+    }
+
+    /* 区域卡片 */
+    .section {
+      margin-bottom: 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      background: #fff;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      color: white;
+      position: relative;
+    }
+
+    .sec-badge {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 19px;
+      font-weight: 700;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec-info h2 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .sec-info p {
+      font-size: 11px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* 板块共鸣显示（右上角） */
+    .sec-stats {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .sec-stats span:first-child {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .sec-stats .sec-ratio {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .sec-stats small {
+      font-size: 10px;
+      font-weight: 500;
+      margin-left: 2px;
+    }
+
+    .sec-A .sec-head {
+      background: linear-gradient(120deg, #3b756f, #9abbb7);
+    }
+
+    .sec-B .sec-head {
+      background: linear-gradient(120deg, #9a6b5a, #c4a292);
+    }
+
+    .sec-C .sec-head {
+      background: linear-gradient(120deg, #7e7a4a, #bdb78d);
+    }
+
+    .sec-D .sec-head {
+      background: linear-gradient(120deg, #4f6478, #9db0c0);
+    }
+
+    /* GRID 默认5列 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid #eee;
+    }
+
+    .cell {
+      position: relative;
+      cursor: pointer;
+      padding: 14px 8px 12px;
+      text-align: center;
+      border: 1px solid #f2efe9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      transition: all 0.1s ease;
+      min-height: 112px;
+      background: white;
+    }
+
+    .cell:active {
+      transform: scale(0.96);
+    }
+
+    .cell-icon {
+      font-size: 26px;
+      line-height: 1;
+      transition: transform 0.1s;
+    }
+
+    .cell:hover .cell-icon {
+      transform: scale(1.05);
+    }
+
+    .cell-text {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #4b4b60;
+      font-weight: 500;
+      max-width: 98%;
+    }
+
+    /* 圆环标识（百分比） */
+    .ring {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 30px;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      border: 1.5px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      transition: all 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .cell .ring::after {
+      content: attr(data-label);
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+
+    /* 等级背景 (0,25,50,75,100) + 主题色深化 */
+    .cell[data-level="0"] {
+      background: white;
+    }
+
+    .cell[data-level="25"] {
+      background: #f7fbfa;
+    }
+
+    .cell[data-level="50"] {
+      background: #eff7f6;
+    }
+
+    .cell[data-level="75"] {
+      background: #e8f3f1;
+    }
+
+    .cell[data-level="100"] {
+      background: #ddecea;
+    }
+
+    .sec-A .cell[data-level="25"] {
+      background: rgba(59, 117, 111, 0.06);
+    }
+
+    .sec-A .cell[data-level="50"] {
+      background: rgba(59, 117, 111, 0.12);
+    }
+
+    .sec-A .cell[data-level="75"] {
+      background: rgba(59, 117, 111, 0.22);
+    }
+
+    .sec-A .cell[data-level="100"] {
+      background: rgba(59, 117, 111, 0.34);
+    }
+
+    .sec-A .cell[data-level="25"] .cell-text {
+      color: #2f615c;
+      font-weight: 500;
+    }
+
+    .sec-A .cell[data-level="50"] .cell-text {
+      color: #264f4b;
+      font-weight: 500;
+    }
+
+    .sec-A .cell[data-level="75"] .cell-text {
+      color: #21423f;
+      font-weight: 550;
+    }
+
+    .sec-A .cell[data-level="100"] .cell-text {
+      color: #1f3f3b;
+      font-weight: 600;
+    }
+
+    .sec-B .cell[data-level="25"] {
+      background: rgba(154, 107, 90, 0.06);
+    }
+
+    .sec-B .cell[data-level="50"] {
+      background: rgba(154, 107, 90, 0.12);
+    }
+
+    .sec-B .cell[data-level="75"] {
+      background: rgba(154, 107, 90, 0.22);
+    }
+
+    .sec-B .cell[data-level="100"] {
+      background: rgba(154, 107, 90, 0.34);
+    }
+
+    .sec-B .cell[data-level="25"] .cell-text {
+      color: #835a4c;
+    }
+
+    .sec-B .cell[data-level="50"] .cell-text {
+      color: #744f43;
+    }
+
+    .sec-B .cell[data-level="75"] .cell-text {
+      color: #644338;
+    }
+
+    .sec-B .cell[data-level="100"] .cell-text {
+      color: #4f332b;
+      font-weight: 600;
+    }
+
+    .sec-C .cell[data-level="25"] {
+      background: rgba(126, 122, 74, 0.06);
+    }
+
+    .sec-C .cell[data-level="50"] {
+      background: rgba(126, 122, 74, 0.12);
+    }
+
+    .sec-C .cell[data-level="75"] {
+      background: rgba(126, 122, 74, 0.22);
+    }
+
+    .sec-C .cell[data-level="100"] {
+      background: rgba(126, 122, 74, 0.34);
+    }
+
+    .sec-C .cell[data-level="25"] .cell-text {
+      color: #6a6640;
+    }
+
+    .sec-C .cell[data-level="50"] .cell-text {
+      color: #5f5b39;
+    }
+
+    .sec-C .cell[data-level="75"] .cell-text {
+      color: #524f31;
+    }
+
+    .sec-C .cell[data-level="100"] .cell-text {
+      color: #403d25;
+      font-weight: 600;
+    }
+
+    .sec-D .cell[data-level="25"] {
+      background: rgba(79, 100, 120, 0.06);
+    }
+
+    .sec-D .cell[data-level="50"] {
+      background: rgba(79, 100, 120, 0.12);
+    }
+
+    .sec-D .cell[data-level="75"] {
+      background: rgba(79, 100, 120, 0.22);
+    }
+
+    .sec-D .cell[data-level="100"] {
+      background: rgba(79, 100, 120, 0.34);
+    }
+
+    .sec-D .cell[data-level="25"] .cell-text {
+      color: #3f5163;
+    }
+
+    .sec-D .cell[data-level="50"] .cell-text {
+      color: #354554;
+    }
+
+    .sec-D .cell[data-level="75"] .cell-text {
+      color: #2c3a48;
+    }
+
+    .sec-D .cell[data-level="100"] .cell-text {
+      color: #222c36;
+      font-weight: 600;
+    }
+
+    /* 圆环各等级颜色 */
+    .cell[data-level="0"] .ring {
+      border-color: #dbdbdb;
+      background: #fafafaaa;
+    }
+
+    .cell[data-level="0"] .ring::after {
+      content: "0";
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .cell[data-level="25"] .ring {
+      border-color: #b3d0cd;
+      background: #ffffffdd;
+    }
+
+    .cell[data-level="25"] .ring::after {
+      content: "25%";
+      color: #3b756f;
+    }
+
+    .cell[data-level="50"] .ring {
+      border-color: #87b6b1;
+      background: #eff7f6;
+    }
+
+    .cell[data-level="50"] .ring::after {
+      content: "50%";
+      color: #2f615c;
+      font-weight: 800;
+    }
+
+    .cell[data-level="75"] .ring {
+      border-color: #5f9e96;
+      background: #e8f3f1;
+    }
+
+    .cell[data-level="75"] .ring::after {
+      content: "75%";
+      color: #264f4b;
+      font-weight: 800;
+    }
+
+    .cell[data-level="100"] .ring {
+      border-color: #3b756f;
+      background: #ddecea;
+    }
+
+    .cell[data-level="100"] .ring::after {
+      content: "100%";
+      color: #1f3f3b;
+      font-weight: 800;
+    }
+
+    /* 底部简版提醒卡片 */
+    .footer {
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px 24px;
+      margin-top: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .footer h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer ul {
+      padding-left: 20px;
+      font-size: 12.5px;
+      color: #5a5a70;
+      line-height: 1.9;
+    }
+
+    /* 响应式 */
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cell {
+        min-height: 118px;
+        padding: 12px 5px 8px;
+      }
+
+      .cell-icon {
+        font-size: 22px;
+      }
+
+      .ring {
+        width: 24px;
+        height: 24px;
+        top: 4px;
+        right: 4px;
+      }
+
+      .ring::after {
+        font-size: 7.5px;
+      }
+
+      .sec-stats {
+        padding: 3px 8px;
+        font-size: 11px;
+      }
+
+      .sec-stats .sec-ratio {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .cell-text {
+        font-size: 10px;
+      }
+    }
+  </style>
+
+  <style id="prism-back-home-style">
+    .prism-back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid rgba(24, 33, 47, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #415469;
+      font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    .prism-back-home:hover {
+      color: #18212f;
+      border-color: rgba(24, 33, 47, 0.26);
+    }
+
+    @media (max-width: 520px) {
+      .prism-back-home {
+        top: 10px;
+        left: 10px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="page">
+    <div class="header">
+      <h1>神经<em>多样性</em> · 共鸣刻度卡</h1>
+      <p class="sub">大脑运作的每一种方式，都值得被温柔看见</p>
+    </div>
+
+    <div class="tip">
+      🧠 <strong>刻度指南</strong> ：点击任意格子，依次切换 25% → 50% → 75% → 100% → 归零。<br>
+      每个板块右上角会实时显示该板块的“共鸣强度”（平均契合百分比）。这不是诊断工具，只关乎你的自我觉察与神经多样性体验。
+    </div>
+
+    <!-- 简化图例 -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="ldot lv0"></div><span>0% 无感</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv25"></div><span>25% 轻微</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv50"></div><span>50% 中度</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv75"></div><span>75% 强烈</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv100"></div><span>100% 完全共鸣</span>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetBtn">↺ 重置全部刻度</button>
+
+    <!-- 板块 A B C D 会由js动态渲染，右上角统计也动态注入 -->
+    <div id="sections-container"></div>
+
+    <div class="footer">
+      <h4>🌿 神经多样性心语</h4>
+      <ul>
+        <li>你的大脑不是“故障版本”，而是独特的存在方式</li>
+        <li>差异不是缺陷，每一种体验都有资格被看见</li>
+        <li>刻度不是为了评判“够不够典型”，而是帮你更细腻地理解自己</li>
+        <li>你可以随时改变共鸣程度——自我认识本身就是流动的光谱</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const items = {
+      A: [
+        "🧩 有时候我完全听不懂别人的潜台词，需要直白的沟通",
+        "🔁 日程安排被突然打乱会让我极度不适甚至焦虑",
+        "💡 对特定的兴趣领域可以研究到极深，获得巨大满足感",
+        "👂 感官过载：某些声音/光线/衣物材质会让我刺痛般难受",
+        "🤝 社交像在做解谜游戏，不断分析规则，消耗大量能量",
+        "👀 眼神交流常常让我感到不自在，或者不知道该看哪里",
+        "💬 常常被别人说“表情怪怪的”或“语气不对”，但我自己并没察觉",
+        "🌊 情绪有时候来得突然又强烈，很难快速调节",
+        "🧠 我能轻易发现系统模式，注意到别人忽略的细节",
+        "🎭 伪装（Masking）很累，但好像不伪装就没办法安全融入群体",
+        "🦋 压力大或兴奋时，会有重复的小动作（如抖腿、摆手）来调节自我",
+        "🍽️ 常常感觉不到饿、渴或累，直到身体撑不住才突然崩溃（内感受迟钝）",
+        "🧘 独处是我恢复能量的重要方式，这并不是因为我孤僻",
+        "📋 对伦理、规则有强烈的正义感，遇到不公极易引发对峙",
+        "🎨 我的思维方式偏视觉化/系统化，在某些特定任务上表现突出"
+      ],
+      B: [
+        "⏳ 对时间的感觉和别人不一样，常常预估错误（时间盲）",
+        "🌀 注意力像瀑布，很难停留在我不想做或觉得枯燥的事情上",
+        "🚀 有时又会进入极度专注（Hyperfocus）状态，忘记了周围一切",
+        "📦 启动困难：脑子里想了一百遍，但身体就是坐在原地动不了",
+        "💢 内心总是躁动不安，很难真正放松下来（即使表面没动）",
+        "🛒 工作记忆差，转头就忘，经常找不到钥匙、手机或忘记约会",
+        "🧠 脑子里有多条声音或音乐同时播放，很难过滤背景噪音",
+        "❌ 拒绝敏感（RSD）：轻微的批评也会带来毁灭性的情绪打击",
+        "💡 脑子里永远有无数个绝妙的创意，但常常挖了坑填不完",
+        "🎢 情绪调节困难，容易瞬间“上头”兴奋或迅速跌入沮丧",
+        "📺 极易陷入报复性熬夜或多巴胺成瘾行为，即使知道会有后果",
+        "🌪️ 必须有最后期限（DDL）的压力和肾上腺素才能激发行动力",
+        "🙈 视线之外即不存在：东西一旦收进柜子，就好像从世界上消失了",
+        "🗣️ 脑子转得比嘴快，常常在别人说话时忍不住插嘴或接话",
+        "☕ 喝咖啡或能量饮料不仅不提神，反而会让我觉得平静或犯困"
+      ],
+      C: [
+        "🔥 ADHD渴望新鲜刺激，ASD又极度需要规律可控，内心经常互搏",
+        "🤯 极度想要井井有条，但精力不足导致周围环境往往一片混乱",
+        "🔄 任务切换（Task switching）像是在强行重启大脑，极其耗能",
+        "🎢 有时极度逃避外界干扰，有时又极度渴望强烈的感官刺激",
+        "🧩 努力学习社交技巧，但始终觉得和世界隔着一层透明玻璃",
+        "🌀 经常被外界贴上“想太多/太敏感/性格古怪”的标签，内耗严重",
+        "📵 社交或感官电量彻底耗尽时，会进入“关机”甚至失语状态",
+        "⚖️ 非黑即白的底层逻辑，配合上冲动特质，经常让我陷入内疚",
+        "❤️ 有时对万物（包括无生命物体）共情泛滥，有时又显得极其冷漠",
+        "🌜 无论白天多累，一到深夜大脑就自动开启“狂欢模式”，睡眠紊乱",
+        "🛠️ 只有建立高度定制化的生活系统和外部工具，才能勉强维持运转",
+        "🧬 感觉自己的大脑底层代码与大众截然不同，无法兼容社会默认规则",
+        "💭 容易陷入思维反刍，在深夜反复咀嚼几年前的一次社交尴尬",
+        "👥 极度渴望深度的情感连接，但又害怕被看穿后遭到拒绝和抛弃",
+        "🎭 为了同时掩饰两套谱系的特质，长期处于精疲力竭的状态中"
+      ],
+      D: [
+        "🏳️‍🌈 了解神经多样性概念后，我终于停止了对自己的长期厌恶",
+        "🛡️ 我学会了提出合理便利（Accommodation），不再觉得这是在添麻烦",
+        "🛠️ 开始以自己的舒适度为基准规划生活，而不是硬套“正常标准”",
+        "💪 在特定的环境和任务中，我截然不同的脑回路就是一种超能力",
+        "🤗 遇到同样神经多样性的伙伴时，有一种不用解释就懂的归属感",
+        "🧩 主动寻找并建立适合自己的环境，不再一味忍受外界的消耗",
+        "📖 允许自己拒绝消耗能量的社交或活动，并且不再为此感到抱歉",
+        "🌱 认识到自己的能量和注意力有独特周期，学会了顺应而非对抗",
+        "🕊️ 我的存在方式只是一种神经分布的差异，而不是一种人格缺陷",
+        "🗣️ 能够坦然地对别人表达“我的大脑运作方式和你不太一样”",
+        "🔧 使用辅助工具（如降噪耳机、提醒App）是我的智慧，不是软弱",
+        "🎯 把“纠正自己”的精力省下来，投入到了真正热爱和擅长的事物中",
+        "🌈 神经多样性运动让我看到了社群的力量，我不再是一座孤岛",
+        "👑 接受了我不必擅长所有事，我的个人价值不由“执行功能”决定",
+        "💎 这张卡片也是一次自我确认：我是完整且珍贵的，我并没有“坏掉”"
+      ]
+    };
+
+    // 板块名称和配色主题
+    const sectionsMeta = [
+      { id: 'A', title: '自闭谱系 (ASD)', subtitle: '感知 · 社交 · 感官 · 思维模式', colorClass: 'sec-A' },
+      { id: 'B', title: '注意缺陷/多动谱系 (ADHD)', subtitle: '注意力 · 冲动 · 情绪 · 执行功能', colorClass: 'sec-B' },
+      { id: 'C', title: '共享与交错 (AuDHD)', subtitle: 'ASD+ADHD 重叠经验', colorClass: 'sec-C' },
+      { id: 'D', title: '拥抱神经多样性', subtitle: '自我叙事 · 神经骄傲', colorClass: 'sec-D' }
+    ];
+
+    // 存储所有cell的弱引用（用于更新统计）
+    let sectionCells = { A: [], B: [], C: [], D: [] };
+    let statsElements = {}; // 存储每个板块的百分比显示元素
+
+    // 等级 -> 分数 (0,25,50,75,100)
+    function levelToScore(level) {
+      const l = parseInt(level);
+      if (l === 25) return 25;
+      if (l === 50) return 50;
+      if (l === 75) return 75;
+      if (l === 100) return 100;
+      return 0;
+    }
+
+    // 下一等级 (0→25→50→75→100→0)
+    function nextLevel(current) {
+      const order = [0, 25, 50, 75, 100];
+      let idx = order.indexOf(current);
+      if (idx === -1) return 25;
+      const nextIdx = (idx + 1) % order.length;
+      return order[nextIdx];
+    }
+
+    // 更新指定板块的统计 (共鸣百分比)
+    function updateSectionStats(sectionId) {
+      const cells = sectionCells[sectionId];
+      if (!cells || cells.length === 0) return;
+      let totalScore = 0;
+      cells.forEach(cell => {
+        const levelVal = parseInt(cell.getAttribute('data-level') || '0');
+        totalScore += levelToScore(levelVal);
+      });
+      const maxPossible = cells.length * 100;
+      let percent = maxPossible === 0 ? 0 : (totalScore / maxPossible) * 100;
+      percent = Math.round(percent);
+      const statsSpan = statsElements[sectionId];
+      if (statsSpan) {
+        statsSpan.innerText = percent;
+      }
+    }
+
+    // 更新所有板块统计
+    function updateAllSectionsStats() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        updateSectionStats(sec);
+      }
+    }
+
+    // 更新单个cell的ring显示
+    function updateRingLabel(cell) {
+      const level = parseInt(cell.getAttribute('data-level')) || 0;
+      const ringDiv = cell.querySelector('.ring');
+      if (!ringDiv) return;
+      let showTxt = '';
+      if (level === 0) showTxt = '0';
+      else if (level === 25) showTxt = '25%';
+      else if (level === 50) showTxt = '50%';
+      else if (level === 75) showTxt = '75%';
+      else if (level === 100) showTxt = '100%';
+      ringDiv.setAttribute('data-label', showTxt);
+    }
+
+    // 处理点击格子
+    function handleCellClick(e) {
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+      const curLevel = parseInt(cell.getAttribute('data-level')) || 0;
+      const newLevel = nextLevel(curLevel);
+      cell.setAttribute('data-level', newLevel);
+      updateRingLabel(cell);
+
+      // 找出该格子所属板块并更新统计
+      const sectionDiv = cell.closest('.section');
+      if (sectionDiv) {
+        const secClass = Array.from(sectionDiv.classList).find(c => c.startsWith('sec-'));
+        let secId = null;
+        if (secClass === 'sec-A') secId = 'A';
+        else if (secClass === 'sec-B') secId = 'B';
+        else if (secClass === 'sec-C') secId = 'C';
+        else if (secClass === 'sec-D') secId = 'D';
+        if (secId) updateSectionStats(secId);
+      }
+      // 微动效
+      cell.style.transform = 'scale(0.97)';
+      setTimeout(() => { if (cell) cell.style.transform = ''; }, 120);
+    }
+
+    // 重置所有格子
+    function resetAll() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 渲染整个页面 (动态构建四个板块)
+    function buildFullPage() {
+      const container = document.getElementById('sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+      // 清空存储
+      sectionCells = { A: [], B: [], C: [], D: [] };
+      statsElements = {};
+
+      sectionsMeta.forEach(meta => {
+        const { id, title, subtitle, colorClass } = meta;
+        const itemsList = items[id];
+        if (!itemsList) return;
+
+        // 创建section元素
+        const section = document.createElement('div');
+        section.className = `section ${colorClass}`;
+
+        // head部分（包含右上角统计占位）
+        const secHead = document.createElement('div');
+        secHead.className = 'sec-head';
+        secHead.innerHTML = `
+        <div class="sec-badge">${id}</div>
+        <div class="sec-info">
+          <h2>${title}</h2>
+          <p>${subtitle}</p>
+        </div>
+        <div class="sec-stats">
+          <span>板块共鸣</span>
+          <span class="sec-ratio" id="stats-${id}">0</span><small>%</small>
+        </div>
+      `;
+        section.appendChild(secHead);
+
+        // grid容器
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+
+        // 生成格子
+        itemsList.forEach(rawText => {
+          // 以第一个空格为界，分离 Emoji 和纯文本
+          const spaceIndex = rawText.indexOf(' ');
+          let emoji = '';
+          let pureText = '';
+
+          if (spaceIndex !== -1) {
+            emoji = rawText.slice(0, spaceIndex).trim();
+            pureText = rawText.slice(spaceIndex + 1).trim();
+          } else {
+            // 兼容万一没有空格的情况
+            emoji = rawText.slice(0, 2);
+            pureText = rawText.slice(2);
+          }
+
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.setAttribute('data-level', '0');
+
+          // 将分离后的 emoji 和 pureText 分别填入对应容器
+          cell.innerHTML = `
+          <div class="ring" data-label="0"></div>
+          <div class="cell-icon">${emoji}</div>
+          <div class="cell-text">${pureText}</div>
+        `;
+          grid.appendChild(cell);
+          sectionCells[id].push(cell);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+
+        // 保存统计显示元素引用
+        const statsSpan = document.getElementById(`stats-${id}`);
+        if (statsSpan) statsElements[id] = statsSpan;
+      });
+
+      // 添加全局点击委托 (因为grid是动态生成的，直接监听父容器)
+      const sectionsContainer = document.getElementById('sections-container');
+      if (sectionsContainer) {
+        sectionsContainer.addEventListener('click', (e) => {
+          const cell = e.target.closest('.cell');
+          if (cell) handleCellClick(e);
+        });
+      }
+
+      // 重置按钮
+      const resetBtn = document.getElementById('resetBtn');
+      if (resetBtn) {
+        // 避免重复绑定
+        const newBtn = resetBtn.cloneNode(true);
+        resetBtn.parentNode.replaceChild(newBtn, resetBtn);
+        newBtn.addEventListener('click', () => {
+          resetAll();
+        });
+      } else {
+        const btn = document.getElementById('resetBtn');
+        if (btn) btn.addEventListener('click', resetAll);
+      }
+
+      // 初始化所有环 & 统计归零
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 页面启动
+    buildFullPage();
+  </script>
+</body>
+
+</html>
