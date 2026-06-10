@@ -59,8 +59,19 @@
 
     #write figure,
     #write .table-figure {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin-left: 0;
+      margin-right: 0;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+    }
+
+    #write .table-figure > table {
+      width: max-content;
+      min-width: 100%;
+      max-width: none;
     }
 
     #write pre {
@@ -205,7 +216,7 @@
 
     .terms-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1.2rem;
       justify-items: center;
     }
@@ -223,6 +234,7 @@
       color: var(--ink);
       width: 100%;
       max-width: 860px;
+      min-width: 0;
     }
 
     .term-card.highlight {
@@ -279,6 +291,8 @@
     }
 
     .term-desc {
+      min-width: 0;
+      max-width: 100%;
       font-size: 0.9rem;
       line-height: 1.75;
       font-weight: 300;
@@ -562,7 +576,7 @@
     }
     @media (max-width: 600px) {
       .terms-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .toc-grid {
