@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2f6f73">
+  <title>关系需求菜单 · PrismSelf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #20303d;
+      --ink-mid: #536776;
+      --ink-soft: #7b8d99;
+      --line: #dfe9e8;
+      --paper: #ffffff;
+      --bg: #f3f7f6;
+      --teal: #2f6f73;
+      --teal-dark: #214f52;
+      --teal-soft: #e8f4f1;
+      --rose: #a65168;
+      --rose-soft: #f9edf0;
+      --amber: #a36d1d;
+      --amber-soft: #fbf2df;
+      --slate: #596775;
+      --slate-soft: #edf1f4;
+      --shadow: 0 16px 44px rgba(32, 48, 61, 0.08);
+      --shadow-sm: 0 5px 18px rgba(32, 48, 61, 0.06);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(47, 111, 115, 0.11), transparent 28rem),
+        radial-gradient(circle at 92% 16%, rgba(166, 81, 104, 0.08), transparent 25rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid rgba(32, 48, 61, 0.13);
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow-sm);
+      color: var(--ink-mid);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+    }
+
+    .back-home:hover {
+      color: var(--ink);
+      border-color: rgba(32, 48, 61, 0.28);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 88px 0 64px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(32px, 6vw, 64px);
+      border: 1px solid rgba(47, 111, 115, 0.14);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: -110px;
+      top: -130px;
+      border: 52px solid rgba(47, 111, 115, 0.07);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    h1 em {
+      color: var(--teal);
+      font-style: normal;
+    }
+
+    .hero-lead {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: var(--ink-mid);
+      font-size: clamp(14px, 2vw, 17px);
+    }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(243, 247, 246, 0.74);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .hero-note span {
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: 0.9fr 1.4fr;
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .guide-card,
+    .legend-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .guide-card h2,
+    .legend-card h2 {
+      margin: 0 0 10px;
+      font-family: "Noto Serif SC", serif;
+      font-size: 18px;
+    }
+
+    .guide-card p {
+      margin: 0;
+      color: var(--ink-mid);
+      font-size: 14px;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .legend-item {
+      padding: 10px 8px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .legend-item small {
+      display: block;
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    .legend-item.need {
+      background: var(--rose-soft);
+      color: var(--rose);
+    }
+
+    .legend-item.prefer {
+      background: var(--teal-soft);
+      color: var(--teal-dark);
+    }
+
+    .legend-item.discuss {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .legend-item.limit {
+      background: var(--slate-soft);
+      color: var(--slate);
+    }
+
+    .utility-bar {
+      position: sticky;
+      top: 12px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 22px;
+      padding: 12px 14px;
+      border: 1px solid rgba(47, 111, 115, 0.16);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.91);
+      box-shadow: 0 10px 30px rgba(32, 48, 61, 0.1);
+      backdrop-filter: blur(16px);
+    }
+
+    .progress-copy {
+      flex: 0 0 auto;
+      min-width: 105px;
+    }
+
+    .progress-copy strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .progress-copy span {
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e7eeec;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), #67a99a);
+      transition: width 0.25s ease;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink-mid);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .button:hover {
+      border-color: rgba(47, 111, 115, 0.38);
+      color: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .button:disabled {
+      cursor: wait;
+      opacity: 0.68;
+      transform: none;
+    }
+
+    .button.primary {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .button.primary:hover {
+      background: var(--teal-dark);
+      color: #fff;
+    }
+
+    .profile-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding: 14px 18px;
+      border: 1px dashed rgba(47, 111, 115, 0.28);
+      border-radius: 16px;
+      background: rgba(232, 244, 241, 0.5);
+    }
+
+    .profile-row label {
+      color: var(--teal-dark);
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .profile-row input {
+      width: 100%;
+      padding: 8px 2px;
+      border: 0;
+      border-bottom: 1px solid rgba(47, 111, 115, 0.28);
+      outline: none;
+      background: transparent;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .profile-row input:focus {
+      border-bottom-color: var(--teal);
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .topic-card {
+      overflow: hidden;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .topic-card summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .topic-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .topic-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+    }
+
+    .topic-head.relationship {
+      background: linear-gradient(120deg, #2f6f73, #568f8b);
+    }
+
+    .topic-head.emotion {
+      background: linear-gradient(120deg, #94546a, #be7b8f);
+    }
+
+    .topic-head.communication {
+      background: linear-gradient(120deg, #4d6480, #708aa8);
+    }
+
+    .topic-head.time {
+      background: linear-gradient(120deg, #8b6b37, #b08d57);
+    }
+
+    .topic-head.social {
+      background: linear-gradient(120deg, #687052, #8d9871);
+    }
+
+    .topic-head.autonomy {
+      background: linear-gradient(120deg, #665b86, #8d80aa);
+    }
+
+    .topic-head.practical {
+      background: linear-gradient(120deg, #5a6f73, #81969a);
+    }
+
+    .topic-head.intimacy {
+      background: linear-gradient(120deg, #8c5360, #b57a84);
+    }
+
+    .topic-icon {
+      display: grid;
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      font-family: "Noto Serif SC", serif;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .topic-heading {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .topic-heading h2 {
+      margin: 0;
+      font-family: "Noto Serif SC", serif;
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .topic-heading p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      opacity: 0.82;
+    }
+
+    .topic-count {
+      margin-left: auto;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      opacity: 0.94;
+    }
+
+    .collapse-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .collapse-count {
+      font-size: 15px;
+      font-weight: 700;
+      opacity: 0.94;
+    }
+
+    .collapse-label {
+      min-width: 56px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: right;
+      opacity: 0.92;
+    }
+
+    .topic-list {
+      padding: 6px 18px 10px;
+    }
+
+    .topic-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #edf2f1;
+    }
+
+    .topic-item:last-child {
+      border-bottom: 0;
+    }
+
+    .item-copy {
+      margin-bottom: 10px;
+    }
+
+    .item-title {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .item-desc {
+      display: block;
+      margin-top: 2px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .status-group {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .status-choice {
+      min-height: 36px;
+      padding: 6px 4px;
+      border: 1px solid #e2e9e8;
+      border-radius: 8px;
+      background: #f9fbfa;
+      color: #82919b;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.25;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .status-choice:hover {
+      border-color: #b9c9c6;
+      color: var(--ink-mid);
+    }
+
+    .status-choice.is-selected {
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(32, 48, 61, 0.13);
+    }
+
+    .status-choice.need.is-selected {
+      border-color: var(--rose);
+      background: var(--rose);
+    }
+
+    .status-choice.prefer.is-selected {
+      border-color: var(--teal);
+      background: var(--teal);
+    }
+
+    .status-choice.discuss.is-selected {
+      border-color: var(--amber);
+      background: var(--amber);
+    }
+
+    .status-choice.limit.is-selected {
+      border-color: var(--slate);
+      background: var(--slate);
+    }
+
+    .sensitive-note {
+      margin: 14px 18px 2px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--rose-soft);
+      color: #78515c;
+      font-size: 13px;
+    }
+
+    .custom-card {
+      margin-top: 20px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .custom-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .custom-head h2 {
+      margin: 0;
+      font-family: "Noto Serif SC", serif;
+      font-size: 20px;
+    }
+
+    .custom-head p {
+      margin: 4px 0 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .custom-composer {
+      display: flex;
+      gap: 10px;
+      width: min(100%, 560px);
+    }
+
+    .custom-composer input {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      color: var(--ink);
+      background: #fbfcfc;
+    }
+
+    .custom-composer input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(47, 111, 115, 0.09);
+    }
+
+    .custom-list:empty::before {
+      content: "还没有自定义议题。可以添加只有你们才会遇到的安排、边界或期待。";
+      display: block;
+      padding: 16px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .custom-item {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) minmax(280px, 0.8fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #edf2f1;
+    }
+
+    .custom-item:last-child {
+      border-bottom: 0;
+    }
+
+    .delete-custom {
+      padding: 5px 8px;
+      border: 0;
+      background: transparent;
+      color: var(--ink-soft);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .delete-custom:hover {
+      color: var(--rose);
+    }
+
+    .summary-card {
+      margin-top: 28px;
+      padding: clamp(22px, 4vw, 36px);
+      border: 1px solid rgba(47, 111, 115, 0.18);
+      border-radius: 26px;
+      background: linear-gradient(145deg, #ffffff, #f0f7f5);
+      box-shadow: var(--shadow);
+    }
+
+    .summary-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .summary-head h2 {
+      margin: 0;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(21px, 3vw, 28px);
+    }
+
+    .summary-head p {
+      margin: 4px 0 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .summary-block {
+      min-height: 132px;
+      padding: 17px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .summary-block h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .summary-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .summary-dot.need {
+      background: var(--rose);
+    }
+
+    .summary-dot.prefer {
+      background: var(--teal);
+    }
+
+    .summary-dot.discuss {
+      background: var(--amber);
+    }
+
+    .summary-dot.limit {
+      background: var(--slate);
+    }
+
+    .summary-list {
+      margin: 0;
+      padding-left: 1.2em;
+      color: var(--ink-mid);
+      font-size: 13px;
+    }
+
+    .summary-list li + li {
+      margin-top: 5px;
+    }
+
+    .summary-empty {
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .summary-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-note {
+      max-width: 780px;
+      margin: 28px auto 0;
+      color: var(--ink-soft);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 100;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(32, 48, 61, 0.94);
+      color: #fff;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 12px);
+      transition: 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 900px) {
+      .guide {
+        grid-template-columns: 1fr;
+      }
+
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .custom-head {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .custom-composer {
+        width: 100%;
+      }
+
+      .custom-item {
+        grid-template-columns: 1fr minmax(280px, 0.8fr) auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .back-home {
+        top: 10px;
+        left: 10px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1180px);
+        padding-top: 62px;
+      }
+
+      .hero {
+        padding: 28px 20px;
+        border-radius: 22px;
+      }
+
+      .hero-notes {
+        grid-template-columns: 1fr;
+      }
+
+      .legend {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .utility-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+        top: 8px;
+      }
+
+      .progress-copy {
+        min-width: 92px;
+      }
+
+      .progress-track {
+        min-width: calc(100% - 118px);
+      }
+
+      .toolbar-actions {
+        width: 100%;
+      }
+
+      .toolbar-actions .button {
+        flex: 1;
+      }
+
+      .profile-row {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .topic-head {
+        padding: 15px 16px;
+      }
+
+      .topic-list {
+        padding: 4px 14px 8px;
+      }
+
+      .custom-card {
+        padding: 19px 15px;
+      }
+
+      .custom-composer {
+        flex-direction: column;
+      }
+
+      .custom-item {
+        grid-template-columns: 1fr auto;
+      }
+
+      .custom-item .status-group {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      .summary-head {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .summary-actions {
+        width: 100%;
+      }
+
+      .summary-actions .button {
+        flex: 1;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .status-group {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <a class="back-home" href="../index.html">← 返回知识图谱</a>
+
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">关系对话工具</div>
+      <h1>关系<em>需求菜单</em></h1>
+      <p class="hero-lead">
+        把“你应该懂我”变成可以被看见、被讨论的具体选项。这里没有标准答案，也不预设关系一定要走向恋爱、同居、婚姻或性关系。
+      </p>
+      <div class="hero-notes">
+        <div class="hero-note">
+          <strong>先独立填写</strong>
+          <span>减少迎合，也更容易看见真实差异</span>
+        </div>
+        <div class="hero-note">
+          <strong>再交换摘要</strong>
+          <span>从重合项开始，再讨论分歧和边界</span>
+        </div>
+        <div class="hero-note">
+          <strong>随时可以修改</strong>
+          <span>需求会随阶段、对象与情境发生变化</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="guide" aria-label="使用说明">
+      <div class="guide-card">
+        <h2>这不是匹配测试</h2>
+        <p>
+          四档没有高低之分。“目前不接受”是在表达边界，不是否定某种生活方式。涉及安全、同意和身体自主的事项，不应通过妥协来绕过任何一方的拒绝。
+        </p>
+      </div>
+      <div class="legend-card">
+        <h2>四种选择</h2>
+        <div class="legend">
+          <div class="legend-item need">核心需求<small>缺少会明显影响关系</small></div>
+          <div class="legend-item prefer">偏好期待<small>有会更好，但非必要</small></div>
+          <div class="legend-item discuss">可以商量<small>取决于方式和情境</small></div>
+          <div class="legend-item limit">目前不接受<small>现在的边界或禁区</small></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="utility-bar">
+      <div class="progress-copy">
+        <strong id="progressText">已选择 0 / 0</strong>
+        <span>内容仅保存在本机</span>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="toolbar-actions">
+        <button class="button" id="exportButton" type="button">导出已填模块图片</button>
+        <button class="button" id="resetButton" type="button">清空选择</button>
+      </div>
+    </div>
+
+    <div class="profile-row">
+      <label for="profileName">这份菜单属于</label>
+      <input id="profileName" type="text" maxlength="30" placeholder="可填写昵称或关系中的视角，例如：小林 / 我的视角">
+    </div>
+
+    <div class="topics-grid" id="topicsGrid"></div>
+
+    <section class="custom-card" aria-labelledby="customTitle">
+      <div class="custom-head">
+        <div>
+          <h2 id="customTitle">你们自己的议题</h2>
+          <p>关系不必套进固定模板。把未被列出的期待、安排或边界加进来。</p>
+        </div>
+        <form class="custom-composer" id="customForm">
+          <input id="customInput" type="text" maxlength="80" placeholder="例如：是否一起养宠物">
+          <button class="button primary" type="submit">添加议题</button>
+        </form>
+      </div>
+      <div class="custom-list" id="customList"></div>
+    </section>
+
+    <section class="summary-card" id="summary">
+      <div class="summary-head">
+        <div>
+          <h2>我的对话摘要</h2>
+          <p>先分享结论，再解释每个选择背后的原因、条件和感受。</p>
+        </div>
+        <div class="summary-actions">
+          <button class="button primary" id="copyButton" type="button">复制文字摘要</button>
+        </div>
+      </div>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </section>
+
+    <p class="footer-note">
+      本工具用于个人梳理和关系沟通，不构成心理、医疗或法律建议。所有填写内容默认只存储在当前浏览器中；使用公共设备时，请在离开前清空选择。
+    </p>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "prismself.relationship-needs-menu.v1";
+
+    const statuses = [
+      { id: "need", label: "核心需求" },
+      { id: "prefer", label: "偏好期待" },
+      { id: "discuss", label: "可以商量" },
+      { id: "limit", label: "目前不接受" }
+    ];
+
+    const categories = [
+      {
+        id: "relationship",
+        icon: "定",
+        title: "关系定义与未来",
+        subtitle: "承诺方式 · 长期方向 · 关系命名",
+        items: [
+          { id: "relationship-label", title: "用明确的称呼定义彼此的关系", desc: "例如伴侣、恋人、搭档、QPR 伙伴或其他自定义称呼" },
+          { id: "relationship-public", title: "向重要的人公开或确认这段关系" },
+          { id: "relationship-exclusivity", title: "约定关系是否排他，以及排他的具体范围", desc: "可分别讨论浪漫、性、情感和生活层面的边界" },
+          { id: "relationship-priority", title: "在重大决定中优先考虑彼此" },
+          { id: "relationship-cohabit", title: "未来共同居住或长期共享生活空间" },
+          { id: "relationship-marriage", title: "结婚、登记或建立其他法律关系" },
+          { id: "relationship-parenting", title: "共同养育孩子，或承担稳定的照护角色" },
+          { id: "relationship-future", title: "定期讨论关系方向与长期计划" }
+        ]
+      },
+      {
+        id: "emotion",
+        icon: "心",
+        title: "情感亲密与支持",
+        subtitle: "表达爱意 · 脆弱分享 · 情绪照护",
+        items: [
+          { id: "emotion-affection", title: "经常用语言或行动表达在乎与欣赏" },
+          { id: "emotion-love", title: "使用“爱你”等直接的情感表达" },
+          { id: "emotion-vulnerability", title: "分享脆弱、害怕、羞耻或不确定的感受" },
+          { id: "emotion-hard-times", title: "在压力、疾病或低谷时提供稳定支持" },
+          { id: "emotion-past", title: "谈论彼此的成长经历与过去关系" },
+          { id: "emotion-hopes", title: "分享个人目标、愿望和对未来的想象" },
+          { id: "emotion-mental-health", title: "讨论心理健康状态与可提供的支持范围" },
+          { id: "emotion-repair", title: "冲突后主动安抚、修复并重新建立连接" }
+        ]
+      },
+      {
+        id: "communication",
+        icon: "沟",
+        title: "沟通与冲突",
+        subtitle: "联系频率 · 分歧表达 · 修复机制",
+        items: [
+          { id: "communication-checkin", title: "每天或定期互相问候、同步近况" },
+          { id: "communication-text", title: "通过文字消息保持日常联系" },
+          { id: "communication-call", title: "通过电话或视频进行较长交流" },
+          { id: "communication-decisions", title: "重要决定前先告知或共同讨论" },
+          { id: "communication-disagreement", title: "可以直接表达不满、拒绝和不同意见" },
+          { id: "communication-timeout", title: "情绪过载时允许暂停，并约定回来继续谈" },
+          { id: "communication-honesty", title: "主动说明可能影响关系的重要信息" },
+          { id: "communication-checkup", title: "定期进行一次关系状态检查" }
+        ]
+      },
+      {
+        id: "time",
+        icon: "伴",
+        title: "相处时间与日常",
+        subtitle: "陪伴节奏 · 共同活动 · 生活参与",
+        items: [
+          { id: "time-scheduled", title: "安排固定或可预期的见面时间" },
+          { id: "time-date", title: "有意识地安排约会或特别的相处时刻" },
+          { id: "time-hobbies", title: "发展共同爱好、项目或固定活动" },
+          { id: "time-ordinary", title: "一起处理普通日常，例如吃饭、采购或做家务" },
+          { id: "time-overnight", title: "一起过夜或共享较长时间的私人空间" },
+          { id: "time-travel", title: "共同旅行、度假或参加外地活动" },
+          { id: "time-initiative", title: "双方都主动发起见面和安排计划" },
+          { id: "time-presence", title: "相处时保留不被手机或工作打断的专注时间" }
+        ]
+      },
+      {
+        id: "social",
+        icon: "社",
+        title: "社交融入与可见度",
+        subtitle: "朋友家人 · 公开程度 · 社交参与",
+        items: [
+          { id: "social-friends", title: "认识并参与彼此的重要朋友圈" },
+          { id: "social-family", title: "认识彼此的家人或重要照护者" },
+          { id: "social-events", title: "以彼此的重要关系身份参加社交活动" },
+          { id: "social-online", title: "在社交媒体上提及或呈现这段关系" },
+          { id: "social-work", title: "在工作或专业场合适度公开关系" },
+          { id: "social-celebrations", title: "一起度过节日、生日或重要纪念日" },
+          { id: "social-other-relations", title: "认识彼此的其他重要关系或伴侣", desc: "适用于多重伴侣、非单偶或拥有多种核心关系的情境" }
+        ]
+      },
+      {
+        id: "autonomy",
+        icon: "界",
+        title: "自主、隐私与边界",
+        subtitle: "独处空间 · 独立关系 · 权力平衡",
+        items: [
+          { id: "autonomy-alone", title: "保留不需要解释用途的独处时间" },
+          { id: "autonomy-friends", title: "维持各自独立的朋友和社交生活" },
+          { id: "autonomy-interests", title: "支持彼此发展独立兴趣、目标与身份" },
+          { id: "autonomy-privacy", title: "保留手机、账号、日记和通信隐私" },
+          { id: "autonomy-decisions", title: "个人身体、职业与生活选择由本人最终决定" },
+          { id: "autonomy-other-intimacy", title: "允许发展其他亲密、浪漫或性关系", desc: "可继续拆分讨论关系类型、知情方式与安全边界" },
+          { id: "autonomy-space", title: "在共同生活中拥有自己的空间和物品边界" },
+          { id: "autonomy-power", title: "重大规则由双方平等协商，不由一方单方面决定" }
+        ]
+      },
+      {
+        id: "practical",
+        icon: "务",
+        title: "金钱与生活责任",
+        subtitle: "费用安排 · 家务照护 · 风险分担",
+        items: [
+          { id: "practical-costs", title: "明确日常约会与共同活动的费用分担方式" },
+          { id: "practical-budget", title: "为旅行、居住或共同计划设立预算" },
+          { id: "practical-support", title: "在能力范围内为彼此提供经济支持" },
+          { id: "practical-assets", title: "共同储蓄、持有资产或承担长期财务责任" },
+          { id: "practical-transparency", title: "对可能影响共同生活的收入、债务和风险保持透明" },
+          { id: "practical-chores", title: "公平分配家务、采购和行政事务" },
+          { id: "practical-care", title: "生病或遇到紧急情况时承担照护与联络责任" },
+          { id: "practical-emergency", title: "把对方列为紧急联系人或重要事务授权人" }
+        ]
+      },
+      {
+        id: "intimacy",
+        icon: "密",
+        title: "身体与性亲密",
+        subtitle: "身体接触 · 性同意 · 健康与安全",
+        sensitive: true,
+        items: [
+          { id: "intimacy-affection", title: "拥抱、依偎、牵手等非性身体接触" },
+          { id: "intimacy-public", title: "在公共场合进行亲密身体表达" },
+          { id: "intimacy-kissing", title: "接吻或其他带有浪漫意味的身体接触" },
+          { id: "intimacy-sexual-touch", title: "进行带有性意味的触碰或互动" },
+          { id: "intimacy-sex", title: "发生双方明确同意的性行为" },
+          { id: "intimacy-frequency", title: "讨论彼此期待的性互动频率与主动方式" },
+          { id: "intimacy-safer-sex", title: "共同执行避孕、屏障防护和性健康检测约定" },
+          { id: "intimacy-consent", title: "每次互动都确认同意，并允许随时改变主意" },
+          { id: "intimacy-stop", title: "建立清楚的暂停、停止和事后照护方式" },
+          { id: "intimacy-no-pressure", title: "不把身体或性亲密当作爱、承诺或关系价值的证明" }
+        ]
+      }
+    ];
+
+    let state = {
+      profileName: "",
+      answers: {},
+      custom: []
+    };
+
+    const topicsGrid = document.getElementById("topicsGrid");
+    const customList = document.getElementById("customList");
+    const summaryGrid = document.getElementById("summaryGrid");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const profileName = document.getElementById("profileName");
+    const toast = document.getElementById("toast");
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && typeof saved === "object") {
+          state = {
+            profileName: typeof saved.profileName === "string" ? saved.profileName : "",
+            answers: saved.answers && typeof saved.answers === "object" ? saved.answers : {},
+            custom: Array.isArray(saved.custom) ? saved.custom : []
+          };
+        }
+      } catch (error) {
+        console.warn("无法读取已保存的关系需求菜单。", error);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (error) {
+        console.warn("无法保存关系需求菜单。", error);
+      }
+    }
+
+    function makeStatusGroup(itemId, label) {
+      const group = document.createElement("div");
+      group.className = "status-group";
+      group.setAttribute("role", "group");
+      group.setAttribute("aria-label", label);
+      group.dataset.itemId = itemId;
+
+      statuses.forEach((status) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `status-choice ${status.id}`;
+        button.textContent = status.label;
+        button.dataset.status = status.id;
+        button.setAttribute("aria-pressed", "false");
+        button.addEventListener("click", () => {
+          if (state.answers[itemId] === status.id) {
+            delete state.answers[itemId];
+          } else {
+            state.answers[itemId] = status.id;
+          }
+          syncStatusGroup(group);
+          saveState();
+          updateProgress();
+          renderSummary();
+        });
+        group.appendChild(button);
+      });
+
+      syncStatusGroup(group);
+      return group;
+    }
+
+    function syncStatusGroup(group) {
+      const selected = state.answers[group.dataset.itemId];
+      group.querySelectorAll(".status-choice").forEach((button) => {
+        const isSelected = button.dataset.status === selected;
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-pressed", String(isSelected));
+      });
+    }
+
+    function makeItem(item) {
+      const row = document.createElement("div");
+      row.className = "topic-item";
+
+      const copy = document.createElement("div");
+      copy.className = "item-copy";
+
+      const title = document.createElement("span");
+      title.className = "item-title";
+      title.textContent = item.title;
+      copy.appendChild(title);
+
+      if (item.desc) {
+        const desc = document.createElement("span");
+        desc.className = "item-desc";
+        desc.textContent = item.desc;
+        copy.appendChild(desc);
+      }
+
+      row.appendChild(copy);
+      row.appendChild(makeStatusGroup(item.id, `${item.title}的选择`));
+      return row;
+    }
+
+    function makeTopicHead(category, collapsible) {
+      const head = document.createElement(collapsible ? "summary" : "div");
+      head.className = `topic-head ${category.id}`;
+
+      const icon = document.createElement("span");
+      icon.className = "topic-icon";
+      icon.textContent = category.icon;
+
+      const heading = document.createElement("div");
+      heading.className = "topic-heading";
+      const title = document.createElement("h2");
+      title.textContent = category.title;
+      const subtitle = document.createElement("p");
+      subtitle.textContent = category.subtitle;
+      heading.append(title, subtitle);
+
+      head.append(icon, heading);
+
+      if (collapsible) {
+        const control = document.createElement("span");
+        control.className = "collapse-control";
+
+        const count = document.createElement("span");
+        count.className = "collapse-count";
+        count.textContent = `${category.items.length} 项`;
+
+        const label = document.createElement("span");
+        label.className = "collapse-label";
+        label.textContent = "展开 ↓";
+
+        control.append(count, label);
+        head.appendChild(control);
+      } else {
+        const count = document.createElement("span");
+        count.className = "topic-count";
+        count.textContent = `${category.items.length} 项`;
+        head.appendChild(count);
+      }
+
+      return head;
+    }
+
+    function renderCategories() {
+      topicsGrid.innerHTML = "";
+
+      categories.forEach((category) => {
+        const card = document.createElement(category.sensitive ? "details" : "section");
+        card.className = "topic-card";
+        card.appendChild(makeTopicHead(category, category.sensitive));
+
+        if (category.sensitive) {
+          card.addEventListener("toggle", () => {
+            const label = card.querySelector(".collapse-label");
+            if (label) label.textContent = card.open ? "收起 ↑" : "展开 ↓";
+          });
+
+          const note = document.createElement("p");
+          note.className = "sensitive-note";
+          note.textContent = "这一部分默认收起。请只在安全、私密且没有压力的情境中讨论；任何时候都可以不回答。";
+          card.appendChild(note);
+        }
+
+        const list = document.createElement("div");
+        list.className = "topic-list";
+        category.items.forEach((item) => list.appendChild(makeItem(item)));
+        card.appendChild(list);
+        topicsGrid.appendChild(card);
+      });
+    }
+
+    function renderCustomItems() {
+      customList.innerHTML = "";
+
+      state.custom.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "custom-item";
+
+        const title = document.createElement("span");
+        title.className = "item-title";
+        title.textContent = item.title;
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "delete-custom";
+        remove.textContent = "删除";
+        remove.setAttribute("aria-label", `删除自定义议题：${item.title}`);
+        remove.addEventListener("click", () => {
+          state.custom = state.custom.filter((customItem) => customItem.id !== item.id);
+          delete state.answers[item.id];
+          saveState();
+          renderCustomItems();
+          updateProgress();
+          renderSummary();
+        });
+
+        row.append(title, makeStatusGroup(item.id, `${item.title}的选择`), remove);
+        customList.appendChild(row);
+      });
+    }
+
+    function getAllItems() {
+      const baseItems = categories.flatMap((category) =>
+        category.items.map((item) => ({
+          ...item,
+          category: category.title
+        }))
+      );
+      const customItems = state.custom.map((item) => ({
+        ...item,
+        category: "自定义议题"
+      }));
+      return [...baseItems, ...customItems];
+    }
+
+    function updateProgress() {
+      const allItems = getAllItems();
+      const selectedCount = allItems.filter((item) => statuses.some((status) => status.id === state.answers[item.id])).length;
+      const percent = allItems.length ? Math.round((selectedCount / allItems.length) * 100) : 0;
+      progressText.textContent = `已选择 ${selectedCount} / ${allItems.length}`;
+      progressFill.style.width = `${percent}%`;
+    }
+
+    function renderSummary() {
+      const allItems = getAllItems();
+      summaryGrid.innerHTML = "";
+
+      statuses.forEach((status) => {
+        const block = document.createElement("div");
+        block.className = "summary-block";
+
+        const heading = document.createElement("h3");
+        const dot = document.createElement("span");
+        dot.className = `summary-dot ${status.id}`;
+        const matching = allItems.filter((item) => state.answers[item.id] === status.id);
+        heading.append(dot, document.createTextNode(`${status.label} · ${matching.length}`));
+        block.appendChild(heading);
+
+        if (matching.length === 0) {
+          const empty = document.createElement("span");
+          empty.className = "summary-empty";
+          empty.textContent = "尚未选择相关议题";
+          block.appendChild(empty);
+        } else {
+          const list = document.createElement("ul");
+          list.className = "summary-list";
+          matching.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.title}（${item.category}）`;
+            list.appendChild(li);
+          });
+          block.appendChild(list);
+        }
+
+        summaryGrid.appendChild(block);
+      });
+    }
+
+    function buildTextSummary() {
+      const allItems = getAllItems();
+      const owner = state.profileName.trim() || "未命名视角";
+      const lines = [
+        `关系需求菜单｜${owner}`,
+        `整理日期：${new Date().toLocaleDateString("zh-CN")}`,
+        ""
+      ];
+
+      statuses.forEach((status) => {
+        const matching = allItems.filter((item) => state.answers[item.id] === status.id);
+        lines.push(`【${status.label}】`);
+        if (matching.length === 0) {
+          lines.push("（暂无）");
+        } else {
+          matching.forEach((item) => lines.push(`- ${item.title}｜${item.category}`));
+        }
+        lines.push("");
+      });
+
+      lines.push("提示：这是一份对话起点，不是匹配分数。请继续讨论每个选择背后的原因、条件和边界。");
+      return lines.join("\n");
+    }
+
+    function getFilledModules() {
+      const modules = categories.map((category) => ({
+        id: category.id,
+        title: category.title,
+        subtitle: category.subtitle,
+        items: category.items
+          .filter((item) => state.answers[item.id])
+          .map((item) => ({ ...item, status: state.answers[item.id] }))
+      })).filter((category) => category.items.length > 0);
+
+      const customItems = state.custom
+        .filter((item) => state.answers[item.id])
+        .map((item) => ({ ...item, status: state.answers[item.id] }));
+
+      if (customItems.length > 0) {
+        modules.push({
+          id: "custom",
+          title: "你们自己的议题",
+          subtitle: "自定义期待 · 安排 · 边界",
+          items: customItems
+        });
+      }
+
+      return modules;
+    }
+
+    function roundRect(context, x, y, width, height, radius) {
+      const safeRadius = Math.min(radius, width / 2, height / 2);
+      context.beginPath();
+      context.moveTo(x + safeRadius, y);
+      context.arcTo(x + width, y, x + width, y + height, safeRadius);
+      context.arcTo(x + width, y + height, x, y + height, safeRadius);
+      context.arcTo(x, y + height, x, y, safeRadius);
+      context.arcTo(x, y, x + width, y, safeRadius);
+      context.closePath();
+    }
+
+    function wrapCanvasText(context, text, maxWidth) {
+      const chars = Array.from(text);
+      const lines = [];
+      let current = "";
+
+      chars.forEach((char) => {
+        const test = current + char;
+        if (current && context.measureText(test).width > maxWidth) {
+          lines.push(current);
+          current = char;
+        } else {
+          current = test;
+        }
+      });
+
+      if (current) lines.push(current);
+      return lines;
+    }
+
+    function getExportTheme(moduleId) {
+      const themes = {
+        relationship: ["#2f6f73", "#568f8b"],
+        emotion: ["#94546a", "#be7b8f"],
+        communication: ["#4d6480", "#708aa8"],
+        time: ["#8b6b37", "#b08d57"],
+        social: ["#687052", "#8d9871"],
+        autonomy: ["#665b86", "#8d80aa"],
+        practical: ["#5a6f73", "#81969a"],
+        intimacy: ["#8c5360", "#b57a84"],
+        custom: ["#2f6f73", "#7c6db0"]
+      };
+      return themes[moduleId] || themes.custom;
+    }
+
+    function createModuleCanvas(module) {
+      const logicalWidth = 1080;
+      const scale = 2;
+      const side = 74;
+      const contentWidth = logicalWidth - side * 2;
+      const headerY = 58;
+      const headerHeight = 214;
+      const headerPaddingX = 44;
+      const rowsStartY = headerY + headerHeight + 34;
+      const badgeWidth = 136;
+      const textWidth = contentWidth - badgeWidth - 42;
+      const titleFont = '600 27px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      const descFont = '400 19px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      const measureCanvas = document.createElement("canvas");
+      const measureContext = measureCanvas.getContext("2d");
+
+      const rows = module.items.map((item) => {
+        measureContext.font = titleFont;
+        const titleLines = wrapCanvasText(measureContext, item.title, textWidth);
+        let descLines = [];
+        if (item.desc) {
+          measureContext.font = descFont;
+          descLines = wrapCanvasText(measureContext, item.desc, textWidth);
+        }
+        const textHeight = titleLines.length * 39 + (descLines.length ? 10 + descLines.length * 29 : 0);
+        return {
+          ...item,
+          titleLines,
+          descLines,
+          height: Math.max(92, textHeight + 34)
+        };
+      });
+
+      const footerHeight = 92;
+      const rowGap = 14;
+      const rowsHeight = rows.reduce((sum, row) => sum + row.height, 0) + Math.max(0, rows.length - 1) * rowGap;
+      const logicalHeight = rowsStartY + rowsHeight + footerHeight + 70;
+      const canvas = document.createElement("canvas");
+      canvas.width = logicalWidth * scale;
+      canvas.height = logicalHeight * scale;
+      const context = canvas.getContext("2d");
+      context.scale(scale, scale);
+
+      context.fillStyle = "#f3f7f6";
+      context.fillRect(0, 0, logicalWidth, logicalHeight);
+
+      const [colorStart, colorEnd] = getExportTheme(module.id);
+      const gradient = context.createLinearGradient(side, 0, logicalWidth - side, 0);
+      gradient.addColorStop(0, colorStart);
+      gradient.addColorStop(1, colorEnd);
+      roundRect(context, side, headerY, contentWidth, headerHeight, 30);
+      context.fillStyle = gradient;
+      context.fill();
+
+      context.fillStyle = "rgba(255,255,255,0.78)";
+      roundRect(context, side + headerPaddingX, headerY + 28, 104, 32, 16);
+      context.fill();
+      context.fillStyle = colorStart;
+      context.font = '700 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillText("关系需求菜单", side + headerPaddingX + 52, headerY + 44);
+
+      context.textAlign = "left";
+      context.textBaseline = "top";
+      context.fillStyle = "#ffffff";
+      context.font = '700 40px "Noto Serif SC", "Noto Sans SC", serif';
+      context.fillText(module.title, side + headerPaddingX, headerY + 88);
+      context.font = '400 19px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.fillStyle = "rgba(255,255,255,0.84)";
+      context.fillText(module.subtitle, side + headerPaddingX, headerY + 151);
+
+      const owner = state.profileName.trim() || "未命名视角";
+      const date = new Date().toLocaleDateString("zh-CN");
+      context.textAlign = "right";
+      context.textBaseline = "top";
+      context.fillStyle = "rgba(255,255,255,0.88)";
+      context.font = '500 18px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.fillText(owner, logicalWidth - side - headerPaddingX, headerY + 30);
+      context.font = '400 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.fillText(`${date} · 已填写 ${module.items.length} 项`, logicalWidth - side - headerPaddingX, headerY + 66);
+
+      let y = rowsStartY;
+      context.textBaseline = "top";
+
+      rows.forEach((row) => {
+        roundRect(context, side, y, contentWidth, row.height, 20);
+        context.fillStyle = "#ffffff";
+        context.fill();
+        context.strokeStyle = "#dfe9e8";
+        context.lineWidth = 1.5;
+        context.stroke();
+
+        let textY = y + 18;
+        context.textAlign = "left";
+        context.fillStyle = "#20303d";
+        context.font = titleFont;
+        row.titleLines.forEach((line) => {
+          context.fillText(line, side + 24, textY);
+          textY += 39;
+        });
+
+        if (row.descLines.length) {
+          textY += 2;
+          context.fillStyle = "#6f818e";
+          context.font = descFont;
+          row.descLines.forEach((line) => {
+            context.fillText(line, side + 24, textY);
+            textY += 29;
+          });
+        }
+
+        const status = statuses.find((option) => option.id === row.status);
+        const statusColors = {
+          need: "#a65168",
+          prefer: "#2f6f73",
+          discuss: "#a36d1d",
+          limit: "#596775"
+        };
+        const badgeX = logicalWidth - side - badgeWidth - 22;
+        const badgeY = y + (row.height - 46) / 2;
+        roundRect(context, badgeX, badgeY, badgeWidth, 46, 23);
+        context.fillStyle = statusColors[row.status] || "#596775";
+        context.fill();
+        context.fillStyle = "#ffffff";
+        context.font = '700 18px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.fillText(status ? status.label : "", badgeX + badgeWidth / 2, badgeY + 23);
+
+        y += row.height + rowGap;
+        context.textBaseline = "top";
+      });
+
+      const footerY = logicalHeight - footerHeight;
+      context.textAlign = "left";
+      context.fillStyle = "#617480";
+      context.font = '400 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.fillText("仅呈现本模块已填写的条目。需求会随阶段、对象与情境改变。", side, footerY + 16);
+      context.fillStyle = "#2f6f73";
+      context.font = '600 17px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.fillText("PrismSelf · 关系对话工具", side, footerY + 48);
+
+      return canvas;
+    }
+
+    function canvasToBlob(canvas) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error("图片生成失败"));
+        }, "image/png");
+      });
+    }
+
+    function safeFileName(value) {
+      return value.replace(/[\\/:*?"<>|]/g, "-").replace(/\s+/g, "-");
+    }
+
+    async function exportFilledModules() {
+      const modules = getFilledModules();
+      if (modules.length === 0) {
+        showToast("请先填写至少一个模块");
+        return;
+      }
+
+      const button = document.getElementById("exportButton");
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = `正在生成 0 / ${modules.length}`;
+
+      try {
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+
+        const owner = safeFileName(state.profileName.trim() || "未命名视角");
+        for (let index = 0; index < modules.length; index += 1) {
+          const module = modules[index];
+          button.textContent = `正在生成 ${index + 1} / ${modules.length}`;
+          const canvas = createModuleCanvas(module);
+          const blob = await canvasToBlob(canvas);
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          const order = String(index + 1).padStart(2, "0");
+          link.href = url;
+          link.download = `${order}-${safeFileName(module.title)}-${owner}.png`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 5000);
+          await new Promise((resolve) => setTimeout(resolve, 180));
+        }
+        showToast(`已导出 ${modules.length} 张模块图片`);
+      } catch (error) {
+        console.error("导出模块图片失败。", error);
+        showToast("图片导出失败，请稍后重试");
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+
+    async function copySummary() {
+      const text = buildTextSummary();
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("摘要已复制");
+      } catch (error) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand("copy");
+        textarea.remove();
+        showToast(copied ? "摘要已复制" : "复制失败，请使用图片导出");
+      }
+    }
+
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    document.getElementById("customForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = document.getElementById("customInput");
+      const title = input.value.trim();
+      if (!title) {
+        showToast("请先写下议题");
+        input.focus();
+        return;
+      }
+
+      const id = `custom-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      state.custom.push({ id, title });
+      input.value = "";
+      saveState();
+      renderCustomItems();
+      updateProgress();
+      renderSummary();
+      showToast("已添加自定义议题");
+    });
+
+    profileName.addEventListener("input", () => {
+      state.profileName = profileName.value;
+      saveState();
+    });
+
+    document.getElementById("copyButton").addEventListener("click", copySummary);
+    document.getElementById("exportButton").addEventListener("click", exportFilledModules);
+    document.getElementById("resetButton").addEventListener("click", () => {
+      const confirmed = window.confirm("确定清空所有选择、昵称和自定义议题吗？此操作无法撤销。");
+      if (!confirmed) return;
+      state = { profileName: "", answers: {}, custom: [] };
+      localStorage.removeItem(STORAGE_KEY);
+      profileName.value = "";
+      renderCategories();
+      renderCustomItems();
+      updateProgress();
+      renderSummary();
+      showToast("已清空这份菜单");
+    });
+
+    loadState();
+    profileName.value = state.profileName;
+    renderCategories();
+    renderCustomItems();
+    updateProgress();
+    renderSummary();
+  </script>
+</body>
+
+</html>
