@@ -264,6 +264,10 @@
       background: linear-gradient(135deg, #fdf2f8, #fef3c7);
     }
 
+    .section-icon.tool {
+      background: linear-gradient(135deg, #e2f4f0, #f7e9ee);
+    }
+
     h2.section-title {
       font-family: 'Noto Serif SC', serif;
       font-size: 1.25rem;
@@ -592,6 +596,10 @@
       animation: fadeUp 0.6s 0.45s ease both;
     }
 
+    .section:nth-child(5) {
+      animation: fadeUp 0.6s 0.55s ease both;
+    }
+
     @media (max-width: 600px) {
       header {
         padding-top: 40px;
@@ -630,7 +638,7 @@
     <h1 class="site-title">性别 · 心理 · 人际</h1>
     <p class="site-desc">
       一个聚焦性别理论、心理概念与人际关系的学术知识库，<br>
-      涵盖分析表格、专题指南、共鸣刻度与自评量表，供学习与自我探索使用
+      涵盖分析表格、专题指南、共鸣刻度、自评量表与对话工具，供学习与自我探索使用
     </p>
     <div class="site-links" aria-label="项目链接">
       <a class="site-link" href="https://github.com/KrelinnBios/PrismSelf" target="_blank" rel="noopener noreferrer">
@@ -642,7 +650,7 @@
     </div>
     <div class="stats-bar">
       <div class="stat">
-        <div class="stat-num">4</div>
+        <div class="stat-num">5</div>
         <div class="stat-label">分类</div>
       </div>
       <div class="stat">
@@ -660,6 +668,10 @@
       <div class="stat">
         <div class="stat-num">6</div>
         <div class="stat-label">自评量表</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">对话工具</div>
       </div>
     </div>
   </header>
@@ -845,6 +857,26 @@
 
     <section class="section">
       <div class="section-header">
+        <div class="section-icon tool">💬</div>
+        <h2 class="section-title">工具 · 关系对话</h2>
+        <span class="section-count">01 份</span>
+      </div>
+      <div class="card-grid">
+
+        <a class="card scale-teal" href="./Tools/Relationship-Needs-Menu.html">
+          <span class="card-tag tag-scale-teal">关系需求</span>
+          <p class="card-title">关系需求菜单 · 对话整理工具</p>
+          <div class="card-meta">
+            <span class="card-type">互动对话工具</span>
+            <div class="card-arrow">→</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
         <div class="section-icon scale">🔍</div>
         <h2 class="section-title">量表 · 自我评估</h2>
         <span class="section-count">06 份</span>
@@ -913,7 +945,7 @@
   <footer>
     <div class="footer-updates" aria-label="站点更新记录">
       <p class="footer-update-line"><span class="footer-update-label">更新记录：</span><span id="footerUpdateText">首页
-          2026年6月2日</span></p>
+          2026年6月12日</span></p>
     </div>
     <p>本站内容仅供学习与自我探索，不构成任何专业诊断建议。</p>
     <p style="margin-top:6px; color: var(--ink-pale);">Hosted on Cloudflare Pages</p>
@@ -921,7 +953,8 @@
 
   <script>
     const updateRecords = [
-      { name: '首页', date: '2026年6月2日' },
+      { name: '首页', date: '2026年6月12日' },
+      { name: '关系需求菜单 · 对话整理工具', date: '2026年6月12日' },
       { name: '无性恋社群现状与需求调查', date: '2026年6月2日' },
       { name: 'LGBTQ+概念全景辨析表', date: '2026年6月2日' },
       { name: '性心理核心概念全景分析表', date: '2026年6月2日' },
