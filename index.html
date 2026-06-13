@@ -945,48 +945,42 @@
 
   <footer>
     <div class="footer-updates" aria-label="站点更新记录">
-      <p class="footer-update-line"><span class="footer-update-label">更新记录：</span><span id="footerUpdateText">首页
-          2026年6月12日</span></p>
+      <p class="footer-update-line"><span class="footer-update-label">更新记录：</span><span
+          id="footerUpdateText">首页</span></p>
     </div>
     <p>本站内容仅供学习与自我探索，不构成任何专业诊断建议。</p>
     <p style="margin-top:6px; color: var(--ink-pale);">Hosted on Cloudflare Pages</p>
   </footer>
 
+  <script src="./update-records.js"></script>
   <script>
-    const updateRecords = [
-      { name: '首页', date: '2026年6月12日' },
-      { name: '关系需求菜单', date: '2026年6月12日' },
-      { name: '无性恋社群现状与需求调查', date: '2026年6月2日' },
-      { name: 'LGBTQ+概念全景辨析表', date: '2026年6月2日' },
-      { name: '性心理核心概念全景分析表', date: '2026年6月2日' },
-      { name: '性别理论核心概念全景分析表', date: '2026年6月2日' },
-      { name: '人际吸引力类型综合比较表', date: '2026年6月2日' },
-      { name: '人际冲突概念全面分析表', date: '2026年6月2日' },
-      { name: '中立类型全面分析表', date: '2026年6月2日' },
-      { name: '无性恋全景指南', date: '2026年6月2日' },
-      { name: '灰性恋全景指南', date: '2026年6月2日' },
-      { name: '半性恋全景指南', date: '2026年6月2日' },
-      { name: '性别概念与术语', date: '2026年6月2日' },
-      { name: '性取向、性别认同与表达以及性别特征术语表', date: '2026年6月2日' },
-      { name: 'BDSM 全景指南', date: '2026年6月2日' },
-      { name: '性取向自评量表', date: '2026年6月2日' },
-      { name: '无性恋谱系自评量表', date: '2026年6月2日' },
-      { name: '无浪漫谱系自评量表', date: '2026年6月2日' },
-      { name: '多元性别认同与探索自评量表', date: '2026年6月2日' },
-      { name: '女权主义流派倾向自评量表', date: '2026年6月2日' },
-      { name: '哲学流派倾向自评量表', date: '2026年6月2日' },
-      { name: '无浪漫/无性恋谱系 · 共鸣刻度卡', date: '2026年5月25日' },
-      { name: '性别身份与认同光谱 · 共鸣刻度卡', date: '2026年5月25日' },
-      { name: '神经多样性 · 共鸣刻度卡', date: '2026年5月25日' }
-    ];
-
     const updateText = document.getElementById('footerUpdateText');
-    let updateIndex = 1;
+    const cardNamesByHref = new Map(
+      [...document.querySelectorAll('a.card[href]')].map((card) => [
+        card.getAttribute('href'),
+        card.querySelector('.card-title')?.textContent?.trim()
+      ])
+    );
+    const formatUpdateDate = (date) => {
+      const [year, month, day] = date.split('-').map(Number);
+      return `${year}年${month}月${day}日`;
+    };
+    const updateRecords = (window.PrismSelfUpdateGroups || []).flatMap(({ date, pages }) =>
+      pages.map((page) => {
+        const name = page === 'home' ? '首页' : cardNamesByHref.get(page);
+        return name ? { name, date: formatUpdateDate(date) } : null;
+      }).filter(Boolean)
+    );
+    let updateIndex = updateRecords.length > 1 ? 1 : 0;
 
     function renderUpdateRecord() {
       const record = updateRecords[updateIndex];
       updateText.textContent = `${record.name} ${record.date}`;
       updateIndex = (updateIndex + 1) % updateRecords.length;
+    }
+
+    if (updateText && updateRecords.length > 0) {
+      updateText.textContent = `${updateRecords[0].name} ${updateRecords[0].date}`;
     }
 
     if (updateText && updateRecords.length > 1) {
