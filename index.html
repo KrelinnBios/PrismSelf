@@ -5,6 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>知识图谱 · 性别·心理·人际</title>
+  <meta name="description" content="聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、共鸣刻度、自评量表与关系对话工具。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="知识图谱 · 性别·心理·人际">
+  <meta property="og:description" content="聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、共鸣刻度、自评量表与关系对话工具。">
+  <meta property="og:url" content="https://prismself.pages.dev/">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.pages.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap"
@@ -216,6 +229,87 @@
       letter-spacing: 0.05em;
     }
 
+    .search-wrap {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 44px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: rgba(43, 122, 98, 0.4);
+      box-shadow: 0 0 0 3px rgba(43, 122, 98, 0.12);
+    }
+
+    .search-input::placeholder {
+      color: var(--ink-pale);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      fill: var(--ink-pale);
+      pointer-events: none;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--bg);
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .search-clear.is-visible {
+      display: inline-flex;
+    }
+
+    .section.is-hidden,
+    .card.is-hidden {
+      display: none;
+    }
+
+    .search-empty {
+      display: none;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 14px;
+      padding: 24px 0 8px;
+    }
+
+    .search-empty.is-visible {
+      display: block;
+    }
+
     main {
       position: relative;
       z-index: 1;
@@ -379,18 +473,12 @@
       border-color: rgba(234, 88, 12, 0.25);
     }
 
-    .card.green::before {
-      background: linear-gradient(90deg, var(--green), var(--green-lt));
-    }
-
-    .card:hover.green {
-      border-color: rgba(22, 163, 74, 0.25);
-    }
-
+    .card.green::before,
     .card.lime::before {
       background: linear-gradient(90deg, var(--green), var(--green-lt));
     }
 
+    .card:hover.green,
     .card:hover.lime {
       border-color: rgba(22, 163, 74, 0.25);
     }
@@ -459,11 +547,7 @@
       color: var(--orange);
     }
 
-    .tag-green {
-      background: rgba(22, 163, 74, 0.08);
-      color: var(--green);
-    }
-
+    .tag-green,
     .tag-lime {
       background: rgba(22, 163, 74, 0.08);
       color: var(--green);
@@ -513,7 +597,7 @@
 
     .card:hover .card-arrow {
       background: var(--ink);
-      color: white;
+      color: var(--bg);
       border-color: var(--ink);
     }
 
@@ -623,6 +707,60 @@
         text-align: left;
       }
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e7edf3;
+        --ink-mid: #b4c1ce;
+        --ink-soft: #8a99a8;
+        --ink-pale: #5d6b79;
+        --bg: #0f141a;
+        --bg-card: #161d26;
+        --teal: #43b88c;
+        --teal-lt: #5fd0a4;
+        --blue: #4a9bdb;
+        --blue-lt: #6cb3ec;
+        --rose: #d96f93;
+        --rose-lt: #e98bac;
+        --amber: #cda154;
+        --amber-lt: #ddb877;
+        --slate: #94a3b8;
+        --slate-lt: #aab6c6;
+        --cyan: #2cc0da;
+        --cyan-lt: #5fd9ee;
+        --purple: #b27ce2;
+        --purple-lt: #cda1f0;
+        --orange: #fb923c;
+        --orange-lt: #fdb274;
+        --green: #4ec27a;
+        --green-lt: #6fd697;
+        --border: rgba(255, 255, 255, 0.1);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+        --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+
+      body::before {
+        background:
+          radial-gradient(ellipse 80% 60% at 10% 0%, rgba(67, 184, 140, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 80% at 90% 100%, rgba(74, 155, 219, 0.08) 0%, transparent 60%);
+      }
+
+      .site-link {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .site-link:hover {
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .search-input {
+        background: var(--bg-card);
+      }
+
+      .section-icon {
+        filter: saturate(0.85) brightness(0.92);
+      }
+    }
   </style>
 </head>
 
@@ -640,6 +778,14 @@
       一个聚焦性别理论、心理概念与人际关系的学术知识库，<br>
       涵盖分析表格、专题指南、共鸣刻度、自评量表与对话工具，供学习与自我探索使用
     </p>
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 20.3l-5.6-5.6a7.5 7.5 0 10-1.4 1.4l5.6 5.6 1.4-1.4zM5 10.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z" />
+      </svg>
+      <input id="cardSearch" class="search-input" type="text" placeholder="搜索内容…（标题、标签或类型）" aria-label="搜索内容"
+        autocomplete="off">
+      <button id="searchClear" class="search-clear" type="button" aria-label="清除搜索">✕</button>
+    </div>
     <div class="site-links" aria-label="项目链接">
       <a class="site-link" href="https://github.com/KrelinnBios/PrismSelf" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -941,6 +1087,8 @@
       </div>
     </section>
 
+    <p class="search-empty" id="searchEmpty">没有找到匹配的内容，换个关键词试试。</p>
+
   </main>
 
   <footer>
@@ -954,6 +1102,50 @@
 
   <script src="./update-records.js"></script>
   <script>
+    // Live keyword filter over the content cards.
+    (() => {
+      const search = document.getElementById('cardSearch');
+      const clearBtn = document.getElementById('searchClear');
+      const emptyMsg = document.getElementById('searchEmpty');
+      if (!search) return;
+      const cards = [...document.querySelectorAll('main a.card')];
+      const sections = [...document.querySelectorAll('main .section')];
+      const haystack = new Map(cards.map((card) => [
+        card,
+        [...card.querySelectorAll('.card-title, .card-tag, .card-type')]
+          .map((el) => el.textContent).join(' ').toLowerCase()
+      ]));
+
+      const applyFilter = (raw) => {
+        const q = raw.trim().toLowerCase();
+        clearBtn.classList.toggle('is-visible', q.length > 0);
+        let anyVisible = false;
+        cards.forEach((card) => {
+          const match = q === '' || haystack.get(card).includes(q);
+          card.classList.toggle('is-hidden', !match);
+          if (match) anyVisible = true;
+        });
+        sections.forEach((section) => {
+          const hasVisible = section.querySelector('a.card:not(.is-hidden)') !== null;
+          section.classList.toggle('is-hidden', !hasVisible);
+        });
+        emptyMsg.classList.toggle('is-visible', !anyVisible && q !== '');
+      };
+
+      search.addEventListener('input', (e) => applyFilter(e.target.value));
+      search.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          search.value = '';
+          applyFilter('');
+        }
+      });
+      clearBtn.addEventListener('click', () => {
+        search.value = '';
+        applyFilter('');
+        search.focus();
+      });
+    })();
+
     const updateText = document.getElementById('footerUpdateText');
     const cardNamesByHref = new Map(
       [...document.querySelectorAll('a.card[href]')].map((card) => [
