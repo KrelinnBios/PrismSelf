@@ -6,6 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2f6f73">
   <title>关系需求菜单</title>
+  <meta name="description" content="关系需求菜单，一个用于梳理和沟通亲密关系需求与边界的互动对话工具。">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="关系需求菜单">
+  <meta property="og:description" content="关系需求菜单，一个用于梳理和沟通亲密关系需求与边界的互动对话工具。">
+  <meta property="og:url" content="https://prismself.pages.dev/Tools/Relationship-Needs-Menu.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.pages.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
@@ -932,6 +944,57 @@
     @media (max-width: 390px) {
       .status-group {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e6eef0;
+        --ink-mid: #aebcc2;
+        --ink-soft: #8597a0;
+        --line: #2a3a3a;
+        --paper: #161d22;
+        --bg: #0f1417;
+        --teal: #4db3a0;
+        --teal-dark: #2f6f73;
+        --teal-soft: #14241f;
+        --rose: #d98aa0;
+        --rose-soft: #2a1820;
+        --amber: #cda44e;
+        --amber-soft: #241f10;
+        --slate: #8597a0;
+        --slate-soft: #1b232a;
+      }
+
+      .hero,
+      .utility-bar,
+      .guide-card,
+      .legend-card,
+      .summary-block {
+        background: #161d22;
+      }
+
+      .status-choice,
+      .progress-track,
+      input,
+      textarea,
+      select,
+      .custom-composer input {
+        background: #1b232a;
+      }
+
+      .hero-note {
+        background: #11171a;
+      }
+
+      .profile-row {
+        background: #14241f;
+      }
+
+      .back-home {
+        background: rgba(20, 26, 34, 0.92);
+        color: #c6cfdc;
+        border-color: rgba(255, 255, 255, 0.14);
       }
     }
 

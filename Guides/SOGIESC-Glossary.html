@@ -5,6 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOGIESC 术语表 · 性取向、性别认同与表达以及性别特征</title>
+  <meta name="description" content="SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="SOGIESC 术语表 · 性取向、性别认同与表达以及性别特征">
+  <meta property="og:description" content="SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。">
+  <meta property="og:url" content="https://prismself.pages.dev/Guides/SOGIESC-Glossary.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.pages.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     :root {
       --ink: #18212f;
@@ -555,6 +568,54 @@
 
       .friend-links {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e7ecf3;
+        --ink-mid: #aab8c7;
+        --ink-soft: #8595a4;
+        --bg: #0f141b;
+        --panel: #161d27;
+        --line: rgba(255, 255, 255, 0.1);
+        --teal: #3fb89e;
+        --blue: #5aa0e0;
+        --rose: #d97a98;
+        --amber: #cda44e;
+        --green: #52b873;
+        --violet: #a98be0;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .topbar {
+        background: rgba(15, 20, 27, 0.92);
+      }
+
+      header,
+      .search,
+      .filter,
+      .notice {
+        background: #11161f;
+      }
+
+      .filter[aria-pressed="true"] {
+        background: rgba(63, 184, 158, 0.16);
+        border-color: var(--teal);
+        color: var(--teal);
+      }
+
+      .summary-panel,
+      .section-panel {
+        background: #161d27;
+      }
+
+      .friend-link {
+        background: linear-gradient(180deg, #161d27 0%, #11161f 100%);
+      }
+
+      .friend-link:hover {
+        background: #1b2230;
       }
     }
   </style>
