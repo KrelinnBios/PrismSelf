@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>BDSM 全景指南</title>
-  <meta name="description" content="BDSM 全景指南，系统介绍其概念、安全原则（SSC/RACK）、角色分工与知情同意。">
+  <meta name="description" content="BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。">
   <meta name="theme-color" content="#2f6f73">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf">
   <meta property="og:title" content="BDSM 全景指南">
-  <meta property="og:description" content="BDSM 全景指南，系统介绍其概念、安全原则（SSC/RACK）、角色分工与知情同意。">
+  <meta property="og:description" content="BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。">
   <meta property="og:url" content="https://prismself.pages.dev/Guides/BDSM-Comprehensive-Guide.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.pages.dev/og-image.png">
@@ -280,6 +280,18 @@
       color: #3d3028;
       line-height: 1.75;
       font-weight: 300;
+    }
+
+    .term-desc a {
+      color: var(--rust);
+      font-weight: 500;
+      text-underline-offset: 0.18em;
+    }
+
+    .term-desc a:hover,
+    .term-desc a:focus-visible {
+      color: var(--ink);
+      text-decoration-thickness: 2px;
     }
 
     .term-tags {
@@ -761,7 +773,7 @@
   <header>
     <div class="header-label">BDSM Comprehensive Guide</div>
     <h1>BDSM <em>全景指南</em></h1>
-    <div class="header-sub">定义 · 安全 · 同意 · 实践 · 法律 · 资源</div>
+    <div class="header-sub">定义 · 安全 · 角色 · 探索 · 同意 · 实践 · 法律 · 资源</div>
     <div class="header-ornament"></div>
   </header>
 
@@ -770,13 +782,13 @@
       这是一份面向公众的 BDSM 科普与安全指南，目标是用<strong>中立、严谨、可操作</strong>的方式解释核心概念、风险与沟通方法，帮助你在尊重他人和尊重自我的前提下做出明智选择。
     </p>
     <p>
-      本指南强调：BDSM 不是“暴力”或“失控”，而是以<strong>知情同意</strong>为前提的互动与关系动态；任何时候都可以暂停、调整或退出。同意永远不是一次性的，也不能用来抵消伤害和忽视风险。
+      本指南强调：BDSM 不能简单等同于“暴力”或“失控”。它讨论的是以<strong>知情同意</strong>为前提的互动与关系动态；任何时候都可以暂停、调整或退出。同意永远不是一次性的，也不能用来抵消伤害和忽视风险。
     </p>
 
     <div class="principle-grid">
-      <div class="principle-card"><span class="p-en">SSC</span><span class="p-zh">安全 · 清醒 · 知情同意</span></div>
-      <div class="principle-card"><span class="p-en">RACK</span><span class="p-zh">风险知情 · 知情同意 · 玩法</span></div>
-      <div class="principle-card"><span class="p-en">PRICK</span><span class="p-zh">个人责任 · 知情同意 · 玩法</span></div>
+      <div class="principle-card"><span class="p-en">SSC</span><span class="p-zh">安全 · 理智 · 自愿同意</span></div>
+      <div class="principle-card"><span class="p-en">RACK</span><span class="p-zh">风险知情 · 自愿同意</span></div>
+      <div class="principle-card"><span class="p-en">PRICK</span><span class="p-zh">个人责任 · 知情同意</span></div>
       <div class="principle-card"><span class="p-en">Consent</span><span class="p-zh">同意可撤回</span></div>
       <div class="principle-card"><span class="p-en">Care</span><span class="p-zh">事后照顾</span></div>
     </div>
@@ -797,13 +809,18 @@
       <a class="term-card toc-card highlight" href="#safety-frameworks">
         <div class="term-corner"></div><span class="term-en">Safety</span><span class="term-zh">SSC / RACK /
           PRICK</span>
-        <div class="term-desc">安全三原则的含义、适用边界与如何落地到沟通与场景中。</div>
+        <div class="term-desc">三种安全框架的侧重点、适用边界与如何落地到沟通和场景中。</div>
         <div class="term-tags"><span class="term-tag">原则</span><span class="term-tag">风险管理</span></div>
       </a>
       <a class="term-card toc-card" href="#roles-boundaries">
         <div class="term-corner"></div><span class="term-en">Roles</span><span class="term-zh">角色分类与权责</span>
         <div class="term-desc">D/s、Top/Bottom、绳艺与服务型等角色边界与责任分配。</div>
         <div class="term-tags"><span class="term-tag">权责</span><span class="term-tag">边界</span></div>
+      </a>
+      <a class="term-card toc-card" href="#self-exploration">
+        <div class="term-corner"></div><span class="term-en">Explore</span><span class="term-zh">偏好探索与测试解读</span>
+        <div class="term-desc">理解角色倾向分数、区分幻想与实践意愿，并把结果转化为可协商的边界清单。</div>
+        <div class="term-tags"><span class="term-tag">自我探索</span><span class="term-tag">测试解读</span></div>
       </a>
       <a class="term-card toc-card" href="#scene-setup">
         <div class="term-corner"></div><span class="term-en">Scene</span><span class="term-zh">场景搭建与器具安全</span>
@@ -921,7 +938,7 @@
       </div>
     </section>
     <section id="safety-frameworks" class="category-section">
-      <div class="category-title">安全三原则 · SSC / RACK / PRICK</div>
+      <div class="category-title">风险与同意框架 · SSC / RACK / PRICK</div>
       <div class="spectrum-bar">
         <div class="spectrum-ends"><span class="spectrum-end">Low Risk</span>
           <div class="spectrum-line"></div><span class="spectrum-end">High Risk</span>
@@ -931,12 +948,12 @@
       <div class="terms-grid">
         <div class="term-card highlight">
           <div class="term-corner"></div><span class="term-en">SSC</span><span class="term-zh">SAFE · SANE · CONSENSUAL
-            &nbsp;|&nbsp; 安全 · 清醒 · 知情同意</span>
+            &nbsp;|&nbsp; 安全 · 理智 · 自愿同意</span>
           <div class="term-desc">
             <ul>
               <li><strong>Safe</strong>：采取可控的风险降低措施（不是“绝对零风险”）。</li>
-              <li><strong>Sane</strong>：在清醒、可判断的状态下进行（反对酒精/药物加持下的冒险）。</li>
-              <li><strong>Consensual</strong>：双方知情、明确、可撤回的同意。</li>
+              <li><strong>Sane</strong>：参与者具备现实判断与自我调节能力，不在酒精、药物或失控情绪影响下冒险。</li>
+              <li><strong>Consensual</strong>：所有参与者都作出知情、明确、自愿且可撤回的同意。</li>
             </ul>适合：入门阶段、风险较低玩法、初次合作与新关系磨合。
           </div>
           <div class="term-tags"><span class="term-tag">入门框架</span><span class="term-tag">清醒</span><span
@@ -944,7 +961,7 @@
         </div>
         <div class="term-card">
           <div class="term-corner"></div><span class="term-en">RACK</span><span class="term-zh">RISK-AWARE CONSENSUAL
-            KINK &nbsp;|&nbsp; 风险知情 · 自愿同意 · 玩法</span>
+            KINK &nbsp;|&nbsp; 风险知情 · 自愿同意的 Kink 实践</span>
           <div class="term-desc">
             <ul>
               <li>强调：很多玩法都存在风险，关键在于参与者是否<strong>理解风险</strong>并主动同意。</li>
@@ -956,7 +973,7 @@
         </div>
         <div class="term-card">
           <div class="term-corner"></div><span class="term-en">PRICK</span><span class="term-zh">PERSONAL RESPONSIBILITY
-            · INFORMED · CONSENSUAL · KINK &nbsp;|&nbsp; 个人责任 · 知情 · 同意 · 玩法</span>
+            · INFORMED · CONSENSUAL · KINK &nbsp;|&nbsp; 个人责任 · 知情同意的 Kink 实践</span>
           <div class="term-desc">
             <ul>
               <li>强调个人责任：对自己的身体、心理、边界与后果负责。</li>
@@ -1044,7 +1061,7 @@
         </div>
         <div class="term-card">
           <div class="term-corner"></div><span class="term-en">Rigger / Rope Bottom</span><span
-            class="term-zh">绳手（Rigger）与绳底（Rope Bottom）的权责</span>
+            class="term-zh">绳手（Rigger）与绳模（Rope Bottom）的权责</span>
           <div class="term-desc">绳艺里常把“绑的人”和“被绑的人”作为独立角色讨论，双方都需要具备安全意识。<ul>
               <li>绑方：对技术、解剖与应急负责；必须能快速释放。</li>
               <li>被绑方：对自身感受与预警信号负责；及时表达麻木、刺痛、眩晕等异常。</li>
@@ -1086,6 +1103,135 @@
             </ul>
           </div>
           <div class="term-tags"><span class="term-tag">多人</span><span class="term-tag">隐私</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="self-exploration" class="category-section">
+      <div class="category-title">偏好探索与测试解读 · Preference Exploration</div>
+      <div class="spectrum-bar">
+        <div class="spectrum-ends"><span class="spectrum-end">Curiosity</span>
+          <div class="spectrum-line"></div><span class="spectrum-end">Practice</span>
+        </div>
+        <p class="spectrum-desc">测试分数更适合作为对话起点，而不是身份判定。好奇、幻想、想尝试、愿意长期实践，是四个不同层次。</p>
+      </div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">How to Read a Result</span><span
+            class="term-zh">如何理解角色倾向分数</span>
+          <div class="term-desc">
+            <ul>
+              <li>分数反映你对一组自陈题目的当前回答，不是临床诊断、能力认证或永久身份。</li>
+              <li>多个倾向可以同时较高，例如既可能偏 Switch，也对绳艺、感官刺激或服务型动态感兴趣。</li>
+              <li>结果会受题目理解、近期关系、幻想内容、文化语境与当下状态影响，隔一段时间重测可能不同。</li>
+              <li>低分不代表排斥，高分也不代表必须实践；最终仍要逐项讨论行为、强度、条件与边界。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">非诊断</span><span class="term-tag">可变化</span><span
+              class="term-tag">多维度</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Role / Activity / Relationship</span><span
+            class="term-zh">把“标签”拆成三个维度</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>角色位置</strong>：Dominant、Submissive、Switch，描述权力动态中的偏好位置。</li>
+              <li><strong>活动偏好</strong>：如绳艺、冲击、感官、羞耻主题或观看/展示，描述对具体体验的兴趣。</li>
+              <li><strong>关系结构</strong>：如服务型、照顾型、Owner/Pet、长期 D/s 或非单偶，描述互动如何延伸到场景之外。</li>
+            </ul>
+            同一个标签在不同人那里可能指向完全不同的行为。先问“它对你具体意味着什么”，再讨论是否匹配。
+          </div>
+          <div class="term-tags"><span class="term-tag">角色</span><span class="term-tag">活动</span><span
+              class="term-tag">关系</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Power &amp; Challenge</span><span
+            class="term-zh">权力、服从与挑战型互动</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Dominant / Submissive</strong>：关注自愿的权力交托、引导与服从。</li>
+              <li><strong>Brat / Brat Tamer</strong>：通过调皮、挑战规则与回应挑战获得互动张力；“挑战”仍必须在预先同意的范围内。</li>
+              <li><strong>Master/Mistress / Slave</strong>：常指更强、更持续的权力交换想象或关系语言；称谓不产生现实上的无限权利。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">权力交换</span><span class="term-tag">规则</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Sensation &amp; Technique</span><span
+            class="term-zh">感官、强度与技术型倾向</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Sadist / Masochist</strong>：对施加或接受经协商的强烈感官刺激感兴趣，不等同于现实中的伤害欲或受害需求。</li>
+              <li><strong>Rigger / Rope Bottom</strong>：偏好绑缚技术中的操作方或接受方；倾向分数不能证明技术能力。</li>
+              <li><strong>Experimentalist</strong>：对多种新体验保持开放；开放不等于无边界，更需要逐项评估风险。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">感官</span><span class="term-tag">技术</span><span
+              class="term-tag">能力边界</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Care &amp; Persona</span><span
+            class="term-zh">照顾、身份与情境扮演</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Caregiver / Little</strong>：以照顾、依赖、规则或年龄化角色语言营造情境；仅讨论具备同意能力的成年人之间的扮演。</li>
+              <li><strong>Owner / Pet</strong>：以照料、训练、宠物化行为或身份表达建立动态，具体边界因人而异。</li>
+              <li><strong>Primal Hunter / Prey</strong>：强调追逐、本能与身体互动；不能以“本能”为由跳过协商或停止信号。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">照顾型</span><span class="term-tag">角色扮演</span><span
+              class="term-tag">成年人</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Expression &amp; Visibility</span><span
+            class="term-zh">表达、观看与关系开放度</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Exhibitionist / Voyeur</strong>：对被观看或观看感兴趣；第三方是否知情、场所是否合法、影像是否传播都必须单独获得同意。</li>
+              <li><strong>Degrader / Degradee</strong>：对经协商的贬低或羞耻主题感兴趣；需要明确禁词、身份敏感点与事后修复方式。</li>
+              <li><strong>Non-monogamist</strong>：倾向于协商式非单偶关系；它是关系结构偏好，不等于默认允许隐瞒或越界。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">隐私</span><span class="term-tag">情绪安全</span><span
+              class="term-tag">关系结构</span></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Fantasy ≠ Consent</span><span
+            class="term-zh">幻想、兴趣与同意不是一回事</span>
+          <div class="term-desc">
+            <ul>
+              <li>“喜欢想象”不等于“愿意现实尝试”；“愿意尝试”也不等于同意所有强度、对象和场景。</li>
+              <li>可以把每项兴趣分别标成：只限幻想、愿意讨论、低强度尝试、有经验且喜欢、目前不想碰。</li>
+              <li>测试结果只能由本人解释。伴侣不能用分数推定同意，更不能以“你明明测出来喜欢”为由施压。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">幻想</span><span class="term-tag">意愿</span><span
+              class="term-tag">反施压</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Yes / No / Maybe</span><span
+            class="term-zh">把结果转成可协商清单</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Yes</strong>：愿意做什么？和谁、在哪里、什么强度、持续多久？</li>
+              <li><strong>No</strong>：哪些行为、语言、身体部位、身份主题或记录方式是硬限制？</li>
+              <li><strong>Maybe</strong>：需要哪些条件才考虑，例如更多信任、知识、训练、低强度试验或第三方支持？</li>
+              <li><strong>Aftercare</strong>：结束后需要陪伴、确认、独处、补给，还是次日联系？</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">清单</span><span class="term-tag">具体条件</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Matching Red Flags</span><span
+            class="term-zh">用测试匹配关系时的警示信号</span>
+          <div class="term-desc">
+            <ul>
+              <li>用“真正的 Dom/Sub 应该……”否定你的边界，或要求你用服从证明身份。</li>
+              <li>把高分解释成默认授权，拒绝逐项协商、安全词、过程确认或事后照顾。</li>
+              <li>把危险行为包装成“新手必修”，贬低循序渐进、学习技术或寻求帮助。</li>
+              <li>要求立刻提供真实身份、私密影像、住址或经济信息，或阻止你联系朋友与支持网络。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">红旗</span><span class="term-tag">防操控</span></div>
         </div>
       </div>
     </section>
@@ -1418,12 +1564,12 @@
             class="term-zh">心理与状态词</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Subspace</strong>：服从方在高强度场景中进入的解离/飘离状态，判断力下降，需要更细心的照顾。</li>
-              <li><strong>Topspace / Domspace</strong>：主导方进入的高度专注与掌控状态，同样可能影响对外部信号的觉察。</li>
+              <li><strong>Subspace</strong>：部分接受方在场景中报告的高度专注、恍惚或飘离体验；其反应和判断可能改变，不能据此推定持续同意。</li>
+              <li><strong>Topspace / Domspace</strong>：部分操作方或主导方报告的高度专注状态，也可能降低对外部信号的觉察，需要主动 check-in。</li>
               <li><strong>Sub Drop</strong>：场景后服从方出现的情绪低落、空虚或疲惫感，可能延迟数小时到数天出现。</li>
               <li><strong>Top Drop</strong>：场景后主导方出现的类似情绪低落，常被忽视但同样需要照顾。</li>
               <li><strong>Trigger</strong>：触发点；特定行为、语言或情境可能激活的情绪或创伤反应，需提前说明。</li>
-              <li><strong>Afterdrop</strong>：生理层面的体温骤降与内啡肽退潮，可能伴随颤抖与疲惫，需保暖与补给。</li>
+              <li><strong>Afterdrop</strong>：社群中对场景后低落、疲惫、颤抖或空虚等反应的概括性称呼；成因因人而异，不应自行归结为单一激素机制。</li>
             </ul>
           </div>
           <div class="term-tags"><span class="term-tag">心理</span><span class="term-tag">状态</span><span
@@ -1437,7 +1583,7 @@
               <li><strong>D/s Relationship</strong>：将权力动态延伸到日常关系结构中的持续关系形式。</li>
               <li><strong>TPE（Total Power Exchange）</strong>：全面权力交换；高度结构化、高承诺的关系形式，需极高信任与透明度。</li>
               <li><strong>Collar</strong>：项圈；在部分社群中有象征承诺关系的意义，类似于戒指，含义因人而异。</li>
-              <li><strong>Munche</strong>：非场景的社群聚会，通常在普通公共场所，以交流和认识新朋友为目的。</li>
+              <li><strong>Munch</strong>：非场景的社群聚会，通常在普通公共场所，以交流和认识新朋友为目的。</li>
               <li><strong>Kink-Aware Professional</strong>：了解并尊重 BDSM 文化的心理咨询师或医疗专业人士。</li>
               <li><strong>Vanilla</strong>：非 BDSM 的主流性关系或互动方式；无贬义。</li>
             </ul>
@@ -1493,6 +1639,19 @@
             </ul>
           </div>
           <div class="term-tags"><span class="term-tag">筛选</span><span class="term-tag">社群</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Online Exploration</span><span
+            class="term-zh">本次内容参考入口与使用边界</span>
+          <div class="term-desc">
+            <ul>
+              <li><a href="https://www.bdsmtest.org/" target="_blank" rel="noopener noreferrer">BDSM Test</a>：可用于浏览角色倾向词汇和生成自我反思问题；结果属于自陈式探索，不是科学诊断或匹配证明。</li>
+              <li><a href="https://zhuanlan.zhihu.com/p/1904196260195447647" target="_blank"
+                  rel="noopener noreferrer">知乎文章</a>：可作为中文网络语境下的延伸阅读；二手科普中的分类与说法应结合专业安全资料交叉核对。</li>
+              <li>阅读任何角色分类时，都应回到具体行为、风险、边界与照顾需求，而不是只比较标签或百分比。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">来源</span><span class="term-tag">阅读边界</span></div>
         </div>
       </div>
     </section>
@@ -1579,6 +1738,7 @@
               'core-definition': '核心定义',
               'safety-frameworks': '安全原则',
               'roles-boundaries': '角色与权责',
+              'self-exploration': '偏好探索',
               'scene-setup': '场景搭建',
               'consent-process': '沟通与同意',
               'risk-emergency': '风险与应急',

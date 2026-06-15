@@ -1703,7 +1703,7 @@
             }
 
             // 通用解释块（保持不变）
-            const generalTip = `<div style="background-color: #fff; border-radius: 10px; padding: 20px; margin: 25px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-left: 6px solid #4a148c;"><h3 style="color: #4a148c; margin-top: 0;">确保结果准确性</h3><p>本量表旨在帮助您系统梳理内在认同与外部经验的互动模式。请基于您长期的真实感受作答，而非社会期望、道德压力或一时的冲动。</p><h4 style="color: #4a148c; margin-top: 20px;">如果您发现结果中有任何逻辑矛盾或不一致：</h4><ul style="background-color: #f3e5f5; padding: 15px; border-radius: 6px;"><li><strong>回顾题目解释：</strong>点击每个问题的标题可以查看详细解释和具体示例（如区分外貌审美与性别焦虑）。</li><li><strong>区分表达与认同：</strong>喜欢异性装扮（性别表达）不等于内心认同为异性（性别认同）。跨性别男性可以喜欢穿裙子，顺性别女性可以偏爱中性装扮。</li><li><strong>区分取向与认同：</strong>喜欢同性（性倾向）与想成为另一种性别（性别认同）是独立的。确保您没有将浪漫/性吸引与"想成为TA"的渴望混淆。</li></ul><h4 style="color: #4a148c; margin-top: 20px;">为什么结果可能有矛盾？</h4><ul style="background-color: #e8f5e9; padding: 15px; border-radius: 6px;"><li><strong>探索阶段限制：</strong>很多跨性别者或非二元者早期会因为"内化恐惧"或"社会脚本压力"而下意识压抑自己的真实答案。</li><li><strong>体验的流动性：</strong>人类体验极其丰富，性别并不是非黑即白的开关，有时会超出单一维度的完美捕捉。</li></ul><p style="margin-top: 15px; font-size: 0.95em; color: #666;"><strong>重要提示：</strong>本结果基于您的当前回答计算。如果您觉得结果与实际体验不符，可以：① 相信当前结果，接纳自己独特的轨迹；② 将矛盾点记录下来，作为深入自我探索或寻求心理咨询师帮助的起点。身份认同是一个流动且终生的过程。</p></div>`;
+            const generalTip = `<div style="background-color: #fff; border-radius: 10px; padding: 20px; margin: 25px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-left: 6px solid #4a148c;"><h3 style="color: #4a148c; margin-top: 0;">确保结果准确性</h3><p>本量表旨在帮助您系统梳理内在认同与外部经验的互动模式。请基于您长期的真实感受作答，而非社会期望、道德压力或一时的冲动。</p><h4 style="color: #4a148c; margin-top: 20px;">如果您发现结果中有任何逻辑矛盾或不一致：</h4><ul style="background-color: #f3e5f5; padding: 15px; border-radius: 6px;"><li><strong>回顾题目解释：</strong>点击每个问题的标题可以查看详细解释和具体示例（如区分外貌审美与性别焦虑）。</li><li><strong>区分表达与认同：</strong>喜欢异性装扮（性别表达）不等于内心认同为异性（性别认同）。跨性别男性可以喜欢穿裙子，顺性别女性可以偏爱中性装扮。</li><li><strong>区分取向与认同：</strong>喜欢同性（性倾向）与想成为另一种性别（性别认同）是独立的。确保您没有将浪漫/性吸引与"想成为TA"的渴望混淆。</li></ul><h4 style="color: #4a148c; margin-top: 20px;">为什么结果可能有矛盾？</h4><ul style="background-color: #e8f5e9; padding: 15px; border-radius: 6px;"><li><strong>探索阶段限制：</strong>很多跨性别者或非二元者早期会因为"内化恐惧"或"社会脚本压力"而下意识压抑自己的真实答案。</li><li><strong>体验的流动性：</strong>人类体验极其丰富，性别并不是非黑即白的开关，有时会溢出单一维度，难以被完整捕捉。</li></ul><p style="margin-top: 15px; font-size: 0.95em; color: #666;"><strong>重要提示：</strong>本结果基于您的当前回答计算。如果您觉得结果与实际体验不符，可以：① 相信当前结果，接纳自己独特的轨迹；② 将矛盾点记录下来，作为深入自我探索或寻求心理咨询师帮助的起点。身份认同是一个流动且终生的过程。</p></div>`;
 
             const inconIntensity = getIntensity(incongruenceScore);
             const nbIntensity = getIntensity(nbScore);
@@ -1716,7 +1716,7 @@
 
             // Helper: produce a score-aware interpretation string for incongruence
             function getIncongruenceDetail(score) {
-                if (score < 1.0) return `您的核心不一致感得分极低（${score}/5.0），这表明您对自己的指派性别有相当稳固的认同。您很少或从未感到内心的性别感与外在标签之间存在明显裂缝。这并不意味着您没有进行性别探索的价值——顺性别者同样可以打破性别角色的束缚——但从量化指标来看，跨性别体验并不是您当前的显著特征。`;
+                if (score < 1.0) return `您的核心不一致感得分极低（${score}/5.0），这表明您对自己的指派性别有相当稳固的认同。您很少或从未感到内心的性别感与外在标签之间存在明显裂缝。这并不意味着性别探索对您没有价值——顺性别者同样可以打破性别角色的束缚——但从量化指标来看，跨性别体验并不是您当前的显著特征。`;
                 if (score < 2.0) return `您的核心不一致感处于偏低区间（${score}/5.0）。您偶尔可能会对自己的指派性别产生轻微的疑问或不适，但这种感受尚不稳定、不强烈，也可能与特定的情境或人生阶段有关。这一阶段常被描述为"不确定的低语"——并非震耳欲聋，却也真实存在。建议您继续观察这种感受是否随时间增强、减弱或保持稳定，这将是判断方向的重要线索。`;
                 if (score < 3.0) return `您的核心不一致感处于中等区间（${score}/5.0）。这意味着您对指派性别的不适感是真实存在且具有一定规律性的，但尚未到达极度痛苦的程度。您可能在特定情境下（如被异性化的场合、照镜子时、填写性别栏时）感受到明显的内心阻力，但日常生活中也有相当一部分时候能与自己的身份和平共处。中等不一致感往往出现在探索早期，或出现在非二元认同者身上——因为他们的冲突不是"我是另一个二元性别"，而是"我不完全属于任何一个"。`;
                 if (score < 4.0) return `您的核心不一致感处于较高区间（${score}/5.0）。这表明您对指派性别有持续、稳定且较为强烈的不适感。您可能经常感到自己被困在一个不属于自己的框架中，被错误的代词称呼时有明显的内心抵触，或者在镜子中看不到"真实的自己"。这种程度的不一致感在心理学文献中被认为是性别认同探索的强烈信号，值得认真对待。如果您尚未与心理咨询师讨论这些感受，这可能是一个很好的起点。`;
@@ -1936,7 +1936,27 @@
         async function saveResultImage() {
             const resultDiv = document.getElementById('result');
             if (resultDiv.style.display === 'block') {
-                const canvas = await html2canvas(resultDiv, { scale: 2 });
+                const canvas = await html2canvas(resultDiv, {
+                scale: 2,
+                backgroundColor: getComputedStyle(resultDiv).backgroundColor,
+                onclone: (doc) => {
+                    // html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
+                    // overrides in scale-common.css. Copy the live computed colors onto the clone
+                    // so the exported image matches the on-screen result in either theme.
+                    const dstRoot = doc.getElementById('result');
+                    if (!dstRoot) return;
+                    const src = resultDiv.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
+                    const copy = (a, b) => {
+                        const cs = getComputedStyle(a);
+                        b.style.setProperty('background-color', cs.backgroundColor, 'important');
+                        b.style.setProperty('background-image', cs.backgroundImage, 'important');
+                        b.style.setProperty('color', cs.color, 'important');
+                        ['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
+                    };
+                    copy(resultDiv, dstRoot);
+                    for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
+                }
+            });
                 const link = document.createElement('a');
                 link.download = '性别认同探索自查结果.png';
                 link.href = canvas.toDataURL();

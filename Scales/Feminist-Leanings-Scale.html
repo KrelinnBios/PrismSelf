@@ -783,13 +783,13 @@
 
             let html = `<div class="insight-card">
             <h3>一、 认识论基础</h3>
-            <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的认知框架中，性别不平等的根源主要被理解为：${getDetailedEpistemology(top.key)}</p>`;
+            <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的认知框架中，您主要将性别不平等的根源理解为：${getDetailedEpistemology(top.key)}</p>`;
 
             if (second && second.score > 50) {
-                html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样大量吸收了该流派的分析框架——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的思考中形成了富有张力的共存。</p>`;
+                html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样大量吸收了该流派的分析框架——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的思考中并存，又彼此充满张力。</p>`;
             }
             if (third && third.score > 45) {
-                html += `<p>「<strong>${third.name}</strong>」（${third.score}%）作为第三倾向出现，进一步印证了您思想体系的多元层次：${getDetailedEpistemology(third.key).substring(0, 80)}这一面向在您面对具体议题时往往也会浮现。</p>`;
+                html += `<p>「<strong>${third.name}</strong>」（${third.score}%）位列第三倾向，进一步印证了您思想体系的多元层次：${getDetailedEpistemology(third.key).substring(0, 80)}这一维度在您面对具体议题时往往也会浮现。</p>`;
             }
             html += `</div>`;
 
@@ -830,7 +830,7 @@
             }
             html += `<div class="insight-card"><h3>四、 个体思想画像及溢出分析</h3>`;
             if (contradictions.length > 0) {
-                html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留或抵触，说明您的立场并非全盘接收，而是具有独立思辨性：</p>
+                html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留或抵触，说明您的立场并非全盘接受，而是带有独立的思辨：</p>
                 <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
                   ${contradictions.slice(0, 4).map(c => `<li>「${c.text}」（得分：${c.score}）</li>`).join('')}
                 </ul>`;
@@ -838,7 +838,7 @@
                 html += `<p><strong>对主导流派的高度一致：</strong>您在「${top.name}」的全部核心议题上保持了高度一致，显示出对该理论体系的深度内化，较少存在内部张力。</p>`;
             }
             if (strongAgrees.length > 0) {
-                html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>您在整体得分最低的「${lowest.name}」中，仍对以下议题表示较强认同。留意这些溢出点，它们可能代表您思想中尚未充分展开的面向：</p>
+                html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>您在整体得分最低的「${lowest.name}」中，仍对以下议题表示较强认同。留意这些溢出点，它们可能代表您思想中尚未充分展开的部分：</p>
                 <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
                   ${strongAgrees.slice(0, 3).map(c => `<li>「${c.text}」（得分：${c.score}）</li>`).join('')}
                 </ul>`;
@@ -929,13 +929,13 @@
                 typeDesc = "您在五个或以上流派中均达到明显偏好水平，拒绝被任何单一理论框定，能灵活切换分析视角。";
             } else if (above60 >= 3) {
                 typeLabel = "多维兼容型";
-                typeDesc = "您吸收了多个流派的核心洞见，形成具有综合性的个人视角，既有明确重心，又不拒绝其他框架。";
+                typeDesc = "您吸收了多个流派的核心洞见，形成综合的个人视角，既有明确重心，又不排斥其他框架。";
             } else if (above40 >= 5) {
                 typeLabel = "温和折衷型";
                 typeDesc = "您对大多数流派保持开放性，尚未形成特别鲜明的核心倾向，处于主动探索或刻意规避教条的阶段。";
             } else {
                 typeLabel = "立场鲜明型";
-                typeDesc = "您的理论认同高度集中于少数流派，具有清晰的思想重心和内聚性，能快速形成一致的政治表达。";
+                typeDesc = "您的理论认同高度集中于少数流派，思想重心清晰、内聚力强，能快速形成一致的政治表达。";
             }
 
             let summaryHtml = `<div style="background:linear-gradient(135deg,#FFF3E6,#FFFcf8); padding:28px; border-radius:16px; border-left:6px solid #f97316; box-shadow:0 4px 12px rgba(249,115,22,0.05); height:100%; display:flex; flex-direction:column; justify-content:center;">
@@ -1143,11 +1143,28 @@
             try {
                 const canvas = await html2canvas(element, {
                     scale: 2,
-                    backgroundColor: "#f4f1fb",
+                    backgroundColor: getComputedStyle(element).backgroundColor,
                     useCORS: true,
                     logging: false,
                     windowWidth: element.scrollWidth,
-                    windowHeight: element.scrollHeight
+                    windowHeight: element.scrollHeight,
+                    onclone: (doc) => {
+                        // html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
+                        // overrides in scale-common.css. Copy the live computed colors onto the clone
+                        // so the exported image matches the on-screen result in either theme.
+                        const dstRoot = doc.getElementById('result');
+                        if (!dstRoot) return;
+                        const src = element.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
+                        const copy = (a, b) => {
+                            const cs = getComputedStyle(a);
+                            b.style.setProperty('background-color', cs.backgroundColor, 'important');
+                            b.style.setProperty('background-image', cs.backgroundImage, 'important');
+                            b.style.setProperty('color', cs.color, 'important');
+                            ['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
+                        };
+                        copy(element, dstRoot);
+                        for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
+                    }
                 });
                 const link = document.createElement('a');
                 link.download = "女权主义流派倾向评估报告.png";

@@ -777,13 +777,13 @@
 
             let html = `<div class="insight-card">
             <h3>一、 认识论与价值基底</h3>
-            <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的底层认知框架中，世界的运作与人生的意义主要被理解为：${getDetailedEpistemology(top.key)}</p>`;
+            <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的底层认知框架中，您主要将世界的运作与人生的意义理解为：${getDetailedEpistemology(top.key)}</p>`;
 
             if (second && second.score > 50) {
-                html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样高度认同该流派的核心洞见——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的精神世界中形成了绝佳的互补。</p>`;
+                html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样高度认同该流派的核心洞见——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的精神世界中相得益彰。</p>`;
             }
             if (third && third.score > 45) {
-                html += `<p>「<strong>${third.name}</strong>」（${third.score}%）作为第三倾向出现，进一步展示了您思想体系的多元维度：${getDetailedEpistemology(third.key).substring(0, 80)}这一面向在您处理复杂现实时往往也会发挥关键作用。</p>`;
+                html += `<p>「<strong>${third.name}</strong>」（${third.score}%）位列第三倾向，进一步展示了您思想体系的多元维度：${getDetailedEpistemology(third.key).substring(0, 80)}这一维度在您处理复杂现实时往往也会发挥关键作用。</p>`;
             }
             html += `</div>`;
 
@@ -816,7 +816,7 @@
             }
             html += `<div class="insight-card"><h3>四、 个体思想画像及溢出分析</h3>`;
             if (contradictions.length > 0) {
-                html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留（甚至抵触），这说明您并未教条化地全盘接收，而是具有高度独立的思辨性：</p>
+                html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留（甚至抵触），这说明您并未教条化地全盘接受，而是保持着高度独立的思辨：</p>
                 <ul style="margin:0; padding-left:20px; line-height:2; color:#164e63;">
                   ${contradictions.slice(0, 4).map(c => `<li>「${c.text}」（您的打分：${c.score} / 6）</li>`).join('')}
                 </ul>`;
@@ -1114,11 +1114,28 @@
             try {
                 const canvas = await html2canvas(element, {
                     scale: 2,
-                    backgroundColor: "#f4f1fb",
+                    backgroundColor: getComputedStyle(element).backgroundColor,
                     useCORS: true,
                     logging: false,
                     windowWidth: element.scrollWidth,
-                    windowHeight: element.scrollHeight
+                    windowHeight: element.scrollHeight,
+                    onclone: (doc) => {
+                        // html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
+                        // overrides in scale-common.css. Copy the live computed colors onto the clone
+                        // so the exported image matches the on-screen result in either theme.
+                        const dstRoot = doc.getElementById('result');
+                        if (!dstRoot) return;
+                        const src = element.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
+                        const copy = (a, b) => {
+                            const cs = getComputedStyle(a);
+                            b.style.setProperty('background-color', cs.backgroundColor, 'important');
+                            b.style.setProperty('background-image', cs.backgroundImage, 'important');
+                            b.style.setProperty('color', cs.color, 'important');
+                            ['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
+                        };
+                        copy(element, dstRoot);
+                        for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
+                    }
                 });
                 const link = document.createElement('a');
                 link.download = "哲学流派倾向评估报告.png";

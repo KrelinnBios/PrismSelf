@@ -1561,7 +1561,7 @@
             <li><strong>复杂性：</strong>人类浪漫吸引体验可能具有流动性、情境依赖性或非典型组合</li>
             <li><strong>探索过程：</strong>您可能正处于身份探索或转变的过程中</li>
             <li><strong>理解偏差：</strong>某些概念（如浪漫吸引与其他吸引的区别）需要时间来理解和区分</li>
-            <li><strong>体验多样性：</strong>人类体验的丰富性有时会超出分类系统的完美捕捉</li>
+            <li><strong>体验多样性：</strong>人类体验有时丰富到难以被分类系统完整捕捉</li>
         </ul>
         
         <p style="margin-top: 15px; font-size: 0.95em; color: #666;">
@@ -1617,7 +1617,7 @@
 
 					mainInterpretation = `<h3>多重无浪漫特征解读</h3>
             <p><strong>无浪漫的核心特征：</strong></p>
-            <p>您的得分表明，您几乎或完全不体验浪漫吸引——即那种指向特定他人的、以浪漫情感为基础的内在冲动和渴望。这并不意味着您缺乏情感、智力或审美感受，只是浪漫渴望不在您的吸引方程中。</p>
+            <p>您的得分表明，您几乎或完全不体验浪漫吸引——即那种指向特定他人的、以浪漫情感为基础的内在冲动和渴望。这并不意味着您缺乏情感、智力或审美感受，只是您的吸引里并不包含浪漫渴望。</p>
             
             <p><strong>什么是多重无浪漫？</strong></p>
             <p>多重无浪漫 (Myrromantic) 描述的是那些同时符合无浪漫谱系中两种或多种身份认同特征的情况。在无浪漫社区中，这被认为是一种常见且正常的表现，反映了人类吸引力的复杂性。</p>
@@ -1657,7 +1657,7 @@
                 <li><strong>浪漫吸引缺失：</strong>您可能从未或极少对他人产生过"想与TA建立浪漫关系"的冲动。当别人谈论"浪漫心动"或"恋爱感觉"时，您可能感到困惑或难以共鸣。</li>
                 <li><strong>幻想模式：</strong>如果有关浪漫方面的幻想，它们可能是抽象的、不涉及具体人物的，或者完全没有。任何浪漫相关的想法都可能是理性的、分析性的，而非感性的、冲动的。</li>
                 <li><strong>情感反应：</strong>您的情感反应可能与浪漫吸引脱钩，或者即使有情感反应（如温暖感、兴奋感）也不伴随心理上的浪漫欲望或对特定他人的吸引。</li>
-                <li><strong>社会体验：</strong>您可能难以理解社会中对浪漫的普遍关注和讨论，感到自己像"旁观者"观察着别人的游戏。</li>
+                <li><strong>社会体验：</strong>您可能难以理解社会中对浪漫的普遍关注和讨论，感到自己像个“旁观者”，在一旁看着别人投入其中。</li>
                 <li><strong>关系模式：</strong>在亲密关系中，您可能更重视情感联结、智力共鸣、共同兴趣或生活陪伴，而非浪漫互动。</li>
             </ul>
             
@@ -2574,7 +2574,27 @@
 		async function saveResultImage() {
 			const resultDiv = document.getElementById('result');
 			if (resultDiv.style.display === 'block') {
-				const canvas = await html2canvas(resultDiv, { scale: 2 });
+				const canvas = await html2canvas(resultDiv, {
+					scale: 2,
+					backgroundColor: getComputedStyle(resultDiv).backgroundColor,
+					onclone: (doc) => {
+						// html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
+						// overrides in scale-common.css. Copy the live computed colors onto the clone
+						// so the exported image matches the on-screen result in either theme.
+						const dstRoot = doc.getElementById('result');
+						if (!dstRoot) return;
+						const src = resultDiv.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
+						const copy = (a, b) => {
+							const cs = getComputedStyle(a);
+							b.style.setProperty('background-color', cs.backgroundColor, 'important');
+							b.style.setProperty('background-image', cs.backgroundImage, 'important');
+							b.style.setProperty('color', cs.color, 'important');
+							['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
+						};
+						copy(resultDiv, dstRoot);
+						for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
+					}
+				});
 				const link = document.createElement('a');
 				link.download = '无浪漫谱系自查结果.png';
 				link.href = canvas.toDataURL();

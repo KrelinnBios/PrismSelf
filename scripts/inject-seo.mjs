@@ -24,7 +24,7 @@ const pages = {
   'Bingos/Neurodiversity-Resonance.html': { desc: '神经多样性共鸣刻度卡，通过条目自评感受神经多样性相关体验的共鸣程度。' },
   'Guides/Asexual-Community-Survey.html': { desc: '无性恋社群现状与需求调查报告，呈现社群构成、处境与支持需求等数据与解读。' },
   'Guides/Asexual-Comprehensive-Guide.html': { desc: '无性恋全景指南，系统介绍无性恋的定义、谱系、常见误解与社群资源。' },
-  'Guides/BDSM-Comprehensive-Guide.html': { desc: 'BDSM 全景指南，系统介绍其概念、安全原则（SSC/RACK）、角色分工与知情同意。' },
+  'Guides/BDSM-Comprehensive-Guide.html': { desc: 'BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。' },
   'Guides/Demisexual-Comprehensive-Guide.html': { desc: '半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。' },
   'Guides/Gender-Concepts-Terminology.html': { desc: '性别概念与术语指南，系统解释性别认同、性别表达与相关核心术语。' },
   'Guides/Greysexual-Comprehensive-Guide.html': { desc: '灰性恋全景指南，系统介绍灰性恋的定义、谱系定位、常见误解与社群语境。' },
@@ -53,6 +53,8 @@ for (const [rel, meta] of Object.entries(pages)) {
 
   const hasDesc = /name=["']description["']/.test(html);
   const hasOg = /property=["']og:/.test(html);
+  const hasOgImage = /property=["']og:image["']/.test(html);
+  const hasTwitter = /name=["']twitter:card["']/.test(html);
   const hasTheme = /name=["']theme-color["']/.test(html);
   const hasIcon = /rel=["']icon["']/.test(html);
 
@@ -68,6 +70,14 @@ for (const [rel, meta] of Object.entries(pages)) {
     lines.push(`<meta property="og:url" content="${esc(url)}">`);
     lines.push(`<meta property="og:locale" content="zh_CN">`);
   }
+  // og:image is checked independently: a page may already carry other og: tags
+  // without a share image, so it must not be gated behind hasOg.
+  if (!hasOgImage) {
+    lines.push(`<meta property="og:image" content="${SITE}/og-image.png">`);
+    lines.push(`<meta property="og:image:width" content="1200">`);
+    lines.push(`<meta property="og:image:height" content="630">`);
+  }
+  if (!hasTwitter) lines.push(`<meta name="twitter:card" content="summary_large_image">`);
   if (lines.length === 0) { console.log('skip (already complete):', rel); continue; }
 
   // Insert after the whole line that contains </title>, matching its indent and newline style.

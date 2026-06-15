@@ -602,7 +602,7 @@
 			if (ctx.overallSexualAttraction < 1.5 || (ctx.maxAvg < 1.2 && ctx.embodiedSpecificity < 1.5) || (ctx.maxAvg < 1.8 && ctx.aceSpectrumSignal >= 3.4)) {
 				return {
 					title: '无性恋/无性恋谱系倾向（整体性吸引很低）',
-					desc: '你的性别相关吸引、身体性征吸引和气质触发线索整体都偏低，且无性恋谱系线索较明显。这并不表示你不能有浪漫、审美、情感或感官亲密需求，而是说明“想与他人发生性接触”的内在吸引可能较少或很少出现。'
+					desc: '你的性别相关吸引、身体性征吸引和气质触发线索整体都偏低，且无性恋谱系线索较明显。这并不表示你不能有浪漫、审美、情感或感官亲密需求，而是说明“想与他人发生性接触”的内在吸引可能很少、甚至几乎不出现。'
 				};
 			}
 			if (ctx.aceSpectrumSignal >= 3.6 && ctx.overallSexualAttraction < 2.4) {
@@ -634,7 +634,7 @@
 				const notes = [questioning ? '你也更适合用开放或比例化语言描述自己。' : '', fluid ? '你的吸引可能具有低频、条件性或阶段性特点。' : ''].filter(Boolean).join('');
 				return {
 					title: `主要被${targetName}吸引（单向倾向）`,
-					desc: `你的评分显示性吸引主要集中在${targetName}，其他方向相对较弱。${panish ? '不过你在“更看具体的人/气质/互动”上也较高，说明这个单向倾向可能不是僵硬的身份筛选。' : ''}${strongEmbodied ? '你的身体性征或气质触发点也较明显，建议进一步记录具体是什么线索在起作用。' : ''}${notes}`
+					desc: `你的评分显示性吸引主要集中在${targetName}，其他方向相对较弱。${panish ? '不过你在“更看具体的人/气质/互动”上也较高，说明这个单向倾向未必是僵硬的身份筛选。' : ''}${strongEmbodied ? '你的身体性征或气质触发点也较明显，建议进一步记录具体是什么线索在起作用。' : ''}${notes}`
 				};
 			}
 
@@ -708,7 +708,7 @@
 				`<ul><li>自发幻想：第14题 ${scores.q14}/5</li><li>男性是否进入性吸引范围：第15题 ${scores.q15}/5</li><li>男性化身体/气质线索：第16题 ${scores.q16}/5</li><li>总体情绪基调：第24题 ${scores.q24}/5</li></ul>`);
 
 			html += buildAnalysisCard('3. 非二元/中性/混合表达相关性吸引', ctx.avgNb,
-				ctx.avgNb >= 3.2 ? '你的性吸引范围明显覆盖非二元、中性或混合表达对象。' : ctx.avgNb >= 2.0 ? '你可能对非二元/中性/混合表达有一定开放度，但强度受接触机会和具体表达影响。' : '此维度偏低不必直接理解为排除，也可能是现实接触或证据不足。',
+				ctx.avgNb >= 3.2 ? '你的性吸引范围明显覆盖非二元、中性或混合表达对象。' : ctx.avgNb >= 2.0 ? '你可能对非二元/中性/混合表达有一定开放度，但强度受接触机会和具体表达影响。' : '此维度偏低不必直接理解为排除某个方向，也可能只是现实中接触或线索不足。',
 				`<ul><li>中性/混合表达：第26题 ${scores.q26}/5</li><li>不先归类性别：第34题 ${scores.q34}/5</li><li>频率线索：第30题 ${scores.q30}/5</li><li>总体情绪基调：第36题 ${scores.q36}/5</li></ul>`);
 
 			html += buildAnalysisCard('4. 身体性征、性别气质与具体触发点', ctx.embodiedSpecificity,
@@ -856,7 +856,27 @@
 				alert('图片保存组件尚未加载完成，请稍后再试。');
 				return;
 			}
-			const canvas = await html2canvas(resultDiv, { scale: 2, backgroundColor: '#f4f1fb' });
+			const canvas = await html2canvas(resultDiv, {
+				scale: 2,
+				backgroundColor: getComputedStyle(resultDiv).backgroundColor,
+				onclone: (doc) => {
+					// html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
+					// overrides in scale-common.css. Copy the live computed colors onto the clone
+					// so the exported image matches the on-screen result in either theme.
+					const dstRoot = doc.getElementById('result');
+					if (!dstRoot) return;
+					const src = resultDiv.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
+					const copy = (a, b) => {
+						const cs = getComputedStyle(a);
+						b.style.setProperty('background-color', cs.backgroundColor, 'important');
+						b.style.setProperty('background-image', cs.backgroundImage, 'important');
+						b.style.setProperty('color', cs.color, 'important');
+						['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
+					};
+					copy(resultDiv, dstRoot);
+					for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
+				}
+			});
 			const link = document.createElement('a');
 			link.download = '性取向自评结果.png';
 			link.href = canvas.toDataURL('image/png');
