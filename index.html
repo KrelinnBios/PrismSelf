@@ -154,11 +154,12 @@
       gap: 8px;
       padding: 10px 14px;
       background: transparent;
-      color: var(--ink-mid);
+      color: var(--ink-soft);
       text-decoration: none;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.02em;
+      transition: color 0.2s ease;
     }
 
     .site-link:hover {
@@ -169,7 +170,12 @@
       width: 16px;
       height: 16px;
       fill: currentColor;
-      opacity: 0.85;
+      opacity: 0.72;
+      transition: opacity 0.2s ease;
+    }
+
+    .site-link:hover svg {
+      opacity: 1;
     }
 
     @media (max-width: 600px) {
