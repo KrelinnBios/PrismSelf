@@ -1,0 +1,21 @@
+#!/bin/sh
+# Git hook: pre-commit
+# Auto-generate update-records.js before committing
+
+# Check if scripts directory and generator exist
+if [ ! -f "scripts/generate-update-records.mjs" ]; then
+  exit 0
+fi
+
+# Run the generator
+echo "🔄 Generating update-records.js from Git history..."
+node scripts/generate-update-records.mjs
+
+# Check if update-records.js was modified
+if git diff --quiet update-records.js; then
+  exit 0
+fi
+
+# Stage the updated file
+git add update-records.js
+echo "✅ update-records.js has been updated and staged"
