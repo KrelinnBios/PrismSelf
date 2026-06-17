@@ -1171,12 +1171,10 @@
 
       grid.innerHTML = visible.map(({ term, cat }) => {
         const prepared = prepareTerm(term);
-        // 中英文名相同（或仅大小写不同），或未提供英文时，不再显示重复的英文小字。
-        const showEn = prepared.en && normalize(prepared.zhPrimary) !== normalize(prepared.en);
         return `
         <article class="term-card" data-category="${cat}">
           <div class="term-head">
-            <h3 class="term-title">${prepared.zhPrimary}${showEn ? `<small>${prepared.en}</small>` : ""}</h3>
+            <h3 class="term-title">${prepared.zhPrimary}${prepared.en ? `<small>${prepared.en}</small>` : ""}</h3>
             <span class="tag ${cat}">${categoryNames[cat]}</span>
           </div>
           ${prepared.aliasesList.length ? `<div class="aliases">别名/又译/近译：${prepared.aliasesList.join("、")}</div>` : ""}
