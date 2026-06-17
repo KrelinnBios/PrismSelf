@@ -1079,6 +1079,9 @@
 
     :root[data-theme="dark"] #write {
           background-color: #12161d !important;
+          /* 暗色下去掉浅色光晕，改用一条白色边框线 */
+          box-shadow: none !important;
+          border: 1px solid rgba(255, 255, 255, 0.55) !important;
         }
 
     :root[data-theme="dark"] kbd {
