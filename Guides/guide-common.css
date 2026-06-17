@@ -632,8 +632,7 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+    :root[data-theme="dark"] {
         --ink: #e7eaf3;
         --paper: #0e131d;
         --cream: #171f2d;
@@ -645,39 +644,38 @@
         --focus: rgba(169, 155, 255, 0.7);
       }
 
-      /* These elements used var(--ink)/var(--paper) as backgrounds; keep them
+:root[data-theme="dark"] /* These elements used var(--ink)/var(--paper) as backgrounds; keep them
          dark now that those vars carry the light text role. */
       header {
         background: #0a0f18;
         color: #e7eaf3;
       }
 
-      .term-card.highlight {
+:root[data-theme="dark"] .term-card.highlight {
         background: #0f1626;
         border-color: #0f1626;
         color: rgba(247, 248, 252, 0.92);
       }
 
-      .term-desc {
+:root[data-theme="dark"] .term-desc {
         color: #c6cfdc;
       }
 
-      #write .term-desc .guide-note {
+:root[data-theme="dark"] #write .term-desc .guide-note {
         background: rgba(169, 155, 255, 0.1);
         color: #c2ccdb;
       }
 
-      .prism-back-home {
+:root[data-theme="dark"] .prism-back-home {
         background: rgba(18, 24, 36, 0.92);
         color: #c6cfdc;
         border-color: rgba(255, 255, 255, 0.14);
       }
 
-      .prism-back-home:hover {
+:root[data-theme="dark"] .prism-back-home:hover {
         color: #ffffff;
         border-color: rgba(255, 255, 255, 0.28);
       }
-    }
 
     @media (max-width: 420px) {
       #write {

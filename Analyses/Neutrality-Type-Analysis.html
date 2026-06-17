@@ -119,18 +119,25 @@
       .modal-box { width: 95%; padding: 24px 20px; }
       .modal-title { font-size: 1.4rem; }
     }
-      @media (prefers-color-scheme: dark) {
-        .row-lv1 { background: linear-gradient(135deg, #0f2417, #0d2014); }
-        .row-lv2 { background: linear-gradient(135deg, #121d2e, #101826); }
-        .row-lv3 { background: linear-gradient(135deg, #2a1c12, #241910); }
-        .row-lv4 { background: linear-gradient(135deg, #241f10, #1f1a0c); }
-        .row-lv5 { background: linear-gradient(135deg, #2a1414, #241010); }
-        .row-lv6 { background: linear-gradient(135deg, #2a1320, #24101a); }
-        .example-text { background: #161d27; }
-        td::before { color: #c4b5fd; }
-      }
+          :root[data-theme="dark"] .row-lv1 { background: linear-gradient(135deg, #0f2417, #0d2014); }
+
+    :root[data-theme="dark"] .row-lv2 { background: linear-gradient(135deg, #121d2e, #101826); }
+
+    :root[data-theme="dark"] .row-lv3 { background: linear-gradient(135deg, #2a1c12, #241910); }
+
+    :root[data-theme="dark"] .row-lv4 { background: linear-gradient(135deg, #241f10, #1f1a0c); }
+
+    :root[data-theme="dark"] .row-lv5 { background: linear-gradient(135deg, #2a1414, #241010); }
+
+    :root[data-theme="dark"] .row-lv6 { background: linear-gradient(135deg, #2a1320, #24101a); }
+
+    :root[data-theme="dark"] .example-text { background: #161d27; }
+
+    :root[data-theme="dark"] td::before { color: #c4b5fd; }
   </style>
     <link rel="stylesheet" href="./analysis-common.css">
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
 </head>
 <body>
   <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>

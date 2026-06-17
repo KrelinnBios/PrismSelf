@@ -698,52 +698,55 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --ink: #e7edf3;
-        --ink-mid: #b4c1ce;
-        --ink-soft: #8a99a8;
-        --ink-pale: #5d6b79;
-        --bg: #0f141a;
-        --bg-card: #161d26;
-        --teal: #43b88c;
-        --teal-lt: #5fd0a4;
-        --blue: #4a9bdb;
-        --blue-lt: #6cb3ec;
-        --rose: #d96f93;
-        --rose-lt: #e98bac;
-        --amber: #cda154;
-        --amber-lt: #ddb877;
-        --slate: #94a3b8;
-        --slate-lt: #aab6c6;
-        --cyan: #2cc0da;
-        --cyan-lt: #5fd9ee;
-        --purple: #b27ce2;
-        --purple-lt: #cda1f0;
-        --orange: #fb923c;
-        --orange-lt: #fdb274;
-        --green: #4ec27a;
-        --green-lt: #6fd697;
-        --border: rgba(255, 255, 255, 0.1);
-        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
-        --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
-      }
+    /* Dark palette — applied via the data-theme attribute set by the early theme
+       script (defaults to the OS preference, overridable + persisted by the toggle). */
+    :root[data-theme="dark"] {
+      --ink: #e7edf3;
+      --ink-mid: #b4c1ce;
+      --ink-soft: #8a99a8;
+      --ink-pale: #5d6b79;
+      --bg: #0f141a;
+      --bg-card: #161d26;
+      --teal: #43b88c;
+      --teal-lt: #5fd0a4;
+      --blue: #4a9bdb;
+      --blue-lt: #6cb3ec;
+      --rose: #d96f93;
+      --rose-lt: #e98bac;
+      --amber: #cda154;
+      --amber-lt: #ddb877;
+      --slate: #94a3b8;
+      --slate-lt: #aab6c6;
+      --cyan: #2cc0da;
+      --cyan-lt: #5fd9ee;
+      --purple: #b27ce2;
+      --purple-lt: #cda1f0;
+      --orange: #fb923c;
+      --orange-lt: #fdb274;
+      --green: #4ec27a;
+      --green-lt: #6fd697;
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
 
-      body::before {
-        background:
-          radial-gradient(ellipse 80% 60% at 10% 0%, rgba(67, 184, 140, 0.08) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 80% at 90% 100%, rgba(74, 155, 219, 0.08) 0%, transparent 60%);
-      }
+    :root[data-theme="dark"] body::before {
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(67, 184, 140, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 100%, rgba(74, 155, 219, 0.08) 0%, transparent 60%);
+    }
 
-      .search-input {
-        background: var(--bg-card);
-      }
+    :root[data-theme="dark"] .search-input {
+      background: var(--bg-card);
+    }
 
-      .section-icon {
-        filter: saturate(0.85) brightness(0.92);
-      }
+    :root[data-theme="dark"] .section-icon {
+      filter: saturate(0.85) brightness(0.92);
     }
   </style>
+
+  <link rel="stylesheet" href="assets/theme.css">
+  <script src="assets/theme.js"></script>
 </head>
 
 <body>

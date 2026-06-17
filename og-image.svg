@@ -1,39 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
   <title id="title">PrismSelf</title>
-  <desc id="desc">A transparent regular tetrahedron centered on a black field, with a rainbow-colored right face.</desc>
+  <desc id="desc">A transparent tetrahedron centered on a black field, dispersing light into a full rainbow spectrum.</desc>
 
   <defs>
     <radialGradient id="bg" cx="50%" cy="50%" r="62%">
       <stop offset="0" stop-color="#0c0d12"/>
       <stop offset="1" stop-color="#000000"/>
     </radialGradient>
-    <linearGradient id="gLeft" x1="408" y1="160" x2="600" y2="484" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ffffff" stop-opacity=".16"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".05"/>
-    </linearGradient>
-    <linearGradient id="spectrum" x1="600" y1="120" x2="600" y2="480" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ff2d2d"/>
-      <stop offset=".2" stop-color="#ff8c1a"/>
-      <stop offset=".4" stop-color="#ffe34d"/>
-      <stop offset=".6" stop-color="#3fd06a"/>
-      <stop offset=".8" stop-color="#2f7bff"/>
-      <stop offset="1" stop-color="#9b4dff"/>
+    <linearGradient id="spectrum" x1="600" y1="128" x2="600" y2="474" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff3b30"/>
+      <stop offset=".1667" stop-color="#ff9500"/>
+      <stop offset=".3333" stop-color="#ffd60a"/>
+      <stop offset=".5" stop-color="#34c759"/>
+      <stop offset=".6667" stop-color="#0a84ff"/>
+      <stop offset=".8333" stop-color="#5e5ce6"/>
+      <stop offset="1" stop-color="#bf5af2"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
 
-  <!-- left face — transparent glass -->
-  <path d="M600 116 408 350 600 484Z" fill="url(#gLeft)"/>
-  <!-- right face — rainbow -->
-  <path d="M600 116 792 350 600 484Z" fill="url(#spectrum)" fill-opacity=".92"/>
+  <!-- left face — faint refracted rainbow -->
+  <path d="M600 116 408 350 600 484Z" fill="url(#spectrum)" fill-opacity=".32"/>
+  <!-- right face — full rainbow -->
+  <path d="M600 116 792 350 600 484Z" fill="url(#spectrum)"/>
 
   <!-- back base edge, seen through the glass -->
-  <line x1="408" y1="350" x2="792" y2="350" stroke="#e9edf3" stroke-width="3.5" stroke-opacity=".3"/>
+  <line x1="408" y1="350" x2="792" y2="350" stroke="#ffffff" stroke-width="3.5" stroke-opacity=".35"/>
 
   <!-- silhouette + front edge -->
   <path d="M600 116 792 350 600 484 408 350ZM600 116V484"
-    fill="none" stroke="#e9edf3" stroke-width="5.5" stroke-opacity=".9" stroke-linejoin="round"/>
+    fill="none" stroke="#ffffff" stroke-width="5.5" stroke-opacity=".95" stroke-linejoin="round"/>
 
   <text x="80" y="556" font-family="Georgia, 'Noto Serif SC', serif" font-size="46" font-weight="700" fill="#f4f5f8">PrismSelf</text>
   <text x="82" y="590" font-family="Georgia, 'Noto Serif SC', serif" font-size="22" fill="#9aa3b2" letter-spacing="2">性别 · 心理 · 人际</text>

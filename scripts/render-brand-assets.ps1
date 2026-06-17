@@ -66,37 +66,43 @@ function Draw-Pyramid {
     [single]$OutlineWidth
   )
 
-  # left face — transparent glass
-  $glass = [Drawing.Drawing2D.LinearGradientBrush]::new(
-    $BackLeft, $Front,
-    [Drawing.Color]::FromArgb(40, 255, 255, 255),
-    [Drawing.Color]::FromArgb(12, 255, 255, 255))
-  Fill-Poly $Graphics @($Apex, $BackLeft, $Front) $glass
-  $glass.Dispose()
+  # shared vertical rainbow (matches the #spectrum gradient in the SVGs)
+  $rainbowColors = [Drawing.Color[]]@(
+    [Drawing.ColorTranslator]::FromHtml('#ff3b30'),
+    [Drawing.ColorTranslator]::FromHtml('#ff9500'),
+    [Drawing.ColorTranslator]::FromHtml('#ffd60a'),
+    [Drawing.ColorTranslator]::FromHtml('#34c759'),
+    [Drawing.ColorTranslator]::FromHtml('#0a84ff'),
+    [Drawing.ColorTranslator]::FromHtml('#5e5ce6'),
+    [Drawing.ColorTranslator]::FromHtml('#bf5af2')
+  )
+  $rainbowPositions = [single[]]@(0, 0.1667, 0.3333, 0.5, 0.6667, 0.8333, 1)
 
-  # right face — rainbow
+  # left face — faint refracted rainbow
+  $left = [Drawing.Drawing2D.LinearGradientBrush]::new($Apex, $Front, [Drawing.Color]::Red, [Drawing.Color]::Violet)
+  $leftBlend = [Drawing.Drawing2D.ColorBlend]::new()
+  $leftBlend.Colors = [Drawing.Color[]]($rainbowColors | ForEach-Object { [Drawing.Color]::FromArgb(82, $_) })
+  $leftBlend.Positions = $rainbowPositions
+  $left.InterpolationColors = $leftBlend
+  Fill-Poly $Graphics @($Apex, $BackLeft, $Front) $left
+  $left.Dispose()
+
+  # right face — full rainbow
   $rainbow = [Drawing.Drawing2D.LinearGradientBrush]::new($Apex, $Front, [Drawing.Color]::Red, [Drawing.Color]::Violet)
   $blend = [Drawing.Drawing2D.ColorBlend]::new()
-  $blend.Colors = [Drawing.Color[]]@(
-    [Drawing.Color]::FromArgb(235, [Drawing.ColorTranslator]::FromHtml('#ff2d2d')),
-    [Drawing.Color]::FromArgb(235, [Drawing.ColorTranslator]::FromHtml('#ff8c1a')),
-    [Drawing.Color]::FromArgb(235, [Drawing.ColorTranslator]::FromHtml('#ffe34d')),
-    [Drawing.Color]::FromArgb(235, [Drawing.ColorTranslator]::FromHtml('#3fd06a')),
-    [Drawing.Color]::FromArgb(235, [Drawing.ColorTranslator]::FromHtml('#2f7bff')),
-    [Drawing.Color]::FromArgb(235, [Drawing.ColorTranslator]::FromHtml('#9b4dff'))
-  )
-  $blend.Positions = [single[]]@(0, .2, .4, .6, .8, 1)
+  $blend.Colors = [Drawing.Color[]]($rainbowColors | ForEach-Object { [Drawing.Color]::FromArgb(255, $_) })
+  $blend.Positions = $rainbowPositions
   $rainbow.InterpolationColors = $blend
   Fill-Poly $Graphics @($Apex, $BackRight, $Front) $rainbow
   $rainbow.Dispose()
 
   # back base edge, seen through the glass
-  $backPen = [Drawing.Pen]::new([Drawing.Color]::FromArgb(76, 233, 237, 243), $OutlineWidth * 0.65)
+  $backPen = [Drawing.Pen]::new([Drawing.Color]::FromArgb(89, 255, 255, 255), $OutlineWidth * 0.65)
   $Graphics.DrawLine($backPen, $BackLeft, $BackRight)
   $backPen.Dispose()
 
   # silhouette + front edge
-  $pen = [Drawing.Pen]::new([Drawing.Color]::FromArgb(230, 233, 237, 243), $OutlineWidth)
+  $pen = [Drawing.Pen]::new([Drawing.Color]::FromArgb(242, 255, 255, 255), $OutlineWidth)
   $pen.LineJoin = [Drawing.Drawing2D.LineJoin]::Round
   $pen.StartCap = [Drawing.Drawing2D.LineCap]::Round
   $pen.EndCap = [Drawing.Drawing2D.LineCap]::Round

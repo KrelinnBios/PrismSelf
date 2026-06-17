@@ -90,17 +90,23 @@
             .meta-item { font-size: 0.65rem; padding: 3px 8px; }
             td::before { width: 70px; }
         }
-        @media (prefers-color-scheme: dark) {
-            .row-identity { background: linear-gradient(135deg, #121d2e, #101826); }
-            .row-movement { background: linear-gradient(135deg, #2a1c12, #241910); }
-            .row-org { background: linear-gradient(135deg, #0e2329, #0c1d22); }
-            .row-norm { background: linear-gradient(135deg, #2a1320, #24101a); }
-            .disclaimer-box { background: #2a1d12; border-color: #5c3a1e; color: #f0c79a; }
-            .disclaimer-box strong { color: #fdba74; }
-            td::before { color: #c4b5fd; }
-        }
+            :root[data-theme="dark"] .row-identity { background: linear-gradient(135deg, #121d2e, #101826); }
+
+    :root[data-theme="dark"] .row-movement { background: linear-gradient(135deg, #2a1c12, #241910); }
+
+    :root[data-theme="dark"] .row-org { background: linear-gradient(135deg, #0e2329, #0c1d22); }
+
+    :root[data-theme="dark"] .row-norm { background: linear-gradient(135deg, #2a1320, #24101a); }
+
+    :root[data-theme="dark"] .disclaimer-box { background: #2a1d12; border-color: #5c3a1e; color: #f0c79a; }
+
+    :root[data-theme="dark"] .disclaimer-box strong { color: #fdba74; }
+
+    :root[data-theme="dark"] td::before { color: #c4b5fd; }
     </style>
     <link rel="stylesheet" href="./analysis-common.css">
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
 </head>
 <body>
   <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>

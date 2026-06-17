@@ -196,6 +196,8 @@
       color: var(--ink);
       font: inherit;
       outline: none;
+      -webkit-appearance: none;
+      appearance: none;
     }
 
     .search:focus {
@@ -384,7 +386,7 @@
     .appendix {
       margin-top: 42px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 18px;
       align-items: start;
     }
@@ -416,6 +418,13 @@
     .source-list {
       margin: 0;
       padding-left: 1.2em;
+      columns: 2;
+      column-gap: 26px;
+    }
+
+    .source-list li {
+      break-inside: avoid;
+      margin-bottom: 6px;
     }
 
     .source-list a {
@@ -539,6 +548,10 @@
     }
 
     @media (max-width: 620px) {
+      .source-list {
+        columns: 1;
+      }
+
       .topbar-inner {
         align-items: flex-start;
         flex-direction: column;
@@ -571,8 +584,7 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+        :root[data-theme="dark"] {
         --ink: #e7ecf3;
         --ink-mid: #aab8c7;
         --ink-soft: #8595a4;
@@ -588,37 +600,39 @@
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       }
 
-      .topbar {
+    :root[data-theme="dark"] .topbar {
         background: rgba(15, 20, 27, 0.92);
       }
 
-      header,
-      .search,
-      .filter,
-      .notice {
+    :root[data-theme="dark"] header,
+    :root[data-theme="dark"] .search,
+    :root[data-theme="dark"] .filter,
+    :root[data-theme="dark"] .notice,
+    :root[data-theme="dark"] .empty {
         background: #11161f;
       }
 
-      .filter[aria-pressed="true"] {
+    :root[data-theme="dark"] .filter[aria-pressed="true"] {
         background: rgba(63, 184, 158, 0.16);
         border-color: var(--teal);
         color: var(--teal);
       }
 
-      .summary-panel,
-      .section-panel {
+    :root[data-theme="dark"] .summary-panel,
+    :root[data-theme="dark"] .section-panel {
         background: #161d27;
       }
 
-      .friend-link {
+    :root[data-theme="dark"] .friend-link {
         background: linear-gradient(180deg, #161d27 0%, #11161f 100%);
       }
 
-      .friend-link:hover {
+    :root[data-theme="dark"] .friend-link:hover {
         background: #1b2230;
       }
-    }
   </style>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
 </head>
 
 <body>
@@ -669,7 +683,7 @@
           <button class="filter" type="button" data-filter="behavior" aria-pressed="false">行为与研究口径</button>
           <button class="filter" type="button" data-filter="gender" aria-pressed="false">性别身份</button>
           <button class="filter" type="button" data-filter="expression" aria-pressed="false">表达与代词</button>
-          <button class="filter" type="button" data-filter="body" aria-pressed="false">身体与间性</button>
+          <button class="filter" type="button" data-filter="body" aria-pressed="false">身体与性征</button>
           <button class="filter" type="button" data-filter="care" aria-pressed="false">过渡与医疗</button>
           <button class="filter" type="button" data-filter="diagnosis" aria-pressed="false">诊断与历史</button>
           <button class="filter" type="button" data-filter="norms" aria-pressed="false">社会结构</button>
@@ -691,15 +705,11 @@
       <div class="section-panel">
         <h2>使用提醒</h2>
         <ul>
-          <li>“性取向”描述一个人可能被谁吸引；“性别认同”描述一个人对自身性别的内在认识；“性别表达”描述外在呈现；“性别特征”描述身体相关特征。</li>
-          <li>“跨性别”“非二元”“间性”等不是性取向；一个人的性别认同不能推出其性取向。</li>
-          <li>有些词曾被病理化或污名化使用，例如 “homosexual”“transsexual”“hermaphrodite”。除非当事人自称、历史文本引用或特定语境必要，宜选用更中性的表达。</li>
-          <li>中文语境中，“他/她/TA”等代词实践仍在变化。面对具体的人，最重要的是使用对方希望被使用的称呼。</li>
-          <li>写作与翻译建议：首次出现时给出“中文译名 + 英文原词/缩写”，后文再选用一种写法保持一致。若对某个词的中文译法不确定，可以回看主要来源第 1 条的 IRB Mandarin PDF。</li>
-          <li>使用边界：术语用于帮助沟通与理解，不用于替他人判定身份或给别人贴标签。涉及具体个体时，优先使用对方自称，并允许对方随时调整用词。</li>
-          <li>站内译名约定（仅列常见多译项）：Heteronormativity 用“异性恋本位”；Heterosexual Hegemony 用“异性恋霸权”；Gender-affirming Care
-            用“性别肯定护理”；Gender Dysphoria 用“性别不安”（量表语境可写“性别焦虑”）；Amatonormativity 用“恋爱规范性”；Compulsory Sexuality 用“强制性性欲”。
-          </li>
+          <li>“性取向”描述被谁吸引，“性别认同”描述对自身性别的内在认识，“性别表达”描述外在呈现，“性别特征”描述身体相关特征——四者相互独立，不能彼此推断（例如不能从性别认同推出性取向）。</li>
+          <li>有些词曾被病理化或污名化，例如 homosexual、transsexual、hermaphrodite；除非当事人自称、历史引用或语境必要，宜选用更中性的表达。</li>
+          <li>面对具体的人，优先使用其希望的姓名、代词与自我称谓，并允许随时调整；术语用于帮助沟通，不用于替他人判定身份或贴标签。中文“他/她/TA”等代词实践仍在变化。</li>
+          <li>写作与翻译时，首次出现可给出“中文译名 + 英文原词/缩写”，后文保持一致；译法不确定时可回看主要来源第 1 条的 IRB Mandarin PDF。</li>
+          <li>站内译名约定（仅列常见多译项）：Heteronormativity 用“异性恋本位”；Heterosexual Hegemony 用“异性恋霸权”；Amatonormativity 用“浪漫本位”；Compulsory Sexuality 用“强制性性规范”；Gender-affirming Care 用“性别肯定护理”；Gender Dysphoria 用“性别不安”（量表语境可写“性别焦虑”）。</li>
         </ul>
       </div>
 
@@ -725,6 +735,11 @@
           <li><a
               href="https://www.queermargins.tw/lesbian-theory-and-compulsory-heterosexuality">酷儿翻越：复兴女同志理论：强制异性恋、异性恋常规与异性恋霸权</a>
           </li>
+          <li><a href="https://www.wpath.org/soc8">WPATH: Standards of Care, Version 8 (SOC-8)</a></li>
+          <li><a href="https://pflag.org/glossary/">PFLAG National Glossary of Terms</a></li>
+          <li><a href="https://www.hrc.org/resources/glossary-of-terms">Human Rights Campaign: Glossary of Terms</a></li>
+          <li><a href="https://theanarchistlibrary.org/library/andie-nordgren-the-short-instructional-manifesto-for-relationship-anarchy">Andie Nordgren: The Short Instructional Manifesto for Relationship Anarchy (2006)</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Tongqi">Wikipedia: Tongqi</a></li>
         </ol>
       </div>
     </section>
@@ -805,7 +820,7 @@
       behavior: "行为与研究口径",
       gender: "性别身份",
       expression: "表达与代词",
-      body: "身体与间性",
+      body: "身体与性征",
       care: "过渡与医疗",
       diagnosis: "诊断与历史",
       norms: "社会结构",
@@ -830,12 +845,13 @@
       { zh: "跨性别", en: "Transgender / Trans", cat: "gender", aliases: "跨、跨儿", desc: "性别认同与出生时指派性别不完全相符的人。它是伞状术语，可包含跨性别男性、跨性别女性、非二元、性别酷儿等不同群体。", note: "跨性别不是性取向；跨性别者也可能是异性恋、同性恋、双性恋、泛性恋、无性恋等。" },
       { zh: "非二元性别", en: "Non-binary", cat: "gender", aliases: "非二元、NB、enby", desc: "性别认同不完全、持续或排他地属于男性或女性二元分类的人。它可以是独立身份，也可以是包含无性别、双性别、性别流动等群体的伞状词。", note: "有些非二元者也认同自己属于跨性别伞下；并非所有非二元者都追求中性表达。" },
       { zh: "性别酷儿", en: "Genderqueer", cat: "gender", desc: "用于描述挑战、跨越或不符合传统性别分类的身份或表达。它既可能强调个人身份，也可能强调对二元性别秩序的批判。", note: "“酷儿”可能带有政治性，也可能是个人身份词；是否适用应由当事人决定。" },
-      { zh: "性别流动", en: "Genderfluid / Fluidity", cat: "gender", aliases: "流动性别、性别流动性", desc: "性别认同或表达会随时间、情境、关系或个人经验发生变化。可能在男性、女性、非二元、无性别等之间移动，也可能难以用固定标签概括。", note: "变化不意味着不真实或不稳定；稳定性不是身份有效性的条件。" },
-      { zh: "无性别", en: "Agender", cat: "gender", desc: "不认同自己有性别，或以“没有性别”描述自身经验的人。", note: "它是一种身份表述，不是缺陷。" },
-      { zh: "双性别", en: "Bigender", cat: "gender", desc: "认同两种性别的人；两种认同可以同时存在，也可以在不同时间出现。", note: "具体含义以个人自述为准。" },
-      { zh: "泛性别", en: "Pangender", cat: "gender", desc: "认同多种、许多或广泛性别经验的人。", note: "不要与泛性恋混淆。" },
-      { zh: "第三性别", en: "Third Gender", cat: "gender", desc: "某些文化、法律或社群中用于描述不属于男性/女性二元的性别类别。", note: "不同文化中的第三性别并不等价。" },
-      { zh: "双灵", en: "Two-Spirit", cat: "gender", desc: "北美原住民社群中使用的文化身份词，可能涉及性别、精神、社群角色和取向等多重含义。", note: "非原住民语境中不宜随意自用。" },
+      { zh: "流动性别", en: "Genderfluid / Fluidity", cat: "gender", aliases: "流动性别、流体性别、性别流体、流性人", desc: "性别认同或表达会随时间、情境、关系或个人经验发生变化。可能在男性、女性、非二元、无性别等之间移动，也可能难以用固定标签概括。", note: "变化不意味着不真实或不稳定；稳定性不是身份有效性的条件。" },
+      { zh: "无性别", en: "Agender", cat: "gender", desc: "不认同自己拥有性别，或以“没有性别”来描述自身经验的人。无性别可以是一种稳定的身份，也可以是对“性别感很弱或与己无关”这一感受的命名。", note: "无性别者的体验各不相同，有人完全没有性别感，有人则觉得性别这件事与自己关系不大。" },
+      { zh: "双性别", en: "Bigender", cat: "gender", desc: "认同两种性别的人，两种认同可以同时存在，也可以在不同时间轮流出现。这两种性别可以是男性与女性，也可以包含非二元在内的其他组合。", note: "具体是哪两种性别、如何切换或并存，以当事人的自我描述为准。" },
+      { zh: "泛性别", en: "Pangender", cat: "gender", desc: "认同多种、许多或广泛性别经验的人，可能同时感受到多个性别，或觉得自己的性别难以用有限的标签穷尽。", note: "泛性别关乎一个人对自身性别的体验，与描述吸引对象的“泛性恋”是两回事。" },
+      { zh: "半性别", en: "Demigender / Demiboy / Demigirl", cat: "gender", aliases: "半男孩、半女孩、demiboy、demigirl", desc: "指部分认同某一性别、同时也部分认同非二元或无性别的人。例如 demiboy 部分认同男性，demigirl 部分认同女性，其余部分可能是中性、无性别或难以归类。", note: "“半”指认同的程度而非真实性；它属于非二元伞下的常见身份之一。" },
+      { zh: "第三性别", en: "Third Gender", cat: "gender", desc: "某些文化、法律或社群中用于描述不属于男性/女性二元的性别类别，常根植于特定的历史与社会脉络，如南亚的 hijra、印尼武吉斯人的 bissu 等。", note: "不同文化中的第三性别各有其角色与意义，彼此并不等价，也不宜套用西方框架去理解。" },
+      { zh: "双灵", en: "Two-Spirit", cat: "gender", desc: "北美部分原住民社群使用的文化身份词，可能同时涉及性别、精神信仰、社群角色与取向等多重含义。它根植于具体的原住民传统，而非泛用的性别标签。", note: "双灵的含义因族群而异，非原住民不宜随意自称或将其等同于“非二元”等外来概念。" },
       { zh: "性别不顺从", en: "Gender Non-conforming / TGNC", cat: "gender", desc: "性别表达或行为不符合社会对其指派性别的常规期待。", note: "它描述表达或社会关系，不必然代表特定性别认同。" },
       { zh: "性别中性", en: "Gender Neutral", cat: "gender", desc: "不强调男性或女性分类的表达、语言、设施、制度或身份描述。", note: "可用于空间、称谓、服装、语言等场景。" },
       { zh: "男性化呈现", en: "Masculine-presenting", cat: "gender", desc: "外在呈现更接近某一文化中被理解为男性化的风格或气质。", note: "任何性别的人都可能男性化呈现。" },
@@ -852,30 +868,33 @@
       { zh: "跨性别女性", en: "Transgender Woman / Transfeminine Woman", cat: "gender", aliases: "跨女、trans woman", desc: "出生时通常被指派为男性，但性别认同为女性的人。", note: "跨性别女性是女性；不应使用旧名、指派性别或身体特征否定其女性身份。" },
       { zh: "顺性别男性", en: "Cisgender Man / Cisgender Male", cat: "gender", aliases: "顺男、cis man", desc: "出生时被指派为男性，且性别认同为男性的人。", note: "这个词让“非跨性别男性”也被命名，从而减少把顺性别经验当默认。" },
       { zh: "跨性别男性", en: "Transgender Man / Transmasculine Man", cat: "gender", aliases: "跨男、trans man", desc: "出生时通常被指派为女性，但性别认同为男性的人。", note: "跨性别男性是男性；称呼时应使用其自我认同的姓名、代词与性别称谓。" },
-      { zh: "女性倾向跨性别者", en: "Transfeminine / Transfem", cat: "gender", aliases: "转女性化者、女性化跨性别者", desc: "出生时通常被指派为男性或间性，且性别认同、表达或过渡方向与女性性别经验有连接的人。可包括跨性别女性和部分非二元者。", note: "它不等于所有人都认同为女性，也不必然说明医疗过渡需求。" },
-      { zh: "男性倾向跨性别者", en: "Transmasculine / Transmasc", cat: "gender", aliases: "转男性化者、男性化跨性别者", desc: "出生时通常被指派为女性或间性，且性别认同、表达或过渡方向与男性性别经验有连接的人。可包括跨性别男性和部分非二元者。", note: "它不等于所有人都认同为男性，也不必然说明医疗过渡需求。" },
+      { zh: "女性倾向跨性别者", en: "Transfeminine / Transfem", cat: "gender", aliases: "转女性化者、女性化跨性别者", desc: "出生时通常被指派为男性或间性，且性别认同、表达或过渡方向与女性性别经验有连接的人。可包括跨性别女性和部分非二元者。", note: "这一伞状词涵盖较广，其中既有认同为女性的人，也有非二元者；是否进行医疗过渡同样因人而异。" },
+      { zh: "男性倾向跨性别者", en: "Transmasculine / Transmasc", cat: "gender", aliases: "转男性化者、男性化跨性别者", desc: "出生时通常被指派为女性或间性，且性别认同、表达或过渡方向与男性性别经验有连接的人。可包括跨性别男性和部分非二元者。", note: "这一伞状词涵盖较广，其中既有认同为男性的人，也有非二元者；是否进行医疗过渡同样因人而异。" },
       { zh: "跨性别与多元性别", en: "Transgender and Gender Diverse / TGD", cat: "gender", aliases: "跨性别及性别多元", desc: "涵盖性别认同或性别表达不完全符合出生时指派性别、二元性别或传统性别规范的人群的总称。", note: "TGD 常用于研究、医疗和政策语境，比只写“跨性别”更能包含非二元和多元性别群体。" },
       { zh: "性别多元化", en: "Sexual and Gender Diversity / SGD", cat: "gender", aliases: "性与性别多样性、多元性别与性", desc: "用于概括性别特征、性取向、性别认同与表达等方面的多样性，强调人类经验不止一种规范模板。", note: "在不同机构里，SGD 可能覆盖 SOGIESC 或 LGBTQIA+ 相关范围。" },
       { zh: "非常规性别", en: "Gender Nonconformity / GNC", cat: "gender", aliases: "性别非常规、性别不顺从", desc: "性别表达、行为或社会呈现不符合传统二元性别期待的人或经验。顺性别者、跨性别者和非二元者都可能有非常规性别表达。", note: "GNC 更常描述表达，不一定表示某种具体性别认同。" },
       { zh: "性别二元论", en: "Gender Binary", cat: "gender", aliases: "二元性别制、性别二元体系", desc: "把性别理解为只有男性和女性两类，并要求个体被固定归入其中一种的社会分类方式。", note: "性别二元论会让非二元、间性和许多跨文化性别经验被抹除或误读。" },
       { zh: "双性化", en: "Androgynous", cat: "gender", aliases: "雌雄同体、双性气质、中性化、中性呈现", desc: "指性别表达、外观或气质同时带有男性化和女性化元素，或难以被视作单一二元性别。", note: "它可以是一种表达风格，不必然说明性别认同。" },
       { zh: "Butch", en: "Butch", cat: "gender", aliases: "布奇、阳刚女同、masc", desc: "常见于女同、萨福式、酷儿女性和跨性别社群中的阳刚身份或表达。它可以是风格、社群角色，也可能被一些人视为独立性别经验。", note: "不要把 butch 自动等同于跨性别男性；是否使用由当事人自我认同决定。" },
-      { zh: "Femme", en: "Femme", cat: "gender", aliases: "女性化酷儿、女性化酷儿身份", desc: "历史上常用于女同社群中女性化表达者，现在也被更广泛的 LGBTQIA+ 人群用来描述一种主动重塑和夺回女性化的身份与表达。", note: "femme 不是简单的“传统女性化”，常带有酷儿社群语境和反规范意义。" },
+      { zh: "Femme", en: "Femme", cat: "gender", aliases: "阴柔女同、女性化酷儿", desc: "历史上常用于女同社群中女性化表达者，现在也被更广泛的 LGBTQIA+ 人群用来描述一种主动重塑和夺回女性化的身份与表达。", note: "femme 不是简单的“传统女性化”，常带有酷儿社群语境和反规范意义。" },
       { zh: "Masc", en: "Masc / Masculine-of-center", cat: "gender", aliases: "男性化中心、阳刚中心、偏男性化", desc: "描述总体上更靠近男性化、阳刚或男性气质的一组表达和身份位置，可用于女同、跨性别和非二元语境。", note: "它描述呈现或关系位置，不等于当事人一定认同为男性。" },
       { zh: "Fem", en: "Fem / Feminine-of-center", cat: "gender", aliases: "女性化中心、阴柔中心、偏女性化", desc: "描述总体上更靠近女性化、阴柔或女性气质的一组表达和身份位置，可用于多种性别认同者。", note: "与 femme 有重叠，但 femme 更常作为社群身份词。" },
       { zh: "Stud", en: "Stud", cat: "gender", aliases: "黑人阳刚女同身份", desc: "源自黑人女同和酷儿社群的文化特定身份，通常指黑人社群中的阳刚女性或萨福式者。", note: "它有明确的族裔与社群语境，非相关社群成员不宜随意自称或挪用。" },
       { zh: "异性恋", en: "Heterosexual / Straight", cat: "orientation", aliases: "直人、异性倾向", desc: "通常指被不同性别的人吸引。在二元性别框架中常被理解为男性被女性吸引、女性被男性吸引；在更包容的语境中，需要结合当事人的性别认同理解。", note: "“异性恋本位”是另一个社会结构概念，不等于具体的异性恋个人。" },
       { zh: "同性恋", en: "Gay / Lesbian", cat: "orientation", aliases: "同性爱、同性倾向", desc: "通常指被同性或同一性别的人吸引。Gay 可泛指同性恋，也常用于男同性恋；Lesbian 指女同性恋。中文“同性恋”在很多语境中仍是中性词，但使用时要留意语气和场合。", note: "英语 homosexual 有病理化历史，现代写作中常建议避免，除非是引用、历史语境或当事人自称。" },
-      { zh: "女同性恋", en: "Lesbian", cat: "orientation", aliases: "拉拉、蕾丝边、les", desc: "通常指女性或与女性身份相关的人被女性吸引。不同社群会使用 lesbian、gay、queer、女同等不同自称。", note: "“拉拉”“蕾丝”等词在中文社群中常见，但正式写作宜视对象和语境选择。" },
-      { zh: "双性恋", en: "Bisexual / Bi+", cat: "orientation", aliases: "双、bi、双性倾向", desc: "通常指会被多于一种性别的人吸引。很多双性恋者把它理解为对相同和不同性别都有吸引，或对两个以上性别有吸引。Bi+ 可作为更宽的伞状说法，包含泛性恋、流动取向等相邻身份。", note: "双性恋不等于只承认二元性别，也不等于同时喜欢所有人。" },
-      { zh: "泛性恋", en: "Pansexual", cat: "orientation", aliases: "pan、泛性倾向", desc: "通常指可能被任何性别的人吸引，或吸引不以性别为主要限制。有人用它强调“性别不是决定吸引的核心因素”，也有人把它放在 Bi+ 光谱下。", note: "与双性恋有重叠，具体差异取决于个人用法；不要替当事人强行改标签。" },
-      { zh: "无性恋", en: "Asexual / Ace", cat: "orientation", aliases: "无性恋谱系、A 谱", desc: "很少或不经历性吸引的人；也可作为包含灰性恋、半性恋等身份的伞状术语。无性恋关注的是性吸引体验，不直接说明一个人的性欲、性行为、亲密需求或浪漫取向。", note: "无性恋者仍可能有浪漫吸引、亲密关系或性行为选择。" },
-      { zh: "灰性恋", en: "Greysexual", cat: "orientation", desc: "处于无性恋与有性恋之间，可能偶尔、低频或在特定条件下经历性吸引。", note: "属于无性恋谱系常见术语。" },
-      { zh: "半性恋", en: "Demisexual", cat: "orientation", desc: "通常只有在形成较深情感联结后才可能经历性吸引。", note: "它描述吸引出现的条件，不等于保守或慢热。" },
-      { zh: "无浪漫倾向", en: "Aromantic", cat: "orientation", desc: "很少或不经历浪漫吸引的人。", note: "无浪漫者可以有亲密关系、伴侣关系或其他形式的爱。" },
-      { zh: "半浪漫取向", en: "Demiromantic", cat: "orientation", desc: "通常只有在形成较深情感联结后才可能经历浪漫吸引。", note: "与半性恋相似，但描述的是浪漫吸引。" },
+      { zh: "女同性恋", en: "Lesbian", cat: "orientation", aliases: "拉拉、蕾丝边、Les", desc: "通常指女性或与女性身份相关的人被女性吸引。不同社群会使用 lesbian、gay、queer、女同等不同自称。", note: "“拉拉”“蕾丝”等词在中文社群中常见，但正式写作宜视对象和语境选择。" },
+      { zh: "双性恋", en: "Bisexual", cat: "orientation", aliases: "Bi、Bi+、双、双性倾向", desc: "通常指会被多于一种性别的人吸引。很多双性恋者把它理解为对相同和不同性别都有吸引，或对两个以上性别有吸引。Bi+ 可作为更宽的伞状说法，包含泛性恋、流动取向等相邻身份。", note: "双性恋不等于只承认二元性别，也不等于同时喜欢所有人。" },
+      { zh: "泛性恋", en: "Pansexual", cat: "orientation", aliases: "Pan、泛性倾向", desc: "通常指可能被任何性别的人吸引，或吸引不以性别为主要限制。有人用它强调“性别不是决定吸引的核心因素”，也有人把它放在 Bi+ 光谱下。", note: "与双性恋有重叠，具体差异取决于个人用法；不要替当事人强行改标签。" },
+      { zh: "灵活异性恋", en: "Heteroflexible", cat: "orientation", aliases: "弹性异性恋、偶发性同性恋", desc: "总体上为异性恋，但偶尔会对同性产生吸引或愿意有同性接触的人；相应地，总体为同性恋但偶有异性吸引的人称为 homoflexible（灵活同性恋）。", note: "它描述的是吸引的弹性，可能是稳定的自我描述，也可能是认识自身取向过程中的阶段。" },
+      { zh: "灵活同性恋", en: "Homoflexible", cat: "orientation", aliases: "弹性同性恋、偶发性异性恋", desc: "总体上为同性恋，但偶尔会对异性产生吸引或愿意有异性接触的人；与之相对的，总体为异性恋但偶有同性吸引的人称为 Heteroflexible（灵活异性恋）。", note: "它描述的是吸引的弹性，可能是稳定的自我描述，也可能是认识自身取向过程中的阶段。" },
+      { zh: "双性恋好奇", en: "Bicurious", cat: "orientation", aliases: "双性探索", desc: "对探索同性吸引或同性关系感到好奇，但尚未确定自身身份的人。", note: "好奇本身是有效的状态，既可能通向某个标签，也可能只是阶段性的探索。" },
+      { zh: "无性恋", en: "Asexual", cat: "orientation", aliases: "Ace、无性恋谱系", desc: "很少或不经历性吸引的人；也可作为包含灰性恋、半性恋等身份的伞状术语。无性恋关注的是性吸引体验，不直接说明一个人的性欲、性行为、亲密需求或浪漫取向。", note: "无性恋者仍可能有浪漫吸引、亲密关系或性行为选择。" },
+      { zh: "灰性恋", en: "Greysexual", cat: "orientation", desc: "处于无性恋与有性恋之间的身份，可能偶尔、低频或仅在特定条件下经历性吸引。它常被用来描述“介于两者之间、难以简单归类”的体验。", note: "灰性恋是无性恋谱系中的常见术语，与半性恋等相邻身份可能有重叠。" },
+      { zh: "半性恋", en: "Demisexual", cat: "orientation", desc: "通常只有在与对方建立较深的情感联结之后，才可能经历性吸引的人。在此之前，往往不会单纯因外貌或初次相遇而产生性吸引。", note: "它描述的是性吸引出现的“条件”，与性格保守或恋爱节奏慢是两回事。" },
+      { zh: "无浪漫倾向", en: "Aromantic", cat: "orientation", desc: "很少或不经历浪漫吸引的人。无浪漫与是否经历性吸引相互独立，一个人可以是无浪漫但有性吸引，反之亦然。", note: "无浪漫者一样可以拥有亲密关系、伴侣关系，或其他形式深厚的爱。" },
+      { zh: "半浪漫取向", en: "Demiromantic", cat: "orientation", desc: "通常只有在建立较深情感联结后才可能经历浪漫吸引的人。它与半性恋结构相似，但描述的是浪漫而非性的吸引。", note: "半浪漫者在联结形成之前，往往不会因初识或外表而产生浪漫吸引。" },
       { zh: "酷儿", en: "Queer", cat: "orientation", aliases: "酷儿身份", desc: "可作为性少数、性别少数或反规范政治身份的伞状词。它可以表示不愿被传统标签固定，也可以表示对异性恋本位、顺性别本位和规范家庭结构的批判。", note: "它曾被用作贬称；是否使用应尊重当事人和语境。" },
-      { zh: "性取向存疑", en: "Questioning", cat: "orientation", desc: "正在探索、尚未确定或不急于命名自身性取向或性别认同的人。", note: "存疑本身也可以是有效阶段或稳定状态。" },
+      { zh: "性取向存疑", en: "Questioning", cat: "orientation", desc: "正在探索、尚未确定，或不急于为自身性取向或性别认同命名的人。Questioning 既可能是一个过程，也可能是当下真实的状态。", note: "存疑本身就是有效的，它既可以是迈向某个标签的阶段，也可以是长期保持的开放姿态。" },
       { zh: "萨福式", en: "Sapphic", cat: "orientation", aliases: "女性爱女性、女爱女、女性倾向女性、Women loving women (WLW)、girls loving girls (GLG)、sapphist", desc: "指女性、女性认同者或部分女性相关的非二元者对女性或女性相关者的吸引（可包含浪漫、性或其他形式的吸引），可包含女同性恋、双性恋、泛性恋、无性恋等多元取向认同。", note: "比“女同性恋”指代范围更宽，也常被用来替代 WLW；具体是否适用仍以当事人自称为准。" },
       { zh: "女性爱女性", en: "WLW / Women-loving Women", cat: "orientation", aliases: "女爱女、Women who love women、Women who like women", desc: "描述女性或女性相关者对女性的浪漫、性或情感吸引的伞状说法。它强调吸引方向，而不要求当事人一定认同为女同性恋。", note: "可涵盖女同性恋、双性恋、泛性恋、酷儿女性及部分非二元者；中文写作中也可用“萨福式”表达更广义社群。" },
       { zh: "男性爱男性", en: "MLM / Men-loving Men", cat: "orientation", aliases: "男爱男、Men who love men、Men who like men", desc: "描述男性或男性相关者对男性的浪漫、性或情感吸引的伞状说法。它强调吸引方向，不要求当事人一定认同为男同性恋。", note: "不要与公共卫生语境的 MSM 完全混同；MSM 侧重行为，MLM 更接近身份/吸引社群用语。" },
@@ -884,12 +903,13 @@
       { zh: "单性恋", en: "Monosexual", cat: "orientation", aliases: "单一性别吸引", desc: "指主要对一种性别产生浪漫、性或情感吸引的取向类别。异性恋和同性恋常被视为单性恋的例子。", note: "它是描述吸引范围的分析词，不应被用来制造取向等级。" },
       { zh: "多性恋", en: "Polysexual", cat: "orientation", aliases: "多性别吸引", desc: "指对多于一种性别产生吸引，但不一定是所有性别。它与双性恋、泛性恋、全性恋有重叠，但各词强调点不同。", note: "不要与多元爱/多边恋混淆；前者是吸引范围，后者是关系结构。" },
       { zh: "全性恋", en: "Omnisexual", cat: "orientation", aliases: "Omni、全性别吸引", desc: "通常指对所有性别都可能产生吸引，但性别仍可能影响吸引方式、关系感受或自我理解。", note: "与泛性恋有重叠；站内用“有性恋本位”对应 allonormativity，避免把 allosexual 误译成“全性恋”。" },
-      { zh: "流动性取向", en: "Abrosexual / Abromantic", cat: "orientation", aliases: "取向流动、流动浪漫取向", desc: "指性取向或浪漫取向会随时间发生变化的人。变化可以是吸引对象、吸引强度、吸引类型或使用标签的改变。", note: "流动并不等于随意或不认真，也不意味着当事人不能拥有稳定关系。" },
+      { zh: "流性恋", en: "Abrosexual", cat: "orientation", aliases: "流动性恋、流动性取向、性取向流动、性向流动", desc: "性取向会随时间发生变化的人，变化可以体现在吸引对象、强度、类型或使用的标签上。", note: "流动不等于随意或不认真，也不意味着当事人不能拥有稳定关系。" },
+      { zh: "流动浪漫", en: "Abromantic", cat: "orientation", aliases: "流动浪漫取向、浪漫取向流动", desc: "浪漫取向会随时间发生变化的人，可能在不同时期被不同性别或以不同方式吸引。", note: "它与流动性取向结构相似，但描述的是浪漫吸引而非性吸引。" },
       { zh: "男性恋", en: "Androsexual / Androphilic", cat: "orientation", aliases: "男性倾向吸引、阳刚气质吸引", desc: "描述对男性、男性气质或男性化者的吸引。有时用于避免把当事人自身性别预设为二元。", note: "不同社群对 androsexual/androphilic 的理解略有差异，写作时最好说明具体含义。" },
       { zh: "女性恋", en: "Gynesexual / Gynephilic", cat: "orientation", aliases: "女性倾向吸引、阴柔气质吸引", desc: "描述对女性、女性气质或女性化者的吸引。有时用于非二元语境，避免使用“同性/异性”这类依赖二元参照的词。", note: "这些词可能被不同人理解为“对女性”或“对女性气质”，使用时需要留意语境。" },
       { zh: "T4T", en: "Trans for Trans", cat: "orientation", aliases: "跨找跨、跨性别者与跨性别者", desc: "指跨性别或性别多元者优先、主要或只希望与其他跨性别/性别多元者建立浪漫、性或亲密关系。它常带有安全感、理解共同经验和减少解释负担的意味。", note: "T4T 是关系偏好或社群用语，不表示所有跨性别者都只与跨性别者交往。" },
-      { zh: "男男性行为者", en: "MSM", cat: "orientation", desc: "描述与男性发生性行为的男性或被视作男性者，常用于公共卫生研究。", note: "它描述行为，不等于身份认同。" },
-      { zh: "女女性行为者", en: "WSW", cat: "orientation", desc: "描述与女性发生性行为的女性或被视作女性者，常用于公共卫生研究。", note: "它描述行为，不等于身份认同。" },
+      { zh: "男男性行为者", en: "MSM", cat: "orientation", desc: "公共卫生研究中常用的概念，指与男性发生性行为的男性或被视作男性者，无论其如何自我认同。它把焦点放在行为而非身份上。", note: "采用 MSM 是为了在流行病学上覆盖那些不自认为同性恋/双性恋、却有相关行为的人。" },
+      { zh: "女女性行为者", en: "WSW", cat: "orientation", desc: "公共卫生研究中常用的概念，指与女性发生性行为的女性或被视作女性者，无论其如何自我认同。它同样把焦点放在行为而非身份上。", note: "与 MSM 对应，WSW 用于在研究中覆盖行为，而不预设当事人的性取向标签。" },
       { zh: "分离吸引力模型", en: "Split Attraction Model / SAM", cat: "orientation", aliases: "分裂吸引力模型、吸引力分裂模型", desc: "一种把对他人的吸引区分为不同维度——性吸引、浪漫吸引、审美吸引、感官吸引、情感吸引等——并分别理解的分析框架。每个维度可以独立存在、指向不同对象，或在强度上彼此不同。它最早兴起于无性恋/无浪漫社群，用于表达'不喜欢某人就能爱上某人''想亲近却不想发生性关系'等难以用单一标签说清的经验。", note: "SAM 是描述和自我理解的工具，不是必须套用的框架；并非所有人都觉得它有用或适用于自己。" },
       { zh: "性吸引", en: "Sexual Attraction", cat: "orientation", desc: "对特定对象产生的、以性接触或性行为为指向的心理与生理驱动力。它通常表现为希望与对方发生性行为、进行具有性意味的亲密身体接触，或在看到、接近、想象某人时产生明确的性幻想、身体唤起或心理兴奋。", note: "性吸引不同于单纯觉得某人好看、想与某人恋爱、想获得情感支持，或想进行非性的拥抱/依偎；也不等于一般性的性欲水平。" },
       { zh: "浪漫吸引", en: "Romantic Attraction", cat: "orientation", desc: "对特定对象产生的、以恋爱关系和浪漫互动为核心的内在渴望，通常表现为希望与对方约会、建立恋爱关系、成为彼此特别的人，或想象共同生活、表达爱意、拥有浪漫承诺。", note: "浪漫吸引可以与性吸引同时出现，也可以彼此分离；无性恋者也可以有浪漫取向。" },
@@ -902,15 +922,15 @@
       { zh: "非间性", en: "Endosex", cat: "body", aliases: "非间性人、典型性别特征者", desc: "性别特征符合医学和社会上典型男性或女性分类预期的人。它与“顺性别”类似，用来命名多数位置，使间性不被当作唯一需要被标注的例外。", note: "非间性/间性描述身体特征，不直接说明性别认同或性取向。" },
       { zh: "生理性别", en: "Biological Sex / Sex", cat: "body", aliases: "生物性别、身体性别", desc: "常用于描述身体层面的性别相关特征，但这些特征并非总是简单二元。它可能涉及染色体、激素、性腺、生殖器、第二性征等多个维度。", note: "写作时可更具体说明指哪一种身体特征，避免把复杂身体经验压缩成“男/女”二分。" },
       { zh: "性别分化差异", en: "Differences of Sex Development / DSD", cat: "body", desc: "医学语境中描述性别发育相关变异的术语。PDF 使用“性别分化障碍”，但许多社群更偏好“差异”或“变异”。", note: "涉及具体个体时，优先尊重当事人用语。" },
-      { zh: "第二性征", en: "Secondary Sex Characteristics", cat: "body", desc: "青春期后较明显发展的身体特征，如体毛、乳房、声线、脂肪分布等。", note: "它们受激素、遗传、医疗干预和个体差异影响。" },
-      { zh: "束胸", en: "Binder / Binding", cat: "body", desc: "通过束胸衣等方式让胸部外观更平坦的实践。", note: "需要注意尺寸、时长和身体舒适度。" },
-      { zh: "性隐蔽", en: "Tucking", cat: "body", desc: "通过穿着或固定方式减少外生殖器轮廓显现的实践。", note: "常见于部分转女性、跨性别女性或变装表演者。" },
+      { zh: "第二性征", en: "Secondary Sex Characteristics", cat: "body", desc: "青春期前后在激素作用下较明显发展的身体特征，如体毛、乳房、声线、喉结、脂肪分布等。它们不直接参与生殖，却常被社会用来辨识性别。", note: "第二性征受激素、遗传、医疗干预和个体差异影响，本身也存在广泛的多样性。" },
+      { zh: "束胸", en: "Binder / Binding", cat: "body", desc: "通过束胸衣、运动内衣等方式让胸部外观更平坦的实践，常见于部分跨性别、非二元或性别不顺从者。它可以缓解性别不安，也可用于日常表达。", note: "为保护身体，宜选择合适尺寸、控制连续穿着时长，并留意呼吸与皮肤状况。" },
+      { zh: "性隐蔽", en: "Tucking", cat: "body", desc: "通过特定穿着或固定方式，减少外生殖器轮廓在衣物下显现的实践。它常用于帮助呈现更符合自我认同的身体线条。", note: "常见于部分跨性别女性、女性倾向者或变装表演者；方法不当可能带来不适，需注意安全。" },
       { zh: "性别过渡", en: "Transition / Transitioning", cat: "care", desc: "个体以更符合自身性别认同的方式生活的过程，可能包括社会、法律、医疗或表达层面的改变。", note: "不是每个跨性别者都需要或希望同样的过渡方式。" },
       { zh: "社会过渡", en: "Social Transition", cat: "care", desc: "改变名字、代词、穿着、发型、社交身份或日常称谓等非医疗层面的过渡。", note: "常是性别肯定支持的重要部分。" },
       { zh: "性别肯定护理", en: "Gender-affirming Care", cat: "care", aliases: "性别肯定照护、性别肯定医疗、性别确认医疗、性别肯认照护", desc: "以尊重个体性别认同为基础的综合支持体系，可包括心理健康服务、社会过渡支持、内分泌治疗、手术转介、嗓音训练、生育保存咨询等。", note: "站内统一优先使用“性别肯定护理 / Gender-affirming Care”；“性别肯定医疗/性别确认医疗”保留为常见又译。具体需求因人而异。" },
       { zh: "性别肯定手术", en: "Gender-affirming Surgery", cat: "care", aliases: "性别确认手术、性别重置手术（旧称/需谨慎）、性别肯定外科", desc: "帮助身体特征更符合个人性别认同或减轻性别不安的手术总称，可能包括上身、面部、生殖器、嗓音等不同项目。", note: "站内统一优先使用“性别肯定手术”；不是所有跨性别者都会选择或需要手术。" },
       { zh: "上身手术", en: "Top Surgery", cat: "care", desc: "通常指胸部相关的性别肯定手术，例如胸部重建或乳房增大。", note: "不同人对结果和称谓的需求不同。" },
-      { zh: "下身手术", en: "Bottom Surgery", cat: "care", desc: "通常指生殖器相关的性别肯定手术。", note: "不是所有跨性别者都会选择或需要。" },
+      { zh: "下身手术", en: "Bottom Surgery", cat: "care", desc: "通常指生殖器相关的性别肯定手术，具体术式因个人目标和身体状况而有多种选择。它是可选的医疗支持之一。", note: "并非所有跨性别者都会选择或需要下身手术，是否进行与性别身份的真实性无关。" },
       { zh: "性别肯定激素治疗", en: "Gender-affirming Hormone Therapy / GAHT", cat: "care", aliases: "激素治疗、荷尔蒙治疗、激素替代治疗（旧称/HRT）", desc: "通过药物使第二性征与个体性别认同或性别目标更趋近的医疗方案。具体方案可能包括雌激素、抗雄激素、雄激素等，需要结合个人身体状况与医疗目标评估。", note: "应由专业医疗人员评估和管理；“HRT/激素替代治疗”在社群中常见，但站内优先使用“性别肯定激素治疗”。" },
       { zh: "性别不安", en: "Gender Dysphoria", cat: "care", aliases: "性别焦虑、性别烦躁、性别苦恼", desc: "个体因自身性别认同与身体特征、出生时指派性别或社会性别对待不一致而产生的显著痛苦、不适或压力。它可以涉及身体层面，也可以涉及名字、代词、角色、空间使用等社会层面。", note: "站内把“性别不安”作为较正式译法，“性别焦虑”作为量表和心理描述中的常见译法；跨性别身份本身不是疾病。" },
       { zh: "性别愉悦", en: "Gender Euphoria", cat: "care", aliases: "性别欣快、性别喜悦", desc: "当一个人的性别被承认、身体或表达与自我感受更一致、或他人正确称呼自己时产生的舒适、喜悦、放松或完整感。", note: "性别探索不只看痛苦，也要看什么让人更真实、更自在。" },
@@ -921,6 +941,8 @@
       { zh: "医疗过渡", en: "Medical Transition", cat: "care", aliases: "医学过渡、医疗性别过渡", desc: "性别过渡中的医疗层面，可能包括性别肯定激素治疗、手术、嗓音训练、生育保存和其他健康支持。", note: "不是所有跨性别者都会或需要医疗过渡；无法过渡也不影响身份真实性。" },
       { zh: "去性别过渡", en: "Detransition / Detrans", cat: "care", aliases: "脱跨、停止过渡、逆向过渡", desc: "个体暂时或永久停止、调整或撤回部分社会或医疗性别过渡措施。原因可能包括安全、经济、医疗、家庭压力、身份重新理解等。", note: "去性别过渡不应被简化为“后悔”，更不应被用来否定性别肯定护理的必要性。" },
       { zh: "实际生活体验", en: "Real-life Experience / RLE", cat: "care", aliases: "真实生活体验、现实生活体验", desc: "指跨性别者在日常生活中以其认同的性别持续生活和表达的经验。过去一些医疗体系曾把 RLE 作为启动某些医疗项目的前置要求。", note: "现代性别肯定护理更重视知情同意和个体差异，不应机械地把 RLE 当作证明身份的门槛。" },
+      { zh: "知情同意模式", en: "Informed Consent Model / ICM", cat: "care", aliases: "知情同意制、知情同意", desc: "一种性别肯定医疗的提供方式：在向当事人充分说明效果、风险与替代方案后，由具备决策能力的成年人自主同意即可开始治疗，而不要求心理评估或长期“真实生活体验”作为前置门槛。", note: "它强调当事人的自主权，与过去把医疗作为“证明身份”的守门式做法相对；具体可及性仍取决于当地医疗与法律环境。" },
+      { zh: "守门 / 把关", en: "Gatekeeping", cat: "care", aliases: "把关式医疗、gatekeeping", desc: "原指医疗或机构把自己设为“关卡”，由专业人员或制度决定谁“够格”获得性别肯定医疗、诊断或资源；也引申指在社群中以某种标准评判谁“算真正的”跨性别者、酷儿等。", note: "把关式做法可能延误或阻碍当事人获得必要支持；它与“知情同意模式”相对。" },
       { zh: "女性化激素治疗", en: "Feminizing Hormone Therapy", cat: "care", aliases: "女性化 GAHT、雌激素治疗", desc: "性别肯定激素治疗的一类，通常通过雌激素和/或抗雄激素等方案促使第二性征向女性化方向变化。", note: "具体方案、剂量和风险需要专业医疗人员评估。" },
       { zh: "男性化激素治疗", en: "Masculinizing Hormone Therapy", cat: "care", aliases: "男性化 GAHT、睾酮治疗、雄激素治疗", desc: "性别肯定激素治疗的一类，通常通过睾酮等方案促使第二性征向男性化方向变化。", note: "具体方案、剂量和风险需要专业医疗人员评估。" },
       { zh: "面部女性化手术", en: "Facial Feminization Surgery / FFS", cat: "care", aliases: "面部女性化", desc: "一组通过调整面部骨骼、软组织或轮廓，使面部特征更符合个人女性化目标的性别肯定手术。", note: "是否需要 FFS 取决于个人目标、安全、资源和身体状况。" },
@@ -932,12 +954,12 @@
       { zh: "性别错称", en: "Misgendering / Misgender", cat: "social", aliases: "错称性别、误称性别、误认性别、错误性别称呼", desc: "有意或无意地使用不符合个体性别认同的代词、称谓、名字或性别归类方式来指代他人。例如，把一位性别认同为女性的人错误归类为男性，就是性别错称。", note: "发现称呼错误时，简短更正并继续尊重使用即可，不需要把道歉变成对方的额外负担。" },
       { zh: "弃名", en: "Deadname / Deadnaming", cat: "social", aliases: "旧名、死名、称呼弃名、使用弃名、旧名伤害", desc: "跨性别者或改名者曾使用但已弃用的名字；使用弃名称呼对方通常会否认其性别认同、暴露隐私，并让人被迫回到旧有社会角色。", note: "除非对方同意或法律文件必须，通常应避免。" },
       { zh: "深柜", en: "Closeted / In the Closet", cat: "social", aliases: "在柜中、未出柜", desc: "指性少数者暂未向他人公开自己的性取向、性别认同或相关身份。原因可能包括安全、家庭压力、工作风险、个人节奏或隐私选择。", note: "不出柜不是不诚实；每个人都有决定披露范围和时机的权利。" },
-      { zh: "出柜", en: "Coming Out", cat: "social", desc: "向他人公开自己的性取向、性别认同或相关身份。", note: "是否、何时、向谁出柜，应由当事人决定。" },
+      { zh: "出柜", en: "Coming Out", cat: "social", desc: "向他人公开自己的性取向、性别认同或相关身份的过程。出柜往往不是一次性事件，而是面对不同的人、在不同场合反复进行的选择。", note: "是否、何时、向谁出柜，都应由当事人自己决定，旁人不宜代为推动或催促。" },
       { zh: "被出柜", en: "Outing / Outed", cat: "social", aliases: "炸柜、爆柜、被迫出柜", desc: "在未经同意的情况下公开他人的性取向、性别认同或相关隐私。无论披露者是否自认为善意，都可能破坏当事人的安全、关系和生活安排。", note: "这可能带来现实风险和伤害；不要替他人决定是否公开。" },
-      { zh: "隐身", en: "Stealth", cat: "social", desc: "一些跨性别者在特定生活环境中不公开自己的跨性别经历。", note: "这是个人隐私选择，不应被迫披露。" },
+      { zh: "隐身", en: "Stealth", cat: "social", desc: "指一些跨性别者在特定生活环境中选择不公开自己的跨性别经历，以其认同的性别正常生活。它既可能出于安全考虑，也可能只是隐私偏好。", note: "隐身是个人对披露范围的正当选择，他人不应擅自揭露或施压要求公开。" },
       { zh: "过关", en: "Passing / Pass", cat: "social", aliases: "通过、被视为", desc: "跨性别者、非二元者或酷儿者被他人视作其认同的性别，或在特定场景中被视为顺性别/异性恋。", note: "这个概念有现实安全意义，也可能强化狭窄规范；是否追求过关完全取决于个人。" },
-      { zh: "盟友", en: "Ally", cat: "social", desc: "支持 LGBTQIA+ 或多元 SOGIESC 人群权利、尊严与安全的人。", note: "盟友身份来自持续行动，而不是自我贴标即可完成。" },
-      { zh: "倡导者", en: "Advocate", cat: "social", aliases: "维权人士", desc: "推动权益、服务可及性、反歧视、教育或制度改变的人。", note: "可来自社群内部或外部支持者。" },
+      { zh: "盟友", en: "Ally", cat: "social", desc: "支持 LGBTQIA+ 或多元 SOGIESC 人群的权利、尊严与安全，并愿意为此发声或行动的人，通常本身不属于相关社群。", note: "盟友身份来自持续的学习与行动，而不是自我贴上“盟友”标签就能完成。" },
+      { zh: "倡导者", en: "Advocate", cat: "social", aliases: "维权人士", desc: "推动权益、服务可及性、反歧视、公众教育或制度改变的人。倡导者可以来自社群内部，也可以是外部的支持者。", note: "与盟友相比，倡导者更强调具体的推动与行动，而非仅表态支持。" },
       { zh: "性少数群体", en: "Sexual and Gender Minorities / SGM", cat: "social", aliases: "性与性别少数、性少数、SGM", desc: "概括性取向、性别认同、性别表达或性别特征与社会多数规范不同的人群。常用于研究、公共卫生和政策语境。", note: "它是分析性总称；具体语境仍应尽量使用当事人自我认同的名称。" },
       { zh: "顺直", en: "Cishet / Cisgender Heterosexual", cat: "social", aliases: "顺性别异性恋者、cishet", desc: "原指顺性别且异性恋的人。中文网络语境中有时也被用来批评持有强烈性少数偏见的人。", note: "作为描述词时应避免把所有顺性别异性恋者等同于歧视者；批判对象通常是偏见和制度。" },
       { zh: "恐跨", en: "Transphobia", cat: "social", aliases: "反跨、仇跨、跨性别恐惧", desc: "针对跨性别者、非二元者或被视为性别不顺从者的偏见、歧视、排斥、暴力或制度性不平等。", note: "恐跨可以来自个人态度，也可以来自政策、医疗、家庭和媒体结构。" },
@@ -966,25 +988,35 @@
       { zh: "顺性别本位", en: "Cisnormativity", cat: "social", aliases: "顺性别规范性、顺性别常规性、顺性别正统性、顺性别中心主义", desc: "把顺性别经验视为默认和标准，并据此设计语言、制度、空间和身份文件的假设。例如表格只提供男/女、默认每个人都认同出生时指派性别，或把跨性别经验视为需要额外解释的例外。", note: "常表现为不承认跨性别或非二元经验；它可以在没有明显敌意的情况下运作。" },
       { zh: "顺性别主义", en: "Cisgenderism", cat: "social", aliases: "顺性别偏见、顺性别至上主义、顺性别优越主义、Cissexism", desc: "以顺性别观念为标准看待世界，忽视、抹除、问题化或贬低非顺性别者性别认同的态度与认知体系。它可能假定所有人都是顺性别者，或把顺性别认同视为唯一规范、自然甚至更优越的性别位置。", note: "它与“顺性别本位 / Cisnormativity”相近；站内用“顺性别主义 / Cisgenderism”指更明确的偏见、抹除和等级化。" },
       { zh: "有性恋本位", en: "Allonormativity / Allosexism", cat: "social", aliases: "有性恋规范性、有性恋本位、有性恋规范、性吸引本位", desc: "把“每个人都会或应该经历性吸引”视为默认的文化假设。它会让无性恋谱系经验被误读为冷淡、未成熟、创伤结果或尚未遇到对的人。", note: "可与浪漫本位、伴侣本位一起影响无性恋者和无浪漫者的处境；为避免与“泛性恋/pansexual”混淆，站内优先使用“有性恋本位”。" },
-      { zh: "强制性性欲", en: "Compulsory Sexuality", cat: "social", aliases: "强制性性实践规范、强制性性欲规范、强制性性规范", desc: "把“每个人都应当体验性吸引、拥有性欲并参与性行为”当作默认的社会规范。它会把对性吸引的缺席或低频体验病理化、道德化，或解释为压抑、创伤与尚未“被唤醒”。", note: "它与“有性恋本位”相近，但更强调对性实践的强制性期待，以及对“不想要/不需要性”的污名化。" },
-      { zh: "恋爱规范性", en: "Amatonormativity", cat: "social", aliases: "恋爱中心主义、浪漫恋爱本位、浪漫本位、恋爱本位、伴侣关系本位、爱情规范性、亲密范式霸权", desc: "把排他、长期、浪漫伴侣关系视为人生核心目标和最重要关系形式的社会规范。它会压低友谊、亲缘、互助共同体、单身生活、无浪漫亲密等关系形态的价值。", note: "常用于理解无浪漫谱系、单身主义和非传统亲密关系的社会压力。" },
+      { zh: "强制性性规范", en: "Compulsory Sexuality", cat: "social", aliases: "强制性性欲、强制性性实践规范、强制性性欲规范", desc: "把“每个人都应当体验性吸引、拥有性欲并参与性行为”当作默认的社会规范。它会把对性吸引的缺席或低频体验病理化、道德化，或解释为压抑、创伤与尚未“被唤醒”。", note: "它与“有性恋本位”相近，但更强调对性实践的强制性期待，以及对“不想要/不需要性”的污名化。" },
+      { zh: "浪漫本位", en: "Amatonormativity", cat: "social", aliases: "恋爱规范性、恋爱中心主义、浪漫恋爱本位、恋爱本位、伴侣关系本位、爱情规范性、亲密范式霸权", desc: "把排他、长期、浪漫伴侣关系视为人生核心目标和最重要关系形式的社会规范。它会压低友谊、亲缘、互助共同体、单身生活、无浪漫亲密等关系形态的价值。", note: "常用于理解无浪漫谱系、单身主义和非传统亲密关系的社会压力。" },
       { zh: "酷儿柏拉图式关系", en: "Queerplatonic Relationship (QPR)", cat: "social", desc: "一种不按“恋爱/朋友”二分来理解的高承诺亲密关系形态，常见于无浪漫/无性恋与更广义的酷儿社群。它可以像伴侣关系一样亲密、稳定与长期，但不必然以浪漫或性为成立前提。", note: "QPR 不必然没有浪漫或性；关键在于关系的组织逻辑不以主流浪漫/性脚本为前提。" },
       { zh: "单偶本位", en: "Mononormativity", cat: "social", aliases: "一对一关系本位、单偶规范性、单配偶规范", desc: "把一对一、排他、长期伴侣关系视为唯一成熟或正当的亲密关系模式。它会让多元爱、开放关系或其他知情同意的非单偶关系被污名化。", note: "批判单偶本位并不等于否定单偶关系，而是反对把单一模式当作唯一标准。" },
-      { zh: "恐同/恐双", en: "Homophobia / Biphobia", cat: "social", desc: "针对同性恋、双性恋者等群体的偏见、歧视、排斥或敌意。", note: "这些偏见可能是个人态度，也可能嵌入制度。" },
+      { zh: "恐同", en: "Homophobia", cat: "social", aliases: "同性恋恐惧、反同", desc: "针对同性恋者的偏见、恐惧、歧视、排斥或敌意。", note: "它可以是个人态度，也可以嵌入家庭、媒体、职场与法律等制度之中。" },
+      { zh: "恐双", en: "Biphobia", cat: "social", aliases: "双性恋恐惧、反双", desc: "针对双性恋者的偏见、歧视或否定；双性恋者还常面对“不被同性恋或异性恋任何一方接纳”的双重隐形。", note: "恐双有时也来自性少数社群内部，例如质疑双性恋“不够纯粹”或只是过渡。" },
       { zh: "厌跨女症", en: "Transmisogyny", cat: "social", aliases: "对跨性别女性的厌女", desc: "跨性别歧视与厌女共同作用在跨性别女性、转女性化者或被视为女性化的跨性别者身上的结构性压迫。它既包含对跨性别身份的否认，也包含对女性化的贬低和性化。", note: "这个词常用于解释跨性别女性面临的特殊暴力、污名和媒体叙事。" },
-      { zh: "女同性恋歧视", en: "Lesbophobia", cat: "social", desc: "针对女同性恋者的偏见、恐惧、污名或歧视，常与厌女结构交织。", note: "可同时涉及性别和性取向压迫。" },
-      { zh: "社会污名", en: "Social Stigma", cat: "social", desc: "社会对某些身份或经验施加负面标签，使其被羞辱、排斥或不平等对待。", note: "污名不是个人问题，而是社会关系和制度问题。" },
-      { zh: "结构化污名", en: "Structural Stigma", cat: "social", desc: "通过法律、政策、机构规范或资源分配形成的系统性污名和限制。", note: "它会影响健康、教育、就业和安全。" },
-      { zh: "少数群体压力", en: "Minority Stress", cat: "social", desc: "边缘群体因污名、歧视、预期拒绝、隐瞒压力等长期承受的额外压力。", note: "常用于解释健康不平等。" },
-      { zh: "交叉性", en: "Intersectionality", cat: "social", desc: "不同身份和权力位置相互交织，形成独特处境与风险的分析视角。", note: "性别、取向、阶级、族裔、残障等不能总是分开理解。" },
-      { zh: "多元爱/多边恋", en: "Polyamory / Polyamorous", cat: "social", desc: "在知情同意下与多位伴侣建立亲密、浪漫或伴侣关系的实践或取向。", note: "它不等同于欺骗，也不等同于某一种性取向。" },
-      { zh: "民事结合/同居伴侣关系", en: "Civil Union / Domestic Partnership", cat: "social", desc: "婚姻以外的法律或制度化伴侣关系形式，具体权利视地区法律而定。", note: "PDF 将其列为相关法律/关系术语。" },
+      { zh: "女同性恋歧视", en: "Lesbophobia", cat: "social", desc: "针对女同性恋者的偏见、恐惧、污名或歧视，常与厌女结构交织在一起。它既涉及对同性吸引的排斥，也涉及对女性的贬低。", note: "因此女同性恋者可能同时面对性别与性取向两个层面的压迫。" },
+      { zh: "社会污名", en: "Social Stigma", cat: "social", desc: "社会对某些身份或经验贴上负面标签，使相关人群被羞辱、贬低、排斥或不平等对待。污名往往通过日常语言、刻板印象和舆论不断被强化。", note: "污名的根源在于社会关系与制度，而不是被污名者自身有什么“问题”。" },
+      { zh: "结构化污名", en: "Structural Stigma", cat: "social", desc: "嵌入法律、政策、机构规范或资源分配之中的系统性污名与限制，例如不承认同性伴侣、缺乏性别肯定医疗保障等。它不依赖个人的敌意就能运作。", note: "结构化污名会持续影响人们的健康、教育、就业与人身安全。" },
+      { zh: "少数群体压力", en: "Minority Stress", cat: "social", desc: "边缘群体因长期面对污名、歧视、预期中的拒绝以及隐藏身份的压力而承受的额外慢性压力。它叠加在普通生活压力之上。", note: "这一框架常用来解释性少数与性别少数群体中观察到的健康不平等。" },
+      { zh: "内化恐同", en: "Internalized Homophobia", cat: "social", aliases: "内化的恐同、内在恐同", desc: "同性恋或双性恋者把社会中针对非异性恋的偏见、羞耻与负面信息吸收为对自己的看法，从而产生自我否定、自我厌恶或对同类的排斥。", note: "它是社会污名内化的结果而非个人缺陷，常需要时间、支持与社群联结来缓解。" },
+      { zh: "内化恐跨", en: "Internalized Transphobia", cat: "social", aliases: "内化的恐跨、内在恐跨", desc: "跨性别或性别多元者把社会中针对跨性别的偏见、羞耻与负面信息吸收为对自己的看法，从而产生自我否定或加剧性别不安。", note: "同样是结构性压力内化的结果，可通过支持与社群联结来缓解。" },
+      { zh: "微歧视", en: "Microaggression", cat: "social", aliases: "微冒犯、隐性歧视、微攻击", desc: "指日常互动中那些细微、常被认为无意的言行，却传递出对某一群体的轻视、刻板印象或否定。例如反复追问跨性别者的“原名”，或对同性伴侣追问“你们谁是男方”。", note: "单次看似轻微，但长期累积会造成显著心理压力；指出它不等于上纲上线，而是减少日常伤害。" },
+      { zh: "彩虹洗白 / 粉红营销", en: "Rainbow-washing / Pinkwashing", cat: "social", aliases: "粉红清洗、粉红洗白", desc: "指企业、机构或政府在缺乏实质支持的情况下，借助彩虹符号或对 LGBTQIA+ 友好的姿态来获取好感、营销获利或转移批评，常见于骄傲月期间的象征性表态。", note: "判断是否为彩虹洗白，关键看其在公关之外是否有持续、实质的政策与行动支持。" },
+      { zh: "交叉性", en: "Intersectionality", cat: "social", desc: "由 Kimberlé Crenshaw 提出的分析视角，强调性别、取向、阶级、族裔、残障等多重身份与权力位置相互交织，形成独特的处境与风险。", note: "它提醒我们：这些维度往往无法分开理解，叠加后的经验也不等于各部分的简单相加。" },
+      { zh: "多元爱/多边恋", en: "Polyamory / Polyamorous", cat: "social", desc: "在所有相关者知情同意的前提下，与多位伴侣建立亲密、浪漫或伴侣关系的实践或取向。它强调坦诚、沟通与共识。", note: "多元爱以知情同意为前提，既不同于欺骗或出轨，也不等同于某一种性取向。" },
+      { zh: "民事结合/同居伴侣关系", en: "Civil Union / Domestic Partnership", cat: "social", desc: "婚姻之外的法律或制度化伴侣关系形式，可为伴侣提供部分类似婚姻的权利与义务，具体内容因地区法律而异。它在一些地方曾是同性伴侣的过渡性方案。", note: "主要来源中的 IRB PDF 将其列为相关法律/关系术语。" },
+      { zh: "形婚", en: "Cooperative Marriage / Lavender Marriage", cat: "social", aliases: "形式婚姻、合作婚姻、互助婚姻", desc: "中文语境中常见的安排，通常指男同性恋与女同性恋（或性少数者与他人）出于应对家庭、社会或职场压力，缔结对外维持异性恋表象的婚姻，而双方各自保留真实的性取向与生活。", note: "形婚是特定社会压力下的策略选择，背后常牵涉财产、生育、赡养等现实约定；它不改变当事人的真实性取向，也不应被简单评判为欺骗。" },
+      { zh: "同妻 / 同夫", en: "Straight Spouse", cat: "social", aliases: "同妻、同夫、男同性恋的妻子、女同性恋的丈夫", desc: "指在不知情或被隐瞒的情况下，与未出柜的同性恋或双性恋者结婚的异性恋配偶。中文语境中“同妻”尤指男同性恋者的异性恋妻子，是受到较多关注的群体。", note: "该现象通常与深柜、家庭与社会压力、对出柜风险的恐惧交织；讨论时宜同时看到性少数者的处境与配偶受到的伤害，而非简单归咎个人。" },
+      { zh: "选择家庭", en: "Chosen Family / Found Family", cat: "social", aliases: "选择亲缘、自选家庭、找到的家人", desc: "指人们在血缘或法律家庭之外，主动选择并建立的、提供情感支持、归属与照顾的亲密关系网络。它在 LGBTQIA+ 社群中尤为重要，常用于弥补原生家庭排斥或缺位带来的支持缺口。", note: "选择家庭的关系真实而稳定，不因缺少血缘或法律承认而次于传统家庭。" },
+      { zh: "关系无政府", en: "Relationship Anarchy / RA", cat: "social", aliases: "关系无政府主义、RA", desc: "一种关系理念，主张不预先按“恋人 > 朋友”的等级为关系排序，而由相关各方自行协商每段关系的内容、承诺与边界，不把浪漫或性关系默认置于其他关系之上。", note: "它不等于拒绝承诺或随意，而是反对用单一脚本规定关系应有的样子；与多元爱有重叠但侧重点不同。" },
+      { zh: "蛋 / 破壳", en: "Egg / Egg Crack", cat: "social", aliases: "egg、egg crack、蛋裂", desc: "跨性别社群俚语。“蛋”戏称尚未意识到或尚未承认自己是跨性别者的人；“破壳”指其逐渐意识到自身性别认同的时刻或过程。", note: "这类词多用于社群内部的自嘲与互相理解，带有调侃意味；用在他人身上前应注意对方是否接受。" },
       { zh: "Top / 1", en: "top", cat: "social", aliases: "上、1、攻（语境相关）", desc: "在性行为语境中常指主要扮演插入/主动角色的人或角色位置。", note: "它描述性行为角色，不等同于情感地位或关系权力；也不同于 BDSM 的 Dom/sub；并且在跨性别医疗语境中 top/bottom 也可指上/下身手术，需结合上下文。" },
       { zh: "Bottom / 0", en: "bottom", cat: "social", aliases: "下、0、受（语境相关）", desc: "在性行为语境中常指主要扮演被插入/接受角色的人或角色位置。", note: "它描述性行为角色，不等同于情感地位或关系权力；也不同于 BDSM 的 Dom/sub；并且在跨性别医疗语境中 top/bottom 也可指上/下身手术，需结合上下文。" },
       { zh: "Vers / 0.5", en: "versatile / vers", cat: "social", aliases: "0.5、不分、可攻可受（语境相关）", desc: "指在性行为语境中可能在 top 与 bottom 角色之间切换，或不固定在某一角色位置。", note: "具体含义与实践以当事人自述为准；不要把它当作对他人身体或性行为的默认预设。" },
       { zh: "Side", en: "side", cat: "social", aliases: "不10", desc: "在部分男同与更广义酷儿语境中，用于描述不倾向进行肛交的插入或被插入，而更偏好口交、手交、身体摩擦、亲吻抚摸等非插入式性行为与亲密互动的人或偏好。", note: "side 描述的是性行为偏好，不等同于性取向（也不等同于无性恋）。非插入式并不等于零风险，仍需要同意沟通与安全性行为。" },
-      { zh: "FWB", en: "Friends With Benefits", cat: "behavior", aliases: "有福利的朋友、性伴朋友", desc: "指在友谊基础上建立的非排他、非浪漫承诺的性关系或性接触安排。双方通常维持朋友关系，同时定期或不定期发生性行为，彼此不要求恋爱关系或排他忠诚。", note: "FWB 描述的是关系契约和性行为安排，不等于“无感情”——双方仍可能有亲密、信任和情感支持。是否安全、知情、尊重边界才是判断健康与否的关键。" },
-      { zh: "T/P/H", en: "T / P / H (community slang)", cat: "social", aliases: "Tomboy、Prettygirl、Half、婆、不分", desc: "中文语境中部分女同/萨福式社群的角色或气质标签。常见理解为：T（偏阳刚/中性呈现）、P（偏阴柔呈现）、H（不分，或介于T/P之间，可偏可不偏）。TTL 指代两个较为阳刚的人之间的恋情。PPL 指代两个较为阴柔的人之间的恋情。其他组合（如HHL、TPL、PHL等）依次类推。", note: "不同地区与社群含义差异较大；它不应与 1/0 机械等同，也不应用来替他人贴标签。" }
+      { zh: "FWB", en: "Friends With Benefits", cat: "behavior", aliases: "有性关系的朋友、有利益的朋友、有福利的朋友、性伴朋友", desc: "指在友谊基础上建立的非排他、非浪漫承诺的性关系或性接触安排。双方通常维持朋友关系，同时定期或不定期发生性行为，彼此不要求恋爱关系或排他忠诚。", note: "FWB 描述的是关系契约和性行为安排，不等于“无感情”——双方仍可能有亲密、信任和情感支持。是否安全、知情、尊重边界才是判断健康与否的关键。" },
+      { zh: "T/P/H", en: "T / P / H (community slang)", cat: "social", aliases: "Tomboy、Prettygirl、Half、婆、不分", desc: "中文语境中部分女同/萨福式社群的角色或气质标签。常见理解为：T（偏阳刚/中性呈现）、P（偏阴柔呈现）、H（不分；或介于T/P之间，可偏可不偏）。TTL 指代两个较为阳刚的人之间的恋情。PPL 指代两个较为阴柔的人之间的恋情。其他组合（如HHL、TPL、PHL等）依次类推。", note: "不同地区与社群含义差异较大；它不应与 1/0 机械等同，也不应用来替他人贴标签。" }
     ];
 
     const searchInput = document.getElementById("searchInput");
@@ -1048,10 +1080,16 @@
         return true;
       });
 
+      // 别名展示统一为：中文在前、英文/缩写在后（各组内保持原有顺序）。
+      const orderedAliases = [
+        ...cleanedAliases.filter((item) => hasHan(item)),
+        ...cleanedAliases.filter((item) => !hasHan(item))
+      ];
+
       return {
         ...term,
         zhPrimary: primaryZh,
-        aliasesList: cleanedAliases
+        aliasesList: orderedAliases
       };
     }
 

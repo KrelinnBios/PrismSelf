@@ -691,8 +691,7 @@
       animation: none;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+        :root[data-theme="dark"] {
         --ink: #f0e9dd;
         --paper: #14110c;
         --cream: #1d1812;
@@ -703,31 +702,30 @@
         --accent-light: #241d14;
       }
 
-      header,
-      .principle-card,
-      .pair-half:first-child,
-      .footer-note,
-      .term-card.highlight {
+    :root[data-theme="dark"] header,
+    :root[data-theme="dark"] .principle-card,
+    :root[data-theme="dark"] .pair-half:first-child,
+    :root[data-theme="dark"] .footer-note,
+    :root[data-theme="dark"] .term-card.highlight {
         background: #241d14;
         border-color: #241d14;
         color: #f0e9dd;
       }
 
-      .term-desc {
+    :root[data-theme="dark"] .term-desc {
         color: #d8cfc0;
       }
 
-      .prism-back-home {
+    :root[data-theme="dark"] .prism-back-home {
         background: rgba(20, 18, 14, 0.92) !important;
         color: #e0d6c4 !important;
         border-color: rgba(255, 255, 255, 0.14) !important;
       }
 
-      .prism-back-home:hover {
+    :root[data-theme="dark"] .prism-back-home:hover {
         color: #ffffff !important;
         border-color: rgba(255, 255, 255, 0.28) !important;
       }
-    }
   </style>
 
   <style id="prism-back-home-style">
@@ -764,6 +762,8 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
 </head>
 
 <body>

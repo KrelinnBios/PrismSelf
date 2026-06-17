@@ -947,8 +947,7 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+        :root[data-theme="dark"] {
         --ink: #e6eef0;
         --ink-mid: #aebcc2;
         --ink-soft: #8597a0;
@@ -966,39 +965,40 @@
         --slate-soft: #1b232a;
       }
 
-      .hero,
-      .utility-bar,
-      .guide-card,
-      .legend-card,
-      .summary-block {
+    :root[data-theme="dark"] .hero,
+    :root[data-theme="dark"] .utility-bar,
+    :root[data-theme="dark"] .guide-card,
+    :root[data-theme="dark"] .legend-card,
+    :root[data-theme="dark"] .summary-block {
         background: #161d22;
       }
 
-      .status-choice,
-      .progress-track,
-      input,
-      textarea,
-      select,
-      .custom-composer input {
+    :root[data-theme="dark"] .status-choice,
+    :root[data-theme="dark"] .progress-track,
+    :root[data-theme="dark"] input,
+    :root[data-theme="dark"] textarea,
+    :root[data-theme="dark"] select,
+    :root[data-theme="dark"] .custom-composer input {
         background: #1b232a;
       }
 
-      .hero-note {
+    :root[data-theme="dark"] .hero-note {
         background: #11171a;
       }
 
-      .profile-row {
+    :root[data-theme="dark"] .profile-row {
         background: #14241f;
       }
 
-      .back-home {
+    :root[data-theme="dark"] .back-home {
         background: rgba(20, 26, 34, 0.92);
         color: #c6cfdc;
         border-color: rgba(255, 255, 255, 0.14);
       }
-    }
 
   </style>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
 </head>
 
 <body>
@@ -1641,7 +1641,12 @@
       const context = canvas.getContext("2d");
       context.scale(scale, scale);
 
-      context.fillStyle = "#f3f7f6";
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      const pal = isDark
+        ? { page: "#0f1417", card: "#161d22", cardStroke: "#2a3a3a", title: "#e6eef0", desc: "#aebcc2", footMuted: "#8597a0", footBrand: "#4db3a0" }
+        : { page: "#f3f7f6", card: "#ffffff", cardStroke: "#dfe9e8", title: "#20303d", desc: "#6f818e", footMuted: "#617480", footBrand: "#2f6f73" };
+
+      context.fillStyle = pal.page;
       context.fillRect(0, 0, logicalWidth, logicalHeight);
 
       const [colorStart, colorEnd] = getExportTheme(module.id);
@@ -1685,15 +1690,15 @@
 
       rows.forEach((row) => {
         roundRect(context, side, y, contentWidth, row.height, 20);
-        context.fillStyle = "#ffffff";
+        context.fillStyle = pal.card;
         context.fill();
-        context.strokeStyle = "#dfe9e8";
+        context.strokeStyle = pal.cardStroke;
         context.lineWidth = 1.5;
         context.stroke();
 
         let textY = y + 18;
         context.textAlign = "left";
-        context.fillStyle = "#20303d";
+        context.fillStyle = pal.title;
         context.font = titleFont;
         row.titleLines.forEach((line) => {
           context.fillText(line, side + 24, textY);
@@ -1702,7 +1707,7 @@
 
         if (row.descLines.length) {
           textY += 2;
-          context.fillStyle = "#6f818e";
+          context.fillStyle = pal.desc;
           context.font = descFont;
           row.descLines.forEach((line) => {
             context.fillText(line, side + 24, textY);
@@ -1734,10 +1739,10 @@
 
       const footerY = logicalHeight - footerHeight;
       context.textAlign = "left";
-      context.fillStyle = "#617480";
+      context.fillStyle = pal.footMuted;
       context.font = '400 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       context.fillText("仅呈现本模块已填写的条目。需求会随阶段、对象与情境改变。", side, footerY + 16);
-      context.fillStyle = "#2f6f73";
+      context.fillStyle = pal.footBrand;
       context.font = '600 17px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       context.fillText("PrismSelf · 关系对话工具", side, footerY + 48);
 

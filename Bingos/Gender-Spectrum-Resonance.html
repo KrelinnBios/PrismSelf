@@ -629,35 +629,58 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      body { background: #0f1117; color: #e3e7ee; }
-      .sub { color: #9aa0b0; }
-      .header h1 em { color: #e0a0bf; }
-      .tip { background: #181b24; color: #c3c9d6; border-left-color: #c77f9c; box-shadow: none; }
-      .legend-item { background: rgba(199, 140, 170, 0.12); }
-      .ldot { background: #262a36; border-color: #3a3f4c; color: #aab0bd; }
-      .ldot.lv25 { background: #2a1f26; border-color: #5a3f4d; color: #d99fb8; }
-      .ldot.lv50 { background: #3a2733; border-color: #6e4d5e; color: #e0a8c0; }
-      .ldot.lv75 { background: #4d2f40; border-color: #8a5570; color: #ecb6cf; }
-      .ldot.lv100 { background: #5e374d; border-color: #c77f9c; color: #f5cde0; }
-      .reset-btn { background: #181b24; border-color: #3a3f4c; color: #e0a0bf; }
-      .reset-btn:hover { background: #2a1f26; border-color: #c77f9c; }
-      .section { background: #15171f; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4); }
-      .grid { border-top-color: #262a36; }
-      .cell { background: #15171f; border-color: #22252f; }
-      .cell-text { color: #cdd2dc; }
-      .cell[data-level] { background: #181b24; }
-      .sec-A .cell[data-level] .cell-text,
-      .sec-B .cell[data-level] .cell-text,
-      .sec-C .cell[data-level] .cell-text,
-      .sec-D .cell[data-level] .cell-text { color: #e8ebf1; }
-      .ring { background: rgba(20, 23, 32, 0.9) !important; border-color: #3a3f4c !important; color: #e3e7ee !important; }
-      .footer { background: #15171f; color: #aab0bd; }
-      .footer h4 { color: #e0a0bf; }
-      .footer ul, .footer li, .footer a { color: #aab0bd; }
-      .prism-back-home { background: rgba(20, 23, 32, 0.92); color: #c6cfdc; border-color: rgba(255, 255, 255, 0.14); }
-      .prism-back-home:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.28); }
-    }
+        :root[data-theme="dark"] body { background: #0f1117; color: #e3e7ee; }
+
+    :root[data-theme="dark"] .sub { color: #9aa0b0; }
+
+    :root[data-theme="dark"] .header h1 em { color: #e0a0bf; }
+
+    :root[data-theme="dark"] .tip { background: #181b24; color: #c3c9d6; border-left-color: #c77f9c; box-shadow: none; }
+
+    :root[data-theme="dark"] .legend-item { background: rgba(199, 140, 170, 0.12); }
+
+    :root[data-theme="dark"] .ldot { background: #262a36; border-color: #3a3f4c; color: #aab0bd; }
+
+    :root[data-theme="dark"] .ldot.lv25 { background: #2a1f26; border-color: #5a3f4d; color: #d99fb8; }
+
+    :root[data-theme="dark"] .ldot.lv50 { background: #3a2733; border-color: #6e4d5e; color: #e0a8c0; }
+
+    :root[data-theme="dark"] .ldot.lv75 { background: #4d2f40; border-color: #8a5570; color: #ecb6cf; }
+
+    :root[data-theme="dark"] .ldot.lv100 { background: #5e374d; border-color: #c77f9c; color: #f5cde0; }
+
+    :root[data-theme="dark"] .reset-btn { background: #181b24; border-color: #3a3f4c; color: #e0a0bf; }
+
+    :root[data-theme="dark"] .reset-btn:hover { background: #2a1f26; border-color: #c77f9c; }
+
+    :root[data-theme="dark"] .section { background: #15171f; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4); }
+
+    :root[data-theme="dark"] .grid { border-top-color: #262a36; }
+
+    :root[data-theme="dark"] .cell { background: #15171f; border-color: #22252f; }
+
+    :root[data-theme="dark"] .cell-text { color: #cdd2dc; }
+
+    :root[data-theme="dark"] .cell[data-level] { background: #181b24; }
+
+    :root[data-theme="dark"] .sec-A .cell[data-level] .cell-text,
+    :root[data-theme="dark"] .sec-B .cell[data-level] .cell-text,
+    :root[data-theme="dark"] .sec-C .cell[data-level] .cell-text,
+    :root[data-theme="dark"] .sec-D .cell[data-level] .cell-text { color: #e8ebf1; }
+
+    :root[data-theme="dark"] .ring { background: rgba(20, 23, 32, 0.9) !important; border-color: #3a3f4c !important; color: #e3e7ee !important; }
+
+    :root[data-theme="dark"] .footer { background: #15171f; color: #aab0bd; }
+
+    :root[data-theme="dark"] .footer h4 { color: #e0a0bf; }
+
+    :root[data-theme="dark"] .footer ul,
+    :root[data-theme="dark"] .footer li,
+    :root[data-theme="dark"] .footer a { color: #aab0bd; }
+
+    :root[data-theme="dark"] .prism-back-home { background: rgba(20, 23, 32, 0.92); color: #c6cfdc; border-color: rgba(255, 255, 255, 0.14); }
+
+    :root[data-theme="dark"] .prism-back-home:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.28); }
   </style>
 
   <style id="prism-back-home-style">
@@ -694,6 +717,8 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
 </head>
 
 <body>

@@ -4,31 +4,28 @@
       <stop offset="0" stop-color="#0c0d12"/>
       <stop offset="1" stop-color="#000000"/>
     </radialGradient>
-    <linearGradient id="gLeft" x1="9" y1="14" x2="32" y2="54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ffffff" stop-opacity=".16"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".05"/>
-    </linearGradient>
-    <linearGradient id="spectrum" x1="32" y1="12" x2="32" y2="53" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ff2d2d"/>
-      <stop offset=".2" stop-color="#ff8c1a"/>
-      <stop offset=".4" stop-color="#ffe34d"/>
-      <stop offset=".6" stop-color="#3fd06a"/>
-      <stop offset=".8" stop-color="#2f7bff"/>
-      <stop offset="1" stop-color="#9b4dff"/>
+    <linearGradient id="spectrum" x1="32" y1="11" x2="32" y2="53" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff3b30"/>
+      <stop offset=".1667" stop-color="#ff9500"/>
+      <stop offset=".3333" stop-color="#ffd60a"/>
+      <stop offset=".5" stop-color="#34c759"/>
+      <stop offset=".6667" stop-color="#0a84ff"/>
+      <stop offset=".8333" stop-color="#5e5ce6"/>
+      <stop offset="1" stop-color="#bf5af2"/>
     </linearGradient>
   </defs>
 
   <rect width="64" height="64" fill="url(#bg)"/>
 
-  <!-- left face — transparent glass -->
-  <path d="M32 10 9 38 32 54Z" fill="url(#gLeft)"/>
-  <!-- right face — rainbow -->
-  <path d="M32 10 55 38 32 54Z" fill="url(#spectrum)" fill-opacity=".92"/>
+  <!-- left face — faint refracted rainbow -->
+  <path d="M32 10 9 38 32 54Z" fill="url(#spectrum)" fill-opacity=".32"/>
+  <!-- right face — full rainbow -->
+  <path d="M32 10 55 38 32 54Z" fill="url(#spectrum)"/>
 
   <!-- back base edge, seen through the glass -->
-  <line x1="9" y1="38" x2="55" y2="38" stroke="#e9edf3" stroke-width="1" stroke-opacity=".3"/>
+  <line x1="9" y1="38" x2="55" y2="38" stroke="#ffffff" stroke-width="1" stroke-opacity=".35"/>
 
   <!-- silhouette + front edge -->
   <path d="M32 10 55 38 32 54 9 38ZM32 10V54"
-    fill="none" stroke="#e9edf3" stroke-width="1.5" stroke-opacity=".9" stroke-linejoin="round"/>
+    fill="none" stroke="#ffffff" stroke-width="1.5" stroke-opacity=".95" stroke-linejoin="round"/>
 </svg>
