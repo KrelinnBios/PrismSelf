@@ -3,7 +3,13 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-06-19',
     pages: [
-      'home'
+      'home',
+      './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/LGBTQ-Comprehensive-Analysis.html',
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Analyses/Interpersonal-Attraction-Comparison.html',
+      './Analyses/Interpersonal-Conflict-Analysis.html',
+      './Analyses/Neutrality-Type-Analysis.html'
     ]
   },
   {
@@ -16,12 +22,6 @@ window.PrismSelfUpdateGroups = [
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Terminology.html',
       './Guides/BDSM-Comprehensive-Guide.html',
-      './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/LGBTQ-Comprehensive-Analysis.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html',
-      './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html',
       './Scales/Sexual-Orientation-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Aromantic-Spectrum-Scale.html',
