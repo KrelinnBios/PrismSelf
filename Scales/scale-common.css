@@ -323,8 +323,35 @@ button:hover {
 		background-color: rgba(255, 255, 255, 0.03) !important;
 	}
 
+:root[data-theme="dark"] .result,
+:root[data-theme="dark"] .scale-result {
+		color: #d9e2ee !important;
+	}
+
+:root[data-theme="dark"] .result [style*="background-color"] {
+		background-color: var(--scale-surface) !important;
+		color: #d9e2ee !important;
+		border-color: var(--scale-line) !important;
+		box-shadow: var(--scale-shadow) !important;
+	}
+
+:root[data-theme="dark"] .result [style*="background-color"] p,
+:root[data-theme="dark"] .result [style*="background-color"] li {
+		color: #c6d2e0 !important;
+	}
+
 :root[data-theme="dark"] .result ul[style*="color"] {
 		color: #c6d2e0 !important;
+	}
+
+	/* 暗色下结果区文字统一成可读浅色，覆盖各处内联的深色文字，
+	   避免浅色文字落在已转深的卡片/表格上看不清。 */
+:root[data-theme="dark"] .result :is(p, li, td, th, dt, dd, span, strong, b, em, i, small, label, code, h1, h2, h3, h4, h5, h6, div, ul, ol) {
+		color: #d9e2ee !important;
+	}
+
+:root[data-theme="dark"] .result a {
+		color: #8bb1f9 !important;
 	}
 
 :root[data-theme="dark"] .theory-tag,
