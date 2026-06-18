@@ -139,22 +139,26 @@
     .github-links {
       position: fixed;
       top: 18px;
-      right: 18px;
+      right: 76px;
       z-index: 30;
       display: flex;
+      align-items: center;
       justify-content: flex-end;
       gap: 10px;
       flex-wrap: wrap;
       margin: 0;
+      min-height: 44px;
     }
 
     .github-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       width: fit-content;
+      min-height: 32px;
       margin: 0;
+      padding: 0 2px;
       font-size: 12px;
       color: var(--ink-soft);
       text-decoration: none;
@@ -173,8 +177,27 @@
 
     @media (max-width: 600px) {
       .github-links {
-        top: 10px;
-        right: 10px;
+        top: 12px;
+        right: 64px;
+        min-height: 40px;
+      }
+
+      .github-link {
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+        padding: 0;
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--bg-card);
+        box-shadow: var(--shadow-sm);
+        font-size: 0;
+      }
+
+      .github-link svg {
+        width: 20px;
+        height: 20px;
       }
     }
 
@@ -751,6 +774,15 @@
 
 <body>
 
+  <div class="github-links" aria-label="项目链接">
+    <a class="github-link" href="https://github.com/KrelinnBios/PrismSelf" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2a10 10 0 00-3.162 19.488c.5.092.682-.217.682-.482 0-.237-.009-.866-.014-1.7-2.776.603-3.362-1.338-3.362-1.338-.454-1.154-1.11-1.462-1.11-1.462-.907-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.337-2.217-.252-4.555-1.109-4.555-4.935 0-1.09.39-1.984 1.03-2.683-.103-.253-.447-1.268.098-2.643 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.748-1.025 2.748-1.025.546 1.375.202 2.39.1 2.643.64.699 1.028 1.593 1.028 2.683 0 3.835-2.342 4.68-4.566 4.928.36.31.68.92.68 1.855 0 1.338-.012 2.418-.012 2.746 0 .268.18.58.688.48A10 10 0 0012 2z"/>
+      </svg>
+      GitHub
+    </a>
+  </div>
+
   <header>
     <div class="site-badge">
       <svg viewBox="0 0 24 24">
@@ -770,14 +802,6 @@
       <input id="cardSearch" class="search-input" type="text" placeholder="搜索内容（标题、标签或类型）" aria-label="搜索内容"
         autocomplete="off">
       <button id="searchClear" class="search-clear" type="button" aria-label="清除搜索">✕</button>
-    </div>
-    <div class="github-links" aria-label="项目链接">
-      <a class="github-link" href="https://github.com/KrelinnBios/PrismSelf" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2a10 10 0 00-3.162 19.488c.5.092.682-.217.682-.482 0-.237-.009-.866-.014-1.7-2.776.603-3.362-1.338-3.362-1.338-.454-1.154-1.11-1.462-1.11-1.462-.907-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.337-2.217-.252-4.555-1.109-4.555-4.935 0-1.09.39-1.984 1.03-2.683-.103-.253-.447-1.268.098-2.643 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.748-1.025 2.748-1.025.546 1.375.202 2.39.1 2.643.64.699 1.028 1.593 1.028 2.683 0 3.835-2.342 4.68-4.566 4.928.36.31.68.92.68 1.855 0 1.338-.012 2.418-.012 2.746 0 .268.18.58.688.48A10 10 0 0012 2z"/>
-        </svg>
-        GitHub
-      </a>
     </div>
     <div class="stats-bar">
       <div class="stat">
