@@ -1267,7 +1267,7 @@
 		<p id="sectionScores"></p>
 		<div id="personalizedSuggestions"></div>
 	</div>
-	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H" crossorigin="anonymous"></script>
 	<script>
 		// 点击题目展开/关闭解释
 		function toggleExplanation(titleElement) {
@@ -2556,7 +2556,7 @@
 				let resultText = "无浪漫谱系自查结果\n";
 				resultText += "====================================================================\n\n";
 				resultText += document.getElementById('scoreSummary').textContent + "\n\n";
-				resultText += document.getElementById('typeJudgment').textContent.replace(/<[^>]*>/g, '') + "\n\n";
+				resultText += document.getElementById('typeJudgment').textContent + "\n\n";
 				resultText += document.getElementById('mainInterpretation').innerText + "\n\n";
 				resultText += document.getElementById('detailedAnalysis').innerText + "\n\n";
 				resultText += document.getElementById('sectionScores').innerText + "\n\n";
