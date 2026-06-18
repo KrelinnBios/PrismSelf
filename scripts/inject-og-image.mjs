@@ -3,11 +3,14 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const IMG = 'https://prismself.pages.dev/og-image.png';
-const files = execSync('git ls-files "*.html"', { cwd: root }).toString().trim().split(/\r?\n/);
+const files = execFileSync('git', ['ls-files'], { cwd: root, encoding: 'utf8' })
+  .trim()
+  .split(/\r?\n/)
+  .filter((file) => file.endsWith('.html'));
 
 let changed = 0;
 for (const rel of files) {
