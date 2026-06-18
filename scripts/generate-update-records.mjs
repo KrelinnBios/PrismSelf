@@ -6,7 +6,7 @@
  * Usage: node scripts/generate-update-records.mjs
  */
 
-import { execSync } from 'child_process';
+import { execFileSync } from 'node:child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -19,7 +19,7 @@ const repoRoot = path.resolve(__dirname, '..');
  */
 function getLastModifiedDate(filePath) {
   try {
-    const date = execSync(`git log -1 --format=%cd --date=short "${filePath}"`, {
+    const date = execFileSync('git', ['log', '-1', '--format=%cd', '--date=short', '--', filePath], {
       cwd: repoRoot,
       encoding: 'utf-8'
     }).trim();
@@ -35,7 +35,7 @@ function getLastModifiedDate(filePath) {
  */
 function getAllHtmlFiles() {
   try {
-    const output = execSync(`git ls-files "*.html" "**/*.html"`, {
+    const output = execFileSync('git', ['ls-files'], {
       cwd: repoRoot,
       encoding: 'utf-8'
     }).trim();
