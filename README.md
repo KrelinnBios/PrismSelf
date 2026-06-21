@@ -1,6 +1,13 @@
 # PrismSelf
 
-聚焦性别理论、心理概念与人际关系的自我探索与科普静态网站。
+<p align="center">
+  <img src="favicon.svg" width="96" alt="PrismSelf">
+</p>
+
+<p align="center">
+  <strong>PrismSelf</strong><br>
+  聚焦性别理论、心理概念与人际关系的自我探索与科普静态网站
+</p>
 
 - 项目类型：静态网站
 - 在线访问：<https://prismself.pages.dev/>
