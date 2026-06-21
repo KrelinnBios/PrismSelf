@@ -1,7 +1,7 @@
 # PrismSelf
 
 <p align="center">
-  <img src="favicon.svg" width="96" alt="PrismSelf">
+  <img src="favicon.svg" width="120" alt="PrismSelf">
 </p>
 
 <p align="center">
