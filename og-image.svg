@@ -26,11 +26,11 @@
   <path d="M600 116 792 350 600 484Z" fill="url(#spectrum)"/>
 
   <!-- back base edge, seen through the glass -->
-  <line x1="408" y1="350" x2="792" y2="350" stroke="#ffffff" stroke-width="3.5" stroke-opacity=".35"/>
+  <line x1="408" y1="350" x2="792" y2="350" stroke="#F7F8FB" stroke-width="3.5" stroke-opacity=".7"/>
 
   <!-- silhouette + front edge -->
   <path d="M600 116 792 350 600 484 408 350ZM600 116V484"
-    fill="none" stroke="#ffffff" stroke-width="5.5" stroke-opacity=".95" stroke-linejoin="round"/>
+    fill="none" stroke="#F4F6FA" stroke-width="5.5" stroke-opacity="1" stroke-linejoin="round"/>
 
   <text x="80" y="556" font-family="Georgia, 'Noto Serif SC', serif" font-size="46" font-weight="700" fill="#f4f5f8">PrismSelf</text>
   <text x="82" y="590" font-family="Georgia, 'Noto Serif SC', serif" font-size="22" fill="#9aa3b2" letter-spacing="2">性别 · 心理 · 人际</text>
