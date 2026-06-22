@@ -97,12 +97,12 @@ function Draw-Pyramid {
   $rainbow.Dispose()
 
   # back base edge, seen through the glass
-  $backPen = [Drawing.Pen]::new([Drawing.Color]::FromArgb(89, 255, 255, 255), $OutlineWidth * 0.65)
+  $backPen = [Drawing.Pen]::new([Drawing.ColorTranslator]::FromHtml('#F7F8FB'), $OutlineWidth * 0.65)
   $Graphics.DrawLine($backPen, $BackLeft, $BackRight)
   $backPen.Dispose()
 
   # silhouette + front edge
-  $pen = [Drawing.Pen]::new([Drawing.Color]::FromArgb(242, 255, 255, 255), $OutlineWidth)
+  $pen = [Drawing.Pen]::new([Drawing.ColorTranslator]::FromHtml('#F4F6FA'), $OutlineWidth)
   $pen.LineJoin = [Drawing.Drawing2D.LineJoin]::Round
   $pen.StartCap = [Drawing.Drawing2D.LineCap]::Round
   $pen.EndCap = [Drawing.Drawing2D.LineCap]::Round
