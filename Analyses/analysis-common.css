@@ -69,7 +69,6 @@ h1 {
 .subtitle,
 .panel p,
 .legend-card p,
-.note,
 .example-text {
 	color: var(--analysis-muted) !important;
 }
@@ -93,7 +92,6 @@ h1 {
 .controls,
 .legend-section,
 .panel,
-.section-card,
 .legend-card {
 	background: #f9fbfd !important;
 	border: 1px solid var(--analysis-line) !important;
@@ -215,6 +213,9 @@ tbody tr:hover {
 }
 
 .concept-cell {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
 	text-align: center !important;
 	cursor: pointer !important;
 	min-width: 130px !important;
@@ -378,7 +379,6 @@ tbody tr:hover {
 	flex-shrink: 0 !important;
 }
 
-.modal-overlay,
 .modal-bg {
 	display: none !important;
 	position: fixed !important;
@@ -390,7 +390,6 @@ tbody tr:hover {
 	justify-content: center !important;
 }
 
-.modal-overlay.open,
 .modal-bg.open {
 	display: flex !important;
 }
@@ -518,7 +517,6 @@ tbody tr:hover {
 :root[data-theme="dark"] .controls,
 :root[data-theme="dark"] .legend-section,
 :root[data-theme="dark"] .panel,
-:root[data-theme="dark"] .section-card,
 :root[data-theme="dark"] .legend-card {
 		background: #1b2230 !important;
 	}
@@ -646,9 +644,9 @@ tbody tr:hover {
 
 	td:first-child {
 		display: flex !important;
-		align-items: center !important;
-		justify-content: space-between !important;
-		gap: 12px !important;
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		gap: 4px !important;
 		padding-top: 0 !important;
 	}
 
