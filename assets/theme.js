@@ -38,7 +38,6 @@
     btn.id = 'themeToggle';
     btn.className = 'theme-toggle';
     btn.type = 'button';
-    btn.title = '切换深色 / 浅色模式';
     btn.setAttribute('aria-label', label(current()));
     btn.innerHTML = SUN + MOON;
     btn.addEventListener('click', function () {
