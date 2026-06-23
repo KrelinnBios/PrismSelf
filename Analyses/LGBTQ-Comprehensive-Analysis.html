@@ -71,9 +71,10 @@
             tr.row-norm { border-left-color: #db2777; }
             td { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.8rem; }
             td::before { content: attr(data-label); font-weight: 700; width: 90px; flex-shrink: 0; color: #4c1d95; font-size: 0.75rem; }
-            td.concept-cell { border: none; padding: 0; display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left; }
+            td:first-child { flex-direction: column; align-items: flex-start; gap: 4px; }
+            td.concept-cell { border: none; padding: 0; width: 100%; text-align: left; }
             td.concept-cell::before { display: none; }
-            .concept-pill { flex-direction: row; gap: 12px; align-items: baseline; }
+            .concept-pill { flex-direction: column; align-items: flex-start; gap: 2px; }
             .concept-name { font-size: 0.88rem; }
             .concept-en { font-size: 0.55rem; }
             .panels { grid-template-columns: 1fr 1fr; gap: 10px; }
