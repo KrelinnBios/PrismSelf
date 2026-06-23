@@ -406,15 +406,6 @@
       box-shadow: var(--shadow-sm);
     }
 
-    .topic-card summary {
-      list-style: none;
-      cursor: pointer;
-    }
-
-    .topic-card summary::-webkit-details-marker {
-      display: none;
-    }
-
     .topic-head {
       display: flex;
       align-items: center;
@@ -493,28 +484,6 @@
       font-weight: 700;
       white-space: nowrap;
       opacity: 0.94;
-    }
-
-    .collapse-control {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-left: auto;
-      white-space: nowrap;
-    }
-
-    .collapse-count {
-      font-size: 15px;
-      font-weight: 700;
-      opacity: 0.94;
-    }
-
-    .collapse-label {
-      min-width: 56px;
-      font-size: 13px;
-      font-weight: 600;
-      text-align: right;
-      opacity: 0.92;
     }
 
     .topic-list {
@@ -1234,14 +1203,11 @@
         icon: "密",
         title: "身体与性亲密",
         subtitle: "身体接触 · 性同意 · 健康与安全",
-        sensitive: true,
         items: [
           { id: "intimacy-affection", title: "拥抱、依偎、牵手等非性身体接触" },
-          { id: "intimacy-public", title: "在公共场合进行亲密身体表达" },
           { id: "intimacy-kissing", title: "接吻或其他带有浪漫意味的身体接触" },
           { id: "intimacy-sexual-touch", title: "进行带有性意味的触碰或互动" },
           { id: "intimacy-sex", title: "发生双方明确同意的性行为" },
-          { id: "intimacy-frequency", title: "讨论彼此期待的性互动频率与主动方式" },
           { id: "intimacy-safer-sex", title: "共同执行避孕、屏障防护和性健康检测约定" },
           { id: "intimacy-consent", title: "每次互动都确认同意，并允许随时改变主意" },
           { id: "intimacy-stop", title: "建立清楚的暂停、停止和事后照护方式" },
