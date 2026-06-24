@@ -1876,14 +1876,16 @@
         setActive(btnMap[active.dataset.category] || allBtn);
       };
 
-      let ticking = false;
-      document.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => { updateSpy(); ticking = false; });
-          ticking = true;
-        }
-      }, { passive: true });
-      updateSpy();
+      if (window.innerWidth > 600) {
+        let ticking = false;
+        document.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => { updateSpy(); ticking = false; });
+            ticking = true;
+          }
+        }, { passive: true });
+        updateSpy();
+      }
     })();
 
     (() => {
