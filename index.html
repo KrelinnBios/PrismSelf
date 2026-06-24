@@ -945,11 +945,16 @@
     }
 
     @media (max-width: 600px) {
-      .qr-dialog {
+      .qr-dialog,
+      .qr-dialog.wide {
+        width: min(80vw, 340px);
         border-radius: 18px;
       }
       .qr-dialog-inner {
         padding: 16px;
+      }
+      .qr-dialog-grid {
+        gap: 8px;
       }
     }
 
@@ -1039,6 +1044,10 @@
       .layout {
         flex-direction: column;
         padding: 0 12px 60px;
+      }
+
+      main {
+        width: 100%;
       }
 
       .sidebar {
