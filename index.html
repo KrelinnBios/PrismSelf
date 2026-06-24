@@ -1855,8 +1855,8 @@
 
       const allBtn = buttons.find((b) => b.dataset.filter === 'all');
 
-      // Default: "全部" active; scroll spy overrides when scrolling.
-      setActive(allBtn);
+      // Default: "全部" active on desktop; scroll spy overrides when scrolling.
+      if (window.innerWidth > 600) setActive(allBtn);
 
       // Scroll spy — switch when a section's top crosses 1/3 from top.
       const btnMap = {};
