@@ -87,7 +87,7 @@
       border-radius: 9px;
       background: rgba(255, 255, 255, 0.9);
       box-shadow: var(--shadow-sm);
-      color: var(--ink-mid);
+      color: #6a7b8f;
       font-size: 13px;
       font-weight: 600;
       text-decoration: none;
@@ -95,8 +95,13 @@
     }
 
     .back-home:hover {
-      color: var(--ink);
+      color: #111111;
       border-color: rgba(32, 48, 61, 0.28);
+    }
+
+    .back-home:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
     }
 
     .page {
@@ -969,6 +974,16 @@
         background: rgba(20, 26, 34, 0.92);
         color: #c6cfdc;
         border-color: rgba(255, 255, 255, 0.14);
+      }
+
+    :root[data-theme="dark"] .back-home:hover {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+    :root[data-theme="dark"] .back-home:focus-visible {
+        outline: 2px solid #7fd3c2;
+        outline-offset: 2px;
       }
 
   </style>

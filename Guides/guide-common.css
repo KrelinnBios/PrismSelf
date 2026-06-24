@@ -563,7 +563,7 @@
       border: 1px solid rgba(24, 33, 47, 0.14);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.92);
-      color: #415469;
+      color: #6a7b8f;
       font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
       text-decoration: none;
       box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
@@ -571,8 +571,13 @@
     }
 
     .prism-back-home:hover {
-      color: #18212f;
+      color: #111111;
       border-color: rgba(24, 33, 47, 0.26);
+    }
+
+    .prism-back-home:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
     }
     @media (max-width: 600px) {
       .terms-grid {
@@ -675,6 +680,11 @@
 :root[data-theme="dark"] .prism-back-home:hover {
         color: #ffffff;
         border-color: rgba(255, 255, 255, 0.28);
+      }
+
+:root[data-theme="dark"] .prism-back-home:focus-visible {
+        outline: 2px solid #7fd3c2;
+        outline-offset: 2px;
       }
 
     @media (max-width: 420px) {

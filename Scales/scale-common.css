@@ -259,7 +259,7 @@ button:hover {
 	border: 1px solid rgba(24, 33, 47, 0.14) !important;
 	border-radius: 8px !important;
 	background: rgba(255, 255, 255, 0.92) !important;
-	color: #415469 !important;
+	color: #6a7b8f !important;
 	font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif !important;
 	text-decoration: none !important;
 	box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10) !important;
@@ -267,8 +267,13 @@ button:hover {
 }
 
 .prism-back-home:hover {
-	color: #18212f !important;
+	color: #111111 !important;
 	border-color: rgba(24, 33, 47, 0.26) !important;
+}
+
+.prism-back-home:focus-visible {
+	outline: 2px solid #1e5f65 !important;
+	outline-offset: 2px !important;
 }
 
 :root[data-theme="dark"] {
@@ -371,6 +376,11 @@ button:hover {
 :root[data-theme="dark"] .prism-back-home:hover {
 		color: #ffffff !important;
 		border-color: rgba(255, 255, 255, 0.28) !important;
+	}
+
+:root[data-theme="dark"] .prism-back-home:focus-visible {
+		outline: 2px solid #7fd3c2 !important;
+		outline-offset: 2px !important;
 	}
 
 @media (max-width: 650px) {

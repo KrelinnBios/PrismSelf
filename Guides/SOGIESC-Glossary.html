@@ -77,11 +77,30 @@
     .back-link {
       text-decoration: none;
       font-size: 0.92rem;
-      color: var(--ink-mid);
+      color: #6a7b8f;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       white-space: nowrap;
+    }
+
+    .back-link:hover {
+      color: #111111;
+    }
+
+    :root[data-theme="dark"] .back-link {
+      color: #8a9bb0;
+    }
+
+    :root[data-theme="dark"] .back-link:hover {
+      color: #ffffff;
+    }
+
+    .back-link:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
     }
 
     .mini-nav {
@@ -93,6 +112,17 @@
 
     .mini-nav a {
       text-decoration: none;
+      color: #6a7b8f;
+    }
+
+    .mini-nav a:hover {
+      color: #111111;
+    }
+
+    .mini-nav a:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
     }
 
     header {
@@ -629,6 +659,14 @@
 
     :root[data-theme="dark"] .friend-link:hover {
         background: #1b2230;
+      }
+
+    :root[data-theme="dark"] .mini-nav a {
+        color: #8a9bb0;
+      }
+
+    :root[data-theme="dark"] .mini-nav a:hover {
+        color: #ffffff;
       }
   </style>
   <link rel="stylesheet" href="../assets/theme.css">

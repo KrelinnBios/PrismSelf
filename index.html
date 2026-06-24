@@ -813,18 +813,18 @@
     }
 
     .qr-dialog {
-      width: min(92vw, 420px);
+      width: min(80vw, 340px);
       margin: auto;
       padding: 0;
       border: 1px solid var(--border);
       border-radius: 20px;
       background: var(--bg-card);
       color: var(--ink);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     }
 
     .qr-dialog.wide {
-      width: min(92vw, 720px);
+      width: min(88vw, 500px);
     }
 
     .qr-dialog::backdrop {
@@ -839,8 +839,8 @@
     .qr-dialog-header {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .qr-dialog-copy {
@@ -910,18 +910,33 @@
     }
 
     .qr-dialog-note {
-      margin-top: 12px;
+      margin-top: 10px;
       color: var(--ink-soft);
-      font-size: 12px;
-      line-height: 1.6;
+      font-size: 11px;
+      line-height: 1.5;
     }
 
     .qr-dialog-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 10px;
     }
 
+    @media (max-width: 600px) {
+      .qr-dialog {
+        border-radius: 18px;
+      }
+      .qr-dialog-inner {
+        padding: 16px;
+      }
+      .qr-dialog-image {
+        aspect-ratio: auto;
+        height: 190px;
+      }
+      .qr-dialog-image img {
+        object-fit: contain;
+      }
+    }
 
     footer {
       position: relative;
@@ -1563,7 +1578,7 @@
           <span class="community-copy">
             <span class="community-kicker">赞赏支持</span>
             <span class="community-title">Bios 的赞赏码</span>
-            <span class="community-desc">自愿支持站点维护。</span>
+            <span class="community-desc">支持站点持续更新与维护。</span>
           </span>
           <span class="community-arrow" aria-hidden="true">→</span>
         </button>
@@ -1595,7 +1610,7 @@
         <div class="qr-dialog-header">
           <div class="qr-dialog-copy">
             <h3 class="qr-dialog-title" id="appreciationDialogTitle">Bios 的赞赏码</h3>
-            <p class="qr-dialog-desc">微信扫码赞赏，支持 PrismSelf 持续更新与维护。</p>
+            <p class="qr-dialog-desc">微信扫码赞赏，支持站点持续更新与维护。</p>
           </div>
           <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭赞赏码弹窗">×</button>
         </div>
