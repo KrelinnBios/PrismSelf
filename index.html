@@ -299,17 +299,19 @@
       display: none;
     }
 
-    .search-empty {
+    .search-empty-wrap {
       display: none;
+    }
+
+    .search-empty {
       text-align: center;
       color: var(--ink-soft);
       font-size: 14px;
-      max-width: 520px;
-      margin: 8px auto 0;
+      margin: 0;
       padding: 0;
     }
 
-    .search-empty.is-visible {
+    .search-empty-wrap.is-visible {
       display: block;
     }
 
@@ -1091,8 +1093,12 @@
         font-size: 11px;
       }
 
-      .search-empty {
-        margin-bottom: 24px;
+      .search-wrap {
+        margin-bottom: 0;
+      }
+      .search-empty-wrap.is-visible {
+        display: block;
+        padding: 5vh 16px;
       }
 
       .card-grid {
@@ -1344,7 +1350,9 @@
         autocomplete="off">
       <button id="searchClear" class="search-clear" type="button" aria-label="清除搜索">✕</button>
     </div>
-    <p class="search-empty" id="searchEmpty">没有找到匹配的内容，换个关键词试试。</p>
+    <div class="search-empty-wrap">
+      <p class="search-empty" id="searchEmpty">没有找到匹配的内容，换个关键词试试。</p>
+    </div>
   </header>
 
   <div class="layout">
@@ -1782,7 +1790,7 @@
           const hasVisible = section.querySelector('a.card:not(.is-hidden)') !== null;
           section.classList.toggle('is-hidden', !hasVisible);
         });
-        emptyMsg.classList.toggle('is-visible', !anyVisible && q !== '');
+        emptyMsg.parentElement.classList.toggle('is-visible', !anyVisible && q !== '');
       };
 
       search.addEventListener('input', (e) => applyFilter(e.target.value));
