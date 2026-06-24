@@ -1846,13 +1846,44 @@
 
       // Reset active state when keyword search is used
       if (search) {
-        const origListener = search._listeners ? search._listeners.input : null;
         search.addEventListener('input', () => {
           if (search.value.trim()) {
             setActive(null);
           }
         });
       }
+
+      const allBtn = buttons.find((b) => b.dataset.filter === 'all');
+
+      // Default: "全部" active; scroll spy overrides when scrolling.
+      setActive(allBtn);
+
+      // Scroll spy — switch when a section's top crosses 1/3 from top.
+      const btnMap = {};
+      buttons.forEach((b) => { btnMap[b.dataset.filter] = b; });
+
+      const updateSpy = () => {
+        const kwActive = search && search.value.trim().length > 0;
+        const filtered = document.querySelector('main .section.is-hidden');
+        if (kwActive || filtered) return;
+        const triggerY = window.innerHeight * 0.33;
+        let active = sections[0];
+        for (const s of sections) {
+          if (s.getBoundingClientRect().top <= triggerY) {
+            active = s;
+          }
+        }
+        setActive(btnMap[active.dataset.category] || allBtn);
+      };
+
+      let ticking = false;
+      document.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => { updateSpy(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+      updateSpy();
     })();
 
     (() => {
