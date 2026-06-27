@@ -12,7 +12,7 @@ const DEFAULT_THEME = '#2f6f73';
 
 // file -> { desc, title, theme? } ; title falls back to the page's <title>
 const pages = {
-  'index.html': { desc: '聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、共鸣刻度、自评量表与关系对话工具。', url: '/' },
+  'index.html': { desc: '聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、调查对谈、共鸣刻度、自评量表与关系对话工具。', url: '/' },
   'Analyses/Gender-Theory-Panorama.html': { desc: '系统梳理性别理论的核心概念，对照定义、流派与争议，帮助厘清性别相关术语与思想脉络。' },
   'Analyses/Interpersonal-Attraction-Comparison.html': { desc: '全景比较多种人际吸引力类型（性、浪漫、感官、智识等），辨析它们的定义与差异。' },
   'Analyses/Interpersonal-Conflict-Analysis.html': { desc: '全面分析人际冲突的概念、成因与应对模式，厘清相关的心理与沟通术语。' },
@@ -22,7 +22,8 @@ const pages = {
   'Bingos/Aro-Ace-Spectrum-Resonance.html': { desc: '无浪漫/无性恋谱系共鸣刻度卡，通过条目自评感受谱系认同与共鸣程度。' },
   'Bingos/Gender-Spectrum-Resonance.html': { desc: '性别身份与认同光谱共鸣刻度卡，通过条目自评探索性别体验与认同。' },
   'Bingos/Neurodiversity-Resonance.html': { desc: '神经多样性共鸣刻度卡，通过条目自评感受神经多样性相关体验的共鸣程度。' },
-  'Guides/Asexual-Community-Survey.html': { desc: '无性恋社群现状与需求调查报告，呈现社群构成、处境与支持需求等数据与解读。' },
+  'Topics/A-Conversation-on-Asexuality.html': { desc: '无性恋专题对谈：通过一位同性浪漫倾向无性恋者的个人经历，讨论性、身体亲密、恋爱、家庭与社群归属之间的复杂关系。', theme: '#4870ac' },
+  'Topics/Asexual-Community-Survey.html': { desc: '无性恋社群现状与需求调查报告，呈现社群构成、处境与支持需求等数据与解读。' },
   'Guides/Asexual-Comprehensive-Guide.html': { desc: '无性恋全景指南，系统介绍无性恋的定义、谱系、常见误解与社群资源。' },
   'Guides/BDSM-Comprehensive-Guide.html': { desc: 'BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。' },
   'Guides/Demisexual-Comprehensive-Guide.html': { desc: '半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。' },
