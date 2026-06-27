@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>知识图谱 · 性别·心理·人际</title>
-  <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、共鸣刻度、自评量表与关系对话工具。">
+  <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、调查对谈、共鸣刻度、自评量表与关系对话工具。">
   <meta name="theme-color" content="#2f6f73">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf">
   <meta property="og:title" content="知识图谱 · 性别·心理·人际">
-  <meta property="og:description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、共鸣刻度、自评量表与关系对话工具。">
+  <meta property="og:description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、调查对谈、共鸣刻度、自评量表与关系对话工具。">
   <meta property="og:url" content="https://prismself.pages.dev/">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.pages.dev/og-image.png">
@@ -366,6 +366,10 @@
       background: linear-gradient(135deg, #e8fdf5, #fdf8e8);
     }
 
+    .section-icon.topic {
+      background: linear-gradient(135deg, #e8f4fd, #f5e8fd);
+    }
+
     .section-icon.bingo {
       background: linear-gradient(135deg, #fdf2f8, #fef3c7);
     }
@@ -481,9 +485,6 @@
       border-color: rgba(126, 34, 206, 0.25);
     }
 
-    .card.orange::before {
-      background: linear-gradient(90deg, var(--orange), var(--orange-lt));
-    }
 
     .card:hover.orange {
       border-color: rgba(234, 88, 12, 0.25);
@@ -558,10 +559,6 @@
       color: var(--purple);
     }
 
-    .tag-orange {
-      background: rgba(234, 88, 12, 0.08);
-      color: var(--orange);
-    }
 
     .tag-green,
     .tag-lime {
@@ -1048,7 +1045,15 @@
       animation: fadeUp 0.6s 0.55s ease both;
     }
 
+    .section:nth-child(6) {
+      animation: fadeUp 0.6s 0.65s ease both;
+    }
+
     @media (max-width: 600px) {
+      .sidebar .stat[data-filter="all"] {
+        display: none;
+      }
+
       header {
         padding-top: 40px;
       }
@@ -1208,10 +1213,6 @@
       color: var(--purple-lt);
     }
 
-    :root[data-theme="dark"] .tag-orange {
-      background: rgba(253, 178, 116, 0.16);
-      color: var(--orange-lt);
-    }
 
     :root[data-theme="dark"] .tag-green,
     :root[data-theme="dark"] .tag-lime {
@@ -1363,7 +1364,7 @@
     </div>
     <nav class="sidebar" aria-label="分类筛选">
       <button class="stat" data-filter="all">
-        <div class="stat-num">5</div>
+        <div class="stat-num">6</div>
         <div class="stat-label">全部</div>
       </button>
       <button class="stat" data-filter="analysis">
@@ -1371,8 +1372,12 @@
         <div class="stat-label">分析图表</div>
       </button>
       <button class="stat" data-filter="guide">
-        <div class="stat-num">7</div>
+        <div class="stat-num">6</div>
         <div class="stat-label">专题指南</div>
+      </button>
+      <button class="stat" data-filter="topic">
+        <div class="stat-num">2</div>
+        <div class="stat-label">专题内容</div>
       </button>
       <button class="stat" data-filter="bingo">
         <div class="stat-num">3</div>
@@ -1459,7 +1464,7 @@
       <div class="section-header">
         <div class="section-icon guide">📖</div>
         <h2 class="section-title">指南 · 专题学习</h2>
-        <span class="section-count">07 篇</span>
+        <span class="section-count">06 篇</span>
       </div>
       <div class="card-grid">
 
@@ -1508,21 +1513,41 @@
           </div>
         </a>
 
-        <a class="card blue" href="./Guides/Asexual-Community-Survey.html">
-          <span class="card-tag tag-blue">无性恋社群</span>
-          <p class="card-title">无性恋社群现状与需求调查</p>
+        <a class="card slate" href="./Guides/SOGIESC-Glossary.html">
+          <span class="card-tag tag-slate">SOGIESC</span>
+          <p class="card-title">SOGIESC 术语表</p>
           <div class="card-meta">
-            <span class="card-type">调查报告</span>
+            <span class="card-type">术语表</span>
             <div class="card-arrow">→</div>
           </div>
         </a>
 
-        <a class="card slate" href="./Guides/SOGIESC-Glossary.html">
-          <span class="card-tag tag-slate">SOGIESC</span>
-          <p class="card-title">性取向、性别认同与表达以及性别特征术语表</p>
+      </div>
+    </section>
+
+    <section class="section" data-category="topic">
+      <div class="section-header">
+        <div class="section-icon topic">🗂️</div>
+        <h2 class="section-title">专题 · 调查与对谈</h2>
+        <span class="section-count">02 篇</span>
+      </div>
+      <div class="card-grid">
+
+        <a class="card blue" href="./Topics/Asexual-Community-Survey.html">
+          <span class="card-tag tag-blue">无性恋社群</span>
+          <p class="card-title">无性恋社群现状与需求调查</p>
           <div class="card-meta">
-            <span class="card-type">术语表</span>
-            <div class="card-arrow">→</div>
+            <span class="card-type">调查报告</span>
+            <div class="card-arrow">&rarr;</div>
+          </div>
+        </a>
+
+        <a class="card purple" href="./Topics/A-Conversation-on-Asexuality.html">
+          <span class="card-tag tag-purple">无性恋对谈</span>
+          <p class="card-title">无性恋专题对谈</p>
+          <div class="card-meta">
+            <span class="card-type">专题对谈</span>
+            <div class="card-arrow">&rarr;</div>
           </div>
         </a>
 
@@ -1611,8 +1636,8 @@
           </div>
         </a>
 
-        <a class="card orange" href="./Scales/Feminist-Leanings-Scale.html">
-          <span class="card-tag tag-orange">女权主义</span>
+        <a class="card amber" href="./Scales/Feminist-Leanings-Scale.html">
+          <span class="card-tag tag-amber">女权主义</span>
           <p class="card-title">女权主义流派倾向自评量表</p>
           <div class="card-meta">
             <span class="card-type">自评量表</span>
@@ -1664,7 +1689,7 @@
           <span class="community-copy">
             <span class="community-kicker">赞赏支持</span>
             <span class="community-title">Bios 的赞赏码</span>
-            <span class="community-desc">支持站点持续更新与维护。</span>
+            <span class="community-desc">支持站点持续更新与维护</span>
           </span>
           <span class="community-arrow" aria-hidden="true">→</span>
         </button>
@@ -1674,7 +1699,7 @@
           <span class="community-copy">
             <span class="community-kicker">友情链接</span>
             <span class="community-title">黑桃 Spade A</span>
-            <span class="community-desc">无性恋相关专题内容。</span>
+            <span class="community-desc">无性恋相关专题内容</span>
           </span>
           <span class="community-arrow" aria-hidden="true">→</span>
         </button>
@@ -1684,7 +1709,7 @@
           <span class="community-copy">
             <span class="community-kicker">友情链接</span>
             <span class="community-title">谷语粱</span>
-            <span class="community-desc">福瑞与美国兽展相关内容。</span>
+            <span class="community-desc">福瑞与美国兽展相关内容</span>
           </span>
           <span class="community-arrow" aria-hidden="true">→</span>
         </button>
