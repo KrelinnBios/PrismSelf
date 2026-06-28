@@ -986,30 +986,93 @@
       text-decoration: none;
     }
 
+    .footer-note-block {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      text-align: left;
+    }
+
     .footer-updates {
-      max-width: 820px;
-      margin: 0 auto 24px;
+      width: 100%;
+      margin: 0 0 4px;
       color: var(--ink-pale);
       font-size: 12px;
       line-height: 1.7;
-      min-height: 1.7em;
+      overflow: hidden;
     }
 
     .footer-update-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
       margin: 0;
     }
 
     .footer-update-label {
+      flex: 0 0 auto;
       color: var(--ink-soft);
       font-weight: 500;
+      white-space: nowrap;
     }
 
-    #footerUpdateText {
-      transition: opacity 0.24s ease;
+    .footer-update-marquee {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
     }
 
-    #footerUpdateText.is-changing {
-      opacity: 0;
+    .footer-update-track {
+      display: inline-flex;
+      width: max-content;
+      will-change: transform;
+      animation: footerMarquee 96s linear infinite;
+    }
+
+    .footer-update-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding-right: 18px;
+    }
+
+    .footer-update-item {
+      color: var(--ink-pale);
+      white-space: nowrap;
+    }
+
+    .footer-update-item::before {
+      content: "·";
+      margin-right: 18px;
+      color: var(--ink-pale);
+    }
+
+    .footer-update-item:first-child::before {
+      content: "";
+      margin-right: 0;
+    }
+
+    .footer-note-text {
+      margin: 0;
+      text-align: center;
+    }
+
+    @keyframes footerMarquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .footer-update-track {
+        animation: none;
+      }
     }
 
     @keyframes fadeUp {
@@ -1133,8 +1196,17 @@
         height: 40px;
       }
 
-      .footer-updates {
-        text-align: left;
+      .footer-note-block {
+        width: min(100%, 360px);
+        text-align: center;
+      }
+
+      .footer-update-line {
+        justify-content: center;
+      }
+
+      .footer-update-marquee {
+        flex: 0 1 220px;
       }
     }
 
@@ -1380,7 +1452,7 @@
       </button>
       <button class="stat" data-filter="topic">
         <div class="stat-num">2</div>
-        <div class="stat-label">专题内容</div>
+        <div class="stat-label">社群记录</div>
       </button>
       <button class="stat" data-filter="bingo">
         <div class="stat-num">3</div>
@@ -1531,7 +1603,7 @@
     <section class="section" data-category="topic">
       <div class="section-header">
         <div class="section-icon topic">🗂️</div>
-        <h2 class="section-title">专题 · 调查对谈</h2>
+        <h2 class="section-title">观察 · 社群记录</h2>
         <span class="section-count">02 篇</span>
       </div>
       <div class="card-grid">
@@ -1683,7 +1755,7 @@
     <section class="community-section" aria-labelledby="community-title">
       <div class="section-header">
         <div class="section-icon community">🤝</div>
-        <h2 class="section-title" id="community-title">社区 · 支持链接</h2>
+        <h2 class="section-title" id="community-title">支持 · 相关链接</h2>
         <span class="section-count">03 项</span>
       </div>
       <div class="community-grid">
@@ -1780,11 +1852,20 @@
   </div>
 
   <footer>
-    <div class="footer-updates" aria-label="站点更新记录">
-      <p class="footer-update-line"><span class="footer-update-label">更新记录：</span><span id="footerUpdateText">首页</span>
-      </p>
+    <div class="footer-note-block">
+      <div class="footer-updates" aria-label="站点更新记录">
+        <div class="footer-update-line">
+          <span class="footer-update-label">更新记录：</span>
+          <div class="footer-update-marquee" aria-hidden="true">
+            <div class="footer-update-track" id="footerUpdateList">
+              <span class="footer-update-group"><span class="footer-update-item">首页</span></span>
+              <span class="footer-update-group"><span class="footer-update-item">首页</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="footer-note-text">本站内容仅供学习与自我探索，不构成任何专业诊断建议。</p>
     </div>
-    <p>本站内容仅供学习与自我探索，不构成任何专业诊断建议。</p>
     <p style="margin-top:6px; color: var(--ink-pale);">Hosted on Cloudflare Pages</p>
     <a class="github-link" href="https://github.com/KrelinnBios/PrismSelf" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -1948,7 +2029,7 @@
       });
     })();
 
-    const updateText = document.getElementById('footerUpdateText');
+    const updateList = document.getElementById('footerUpdateList');
     const cardNamesByHref = new Map(
       [...document.querySelectorAll('a.card[href]')].map((card) => [
         card.getAttribute('href'),
@@ -1965,26 +2046,20 @@
         return name ? { name, date: formatUpdateDate(date) } : null;
       }).filter(Boolean)
     );
-    let updateIndex = updateRecords.length > 1 ? 1 : 0;
 
-    function renderUpdateRecord() {
-      const record = updateRecords[updateIndex];
-      updateText.textContent = `${record.name} ${record.date}`;
-      updateIndex = (updateIndex + 1) % updateRecords.length;
-    }
-
-    if (updateText && updateRecords.length > 0) {
-      updateText.textContent = `${updateRecords[0].name} ${updateRecords[0].date}`;
-    }
-
-    if (updateText && updateRecords.length > 1) {
-      setInterval(() => {
-        updateText.classList.add('is-changing');
-        setTimeout(() => {
-          renderUpdateRecord();
-          updateText.classList.remove('is-changing');
-        }, 240);
-      }, 5000);
+    if (updateList && updateRecords.length > 0) {
+      const createGroup = () => {
+        const group = document.createElement('span');
+        group.className = 'footer-update-group';
+        updateRecords.forEach((record) => {
+          const item = document.createElement('span');
+          item.className = 'footer-update-item';
+          item.textContent = `${record.name} ${record.date}`;
+          group.append(item);
+        });
+        return group;
+      };
+      updateList.replaceChildren(createGroup(), createGroup());
     }
   </script>
 
