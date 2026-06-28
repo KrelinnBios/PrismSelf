@@ -6,7 +6,9 @@ window.PrismSelfUpdateGroups = [
       'home',
       './Guides/SOGIESC-Glossary.html',
       './Topics/A-Conversation-on-Asexuality.html',
-      './Topics/Asexual-Community-Survey.html'
+      './Topics/Asexual-Community-Survey.html',
+      './Scales/Philosophical-Leanings-Scale.html',
+      './Scales/Feminist-Leanings-Scale.html'
     ]
   },
   {
@@ -32,8 +34,6 @@ window.PrismSelfUpdateGroups = [
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Gender-Exploration-Scale.html',
-      './Scales/Feminist-Leanings-Scale.html',
-      './Scales/Philosophical-Leanings-Scale.html',
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',
