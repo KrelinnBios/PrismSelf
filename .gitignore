@@ -4,7 +4,5 @@ favicon-*-preview.png
 
 # Local agent/editor configuration
 .agents/
+.claude/
 .vscode/
-.claude/*
-!.claude/
-!.claude/launch.json
