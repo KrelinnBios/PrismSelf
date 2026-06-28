@@ -896,8 +896,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 32px;
       width: 32px;
+      min-width: 32px;
       height: 32px;
+      padding: 0;
       margin-left: auto;
       border: 1px solid var(--border);
       border-radius: 50%;
@@ -1095,7 +1098,7 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .sidebar .stat:nth-child(n+4) {
+      .sidebar .stat:nth-child(n+5) {
         border-bottom: none;
       }
 
@@ -1528,7 +1531,7 @@
     <section class="section" data-category="topic">
       <div class="section-header">
         <div class="section-icon topic">🗂️</div>
-        <h2 class="section-title">专题 · 调查与对谈</h2>
+        <h2 class="section-title">专题 · 调查对谈</h2>
         <span class="section-count">02 篇</span>
       </div>
       <div class="card-grid">
@@ -1680,7 +1683,7 @@
     <section class="community-section" aria-labelledby="community-title">
       <div class="section-header">
         <div class="section-icon community">🤝</div>
-        <h2 class="section-title" id="community-title">社区 · 支持与链接</h2>
+        <h2 class="section-title" id="community-title">社区 · 支持链接</h2>
         <span class="section-count">03 项</span>
       </div>
       <div class="community-grid">
