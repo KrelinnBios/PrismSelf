@@ -28,6 +28,17 @@
       --ink-mid: #3d5166;
       --ink-soft: #6b7f96;
       --ink-pale: #b0bfcc;
+      --search-bg: #ffffff;
+      --search-border: rgba(61, 81, 102, 0.16);
+      --search-placeholder: #64788c;
+      --search-icon: #7a8ca0;
+      --search-clear-bg: #f5f7f9;
+      --search-focus-border: rgba(61, 81, 102, 0.32);
+      --search-focus-ring: rgba(61, 81, 102, 0.12);
+      --footer-text: #617589;
+      --footer-text-strong: #526578;
+      --footer-link: #607387;
+      --footer-link-hover: #1a2332;
       --bg: #f7f9fb;
       --bg-card: #ffffff;
       --teal: #2b7a62;
@@ -144,13 +155,15 @@
       margin: 10px auto 0;
       font-size: 12px;
       line-height: 16px;
-      color: var(--ink-soft);
+      color: var(--footer-link);
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
-    .github-link:hover {
-      color: #111111;
+    .github-link:hover,
+    .github-link:focus-visible,
+    .github-link:active {
+      color: var(--footer-link-hover);
     }
 
     .github-link svg {
@@ -241,8 +254,8 @@
       width: 100%;
       padding: 14px 44px;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
+      border: 1px solid var(--search-border);
+      background: var(--search-bg);
       box-shadow: var(--shadow-sm);
       font-family: inherit;
       font-size: 14px;
@@ -252,12 +265,12 @@
     }
 
     .search-input:focus {
-      border-color: rgba(43, 122, 98, 0.4);
-      box-shadow: 0 0 0 3px rgba(43, 122, 98, 0.12);
+      border-color: var(--search-focus-border);
+      box-shadow: 0 0 0 3px var(--search-focus-ring);
     }
 
     .search-input::placeholder {
-      color: var(--ink-pale);
+      color: var(--search-placeholder);
     }
 
     .search-icon {
@@ -267,7 +280,7 @@
       transform: translateY(-50%);
       width: 18px;
       height: 18px;
-      fill: var(--ink-pale);
+      fill: var(--search-icon);
       pointer-events: none;
     }
 
@@ -284,7 +297,7 @@
       padding: 0;
       border: none;
       border-radius: 50%;
-      background: var(--bg);
+      background: var(--search-clear-bg);
       color: var(--ink-soft);
       font-size: 13px;
       line-height: 1;
@@ -976,13 +989,13 @@
       text-align: center;
       padding: 32px 24px 48px;
       border-top: 1px solid var(--border);
-      color: var(--ink-pale);
+      color: var(--footer-text);
       font-size: 12px;
       line-height: 1.8;
     }
 
     footer a {
-      color: var(--ink-soft);
+      color: var(--footer-link);
       text-decoration: none;
     }
 
@@ -995,7 +1008,7 @@
     .footer-updates {
       width: 100%;
       margin: 0 0 4px;
-      color: var(--ink-pale);
+      color: var(--footer-text);
       font-size: 12px;
       line-height: 1.7;
       overflow: hidden;
@@ -1011,8 +1024,8 @@
 
     .footer-update-label {
       flex: 0 0 auto;
-      color: var(--ink-soft);
-      font-weight: 500;
+      color: var(--footer-text-strong);
+      font-weight: 600;
       white-space: nowrap;
     }
 
@@ -1039,14 +1052,14 @@
     }
 
     .footer-update-item {
-      color: var(--ink-pale);
+      color: var(--footer-text);
       white-space: nowrap;
     }
 
     .footer-update-item::before {
       content: "·";
       margin-right: 18px;
-      color: var(--ink-pale);
+      color: var(--footer-text);
     }
 
     .footer-update-item:first-child::before {
@@ -1057,6 +1070,11 @@
     .footer-note-text {
       margin: 0;
       text-align: center;
+    }
+
+    .footer-hosting {
+      margin-top: 6px;
+      color: var(--footer-text);
     }
 
     @keyframes footerMarquee {
@@ -1217,6 +1235,17 @@
       --ink-mid: #b4c1ce;
       --ink-soft: #8a99a8;
       --ink-pale: #5d6b79;
+      --search-bg: #161d26;
+      --search-border: rgba(180, 193, 206, 0.22);
+      --search-placeholder: #a3b1bf;
+      --search-icon: #b4c1ce;
+      --search-clear-bg: #202936;
+      --search-focus-border: rgba(180, 193, 206, 0.42);
+      --search-focus-ring: rgba(180, 193, 206, 0.14);
+      --footer-text: #a7b4c0;
+      --footer-text-strong: #d7dee6;
+      --footer-link: #c5ced8;
+      --footer-link-hover: #ffffff;
       --bg: #0f141a;
       --bg-card: #161d26;
       --teal: #43b88c;
@@ -1249,7 +1278,7 @@
     }
 
     :root[data-theme="dark"] .search-input {
-      background: var(--bg-card);
+      background: var(--search-bg);
     }
 
     :root[data-theme="dark"] .section-icon {
@@ -1393,9 +1422,6 @@
     :root[data-theme="dark"] .community-card.friend:hover .community-kicker,
     :root[data-theme="dark"] .community-card.friend:focus-visible .community-kicker {
       color: #d6cee9;
-    }
-    :root[data-theme="dark"] .github-link:hover {
-      color: #ffffff;
     }
 
     :root[data-theme="dark"] .sidebar .stat:hover {
@@ -1866,7 +1892,7 @@
       </div>
       <p class="footer-note-text">本站内容仅供学习与自我探索，不构成任何专业诊断建议。</p>
     </div>
-    <p style="margin-top:6px; color: var(--ink-pale);">Hosted on Cloudflare Pages</p>
+    <p class="footer-hosting">Hosted on Cloudflare Pages</p>
     <a class="github-link" href="https://github.com/KrelinnBios/PrismSelf" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 16 16" aria-hidden="true">
         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path>
