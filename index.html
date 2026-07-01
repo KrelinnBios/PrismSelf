@@ -2026,6 +2026,41 @@
           }
         });
       }
+
+      // Scroll spy — highlight sidebar button when a section spans the 1/4-from-top line.
+      const btnMap = {};
+      buttons.forEach((b) => { btnMap[b.dataset.filter] = b; });
+
+      const updateSpy = () => {
+        const kwActive = search && search.value.trim().length > 0;
+        if (kwActive) return;
+        const triggerY = window.innerHeight * 0.25;
+
+        for (const s of sections) {
+          const rect = s.getBoundingClientRect();
+          if (rect.top <= triggerY && rect.bottom > triggerY) {
+            setActive(btnMap[s.dataset.category] || null);
+            return;
+          }
+        }
+
+        // Above the first section: clear active
+        if (sections[0].getBoundingClientRect().top > triggerY) {
+          setActive(null);
+        }
+        // Otherwise (between sections or below last): keep current active
+      };
+
+      if (window.innerWidth > 600) {
+        let ticking = false;
+        document.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => { updateSpy(); ticking = false; });
+            ticking = true;
+          }
+        }, { passive: true });
+        updateSpy();
+      }
     })();
 
     (() => {
