@@ -1996,6 +1996,8 @@
         buttons.forEach((b) => b.setAttribute('aria-pressed', b === active ? 'true' : 'false'));
       };
 
+      let clickLock = false;
+
       buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
           const cat = btn.dataset.filter;
@@ -2009,9 +2011,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
             setActive(btn);
+            clickLock = true;
+            setTimeout(() => { clickLock = false; }, 800);
             const section = sections.find((s) => s.dataset.category === cat);
             if (section) {
-              const top = section.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.25;
+              const top = section.getBoundingClientRect().top + window.scrollY - window.innerHeight * 2 / 5;
               window.scrollTo({ top, behavior: 'smooth' });
             }
           }
@@ -2033,9 +2037,10 @@
       buttons.forEach((b) => { btnMap[b.dataset.filter] = b; });
 
       const updateSpy = () => {
+        if (clickLock) return;
         const kwActive = search && search.value.trim().length > 0;
         if (kwActive) return;
-        const triggerY = window.innerHeight * 0.25;
+        const triggerY = window.innerHeight * 2 / 5;
 
         let best = null;
         for (const s of sections) {
