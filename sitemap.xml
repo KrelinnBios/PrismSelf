@@ -81,7 +81,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://prismself.pages.dev/Guides/SOGIESC-Glossary.html</loc>
+    <loc>https://prismself.pages.dev/Glossaries/Philosophy-Glossary.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prismself.pages.dev/Glossaries/Psychology-Glossary.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prismself.pages.dev/Glossaries/SOGIESC-Glossary.html</loc>
     <lastmod>2026-06-28</lastmod>
     <priority>0.8</priority>
   </url>
@@ -122,7 +132,7 @@
   </url>
   <url>
     <loc>https://prismself.pages.dev/</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <priority>1.0</priority>
   </url>
 </urlset>
