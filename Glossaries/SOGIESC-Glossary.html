@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOGIESC 术语表</title>
-  <meta name="description" content="SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。">
+  <meta name="description" content="SOGIESC 术语表，以可搜索术语表形式收录 200 个性取向、性别认同与表达以及性别特征相关概念。">
   <meta name="theme-color" content="#2f6f73">
   <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf">
   <meta property="og:title" content="SOGIESC 术语表">
-  <meta property="og:description" content="SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。">
+  <meta property="og:description" content="SOGIESC 术语表，以可搜索术语表形式收录 200 个性取向、性别认同与表达以及性别特征相关概念。">
   <meta property="og:url" content="https://prismself.pages.dev/Glossaries/SOGIESC-Glossary.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.pages.dev/og-image/image.png">
@@ -716,18 +716,13 @@
           aria-label="搜索术语">
         <div class="filters" aria-label="分类筛选">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
-          <button class="filter" type="button" data-filter="core" aria-pressed="false">基础概念</button>
+          <button class="filter" type="button" data-filter="framework" aria-pressed="false">基础框架</button>
           <button class="filter" type="button" data-filter="orientation" aria-pressed="false">取向与吸引</button>
-          <button class="filter" type="button" data-filter="behavior" aria-pressed="false">行为与研究口径</button>
-          <button class="filter" type="button" data-filter="gender" aria-pressed="false">性别身份</button>
-          <button class="filter" type="button" data-filter="expression" aria-pressed="false">表达与代词</button>
+          <button class="filter" type="button" data-filter="behavior" aria-pressed="false">行为与关系</button>
+          <button class="filter" type="button" data-filter="gender" aria-pressed="false">性别身份与表达</button>
           <button class="filter" type="button" data-filter="body" aria-pressed="false">身体与性征</button>
-          <button class="filter" type="button" data-filter="care" aria-pressed="false">过渡与医疗</button>
-          <button class="filter" type="button" data-filter="diagnosis" aria-pressed="false">诊断与历史</button>
-          <button class="filter" type="button" data-filter="norms" aria-pressed="false">社会结构</button>
-          <button class="filter" type="button" data-filter="stigma" aria-pressed="false">污名与歧视</button>
-          <button class="filter" type="button" data-filter="culture" aria-pressed="false">社群与文化</button>
-          <button class="filter" type="button" data-filter="rights" aria-pressed="false">权益与支持</button>
+          <button class="filter" type="button" data-filter="care" aria-pressed="false">过渡与护理</button>
+          <button class="filter" type="button" data-filter="social" aria-pressed="false">社会结构与社群</button>
         </div>
       </div>
 
@@ -853,18 +848,13 @@
 
   <script>
     const categoryNames = {
-      core: "基础概念",
+      framework: "基础框架",
       orientation: "取向与吸引",
-      behavior: "行为与研究口径",
-      gender: "性别身份",
-      expression: "表达与代词",
+      behavior: "行为与关系",
+      gender: "性别身份与表达",
       body: "身体与性征",
-      care: "过渡与医疗",
-      diagnosis: "诊断与历史",
-      norms: "社会结构",
-      stigma: "污名与歧视",
-      culture: "社群与文化",
-      rights: "权益与支持"
+      care: "过渡与护理",
+      social: "社会结构与社群"
     };
 
     const terms = [
@@ -1056,7 +1046,18 @@
       { zh: "Vers", en: "versatile / vers", cat: "social", aliases: "0.5、不分、可攻可受（语境相关）", desc: "指在性行为语境中可能在 top 与 bottom 角色之间切换，或不固定在某一角色位置。", note: "具体含义与实践以当事人自述为准；不要把它当作对他人身体或性行为的默认预设。" },
       { zh: "Side",cat: "social", aliases: "不10", desc: "在部分男同与更广义酷儿语境中，用于描述不倾向进行肛交的插入或被插入，而更偏好口交、手交、身体摩擦、亲吻抚摸等非插入式性行为与亲密互动的人或偏好。", note: "side 描述的是性行为偏好，不等同于性取向（也不等同于无性恋）。非插入式并不等于零风险，仍需要同意沟通与安全性行为。" },
       { zh: "FWB", en: "Friends With Benefits", cat: "behavior", aliases: "有性关系的朋友、有利益的朋友、有福利的朋友、性伴朋友", desc: "指在友谊基础上建立的非排他、非浪漫承诺的性关系或性接触安排。双方通常维持朋友关系，同时定期或不定期发生性行为，彼此不要求恋爱关系或排他忠诚。", note: "FWB 描述的是关系契约和性行为安排，不等于“无感情”——双方仍可能有亲密、信任和情感支持。是否安全、知情、尊重边界才是判断健康与否的关键。" },
-      { zh: "T/P/H", en: "T / P / H (community slang)", cat: "social", aliases: "Tomboy、Prettygirl、Half、婆、特、不分", desc: "中文语境中部分女同/萨福式社群的角色或气质标签。常见理解为：T（偏阳刚/中性呈现）、P（偏阴柔呈现）、H（不分；或介于T/P之间，可偏可不偏）。TTL 指代两个较为阳刚的人之间的恋情。PPL 指代两个较为阴柔的人之间的恋情。其他组合（如HHL、TPL、PHL等）依次类推。", note: "不同地区与社群含义差异较大；它不应与 1/0 机械等同，也不应用来替他人贴标签。" }
+      { zh: "T/P/H", en: "T / P / H (community slang)", cat: "social", aliases: "Tomboy、Prettygirl、Half、婆、特、不分", desc: "中文语境中部分女同/萨福式社群的角色或气质标签。常见理解为：T（偏阳刚/中性呈现）、P（偏阴柔呈现）、H（不分；或介于T/P之间，可偏可不偏）。TTL 指代两个较为阳刚的人之间的恋情。PPL 指代两个较为阴柔的人之间的恋情。其他组合（如HHL、TPL、PHL等）依次类推。", note: "不同地区与社群含义差异较大；它不应与 1/0 机械等同，也不应用来替他人贴标签。" },
+      { zh: "染色体", en: "Chromosomes", cat: "body", desc: "携带遗传信息的细胞结构，常在医学语境中被用来讨论身体性别特征。多数人会被简化归为 XX 或 XY，但实际存在更多组合和变异。", note: "染色体不是决定性别经验的唯一因素，也不应被用来否定一个人的性别认同。" },
+      { zh: "性腺", en: "Gonads", cat: "body", desc: "产生性细胞和部分性激素的身体组织，例如卵巢、睾丸或发育差异中的其他性腺形态。", note: "讨论性腺时应保持医学语境和隐私边界，不需要把它当作日常身份判定标准。" },
+      { zh: "性激素", en: "Sex Hormones", cat: "body", aliases: "激素", desc: "与青春期发育、第二性征、身体功能和部分医疗过渡相关的激素，如雌激素、睾酮和孕激素等。", note: "不同人的激素水平本来就存在范围差异，不能用单一数值定义某人的性别。" },
+      { zh: "外生殖器", en: "External Genitalia", cat: "body", desc: "出生时常被观察并用于指派性别的外部生殖器特征。它只是性别特征的一部分，不代表性别认同或完整身体经验。", note: "把外生殖器当作唯一标准，会遮蔽间性者和身体性别特征多样者的处境。" },
+      { zh: "内生殖器", en: "Internal Reproductive Organs", cat: "body", desc: "位于身体内部的生殖相关器官，如子宫、卵巢、输精管或其他发育变异形态。", note: "是否拥有某些器官不应被用来决定一个人是否属于某个性别。" },
+      { zh: "青春期", en: "Puberty", cat: "body", desc: "身体在激素作用下出现第二性征、身高、声音、毛发、月经或生殖功能等变化的阶段。", note: "对部分跨性别、非二元和间性青少年来说，青春期变化可能带来额外压力或医疗支持需求。" },
+      { zh: "月经", en: "Menstruation", cat: "body", desc: "部分拥有子宫和相关激素周期的人会经历的生理现象。它常与女性身份绑定，但实际经历者并不只包括顺性别女性。", note: "更包容的表达可以说“月经者”或“有月经经验的人”，具体用语视语境而定。" },
+      { zh: "生育能力", en: "Fertility", cat: "body", desc: "个体在特定身体、医疗和社会条件下产生遗传后代或参与生育过程的可能性。", note: "过渡医疗、间性医学干预和法律制度都可能影响生育选择，因此应把知情同意放在中心。" },
+      { zh: "身体自主", en: "Bodily Autonomy", cat: "body", desc: "个体对自身身体、医疗决定、亲密边界和生殖选择拥有决定权的原则。", note: "在 SOGIESC 语境中，它常用于讨论间性儿童手术、性别肯定护理和反扭转治疗。" },
+      { zh: "非自愿医学干预", en: "Non-consensual Medical Intervention", cat: "body", desc: "在当事人未能充分知情同意时进行的医学处理，常见讨论包括针对间性儿童的正常化手术或治疗安排。", note: "核心争议不是医疗是否存在，而是是否必要、可延后，以及当事人是否拥有决定权。" },
+      { zh: "性别标记", en: "Gender Marker", cat: "social", aliases: "证件性别标记", desc: "身份证件、户籍、护照、学校或医疗系统中记录的性别项目。它会影响旅行、就学、就医、就业和日常证明身份。", note: "性别标记变更制度常关系到跨性别和非二元者的安全、隐私与制度可见性。" }
     ];
 
     const searchInput = document.getElementById("searchInput");
@@ -1151,43 +1152,8 @@
     }
 
     function refinedCategory(term) {
-      const zh = term.zh || "";
-      const en = String(term.en || "").toLowerCase();
-      const aliases = String(term.aliases || "").toLowerCase();
-      const desc = String(term.desc || "").toLowerCase();
-      const note = String(term.note || "").toLowerCase();
-      const hay = `${zh} ${en} ${aliases} ${desc} ${note}`.toLowerCase();
-
-      if (term.cat === "framework") return "core";
-
-      if (term.cat === "behavior") return "behavior";
-
-      if (term.cat === "orientation") {
-        if (/(^|\b)(msm|wsw)\b/.test(en) || zh.includes("行为者") || hay.includes("公共卫生")) return "behavior";
-        return "orientation";
-      }
-
-      if (term.cat === "gender") {
-        if (/(pronoun|neopronoun|\bmx\b)/.test(en) || /代词|称谓|新代词/.test(zh)) return "expression";
-        if (/(presenting|androgyn|gnc|butch|femme|masc|fem|stud|boi)/.test(en) || /呈现|中性|不顺从|布奇|芬|阳刚|阴柔/.test(zh)) return "expression";
-        return "gender";
-      }
-
-      if (term.cat === "body") return "body";
-
-      if (term.cat === "care") {
-        if (/(icd|dsm|disorder|transsexualism|\bgid\b)/.test(en) || /障碍|诊断|易性症|分类/.test(zh)) return "diagnosis";
-        return "care";
-      }
-
-      if (term.cat === "social") {
-        if (/(normativity|binary|intersectionality|hegemony|heterosexism|cisgenderism)/.test(en) || /本位|规范性|中心主义|二元论|主义|霸权/.test(zh)) return "norms";
-        if (/(phobia|conversion therapy|stigma|minority stress|misgender|deadname|outing)/.test(en) || /恐|污名|压力|错称|弃名|出柜|扭转治疗|歧视/.test(zh)) return "stigma";
-        if (/(ally|advocate|civil union|domestic partnership)/.test(en) || /盟友|倡导|维权|民事结合|同居伴侣|权益/.test(zh)) return "rights";
-        return "culture";
-      }
-
-      return "culture";
+      const allowed = new Set(["framework", "orientation", "behavior", "gender", "body", "care", "social"]);
+      return allowed.has(term.cat) ? term.cat : "social";
     }
 
     function render() {
