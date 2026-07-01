@@ -10,7 +10,7 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
 if (-not $OutputPath) {
-  $OutputPath = Join-Path $PSScriptRoot '..\og-image.png'
+  $OutputPath = Join-Path $PSScriptRoot '..\og-image\image.png'
 }
 
 function Save-Png {
