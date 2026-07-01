@@ -12,7 +12,7 @@ const DEFAULT_THEME = '#2f6f73';
 
 // file -> { desc, title, theme? } ; title falls back to the page's <title>
 const pages = {
-  'index.html': { desc: '聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、调查对谈、共鸣刻度、自评量表与关系对话工具。', url: '/' },
+  'index.html': { desc: '聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、术语索引、调查对谈、共鸣刻度、自评量表与关系对话工具。', url: '/' },
   'Analyses/Gender-Theory-Panorama.html': { desc: '系统梳理性别理论的核心概念，对照定义、流派与争议，帮助厘清性别相关术语与思想脉络。' },
   'Analyses/Interpersonal-Attraction-Comparison.html': { desc: '全景比较多种人际吸引力类型（性、浪漫、感官、智识等），辨析它们的定义与差异。' },
   'Analyses/Interpersonal-Conflict-Analysis.html': { desc: '全面分析人际冲突的概念、成因与应对模式，厘清相关的心理与沟通术语。' },
@@ -29,7 +29,9 @@ const pages = {
   'Guides/Demisexual-Comprehensive-Guide.html': { desc: '半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。' },
   'Guides/Gender-Concepts-Terminology.html': { desc: '性别概念与术语指南，系统解释性别认同、性别表达与相关核心术语。' },
   'Guides/Greysexual-Comprehensive-Guide.html': { desc: '灰性恋全景指南，系统介绍灰性恋的定义、谱系定位、常见误解与社群语境。' },
-  'Guides/SOGIESC-Glossary.html': { desc: 'SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。' },
+  'Glossaries/Philosophy-Glossary.html': { desc: '哲学名词介绍，以可搜索术语表形式收录 200 个哲学入门常见概念、问题意识与思想传统。' },
+  'Glossaries/Psychology-Glossary.html': { desc: '心理学名词介绍，以可搜索术语表形式收录 200 个心理学入门常见概念、研究方法与理论流派。' },
+  'Glossaries/SOGIESC-Glossary.html': { desc: 'SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。' },
   'Scales/Aromantic-Spectrum-Scale.html': { desc: '无浪漫谱系自评量表，通过多维条目帮助你探索浪漫吸引相关的自我倾向；结果仅保存在本地。' },
   'Scales/Asexual-Spectrum-Scale.html': { desc: '无性恋谱系自评量表，通过多维条目帮助你探索性吸引相关的自我倾向；结果仅保存在本地。' },
   'Scales/Feminist-Leanings-Scale.html': { desc: '女权主义流派倾向自评量表，帮助你了解自身在各女权主义流派上的倾向；结果仅保存在本地。' },
@@ -62,7 +64,7 @@ for (const [rel, meta] of Object.entries(pages)) {
   const lines = [];
   if (!hasDesc) lines.push(`<meta name="description" content="${esc(meta.desc)}">`);
   if (!hasTheme) lines.push(`<meta name="theme-color" content="${meta.theme || DEFAULT_THEME}">`);
-  if (!hasIcon) lines.push(`<link rel="icon" href="${depth}favicon.svg" type="image/svg+xml">`);
+  if (!hasIcon) lines.push(`<link rel="icon" href="${depth}icon/logo.svg" type="image/svg+xml">`);
   if (!hasOg) {
     lines.push(`<meta property="og:type" content="website">`);
     lines.push(`<meta property="og:site_name" content="PrismSelf">`);
@@ -74,7 +76,7 @@ for (const [rel, meta] of Object.entries(pages)) {
   // og:image is checked independently: a page may already carry other og: tags
   // without a share image, so it must not be gated behind hasOg.
   if (!hasOgImage) {
-    lines.push(`<meta property="og:image" content="${SITE}/og-image.png">`);
+    lines.push(`<meta property="og:image" content="${SITE}/og-image/image.png">`);
     lines.push(`<meta property="og:image:width" content="1200">`);
     lines.push(`<meta property="og:image:height" content="630">`);
   }
