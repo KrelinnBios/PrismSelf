@@ -922,11 +922,13 @@
 
       grid.innerHTML = visible.map(({ term }) => {
         const prepared = prepareTerm(term);
+        const tagKey = prepared.cardTag || prepared.cat;
+        const tagName = prepared.tag || categoryNames[tagKey] || categoryNames[prepared.cat] || "术语";
         return `
-        <article class="term-card" data-category="${term.cat}">
+        <article class="term-card" data-category="${prepared.cat}">
           <div class="term-head">
             <h3 class="term-title">${prepared.zh}${prepared.en ? `<small>${prepared.en}</small>` : ""}</h3>
-            <span class="tag ${term.cat}">${categoryNames[term.cat]}</span>
+            <span class="tag ${tagKey}">${tagName}</span>
           </div>
           ${prepared.aliasesList.length ? `<div class="aliases">别名/又译/近译：${prepared.aliasesList.join("、")}</div>` : ""}
           <p class="term-body">${termExplanation(prepared)}</p>
