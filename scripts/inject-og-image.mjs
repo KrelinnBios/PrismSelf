@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const IMG = 'https://prismself.pages.dev/og-image.png';
+const IMG = 'https://prismself.pages.dev/og-image/image.png';
 const files = execFileSync('git', ['ls-files'], { cwd: root, encoding: 'utf8' })
   .trim()
   .split(/\r?\n/)
