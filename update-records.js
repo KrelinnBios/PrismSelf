@@ -6,12 +6,7 @@ window.PrismSelfUpdateGroups = [
       'home',
       './Glossaries/SOGIESC-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
-      './Glossaries/Sociology-Glossary.html'
-    ]
-  },
-  {
-    date: '2026-07-01',
-    pages: [
+      './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html'
     ]
   },
