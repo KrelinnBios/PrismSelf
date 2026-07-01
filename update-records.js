@@ -4,7 +4,8 @@ window.PrismSelfUpdateGroups = [
     date: '2026-07-02',
     pages: [
       'home',
-      './Glossaries/Psychology-Glossary.html'
+      './Glossaries/Psychology-Glossary.html',
+      './Glossaries/Sociology-Glossary.html'
     ]
   },
   {
