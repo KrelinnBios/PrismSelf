@@ -32,6 +32,7 @@ const pages = {
   'Glossaries/Philosophy-Glossary.html': { desc: '哲学名词介绍，以可搜索术语表形式收录 200 个哲学入门常见概念、问题意识与思想传统。' },
   'Glossaries/Psychology-Glossary.html': { desc: '心理学名词介绍，以可搜索术语表形式收录 200 个心理学入门常见概念、研究方法与理论流派。' },
   'Glossaries/SOGIESC-Glossary.html': { desc: 'SOGIESC 术语表，系统解释性取向、性别认同与表达以及性别特征相关术语。' },
+  'Glossaries/Sociology-Glossary.html': { desc: '社会学名词介绍，以可搜索术语表形式收录 200 个社会学入门常见概念、研究方法与理论视角。' },
   'Scales/Aromantic-Spectrum-Scale.html': { desc: '无浪漫谱系自评量表，通过多维条目帮助你探索浪漫吸引相关的自我倾向；结果仅保存在本地。' },
   'Scales/Asexual-Spectrum-Scale.html': { desc: '无性恋谱系自评量表，通过多维条目帮助你探索性吸引相关的自我倾向；结果仅保存在本地。' },
   'Scales/Feminist-Leanings-Scale.html': { desc: '女权主义流派倾向自评量表，帮助你了解自身在各女权主义流派上的倾向；结果仅保存在本地。' },
