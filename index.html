@@ -5,16 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>知识图谱 · 性别·心理·人际</title>
-  <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、调查对谈、共鸣刻度、自评量表与关系对话工具。">
+  <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、术语索引、调查对谈、共鸣刻度、自评量表与关系对话工具。">
   <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icon/logo.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf">
   <meta property="og:title" content="知识图谱 · 性别·心理·人际">
-  <meta property="og:description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、调查对谈、共鸣刻度、自评量表与关系对话工具。">
+  <meta property="og:description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、术语索引、调查对谈、共鸣刻度、自评量表与关系对话工具。">
   <meta property="og:url" content="https://prismself.pages.dev/">
   <meta property="og:locale" content="zh_CN">
-  <meta property="og:image" content="https://prismself.pages.dev/og-image.png">
+  <meta property="og:image" content="https://prismself.pages.dev/og-image/image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
@@ -377,6 +377,10 @@
 
     .section-icon.guide {
       background: linear-gradient(135deg, #e8fdf5, #fdf8e8);
+    }
+
+    .section-icon.glossary {
+      background: linear-gradient(135deg, #edf0ff, #e8fdf5);
     }
 
     .section-icon.topic {
@@ -1441,7 +1445,7 @@
 
   <header>
     <div class="site-badge">
-      <img class="site-badge-mark" src="favicon.svg" alt="" aria-hidden="true">
+      <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">
       知识图谱
     </div>
     <h1 class="site-title">性别 · 心理 · 人际</h1>
@@ -1465,7 +1469,7 @@
     </div>
     <nav class="sidebar" aria-label="分类筛选">
       <button class="stat" data-filter="all">
-        <div class="stat-num">6</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">全部</div>
       </button>
       <button class="stat" data-filter="analysis">
@@ -1473,8 +1477,12 @@
         <div class="stat-label">分析图表</div>
       </button>
       <button class="stat" data-filter="guide">
-        <div class="stat-num">6</div>
+        <div class="stat-num">5</div>
         <div class="stat-label">专题指南</div>
+      </button>
+      <button class="stat" data-filter="glossary">
+        <div class="stat-num">2</div>
+        <div class="stat-label">术语索引</div>
       </button>
       <button class="stat" data-filter="topic">
         <div class="stat-num">2</div>
@@ -1565,7 +1573,7 @@
       <div class="section-header">
         <div class="section-icon guide">📖</div>
         <h2 class="section-title">指南 · 专题学习</h2>
-        <span class="section-count">06 篇</span>
+        <span class="section-count">05 篇</span>
       </div>
       <div class="card-grid">
 
@@ -1614,9 +1622,38 @@
           </div>
         </a>
 
-        <a class="card slate" href="./Guides/SOGIESC-Glossary.html">
+      </div>
+    </section>
+
+    <section class="section" data-category="glossary">
+      <div class="section-header">
+        <div class="section-icon glossary">🔤</div>
+        <h2 class="section-title">术语 · 名词索引</h2>
+        <span class="section-count">03 篇</span>
+      </div>
+      <div class="card-grid">
+
+        <a class="card slate" href="./Glossaries/SOGIESC-Glossary.html">
           <span class="card-tag tag-slate">SOGIESC</span>
           <p class="card-title">SOGIESC 术语表</p>
+          <div class="card-meta">
+            <span class="card-type">术语表</span>
+            <div class="card-arrow">→</div>
+          </div>
+        </a>
+
+        <a class="card green" href="./Glossaries/Philosophy-Glossary.html">
+          <span class="card-tag tag-green">哲学术语</span>
+          <p class="card-title">哲学名词介绍</p>
+          <div class="card-meta">
+            <span class="card-type">术语表</span>
+            <div class="card-arrow">→</div>
+          </div>
+        </a>
+
+        <a class="card amber" href="./Glossaries/Psychology-Glossary.html">
+          <span class="card-tag tag-amber">心理学术语</span>
+          <p class="card-title">心理学名词介绍</p>
           <div class="card-meta">
             <span class="card-type">术语表</span>
             <div class="card-arrow">→</div>
