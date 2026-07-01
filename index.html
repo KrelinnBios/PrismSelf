@@ -2027,7 +2027,8 @@
         });
       }
 
-      // Scroll spy — highlight sidebar button when a section spans the 1/4-from-top line.
+      // Scroll spy — highlight sidebar button only when a section's title area
+      // (its top edge) is visible in the viewport and within 0 ~ 1/4 from top.
       const btnMap = {};
       buttons.forEach((b) => { btnMap[b.dataset.filter] = b; });
 
@@ -2036,19 +2037,20 @@
         if (kwActive) return;
         const triggerY = window.innerHeight * 0.25;
 
+        let best = null;
         for (const s of sections) {
-          const rect = s.getBoundingClientRect();
-          if (rect.top <= triggerY && rect.bottom > triggerY) {
-            setActive(btnMap[s.dataset.category] || null);
-            return;
+          const top = s.getBoundingClientRect().top;
+          if (top > 0 && top <= triggerY) {
+            best = s;
           }
         }
 
-        // Above the first section: clear active
-        if (sections[0].getBoundingClientRect().top > triggerY) {
+        if (best) {
+          setActive(btnMap[best.dataset.category] || null);
+        } else if (sections[0].getBoundingClientRect().top > triggerY) {
           setActive(null);
         }
-        // Otherwise (between sections or below last): keep current active
+        // Otherwise (no section title in [0, triggerY]): keep current active
       };
 
       if (window.innerWidth > 600) {
