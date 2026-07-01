@@ -716,13 +716,18 @@
           aria-label="搜索术语">
         <div class="filters" aria-label="分类筛选">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
-          <button class="filter" type="button" data-filter="framework" aria-pressed="false">基础框架</button>
+          <button class="filter" type="button" data-filter="core" aria-pressed="false">基础框架</button>
           <button class="filter" type="button" data-filter="orientation" aria-pressed="false">取向与吸引</button>
           <button class="filter" type="button" data-filter="behavior" aria-pressed="false">行为与关系</button>
-          <button class="filter" type="button" data-filter="gender" aria-pressed="false">性别身份与表达</button>
+          <button class="filter" type="button" data-filter="gender" aria-pressed="false">性别身份</button>
+          <button class="filter" type="button" data-filter="expression" aria-pressed="false">表达与称谓</button>
           <button class="filter" type="button" data-filter="body" aria-pressed="false">身体与性征</button>
           <button class="filter" type="button" data-filter="care" aria-pressed="false">过渡与护理</button>
-          <button class="filter" type="button" data-filter="social" aria-pressed="false">社会结构与社群</button>
+          <button class="filter" type="button" data-filter="diagnosis" aria-pressed="false">医疗与诊断</button>
+          <button class="filter" type="button" data-filter="norms" aria-pressed="false">规范与制度</button>
+          <button class="filter" type="button" data-filter="stigma" aria-pressed="false">歧视与污名</button>
+          <button class="filter" type="button" data-filter="culture" aria-pressed="false">社群与文化</button>
+          <button class="filter" type="button" data-filter="rights" aria-pressed="false">权利与可见性</button>
         </div>
       </div>
 
@@ -848,13 +853,18 @@
 
   <script>
     const categoryNames = {
-      framework: "基础框架",
+      core: "基础框架",
       orientation: "取向与吸引",
       behavior: "行为与关系",
-      gender: "性别身份与表达",
+      gender: "性别身份",
+      expression: "表达与称谓",
       body: "身体与性征",
       care: "过渡与护理",
-      social: "社会结构与社群"
+      diagnosis: "医疗与诊断",
+      norms: "规范与制度",
+      stigma: "歧视与污名",
+      culture: "社群与文化",
+      rights: "权利与可见性"
     };
 
     const terms = [
@@ -1151,9 +1161,40 @@
       return 9;
     }
 
+    const refinedCategoryRules = {
+      core: ["SOGIESC", "LGBTQIA+ / LGBTIQ2", "性", "性别", "指派性别", "AMAB", "AFAB"],
+      orientation: ["性取向", "浪漫取向", "异性恋", "同性恋", "男同性恋", "女同性恋", "双性恋", "泛性恋", "灵活异性恋", "灵活同性恋", "双性恋好奇", "无性恋", "灰性恋", "半性恋", "无浪漫倾向", "半浪漫取向", "酷儿", "性取向存疑", "萨福式", "女性爱女性", "男性爱男性", "阿喀琉斯式", "非二元之爱", "单性恋", "多性恋", "全性恋", "流性恋", "流动浪漫", "男性恋", "女性恋", "T4T", "分离吸引力模型", "性吸引", "浪漫吸引", "情感吸引", "柏拉图式吸引", "审美吸引", "感官吸引", "智识吸引", "同性爱者"],
+      behavior: ["男男性行为者", "女女性行为者", "FWB", "Top", "Bottom", "Vers", "Side", "酷儿柏拉图式关系", "多元爱", "开放式关系", "关系无政府"],
+      gender: ["性别认同", "性别身份", "顺性别", "跨性别", "非二元性别", "性别酷儿", "流动性别", "无性别", "双性别", "泛性别", "半性别", "第三性别", "双灵", "MTF", "FTM", "顺性别女性", "跨性别女性", "顺性别男性", "跨性别男性", "女性倾向跨性别者", "男性倾向跨性别者", "跨性别与多元性别", "性别多元化"],
+      expression: ["性别表达", "性别不顺从", "性别中性", "男性化呈现", "女性化呈现", "代词", "性别代词", "新代词", "Mx.", "非常规性别", "双性化", "Butch", "Femme", "Masc", "Fem", "Stud", "性别错称", "弃名", "过关", "药娘", "男娘/伪娘", "Boymoder", "易装者", "变装表演", "变装皇后", "变装国王", "T/P/H"],
+      body: ["性别特征", "间性", "非间性", "生理性别", "性别分化差异", "第二性征", "束胸", "性隐蔽", "性发育差异", "染色体", "性腺", "性激素", "外生殖器", "内生殖器", "青春期", "月经", "生育能力", "身体自主", "非自愿医学干预"],
+      care: ["性别过渡", "社会过渡", "性别肯定护理", "性别肯定手术", "上身手术", "下身手术", "性别肯定激素治疗", "性别愉悦", "医疗过渡", "去性别过渡", "实际生活体验", "知情同意模式", "守门 / 把关", "女性化激素治疗", "男性化激素治疗", "面部女性化手术", "面部男性化手术", "嗓音女性化手术", "嗓音训练", "青春期阻滞剂", "性别肯定"],
+      diagnosis: ["性别不安", "性别不一致", "易性症", "性别认同障碍", "孤独症谱系", "注意缺陷多动障碍"],
+      norms: ["性别二元论", "性别刻板印象", "强制异性恋", "异性恋本位", "异性恋霸权", "异性恋主义", "顺性别本位", "顺性别主义", "有性恋本位", "强制性性规范", "浪漫本位", "单偶本位"],
+      stigma: ["恐跨", "排跨激进女权", "追逐者", "变性人", "人妖", "女体性幻想", "恐同", "恐双", "厌跨女症", "女同性恋歧视", "社会污名", "结构化污名", "少数群体压力", "内化恐同", "内化恐跨", "微歧视", "彩虹洗白 / 粉红营销"],
+      culture: ["性少数群体", "顺直", "QTBIPOC", "交叉性", "形婚", "同妻 / 同夫", "选择家庭", "蛋 / 破壳"],
+      rights: ["深柜", "出柜", "被出柜", "隐身", "盟友", "倡导者", "扭转治疗", "民事结合/同居伴侣关系", "性别标记"]
+    };
+
+    const refinedCategoryLookup = Object.entries(refinedCategoryRules).reduce((lookup, [cat, names]) => {
+      names.forEach((name) => lookup.set(name, cat));
+      return lookup;
+    }, new Map());
+
     function refinedCategory(term) {
-      const allowed = new Set(["framework", "orientation", "behavior", "gender", "body", "care", "social"]);
-      return allowed.has(term.cat) ? term.cat : "social";
+      const exact = refinedCategoryLookup.get(term.zh);
+      if (exact) return exact;
+      if (categoryNames[term.cat]) return term.cat;
+      const fallback = {
+        framework: "core",
+        gender: "gender",
+        orientation: "orientation",
+        body: "body",
+        care: "care",
+        behavior: "behavior",
+        social: "culture"
+      };
+      return fallback[term.cat] || "culture";
     }
 
     function render() {
