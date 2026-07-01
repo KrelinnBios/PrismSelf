@@ -339,31 +339,31 @@
       background: var(--teal);
     }
 
-    .tag.biological {
+    .tag.theory {
       background: var(--slate);
     }
 
-    .tag.cognition {
+    .tag.culture {
       background: var(--blue);
     }
 
-    .tag.development {
+    .tag.interaction {
       background: var(--green);
     }
 
-    .tag.personality {
+    .tag.inequality {
       background: var(--violet);
     }
 
-    .tag.social {
+    .tag.institutions {
       background: var(--amber);
     }
 
-    .tag.clinical {
+    .tag.economy {
       background: var(--rose);
     }
 
-    .tag.schools {
+    .tag.change {
       background: #7c5a1f;
     }
 
@@ -560,18 +560,18 @@
       </p>
 
       <div class="tools">
-        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：记忆、bias"
+        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：社会化、阶级"
           aria-label="搜索社会学名词">
         <div class="filters" aria-label="分类筛选">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
           <button class="filter" type="button" data-filter="foundations" aria-pressed="false">基础与方法</button>
-          <button class="filter" type="button" data-filter="biological" aria-pressed="false">生物与神经</button>
-          <button class="filter" type="button" data-filter="cognition" aria-pressed="false">认知与记忆</button>
-          <button class="filter" type="button" data-filter="development" aria-pressed="false">发展与成长</button>
-          <button class="filter" type="button" data-filter="personality" aria-pressed="false">人格与动机</button>
-          <button class="filter" type="button" data-filter="social" aria-pressed="false">社会与群体</button>
-          <button class="filter" type="button" data-filter="clinical" aria-pressed="false">临床与健康</button>
-          <button class="filter" type="button" data-filter="schools" aria-pressed="false">流派与传统</button>
+          <button class="filter" type="button" data-filter="theory" aria-pressed="false">理论与经典</button>
+          <button class="filter" type="button" data-filter="culture" aria-pressed="false">文化与社会化</button>
+          <button class="filter" type="button" data-filter="interaction" aria-pressed="false">互动与群体</button>
+          <button class="filter" type="button" data-filter="inequality" aria-pressed="false">分层与不平等</button>
+          <button class="filter" type="button" data-filter="institutions" aria-pressed="false">制度与日常</button>
+          <button class="filter" type="button" data-filter="economy" aria-pressed="false">经济与劳动</button>
+          <button class="filter" type="button" data-filter="change" aria-pressed="false">权力与变迁</button>
         </div>
       </div>
 
@@ -915,11 +915,13 @@
 
       grid.innerHTML = visible.map(({ term }) => {
         const prepared = prepareTerm(term);
+        const tagKey = prepared.cardTag || prepared.cat;
+        const tagName = prepared.tag || categoryNames[tagKey] || categoryNames[prepared.cat] || "术语";
         return `
-        <article class="term-card" data-category="${term.cat}">
+        <article class="term-card" data-category="${prepared.cat}">
           <div class="term-head">
             <h3 class="term-title">${prepared.zh}${prepared.en ? `<small>${prepared.en}</small>` : ""}</h3>
-            <span class="tag ${term.cat}">${categoryNames[term.cat]}</span>
+            <span class="tag ${tagKey}">${tagName}</span>
           </div>
           ${prepared.aliasesList.length ? `<div class="aliases">别名/又译/近译：${prepared.aliasesList.join("、")}</div>` : ""}
           <p class="term-body">${termExplanation(prepared)}</p>
