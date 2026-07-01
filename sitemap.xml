@@ -96,6 +96,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://prismself.pages.dev/Glossaries/Sociology-Glossary.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://prismself.pages.dev/Scales/Aromantic-Spectrum-Scale.html</loc>
     <lastmod>2026-06-15</lastmod>
     <priority>0.8</priority>
@@ -132,7 +137,7 @@
   </url>
   <url>
     <loc>https://prismself.pages.dev/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>1.0</priority>
   </url>
 </urlset>
