@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哲学术语表</title>
+  <meta name="description" content="哲学术语表，以可搜索术语表形式收录 200 个哲学入门常见概念、问题意识与思想传统。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="哲学术语表">
+  <meta property="og:description" content="哲学术语表，以可搜索术语表形式收录 200 个哲学入门常见概念、问题意识与思想传统。">
+  <meta property="og:url" content="https://prismself.vip/Glossaries/Philosophy-Glossary.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面分类标签配色与焦点样式（其余样式见 glossary-common.css） */
+    .tag.method {
+      background: var(--teal);
+    }
+
+    .tag.being {
+      background: var(--slate);
+    }
+
+    .tag.knowledge {
+      background: var(--blue);
+    }
+
+    .tag.mind {
+      background: var(--violet);
+    }
+
+    .tag.ethics {
+      background: var(--rose);
+    }
+
+    .tag.politics {
+      background: var(--amber);
+    }
+
+    .tag.language {
+      background: var(--green);
+    }
+
+    .tag.traditions {
+      background: #7c5a1f;
+    }
+
+    .back-link:focus-visible,
+    .mini-nav a:focus-visible,
+    .filter:focus-visible,
+    .search:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./glossary-common.css?v=20260710b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <nav class="topbar" aria-label="页面导航">
+    <div class="topbar-inner">
+      <a class="back-link" href="../index.html">← 返回知识图谱</a>
+      <div class="mini-nav">
+        <a href="#glossary">术语检索</a>
+        <a href="#usage">使用提醒</a>
+        <a href="#sources">延伸阅读</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">PHILOSOPHY · CONCEPTS, QUESTIONS AND TRADITIONS</p>
+        <h1>哲学术语表</h1>
+        <p class="lede">
+          这是一份面向入门阅读和日常讨论的哲学术语表。页面按问题领域整理 200 个常见概念，帮助你在阅读、写作和自我梳理时更快找到关键词，并通过更完整的正文解释把术语放回具体语境里理解。
+        </p>
+      </div>
+      <aside class="summary-panel" aria-label="术语表摘要">
+        <p>哲学术语常常不是固定答案，而是进入问题的入口。阅读时可以同时留意：它在问什么、反对什么、默认了哪些前提，以及它适合处理哪一类经验。</p>
+        <div class="stats">
+          <div class="stat"><b id="termCount">0</b><span>收录术语</span></div>
+          <div class="stat"><b>8</b><span>筛选分类</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="glossary" aria-labelledby="glossary-title">
+      <p class="notice">
+        本页是学习辅助，不是哲学史教材或专业论文索引。不同学派会给同一词语不同定义；这里优先给出便于入门的工作性解释，并在补充说明里提示常见误读。
+      </p>
+
+      <div class="tools">
+        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：真理、free will" aria-label="搜索术语">
+        <div class="filters" aria-label="分类筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="method" aria-pressed="false">方法与问题</button>
+          <button class="filter" type="button" data-filter="being" aria-pressed="false">存在与世界</button>
+          <button class="filter" type="button" data-filter="knowledge" aria-pressed="false">知识与理性</button>
+          <button class="filter" type="button" data-filter="mind" aria-pressed="false">心灵与自我</button>
+          <button class="filter" type="button" data-filter="ethics" aria-pressed="false">伦理与价值</button>
+          <button class="filter" type="button" data-filter="politics" aria-pressed="false">政治与社会</button>
+          <button class="filter" type="button" data-filter="language" aria-pressed="false">语言与逻辑</button>
+          <button class="filter" type="button" data-filter="traditions" aria-pressed="false">美学与传统</button>
+        </div>
+      </div>
+
+      <div class="results-meta">
+        <h2 id="glossary-title">术语检索</h2>
+        <span id="resultCount" aria-live="polite">0 个结果</span>
+      </div>
+      <div id="categoryIntro" class="notice" hidden></div>
+      <div id="termGrid" class="term-grid"></div>
+      <div id="emptyState" class="empty">没有找到匹配的术语。可以换一个关键词，或切回“全部”。</div>
+    </section>
+
+    <section class="appendix" id="usage" aria-label="使用提醒与延伸阅读">
+      <div class="section-panel">
+        <h2>使用提醒</h2>
+        <ul>
+          <li>先看问题领域，再看定义。比如“真理”常在认识论和语言哲学中出现，“自由”常在伦理学和政治哲学中出现。</li>
+          <li>同一个词在欧陆哲学、分析哲学、中国哲学、佛教哲学等传统中可能有不同重心，不宜把一个定义当作所有语境的唯一版本。</li>
+          <li>读到抽象词时，可以留意三个方向：它区分了什么、它解释了什么、它可能遮蔽了什么。</li>
+          <li>页面中的英文用于辅助检索和延伸阅读；中文译名有多种传统时，卡片会列出常见又译。</li>
+        </ul>
+      </div>
+
+      <div class="section-panel" id="sources">
+        <h2>延伸阅读</h2>
+        <ol class="source-list">
+          <li><a href="https://plato.stanford.edu/">Stanford Encyclopedia of Philosophy</a></li>
+          <li><a href="https://iep.utm.edu/">Internet Encyclopedia of Philosophy</a></li>
+          <li><a href="https://philosophyterms.com/">Philosophy Terms</a></li>
+          <li><a href="https://ctext.org/zh">中国哲学书电子化计划</a></li>
+          <li><a href="https://philpapers.org/">PhilPapers</a></li>
+          <li><a href="https://1000wordphilosophy.com/">1000-Word Philosophy</a></li>
+          <li><a href="https://www.earlymoderntexts.com/">Early Modern Texts</a></li>
+          <li><a href="https://openlogicproject.org/">Open Logic Project</a></li>
+          <li><a href="https://ndpr.nd.edu/">Notre Dame Philosophical Reviews</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script src="./scripts/philosophy-glossary.js" defer></script>
+</body>
+
+</html>

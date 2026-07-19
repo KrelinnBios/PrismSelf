@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无浪漫谱系自评量表</title>
+  <meta name="description" content="无浪漫谱系自评量表，通过多维条目帮助你探索浪漫吸引相关的自我倾向；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="无浪漫谱系自评量表">
+  <meta property="og:description" content="无浪漫谱系自评量表，通过多维条目帮助你探索浪漫吸引相关的自我倾向；结果仅保存在本地。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Aromantic-Spectrum-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      border-bottom: 2px solid #1e3a1e;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+
+    .section {
+      transition: box-shadow 0.2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+      transition: all 0.2s ease;
+    }
+
+    .q-number {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 220px;
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    .intro,
+    .explanation {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .result th {
+      padding: 14px;
+      font-weight: 600;
+    }
+
+    .result td {
+      padding: 12px;
+      border-bottom: 1px solid #e2e8e0;
+      border-left: none;
+      border-right: none;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    details {
+      margin-bottom: 15px;
+      background-color: #fdfffc;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .dimension-analysis {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .disclaimer {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 650px) {
+      button {
+        margin-bottom: 10px;
+        border-radius: 30px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'aromantic-spectrum', title: '无浪漫谱系自评量表', formId: 'aromanticQuiz', storageKey: 'aromanticQuizAnswers', totalQuestions: 45, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/45</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+    </div>
+  </div>
+  <h1>无浪漫谱系自评量表</h1>
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p><strong>浪漫吸引（Romantic
+        Attraction）</strong>：对特定对象产生的、以浪漫情感为核心驱动的内在渴望，通常表现为希望与对方建立恋爱关系、进行浪漫互动（如约会、牵手、表达爱意、给予特别关注），并可能伴随心跳加速、思念萦绕、幻想与对方共度未来等情感体验。
+      与情感吸引不同，浪漫吸引包含一种“想成为对方的特别存在”的渴望，以及对关系排他性或特殊亲密性的向往；与性吸引不同，浪漫吸引的核心在于情感联结与浪漫仪式感本身，而非性接触的欲望——两者可以同时存在，也可以彼此独立（例如：无性恋者可能体验到强烈的浪漫吸引，而无浪漫倾向者可能体验到性吸引却不渴望浪漫关系）。
+      例如：当您看到某人时，会不由自主地想象与TA共赴约会、分享生活点滴、携手走过未来，并感受到一种区别于普通友谊的强烈情感牵引，这种体验通常即为浪漫吸引。
+    </p>
+    <p><strong>为了更好地理解和区分浪漫吸引与其他类型的吸引，在此简要介绍几种常见吸引类型：</strong></p>
+    <ul>
+      <li><strong>性吸引（Sexual
+          Attraction）</strong>：对特定对象产生的、以性接触或性行为为指向的心理与生理驱动力。它通常表现为希望与对方发生性行为或进行具有性意味的亲密身体接触，并可能伴随生理反应（如心跳加速、生理唤起）或心理兴奋（如性幻想的涌现）。
+      </li>
+      <li><strong>情感吸引（Emotional
+          Attraction）</strong>：被某人的内心世界、性格、思想或情感深度吸引，并希望与对方建立信任、倾诉、理解和情绪支持的深层连接。情感吸引可以构成亲密关系的重要基础，但本身不必然包含浪漫或性欲望。</li>
+      <li><strong>柏拉图式吸引（Platonic Attraction）</strong>：渴望与某人建立深厚、稳定且非浪漫的友谊关系，强调陪伴、共同兴趣、价值观契合和彼此同行。它可能非常强烈，却不一定指向恋爱或性接触。
+      </li>
+      <li><strong>审美吸引（Aesthetic
+          Attraction）</strong>：单纯地欣赏他人的外貌、气质、风格、声音、肢体语言或整体美感，觉得对方“好看”“有魅力”或“像艺术品一样值得欣赏”，但并不伴随想恋爱、想触碰或想发生性关系的欲望。</li>
+      <li><strong>感官吸引（Sensual
+          Attraction）</strong>：渴望与某人进行非性的身体亲密接触，例如拥抱、牵手、依偎、轻抚或靠近，以获得舒适、安全感、温暖或放松。感官吸引的核心是触觉亲密，不必然涉及性唤起或性欲望。</li>
+    </ul>
+    <p>
+      <strong>重要提示：</strong>这些吸引类型可以独立存在，也可以同时发生。例如：您可能对某人同时产生情感吸引和审美吸引，但无浪漫吸引。本量表专门评估<strong>浪漫吸引</strong>，请在做题时专注于这种特定类型的吸引，并基于您过去几年的真实经历作答。如果您在性吸引方面的体验稀少、低频或需要特定条件才出现，建议结合
+      <a href="./Asexual-Spectrum-Scale.html">无性恋谱系自评量表</a> 进一步区分无性恋、灰性恋、半性恋或其他无性恋谱系经验。浪漫吸引与性吸引是相互独立的维度，二者可以重叠，也可以分离。
+    </p>
+    <p><strong>无浪漫谱系（Aromantic
+        Spectrum）</strong>：这是一个连续的谱系，描述那些很少、条件性或完全不体验浪漫吸引的人群。谱系内包括多种细分身份，这些身份不是互斥的，可能重叠或流动。本自查表将帮助您判断是否属于无浪漫谱系，并扩展到更多细分类型，提供更细致的自我认知。
+      请注意，如果您经常且强烈体验浪漫吸引，则不属于无浪漫谱系，而是更接近有浪漫（Alloromantic）。以下是无浪漫谱系细分类型（从完全无到微弱/条件性）：
+    <details class="scale-concept-details">
+      <summary>点击展开（附解释说明）</summary>
+      <div class="scale-concept-content">
+        <ul>
+          <li><strong>无浪漫（Aromantic）</strong>：完全或几乎不体验浪漫吸引，但可能仍有情感、审美或其他类型的吸引。例如：您可能享受深厚的陪伴关系，但对浪漫关系无兴趣。</li>
+          <li>
+            <strong>半浪漫（Demiromantic）</strong>：仅在与特定对象建立深度情感联结后，才可能体验到浪漫吸引。在没有情感基础时，浪漫吸引不存在。例如：您可能在与某人长期相处后，才首次感受到浪漫情绪。
+          </li>
+          <li><strong>灰浪漫（Greyromantic）</strong>：仅在特定情境或条件下，才可能体验到微弱或模糊的浪漫吸引，频率低且不稳定。例如：您一年中可能只有几次短暂的浪漫心动，且强度不如他人强烈。
+          </li>
+          <li><strong>流动无浪漫（Aroflux）</strong>：浪漫吸引的强度和频率随时间、情绪或环境波动，有时接近无浪漫，有时接近灰浪漫。例如：某些时期完全无浪漫情绪，另一些时期偶尔出现微弱心动。
+          </li>
+          <li><strong>突发无浪漫（Arospike）</strong>：平时基本不体验浪漫吸引，但会间歇性地经历短暂而相对强烈的浪漫心动。这种体验通常具有突发性、不可预测性和短暂性。</li>
+          <li><strong>无参与浪漫（Aegoromantic）</strong>：可能有抽象的浪漫幻想、欣赏浪漫作品，但不愿在现实中参与任何涉及他人的浪漫关系。例如：您可能享受阅读恋爱小说，但一想到现实恋爱就感到不适。
+          </li>
+          <li><strong>触发浪漫（Apresseromantic）</strong>：浪漫吸引需要其他类型吸引（如情感吸引、审美吸引等）作为前提条件。与半浪漫的区别在于强调多种吸引形式的交互机制，而非单一情感深度。
+          </li>
+          <li><strong>磨损浪漫（Frayromantic）</strong>：对陌生人或关系表层化的对象容易产生浪漫吸引，但随着情感联结加深，浪漫吸引反而会减弱或消失，呈现与半浪漫相反的模式。</li>
+          <li><strong>单向浪漫（Lithromantic /
+              Akioromantic）</strong>：能够对他人产生浪漫吸引，但当这种吸引得到回应或可能发展为双向关系时，反而产生不适或失去兴趣，倾向保持浪漫吸引的单向性质。</li>
+          <li><strong>回应浪漫（Reciproromantic）</strong>：仅在明确感知到对方对自己存在浪漫吸引时，才可能对其产生相应的浪漫吸引。需要他人的浪漫表达作为自身吸引形成的条件。</li>
+          <li><strong>接受浪漫（Accipioromantic）</strong>：愿意接受他人的浪漫表达或浪漫关系，但缺乏主动追求浪漫的意愿。在浪漫互动中更倾向于接收方。</li>
+          <li><strong>给予浪漫（Placioromantic）</strong>：愿意给予他人浪漫表达或浪漫关怀，但不期望或不愿接受他人的浪漫对待。在浪漫互动中更倾向于给予方。</li>
+          <li><strong>厌浪漫（Apothiromantic）</strong>：对浪漫关系有强烈的反感、厌恶或回避情绪，明确拒绝参与任何形式的浪漫互动，这种态度通常稳定而持续。</li>
+          <li><strong>不渴望关系浪漫（Orchidromantic）</strong>：能够体验浪漫吸引，但不希望将这种吸引转化为现实中的浪漫关系。呈现浪漫感受与浪漫行为意愿之间的分离。</li>
+          <li><strong>渴望关系浪漫（Cupioromantic）</strong>：尽管缺乏典型的浪漫吸引体验，但基于对亲密、陪伴或情感联结的渴求，仍然希望建立浪漫关系。</li>
+          <li><strong>疑浪漫（Quoiromantic）</strong>：对"浪漫吸引"这一概念本身存在理解困难，不确定自己是否体验过浪漫吸引，也不确定该概念是否适用于描述自身。</li>
+          <li><strong>吸引模糊浪漫（Idemromantic）</strong>：难以区分自己体验的是浪漫吸引还是其他类型吸引（如柏拉图式吸引、审美吸引等），存在吸引类别识别上的模糊。</li>
+          <li><strong>感受模糊浪漫（Desinoromantic）</strong>：无法体验典型、明确的浪漫吸引，只能感受到模糊、难以定义的情感悸动，难以判断是否属于浪漫。</li>
+          <li><strong>浪漫学兴趣浪漫（Bellusromantic）</strong>：虽然不体验浪漫吸引，但对浪漫主题、浪漫文化、情感研究等保持强烈兴趣或好奇心。</li>
+          <li><strong>多重无浪漫（Myrromantic）</strong>：同时符合无浪漫谱系中两种或多种身份的特征描述，这些身份可能同时存在、周期性交替或呈现复杂重叠模式。</li>
+        </ul>
+      </div>
+    </details>
+    </p>
+    <p><strong>浪漫关系态度</strong>：即使在无浪漫谱系中，人们对浪漫关系的看法也多样化：
+    <ul>
+      <li><strong>浪漫厌恶/排斥（Romance-Averse/Repulsed）</strong>：对浪漫行为或相关内容感到强烈不适、排斥或厌恶，即使没有浪漫吸引。</li>
+      <li><strong>浪漫无感（Romance-Indifferent）</strong>：对浪漫关系没有强烈好恶，可能出于社会期待、陪伴需求或其他原因参与，但不主动追求。</li>
+      <li><strong>浪漫积极/友好（Romance-Positive/Favorable）</strong>：对浪漫关系持积极或开放态度，甚至可能享受浪漫互动，尽管缺乏强烈的浪漫吸引。</li>
+    </ul>
+    </p>
+    <p><strong>性别浪漫倾向</strong>：本量表也评估您可能体验到的浪漫吸引的性别指向：
+    <ul>
+      <li><strong>异性浪漫（Heteroromantic）</strong>： 体验到指向异性的浪漫吸引。</li>
+      <li><strong>同性浪漫（Homoromantic）</strong>： 体验到指向同性的浪漫吸引。</li>
+      <li><strong>双性浪漫（Biromantic）</strong>：体验到指向两种或多种性别的浪漫吸引。</li>
+      <li><strong>泛性浪漫（Panromantic）</strong>：体验到指向任何性别的浪漫吸引，且性别并非产生吸引的重要因素。</li>
+      <li><strong>无浪漫（Aromantic）</strong>：极少或完全不体验指向任何性别的浪漫吸引，对建立浪漫关系缺乏兴趣或需求。</li>
+    </ul>
+    </p>
+    <p><strong>使用指南：</strong>本量表共包含 45 道题目，分为五个部分。请根据过去几年中较稳定、较自然的真实体验选择 0–5 分（0 分＝完全不符合，5
+      分＝完全符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看整体倾向、分维度分析、类型参考和个性化建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断或证明任何身份。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+  <form id="aromanticQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" onclick="calculateResult()">计算结果</button>
+      <button type="button" onclick="resetForm()">重置问卷</button>
+      <button type="button" onclick="saveResultText()">保存文本结果</button>
+      <button type="button" onclick="saveResultImage()">保存图片结果</button>
+    </div>
+  </form>
+  <div class="result" id="result">
+    <h2 class="result-report-title">无浪漫谱系深度探索报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前浪漫吸引谱系画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas></div>
+      </div>
+    </div>
+    <div id="mainInterpretation"></div>
+    <div id="detailedAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/aromantic-spectrum-scale.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无性恋谱系自评量表</title>
+  <meta name="description" content="无性恋谱系自评量表，通过多维条目帮助你探索性吸引相关的自我倾向；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="无性恋谱系自评量表">
+  <meta property="og:description" content="无性恋谱系自评量表，通过多维条目帮助你探索性吸引相关的自我倾向；结果仅保存在本地。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Asexual-Spectrum-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+
+    .section {
+      transition: box-shadow 0.2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+      transition: all 0.2s ease;
+    }
+
+    .q-number {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 220px;
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    .intro,
+    .explanation {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .result th,
+    .result td {
+      padding: 12px;
+      text-align: left;
+      border: none;
+    }
+
+    .result th {
+      padding: 14px;
+    }
+
+    .result td {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .optional-section {
+      background-color: #f0f8ff;
+      border: 2px dashed #0078d4;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .optional-checkbox {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+
+    form {
+      margin-bottom: 40px;
+    }
+
+    details {
+      margin-bottom: 15px;
+      background-color: #f9fbfd;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (max-width: 650px) {
+      button {
+        margin-bottom: 10px;
+        border-radius: 30px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'asexual-spectrum', title: '无性恋谱系自评量表', formId: 'asexualQuiz', storageKey: 'asexualQuizAnswers', totalQuestions: 60, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/60</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+    </div>
+  </div>
+  <h1>无性恋谱系自评量表</h1>
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p><strong>性吸引（Sexual
+        Attraction）</strong>：对特定对象产生的、以性接触或性行为为指向的心理与生理驱动力。它通常表现为希望与对方发生性行为或进行具有性意味的亲密身体接触，并可能伴随生理反应（如心跳加速、生理唤起）或心理兴奋（如性幻想的涌现）。
+      性吸引是一种由内向外、以他人为对象、以性为取向的主动心理动力，有别于单纯的外貌欣赏（审美吸引）、情感依恋（情感吸引）或浪漫渴望（浪漫吸引）。值得注意的是，性吸引并非总是与浪漫吸引同步出现——有些人可能对某人产生性吸引却无浪漫情感，反之亦然。
+      例如：当您看到某人时，会不由自主地产生与之发生性行为的想象，并感受到强烈的生理或心理渴望，这种体验通常即为性吸引。
+    </p>
+    <p><strong>为了更好地理解和区分性吸引与其他类型的吸引，在此简要介绍几种常见吸引类型：</strong></p>
+    <ul>
+      <li><strong>浪漫吸引（Romantic
+          Attraction）</strong>：对特定对象产生的、以浪漫情感为核心驱动的内在渴望，通常表现为希望与对方建立恋爱关系、进行浪漫互动（如约会、牵手、表达爱意、给予特别关注），并可能伴随心跳加速、思念萦绕、幻想与对方共度未来等情感体验。
+      </li>
+      <li><strong>情感吸引（Emotional
+          Attraction）</strong>：被某人的内心世界、性格、思想或情感深度吸引，并希望与对方建立信任、倾诉、理解和情绪支持的深层连接。情感吸引可以构成亲密关系的重要基础，但本身不必然包含浪漫或性欲望。</li>
+      <li><strong>柏拉图式吸引（Platonic Attraction）</strong>：渴望与某人建立深厚、稳定且非浪漫的友谊关系，强调陪伴、共同兴趣、价值观契合和彼此同行。它可能非常强烈，却不一定指向恋爱或性接触。
+      </li>
+      <li><strong>审美吸引（Aesthetic
+          Attraction）</strong>：单纯地欣赏他人的外貌、气质、风格、声音、肢体语言或整体美感，觉得对方“好看”“有魅力”或“像艺术品一样值得欣赏”，但并不伴随想恋爱、想触碰或想发生性关系的欲望。</li>
+      <li><strong>感官吸引（Sensual
+          Attraction）</strong>：渴望与某人进行非性的身体亲密接触，例如拥抱、牵手、依偎、轻抚或靠近，以获得舒适、安全感、温暖或放松。感官吸引的核心是触觉亲密，不必然涉及性唤起或性欲望。</li>
+    </ul>
+    <p>
+      <strong>重要提示：</strong>这些吸引类型可以独立存在，也可以同时发生。例如：您可能对某人同时产生浪漫吸引和审美吸引，但无性吸引。本量表专门评估<strong>性吸引</strong>，请在做题时专注于这种特定类型的吸引，并基于您过去几年的真实经历作答。如果您在本量表中发现浪漫吸引相关得分较低，或很少产生想恋爱、约会、建立浪漫关系的冲动，建议进一步查看
+      <a href="./Aromantic-Spectrum-Scale.html">无浪漫谱系自评量表</a>。无性恋与无浪漫可以重叠，也可以彼此独立。
+    </p>
+    <p><strong>无性恋谱系（Asexual
+        Spectrum）</strong>：这是一个连续的谱系，描述那些很少、条件性或完全不体验性吸引的人群。谱系内包括多种细分身份，这些身份不是互斥的，可能重叠或流动。本自查表将帮助您判断是否属于无性恋谱系，并扩展到更多细分类型，提供更细致的自我认知。
+      请注意，如果您经常且强烈体验性吸引，则不属于无性恋谱系，而是更接近有性恋（Allosexual）。以下是无性恋谱系细分类型（从完全无到微弱/条件性）：
+    <details class="scale-concept-details">
+      <summary>点击展开（附解释说明）</summary>
+      <div class="scale-concept-content">
+        <ul>
+          <li><strong>无性恋（Asexual）</strong>：完全或几乎不体验性吸引，但可能仍有浪漫、情感或其他类型的吸引。例如：您可能享受浪漫关系，但对性行为无兴趣。</li>
+          <li><strong>半性恋（Demisexual）</strong>：仅在与特定对象建立深度情感联结后，才可能体验到性吸引。在没有情感基础时，性吸引不存在。例如：您可能在和某人相处数月后，才首次感受到性欲。
+          </li>
+          <li><strong>灰性恋（Greysexual）</strong>：仅在特定情境或条件下，才可能体验到微弱或模糊的性吸引，频率低且不稳定。例如：您一年中可能只有几次短暂的性吸引，且强度不如他人强烈。
+          </li>
+          <li><strong>流动无性恋（Aceflux）</strong>：性吸引的强度和频率随时间、情绪或环境波动，有时接近无性恋，有时接近灰性恋。例如：某些时期您完全无性吸引，另一些时期偶尔出现微弱吸引。
+          </li>
+          <li><strong>突发无性恋（Acespike）</strong>：平时基本不体验性吸引，但会间歇性地经历短暂而相对强烈的性吸引体验。这种体验通常具有突发性、不可预测性和有限持续性的特点。</li>
+          <li><strong>无参与性恋（Aegosexual）</strong>：可能有抽象的性幻想、欣赏性内容或自慰，但不愿意在现实中参与任何涉及他人的性行为。例如：您可能享受阅读色情小说，但一想到现实性交就感到不适。
+          </li>
+          <li><strong>触发性恋（Apressexual）</strong>：性吸引的产生需要其他类型吸引（如情感吸引、浪漫吸引等）作为前提条件。与半性恋的区别在于强调多种吸引类型的相互作用机制，而非单纯的情感深度要求。
+          </li>
+          <li><strong>磨损性恋（Fraysexual）</strong>：对陌生人或关系表层化的对象容易产生性吸引，但随着情感联结的加深和关系的发展，性吸引反而会减弱或消失。呈现出与半性恋完全相反的模式。
+          </li>
+          <li><strong>单向性恋（Lithosexual /
+              Akiosexual）</strong>：能够对他人产生性吸引，但当这种吸引得到回应或可能发展为双向关系时，反而会产生不适感或失去兴趣。倾向于维持吸引关系的单向性质。</li>
+          <li><strong>回应性恋（Reciprosexual）</strong>：仅在明确感知到对方对自己存在性吸引时，才可能对该对象产生相应的性吸引。需要他人的吸引表达作为自身性吸引产生的必要条件。
+          </li>
+          <li><strong>接受性恋（Accipiosexual /
+              Iamvanosexual）</strong>：愿意接受来自他人的性行为或性表达，但缺乏主动发起或施行性行为的意愿。在性互动中更倾向于扮演接受者角色。</li>
+          <li><strong>给予性恋（Placiosexual）</strong>：愿意为他人提供性愉悦或参与性活动，但不期望或不愿意成为性行为的被动接受方。在性互动中更倾向于扮演给予者角色。</li>
+          <li><strong>厌性恋（Apothisexual）</strong>：对性行为本身存在强烈的反感、厌恶或回避情绪，明确拒绝参与任何形式的性活动。这种态度通常是稳定和持续的。</li>
+          <li><strong>不渴望关系性恋（Orchidsexual）</strong>：能够体验到性吸引，但不希望将这种吸引转化为实际的性行为或性关系。存在吸引感受与行为意愿的分离。</li>
+          <li><strong>渴望关系性恋（Cupiosexual）</strong>：尽管缺乏典型的性吸引体验，但基于寻求亲密感、情感连接、好奇心或其他非性吸引动机，仍然渴望建立性关系。</li>
+          <li><strong>疑性恋（Quoisexual）</strong>：对“性吸引”这一概念本身存在理解困难，无法确定自己是否曾经体验过性吸引，也不确定该概念是否适用于描述自己的体验。</li>
+          <li><strong>吸引模糊性恋（Idemsexual）</strong>：难以区分自己所体验的是性吸引还是其他类型的吸引（如柏拉图式吸引、审美吸引、情感吸引等），存在吸引类型识别的困难。</li>
+          <li><strong>感受模糊性恋（Desinosexual）</strong>：无法体验典型、明确的性吸引，只能感受到模糊、难以定义的吸引感受，难以判断这种体验是否属于性吸引范畴。</li>
+          <li><strong>性学兴趣性恋（Bellussexual）</strong>：虽然不体验性吸引，但对性相关话题、性文化、性研究等领域保持浓厚的学术兴趣或好奇心。</li>
+          <li><strong>创伤无性恋（Caedsexual）</strong>：原本具有体验性吸引的能力，但由于创伤性经历（如性侵犯、情感创伤等）的影响，逐渐失去体验性吸引的能力或意愿。</li>
+          <li><strong>多重无性恋（Myrsexual）</strong>：同时符合无性恋谱系中两种或多种身份认同的特征描述。这些身份可能同时存在、周期性交替出现，或呈现复杂的重叠模式。</li>
+        </ul>
+      </div>
+    </details>
+    </p>
+    <p><strong>性行为态度</strong>：即使在无性恋谱系中，人们对性行为的看法也多样化，与性吸引独立：
+    <ul>
+      <li><strong>性厌恶/排斥（Sex-Averse/Repulsed）</strong>：对性行为或相关内容感到强烈不适、排斥或厌恶，即使没有性吸引。请问：性相关的一切是否让您本能退缩？</li>
+      <li><strong>性无感（Sex-Indifferent）</strong>：对性行为没有强烈好恶，可能出于伴侣需求、好奇或其他原因参与，但不主动追求。请思考：性是否像“可有可无”的选项？</li>
+      <li><strong>性积极/友好（Sex-Positive/Favorable）</strong>：对性行为持积极或开放态度，甚至可能享受生理过程，尽管缺乏强烈的性吸引。请回想：是否无内在驱动力，但仍能从中获乐？</li>
+    </ul>
+    </p>
+    <p><strong>使用指南：</strong>本量表共包含 60 道题目，分为八个部分。请根据过去几年中较稳定、较自然的真实体验选择 0–5 分（0 分＝完全不符合，5
+      分＝完全符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看整体倾向、分维度分析、类型参考和个性化建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断或证明任何身份。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+  <form id="asexualQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" onclick="calculateResult()">计算结果</button>
+      <button type="button" onclick="resetForm()">重置问卷</button>
+      <button type="button" onclick="saveResultText()">保存文本结果</button>
+      <button type="button" onclick="saveResultImage()">保存图片结果</button>
+    </div>
+  </form>
+  <div class="result" id="result">
+    <h2 class="result-report-title">无性恋谱系深度探索报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前性吸引谱系画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas></div>
+      </div>
+    </div>
+    <div id="mainInterpretation"></div>
+    <div id="detailedAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/asexual-spectrum-scale.js" defer></script>
+</body>
+
+</html>

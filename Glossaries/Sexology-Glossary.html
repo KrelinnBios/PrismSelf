@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>性学术语表</title>
+  <meta name="description" content="性学术语表，以可搜索术语表形式收录性健康、性反应、同意、避孕、性传播感染、亲密关系与研究伦理等常见概念。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="性学术语表">
+  <meta property="og:description" content="性学术语表，以可搜索术语表形式收录性健康、性反应、同意、避孕、性传播感染、亲密关系与研究伦理等常见概念。">
+  <meta property="og:url" content="https://prismself.vip/Glossaries/Sexology-Glossary.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面分类标签配色与焦点样式（其余样式见 glossary-common.css） */
+    .tag.foundations {
+      background: var(--teal);
+    }
+
+    .tag.body {
+      background: var(--slate);
+    }
+
+    .tag.response {
+      background: var(--blue);
+    }
+
+    .tag.consent {
+      background: var(--green);
+    }
+
+    .tag.health {
+      background: var(--rose);
+    }
+
+    .tag.reproduction {
+      background: var(--violet);
+    }
+
+    .tag.relationships {
+      background: var(--amber);
+    }
+
+    .tag.research {
+      background: #7c5a1f;
+    }
+
+    .back-link:focus-visible,
+    .mini-nav a:focus-visible,
+    .filter:focus-visible,
+    .search:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./glossary-common.css?v=20260710b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <nav class="topbar" aria-label="页面导航">
+    <div class="topbar-inner">
+      <a class="back-link" href="../index.html">← 返回知识图谱</a>
+      <div class="mini-nav">
+        <a href="#glossary">术语检索</a>
+        <a href="#usage">使用提醒</a>
+        <a href="#sources">延伸阅读</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">SEXOLOGY · SEXUAL HEALTH, CONSENT AND RELATIONSHIPS</p>
+        <h1>性学术语表</h1>
+        <p class="lede">
+          这是一份面向入门阅读、关系沟通和健康教育的性学术语表。页面按基础概念、身体与生理、欲望与反应、同意与边界、避孕与感染、关系与实践、研究与社会语境整理常见术语，帮助你用更准确、尊重和不污名化的语言谈论相关议题。
+        </p>
+      </div>
+      <aside class="summary-panel" aria-label="术语表摘要">
+        <p>性学术语常跨越医学、心理学、公共卫生、社会学和社群经验。阅读时可以同时留意：它在描述身体、行为、身份、关系还是制度；它是否需要知情同意、健康风险或文化语境作为前提。</p>
+        <div class="stats">
+          <div class="stat"><b id="termCount">0</b><span>收录术语</span></div>
+          <div class="stat"><b>8</b><span>筛选分类</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="glossary" aria-labelledby="glossary-title">
+      <p class="notice">
+        本页是学习与沟通辅助，不构成医疗、心理或法律建议，也不用于判断任何人的身份、性经历或健康状态。涉及身体症状、避孕、感染筛查、创伤或亲密暴力时，请寻求合格专业人员或当地支持机构帮助。
+      </p>
+
+      <div class="tools">
+        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：同意、libido、STI"
+          aria-label="搜索术语">
+        <div class="filters" aria-label="分类筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="foundations" aria-pressed="false">基础概念</button>
+          <button class="filter" type="button" data-filter="body" aria-pressed="false">身体与生理</button>
+          <button class="filter" type="button" data-filter="response" aria-pressed="false">欲望与反应</button>
+          <button class="filter" type="button" data-filter="consent" aria-pressed="false">同意与边界</button>
+          <button class="filter" type="button" data-filter="health" aria-pressed="false">健康与感染</button>
+          <button class="filter" type="button" data-filter="reproduction" aria-pressed="false">避孕与生殖</button>
+          <button class="filter" type="button" data-filter="relationships" aria-pressed="false">关系与实践</button>
+          <button class="filter" type="button" data-filter="research" aria-pressed="false">研究与社会</button>
+        </div>
+      </div>
+
+      <div class="results-meta">
+        <h2 id="glossary-title">术语检索</h2>
+        <span id="resultCount" aria-live="polite">0 个结果</span>
+      </div>
+      <div id="categoryIntro" class="notice" hidden></div>
+      <div id="termGrid" class="term-grid"></div>
+      <div id="emptyState" class="empty">没有找到匹配的术语。可以换一个关键词，或切回“全部”。</div>
+    </section>
+
+    <section class="appendix" id="usage" aria-label="使用提醒与延伸阅读">
+      <div class="section-panel">
+        <h2>使用提醒</h2>
+        <ul>
+          <li>先看术语所属语境。性健康、性身份、性行为、性反应、关系协商和公共卫生常使用同一个“性”字，但讨论对象不同。</li>
+          <li>描述他人时优先使用当事人自己的称谓，不根据外貌、关系形式或性经历替他人判断身份。</li>
+          <li>涉及亲密行为时，关键前提是自愿、知情、具体、可撤回的同意，以及清晰的身体和情感边界。</li>
+          <li>页面中的英文用于辅助检索和延伸阅读；术语有多种中文译法时，卡片会列出常见又译或近译。</li>
+        </ul>
+      </div>
+
+      <div class="section-panel" id="sources">
+        <h2>延伸阅读</h2>
+        <ol class="source-list">
+          <li><a href="https://www.who.int/health-topics/sexual-health">World Health Organization: Sexual Health</a>
+          </li>
+          <li><a href="https://www.cdc.gov/sti/about/index.html">CDC: About Sexually Transmitted Infections</a></li>
+          <li><a href="https://www.cdc.gov/contraception/">CDC: Contraception</a></li>
+          <li><a href="https://www.plannedparenthood.org/learn">Planned Parenthood: Learn</a></li>
+          <li><a href="https://www.aasect.org/">AASECT</a></li>
+          <li><a href="https://www.siecus.org/">SIECUS</a></li>
+          <li><a href="https://www.acog.org/womens-health/faqs/effectiveness-of-birth-control-methods">ACOG:
+              Effectiveness of Birth Control Methods</a></li>
+          <li><a
+              href="https://www.merckmanuals.com/home/women-s-health-issues/sexual-dysfunction-in-women/overview-of-sexual-dysfunction-in-women">Merck
+              Manual: Overview of Sexual Dysfunction in Women</a></li>
+          <li><a
+              href="https://www.merckmanuals.com/home/men-s-health-issues/sexual-dysfunction-in-men/overview-of-sexual-dysfunction-in-men">Merck
+              Manual: Overview of Sexual Dysfunction in Men</a></li>
+          <li><a href="https://www.issm.info/sexual-health-qa">International Society for Sexual Medicine: Sexual Health
+              Q&amp;A</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script src="./scripts/sexology-glossary.js" defer></script>
+</body>
+
+</html>

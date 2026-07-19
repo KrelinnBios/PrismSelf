@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>BDSM 全景指南</title>
+  <meta name="description" content="BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="BDSM 全景指南">
+  <meta property="og:description" content="BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。">
+  <meta property="og:url" content="https://prismself.vip/Guides/BDSM-Comprehensive-Guide.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+<style>
+    :root {
+      --ink: #1a1410;
+      --paper: #f5f0e8;
+      --cream: #ede7d9;
+      --rust: #8b3a2a;
+      --gold: #b8860b;
+      --muted: #6b6055;
+      --border: #c8bfb0;
+      --accent-light: #f0e8d8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Noto Serif SC', serif;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* --- HEADER --- */
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 40px,
+          rgba(255, 255, 255, 0.015) 40px,
+          rgba(255, 255, 255, 0.015) 41px);
+    }
+
+    .header-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0.9;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    header h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .header-sub {
+      font-size: 0.85rem;
+      color: rgba(245, 240, 232, 0.55);
+      letter-spacing: 0.1em;
+      margin-top: 1rem;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .header-ornament {
+      margin: 2rem auto 0;
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    /* --- INTRO --- */
+    .intro-section {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 2rem;
+    }
+
+    .intro-section p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .intro-section strong {
+      color: var(--rust);
+      font-weight: 600;
+    }
+
+    .principle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .principle-card {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .principle-card::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(184, 134, 11, 0.3);
+      pointer-events: none;
+    }
+
+    .principle-card .p-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .principle-card .p-zh {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(245, 240, 232, 0.6);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 2rem 0;
+    }
+
+    /* --- CATEGORY SECTIONS --- */
+    .main-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .category-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .category-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .category-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* --- TERM CARDS --- */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .term-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      position: relative;
+      cursor: default;
+    }
+
+    .term-card.highlight {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+    }
+
+    .term-card.highlight .term-en {
+      color: var(--gold);
+    }
+
+    .term-card.highlight .term-desc {
+      color: rgba(245, 240, 232, 0.75);
+    }
+
+    .term-card.highlight .term-tag {
+      background: rgba(184, 134, 11, 0.2);
+      color: var(--gold);
+    }
+
+    .term-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 18px 18px 0;
+      border-color: transparent var(--border) transparent transparent;
+    }
+
+    .term-card.highlight .term-corner {
+      border-color: transparent var(--gold) transparent transparent;
+    }
+
+    .term-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--rust);
+      display: block;
+      margin-bottom: 0.15rem;
+      line-height: 1.2;
+    }
+
+    .term-zh {
+      font-size: 0.7rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .term-card.highlight .term-zh {
+      color: rgba(245, 240, 232, 0.45);
+    }
+
+    .term-desc {
+      font-size: 0.88rem;
+      color: #3d3028;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .term-desc a {
+      color: var(--rust);
+      font-weight: 500;
+      text-underline-offset: 0.18em;
+    }
+
+    .term-desc a:hover,
+    .term-desc a:focus-visible {
+      color: var(--ink);
+      text-decoration-thickness: 2px;
+    }
+
+    .term-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+    }
+
+    .term-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      background: rgba(139, 58, 42, 0.08);
+      color: var(--rust);
+      padding: 0.2rem 0.5rem;
+      border-radius: 0;
+      border: 1px solid rgba(139, 58, 42, 0.15);
+    }
+
+    /* --- PAIR CARDS --- */
+    .pair-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+    }
+
+    .pair-half {
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .pair-half:first-child {
+      background: var(--ink);
+      color: var(--paper);
+      border-right: 1px solid rgba(184, 134, 11, 0.3);
+    }
+
+    .pair-half:first-child .term-en {
+      color: var(--gold);
+    }
+
+    .pair-half:first-child .term-zh {
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .pair-half:first-child .term-desc {
+      color: rgba(245, 240, 232, 0.75);
+    }
+
+    .pair-half:last-child {
+      background: var(--cream);
+    }
+
+    .pair-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.8rem;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    .pair-half:first-child .pair-label {
+      color: var(--gold);
+    }
+
+    /* --- SPECTRUM BAR --- */
+    .spectrum-bar {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .spectrum-ends {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      gap: 0;
+      min-width: 200px;
+    }
+
+    .spectrum-end {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--muted);
+      white-space: nowrap;
+      padding: 0 0.5rem;
+    }
+
+    .spectrum-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--rust), var(--gold));
+      position: relative;
+    }
+
+    .spectrum-line::after {
+      content: '◆';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold);
+      font-size: 0.6rem;
+    }
+
+    .spectrum-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      flex: 1;
+      min-width: 180px;
+      font-weight: 300;
+    }
+
+    /* --- FOOTER NOTE --- */
+    .footer-note {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3rem 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-note::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 40px,
+          rgba(255, 255, 255, 0.01) 40px, rgba(255, 255, 255, 0.01) 41px);
+    }
+
+    .footer-note h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .footer-note p {
+      font-size: 0.88rem;
+      color: rgba(245, 240, 232, 0.65);
+      max-width: 600px;
+      margin: 0 auto 0.8rem;
+      font-weight: 300;
+      position: relative;
+      line-height: 1.9;
+    }
+
+    .footer-note .fn-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: rgba(184, 134, 11, 0.6);
+      margin-top: 1.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 600px) {
+      .pair-card {
+        grid-template-columns: 1fr;
+      }
+
+      .pair-half:first-child {
+        border-right: none;
+        border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+      }
+
+      .terms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .spectrum-ends {
+        min-width: 100%;
+      }
+    }
+
+    .toc-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .toc-card:focus-visible {
+      outline: 2px solid rgba(184, 134, 11, 0.7);
+      outline-offset: 3px;
+    }
+
+    .term-desc ul,
+    .term-desc ol {
+      margin: 0.6rem 0 0.2rem 1.1rem;
+    }
+
+    .term-desc li {
+      margin: 0.25rem 0;
+    }
+
+    /* ========== 新增：悬浮目录样式（优雅融合） ========== */
+    .floating-toc {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* 悬浮按钮 */
+    .toc-toggle-btn {
+      background: rgba(11, 18, 32, 0.92);
+      border: 1px solid var(--gold);
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      color: var(--gold);
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      appearance: none;
+      -webkit-appearance: none;
+      backdrop-filter: blur(2px);
+      background-color: rgba(11, 18, 32, 0.92);
+    }
+
+    .toc-toggle-btn:hover {
+      background: #ffffff;
+      border-color: var(--gold);
+      color: var(--rust);
+    }
+
+    /* 悬浮面板 —— 默认隐藏 */
+    .toc-panel {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 280px;
+      max-width: 85vw;
+      background: var(--cream);
+      border: 1px solid var(--gold);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      padding: 1.2rem 0.8rem;
+      border-radius: 0px;
+      transition: opacity 0.2s ease, visibility 0.2s;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .toc-panel.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* 面板头部 */
+    .toc-panel-header {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--rust);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .toc-panel-header span:first-child {
+      font-weight: 600;
+    }
+
+    .toc-close-icon {
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .toc-close-icon:hover {
+      color: var(--rust);
+    }
+
+    /* 目录列表容器 */
+    .toc-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-list li {
+      margin: 0.7rem 0;
+    }
+
+    .toc-list a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.85rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0.4rem 0.5rem;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+      font-weight: 400;
+    }
+
+    .toc-list a:hover {
+      background: rgba(139, 58, 42, 0.06);
+      border-left-color: var(--gold);
+      color: var(--rust);
+      transform: none;
+    }
+
+    .toc-list a[aria-current="true"] {
+      background: rgba(139, 58, 42, 0.08);
+      border-left-color: var(--gold);
+      color: var(--rust);
+      font-weight: 500;
+    }
+
+    .toc-list a:active {
+      background: rgba(139, 58, 42, 0.1);
+    }
+
+    /* 章节序号点缀 */
+    .toc-index {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      font-weight: 400;
+      width: 24px;
+      display: inline-block;
+      letter-spacing: 0;
+    }
+
+    .toc-title {
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    /* 平滑滚动增强 */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 2rem;
+    }
+
+    /* 移动端适配：悬浮按钮稍小，面板更舒适 */
+    @media (max-width: 600px) {
+      .floating-toc {
+        bottom: 16px;
+        right: 16px;
+      }
+
+      .toc-toggle-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+      }
+
+      .toc-panel {
+        bottom: 62px;
+        width: 260px;
+      }
+
+      .toc-list a {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.4rem;
+      }
+    }
+
+    .toc-toggle-btn {
+      animation: none;
+    }
+
+        :root[data-theme="dark"] {
+        --ink: #f0e9dd;
+        --paper: #14110c;
+        --cream: #1d1812;
+        --rust: #df8268;
+        --gold: #d9b454;
+        --muted: #b3a892;
+        --border: #3a3329;
+        --accent-light: #241d14;
+      }
+
+    :root[data-theme="dark"] .toc-toggle-btn:hover {
+      background: #ffffff;
+      border-color: var(--gold);
+      color: var(--rust);
+    }
+
+    :root[data-theme="dark"] header,
+    :root[data-theme="dark"] .principle-card,
+    :root[data-theme="dark"] .pair-half:first-child,
+    :root[data-theme="dark"] .footer-note,
+    :root[data-theme="dark"] .term-card.highlight {
+        background: #241d14;
+        border-color: #241d14;
+        color: #f0e9dd;
+      }
+
+    :root[data-theme="dark"] .term-desc {
+        color: #d8cfc0;
+      }
+
+    :root[data-theme="dark"] .prism-back-home {
+        background: rgba(20, 18, 14, 0.92) !important;
+        color: #e0d6c4 !important;
+        border-color: rgba(255, 255, 255, 0.14) !important;
+      }
+
+    :root[data-theme="dark"] .prism-back-home:hover {
+        color: #ffffff !important;
+        border-color: rgba(255, 255, 255, 0.28) !important;
+      }
+    @media (prefers-reduced-motion: reduce) {
+      .toc-toggle-btn {
+        transition: none;
+      }
+    }
+
+  </style>
+
+<style id="prism-back-home-style">
+    .prism-back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid rgba(24, 33, 47, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #6a7b8f;
+      font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    .prism-back-home:hover {
+      color: #111111;
+      border-color: rgba(24, 33, 47, 0.26);
+    }
+
+    @media (max-width: 520px) {
+      .prism-back-home {
+        top: 10px;
+        left: 10px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./guide-ai.css?v=7699a627bac7">
+<script src="../assets/theme.js?v=5c6de9e1446b"></script>
+  <script src="./guide-ai.js?v=11026dc5a932" defer></script>
+  </head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+<header>
+    <div class="header-label">BDSM Comprehensive Guide</div>
+    <h1>BDSM <em>全景指南</em></h1>
+    <div class="header-sub">定义 · 安全 · 角色 · 探索 · 同意 · 实践 · 法律 · 资源</div>
+    <div class="header-ornament"></div>
+  </header>
+
+<section class="intro-section">
+    <p>
+      这是一份面向公众的 BDSM 科普与安全指南，目标是用<strong>中立、严谨、可操作</strong>的方式解释核心概念、风险与沟通方法，帮助你在尊重他人和尊重自我的前提下做出明智选择。
+    </p>
+    <p>
+      本指南强调：BDSM 不能简单等同于“暴力”或“失控”。它讨论的是以<strong>知情同意</strong>为前提的互动与关系动态；任何时候都可以暂停、调整或退出。同意永远不是一次性的，也不能用来抵消伤害和忽视风险。
+    </p>
+
+<div class="principle-grid">
+      <div class="principle-card"><span class="p-en">SSC</span><span class="p-zh">安全 · 理智 · 自愿同意</span></div>
+      <div class="principle-card"><span class="p-en">RACK</span><span class="p-zh">风险知情 · 自愿同意</span></div>
+      <div class="principle-card"><span class="p-en">PRICK</span><span class="p-zh">个人责任 · 知情同意</span></div>
+      <div class="principle-card"><span class="p-en">Consent</span><span class="p-zh">同意可撤回</span></div>
+      <div class="principle-card"><span class="p-en">Care</span><span class="p-zh">事后照顾</span></div>
+    </div>
+
+<p style="font-size:0.82rem; color: var(--muted); font-style: italic;">
+      适用范围说明：本指南仅讨论成年人在私密、合法、双方充分知情同意前提下的实践与风险管理，不构成医疗或法律意见；任何涉及未成年人或非自愿的内容都不属于 BDSM 的范畴。
+    </p>
+
+<div class="divider"></div>
+
+<div class="category-title" style="margin-bottom: 1rem;">快速目录 · Quick Navigation</div>
+    <div class="terms-grid">
+      <a class="term-card toc-card" href="#core-definition">
+        <div class="term-corner"></div><span class="term-en">Definition</span><span class="term-zh">核心定义与历史</span>
+        <div class="term-desc">BDSM 的含义、范围边界、常见误区与简要历史脉络。</div>
+        <div class="term-tags"><span class="term-tag">概念</span><span class="term-tag">历史</span></div>
+      </a>
+      <a class="term-card toc-card highlight" href="#safety-frameworks">
+        <div class="term-corner"></div><span class="term-en">Safety</span><span class="term-zh">SSC / RACK /
+          PRICK</span>
+        <div class="term-desc">三种安全框架的侧重点、适用边界与如何落地到沟通和场景中。</div>
+        <div class="term-tags"><span class="term-tag">原则</span><span class="term-tag">风险管理</span></div>
+      </a>
+      <a class="term-card toc-card" href="#roles-boundaries">
+        <div class="term-corner"></div><span class="term-en">Roles</span><span class="term-zh">角色分类与权责</span>
+        <div class="term-desc">D/s、Top/Bottom、绳艺与服务型等角色边界与责任分配。</div>
+        <div class="term-tags"><span class="term-tag">权责</span><span class="term-tag">边界</span></div>
+      </a>
+      <a class="term-card toc-card" href="#self-exploration">
+        <div class="term-corner"></div><span class="term-en">Explore</span><span class="term-zh">偏好探索与测试解读</span>
+        <div class="term-desc">理解角色倾向分数、区分幻想与实践意愿，并把结果转化为可协商的边界清单。</div>
+        <div class="term-tags"><span class="term-tag">自我探索</span><span class="term-tag">测试解读</span></div>
+      </a>
+      <a class="term-card toc-card" href="#scene-setup">
+        <div class="term-corner"></div><span class="term-en">Scene</span><span class="term-zh">场景搭建与器具安全</span>
+        <div class="term-desc">环境准备、器具检查与高风险项的避坑原则。</div>
+        <div class="term-tags"><span class="term-tag">器具</span><span class="term-tag">安全</span></div>
+      </a>
+      <a class="term-card toc-card" href="#consent-process">
+        <div class="term-corner"></div><span class="term-en">Consent</span><span class="term-zh">沟通与同意流程</span>
+        <div class="term-desc">从“事前协商”到“事后复盘”的可执行流程与话术框架。</div>
+        <div class="term-tags"><span class="term-tag">沟通</span><span class="term-tag">流程</span></div>
+      </a>
+      <a class="term-card toc-card" href="#risk-emergency">
+        <div class="term-corner"></div><span class="term-en">Risk</span><span class="term-zh">风险识别与应急</span>
+        <div class="term-desc">常见风险信号、紧急停止与就医判断的底线清单。</div>
+        <div class="term-tags"><span class="term-tag">预警</span><span class="term-tag">应急</span></div>
+      </a>
+      <a class="term-card toc-card" href="#law">
+        <div class="term-corner"></div><span class="term-en">Law</span><span class="term-zh">法律法规科普</span>
+        <div class="term-desc">同意与法律、隐私与影像、公共场所与本地差异的常识。</div>
+        <div class="term-tags"><span class="term-tag">合规</span><span class="term-tag">隐私</span></div>
+      </a>
+      <a class="term-card toc-card" href="#glossary">
+        <div class="term-corner"></div><span class="term-en">Glossary</span><span class="term-zh">词汇速查表</span>
+        <div class="term-desc">角色、同意、玩法、心理状态与社群术语的中英文对照速查。</div>
+        <div class="term-tags"><span class="term-tag">词典</span><span class="term-tag">速查</span></div>
+      </a>
+      <a class="term-card toc-card" href="#resources">
+        <div class="term-corner"></div><span class="term-en">Resources</span><span class="term-zh">资源推荐</span>
+        <div class="term-desc">书籍、课程、社区与支持资源的选择建议。</div>
+        <div class="term-tags"><span class="term-tag">学习</span><span class="term-tag">支持</span></div>
+      </a>
+    </div>
+  </section>
+
+<div class="main-content">
+    <section id="core-definition" class="category-section">
+      <div class="category-title">核心定义与历史溯源 · Core Definition &amp; Context</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">BDSM</span><span class="term-zh">B — Bondage &amp;
+            Discipline &nbsp;·&nbsp; D — Domination &amp; Submission &nbsp;·&nbsp; SM — Sadism &amp; Masochism</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>B/D</strong>：束缚与纪律（规则、限制、仪式感与结构）。</li>
+              <li><strong>D/s</strong>：支配与服从（自愿的权力交换与关系动态）。</li>
+              <li><strong>S/M</strong>：施虐与受虐（以知情同意为前提的强烈感官刺激与情绪体验）。</li>
+            </ul>重要边界：BDSM 的“可行性”来自同意、沟通、风险管理与照顾；任何胁迫、欺骗、越界或不顾安全的行为都不被这些术语所正当化。
+          </div>
+          <div class="term-tags"><span class="term-tag">定义</span><span class="term-tag">边界</span><span
+              class="term-tag">同意</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Kink / Fetish</span><span class="term-zh">KINK ·
+            偏好；FETISH · 强偏好</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Kink</strong>：非主流但合法且自愿的偏好与玩法倾向，是一个很宽的集合。</li>
+              <li><strong>Fetish</strong>：对某类元素有更强的偏好，甚至可能影响“是否能进入状态”。不同人差异很大。</li>
+              <li>两者都不等于“病态”；关键在于是否自愿、是否安全、是否尊重边界。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">术语</span><span class="term-tag">去污名</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Why People Like It</span><span
+            class="term-zh">人们为何参与</span>
+          <div class="term-desc">
+            <ul>
+              <li>情绪调节：压力释放、被照顾感、掌控与被掌控的心理满足。</li>
+              <li>关系结构：规则、仪式与角色分工带来的安全感与稳定感。</li>
+              <li>感官体验：强烈刺激、专注状态（flow）与更清晰的身体/情绪反馈。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">动机</span><span class="term-tag">心理</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">History (Brief)</span><span
+            class="term-zh">历史溯源（简要）</span>
+          <div class="term-desc">
+            <ul>
+              <li>现代 BDSM 社群与安全框架主要在 20 世纪后半叶逐步形成，围绕“同意”“风险”“社区规范”不断发展。</li>
+              <li>绳艺、皮革文化、角色扮演与权力交换等元素在不同地区与亚文化中有各自的历史脉络。</li>
+              <li>当代更强调：去暴力化、去污名化、以知情同意与照顾为核心。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">历史</span><span class="term-tag">社群</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">CNC</span><span class="term-zh">协商不同意（Consensual
+            Non-Consent）</span>
+          <div class="term-desc">
+            <ul>
+              <li>指双方事前明确同意的"假装抵抗/不同意"的角色扮演场景，核心仍是<strong>真实的双方知情同意</strong>。</li>
+              <li>极高风险领域：需要充分的事前协商、具体边界（何种行为、何种强度、何时停止）、可靠的停止信号与事后照顾。</li>
+              <li>CNC 场景中，普通"说不"可能是角色台词而非真实意愿；因此<strong>必须约定独立的安全词</strong>，且双方对信号含义无歧义。</li>
+              <li>重要区分：CNC 不为任何真实的强迫、胁迫或越界行为提供正当性。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">高风险</span><span class="term-tag">角色扮演</span><span
+              class="term-tag">安全词</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Common Myths</span><span
+            class="term-zh">常见误区（快速澄清）</span>
+          <div class="term-desc">
+            <ul>
+              <li>“有支配/服从就等于现实不平等”——健康的 D/s 反而要求更强的沟通、尊重与可撤回。</li>
+              <li>“能忍痛才算厉害”——忍耐不是目标；安全与体验质量比强度更重要。</li>
+              <li>“签了协议就必须执行”——任何协议都不能取消随时停止的权利。</li>
+              <li>“不问就是默契”——默契应建立在清晰对齐与反复复盘之上。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">误区</span><span class="term-tag">澄清</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="safety-frameworks" class="category-section">
+      <div class="category-title">风险与同意框架 · SSC / RACK / PRICK</div>
+      <div class="spectrum-bar">
+        <div class="spectrum-ends"><span class="spectrum-end">Low Risk</span>
+          <div class="spectrum-line"></div><span class="spectrum-end">High Risk</span>
+        </div>
+        <p class="spectrum-desc">实践里不存在“完全安全”。更专业的目标是：识别风险 → 降低风险 → 可中断 → 可救援 → 可复盘。</p>
+      </div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">SSC</span><span class="term-zh">SAFE · SANE · CONSENSUAL
+            &nbsp;|&nbsp; 安全 · 理智 · 自愿同意</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Safe</strong>：采取可控的风险降低措施（不是“绝对零风险”）。</li>
+              <li><strong>Sane</strong>：参与者具备现实判断与自我调节能力，不在酒精、药物或失控情绪影响下冒险。</li>
+              <li><strong>Consensual</strong>：所有参与者都作出知情、明确、自愿且可撤回的同意。</li>
+            </ul>适合：入门阶段、风险较低玩法、初次合作与新关系磨合。
+          </div>
+          <div class="term-tags"><span class="term-tag">入门框架</span><span class="term-tag">清醒</span><span
+              class="term-tag">可撤回</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">RACK</span><span class="term-zh">RISK-AWARE CONSENSUAL
+            KINK &nbsp;|&nbsp; 风险知情 · 自愿同意的 Kink 实践</span>
+          <div class="term-desc">
+            <ul>
+              <li>强调：很多玩法都存在风险，关键在于参与者是否<strong>理解风险</strong>并主动同意。</li>
+              <li>要求：事前沟通更细（风险点、缓解措施、终止条件、应急方案）。</li>
+              <li>提醒：知情同意不是“免责条款”；能力、经验与边界决定可行范围。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">风险知情</span><span class="term-tag">协商</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">PRICK</span><span class="term-zh">PERSONAL RESPONSIBILITY
+            · INFORMED · CONSENSUAL · KINK &nbsp;|&nbsp; 个人责任 · 知情同意的 Kink 实践</span>
+          <div class="term-desc">
+            <ul>
+              <li>强调个人责任：对自己的身体、心理、边界与后果负责。</li>
+              <li>适合用来提醒：即便是“同意了”，也仍要持续评估风险与状态，及时停下。</li>
+              <li>实践重点：透明、复盘、可追溯的沟通记录（尤其是新搭档/高风险场景）。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">责任</span><span class="term-tag">复盘</span></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Hard Lines</span><span class="term-zh">底线清单（通用）</span>
+          <div class="term-desc">
+            <ul>
+              <li>任何一方不清醒或不具备判断力（醉酒、药物影响、强烈情绪失控）时不进行。</li>
+              <li>不做“不可中断/不可撤回”的承诺；安全词/停止信号必须有效。</li>
+              <li>不以嫉妒、控制、经济依赖、威胁或羞辱作为“同意”的条件。</li>
+              <li>高风险主题宁可不做：若缺乏训练与应急能力，应选择更低风险替代。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">红线</span><span class="term-tag">合意</span><span
+              class="term-tag">替代方案</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Safeword Systems</span><span
+            class="term-zh">安全词体系与常见变体</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>红/黄/绿（交通灯系统）</strong>：最常见。红=完全停止；黄=暂停或降速；绿=一切正常可继续。</li>
+              <li><strong>单词型</strong>：选一个日常对话中不会自然出现的词（如"菠萝""Alaska"），说出即停止一切。</li>
+              <li><strong>非语言信号</strong>：手握物品（掉落即停）、连续三次敲击、握力减弱等；适用于口塞或无法开口的场景。</li>
+              <li><strong>全词 vs 降级词</strong>：区分"完全终止"与"调整节奏"两种信号，有助于更细粒度的沟通。</li>
+              <li><strong>CNC 场景特殊性</strong>：角色扮演中"说不"可能是台词，因此必须单独约定与角色无关的真实安全词。</li>
+            </ul>无论使用哪种体系，事前必须双方确认含义；场景中定期 check-in 不能以"有安全词"为由省略。
+          </div>
+          <div class="term-tags"><span class="term-tag">信号体系</span><span class="term-tag">非语言</span><span
+              class="term-tag">CNC</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Risk Planning</span><span
+            class="term-zh">把原则落地成“计划”</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>风险点</strong>：可能伤到哪里？可能触发什么情绪？可能造成什么社会/法律后果？</li>
+              <li><strong>缓解措施</strong>：如何降低概率与伤害强度（工具、环境、技能、节奏）？</li>
+              <li><strong>停止条件</strong>：出现哪些信号就必须停止/降级？谁来判断？</li>
+              <li><strong>救援路径</strong>：工具在哪里？谁负责解除？什么时候呼叫急救？</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">计划</span><span class="term-tag">执行</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="roles-boundaries" class="category-section">
+      <div class="category-title">角色分类与权责边界 · Roles &amp; Responsibility</div>
+      <div class="pair-card">
+        <div class="pair-half">
+          <div class="pair-label">权力动态</div><span class="term-en">Dominant / Submissive</span><span class="term-zh"
+            style="display:block; margin-bottom:0.8rem; font-size:0.7rem; font-family:'Space Mono',monospace; letter-spacing:0.15em;">D/s：支配
+            · 服从</span>
+          <div class="term-desc">重点是“<strong>权力交换</strong>”。规则、称呼、权限与义务需要明确写出来，并能随时重新协商。<ul>
+              <li>支配方的权力来自被交托，因此同时承担安全与照顾责任。</li>
+              <li>服从方的“交托”必须可撤回，且保留关键否决权。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pair-half">
+          <div class="pair-label">行为分工</div><span class="term-en">Top / Bottom</span><span class="term-zh"
+            style="display:block; margin-bottom:0.8rem; font-size:0.7rem; font-family:'Space Mono',monospace; letter-spacing:0.15em; color:var(--muted);">主动方（Top）·
+            被动方（Bottom）</span>
+          <div class="term-desc">重点是“谁在做、谁在承受”。它不必包含权力等级。<ul>
+              <li>很多情境中：Top ≠ Dom，Bottom ≠ Sub。</li>
+              <li>把“技术/操作责任”和“权力/心理责任”分开讨论更清晰。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="terms-grid">
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Switch</span><span class="term-zh">切换型</span>
+          <div class="term-desc">可以在不同关系或不同场景中切换位置。Switch 的关键不是“摇摆”，而是更清楚自己在什么条件下更舒适。<ul>
+              <li>建议：把“可做/想做/不做”写成清单，避免用标签代替沟通。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">灵活</span><span class="term-tag">清单</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Rigger / Rope Bottom</span><span
+            class="term-zh">绳手（Rigger）与绳模（Rope Bottom）的权责</span>
+          <div class="term-desc">绳艺里常把“绑的人”和“被绑的人”作为独立角色讨论，双方都需要具备安全意识。<ul>
+              <li>绑方：对技术、解剖与应急负责；必须能快速释放。</li>
+              <li>被绑方：对自身感受与预警信号负责；及时表达麻木、刺痛、眩晕等异常。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">绳艺安全</span><span class="term-tag">应急</span></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Boundaries</span><span class="term-zh">边界与权利（必须明确）</span>
+          <div class="term-desc">
+            <ul>
+              <li>任何人都有：随时停止、随时改规则、随时离开的权利。</li>
+              <li>任何人都没有：以“角色”名义要求你沉默或忍受痛苦的权利。</li>
+              <li>同意的前提是信息完整：重要健康信息、禁忌项、影像/隐私处理必须提前说清。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">权利</span><span class="term-tag">信息完整</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Protocol / Service</span><span
+            class="term-zh">协议与服务型动态</span>
+          <div class="term-desc">
+            <ul>
+              <li>把“规则”写得可验证：具体行为、频率、例外情况与复盘机制。</li>
+              <li>把“惩罚”写得可中断：不以羞辱、恐惧和不可逆后果作为控制手段。</li>
+              <li>任何日常结构都不应妨碍现实生活安全（工作、学习、社交、身心健康）。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">协议</span><span class="term-tag">结构</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Group / Observer</span><span
+            class="term-zh">多人场景与观察者</span>
+          <div class="term-desc">
+            <ul>
+              <li>每个参与者都要对齐：可做/不可做、身体接触范围、称呼与权力层级。</li>
+              <li>观察者同样需要“被允许”的边界：是否可看、可评议、可拍摄。</li>
+              <li>确定责任人：谁有权喊停、谁负责应急、谁负责复盘记录。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">多人</span><span class="term-tag">隐私</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="self-exploration" class="category-section">
+      <div class="category-title">偏好探索与测试解读 · Preference Exploration</div>
+      <div class="spectrum-bar">
+        <div class="spectrum-ends"><span class="spectrum-end">Curiosity</span>
+          <div class="spectrum-line"></div><span class="spectrum-end">Practice</span>
+        </div>
+        <p class="spectrum-desc">测试分数更适合作为对话起点，而不是身份判定。好奇、幻想、想尝试、愿意长期实践，是四个不同层次。</p>
+      </div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">How to Read a Result</span><span
+            class="term-zh">如何理解角色倾向分数</span>
+          <div class="term-desc">
+            <ul>
+              <li>分数反映你对一组自陈题目的当前回答，不是临床诊断、能力认证或永久身份。</li>
+              <li>多个倾向可以同时较高，例如既可能偏 Switch，也对绳艺、感官刺激或服务型动态感兴趣。</li>
+              <li>结果会受题目理解、近期关系、幻想内容、文化语境与当下状态影响，隔一段时间重测可能不同。</li>
+              <li>低分不代表排斥，高分也不代表必须实践；最终仍要逐项讨论行为、强度、条件与边界。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">非诊断</span><span class="term-tag">可变化</span><span
+              class="term-tag">多维度</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Role / Activity / Relationship</span><span
+            class="term-zh">把“标签”拆成三个维度</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>角色位置</strong>：Dominant、Submissive、Switch，描述权力动态中的偏好位置。</li>
+              <li><strong>活动偏好</strong>：如绳艺、冲击、感官、羞耻主题或观看/展示，描述对具体体验的兴趣。</li>
+              <li><strong>关系结构</strong>：如服务型、照顾型、Owner/Pet、长期 D/s 或非单偶，描述互动如何延伸到场景之外。</li>
+            </ul>
+            同一个标签在不同人那里可能指向完全不同的行为。先问“它对你具体意味着什么”，再讨论是否匹配。
+          </div>
+          <div class="term-tags"><span class="term-tag">角色</span><span class="term-tag">活动</span><span
+              class="term-tag">关系</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Power &amp; Challenge</span><span
+            class="term-zh">权力、服从与挑战型互动</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Dominant / Submissive</strong>：关注自愿的权力交托、引导与服从。</li>
+              <li><strong>Brat / Brat Tamer</strong>：通过调皮、挑战规则与回应挑战获得互动张力；“挑战”仍必须在预先同意的范围内。</li>
+              <li><strong>Master/Mistress / Slave</strong>：常指更强、更持续的权力交换想象或关系语言；称谓不产生现实上的无限权利。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">权力交换</span><span class="term-tag">规则</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Sensation &amp; Technique</span><span
+            class="term-zh">感官、强度与技术型倾向</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Sadist / Masochist</strong>：对施加或接受经协商的强烈感官刺激感兴趣，不等同于现实中的伤害欲或受害需求。</li>
+              <li><strong>Rigger / Rope Bottom</strong>：偏好绑缚技术中的操作方或接受方；倾向分数不能证明技术能力。</li>
+              <li><strong>Experimentalist</strong>：对多种新体验保持开放；开放不等于无边界，更需要逐项评估风险。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">感官</span><span class="term-tag">技术</span><span
+              class="term-tag">能力边界</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Care &amp; Persona</span><span
+            class="term-zh">照顾、身份与情境扮演</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Caregiver / Little</strong>：以照顾、依赖、规则或年龄化角色语言营造情境；仅讨论具备同意能力的成年人之间的扮演。</li>
+              <li><strong>Owner / Pet</strong>：以照料、训练、宠物化行为或身份表达建立动态，具体边界因人而异。</li>
+              <li><strong>Primal Hunter / Prey</strong>：强调追逐、本能与身体互动；不能以“本能”为由跳过协商或停止信号。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">照顾型</span><span class="term-tag">角色扮演</span><span
+              class="term-tag">成年人</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Expression &amp; Visibility</span><span
+            class="term-zh">表达、观看与关系开放度</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Exhibitionist / Voyeur</strong>：对被观看或观看感兴趣；第三方是否知情、场所是否合法、影像是否传播都必须单独获得同意。</li>
+              <li><strong>Degrader / Degradee</strong>：对经协商的贬低或羞耻主题感兴趣；需要明确禁词、身份敏感点与事后修复方式。</li>
+              <li><strong>Non-monogamist</strong>：倾向于协商式非单偶关系；它是关系结构偏好，不等于默认允许隐瞒或越界。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">隐私</span><span class="term-tag">情绪安全</span><span
+              class="term-tag">关系结构</span></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Fantasy ≠ Consent</span><span
+            class="term-zh">幻想、兴趣与同意不是一回事</span>
+          <div class="term-desc">
+            <ul>
+              <li>“喜欢想象”不等于“愿意现实尝试”；“愿意尝试”也不等于同意所有强度、对象和场景。</li>
+              <li>可以把每项兴趣分别标成：只限幻想、愿意讨论、低强度尝试、有经验且喜欢、目前不想碰。</li>
+              <li>测试结果只能由本人解释。伴侣不能用分数推定同意，更不能以“你明明测出来喜欢”为由施压。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">幻想</span><span class="term-tag">意愿</span><span
+              class="term-tag">反施压</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Yes / No / Maybe</span><span
+            class="term-zh">把结果转成可协商清单</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Yes</strong>：愿意做什么？和谁、在哪里、什么强度、持续多久？</li>
+              <li><strong>No</strong>：哪些行为、语言、身体部位、身份主题或记录方式是硬限制？</li>
+              <li><strong>Maybe</strong>：需要哪些条件才考虑，例如更多信任、知识、训练、低强度试验或第三方支持？</li>
+              <li><strong>Aftercare</strong>：结束后需要陪伴、确认、独处、补给，还是次日联系？</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">清单</span><span class="term-tag">具体条件</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Matching Red Flags</span><span
+            class="term-zh">用测试匹配关系时的警示信号</span>
+          <div class="term-desc">
+            <ul>
+              <li>用“真正的 Dom/Sub 应该……”否定你的边界，或要求你用服从证明身份。</li>
+              <li>把高分解释成默认授权，拒绝逐项协商、安全词、过程确认或事后照顾。</li>
+              <li>把危险行为包装成“新手必修”，贬低循序渐进、学习技术或寻求帮助。</li>
+              <li>要求立刻提供真实身份、私密影像、住址或经济信息，或阻止你联系朋友与支持网络。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">红旗</span><span class="term-tag">防操控</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="scene-setup" class="category-section">
+      <div class="category-title">场景搭建与器具安全使用规范 · Scene &amp; Safety</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Pre-Check</span><span class="term-zh">开场前检查（通用）</span>
+          <div class="term-desc">
+            <ul>
+              <li>清醒程度：无酒精/药物影响；情绪稳定，能正常判断与表达。</li>
+              <li>环境：私密、温度适宜、地面无绊倒物；手机可用且知道地址。</li>
+              <li>应急：安全剪/解绳工具、基础急救包、饮水与保暖物品可触达。</li>
+              <li>规则：安全词/停止手势明确；终止条件与复盘方式达成一致。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">准备</span><span class="term-tag">应急</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Restraints</span><span class="term-zh">约束与束缚（原则）</span>
+          <div class="term-desc">
+            <ul>
+              <li>原则：可快速解除、可持续沟通、可检查循环与感觉。</li>
+              <li>避免高风险区域：颈部/气道、脊柱与关节、神经与血管密集处。</li>
+              <li>出现麻木、持续刺痛、皮肤发紫/发白、手脚冰冷等信号应立即停止并解除。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">循环</span><span class="term-tag">神经</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Impact</span><span class="term-zh">冲击类刺激（原则）</span>
+          <div class="term-desc">
+            <ul>
+              <li>从低强度开始，逐步加量；过程中持续确认反应与承受度。</li>
+              <li>避开高风险部位（尤其是头颈、脊柱、关节与肾区等）。</li>
+              <li>器具：边缘无毛刺、无裂纹；使用前后清洁消毒，避免交叉污染。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">递进</span><span class="term-tag">部位</span><span
+              class="term-tag">清洁</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Sensation</span><span
+            class="term-zh">感官类与温度/电刺激（谨慎）</span>
+          <div class="term-desc">
+            <ul>
+              <li>遮蔽视听会显著提高不确定性：更需要清晰的停止信号与频繁的 check-in。</li>
+              <li>温度与电刺激对皮肤/神经有潜在伤害风险；缺乏训练时不要尝试升级玩法。</li>
+              <li>任何影响呼吸或意识的玩法风险极高：缺乏专业训练与应急能力时应避免。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">高风险</span><span class="term-tag">谨慎</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Hygiene</span><span class="term-zh">卫生与材料（通用）</span>
+          <div class="term-desc">
+            <ul>
+              <li>优先选择可清洁、无明显异味与破损的材料；与皮肤接触物品要定期消毒。</li>
+              <li>共享器具需更严格的清洁与隔离策略；不要在皮肤破损处继续刺激。</li>
+              <li>如涉及体液或黏膜接触，遵循基础防护与性健康原则，降低感染风险。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">材料</span><span class="term-tag">防护</span></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Minimal Kit</span><span
+            class="term-zh">最小安全套装（建议常备）</span>
+          <div class="term-desc">
+            <ul>
+              <li>安全剪/解绳工具（随手可拿到，而不是放在房间另一头）。</li>
+              <li>一次性手套、基础消毒用品、创可贴/纱布等简易急救物资。</li>
+              <li>饮水、糖分补给、保暖毯/外套。</li>
+              <li>可用手机与共享地址（含楼层/门牌/进出路线）。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">常备</span><span class="term-tag">应急</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Scene Design</span><span
+            class="term-zh">场景脚本与节奏（更容易“可控”）</span>
+          <div class="term-desc">
+            <ul>
+              <li>先定“目标体验”：放松、仪式感、轻刺激、角色互动等，再选匹配动作。</li>
+              <li>使用“渐进结构”：热身 → 主要内容 → 收尾 → 事后照顾，避免突然升级。</li>
+              <li>在关键节点主动 check-in：换道具、换姿势、换规则、加大强度前。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">节奏</span><span class="term-tag">可控</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="consent-process" class="category-section">
+      <div class="category-title">沟通与 Consent 实操流程 · Practical Consent</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">6-Step Flow</span><span class="term-zh">从协商到复盘（六步）</span>
+          <div class="term-desc">
+            <ol>
+              <li><strong>事前协商</strong>：目标、边界、风险点、终止条件、影像与隐私。</li>
+              <li><strong>清单对齐</strong>：Yes / No / Maybe；触发点、禁忌、健康信息。</li>
+              <li><strong>信号系统</strong>：安全词（如红/黄/绿）+ 非语言信号（手势/敲击）。</li>
+              <li><strong>过程 check-in</strong>：按节奏确认，特别是在升级强度或切换玩法时。</li>
+              <li><strong>事后照顾</strong>：补水保暖、情绪安抚、边界确认；不给“必须立刻解释”的压力。</li>
+              <li><strong>复盘迭代</strong>：哪些有效、哪些不适、下次如何调整与避免复发。</li>
+            </ol>
+          </div>
+          <div class="term-tags"><span class="term-tag">流程</span><span class="term-tag">可执行</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Negotiation Prompts</span><span
+            class="term-zh">协商提纲（可直接照抄）</span>
+          <div class="term-desc">
+            <ul>
+              <li>“今天我们想要的体验是什么？更偏情绪、结构，还是感官？”</li>
+              <li>“哪些是绝对不做？哪些可以试但需要慢慢来？”</li>
+              <li>“有没有健康相关注意事项？（循环/呼吸/过敏/既往创伤/药物等）”</li>
+              <li>“如果你说‘黄’，我应该怎么做才是对你最有帮助的？”</li>
+              <li>“是否允许影像记录？如何存储、删除、分享？”</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">话术</span><span class="term-tag">隐私</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Consent Rules</span><span class="term-zh">同意的基本规则</span>
+          <div class="term-desc">
+            <ul>
+              <li>同意必须是：明确、知情、自愿、可撤回、具体到行为与边界。</li>
+              <li>沉默、僵住、迎合、害怕、经济/情感压力下的“答应”都不是可靠同意。</li>
+              <li>同意不是对未来的永久授权：任何阶段都需要重新确认。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">规则</span><span class="term-tag">可撤回</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Signals</span><span
+            class="term-zh">安全词与信号系统（建议双通道）</span>
+          <div class="term-desc">
+            <ul>
+              <li>口头：红/黄/绿（或停止/慢一点/可以继续）。</li>
+              <li>非口头：手势、敲击节奏、握手压力等（适用于口塞〔gag〕、高噪音或无法开口的场景）。</li>
+              <li>约定“失联处理”：如果对方无法回应，应默认停止并解除限制。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">信号</span><span class="term-tag">双通道</span></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Documentation</span><span
+            class="term-zh">把协商写下来（尤其是新搭档）</span>
+          <div class="term-desc">
+            <ul>
+              <li>写“边界”而不是写“标签”：可做/不可做/可尝试但需条件。</li>
+              <li>写“条件”而不是写“口号”：强度上限、频率、触发点、就医/停止标准。</li>
+              <li>写“隐私处理”：是否允许拍摄、谁可看、如何存储、何时删除。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">记录</span><span class="term-tag">清晰</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="risk-emergency" class="category-section">
+      <div class="category-title">风险识别与应急处理 · Risk &amp; Emergency</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Stop Protocol</span><span
+            class="term-zh">紧急停止协议（任何人可触发）</span>
+          <div class="term-desc">
+            <ol>
+              <li>立刻停止当前动作与升级行为，回到安全距离与可沟通状态。</li>
+              <li>解除限制（尤其是影响循环、呼吸或行动能力的部分）。</li>
+              <li>评估：意识是否清醒、呼吸是否正常、是否有持续疼痛/麻木/出血。</li>
+              <li>必要时寻求医疗帮助；不以“怕尴尬/怕麻烦”为由拖延。</li>
+            </ol>
+          </div>
+          <div class="term-tags"><span class="term-tag">应急</span><span class="term-tag">止损</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Warning Signs</span><span
+            class="term-zh">常见风险信号（出现即降级或停止）</span>
+          <div class="term-desc">
+            <ul>
+              <li>身体：麻木、刺痛、手脚冰冷、皮肤变色、头晕、恶心、呼吸异常。</li>
+              <li>情绪：突然恐惧、失语、强烈解离感、无法交流或持续哭泣/惊恐。</li>
+              <li>沟通：对方无法按约定回应“绿/黄/红”，或出现明显迎合与僵住。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">预警</span><span class="term-tag">降级</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">When to Seek Help</span><span
+            class="term-zh">何时必须就医（建议优先安全）</span>
+          <div class="term-desc">
+            <ul>
+              <li>意识丧失、呼吸困难、胸痛、抽搐、严重过敏反应。</li>
+              <li>持续性麻木/无力/剧痛，或疑似关节、骨骼、神经损伤。</li>
+              <li>无法止血的出血、明显感染迹象（红肿热痛加重、发热）。</li>
+            </ul>如不确定，宁可寻求专业帮助，也不要硬扛。
+          </div>
+          <div class="term-tags"><span class="term-tag">就医</span><span class="term-tag">底线</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Aftercare</span><span
+            class="term-zh">事后照顾与复盘（减少后遗影响）</span>
+          <div class="term-desc">
+            <ul>
+              <li>身体：补水、保暖、轻食；必要时处理淤青、擦伤与皮肤护理。</li>
+              <li>情绪：给予安抚、确认与空间；避免指责与追问。</li>
+              <li>复盘：用“我感受到/我需要”表达，记录下次要调整的强度、节奏与禁区。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">照顾</span><span class="term-tag">复盘</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Sub Drop / Top Drop</span><span
+            class="term-zh">"Drop"与延迟反应（常见但可管理）</span>
+          <div class="term-desc">一些人在场景后数小时到数天出现情绪低落、空虚或疲惫感（俗称 sub-drop / top-drop），并不罕见。<ul>
+              <li><strong>Sub Drop</strong>：服从方在内啡肽退潮后可能出现空虚、哭泣或焦虑；提前约定第二天是否需要关怀消息或独处空间。</li>
+              <li><strong>Top Drop</strong>：主导方同样可能出现情绪低落或自我怀疑，常被忽视；双方互相照顾同等重要。</li>
+              <li>用睡眠、饮食、补水与稳定的日常恢复；必要时寻求专业支持。</li>
+              <li>若出现持续的恐惧、闪回或强烈解离，应暂停相关实践并寻求帮助。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">延迟</span><span class="term-tag">恢复</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="law" class="category-section">
+      <div class="category-title">法律法规科普 · Legal Basics (General)</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Consent ≠ Legal Immunity</span><span
+            class="term-zh">同意不等于“法律免责”</span>
+          <div class="term-desc">
+            <ul>
+              <li>不同地区对伤害、胁迫、影像与隐私的法律标准不同；“双方同意”不一定足以作为法律抗辩。</li>
+              <li>任何涉及威胁、勒索、强迫、限制人身自由等行为，都可能触及刑事或治安风险。</li>
+              <li>本页仅为常识科普；如涉及纠纷或风险场景，请咨询当地专业人士。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">法律</span><span class="term-tag">合规</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Age &amp; Capacity</span><span
+            class="term-zh">年龄与行为能力</span>
+          <div class="term-desc">
+            <ul>
+              <li>未成年人相关的任何性或亲密互动都不可接受且可能违法。</li>
+              <li>成年人也需要具备清醒判断力：醉酒/药物影响、严重精神失衡时的“同意”不可靠。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">年龄</span><span class="term-tag">能力</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Privacy &amp; Media</span><span
+            class="term-zh">隐私、影像与传播</span>
+          <div class="term-desc">
+            <ul>
+              <li>拍摄/录音必须明确同意，且要说明存储方式、加密、保留时长与删除机制。</li>
+              <li>未经同意传播可能触及严重法律风险，并造成不可逆的现实伤害。</li>
+              <li>公共平台与社交媒体另有平台规则与合规风险。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">隐私</span><span class="term-tag">影像</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Contracts &amp; Records</span><span
+            class="term-zh">协议、证据与现实风险</span>
+          <div class="term-desc">
+            <ul>
+              <li>“协议/合同”更多是沟通工具，不等于法律上可强制执行的授权。</li>
+              <li>如出现纠纷：优先人身安全与求助；必要时保留沟通记录与伤情信息。</li>
+              <li>在不同国家/地区，关于伤害、限制自由、影像传播等的法律后果差异很大。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">现实</span><span class="term-tag">风险</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="glossary" class="category-section">
+      <div class="category-title">常用词汇速查 · Quick Glossary</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Core Role Terms</span><span class="term-zh">角色核心词</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Dom / Dominant</strong>：主导方；在权力交换中承担引导、控制的角色，同时承担安全与照顾责任。</li>
+              <li><strong>Sub / Submissive</strong>：服从方；主动将部分自主权交托给 Dom，始终保留随时撤回的权利。</li>
+              <li><strong>Top</strong>：场景中的主动/操作方，不一定包含权力层级（不等于 Dom）。</li>
+              <li><strong>Bottom</strong>：场景中的接受/被动方，不一定包含权力层级（不等于 Sub）。</li>
+              <li><strong>Switch</strong>：可以在不同关系或场景中灵活切换 Top/Bottom 或 Dom/Sub 角色。</li>
+              <li><strong>Rigger</strong>：绳艺中负责绑缚的人；需具备解剖知识与快速解除能力。</li>
+              <li><strong>Rope Bottom / Bunny</strong>：绳艺中被绑缚的人；需主动表达身体感受与预警信号。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">角色</span><span class="term-tag">权力动态</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Consent &amp; Safety Terms</span><span
+            class="term-zh">同意与安全核心词</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Safeword</strong>：安全词；任何一方说出即立刻停止或降速，不受角色扮演影响。</li>
+              <li><strong>Hard Limit</strong>：硬限制；绝对不做的边界，不可被谈判或压力改变。</li>
+              <li><strong>Soft Limit</strong>：软限制；尚未准备好但可在充分沟通后考虑尝试的边界。</li>
+              <li><strong>Negotiation</strong>：协商；场景前对目标、边界、风险与应急方案的细致沟通。</li>
+              <li><strong>Check-in</strong>：过程中主动确认对方状态与意愿的行为。</li>
+              <li><strong>Aftercare</strong>：事后照顾；场景结束后对身体与情绪的安抚与恢复支持。</li>
+              <li><strong>Debrief / 复盘</strong>：场景后回顾哪些有效、哪些需调整，为下次实践提供依据。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">同意</span><span class="term-tag">边界</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Scene &amp; Play Terms</span><span
+            class="term-zh">场景与玩法词</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Scene</strong>：一段有开始与结束的 BDSM 互动，通常有约定的规则与角色。</li>
+              <li><strong>Play</strong>：泛指 BDSM 实践活动，强调自愿与实验性。</li>
+              <li><strong>Bondage</strong>：束缚；用绳、布带、手铐等限制行动自由。</li>
+              <li><strong>Impact Play</strong>：冲击类刺激；包括用手、鞭子、桨等施加力道的玩法。</li>
+              <li><strong>Sensation Play</strong>：感官类玩法；使用温度、质感、振动等刺激感官。</li>
+              <li><strong>Role Play</strong>：角色扮演；双方扮演约定角色，可与权力动态结合。</li>
+              <li><strong>CNC</strong>：协商不同意（Consensual Non-Consent）；在真实同意前提下扮演"假装抵抗"的高风险场景。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">场景</span><span class="term-tag">玩法</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Psychological Terms</span><span
+            class="term-zh">心理与状态词</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Subspace</strong>：部分接受方在场景中报告的高度专注、恍惚或飘离体验；其反应和判断可能改变，不能据此推定持续同意。</li>
+              <li><strong>Topspace / Domspace</strong>：部分操作方或主导方报告的高度专注状态，也可能降低对外部信号的觉察，需要主动 check-in。</li>
+              <li><strong>Sub Drop</strong>：场景后服从方出现的情绪低落、空虚或疲惫感，可能延迟数小时到数天出现。</li>
+              <li><strong>Top Drop</strong>：场景后主导方出现的类似情绪低落，常被忽视但同样需要照顾。</li>
+              <li><strong>Trigger</strong>：触发点；特定行为、语言或情境可能激活的情绪或创伤反应，需提前说明。</li>
+              <li><strong>Afterdrop</strong>：社群中对场景后低落、疲惫、颤抖或空虚等反应的概括性称呼；成因因人而异，不应自行归结为单一激素机制。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">心理</span><span class="term-tag">状态</span><span
+              class="term-tag">照顾</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Relationship &amp; Community Terms</span><span
+            class="term-zh">关系与社群词</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>D/s Relationship</strong>：将权力动态延伸到日常关系结构中的持续关系形式。</li>
+              <li><strong>TPE（Total Power Exchange）</strong>：全面权力交换；高度结构化、高承诺的关系形式，需极高信任与透明度。</li>
+              <li><strong>Collar</strong>：项圈；在部分社群中有象征承诺关系的意义，类似于戒指，含义因人而异。</li>
+              <li><strong>Munch</strong>：非场景的社群聚会，通常在普通公共场所，以交流和认识新朋友为目的。</li>
+              <li><strong>Kink-Aware Professional</strong>：了解并尊重 BDSM 文化的心理咨询师或医疗专业人士。</li>
+              <li><strong>Vanilla</strong>：非 BDSM 的主流性关系或互动方式；无贬义。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">关系</span><span class="term-tag">社群</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="resources" class="category-section">
+      <div class="category-title">资源推荐 · Further Resources</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Books</span><span class="term-zh">入门书目（英文为主）</span>
+          <div class="term-desc">
+            <ul>
+              <li>SM 101（Jay Wiseman）</li>
+              <li>The New Topping Book / The New Bottoming Book（Dossie Easton &amp; Janet Hardy）</li>
+              <li>Playing Well with Others（Lee Harrington &amp; Mollena Williams）</li>
+              <li>The Ethical Slut（非单偶/开放关系沟通经典）</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">书籍</span><span class="term-tag">入门</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Skills</span><span class="term-zh">学习与训练建议</span>
+          <div class="term-desc">
+            <ul>
+              <li>优先学习风险管理：基础急救、沟通协商、心理照顾与应急流程。</li>
+              <li>器具/绳艺等技术类内容建议从可信渠道、线下课程或有口碑的教学体系开始。</li>
+              <li>把“能停下”和“会复盘”视为核心技能，而不仅是动作技能。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">训练</span><span class="term-tag">技能</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Support</span><span class="term-zh">支持与求助</span>
+          <div class="term-desc">
+            <ul>
+              <li>寻找尊重多元与知情同意的咨询/治疗资源（如具备 kink-aware 经验的专业人士）。</li>
+              <li>如遭遇越界、胁迫或伤害：优先保证人身安全，保留证据并寻求可信支持。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">支持</span><span class="term-tag">安全</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Community Norms</span><span
+            class="term-zh">如何筛选更安全的资源与社群</span>
+          <div class="term-desc">
+            <ul>
+              <li>看是否强调同意与安全：是否公开反对胁迫、是否鼓励复盘与学习。</li>
+              <li>看是否尊重边界：是否允许拒绝、是否反对“新人必须服从”的文化。</li>
+              <li>看是否重视隐私：是否禁止偷拍视频/强制曝光，是否有处理纠纷的机制。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">筛选</span><span class="term-tag">社群</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Online Exploration</span><span
+            class="term-zh">本次内容参考入口与使用边界</span>
+          <div class="term-desc">
+            <ul>
+              <li><a href="https://www.bdsmtest.org/" target="_blank" rel="noopener noreferrer">BDSM Test</a>：可用于浏览角色倾向词汇和生成自我反思问题；结果属于自陈式探索，不是科学诊断或匹配证明。</li>
+              <li><a href="https://zhuanlan.zhihu.com/p/1904196260195447647" target="_blank"
+                  rel="noopener noreferrer">知乎文章</a>：可作为中文网络语境下的延伸阅读；二手科普中的分类与说法应结合专业安全资料交叉核对。</li>
+              <li>阅读任何角色分类时，都应回到具体行为、风险、边界与照顾需求，而不是只比较标签或百分比。</li>
+            </ul>
+          </div>
+          <div class="term-tags"><span class="term-tag">来源</span><span class="term-tag">阅读边界</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<footer class="footer-note">
+    <h3>关于这份全景指南</h3>
+    <p>本页以“同意—风险—照顾”为主线，梳理 BDSM 的核心概念、实践流程与常见风险。内容旨在支持安全沟通与自我保护，而不是鼓励任何人进行超出能力与边界的尝试。</p>
+    <p>如果你打算实践：把<strong>清醒、可撤回的同意、明确边界、应急准备、事后照顾与复盘</strong>视为最低标准。任何让你感到不安或被逼迫的互动，都应当被停止。</p>
+    <div class="fn-label">SSC · Safe, Sane &amp; Consensual &nbsp;|&nbsp; RACK · Risk-Aware Consensual Kink
+      &nbsp;|&nbsp; PRICK · Personal Responsibility · Informed · Consensual · Kink</div>
+  </footer>
+
+<!-- ========== 悬浮目录组件 ========== -->
+  <div class="floating-toc">
+    <button type="button" class="toc-toggle-btn" aria-label="打开目录导航" aria-controls="tocPanel" aria-expanded="false" title="点击展开/收起目录">≡</button>
+    <div class="toc-panel" id="tocPanel">
+      <div class="toc-panel-header">
+        <span>目录</span><span class="toc-close-icon" id="closeTocBtn" aria-label="关闭目录">✕</span>
+      </div>
+      <ul class="toc-list" id="dynamicTocList">
+        <!-- 动态生成章节链接列表 -->
+      </ul>
+    </div>
+  </div>
+
+<script>
+    (function () {
+      // ---------- 1. 平滑滚动 + 优雅增强 (所有内部锚点链接) ----------
+      // 让原有目录卡片 + 悬浮动态链接都享受平滑滚动
+      const allInternalLinks = document.querySelectorAll('a[href^="#"]');
+      function smoothScrollToElement(targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // 可选：更新URL hash但不触发跳动
+          if (history.pushState) {
+            history.pushState(null, null, `#${targetId}`);
+          } else {
+            window.location.hash = targetId;
+          }
+        }
+      }
+      allInternalLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          const hash = this.getAttribute('href');
+          if (hash && hash !== '#' && hash.startsWith('#')) {
+            e.preventDefault();
+            const id = hash.substring(1);
+            smoothScrollToElement(id);
+            // 如果悬浮面板开着，关闭面板 (提升体验)
+            const panel = document.getElementById('tocPanel');
+            if (panel && panel.classList.contains('open')) {
+              panel.classList.remove('open');
+            }
+          }
+        });
+      });
+
+      // ---------- 2. 动态生成悬浮目录 (基于所有带id的 .category-section) ----------
+      const sections = Array.from(document.querySelectorAll('.main-content .category-section[id]'));
+      const tocListContainer = document.getElementById('dynamicTocList');
+      if (tocListContainer && sections.length) {
+        tocListContainer.innerHTML = '';
+        sections.forEach((section, idx) => {
+          const sectionId = section.id;
+          // 提取可读标题: 优先取 .category-title 纯文本，否则使用 id 转义
+          let titleText = '';
+          const catTitle = section.querySelector('.category-title');
+          if (catTitle) {
+            // 取得中文部分 (取第一个文本节点或整体，去掉英文)
+            let raw = catTitle.innerText.trim();
+            // 保留简洁显示: 分割中英文, 通常前面是中文
+            const splitIdx = raw.indexOf('·');
+            if (splitIdx !== -1) {
+              titleText = raw.substring(0, splitIdx).trim();
+            } else {
+              titleText = raw.length > 30 ? raw.substring(0, 28) + '…' : raw;
+            }
+          }
+          if (!titleText) {
+            // fallback 根据id生成友好名称
+            const map = {
+              'core-definition': '核心定义',
+              'safety-frameworks': '安全原则',
+              'roles-boundaries': '角色与权责',
+              'self-exploration': '偏好探索',
+              'scene-setup': '场景搭建',
+              'consent-process': '沟通与同意',
+              'risk-emergency': '风险与应急',
+              'law': '法律法规',
+              'resources': '资源推荐',
+              'glossary': '词汇速查'
+            };
+            titleText = map[sectionId] || sectionId.replace(/-/g, ' ');
+          }
+          const listItem = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${sectionId}`;
+          const indexSpan = document.createElement('span');
+          indexSpan.className = 'toc-index';
+          indexSpan.textContent = String(idx + 1);
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'toc-title';
+          titleSpan.textContent = titleText;
+          link.appendChild(indexSpan);
+          link.appendChild(titleSpan);
+          listItem.appendChild(link);
+          tocListContainer.appendChild(listItem);
+        });
+      }
+
+      // 为所有动态生成的目录链接添加点击关闭面板的功能
+      const allTocLinks = document.querySelectorAll('.toc-list a');
+      const panelForClose = document.getElementById('tocPanel');
+      allTocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          // 关闭悬浮面板
+          if (panelForClose) {
+            panelForClose.classList.remove('open');
+          }
+        });
+      });
+
+      // ========= 新增：滚动高亮当前章节 =========
+      // 获取所有需要监听的章节（与生成目录时使用的 sections 一致）
+      const sectionsForHighlight = Array.from(document.querySelectorAll('.main-content .category-section[id]'));
+      // 获取所有目录链接（与生成目录的 a 标签对应）
+      const tocLinks = Array.from(tocListContainer.querySelectorAll('a'));
+
+      // 辅助函数：移除所有高亮，然后对指定 id 的章节对应的链接添加高亮
+      function highlightCurrentSection(sectionId) {
+        // 移除所有链接的 aria-current 属性
+        tocLinks.forEach(link => link.removeAttribute('aria-current'));
+        // 找到对应 href 为 `#${sectionId}` 的链接，添加高亮
+        const activeLink = tocLinks.find(link => link.getAttribute('href') === `#${sectionId}`);
+        if (activeLink) {
+          activeLink.setAttribute('aria-current', 'true');
+        }
+      }
+
+      // 使用 IntersectionObserver 检测哪个章节进入视口
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // 找出所有可见比例大于 0 的条目，按可见比例排序，取最大的一个
+          let bestEntry = null;
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+                bestEntry = entry;
+              }
+            }
+          }
+          if (bestEntry && bestEntry.target.id) {
+            highlightCurrentSection(bestEntry.target.id);
+          }
+        },
+        {
+          // 根为视口，threshold 设置多个阈值确保平滑触发
+          threshold: [0.1, 0.3, 0.5, 0.7],
+          rootMargin: '-10% 0px -30% 0px'  // 让章节顶部靠近视口顶部时即触发高亮
+        }
+      );
+
+      // 监听所有章节
+      sectionsForHighlight.forEach(section => observer.observe(section));
+
+      // 初始化：若 URL 有 hash，优先高亮对应章节；否则高亮第一个可见章节或第一个章节
+      function initHighlight() {
+        const hash = window.location.hash.substring(1);
+        if (hash && sectionsForHighlight.some(s => s.id === hash)) {
+          highlightCurrentSection(hash);
+        } else {
+          // 查找当前视口中最靠上的章节
+          let best = null;
+          for (const section of sectionsForHighlight) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top > 0 && (best === null || rect.top < best.top)) {
+              best = section;
+            }
+          }
+          if (best) {
+            highlightCurrentSection(best.id);
+          } else if (sectionsForHighlight.length > 0) {
+            highlightCurrentSection(sectionsForHighlight[0].id);
+          }
+        }
+      }
+      initHighlight();
+
+      // 当用户点击目录链接进行平滑滚动时，手动更新高亮（避免 Observer 延迟）
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            const targetId = href.substring(1);
+            highlightCurrentSection(targetId);
+            // 原有平滑滚动逻辑已经存在，不需要额外处理，但为了确保高亮，这里立即设置
+          }
+        });
+      });
+
+      // ---------- 3. 悬浮按钮交互 + 关闭按钮 ----------
+      const toggleBtn = document.querySelector('.toc-toggle-btn');
+      const panel = document.getElementById('tocPanel');
+      const closeBtn = document.getElementById('closeTocBtn');
+
+      function openPanel() {
+        if (panel) panel.classList.add('open');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closePanel() {
+        if (panel) panel.classList.remove('open');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+      function togglePanel() {
+        if (panel && panel.classList.contains('open')) {
+          closePanel();
+        } else {
+          openPanel();
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePanel();
+        });
+      }
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closePanel();
+        });
+      }
+      // 点击面板外部关闭（点击文档其他区域时关闭面板，但不影响链接内部）
+      document.addEventListener('click', function (event) {
+        if (!panel || !panel.classList.contains('open')) return;
+        const isClickInside = panel.contains(event.target) || toggleBtn.contains(event.target);
+        if (!isClickInside) {
+          closePanel();
+        }
+      });
+      // 防止面板内点击冒泡导致意外关闭
+      if (panel) {
+        panel.addEventListener('click', (e) => e.stopPropagation());
+      }
+
+      // 可选: 滚动时自动关闭面板（减少遮挡感）
+      let scrollTimer;
+      window.addEventListener('scroll', function () {
+        if (panel && panel.classList.contains('open')) {
+          if (scrollTimer) clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(() => {
+            closePanel();
+          }, 180);
+        }
+      });
+    })();
+  </script>
+  </body>
+
+</html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOGIESC 术语表</title>
+  <meta name="description" content="SOGIESC 术语表，以可搜索术语表形式收录 200 个性取向、性别认同与表达以及性别特征相关概念。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="SOGIESC 术语表">
+  <meta property="og:description" content="SOGIESC 术语表，以可搜索术语表形式收录 200 个性取向、性别认同与表达以及性别特征相关概念。">
+  <meta property="og:url" content="https://prismself.vip/Glossaries/SOGIESC-Glossary.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./glossary-common.css?v=20260710b">
+  <style>
+    /* 本页与标准词汇表的差异样式（基础样式见 glossary-common.css，需在其后加载） */
+    :root {
+      --ink: #18212f;
+      --ink-mid: #415469;
+      --ink-soft: #718096;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --line: rgba(24, 33, 47, 0.12);
+      --teal: #167061;
+      --blue: #1f5f9c;
+      --rose: #a33a62;
+      --amber: #8a6318;
+      --green: #247344;
+      --violet: #6b46a8;
+      --shadow: 0 10px 30px rgba(24, 33, 47, 0.08);
+    }
+
+    :root[data-theme="dark"] .back-link {
+      color: #8a9bb0;
+    }
+
+    :root[data-theme="dark"] .back-link:hover {
+      color: #ffffff;
+    }
+
+    .back-link:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .mini-nav a:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--teal);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .summary-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f9fbfd;
+      padding: 20px;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: #ffffff;
+      font-size: 0.74rem;
+      line-height: 1.2;
+    }
+
+    .tag.core {
+      background: var(--teal);
+    }
+
+    .tag.orientation {
+      background: var(--rose);
+    }
+
+    .tag.behavior {
+      background: var(--rose);
+    }
+
+    .tag.gender {
+      background: var(--blue);
+    }
+
+    .tag.expression {
+      background: var(--blue);
+    }
+
+    .tag.body {
+      background: var(--green);
+    }
+
+    .tag.care {
+      background: var(--violet);
+    }
+
+    .tag.diagnosis {
+      background: var(--violet);
+    }
+
+    .tag.norms {
+      background: var(--amber);
+    }
+
+    .tag.stigma {
+      background: var(--amber);
+    }
+
+    .tag.culture {
+      background: var(--amber);
+    }
+
+    .tag.rights {
+      background: var(--teal);
+    }
+
+    .aliases {
+      margin: -4px 0 0;
+      color: var(--ink-soft);
+      font-size: 0.86rem;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+    }
+
+    .note {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+    }
+
+    .empty {
+      display: none;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 36px 18px;
+      text-align: center;
+      color: var(--ink-soft);
+      background: #ffffff;
+    }
+
+    .appendix {
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .section-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-panel p,
+    .section-panel li {
+      color: var(--ink-mid);
+      font-size: 0.94rem;
+    }
+
+    .section-panel ul {
+      margin: 10px 0 0;
+      padding-left: 1.2em;
+    }
+
+    .friends-panel {
+      margin-top: 18px;
+    }
+
+    .friend-links {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .friend-link {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
+      transition: background 180ms ease, border-color 180ms ease;
+    }
+
+    .friend-link:hover {
+      background: #eef2f6;
+    }
+
+    .friend-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(31, 95, 156, 0.12);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 0.98rem;
+      flex: 0 0 auto;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+    }
+
+    .friend-content {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .friend-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .friend-title {
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .friend-meta {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(24, 33, 47, 0.14);
+      color: var(--ink-mid);
+      background: rgba(24, 33, 47, 0.04);
+      flex: 0 0 auto;
+    }
+
+    .friend-meta.zh {
+      border-color: rgba(22, 112, 97, 0.2);
+      background: rgba(22, 112, 97, 0.1);
+      color: var(--teal);
+    }
+
+    .friend-meta.en {
+      border-color: rgba(31, 95, 156, 0.2);
+      background: rgba(31, 95, 156, 0.1);
+      color: var(--blue);
+    }
+
+    .friend-desc {
+      margin: 0;
+      color: var(--ink-mid);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 920px) {
+
+      .hero,
+      .appendix {
+        grid-template-columns: 1fr;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .friend-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .term-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .friend-links {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --ink: #e7ecf3;
+      --ink-mid: #aab8c7;
+      --ink-soft: #8595a4;
+      --bg: #0f141b;
+      --panel: #161d27;
+      --line: rgba(255, 255, 255, 0.1);
+      --teal: #3fb89e;
+      --blue: #5aa0e0;
+      --rose: #d97a98;
+      --amber: #cda44e;
+      --green: #52b873;
+      --violet: #a98be0;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    :root[data-theme="dark"] .topbar {
+      background: rgba(15, 20, 27, 0.92);
+    }
+
+    :root[data-theme="dark"] header,
+    :root[data-theme="dark"] .search,
+    :root[data-theme="dark"] .filter,
+    :root[data-theme="dark"] .notice,
+    :root[data-theme="dark"] .empty {
+      background: #11161f;
+    }
+
+    :root[data-theme="dark"] .filter[aria-pressed="true"] {
+      background: rgba(63, 184, 158, 0.16);
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    :root[data-theme="dark"] .summary-panel,
+    :root[data-theme="dark"] .section-panel {
+      background: #161d27;
+    }
+
+    :root[data-theme="dark"] .friend-link {
+      background: linear-gradient(180deg, #161d27 0%, #11161f 100%);
+    }
+
+    :root[data-theme="dark"] .friend-link:hover {
+      background: #1b2230;
+    }
+
+    :root[data-theme="dark"] .mini-nav a {
+      color: #8a9bb0;
+    }
+
+    :root[data-theme="dark"] .mini-nav a:hover {
+      color: #ffffff;
+    }
+
+    /* 抵消公共层(标准词汇表)与本页的差异 */
+    .tag {
+      white-space: normal;
+    }
+
+    .eyebrow {
+      letter-spacing: normal;
+    }
+
+    .note {
+      line-height: inherit;
+    }
+
+    .appendix .section-panel {
+      height: auto;
+    }
+
+    .section-panel .source-list {
+      margin: 0;
+    }
+
+    :root[data-theme="dark"] .stat {
+      background: var(--panel);
+    }
+  </style>
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <nav class="topbar" aria-label="页面导航">
+    <div class="topbar-inner">
+      <a class="back-link" href="../index.html">← 返回知识图谱</a>
+      <div class="mini-nav">
+        <a href="#glossary">术语检索</a>
+        <a href="#usage">使用提醒</a>
+        <a href="#sources">来源</a>
+        <a href="#friends">友情链接</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">SOGIESC · SEXUAL ORIENTATION, GENDER IDENTITY AND EXPRESSION, AND SEX CHARACTERISTICS</p>
+        <h1>SOGIESC 术语表</h1>
+        <p class="lede">
+          本页以加拿大移民和难民委员会的中文 SOGIESC 术语表为基础，补充联合国难民署、GLAAD 和中文跨性别资料中的常用解释，帮助你在学习、写作、翻译和日常沟通中更准确地使用相关词语。
+        </p>
+      </div>
+      <aside class="summary-panel" aria-label="术语表摘要">
+        <p>术语会随社群、地域和时间变化。最稳妥的做法是：优先尊重当事人的自我称谓；不确定时询问；避免把性取向、性别认同、性别表达和性别特征混为一谈。</p>
+        <div class="stats">
+          <div class="stat"><b id="termCount">0</b><span>收录术语</span></div>
+          <div class="stat"><b>12</b><span>筛选分类</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="glossary" aria-labelledby="glossary-title">
+      <p class="notice">
+        这里的定义是学习与沟通用语，不用于替代当事人的自我描述，也不作为医学、法律或身份判定。某些中文译法沿用主要来源第 1 条的 IRB Mandarin PDF 原文；如社群中已有更尊重的常用说法，本页在注释中给出提醒。
+      </p>
+
+      <div class="tools">
+        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：非二元、pansexual"
+          aria-label="搜索术语">
+        <div class="filters" aria-label="分类筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="core" aria-pressed="false">基础框架</button>
+          <button class="filter" type="button" data-filter="orientation" aria-pressed="false">取向与吸引</button>
+          <button class="filter" type="button" data-filter="behavior" aria-pressed="false">行为与关系</button>
+          <button class="filter" type="button" data-filter="gender" aria-pressed="false">性别身份</button>
+          <button class="filter" type="button" data-filter="expression" aria-pressed="false">表达与称谓</button>
+          <button class="filter" type="button" data-filter="body" aria-pressed="false">身体与性征</button>
+          <button class="filter" type="button" data-filter="care" aria-pressed="false">过渡与护理</button>
+          <button class="filter" type="button" data-filter="diagnosis" aria-pressed="false">医疗与诊断</button>
+          <button class="filter" type="button" data-filter="norms" aria-pressed="false">规范与制度</button>
+          <button class="filter" type="button" data-filter="stigma" aria-pressed="false">歧视与污名</button>
+          <button class="filter" type="button" data-filter="culture" aria-pressed="false">社群与文化</button>
+          <button class="filter" type="button" data-filter="rights" aria-pressed="false">权利与可见性</button>
+        </div>
+      </div>
+
+      <div class="results-meta">
+        <h2 id="glossary-title">术语检索</h2>
+        <span id="resultCount" aria-live="polite">0 个结果</span>
+      </div>
+      <div id="categoryIntro" class="notice" hidden></div>
+      <div id="termGrid" class="term-grid"></div>
+      <div id="emptyState" class="empty">没有找到匹配的术语。可以换一个关键词，或切回“全部”。</div>
+    </section>
+
+    <section class="appendix" id="usage" aria-label="使用提醒与来源">
+      <div class="section-panel">
+        <h2>使用提醒</h2>
+        <ul>
+          <li>“性取向”描述被谁吸引，“性别认同”描述对自身性别的内在认识，“性别表达”描述外在呈现，“性别特征”描述身体相关特征——四者相互独立，不能彼此推断（例如不能从性别认同推出性取向）。</li>
+          <li>有些词曾被病理化或污名化，例如 homosexual、transsexual、hermaphrodite；除非当事人自称、历史引用或语境必要，宜选用更中性的表达。</li>
+          <li>面对具体的人，优先使用其希望的姓名、代词与自我称谓，并允许随时调整；术语用于帮助沟通，不用于替他人判定身份或贴标签。中文“他/她/TA”等代词实践仍在变化。</li>
+          <li>写作与翻译时，首次出现可给出“中文译名 + 英文原词/缩写”，后文保持一致；译法不确定时可回看主要来源第 1 条的 IRB Mandarin PDF。</li>
+          <li>站内译名约定（仅列常见多译项）：Heteronormativity 用“异性恋本位”；Heterosexual Hegemony 用“异性恋霸权”；Amatonormativity
+            用“浪漫本位”；Compulsory Sexuality 用“强制性性规范”；Gender-affirming Care 用“性别肯定护理”；Gender Dysphoria
+            用“性别不安”（量表语境可写“性别焦虑”）。</li>
+        </ul>
+      </div>
+
+      <div class="section-panel" id="sources">
+        <h2>主要来源</h2>
+        <ol class="source-list">
+          <li><a
+              href="https://irb.gc.ca/en/interpreters/Documents/SOGIESC_Glossaries/SOGIESC_List_of_Terms_Mandarin.pdf">Immigration
+              and Refugee Board of Canada: SOGIESC List of Terms, Mandarin PDF</a></li>
+          <li><a href="https://www.refworld.org/reference/tools/unhcr/2024/en/147995">UNHCR Multilingual Glossary of
+              Terms on SOGIESC</a></li>
+          <li><a
+              href="https://emergency.unhcr.org/protection/persons-risk/lesbian-gay-bisexual-transgender-and-intersex-lgbti-persons">UNHCR:
+              Protecting LGBTIQ+ persons</a></li>
+          <li><a href="https://glaad.org/reference/terms">GLAAD Media Reference Guide: LGBTQ Terms</a></li>
+          <li><a href="https://glaad.org/reference/trans-terms">GLAAD Media Reference Guide: Transgender Terms</a></li>
+          <li><a href="https://lgbtq.ucsf.edu/glossary-terms">UCSF LGBTQ Resource Center: LGBTQIA+ Glossary</a></li>
+          <li><a
+              href="https://www.huffpost.com/entry/guys-on-the-side-looking-beyond-gay-tops-and-bottoms_b_3082484">HuffPost:
+              Guys on the Side (Joe Kort, 2013)</a></li>
+          <li><a href="https://www.grindr.com/blog/sides">Grindr Blog: Sides</a></li>
+          <li><a href="https://aboutrans.info/docs/terms">aboutTrans: 跨性别相关概念术语</a></li>
+          <li><a
+              href="https://www.queermargins.tw/lesbian-theory-and-compulsory-heterosexuality">酷儿翻越：复兴女同志理论：强制异性恋、异性恋常规与异性恋霸权</a>
+          </li>
+          <li><a href="https://www.wpath.org/soc8">WPATH: Standards of Care, Version 8 (SOC-8)</a></li>
+          <li><a href="https://pflag.org/glossary/">PFLAG National Glossary of Terms</a></li>
+          <li><a href="https://www.hrc.org/resources/glossary-of-terms">Human Rights Campaign: Glossary of Terms</a>
+          </li>
+          <li><a
+              href="https://theanarchistlibrary.org/library/andie-nordgren-the-short-instructional-manifesto-for-relationship-anarchy">Andie
+              Nordgren: The Short Instructional Manifesto for Relationship Anarchy (2006)</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Tongqi">Wikipedia: Tongqi</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section-panel friends-panel" id="friends" aria-label="友情链接">
+      <h2>友情链接</h2>
+      <ul class="friend-links" aria-label="外部参考站点">
+        <li>
+          <a class="friend-link" href="https://lgbtqia.wiki/wiki/LGBTQIA%2B_Wiki" target="_blank"
+            rel="noopener noreferrer">
+            <span class="friend-mark" aria-hidden="true">EN</span><span class="friend-content">
+              <span class="friend-top">
+                <span class="friend-title">LGBTQIA+ Wiki</span>
+
+              </span><span class="friend-desc">综合术语与社群条目</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="friend-link" href="https://wiki.asexuality.org/w/index.php?title=Main_Page" target="_blank"
+            rel="noopener noreferrer">
+            <span class="friend-mark" aria-hidden="true">EN</span><span class="friend-content">
+              <span class="friend-top">
+                <span class="friend-title">Asexuality Wiki</span>
+
+              </span><span class="friend-desc">无性恋谱系资料库</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="friend-link" href="https://nonbinary.wiki/wiki/Main_Page" target="_blank" rel="noopener noreferrer">
+            <span class="friend-mark" aria-hidden="true">EN</span><span class="friend-content">
+              <span class="friend-top">
+                <span class="friend-title">Nonbinary Wiki</span>
+
+              </span><span class="friend-desc">非二元与性别多元资料</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="friend-link" href="https://mtf.wiki/zh-cn" target="_blank" rel="noopener noreferrer">
+            <span class="friend-mark" aria-hidden="true">ZH</span><span class="friend-content">
+              <span class="friend-top">
+                <span class="friend-title">mtf.wiki</span>
+
+              </span><span class="friend-desc">MTF 过渡与生活信息</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="friend-link" href="https://ftm.wiki/zh-cn/" target="_blank" rel="noopener noreferrer">
+            <span class="friend-mark" aria-hidden="true">ZH</span><span class="friend-content">
+              <span class="friend-top">
+                <span class="friend-title">ftm.wiki</span>
+
+              </span><span class="friend-desc">FTM 过渡与生活信息</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="friend-link" href="https://transchinese.org/" target="_blank" rel="noopener noreferrer">
+            <span class="friend-mark" aria-hidden="true">ZH</span><span class="friend-content">
+              <span class="friend-top">
+                <span class="friend-title">TransChinese</span>
+
+              </span><span class="friend-desc">中文跨性别社群资料与工具</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./scripts/sogiesc-glossary.js" defer></script>
+</body>
+
+</html>

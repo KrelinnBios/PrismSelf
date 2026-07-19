@@ -1,0 +1,2598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrismSelf · 性别·心理·人际</title>
+  <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、术语索引、调查对谈、共鸣刻度、自评量表与关系对话工具。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="icon/logo.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://prismself.vip/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="PrismSelf · 性别·心理·人际">
+  <meta property="og:description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，涵盖分析图表、专题指南、术语索引、调查对谈、共鸣刻度、自评量表与关系对话工具。">
+  <meta property="og:url" content="https://prismself.vip/">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a2332;
+      --ink-mid: #3d5166;
+      --ink-soft: #6b7f96;
+      --ink-pale: #b0bfcc;
+      --search-bg: #ffffff;
+      --search-border: rgba(61, 81, 102, 0.16);
+      --search-placeholder: #64788c;
+      --search-icon: #7a8ca0;
+      --search-clear-bg: #f5f7f9;
+      --search-focus-border: rgba(61, 81, 102, 0.32);
+      --search-focus-ring: rgba(61, 81, 102, 0.12);
+      --footer-text: #617589;
+      --footer-text-strong: #526578;
+      --footer-link: #607387;
+      --footer-link-hover: #1a2332;
+      --bg: #f7f9fb;
+      --bg-card: #ffffff;
+      --teal: #2b7a62;
+      --teal-lt: #3fa882;
+      --blue: #185a9d;
+      --blue-lt: #2e7dce;
+      --rose: #be123c;
+      --rose-lt: #fb7185;
+      --amber: #7a5c18;
+      --amber-lt: #c4923a;
+      --slate: #475569;
+      --slate-lt: #64748b;
+      --cyan: #0e7490;
+      --cyan-lt: #38bdf8;
+      --purple: #5b21b6;
+      --purple-lt: #8b5cf6;
+      --orange: #ea580c;
+      --orange-lt: #fb923c;
+      --green: #15803d;
+      --green-lt: #86efac;
+      --border: rgba(0, 0, 0, 0.07);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.09);
+      --r: 20px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(43, 122, 98, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 100%, rgba(24, 90, 157, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 72px 24px 0;
+      text-align: center;
+    }
+
+    .site-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(43, 122, 98, 0.1);
+      color: var(--teal);
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 6px 15px;
+      border-radius: 40px;
+      border: 1px solid rgba(43, 122, 98, 0.2);
+      margin-bottom: 26px;
+    }
+
+    .site-badge-mark {
+      width: 26px;
+      height: 26px;
+    }
+
+    h1.site-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(2.05rem, 5.2vw, 3.35rem);
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 18px;
+    }
+
+    .site-desc {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+
+    .layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+      position: relative;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 32px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar .stat {
+      --sidebar-highlight: var(--teal);
+      --sidebar-highlight-rgb: 43, 122, 98;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 86px;
+      height: 82px;
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      border-radius: 12px;
+      padding: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+
+    .sidebar .stat:hover {
+      background: rgba(var(--sidebar-highlight-rgb), 0.08);
+      box-shadow: inset 0 0 0 1px rgba(var(--sidebar-highlight-rgb), 0.18);
+    }
+
+    .sidebar .stat[aria-pressed="true"] {
+      background: linear-gradient(180deg, rgba(var(--sidebar-highlight-rgb), 0.15), rgba(var(--sidebar-highlight-rgb), 0.08));
+      box-shadow:
+        inset 0 0 0 1px rgba(var(--sidebar-highlight-rgb), 0.3),
+        0 8px 20px rgba(var(--sidebar-highlight-rgb), 0.1);
+    }
+
+    .sidebar .stat[aria-pressed="true"] .stat-num,
+    .sidebar .stat[aria-pressed="true"] .stat-label {
+      color: var(--sidebar-highlight);
+    }
+
+    .sidebar .stat-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .sidebar .stat-label {
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.03em;
+    }
+
+    .search-wrap {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 44px;
+      border-radius: 999px;
+      border: 1px solid var(--search-border);
+      background: var(--search-bg);
+      box-shadow: var(--shadow-sm);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--search-focus-border);
+      box-shadow: 0 0 0 3px var(--search-focus-ring);
+    }
+
+    .search-input::placeholder {
+      color: var(--search-placeholder);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      fill: var(--search-icon);
+      pointer-events: none;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--search-clear-bg);
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .search-clear.is-visible {
+      display: inline-flex;
+    }
+
+    .section.is-hidden,
+    .support-section.is-hidden,
+    .card.is-hidden,
+    .support-card.is-hidden {
+      display: none;
+    }
+
+    .search-empty-wrap {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-empty {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .search-empty-wrap.is-visible {
+      display: flex;
+    }
+
+    main {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .section-icon.edu {
+      background: linear-gradient(135deg, #d9f0ec, #e2f0fa);
+    }
+
+    .section-icon.scale {
+      background: linear-gradient(135deg, #fde8ef, #f5e8fd);
+    }
+
+    .section-icon.guide {
+      background: linear-gradient(135deg, #e8fdf5, #fdf8e8);
+    }
+
+    .section-icon.glossary {
+      background: linear-gradient(135deg, #edf0ff, #e8fdf5);
+    }
+
+    .section-icon.topic {
+      background: linear-gradient(135deg, #e8f4fd, #f5e8fd);
+    }
+
+    .section-icon.bingo {
+      background: linear-gradient(135deg, #fdf2f8, #fef3c7);
+    }
+
+    .section-icon.tool {
+      background: linear-gradient(135deg, #e2f4f0, #f7e9ee);
+    }
+
+    .section-icon.support {
+      background: linear-gradient(135deg, #fdf8e8, #e8f4fd);
+    }
+
+    h2.section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: var(--ink-pale);
+      font-family: 'DM Mono', monospace;
+      margin-left: auto;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card:focus-visible {
+      outline: 3px solid rgba(43, 122, 98, 0.28);
+      outline-offset: 3px;
+    }
+
+    .card:hover::before,
+    .card:focus-visible::before {
+      opacity: 1;
+    }
+
+    .card.blue::before {
+      background: linear-gradient(90deg, #185a9d 0%, #2563eb 52%, #38bdf8 100%);
+    }
+
+    .card:hover.blue {
+      border-color: rgba(24, 90, 157, 0.25);
+    }
+
+    .card.rose::before {
+      background: linear-gradient(90deg, #be123c 0%, #e11d48 52%, #fb923c 100%);
+    }
+
+    .card:hover.rose {
+      border-color: rgba(190, 18, 60, 0.25);
+    }
+
+    .card.amber::before {
+      background: linear-gradient(90deg, #7a5c18 0%, #d97706 52%, #facc15 100%);
+    }
+
+    .card:hover.amber {
+      border-color: rgba(122, 92, 24, 0.25);
+    }
+
+    .card.slate::before {
+      background: linear-gradient(90deg, #334155 0%, #64748b 52%, #93c5fd 100%);
+    }
+
+    .card:hover.slate {
+      border-color: rgba(71, 85, 105, 0.25);
+    }
+
+    .card.cyan::before {
+      background: linear-gradient(90deg, #0e7490 0%, #14b8a6 52%, #67e8f9 100%);
+    }
+
+    .card:hover.cyan {
+      border-color: rgba(14, 116, 144, 0.25);
+    }
+
+    .card.purple::before {
+      background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 52%, #60a5fa 100%);
+    }
+
+    .card:hover.purple {
+      border-color: rgba(91, 33, 182, 0.25);
+    }
+
+
+    .card:hover.orange {
+      border-color: rgba(234, 88, 12, 0.25);
+    }
+
+    .card.green::before,
+    .card.lime::before {
+      background: linear-gradient(90deg, #166534 0%, #16a34a 52%, #a3e635 100%);
+    }
+
+    .card:hover.green,
+    .card:hover.lime {
+      border-color: rgba(21, 128, 61, 0.25);
+    }
+
+    .card.violet::before {
+      background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 52%, #60a5fa 100%);
+    }
+
+    .card:hover.violet {
+      border-color: rgba(139, 92, 246, 0.25);
+    }
+
+    .card.scale-teal::before {
+      background: linear-gradient(90deg, #2b7a62 0%, #0d9488 52%, #99f6e4 100%);
+    }
+
+    .card:hover.scale-teal {
+      border-color: rgba(47, 111, 115, 0.25);
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 40px;
+      width: fit-content;
+    }
+
+    .tag-blue {
+      background: rgba(24, 90, 157, 0.08);
+      color: var(--blue);
+    }
+
+    .tag-rose {
+      background: rgba(190, 18, 60, 0.08);
+      color: var(--rose);
+    }
+
+    .tag-amber {
+      background: rgba(122, 92, 24, 0.08);
+      color: var(--amber);
+    }
+
+    .tag-slate {
+      background: rgba(71, 85, 105, 0.08);
+      color: var(--slate);
+    }
+
+    .tag-cyan {
+      background: rgba(14, 116, 144, 0.08);
+      color: var(--cyan);
+    }
+
+    .tag-purple {
+      background: rgba(91, 33, 182, 0.08);
+      color: var(--purple);
+    }
+
+
+    .tag-green,
+    .tag-lime {
+      background: rgba(21, 128, 61, 0.08);
+      color: var(--green);
+    }
+
+    .tag-violet {
+      background: rgba(139, 92, 246, 0.08);
+      color: #8b5cf6;
+    }
+
+    .tag-scale-teal {
+      background: rgba(47, 111, 115, 0.09);
+      color: #2f6f73;
+    }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .card-arrow {
+      margin-left: auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-soft);
+      font-size: 13px;
+      transition: background 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .card:hover .card-arrow,
+    .card:focus-visible .card-arrow {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .card-type {
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .support-section {
+      margin: 8px 0 0;
+      animation: fadeUp 0.6s 0.65s ease both;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .support-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) 28px;
+      align-items: center;
+      gap: 14px;
+      min-height: 118px;
+      width: 100%;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--bg-card);
+      color: inherit;
+      box-shadow: var(--shadow-sm);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      overflow: hidden;
+      appearance: none;
+      -webkit-appearance: none;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .support-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .support-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .support-card:hover::before,
+    .support-card:focus-visible::before {
+      opacity: 1;
+    }
+
+    .support-card:focus-visible {
+      outline: 3px solid rgba(43, 122, 98, 0.35);
+      outline-offset: 3px;
+    }
+
+    .support-card.support::before {
+      background: linear-gradient(90deg, #006d77 0%, #14b8a6 52%, #60a5fa 100%);
+    }
+
+    .support-card.support:hover,
+    .support-card.support:focus-visible {
+      border-color: rgba(0, 109, 119, 0.28);
+    }
+
+    .support-card.friend::before {
+      background: linear-gradient(90deg, #151515 0%, #5b5f7a 52%, #a78bfa 100%);
+    }
+
+    .support-card.friend:hover,
+    .support-card.friend:focus-visible {
+      border-color: rgba(21, 21, 21, 0.28);
+    }
+
+    .support-card.creator::before {
+      background: linear-gradient(90deg, #4b2f12 0%, #c2410c 52%, #f59e0b 100%);
+    }
+
+    .support-card.creator:hover,
+    .support-card.creator:focus-visible {
+      border-color: rgba(75, 47, 18, 0.3);
+    }
+
+    .support-card.resource {
+      --resource-rgb: 24, 90, 157;
+      --resource-accent: var(--blue);
+      --resource-gradient: linear-gradient(90deg, #185a9d 0%, #2563eb 52%, #38bdf8 100%);
+    }
+
+    .support-card.contact {
+      --contact-rgb: 21, 128, 61;
+      --contact-accent: var(--green);
+      --contact-gradient: linear-gradient(90deg, #166534 0%, #16a34a 52%, #a3e635 100%);
+    }
+
+    .support-card.resource::before {
+      background: var(--resource-gradient);
+    }
+
+    .support-card.contact::before {
+      background: var(--contact-gradient);
+    }
+
+    .support-card.resource:hover,
+    .support-card.resource:focus-visible {
+      border-color: rgba(var(--resource-rgb), 0.28);
+    }
+
+    .support-card.contact:hover,
+    .support-card.contact:focus-visible {
+      border-color: rgba(var(--contact-rgb), 0.28);
+    }
+
+    .support-mark {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--bg);
+      color: var(--ink-soft);
+      font-size: 20px;
+      line-height: 1;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Each mark carries its card's theme colour at rest — no hover required —
+       so the ♥ ♠ ♦ suits read like a hand of playing cards. */
+    .support-card.support .support-mark {
+      color: #006d77;
+    }
+
+    .support-card.friend .support-mark {
+      color: #2a2634;
+    }
+
+    .support-card.creator .support-mark {
+      color: #5f3a12;
+    }
+
+    .support-card.resource .support-mark {
+      color: var(--resource-accent);
+    }
+
+    .support-card.contact .support-mark {
+      color: var(--contact-accent);
+    }
+
+    .support-card.support:hover .support-mark,
+    .support-card.support:focus-visible .support-mark {
+      border-color: rgba(0, 109, 119, 0.22);
+      background: linear-gradient(135deg, rgba(0, 109, 119, 0.12), rgba(47, 155, 216, 0.12));
+      color: #006d77;
+    }
+
+    .support-card.friend:hover .support-mark,
+    .support-card.friend:focus-visible .support-mark {
+      border-color: rgba(21, 21, 21, 0.18);
+      background: linear-gradient(135deg, rgba(21, 21, 21, 0.08), rgba(138, 126, 168, 0.12));
+      color: #2a2634;
+    }
+
+    .support-card.creator:hover .support-mark,
+    .support-card.creator:focus-visible .support-mark {
+      border-color: rgba(75, 47, 18, 0.22);
+      background: linear-gradient(135deg, rgba(75, 47, 18, 0.14), rgba(169, 106, 24, 0.14));
+      color: #5f3a12;
+    }
+
+    .support-card.resource:hover .support-mark,
+    .support-card.resource:focus-visible .support-mark {
+      border-color: rgba(var(--resource-rgb), 0.24);
+      background: linear-gradient(135deg, rgba(var(--resource-rgb), 0.1), rgba(var(--resource-rgb), 0.16));
+      color: var(--resource-accent);
+    }
+
+    .support-card.contact:hover .support-mark,
+    .support-card.contact:focus-visible .support-mark {
+      border-color: rgba(var(--contact-rgb), 0.24);
+      background: linear-gradient(135deg, rgba(var(--contact-rgb), 0.1), rgba(var(--contact-rgb), 0.16));
+      color: var(--contact-accent);
+    }
+
+    .support-copy {
+      min-width: 0;
+    }
+
+    .support-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 6px;
+      color: var(--ink-soft);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: color 0.2s ease;
+    }
+
+    /* Kickers wear their card's theme colour by default, like the tags above. */
+    .support-card.support .support-kicker {
+      color: #006d77;
+    }
+
+    .support-card.friend .support-kicker {
+      color: #2a2634;
+    }
+
+    .support-card.creator .support-kicker {
+      color: #5f3a12;
+    }
+
+    .support-card.resource .support-kicker {
+      color: var(--resource-accent);
+    }
+
+    .support-card.contact .support-kicker {
+      color: var(--contact-accent);
+    }
+
+    .support-card.support:hover .support-kicker,
+    .support-card.support:focus-visible .support-kicker {
+      color: #006d77;
+    }
+
+    .support-card.friend:hover .support-kicker,
+    .support-card.friend:focus-visible .support-kicker {
+      color: #2a2634;
+    }
+
+    .support-card.creator:hover .support-kicker,
+    .support-card.creator:focus-visible .support-kicker {
+      color: #5f3a12;
+    }
+
+    .support-card.resource:hover .support-kicker,
+    .support-card.resource:focus-visible .support-kicker {
+      color: var(--resource-accent);
+    }
+
+    .support-card.contact:hover .support-kicker,
+    .support-card.contact:focus-visible .support-kicker {
+      color: var(--contact-accent);
+    }
+
+    .support-title {
+      display: block;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .support-desc {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink-mid);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .support-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-soft);
+      font-size: 13px;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      flex-shrink: 0;
+      align-self: end;
+    }
+
+    .support-card:hover .support-arrow {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .qr-dialog-close:focus-visible,
+    .qr-dialog-image:focus-visible {
+      outline: 3px solid rgba(43, 122, 98, 0.35);
+      outline-offset: 3px;
+    }
+
+    .qr-dialog {
+      width: min(80vw, 340px);
+      margin: auto;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--bg-card);
+      color: var(--ink);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .qr-dialog.wide {
+      width: min(88vw, 500px);
+    }
+
+    #resourceDialog,
+    #contactDialog,
+    #appreciationDialog,
+    #friendDialog {
+      width: min(88vw, 360px);
+    }
+
+    .qr-dialog::backdrop {
+      background: rgba(15, 20, 26, 0.56);
+      backdrop-filter: blur(4px);
+    }
+
+    .qr-dialog-inner {
+      padding: 22px;
+    }
+
+    .qr-dialog-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .qr-dialog-copy {
+      min-width: 0;
+    }
+
+    .qr-dialog-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .qr-dialog-desc {
+      margin-top: 4px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .qr-dialog-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 32px;
+      width: 32px;
+      min-width: 32px;
+      height: 32px;
+      padding: 0;
+      margin-left: auto;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .qr-dialog-close:hover {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+
+    :root[data-theme="dark"] .qr-dialog-close {
+      background: #1e293b;
+    }
+
+    :root[data-theme="dark"] .qr-dialog-close:hover {
+      background: #334155;
+      border-color: #475569;
+    }
+
+    .qr-dialog-image {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #ffffff;
+      aspect-ratio: 1 / 1;
+    }
+
+    .qr-dialog-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .qr-dialog-note {
+      margin-top: 10px;
+      color: var(--ink-soft);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .qr-dialog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .resource-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .resource-link {
+      --resource-link-rgb: 24, 90, 157;
+      --resource-link-accent: var(--blue);
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 28px;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      width: 100%;
+      background: var(--bg);
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      text-decoration: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .resource-link:hover,
+    .resource-link:focus-visible {
+      border-color: rgba(var(--resource-link-rgb), 0.32);
+      background: rgba(var(--resource-link-rgb), 0.08);
+      outline: none;
+    }
+
+    .resource-link:focus-visible {
+      box-shadow: 0 0 0 3px rgba(var(--resource-link-rgb), 0.18);
+    }
+
+    .resource-link.noww {
+      --resource-link-rgb: 43, 122, 98;
+      --resource-link-accent: var(--teal);
+    }
+
+    .resource-link.elephant {
+      --resource-link-rgb: 190, 18, 60;
+      --resource-link-accent: var(--rose);
+    }
+
+    .resource-link.subscribe {
+      --resource-link-rgb: 91, 33, 182;
+      --resource-link-accent: var(--purple);
+    }
+
+    .resource-link.mail {
+      --resource-link-rgb: 217, 119, 6;
+      --resource-link-accent: var(--amber);
+    }
+
+    .resource-link.github {
+      --resource-link-rgb: 37, 99, 235;
+      --resource-link-accent: var(--blue);
+    }
+
+    .resource-link-copy {
+      min-width: 0;
+    }
+
+    .resource-link-tag {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--resource-link-accent);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .resource-link-title {
+      display: block;
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .resource-link-desc {
+      display: block;
+      margin-top: 3px;
+      color: var(--ink-mid);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .resource-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--ink-soft);
+      font-size: 13px;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .resource-link:hover .resource-link-arrow,
+    .resource-link:focus-visible .resource-link-arrow {
+      background: var(--resource-link-accent);
+      color: var(--bg);
+      border-color: var(--resource-link-accent);
+    }
+
+    .copy-feedback {
+      position: absolute;
+      right: 48px;
+      font-size: 12px;
+      color: var(--resource-link-accent);
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 28px;
+    }
+
+    @media (max-width: 600px) {
+
+      .qr-dialog,
+      .qr-dialog.wide {
+        width: min(80vw, 340px);
+        border-radius: 18px;
+      }
+
+      .qr-dialog-inner {
+        padding: 16px;
+      }
+
+      .qr-dialog-grid {
+        gap: 8px;
+      }
+
+      .resource-link {
+        padding: 13px;
+      }
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px 48px;
+      border-top: 1px solid var(--border);
+      color: var(--footer-text);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--footer-link-hover);
+    }
+
+    .footer-note-block {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .footer-updates {
+      width: 100%;
+      margin: 0 0 4px;
+      color: var(--footer-text);
+      font-size: 12px;
+      line-height: 1.7;
+      overflow: hidden;
+    }
+
+    .footer-update-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      margin: 0;
+    }
+
+    .footer-update-label {
+      flex: 0 0 auto;
+      color: var(--footer-text-strong);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .footer-update-marquee {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+    }
+
+    .footer-update-track {
+      --footer-marquee-distance: 50%;
+      display: inline-flex;
+      width: max-content;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+      animation: footerMarquee 96s linear infinite;
+    }
+
+    .footer-update-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding-right: 18px;
+    }
+
+    .footer-update-item {
+      color: var(--footer-text);
+      white-space: nowrap;
+    }
+
+    .footer-update-item::before {
+      content: "·";
+      margin-right: 18px;
+      color: var(--footer-text);
+    }
+
+    .footer-update-item:first-child::before {
+      content: "";
+      margin-right: 0;
+    }
+
+    .footer-note-text {
+      margin: 0;
+      text-align: center;
+    }
+
+    .footer-hosting {
+      margin-top: 6px;
+      color: var(--footer-text);
+    }
+
+    @keyframes footerMarquee {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(calc(-1 * var(--footer-marquee-distance, 50%)), 0, 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .footer-update-track {
+        animation: none;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section:nth-child(1) {
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+
+    .section:nth-child(2) {
+      animation: fadeUp 0.6s 0.25s ease both;
+    }
+
+    .section:nth-child(3) {
+      animation: fadeUp 0.6s 0.35s ease both;
+    }
+
+    .section:nth-child(4) {
+      animation: fadeUp 0.6s 0.45s ease both;
+    }
+
+    .section:nth-child(5) {
+      animation: fadeUp 0.6s 0.55s ease both;
+    }
+
+    .section:nth-child(6) {
+      animation: fadeUp 0.6s 0.65s ease both;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding-top: 40px;
+      }
+
+      .layout {
+        flex-direction: column;
+        padding: 32px 12px 60px;
+        position: relative;
+      }
+
+      main {
+        width: 100%;
+      }
+
+      .sidebar {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0;
+        margin-top: 0;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--bg-card);
+        box-shadow: var(--shadow-sm);
+        width: 100%;
+      }
+
+      .sidebar .stat {
+        width: auto;
+        height: auto;
+        flex: 1;
+        min-width: 33.333%;
+        flex-direction: column;
+        border-radius: 0;
+        padding: 12px 8px;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar .stat:last-child {
+        border-bottom: none;
+      }
+
+      .sidebar .stat[aria-pressed=true] {
+        outline: 1px solid rgba(var(--sidebar-highlight-rgb), 0.52);
+        outline-offset: -1px;
+      }
+
+      .sidebar .stat:first-child {
+        border-top-left-radius: 15px;
+      }
+
+      .sidebar .stat:nth-child(3) {
+        border-top-right-radius: 15px;
+      }
+
+      .sidebar .stat:nth-child(7) {
+        border-bottom-left-radius: 15px;
+      }
+
+      .sidebar .stat:last-child {
+        border-bottom-right-radius: 15px;
+      }
+
+      .sidebar .stat-num {
+        font-size: 1.3rem;
+      }
+
+      .sidebar .stat-label {
+        font-size: 11px;
+      }
+
+      .search-wrap {
+        margin-bottom: 0;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .support-grid,
+      .qr-dialog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .support-card {
+        grid-template-columns: 40px minmax(0, 1fr) 28px;
+        align-items: center;
+      }
+
+      .support-mark {
+        width: 40px;
+        height: 40px;
+      }
+
+      .footer-note-block {
+        width: min(100%, 360px);
+        text-align: center;
+      }
+
+      .footer-update-line {
+        justify-content: center;
+      }
+
+      .footer-update-marquee {
+        flex: 0 1 220px;
+      }
+    }
+
+    /* Dark palette — applied via the data-theme attribute set by the early theme
+       script (defaults to the OS preference, overridable + persisted by the toggle). */
+    :root[data-theme="dark"] {
+      --ink: #e7edf3;
+      --ink-mid: #b4c1ce;
+      --ink-soft: #8a99a8;
+      --ink-pale: #5d6b79;
+      --search-bg: #161d26;
+      --search-border: rgba(180, 193, 206, 0.22);
+      --search-placeholder: #a3b1bf;
+      --search-icon: #b4c1ce;
+      --search-clear-bg: #202936;
+      --search-focus-border: rgba(180, 193, 206, 0.42);
+      --search-focus-ring: rgba(180, 193, 206, 0.14);
+      --footer-text: #a7b4c0;
+      --footer-text-strong: #d7dee6;
+      --footer-link: #c5ced8;
+      --footer-link-hover: #ffffff;
+      --bg: #0f141a;
+      --bg-card: #161d26;
+      --teal: #43b88c;
+      --teal-lt: #5fd0a4;
+      --blue: #4a9bdb;
+      --blue-lt: #6cb3ec;
+      --rose: #fb7185;
+      --rose-lt: #fda4af;
+      --amber: #cda154;
+      --amber-lt: #ddb877;
+      --slate: #94a3b8;
+      --slate-lt: #aab6c6;
+      --cyan: #38bdf8;
+      --cyan-lt: #7dd3fc;
+      --purple: #a78bfa;
+      --purple-lt: #c4b5fd;
+      --orange: #fb923c;
+      --orange-lt: #fdb274;
+      --green: #4ade80;
+      --green-lt: #86efac;
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    :root[data-theme="dark"] body::before {
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(67, 184, 140, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 100%, rgba(74, 155, 219, 0.08) 0%, transparent 60%);
+    }
+
+    :root[data-theme="dark"] .search-input {
+      background: var(--search-bg);
+    }
+
+    :root[data-theme="dark"] .section-icon {
+      filter: saturate(0.85) brightness(0.92);
+    }
+
+    /* Dark mode: every home tag gets a brighter pill — lighter text plus a
+       visible tinted background — matching the scale-teal treatment below. */
+    :root[data-theme="dark"] .tag-blue {
+      background: rgba(108, 179, 236, 0.16);
+      color: var(--blue-lt);
+    }
+
+    :root[data-theme="dark"] .tag-rose {
+      background: rgba(253, 164, 175, 0.16);
+      color: var(--rose-lt);
+    }
+
+    :root[data-theme="dark"] .tag-amber {
+      background: rgba(221, 184, 119, 0.16);
+      color: var(--amber-lt);
+    }
+
+    :root[data-theme="dark"] .tag-slate {
+      background: rgba(170, 182, 198, 0.16);
+      color: var(--slate-lt);
+    }
+
+    :root[data-theme="dark"] .tag-cyan {
+      background: rgba(125, 211, 252, 0.16);
+      color: var(--cyan-lt);
+    }
+
+    :root[data-theme="dark"] .tag-purple {
+      background: rgba(196, 181, 253, 0.16);
+      color: var(--purple-lt);
+    }
+
+
+    :root[data-theme="dark"] .tag-green,
+    :root[data-theme="dark"] .tag-lime {
+      background: rgba(134, 239, 172, 0.16);
+      color: var(--green-lt);
+    }
+
+    :root[data-theme="dark"] .tag-violet {
+      background: rgba(179, 155, 248, 0.16);
+      color: #c4b0fa;
+    }
+
+    :root[data-theme="dark"] .tag-scale-teal {
+      background: rgba(95, 208, 164, 0.16);
+      color: #9be7c4;
+    }
+
+    :root[data-theme="dark"] .support-kicker {
+      color: #aab6c6;
+    }
+
+    :root[data-theme="dark"] .support-card.support .support-mark {
+      color: #9ff3e7;
+    }
+
+    :root[data-theme="dark"] .support-card.friend .support-mark {
+      color: #d6cee9;
+    }
+
+    :root[data-theme="dark"] .support-card.creator .support-mark {
+      color: #f0c879;
+    }
+
+    :root[data-theme="dark"] .support-card.support .support-kicker {
+      color: #9ff3e7;
+    }
+
+    :root[data-theme="dark"] .support-card.friend .support-kicker {
+      color: #d6cee9;
+    }
+
+    :root[data-theme="dark"] .support-card.creator .support-kicker {
+      color: #f0c879;
+    }
+
+    :root[data-theme="dark"] .support-card.resource {
+      --resource-rgb: 108, 179, 236;
+      --resource-gradient: linear-gradient(90deg, #185a9d 0%, #2563eb 52%, #38bdf8 100%);
+    }
+
+    :root[data-theme="dark"] .support-card.resource .support-kicker {
+      color: #6cb3ec;
+    }
+
+    :root[data-theme="dark"] .support-card.contact {
+      --contact-rgb: 134, 239, 172;
+      --contact-gradient: linear-gradient(90deg, #166534 0%, #16a34a 52%, #a3e635 100%);
+    }
+
+    :root[data-theme="dark"] .support-card.contact .support-kicker {
+      color: #86efac;
+    }
+
+    :root[data-theme="dark"] .support-card.support::before {
+      background: linear-gradient(90deg, #5eead4 0%, #2dd4bf 52%, #60a5fa 100%);
+    }
+
+    :root[data-theme="dark"] .support-card.support:hover,
+    :root[data-theme="dark"] .support-card.support:focus-visible {
+      border-color: rgba(114, 238, 229, 0.34);
+    }
+
+    :root[data-theme="dark"] .support-card.support:hover .support-mark,
+    :root[data-theme="dark"] .support-card.support:focus-visible .support-mark {
+      border-color: rgba(114, 238, 229, 0.28);
+      background: linear-gradient(135deg, rgba(114, 238, 229, 0.14), rgba(95, 208, 164, 0.18));
+      color: #9ff3e7;
+    }
+
+    :root[data-theme="dark"] .support-card.support:hover .support-kicker,
+    :root[data-theme="dark"] .support-card.support:focus-visible .support-kicker {
+      color: #9ff3e7;
+    }
+
+    :root[data-theme="dark"] .support-card.creator::before {
+      background: linear-gradient(90deg, #f59e0b 0%, #fb923c 52%, #fde68a 100%);
+    }
+
+    :root[data-theme="dark"] .support-card.creator:hover,
+    :root[data-theme="dark"] .support-card.creator:focus-visible {
+      border-color: rgba(224, 173, 86, 0.34);
+    }
+
+    :root[data-theme="dark"] .support-card.creator:hover .support-mark,
+    :root[data-theme="dark"] .support-card.creator:focus-visible .support-mark {
+      border-color: rgba(224, 173, 86, 0.28);
+      background: linear-gradient(135deg, rgba(143, 90, 27, 0.2), rgba(224, 173, 86, 0.18));
+      color: #f0c879;
+    }
+
+    :root[data-theme="dark"] .support-card.creator:hover .support-kicker,
+    :root[data-theme="dark"] .support-card.creator:focus-visible .support-kicker {
+      color: #f0c879;
+    }
+
+    :root[data-theme="dark"] .resource-link.noww {
+      --resource-link-rgb: 95, 208, 164;
+    }
+
+    :root[data-theme="dark"] .resource-link.elephant {
+      --resource-link-rgb: 253, 164, 175;
+    }
+
+    :root[data-theme="dark"] .resource-link.subscribe {
+      --resource-link-rgb: 196, 181, 253;
+    }
+
+    :root[data-theme="dark"] .resource-link.mail {
+      --resource-link-rgb: 240, 200, 121;
+    }
+
+    :root[data-theme="dark"] .resource-link.github {
+      --resource-link-rgb: 108, 179, 236;
+    }
+
+    :root[data-theme="dark"] .support-card.friend::before {
+      background: linear-gradient(90deg, #cbd5e1 0%, #a78bfa 52%, #f0abfc 100%);
+    }
+
+    :root[data-theme="dark"] .support-card.friend:hover,
+    :root[data-theme="dark"] .support-card.friend:focus-visible {
+      border-color: rgba(203, 196, 224, 0.32);
+    }
+
+    :root[data-theme="dark"] .support-card.friend:hover .support-mark,
+    :root[data-theme="dark"] .support-card.friend:focus-visible .support-mark {
+      border-color: rgba(203, 196, 224, 0.28);
+      background: linear-gradient(135deg, rgba(231, 237, 243, 0.1), rgba(185, 178, 207, 0.18));
+      color: #e7edf3;
+    }
+
+    :root[data-theme="dark"] .support-card.friend:hover .support-kicker,
+    :root[data-theme="dark"] .support-card.friend:focus-visible .support-kicker {
+      color: #d6cee9;
+    }
+
+    :root[data-theme="dark"] .sidebar .stat {
+      --sidebar-highlight: var(--teal);
+      --sidebar-highlight-rgb: 67, 184, 140;
+    }
+
+    :root[data-theme=dark] .sidebar {
+      border-color: rgba(164, 184, 205, 0.28);
+    }
+
+    :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] {
+      background: linear-gradient(180deg, rgba(var(--sidebar-highlight-rgb), 0.22), rgba(var(--sidebar-highlight-rgb), 0.1));
+      box-shadow:
+        inset 0 0 0 1px rgba(var(--sidebar-highlight-rgb), 0.32),
+        0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+
+  <link rel="stylesheet" href="assets/theme.css?v=5c6de9e1446b">
+  <script src="assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <header>
+    <div class="site-badge">
+      <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">
+      PrismSelf
+    </div>
+    <h1 class="site-title">性别 · 心理 · 人际</h1>
+    <p class="site-desc">
+      一个面向性别理论、心理概念与人际关系议题的中文知识库，<br>
+      供学习与自我探索使用
+    </p>
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 20.3l-5.6-5.6a7.5 7.5 0 10-1.4 1.4l5.6 5.6 1.4-1.4zM5 10.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z" />
+      </svg>
+      <input id="cardSearch" class="search-input" type="text" placeholder="搜索内容（标题、标签或类型）" aria-label="搜索内容"
+        autocomplete="off">
+      <button id="searchClear" class="search-clear" type="button" aria-label="清除搜索">✕</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="search-empty-wrap">
+      <p class="search-empty" id="searchEmpty">没有找到匹配的内容，换个关键词试试。</p>
+    </div>
+    <nav class="sidebar" aria-label="分类筛选">
+      <button class="stat" data-filter="analysis">
+        <div class="stat-num">6</div>
+        <div class="stat-label">分析图表</div>
+      </button>
+      <button class="stat" data-filter="guide">
+        <div class="stat-num">6</div>
+        <div class="stat-label">专题指南</div>
+      </button>
+      <button class="stat" data-filter="glossary">
+        <div class="stat-num">5</div>
+        <div class="stat-label">术语索引</div>
+      </button>
+      <button class="stat" data-filter="topic">
+        <div class="stat-num">2</div>
+        <div class="stat-label">社群观察</div>
+      </button>
+      <button class="stat" data-filter="bingo">
+        <div class="stat-num">3</div>
+        <div class="stat-label">共鸣刻度</div>
+      </button>
+      <button class="stat" data-filter="scale">
+        <div class="stat-num">8</div>
+        <div class="stat-label">自评量表</div>
+      </button>
+      <button class="stat" data-filter="tool">
+        <div class="stat-num">1</div>
+        <div class="stat-label">对话工具</div>
+      </button>
+      <button class="stat" data-filter="support">
+        <div class="stat-num">5</div>
+        <div class="stat-label">内容支持</div>
+      </button>
+    </nav>
+
+    <main>
+
+      <section class="section" data-category="analysis">
+        <div class="section-header">
+          <div class="section-icon edu">📚</div>
+          <h2 class="section-title">图表 · 概念明晰</h2>
+          <span class="section-count">06 篇</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card purple" href="./Analyses/LGBTQ-Comprehensive-Analysis.html">
+            <span class="card-tag tag-purple">LGBTQ+</span>
+            <p class="card-title">LGBTQ+概念全景辨析表</p>
+            <div class="card-meta">
+              <span class="card-type">概念辨析</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card rose" href="./Analyses/Psychosexual-Concepts-Panorama.html">
+            <span class="card-tag tag-rose">性心理</span>
+            <p class="card-title">性心理核心概念全景分析表</p>
+            <div class="card-meta">
+              <span class="card-type">概念全景</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card green" href="./Analyses/Gender-Theory-Panorama.html">
+            <span class="card-tag tag-green">性别理论</span>
+            <p class="card-title">性别理论核心概念全景分析表</p>
+            <div class="card-meta">
+              <span class="card-type">概念全景</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card blue" href="./Analyses/Interpersonal-Attraction-Comparison.html">
+            <span class="card-tag tag-blue">人际关系</span>
+            <p class="card-title">人际吸引类型综合比较表</p>
+            <div class="card-meta">
+              <span class="card-type">类型比较</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card amber" href="./Analyses/Interpersonal-Conflict-Analysis.html">
+            <span class="card-tag tag-amber">人际关系</span>
+            <p class="card-title">人际冲突概念全面分析表</p>
+            <div class="card-meta">
+              <span class="card-type">概念分析</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card slate" href="./Analyses/Neutrality-Type-Analysis.html">
+            <span class="card-tag tag-slate">权力解构</span>
+            <p class="card-title">中立类型全面分析表</p>
+            <div class="card-meta">
+              <span class="card-type">类型分析</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="section" data-category="guide">
+        <div class="section-header">
+          <div class="section-icon guide">📖</div>
+          <h2 class="section-title">指南 · 专题学习</h2>
+          <span class="section-count">06 篇</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card blue" href="./Guides/Asexual-Comprehensive-Guide.html">
+            <span class="card-tag tag-blue">无性恋</span>
+            <p class="card-title">无性恋全景指南</p>
+            <div class="card-meta">
+              <span class="card-type">专题指南</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card rose" href="./Guides/Greysexual-Comprehensive-Guide.html">
+            <span class="card-tag tag-rose">灰性恋</span>
+            <p class="card-title">灰性恋全景指南</p>
+            <div class="card-meta">
+              <span class="card-type">专题指南</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card violet" href="./Guides/Demisexual-Comprehensive-Guide.html">
+            <span class="card-tag tag-violet">半性恋</span>
+            <p class="card-title">半性恋全景指南</p>
+            <div class="card-meta">
+              <span class="card-type">专题指南</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card green" href="./Guides/Aromantic-Comprehensive-Guide.html">
+            <span class="card-tag tag-green">无浪漫</span>
+            <p class="card-title">无浪漫全景指南</p>
+            <div class="card-meta">
+              <span class="card-type">专题指南</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card cyan" href="./Guides/Gender-Concepts-Terminology.html">
+            <span class="card-tag tag-cyan">性别术语</span>
+            <p class="card-title">性别概念与术语</p>
+            <div class="card-meta">
+              <span class="card-type">专题指南</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card amber" href="./Guides/BDSM-Comprehensive-Guide.html">
+            <span class="card-tag tag-amber">BDSM</span>
+            <p class="card-title">BDSM 全景指南</p>
+            <div class="card-meta">
+              <span class="card-type">专题指南</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="section" data-category="glossary">
+        <div class="section-header">
+          <div class="section-icon glossary">🔤</div>
+          <h2 class="section-title">术语 · 名词索引</h2>
+          <span class="section-count">05 篇</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card violet" href="./Glossaries/SOGIESC-Glossary.html">
+            <span class="card-tag tag-violet">SOGIESC</span>
+            <p class="card-title">SOGIESC 术语表</p>
+            <div class="card-meta">
+              <span class="card-type">术语表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card amber" href="./Glossaries/Sexology-Glossary.html">
+            <span class="card-tag tag-amber">性学</span>
+            <p class="card-title">性学术语表</p>
+            <div class="card-meta">
+              <span class="card-type">术语表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card rose" href="./Glossaries/Psychology-Glossary.html">
+            <span class="card-tag tag-rose">心理学</span>
+            <p class="card-title">心理学术语表</p>
+            <div class="card-meta">
+              <span class="card-type">术语表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card cyan" href="./Glossaries/Sociology-Glossary.html">
+            <span class="card-tag tag-cyan">社会学</span>
+            <p class="card-title">社会学术语表</p>
+            <div class="card-meta">
+              <span class="card-type">术语表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card slate" href="./Glossaries/Philosophy-Glossary.html">
+            <span class="card-tag tag-slate">哲学</span>
+            <p class="card-title">哲学术语表</p>
+            <div class="card-meta">
+              <span class="card-type">术语表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="section" data-category="topic">
+        <div class="section-header">
+          <div class="section-icon topic">🗂️</div>
+          <h2 class="section-title">记录 · 社群观察</h2>
+          <span class="section-count">02 篇</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card blue" href="./Topics/Asexual-Community-Survey.html">
+            <span class="card-tag tag-blue">无性恋社群</span>
+            <p class="card-title">无性恋社群现状与需求调查</p>
+            <div class="card-meta">
+              <span class="card-type">调查报告</span>
+              <div class="card-arrow">&rarr;</div>
+            </div>
+          </a>
+
+          <a class="card amber" href="./Topics/A-Conversation-on-Asexuality.html">
+            <span class="card-tag tag-amber">无性恋对谈</span>
+            <p class="card-title">无性恋专题对谈</p>
+            <div class="card-meta">
+              <span class="card-type">专题对谈</span>
+              <div class="card-arrow">&rarr;</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="section" data-category="bingo">
+        <div class="section-header">
+          <div class="section-icon bingo">🎯</div>
+          <h2 class="section-title">Bingo · 共鸣刻度</h2>
+          <span class="section-count">03 份</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card purple" href="./Bingos/Aro-Ace-Spectrum-Resonance.html">
+            <span class="card-tag tag-purple">无浪漫/无性恋</span>
+            <p class="card-title">无浪漫/无性恋谱系 · 共鸣刻度卡</p>
+            <div class="card-meta">
+              <span class="card-type">共鸣刻度</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card rose" href="./Bingos/Gender-Spectrum-Resonance.html">
+            <span class="card-tag tag-rose">性别谱系</span>
+            <p class="card-title">性别身份与认同谱系 · 共鸣刻度卡</p>
+            <div class="card-meta">
+              <span class="card-type">共鸣刻度</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card green" href="./Bingos/Neurodiversity-Resonance.html">
+            <span class="card-tag tag-green">神经多样性</span>
+            <p class="card-title">神经多样性 · 共鸣刻度卡</p>
+            <div class="card-meta">
+              <span class="card-type">共鸣刻度</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="section" data-category="scale">
+        <div class="section-header">
+          <div class="section-icon scale">🔍</div>
+          <h2 class="section-title">量表 · 自我评估</h2>
+          <span class="section-count">08 份</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card scale-teal" href="./Scales/Sexual-Orientation-Scale.html">
+            <span class="card-tag tag-scale-teal">性取向</span>
+            <p class="card-title">性取向自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card blue" href="./Scales/Asexual-Spectrum-Scale.html">
+            <span class="card-tag tag-blue">无性恋谱系</span>
+            <p class="card-title">无性恋谱系自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card green" href="./Scales/Aromantic-Spectrum-Scale.html">
+            <span class="card-tag tag-green">无浪漫谱系</span>
+            <p class="card-title">无浪漫谱系自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card purple" href="./Scales/Gender-Exploration-Scale.html">
+            <span class="card-tag tag-purple">性别认同</span>
+            <p class="card-title">多元性别认同与探索自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card rose" href="./Scales/Big-Five-Personality-Scale.html">
+            <span class="card-tag tag-rose">人格心理</span>
+            <p class="card-title">大五人格倾向自评量表</p>
+            <div class="card-meta"><span class="card-type">自评量表</span><div class="card-arrow">→</div></div>
+          </a>
+
+          <a class="card cyan" href="./Scales/HEXACO-Personality-Scale.html">
+            <span class="card-tag tag-cyan">人格心理</span>
+            <p class="card-title">HEXACO 六维人格倾向自评量表</p>
+            <div class="card-meta"><span class="card-type">自评量表</span><div class="card-arrow">→</div></div>
+          </a>
+
+          <a class="card amber" href="./Scales/Feminist-Leanings-Scale.html">
+            <span class="card-tag tag-amber">女权主义</span>
+            <p class="card-title">女权主义流派倾向自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card slate" href="./Scales/Philosophical-Leanings-Scale.html">
+            <span class="card-tag tag-slate">哲学</span>
+            <p class="card-title">哲学流派倾向自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="section" data-category="tool">
+        <div class="section-header">
+          <div class="section-icon tool">💬</div>
+          <h2 class="section-title">工具 · 关系对话</h2>
+          <span class="section-count">01 份</span>
+        </div>
+        <div class="card-grid">
+
+          <a class="card scale-teal" href="./Tools/Relationship-Needs-Menu.html">
+            <span class="card-tag tag-scale-teal">关系需求</span>
+            <p class="card-title">关系需求菜单</p>
+            <div class="card-meta">
+              <span class="card-type">互动对话工具</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="support-section" data-category="support" aria-labelledby="support-title">
+        <div class="section-header">
+          <div class="section-icon support">🤝</div>
+          <h2 class="section-title" id="support-title">支持 · 相关链接</h2>
+          <span class="section-count">05 项</span>
+        </div>
+        <div class="support-grid">
+          <button class="support-card support" type="button" data-dialog-target="appreciationDialog"
+            aria-controls="appreciationDialog">
+            <span class="support-mark" aria-hidden="true">♥</span>
+            <span class="support-copy">
+              <span class="support-kicker">友情赞助</span>
+              <span class="support-title">赞赏码</span>
+              <span class="support-desc">支持站点持续更新与维护</span>
+            </span>
+            <span class="support-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="support-card friend" type="button" data-dialog-target="friendDialog"
+            aria-controls="friendDialog">
+            <span class="support-mark" aria-hidden="true">♠</span>
+            <span class="support-copy">
+              <span class="support-kicker">友情链接</span>
+              <span class="support-title">黑桃 Spade A</span>
+              <span class="support-desc">无性恋相关专题内容</span>
+            </span>
+            <span class="support-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="support-card creator" type="button" data-dialog-target="guyuliangDialog"
+            aria-controls="guyuliangDialog">
+            <span class="support-mark" aria-hidden="true">♦</span>
+            <span class="support-copy">
+              <span class="support-kicker">友情链接</span>
+              <span class="support-title">谷语粱</span>
+              <span class="support-desc">福瑞与美国兽展相关内容</span>
+            </span>
+            <span class="support-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="support-card resource" type="button" data-dialog-target="resourceDialog"
+            aria-controls="resourceDialog">
+            <span class="support-mark" aria-hidden="true">↗</span>
+            <span class="support-copy">
+              <span class="support-kicker">代理服务</span>
+              <span class="support-title">常用订阅入口</span>
+              <span class="support-desc">合规使用网络代理服务</span>
+            </span>
+            <span class="support-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="support-card contact" type="button" data-dialog-target="contactDialog"
+            aria-controls="contactDialog">
+            <span class="support-mark" aria-hidden="true">@</span>
+            <span class="support-copy">
+              <span class="support-kicker">联系我们</span>
+              <span class="support-title">邮箱与仓库</span>
+              <span class="support-desc">内容反馈与项目源码</span>
+            </span>
+            <span class="support-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <dialog class="qr-dialog" id="appreciationDialog" aria-labelledby="appreciationDialogTitle">
+        <div class="qr-dialog-inner">
+          <div class="qr-dialog-header">
+            <div class="qr-dialog-copy">
+              <h3 class="qr-dialog-title" id="appreciationDialogTitle">赞赏码</h3>
+              <p class="qr-dialog-desc">微信扫码赞赏，支持站点持续更新与维护。</p>
+            </div>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭赞赏码弹窗">×</button>
+          </div>
+          <a class="qr-dialog-image" href="./assets/appreciation-code.webp" target="_blank" rel="noopener noreferrer"
+            aria-label="打开赞赏码大图">
+            <img src="./assets/appreciation-code.webp" alt="赞赏码二维码" loading="lazy" decoding="async">
+          </a>
+          <p class="qr-dialog-note">感谢您的关注与支持。</p>
+        </div>
+      </dialog>
+
+      <dialog class="qr-dialog" id="friendDialog" aria-labelledby="friendDialogTitle">
+        <div class="qr-dialog-inner">
+          <div class="qr-dialog-header">
+            <div class="qr-dialog-copy">
+              <h3 class="qr-dialog-title" id="friendDialogTitle">黑桃 Spade A</h3>
+              <p class="qr-dialog-desc">微信扫码关注，阅览无性恋相关专题内容。</p>
+            </div>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭友情链接弹窗">×</button>
+          </div>
+          <a class="qr-dialog-image" href="./assets/spade-a.webp" target="_blank" rel="noopener noreferrer"
+            aria-label="打开黑桃 Spade A关注二维码大图">
+            <img src="./assets/spade-a.webp" alt="黑桃 Spade A微信公众号二维码" loading="lazy" decoding="async">
+          </a>
+          <p class="qr-dialog-note">站外内容以对方账号发布为准。</p>
+        </div>
+      </dialog>
+
+      <dialog class="qr-dialog wide" id="guyuliangDialog" aria-labelledby="guyuliangDialogTitle">
+        <div class="qr-dialog-inner">
+          <div class="qr-dialog-header">
+            <div class="qr-dialog-copy">
+              <h3 class="qr-dialog-title" id="guyuliangDialogTitle">谷语粱</h3>
+              <p class="qr-dialog-desc">哔哩哔哩、小红书扫码关注，了解福瑞与美国兽展相关内容。</p>
+            </div>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭谷语粱二维码弹窗">×</button>
+          </div>
+          <div class="qr-dialog-grid">
+            <div class="qr-platform">
+              <a class="qr-dialog-image" href="https://space.bilibili.com/23462176?spm_id_from=333.1007.0.0"
+                target="_blank" rel="noopener noreferrer" aria-label="打开谷语粱的哔哩哔哩主页">
+                <img src="./assets/guyuliang-bilibili-qr.webp" alt="谷语粱哔哩哔哩主页二维码" loading="lazy" decoding="async">
+              </a>
+            </div>
+            <div class="qr-platform">
+              <a class="qr-dialog-image" href="https://www.xiaohongshu.com/user/profile/650cf69b000000001603bb0f"
+                target="_blank" rel="noopener noreferrer" aria-label="打开谷语粱的小红书主页">
+                <img src="./assets/guyuliang-xiaohongshu-qr.webp" alt="谷语粱小红书主页二维码" loading="lazy" decoding="async">
+              </a>
+            </div>
+          </div>
+          <p class="qr-dialog-note">点击二维码也可以直接打开对应主页。</p>
+        </div>
+      </dialog>
+
+      <dialog class="qr-dialog wide" id="resourceDialog" aria-labelledby="resourceDialogTitle">
+        <div class="qr-dialog-inner">
+          <div class="qr-dialog-header">
+            <div class="qr-dialog-copy">
+              <h3 class="qr-dialog-title" id="resourceDialogTitle">常用订阅入口</h3>
+              <p class="qr-dialog-desc">请遵守当地法律法规，合规使用网络代理服务。</p>
+            </div>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭代理与 AI 订阅弹窗">×</button>
+          </div>
+          <div class="resource-list">
+            <a class="resource-link elephant" href="https://www.elephant111.com/app#/register?code=n5KEb6em" target="_blank"
+              rel="noopener noreferrer sponsored">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">代理服务</span>
+                <span class="resource-link-title">性价比高的机场</span>
+                <span class="resource-link-desc">GPT/Claude：推荐</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="resource-link noww" href="https://www.noww.cc/#/register?code=5PelM4k7" target="_blank"
+              rel="noopener noreferrer sponsored">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">代理服务</span>
+                <span class="resource-link-title">性价比高的机场</span>
+                <span class="resource-link-desc">GPT/Claude：推荐</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="resource-link subscribe" href="https://bewild.ai?code=JDYR4ATU" target="_blank"
+              rel="noopener noreferrer sponsored">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">AI 订阅</span>
+                <span class="resource-link-title">价格适中的服务商</span>
+                <span class="resource-link-desc">订阅 GPT/Claude/Gemini/X</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="qr-dialog-note">站外服务以对应平台页面说明为准。</p>
+        </div>
+      </dialog>
+
+      <dialog class="qr-dialog wide" id="contactDialog" aria-labelledby="contactDialogTitle">
+        <div class="qr-dialog-inner">
+          <div class="qr-dialog-header">
+            <div class="qr-dialog-copy">
+              <h3 class="qr-dialog-title" id="contactDialogTitle">邮箱与仓库</h3>
+              <p class="qr-dialog-desc">欢迎反馈错漏、排版兼容、引用纠错与内容建议。</p>
+            </div>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭联系我们弹窗">×</button>
+          </div>
+          <div class="resource-list">
+            <button class="resource-link mail" type="button" id="copyEmailButton">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">官方邮箱</span>
+                <span class="resource-link-title">hello@prismself.vip</span>
+                <span class="resource-link-desc">联系、反馈与合作沟通</span>
+              </span>
+              <span class="resource-link-arrow" id="emailCopyArrow" aria-hidden="true">
+                <span class="copy-feedback" id="emailCopyFeedback"></span>
+                →
+              </span>
+            </button>
+            <a class="resource-link github" href="https://github.com/KrelinnBios/PrismSelf" target="_blank"
+              rel="noopener noreferrer">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">GitHub</span>
+                <span class="resource-link-title">KrelinnBios/PrismSelf</span>
+                <span class="resource-link-desc">查看源码，或通过 Issue 提交建议</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="qr-dialog-note">反馈时请附具体位置与简要说明。</p>
+        </div>
+      </dialog>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-note-block">
+      <div class="footer-updates" aria-label="站点更新记录">
+        <div class="footer-update-line">
+          <span class="footer-update-label">更新记录：</span>
+          <div class="footer-update-marquee" aria-hidden="true">
+            <div class="footer-update-track" id="footerUpdateList">
+              <span class="footer-update-group"><span class="footer-update-item">首页</span></span>
+              <span class="footer-update-group"><span class="footer-update-item">首页</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="footer-note-text">本站内容仅供学习与自我探索，不构成任何专业诊断建议。</p>
+    </div>
+    <p class="footer-hosting">Hosted on <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Pages</a></p>
+
+  </footer>
+
+  <script src="./update-records.js"></script>
+  <script>
+
+    // Live keyword filter over the content cards.
+    (() => {
+      const search = document.getElementById('cardSearch');
+      const clearBtn = document.getElementById('searchClear');
+      const emptyMsg = document.getElementById('searchEmpty');
+      if (!search) return;
+      const cards = [...document.querySelectorAll('main a.card')];
+      const commCards = [...document.querySelectorAll('main .support-card')];
+      const allCards = [...cards, ...commCards];
+      const sections = [...document.querySelectorAll('main .section, main .support-section')];
+      const haystack = new Map();
+      cards.forEach((card) => {
+        haystack.set(card, [...card.querySelectorAll('.card-title, .card-tag, .card-type')]
+          .map((el) => el.textContent).join(' ').toLowerCase());
+      });
+      commCards.forEach((card) => {
+        haystack.set(card, [...card.querySelectorAll('.support-kicker, .support-title, .support-desc')]
+          .map((el) => el.textContent).join(' ').toLowerCase());
+      });
+
+      const applyFilter = (raw) => {
+        const q = raw.trim().toLowerCase();
+        clearBtn.classList.toggle('is-visible', q.length > 0);
+        let anyVisible = false;
+        allCards.forEach((card) => {
+          const match = q === '' || haystack.get(card).includes(q);
+          card.classList.toggle('is-hidden', !match);
+          if (match) anyVisible = true;
+        });
+        sections.forEach((section) => {
+          const hasVisible = section.querySelector('a.card:not(.is-hidden), .support-card:not(.is-hidden)') !== null;
+          section.classList.toggle('is-hidden', !hasVisible);
+        });
+        emptyMsg.parentElement.classList.toggle('is-visible', !anyVisible && q !== '');
+      };
+
+      search.addEventListener('input', (e) => applyFilter(e.target.value));
+      search.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          search.value = '';
+          applyFilter('');
+        }
+      });
+      clearBtn.addEventListener('click', () => {
+        search.value = '';
+        applyFilter('');
+        search.focus();
+      });
+    })();
+
+    // Category scroll via sidebar buttons — click scrolls to section, click again cancels.
+    (() => {
+      const buttons = [...document.querySelectorAll('.sidebar .stat')];
+      const sections = [...document.querySelectorAll('main .section, main .support-section')];
+      const search = document.getElementById('cardSearch');
+      const searchClear = document.getElementById('searchClear');
+
+      const setActive = (active) => {
+        buttons.forEach((b) => b.setAttribute('aria-pressed', b === active ? 'true' : 'false'));
+      };
+
+      let clickLock = false;
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const cat = btn.dataset.filter;
+          const isActive = btn.getAttribute('aria-pressed') === 'true';
+
+          if (search) { search.value = ''; }
+          if (searchClear) { searchClear.classList.remove('is-visible'); }
+
+          if (isActive) {
+            setActive(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            setActive(btn);
+            clickLock = true;
+            setTimeout(() => { clickLock = false; }, 800);
+            const section = sections.find((s) => s.dataset.category === cat);
+            if (section) {
+              const top = section.getBoundingClientRect().top + window.scrollY - window.innerHeight * 2 / 5;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // Reset active state when keyword search is used
+      if (search) {
+        search.addEventListener('input', () => {
+          if (search.value.trim()) {
+            setActive(null);
+          }
+        });
+      }
+
+      // Scroll spy — highlight sidebar button only when a section's title area
+      // (its top edge) is visible in the viewport and within 0 ~ 1/4 from top.
+      const btnMap = {};
+      buttons.forEach((b) => { btnMap[b.dataset.filter] = b; });
+
+      const updateSpy = () => {
+        if (clickLock) return;
+        const kwActive = search && search.value.trim().length > 0;
+        if (kwActive) return;
+        const triggerY = window.innerHeight * 2 / 5;
+
+        let best = null;
+        for (const s of sections) {
+          const top = s.getBoundingClientRect().top;
+          if (top > 0 && top <= triggerY) {
+            best = s;
+          }
+        }
+
+        if (best) {
+          setActive(btnMap[best.dataset.category] || null);
+        } else if (sections[0].getBoundingClientRect().top > triggerY) {
+          setActive(null);
+        }
+        // Otherwise (no section title in [0, triggerY]): keep current active
+      };
+
+      if (window.innerWidth > 600) {
+        let ticking = false;
+        document.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => { updateSpy(); ticking = false; });
+            ticking = true;
+          }
+        }, { passive: true });
+        updateSpy();
+      }
+    })();
+
+    (() => {
+      const triggers = [...document.querySelectorAll('[data-dialog-target]')];
+      const dialogs = [...document.querySelectorAll('.qr-dialog')];
+      let lastTrigger = null;
+
+      triggers.forEach((trigger) => {
+        const dialog = document.getElementById(trigger.dataset.dialogTarget);
+        if (!dialog) return;
+        trigger.addEventListener('click', () => {
+          lastTrigger = trigger;
+          if (typeof dialog.showModal === 'function') {
+            dialog.showModal();
+          } else {
+            dialog.setAttribute('open', '');
+          }
+        });
+      });
+
+      dialogs.forEach((dialog) => {
+        dialog.querySelectorAll('[data-dialog-close]').forEach((button) => {
+          button.addEventListener('click', () => dialog.close());
+        });
+        dialog.addEventListener('click', (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener('close', () => {
+          lastTrigger?.focus();
+          lastTrigger = null;
+        });
+      });
+    })();
+
+    const updateList = document.getElementById('footerUpdateList');
+    const cardNamesByHref = new Map(
+      [...document.querySelectorAll('a.card[href]')].map((card) => [
+        card.getAttribute('href'),
+        card.querySelector('.card-title')?.textContent?.trim()
+      ])
+    );
+    const formatUpdateDate = (date) => {
+      const [year, month, day] = date.split('-').map(Number);
+      return `${year}年${month}月${day}日`;
+    };
+    const updateRecords = (window.PrismSelfUpdateGroups || []).flatMap(({ date, pages }) =>
+      pages.map((page) => {
+        const name = page === 'home' ? '首页' : cardNamesByHref.get(page);
+        return name ? { name, date: formatUpdateDate(date) } : null;
+      }).filter(Boolean)
+    );
+
+    if (updateList && updateRecords.length > 0) {
+      const marquee = updateList.closest('.footer-update-marquee');
+      const createGroup = () => {
+        const group = document.createElement('span');
+        group.className = 'footer-update-group';
+        updateRecords.forEach((record) => {
+          const item = document.createElement('span');
+          item.className = 'footer-update-item';
+          item.textContent = `${record.name} ${record.date}`;
+          group.append(item);
+        });
+        return group;
+      };
+      const restartMarquee = () => {
+        updateList.style.animation = 'none';
+        void updateList.offsetWidth;
+        updateList.style.animation = '';
+      };
+      const renderUpdateMarquee = () => {
+        updateList.replaceChildren(createGroup());
+        const firstGroup = updateList.querySelector('.footer-update-group');
+        if (!firstGroup || !marquee) return;
+        const groupWidth = firstGroup.getBoundingClientRect().width;
+        const marqueeWidth = marquee.getBoundingClientRect().width;
+        if (groupWidth <= 0 || marqueeWidth <= 0) return;
+        const groupCount = Math.max(2, Math.ceil((marqueeWidth * 2 + groupWidth) / groupWidth));
+        for (let i = 1; i < groupCount; i++) {
+          updateList.append(createGroup());
+        }
+        updateList.style.setProperty('--footer-marquee-distance', `${groupWidth}px`);
+        restartMarquee();
+      };
+      const scheduleRender = () => requestAnimationFrame(renderUpdateMarquee);
+
+      scheduleRender();
+      window.addEventListener('resize', scheduleRender, { passive: true });
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(scheduleRender).catch(() => { });
+      }
+      if (marquee && typeof ResizeObserver === 'function') {
+        new ResizeObserver(scheduleRender).observe(marquee);
+      }
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) restartMarquee();
+      });
+    }
+
+    // Copy email to clipboard
+    const emailButton = document.getElementById('copyEmailButton');
+    const emailFeedback = document.getElementById('emailCopyFeedback');
+    if (emailButton) {
+      emailButton.addEventListener('click', () => {
+        navigator.clipboard.writeText('hello@prismself.vip').then(() => {
+          emailFeedback.textContent = '已复制';
+          setTimeout(() => { emailFeedback.textContent = ''; }, 2000);
+        }).catch(() => {
+          emailFeedback.textContent = '复制失败';
+          setTimeout(() => { emailFeedback.textContent = ''; }, 2000);
+        });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

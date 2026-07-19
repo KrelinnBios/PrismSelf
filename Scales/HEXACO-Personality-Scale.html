@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEXACO 六维人格倾向自评量表</title>
+  <meta name="description" content="HEXACO 六维人格倾向自评量表，通过 100 道本站原创中文情境题，从六个核心维度、二十四个子面向与独立利他性梳理人格倾向；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="HEXACO 六维人格倾向自评量表">
+  <meta property="og:description" content="通过 100 道原创中文情境题，梳理六个人格维度、二十四个子面向与独立利他性。">
+  <meta property="og:url" content="https://prismself.vip/Scales/HEXACO-Personality-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      margin-top: 35px;
+      margin-bottom: 15px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #3e5a80;
+      font-size: 1.25em;
+    }
+
+    .intro,
+    .explanation {
+      padding: 24px 28px;
+      margin-bottom: 25px;
+      font-size: .98em;
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .section {
+      transition: box-shadow .2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all .2s ease;
+    }
+
+    .question-title:focus-visible {
+      outline: 2px solid var(--scale-accent);
+      outline-offset: 2px;
+    }
+
+    .q-number {
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .question select {
+      width: 280px;
+      padding: 10px;
+      font-size: .95em;
+      cursor: pointer;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: .95em;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    button {
+      padding: 12px 28px;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      font-size: .98em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .result-top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .radar-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: 1px solid var(--scale-line);
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .insight-card,
+    .action-box {
+      padding: 24px 28px;
+      margin: 25px 0;
+      border: 1px solid var(--scale-line);
+    }
+
+    .insight-card h3,
+    .action-box h3 {
+      margin-top: 0;
+      border-bottom: 0;
+    }
+
+    .result-profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .result-profile-tag {
+      display: inline-flex;
+      padding: 6px 11px;
+      border: 1px solid var(--scale-line);
+      border-radius: 999px;
+      background: var(--scale-tint-2);
+      color: var(--scale-accent-dark);
+      font-size: .88em;
+      font-weight: 650;
+    }
+
+    .axis-grid,
+    .function-result-grid,
+    .context-grid,
+    .candidate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .axis-card,
+    .function-result-card,
+    .context-card,
+    .candidate-card {
+      min-width: 0;
+      padding: 20px 22px;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      background: var(--scale-surface);
+    }
+
+    .axis-card h4,
+    .function-result-card h4,
+    .context-card h4,
+    .candidate-card h4 {
+      margin: 0 0 10px;
+    }
+
+    .axis-score,
+    .function-score {
+      color: var(--scale-accent-dark);
+      font-size: .9em;
+      font-weight: 700;
+    }
+
+    .function-result-card p,
+    .axis-card p,
+    .context-card p,
+    .candidate-card p {
+      margin: 9px 0 0;
+    }
+
+    .result-data-note {
+      color: var(--scale-muted);
+      font-size: .9em;
+    }
+
+    .stack-line {
+      letter-spacing: .04em;
+      font-weight: 750;
+    }
+
+    @media (max-width: 850px) {
+
+      .result-top-grid,
+      .axis-grid,
+      .function-result-grid,
+      .context-grid,
+      .candidate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radar-wrapper {
+        max-width: 420px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 14px;
+      }
+
+      .result-top-grid {
+        width: 100% !important;
+        min-width: 0 !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      .result-summary-panel,
+      .radar-container {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+
+      .radar-container {
+        min-height: 0 !important;
+      }
+
+      .radar-wrapper,
+      .summary-metrics,
+      .summary-metric {
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+
+      .result-primary-title,
+      .summary-metric strong {
+        overflow-wrap: anywhere;
+      }
+
+      .intro,
+      .result {
+        padding: 22px 18px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+      button {
+        margin-bottom: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'hexaco-personality', title: 'HEXACO 六维人格倾向自评量表', formId: 'hexacoQuiz', storageKey: 'hexacoPersonalityAnswersV1', totalQuestions: 100, resultId: 'result' };</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="./scale-common.js" defer></script>
+  <script src="./scripts/personality-scale-engine.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/100</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <h1>HEXACO 六维人格倾向自评量表</h1>
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p>HEXACO 是由 Kibeom Lee 与 Michael C. Ashton 开发的人格模型，其六因素结构源于英语及其他多种语言的人格词汇研究。本量表参考 HEXACO
+      六维人格模型及其公开的维度与分面框架，设置六个维度、每个维度四个分面，以及不计入六维总分的独立利他性面向，共 100 题。全部中文情境题均独立编写，并非 HEXACO-PI-R 的官方中文版，也未经相关机构或作者认证。</p>
+    <p><strong>HEXACO
+        并非把人划分成六种类型</strong>，而是通过诚实-谦逊、情绪性、外向性、宜人性、尽责性和开放性六个彼此相关但可以分别观察的连续维度，描述人在动机、情绪、人际互动、任务投入与经验探索中的常见差异。维度高低不等同于优点或缺点；同一种倾向在不同安全感、资源条件和关系情境中可能产生不同影响。本量表用于帮助你观察当前生活阶段较稳定的人格倾向及其组合方式。
+    </p>
+    <p><strong>为了更好地理解，我们在此简要介绍量表涉及的六个核心人格倾向与一个独立面向：</strong></p>
+    <ul>
+      <li><strong>诚实-谦逊（Honesty-Humility）</strong>：观察真诚、公平、物欲淡泊与不过度强调自我地位的倾向。</li>
+      <li><strong>情绪性（Emotionality）</strong>：观察对危险与不确定性的敏感、寻求支持以及情感联结的倾向。</li>
+      <li><strong>外向性（Extraversion）</strong>：观察社会自信、公开表达、群体互动与积极活力的倾向。</li>
+      <li><strong>宜人性（Agreeableness）</strong>：观察受到冒犯或遇到分歧时，宽恕、温和、协商与保持耐心的倾向。</li>
+      <li><strong>尽责性（Conscientiousness）</strong>：观察组织安排、持续投入、细节检查与审慎决策的倾向。</li>
+      <li><strong>开放性（Openness to Experience）</strong>：观察审美感受、求知兴趣、创造性与审视惯例的倾向。</li>
+      <li><strong>利他性（Altruism）</strong>：观察面对弱势、受苦或急需帮助者时主动关怀的倾向；作为独立面向呈现，不计入六维总分。</li>
+    </ul>
+    <p><strong>使用指南：</strong>本量表共包含 100 道题目，分为十个部分。请根据过去一年中较稳定、较自然的真实表现选择 1–5 分（1 分＝非常不符合，3 分＝一般／视情况而定，5
+      分＝非常符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看六个维度、二十四个子面向、独立利他性、分组校准线索和自我探索建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断、招聘或评价人格高低。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+
+  <form id="hexacoQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" id="calculateButton" onclick="calculateResult()">计算结果</button>
+      <button type="button" class="btn-secondary" id="resetButton" onclick="resetForm()">重置问卷</button>
+      <button type="button" class="btn-secondary" id="saveButton" onclick="saveResultText()">保存文本结果</button>
+      <button type="button" class="btn-secondary" id="saveImageButton" onclick="saveResultImage()">保存图片结果</button>
+    </div>
+  </form>
+
+  <div class="result" id="result">
+    <h2 class="result-report-title">HEXACO 六维人格倾向深度自评报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前六维人格倾向轮廓</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas></svg></div>
+      </div>
+    </div>
+    <div id="currentProfileAnalysis"></div>
+    <div id="mainInterpretation"></div>
+    <div id="deepPersonalAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+
+  <script src="./scripts/hexaco-personality-scale.js" defer></script>
+</body>
+
+</html>

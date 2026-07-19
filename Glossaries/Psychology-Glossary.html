@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心理学术语表</title>
+  <meta name="description" content="心理学术语表，以可搜索术语表形式收录 200 个心理学入门常见概念、研究方法与理论流派。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="心理学术语表">
+  <meta property="og:description" content="心理学术语表，以可搜索术语表形式收录 200 个心理学入门常见概念、研究方法与理论流派。">
+  <meta property="og:url" content="https://prismself.vip/Glossaries/Psychology-Glossary.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面分类标签配色与焦点样式（其余样式见 glossary-common.css） */
+    .tag.foundations {
+      background: var(--teal);
+    }
+
+    .tag.biological {
+      background: var(--slate);
+    }
+
+    .tag.cognition {
+      background: var(--blue);
+    }
+
+    .tag.development {
+      background: var(--green);
+    }
+
+    .tag.personality {
+      background: var(--violet);
+    }
+
+    .tag.social {
+      background: var(--amber);
+    }
+
+    .tag.clinical {
+      background: var(--rose);
+    }
+
+    .tag.schools {
+      background: #7c5a1f;
+    }
+
+    .back-link:focus-visible,
+    .mini-nav a:focus-visible,
+    .filter:focus-visible,
+    .search:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./glossary-common.css?v=20260710b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <nav class="topbar" aria-label="页面导航">
+    <div class="topbar-inner">
+      <a class="back-link" href="../index.html">← 返回知识图谱</a>
+      <div class="mini-nav">
+        <a href="#glossary">术语检索</a>
+        <a href="#usage">使用提醒</a>
+        <a href="#sources">延伸阅读</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">PSYCHOLOGY · CONCEPTS, METHODS AND SCHOOLS</p>
+        <h1>心理学术语表</h1>
+        <p class="lede">
+          这是一份面向入门阅读和日常讨论的心理学术语表。页面按研究领域整理 200 个常见概念、研究方法与理论流派，帮助你在阅读、写作和自我梳理时更快找到关键词，并通过更完整的正文解释把术语放回具体语境里理解。
+        </p>
+      </div>
+      <aside class="summary-panel" aria-label="术语表摘要">
+        <p>心理学术语常常来自具体研究与理论传统，而不是固定结论。阅读时可以同时留意：它想解释什么现象、依据哪类证据、适用范围有多大，以及容易被如何误用。</p>
+        <div class="stats">
+          <div class="stat"><b id="termCount">0</b><span>收录术语</span></div>
+          <div class="stat"><b>8</b><span>筛选分类</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="glossary" aria-labelledby="glossary-title">
+      <p class="notice">
+        本页是学习辅助，不是诊断工具或专业教科书。不同流派会对同一术语给出不同定义；这里优先给出便于入门的工作性解释，并在补充说明里提示常见误读。如遇心理困扰，请寻求专业帮助。
+      </p>
+
+      <div class="tools">
+        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：记忆、bias" aria-label="搜索术语">
+        <div class="filters" aria-label="分类筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="foundations" aria-pressed="false">基础与方法</button>
+          <button class="filter" type="button" data-filter="biological" aria-pressed="false">生物与神经</button>
+          <button class="filter" type="button" data-filter="cognition" aria-pressed="false">认知与记忆</button>
+          <button class="filter" type="button" data-filter="development" aria-pressed="false">发展与成长</button>
+          <button class="filter" type="button" data-filter="personality" aria-pressed="false">人格与动机</button>
+          <button class="filter" type="button" data-filter="social" aria-pressed="false">社会与群体</button>
+          <button class="filter" type="button" data-filter="clinical" aria-pressed="false">临床与健康</button>
+          <button class="filter" type="button" data-filter="schools" aria-pressed="false">流派与传统</button>
+        </div>
+      </div>
+
+      <div class="results-meta">
+        <h2 id="glossary-title">术语检索</h2>
+        <span id="resultCount" aria-live="polite">0 个结果</span>
+      </div>
+      <div id="categoryIntro" class="notice" hidden></div>
+      <div id="termGrid" class="term-grid"></div>
+      <div id="emptyState" class="empty">没有找到匹配的术语。可以换一个关键词，或切回“全部”。</div>
+    </section>
+
+    <section class="appendix" id="usage" aria-label="使用提醒与延伸阅读">
+      <div class="section-panel">
+        <h2>使用提醒</h2>
+        <ul>
+          <li>先看研究领域，再看定义。比如“强化”常出现在学习与行为研究中，“依恋”常出现在发展与临床语境中。</li>
+          <li>同一个词在不同流派（如行为主义、认知、精神分析、人本主义）中可能有不同重心，不宜把一个定义当作唯一版本。</li>
+          <li>读到实验或效应时，可以留意三点：它基于什么样本、效应有多大、是否已被重复验证。</li>
+          <li>页面中的英文用于辅助检索和延伸阅读；术语有多种中文译法时，卡片会列出常见又译。</li>
+        </ul>
+      </div>
+
+      <div class="section-panel" id="sources">
+        <h2>延伸阅读</h2>
+        <ol class="source-list">
+          <li><a href="https://dictionary.apa.org/">APA Dictionary of Psychology</a></li>
+          <li><a href="https://www.apa.org/">American Psychological Association</a></li>
+          <li><a href="https://nobaproject.com/">Noba Project</a></li>
+          <li><a href="https://www.simplypsychology.org/">Simply Psychology</a></li>
+          <li><a href="https://www.verywellmind.com/">Verywell Mind</a></li>
+          <li><a href="https://openstax.org/details/books/psychology-2e">OpenStax: Psychology 2e</a></li>
+          <li><a href="https://www.nimh.nih.gov/health/topics">National Institute of Mental Health: Health Topics</a>
+          </li>
+          <li><a href="https://www.psychologicalscience.org/">Association for Psychological Science</a></li>
+          <li><a href="https://www.bps.org.uk/">British Psychological Society</a></li>
+          <li><a href="https://spsp.org/">Society for Personality and Social Psychology</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script src="./scripts/psychology-glossary.js" defer></script>
+</body>
+
+</html>

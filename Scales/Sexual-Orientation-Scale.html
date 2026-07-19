@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>性取向自评量表</title>
+	<meta name="description" content="性取向自评量表，通过多维条目帮助你探索性取向相关的自我倾向；结果仅保存在本地。">
+	<meta name="theme-color" content="#2f6f73">
+	<link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="PrismSelf">
+	<meta property="og:title" content="性取向自评量表">
+	<meta property="og:description" content="性取向自评量表，通过多维条目帮助你探索性取向相关的自我倾向；结果仅保存在本地。">
+	<meta property="og:url" content="https://prismself.vip/Scales/Sexual-Orientation-Scale.html">
+	<meta property="og:locale" content="zh_CN">
+	<meta property="og:image" content="https://prismself.vip/og-image/image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+	<style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
+    :root {
+      --accent: #2f6f73;
+      --accent-2: #7c6db0;
+      --accent-dark: #214f52;
+      --tint: #eef8f6;
+      --tint-2: #f4f1fb;
+      --ink: #24324a;
+      --soft: #64748b;
+      --line: #e2e8f0;
+    }
+
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .intro,
+    .explanation,
+    .note-box {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .question {
+      margin-bottom: 28px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.05em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+    }
+
+    .q-number {
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 230px;
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    details {
+      margin-bottom: 15px;
+      background-color: #f9fbfd;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      font-weight: 500;
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .result th,
+    .result td {
+      padding: 14px 16px;
+      text-align: left;
+      border: none;
+    }
+
+    .result td {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .analysis-scoreline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 10px;
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    .direction-ranking {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 0;
+    }
+
+    .direction-rank-item {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .direction-rank-item span,
+    .direction-rank-item strong {
+      display: block;
+    }
+
+    .direction-rank-item span {
+      margin-bottom: 5px;
+      color: var(--soft);
+      font-size: 0.8rem;
+    }
+
+    .direction-rank-item strong {
+      font-size: 1.03rem;
+    }
+
+	.orientation-cross-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	.orientation-cross-card {
+		min-width: 0;
+		padding: 17px 18px;
+		border: 1px solid var(--scale-line);
+		border-radius: 12px;
+		background: var(--scale-tint-2);
+	}
+
+	.orientation-cross-card strong {
+		display: block;
+		margin-bottom: 7px;
+	}
+
+	.orientation-cross-card p {
+		margin: 0;
+		color: var(--scale-muted);
+		font-size: .91rem;
+		line-height: 1.72;
+	}
+
+    @media (max-width: 650px) {
+      body {
+        padding: 14px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+      .direction-ranking {
+        grid-template-columns: 1fr;
+      }
+
+	  .orientation-cross-grid {
+		grid-template-columns: 1fr;
+	  }
+
+    }
+	</style>
+	<link rel="stylesheet" href="./scale-common.css">
+	<script>window.PRISM_SCALE_CONFIG = { id: 'sexual-orientation', title: '性取向自评量表', formId: 'sexualOrientationQuiz', storageKey: 'sexualOrientationQuizAnswers', totalQuestions: 60, resultId: 'result' };</script>
+	<script src="./scale-common.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+  </head>
+
+<body>
+	<a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+	<div class="global-progress">
+		<p class="progress" id="globalProgressText">进度：0/60</p>
+		<div class="progress-bar">
+			<div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+		</div>
+	</div>
+
+	<h1>性取向自评量表</h1>
+
+	<div class="intro">
+		<h2>关键概念与使用指南</h2>
+		<p><strong>性吸引（Sexual
+				Attraction）</strong>：对特定对象产生的、以性接触或性行为为指向的心理与生理驱动力。它通常表现为希望与对方发生性行为或进行具有性意味的亲密身体接触，并可能伴随生理反应（如心跳加速、生理唤起）或心理兴奋（如性幻想的涌现）。
+			性吸引是一种由内向外、以他人为对象、以性为取向的主动心理动力，有别于单纯的外貌欣赏（审美吸引）、情感依恋（情感吸引）或浪漫渴望（浪漫吸引）。值得注意的是，性吸引并非总是与浪漫吸引同步出现——有些人可能对某人产生性吸引却无浪漫情感，反之亦然。
+			例如：当您看到某人时，会不由自主地产生与之发生性行为的想象，并感受到强烈的生理或心理渴望，这种体验通常即为性吸引。
+		</p>
+		<p><strong>为了更好地理解和区分性吸引与其他类型的吸引，在此简要介绍几种常见吸引类型：</strong></p>
+		<ul>
+			<li><strong>浪漫吸引（Romantic Attraction）</strong>：对特定对象产生的、以浪漫情感为核心驱动的内在渴望，通常表现为希望与对方建立恋爱关系、进行浪漫互动（如约会、牵手、表达爱意、给予特别关注），并可能伴随心跳加速、思念萦绕、幻想与对方共度未来等情感体验。
+				与情感吸引不同，浪漫吸引包含一种“想成为对方的特别存在”的渴望，以及对关系排他性或特殊亲密性的向往；与性吸引不同，浪漫吸引的核心在于情感联结与浪漫仪式感本身，而非性接触的欲望——两者可以同时存在，也可以彼此独立。
+			</li>
+			<li><strong>情感吸引（Emotional Attraction）</strong>：被某人的内心世界、性格、思想或情感深度吸引，并希望与对方建立信任、倾诉、理解和情绪支持的深层连接。情感吸引可以构成亲密关系的重要基础，但本身不必然包含浪漫或性欲望。</li>
+			<li><strong>柏拉图式吸引（Platonic Attraction）</strong>：渴望与某人建立深厚、稳定且非浪漫的友谊关系，强调陪伴、共同兴趣、价值观契合和彼此同行。它可能非常强烈，却不一定指向恋爱或性接触。</li>
+			<li><strong>审美吸引（Aesthetic Attraction）</strong>：单纯地欣赏他人的外貌、气质、风格、声音、肢体语言或整体美感，觉得对方“好看”“有魅力”或“像艺术品一样值得欣赏”，但并不伴随想恋爱、想触碰或想发生性关系的欲望。</li>
+			<li><strong>感官吸引（Sensual Attraction）</strong>：渴望与某人进行非性的身体亲密接触，例如拥抱、牵手、依偎、轻抚或靠近，以获得舒适、安全感、温暖或放松。感官吸引的核心是触觉亲密，不必然涉及性唤起或性欲望。</li>
+		</ul>
+		<p><strong>重要提示：</strong>这些吸引类型可以独立存在，也可以同时发生。例如：您可能对某人同时产生浪漫吸引和审美吸引，但没有性吸引；也可能对某人产生性吸引，却并不想与其建立浪漫关系。本量表专门评估<strong>性吸引的方向与触发线索</strong>，请在做题时尽量专注于这种特定类型的吸引。
+			如果您在性别相关性吸引、性征吸引和气质吸引上整体分数都很低，本表会提示无性恋/无性恋谱系倾向，建议结合 <a href="./Asexual-Spectrum-Scale.html">无性恋谱系自评量表</a> 进一步探索。
+		</p>
+		<p><strong>性取向（Sexual
+				Orientation）</strong>：在本量表中主要指“性吸引的方向”与“被什么线索触发”。它不等同于性经历、性幻想题材、自慰内容、恋爱意愿、婚育选择、道德立场或社会期待。一个人可以没有相关性经历但仍然清楚自己的性吸引方向，也可能有过某类性经历但并不真正对该类对象产生稳定性吸引。
+			性取向并不总是只由“对方身份标签”决定。有些人的性吸引更受性别认同影响，有些人更受性别表达（女性气质、男性气质、中性/混合表达）、身体性征、声音、气味、肢体语言、互动方式或关系张力影响。本量表会分别评估女性/女性气质、男性/男性气质、非二元/中性/混合表达，以及更具体的身体性征、气质和互动线索如何参与性吸引。以下是常见性取向与相关术语：
+		</p>
+		<details class="scale-concept-details">
+			<summary>点击展开（附解释说明）</summary>
+			<div class="scale-concept-content">
+			<p>以下术语主要用来概括性吸引可能指向哪些性别，以及性别在吸引形成中可能扮演怎样的角色。取向标签通常综合长期吸引体验、自我理解与社群归属，并不由某一次心动、幻想、性行为或伴侣经历单独决定。不同术语之间可能重叠，具体含义也会因个人与社群语境而略有差异。</p>
+			<ul>
+				<li><strong>异性恋（Heterosexual）</strong>：性吸引主要指向与自己不同的性别，常见表述包括“女性主要被男性吸引”或“男性主要被女性吸引”。这个词通常在二元性别语境中使用；跨性别或非二元者是否使用该标签，应以其自身理解为准，不能只根据伴侣外表替对方判断。</li>
+				<li><strong>同性恋（Gay / Lesbian）</strong>：性吸引主要指向与自己相同或相近的性别。例如，女性主要被女性吸引可自称女同性恋，男性主要被男性吸引可自称男同性恋；也有部分非二元者会依据自身经历使用“女同”“男同”或 Gay 等标签。</li>
+				<li><strong>双性恋（Bisexual）</strong>：性吸引可指向两个或以上性别，且这些吸引不必完全对称。一个双性恋者可能更常被某一性别吸引，但仍然真实地对其他性别产生性吸引。双性恋并不意味着“一定只承认男女二元”，许多双性恋者也会将非二元/多元性别纳入自己的吸引范围。
+				</li>
+				<li><strong>多元性取向谱系（Multisexual / M-spec）</strong>：用于统称可能被不止一个性别吸引的取向，包括双性恋、泛性恋、多性恋和全性恋等。它更多是一个便于讨论共同经验的伞式概念，不要求使用者放弃更具体的自我标签。</li>
+				<li><strong>多性恋（Polysexual）</strong>：性吸引可指向多个性别或多种性别表达，但不一定指向所有性别。它强调吸引范围的多元性，同时保留“某些性别更容易触发吸引、某些性别较少或不会触发”的可能性。
+				</li>
+				<li><strong>泛性恋（Pansexual）</strong>：性吸引不以对方性别作为核心筛选条件，更容易被“这个人本身”、气质、互动、关系张力或整体人格吸引。泛性恋并不等于“对所有人都有吸引”，而是指性别分类对吸引产生的影响较小或不是第一位。
+				</li>
+				<li><strong>全性恋（Omnisexual）</strong>：可能对所有或几乎所有性别产生吸引，同时仍能感受到不同性别在吸引方式、强度或偏好上的差异。它与泛性恋存在重叠；有些人用“泛”强调性别不是关键条件，用“全”强调性别仍会参与塑造吸引。</li>
+				<li><strong>酷儿（Queer）</strong>：一种较开放、反规范、可包含多种非主流性取向经验的自我描述。它适合那些不想被异/同/双/泛等标签完全框住，或认为自己的吸引体验具有复杂性、流动性、政治性或反分类意味的人。这个词曾被用于侮辱，后来被部分社群重新认领，因此不宜在对方未自称时擅自用它称呼对方。
+				</li>
+				<li><strong>有性恋（Allosexual）</strong>：在无性恋社群语境中，通常指并不处于无性恋谱系、会较常规地体验指向他人的性吸引者。它描述的是是否体验性吸引，不表示性欲一定更强、性行为一定更多，也不代替异性恋、同性恋、双性恋等方向标签。</li>
+				<li><strong>无性恋（Asexual）</strong>：完全或几乎不体验指向他人的性吸引，但可能仍有浪漫、情感、审美、感官吸引，也可能有亲密关系、伴侣关系或不同的性行为态度。无性恋不等于没有爱、没有身体感受、没有性欲、不能恋爱或不能建立关系。
+				</li>
+				<li><strong>灰性恋（Greysexual）</strong>：性吸引很少、很弱、模糊、短暂或只在少数特殊情境下出现。灰性恋常位于无性恋与有性恋之间，不一定能用“有/没有性吸引”二分描述。</li>
+				<li><strong>半性恋（Demisexual）</strong>：通常需要深度情感连接、信任、长期熟悉或特定关系基础后，才可能出现性吸引。半性恋并不是“比较慢热”这么简单，重点是没有情感连接时通常不会产生性吸引。
+				</li>
+				<li><strong>探索中 /
+						疑问中（Questioning）</strong>：尚未确定自己的性吸引方向，或正在重新理解过去经验与当下感受的人。探索中不是“不成熟”或“没有答案”，而是一种有效的自我认识阶段。</li>
+				<li><strong>流动性取向（Sexually
+						Fluid）</strong>：性吸引的方向、强度或标签在不同人生阶段、关系情境、心理状态或社会环境中发生变化。流动并不等于“不真实”，而是说明您的吸引模式可能更像一条随时间变化的轨迹。
+				</li>
+				<li><strong>无标签 / 开放标签（Unlabeled /
+						Label-Open）</strong>：不使用固定取向标签，或只用“目前主要被……吸引”“也可能被……吸引”“暂时不确定”等描述性语言来理解自己。对于体验复杂、低频、流动或仍在探索的人，这种方式可能比强行选择单一标签更贴近真实。
+				</li>
+			</ul>
+			<p>这些标签的作用是帮助描述与沟通，而不是要求每个人必须选出唯一且永久不变的答案。一个人可以同时使用伞式与具体标签，也可以在理解变化后更换标签、暂时保持探索，或完全不使用标签；本量表结果只能提供观察线索，不能替您决定身份。</p>
+			</div>
+		</details>
+		<p><strong>使用指南：</strong>本量表共包含 60 道题目，分为五个部分。请根据过去几年中较稳定、较自然的真实体验选择 0–5 分（0 分＝完全不符合，5 分＝完全符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看吸引方向、整体强度、分维度分析和个性化建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断或证明任何身份。</p>
+		<p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+	</div>
+
+	<form id="sexualOrientationQuiz">
+		<div id="questionsContainer"></div>
+		<div class="scale-actions">
+			<button type="button" onclick="calculateResult()">计算结果</button>
+			<button type="button" class="btn-secondary" onclick="resetQuiz()">重置问卷</button>
+			<button type="button" class="btn-secondary" onclick="saveResultText()">保存文本结果</button>
+			<button type="button" class="btn-secondary" onclick="saveResultImage(event)">保存图片结果</button>
+		</div>
+	</form>
+
+	<div id="result" class="result">
+		<h2 class="result-report-title">性吸引结构深度探索报告</h2>
+		<div class="result-top-grid">
+			<div class="result-summary-panel">
+				<p class="result-eyebrow">你的当前性吸引画像</p>
+				<div id="scoreSummary"></div>
+				<div id="typeJudgment"></div>
+			</div>
+			<div class="radar-container">
+				<div class="radar-wrapper">
+					<canvas id="radarChart"></canvas>
+				</div>
+			</div>
+		</div>
+		<div id="currentProfileAnalysis"></div>
+		<div id="mainInterpretation"></div>
+		<div id="deepPersonalAnalysis"></div>
+		<div id="sectionScores"></div>
+		<div id="personalizedSuggestions"></div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H" crossorigin="anonymous"></script>
+	<script src="./scripts/sexual-orientation-scale.js" defer></script>
+  </body>
+
+</html>

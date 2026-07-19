@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大五人格倾向自评量表</title>
+  <meta name="description" content="大五人格倾向自评量表，通过 120 道本站原创中文情境题，从五个核心维度与三十个子面向梳理人格倾向；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="大五人格倾向自评量表">
+  <meta property="og:description" content="通过 120 道原创中文情境题，从五个维度与三十个子面向梳理人格倾向。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Big-Five-Personality-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      border-bottom: 2px solid #2f6f73;
+      padding-bottom: 6px;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-size: 1.25em;
+    }
+
+    .section {
+      transition: box-shadow 0.2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+      transition: all .2s ease;
+    }
+
+    .q-number {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 280px;
+      padding: 10px;
+      font-size: .95em;
+      cursor: pointer;
+    }
+
+    .intro,
+    .explanation {
+      padding: 24px 28px;
+      margin-bottom: 25px;
+      font-size: .98em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: .95em;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .result-top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .radar-container {
+      padding: 20px;
+      border: 1px solid #fecdd3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .result th {
+      padding: 14px 16px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .result td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #dbe5ea;
+      font-size: .95em;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      font-size: .98em;
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .insight-card {
+      padding: 24px 28px;
+      margin: 25px 0;
+      border: 1px solid #d7f9fc;
+    }
+
+    .insight-card h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      border-bottom: none;
+    }
+
+    .theory-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: .88rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .action-box {
+      padding: 28px;
+      margin-top: 15px;
+    }
+
+    .result .insight-card p,
+    .result .action-box p,
+    .result .insight-card li {
+      letter-spacing: .045em !important;
+      word-spacing: .08em;
+      line-height: 1.85 !important;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif !important;
+    }
+
+    .result .insight-card strong,
+    .result .action-box strong {
+      letter-spacing: .02em !important;
+    }
+
+    .question-title:focus-visible {
+      outline: 2px solid var(--scale-accent);
+      outline-offset: 2px;
+    }
+
+    .bf-combination-card {
+      margin-top: 0 !important;
+    }
+
+    .bf-dimension-detail>h4 {
+      margin: 26px 0 14px;
+      font-size: 1.08em;
+    }
+
+    .bf-facet-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .bf-facet-detail {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--scale-line);
+      border-radius: 12px;
+      background: var(--scale-tint-2);
+    }
+
+    .bf-facet-detail-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--scale-line);
+    }
+
+    .bf-facet-detail-head strong {
+      font-size: 1.02em;
+    }
+
+    .bf-facet-detail-head span {
+      flex: 0 0 auto;
+      color: var(--scale-accent-dark);
+      font-size: .82em;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .bf-facet-detail p {
+      margin: 12px 0 0;
+      font-size: .92em;
+      line-height: 1.72 !important;
+    }
+
+    .bf-facet-calibration {
+      color: var(--scale-muted);
+    }
+
+    .bf-dimension-reflection {
+      margin-top: 20px !important;
+      padding-top: 16px;
+      border-top: 1px solid var(--scale-line);
+    }
+
+    .bf-context-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .bf-context-card {
+      padding: 20px 22px;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      background: var(--scale-surface);
+    }
+
+    .bf-context-card h4 {
+      margin: 0 0 10px;
+    }
+
+    .bf-context-card p {
+      margin: 8px 0 0;
+      line-height: 1.75;
+    }
+
+    @media(max-width:850px) {
+      .result-top-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radar-wrapper {
+        max-width: 400px;
+      }
+
+      .bf-facet-detail-grid,
+      .bf-context-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      button {
+        margin-bottom: 12px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'big-five-personality', title: '大五人格倾向自评量表', formId: 'bigFiveQuiz', storageKey: 'bigFivePersonalityAnswersV3', totalQuestions: 120, resultId: 'result' };</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="./scale-common.js" defer></script>
+  <script src="./scripts/personality-scale-engine.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/120</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width:0%"></div>
+    </div>
+  </div>
+  <h1>大五人格倾向自评量表</h1>
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p>大五人格模型并非由单一研究者提出，而是在词汇研究传统中逐步形成；Ernest Tupes 与 Raymond Christal 在前人工作的基础上提炼出反复出现的五因素结构，Warren Norman
+      随后复现了这一结构，Lewis Goldberg 后来进一步发展相关词汇研究并推广了“Big Five”这一名称。本量表参考 IPIP-NEO-120 的五个维度与三十个分面框架，设置每个分面四题，共 120
+      题。全部中文情境题均独立编写，并非 IPIP-NEO-120 的官方中文版，也未经相关机构或作者认证。</p>
+    <p>
+      <strong>大五人格并非把人划分成五种类型</strong>，而是把人格差异理解为五个彼此相对独立、连续变化的维度。每个人都会同时具有神经质、外向性、开放性、宜人性和尽责性，只是各维度表现程度与组合方式不同；分数高低描述的是常见反应和行为偏好，不代表人格成熟度、能力或价值高低。本量表用于帮助你从<strong>情绪反应、社交活力、经验探索、人际合作与目标执行</strong>等方面，观察自己在当前生活阶段较稳定的倾向，以及它们可能怎样随关系、压力和角色要求而变化。
+    </p>
+    <p><strong>为了更好地理解，我们在此简要介绍量表涉及的五个核心人格倾向：</strong></p>
+    <ul>
+      <li><strong>神经质（Neuroticism）</strong>：观察焦虑预期、愤怒反应、低落感、自我意识、冲动调节与压力脆弱性。</li>
+      <li><strong>外向性（Extraversion）</strong>：观察友好热情、群居偏好、主导表达、活动水平、刺激寻求与积极情绪。</li>
+      <li><strong>开放性（Openness to Experience）</strong>：观察想象力、审美兴趣、情感体验、行动尝新、思辨兴趣与价值开放。</li>
+      <li><strong>宜人性（Agreeableness）</strong>：观察人际信任、坦诚守信、助人倾向、合作退让、谦逊表达与同情关怀。</li>
+      <li><strong>尽责性（Conscientiousness）</strong>：观察效能信心、秩序条理、责任守约、成就追求、持续自律与审慎决策。</li>
+    </ul>
+    <p>
+      <strong>重要提示：</strong>“神经质”是人格心理学中的维度名称，描述一个人对压力、不确定性与负面情绪的敏感和反应倾向，<strong>不等于“神经症”、精神疾病或临床诊断</strong>。分数较高通常表示更容易担忧、紧张或受情绪影响；分数较低通常表示情绪较平稳，但不代表更健康、成熟或坚强。较高的情绪敏感性有时有助于更早察觉风险，较低的反应性有时有助于在压力下保持镇定。短期压力、睡眠和生活事件也会影响作答，因此更适合把结果看作当前阶段的倾向线索，而不是固定标签。请结合具体情境理解结果。
+    </p>
+    <p><strong>使用指南：</strong>本量表共包含 120 道题目，分为十二个部分。请根据过去一年中较稳定、较自然的真实表现选择 1–5 分（1 分＝非常不符合，3 分＝一般／视情况而定，5
+      分＝非常符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看五个维度、三十个子面向、分组校准线索和自我探索建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断、招聘或评价人格高低。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+  <form id="bigFiveQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions"><button type="button" id="calculateButton"
+        onclick="calculateResult()">计算结果</button><button type="button" class="btn-secondary" id="resetButton"
+        onclick="resetForm()">重置问卷</button><button type="button" class="btn-secondary" id="saveButton"
+        onclick="saveResultText()">保存文本结果</button><button type="button" class="btn-secondary" id="saveImageButton"
+        onclick="saveResultImage()">保存图片结果</button></div>
+  </form>
+  <div class="result" id="result">
+    <h2 class="result-report-title">大五人格倾向深度自评报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前人格倾向画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div id="currentProfileAnalysis"></div>
+    <div id="mainInterpretation"></div>
+    <div id="deepPersonalAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+
+  <script src="./scripts/big-five-personality-scale.js" defer></script>
+</body>
+
+</html>

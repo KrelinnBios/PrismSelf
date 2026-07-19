@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>人际冲突概念全面分析表</title>
+  <meta name="description" content="全面分析人际冲突的概念、成因与应对模式，厘清相关的心理与沟通术语。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="人际冲突概念全面分析表">
+  <meta property="og:description" content="全面分析人际冲突的概念、成因与应对模式，厘清相关的心理与沟通术语。">
+  <meta property="og:url" content="https://prismself.vip/Analyses/Interpersonal-Conflict-Analysis.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 analysis-common.css（在其后加载并覆盖同名规则）。 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .row-lv1 {
+      background: linear-gradient(135deg, #f0fdf4, #eafaf1);
+      border-left: 3px solid #15803d;
+    }
+
+    .row-lv2 {
+      background: linear-gradient(135deg, #eff6ff, #e8f0fe);
+      border-left: 3px solid #1d4ed8;
+    }
+
+    .row-lv3 {
+      background: linear-gradient(135deg, #fff7ed, #fff3e6);
+      border-left: 3px solid #ea580c;
+    }
+
+    .row-lv4 {
+      background: linear-gradient(135deg, #fef2f2, #fee8e8);
+      border-left: 3px solid #be123c;
+    }
+
+    .row-lv5 {
+      background: linear-gradient(135deg, #fef2f2, #fee8e8);
+      border-left: 3px solid #b91c1c;
+    }
+
+    .row-lv6 {
+      background: linear-gradient(135deg, #fdf2f5, #fce8ef);
+      border-left: 3px solid #9b1c2c;
+    }
+
+    .example-text {
+      margin-top: 8px;
+      font-size: 0.7rem;
+      padding: 6px 8px;
+      border-radius: 12px;
+      font-style: italic;
+    }
+
+    .lv1 .badge-dot {
+      background: #15803d;
+    }
+
+    .lv2 .badge-dot {
+      background: #1d4ed8;
+    }
+
+    .lv3 .badge-dot {
+      background: #ea580c;
+    }
+
+    .lv4 .badge-dot {
+      background: #be123c;
+    }
+
+    .lv5 .badge-dot {
+      background: #b91c1c;
+    }
+
+    .lv6 .badge-dot {
+      background: #9b1c2c;
+    }
+
+    @media (max-width: 780px) {
+      body {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      tr {
+        margin-bottom: 24px;
+        border-radius: 24px;
+        background: white;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+        padding: 16px 18px;
+        border-left: 5px solid;
+      }
+
+      .row-lv1 {
+        background: #f0fdf4;
+        border-left-color: #15803d;
+      }
+
+      .row-lv2 {
+        background: #eff6ff;
+        border-left-color: #1d4ed8;
+      }
+
+      .row-lv3 {
+        background: #fff7ed;
+        border-left-color: #ea580c;
+      }
+
+      .row-lv4 {
+        background: #fef2f2;
+        border-left-color: #be123c;
+      }
+
+      .row-lv5 {
+        background: #fef2f2;
+        border-left-color: #b91c1c;
+      }
+
+      .row-lv6 {
+        background: #fdf2f5;
+        border-left-color: #9b1c2c;
+      }
+
+      td {
+        flex-wrap: wrap;
+      }
+
+      td::before {
+        width: 90px;
+        flex-shrink: 0;
+      }
+
+      td:first-child {
+        padding-bottom: 12px;
+      }
+
+      .concept-cell {
+        width: 100%;
+      }
+
+      .concept-pill {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .detail-btn {
+        margin-top: 6px;
+        margin-left: 0;
+      }
+
+      .tag-list,
+      .example-text,
+      .badge {
+        width: auto;
+        flex: auto;
+      }
+
+      .modal-box {
+        width: 95%;
+        padding: 24px 20px;
+        max-height: 85vh;
+      }
+
+      .modal-title {
+        font-size: 1.4rem;
+      }
+
+    }
+
+    :root[data-theme="dark"] .row-lv1 {
+      background: linear-gradient(135deg, #0f2417, #0d2014);
+    }
+
+    :root[data-theme="dark"] .row-lv2 {
+      background: linear-gradient(135deg, #121d2e, #101826);
+    }
+
+    :root[data-theme="dark"] .row-lv3 {
+      background: linear-gradient(135deg, #2a1c12, #241910);
+    }
+
+    :root[data-theme="dark"] .row-lv4 {
+      background: linear-gradient(135deg, #2a1414, #241010);
+    }
+
+    :root[data-theme="dark"] .row-lv5 {
+      background: linear-gradient(135deg, #2a1414, #241010);
+    }
+
+    :root[data-theme="dark"] .row-lv6 {
+      background: linear-gradient(135deg, #2a1320, #24101a);
+    }
+
+    :root[data-theme="dark"] .example-text {
+      background: #161d27;
+    }
+
+    :root[data-theme="dark"] td::before {
+      color: #c4b5fd;
+    }
+  </style>
+  <link rel="stylesheet" href="./analysis-common.css">
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-tag">心理学 · 社会学 · 冲突管理</div>
+      <h1>人际冲突概念全面分析表</h1>
+      <p class="subtitle">基于冲突管理理论、社会心理学与组织行为学的多维度分析框架，涵盖概念界定、心理机制、后果评估与干预策略</p>
+      <div class="meta-row">
+        <div class="meta-item">📚 参考文献基础 <span>Deutsch &amp; Coleman; Thomas; Allport</span></div>
+        <div class="meta-item">📌 概念总数 <span>10 项</span></div>
+        <div class="meta-item">⚖️ 严重程度分级 <span>6 级</span></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="filter-btn active" onclick="filterTable('all', this)">全部（10）</button>
+      <button class="filter-btn" onclick="filterTable('constructive', this)">建设性（2）</button>
+      <button class="filter-btn" onclick="filterTable('neutral', this)">中性（4）</button>
+      <button class="filter-btn" onclick="filterTable('harmful', this)">有害性（4）</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="conflictTable">
+        <thead>
+          <tr>
+            <th>概念</th>
+            <th>操作性定义</th>
+            <th>核心动机</th>
+            <th>典型表现</th>
+            <th>心理机制</th>
+            <th>潜在后果</th>
+            <th>干预策略</th>
+            <th>评级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-lv1" data-type="constructive" data-sev="1">
+            <td class="concept-cell" onclick="showDetail('competition')">
+              <div class="concept-pill"><span class="concept-name">竞争</span><span class="concept-en">Competition</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('competition')">解析
+                →</button>
+            </td>
+            <td>两方或多方个体（或群体）在规则约束下，为争取同一稀缺目标（资源、地位、荣誉）而进行的有序对抗过程。与冲突的本质区别在于：遵循共享规范，且不以削弱对手为手段。</td>
+            <td>
+              <div class="tag-list"><span class="tag">成就动机</span><span class="tag">自我提升</span><span
+                  class="tag">外部激励</span></div>
+            </td>
+            <td>学术竞赛、职场绩效评比、体育赛事、市场竞争<div class="example-text">例：同团队成员在透明排行榜下争夺季度销售冠军</div>
+            </td>
+            <td>成就动机理论（McClelland, 1961）；社会比较理论（Festinger, 1954）；自我效能感机制</td>
+            <td>促进个体技能提升与创新；提高组织整体绩效；若竞争设计不当可能诱发零和思维</td>
+            <td>建立公平透明的评价规则；设置合作性目标补充竞争；定期反馈与心理安全保障</td>
+            <td><span class="badge lv1"><span class="badge-dot"></span>Lv.1 积极</span></td>
+          </tr>
+          <tr class="row-lv2" data-type="constructive" data-sev="2">
+            <td class="concept-cell" onclick="showDetail('opposition')">
+              <div class="concept-pill"><span class="concept-name">反对</span><span class="concept-en">Opposition</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('opposition')">解析 →</button>
+            </td>
+            <td>基于事实依据或价值判断，对特定观点、决策或行为表达异议的认知-言语行为。以尊重对方为前提，目的在于修正错误或完善方案，而非打压对方本身。</td>
+            <td>
+              <div class="tag-list"><span class="tag">认识论驱动</span><span class="tag">原则维护</span><span
+                  class="tag">批判性思维</span></div>
+            </td>
+            <td>提出异议、政策质询、同行评审批评、建设性反馈<div class="example-text">例：会议中以数据为据质疑某方案的可行性假设</div>
+            </td>
+            <td>批判性思维（Paul &amp; Elder, 2001）；认知失调（Festinger, 1957）；价值观驱动的道德推理</td>
+            <td>防范群体思维（groupthink）；提升决策质量；若缺乏建设性可能演变为持续分歧</td>
+            <td>区分观点与人身；以证据为中心；建立心理安全的反馈文化</td>
+            <td><span class="badge lv2"><span class="badge-dot"></span>Lv.2 中性偏积极</span></td>
+          </tr>
+          <tr class="row-lv3" data-type="neutral" data-sev="3">
+            <td class="concept-cell" onclick="showDetail('involution')">
+              <div class="concept-pill"><span class="concept-name">内卷</span><span class="concept-en">Involution</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('involution')">解析 →</button>
+            </td>
+            <td>源自人类学术语"involution"（格尔茨，1963），指在竞争结构封闭、晋升通道受限的系统中，个体被迫持续加大投入以维持相对地位，导致边际收益递减但个体无法单方面退出的内耗状态。</td>
+            <td>
+              <div class="tag-list"><span class="tag">损失厌恶</span><span class="tag">社会压力</span><span
+                  class="tag">相对地位维护</span></div>
+            </td>
+            <td>超时低效加班、军备竞赛式学习、形式主义内容生产<div class="example-text">例：为在绩效排名中维持前20%而持续加班，实际产出增量趋近于零</div>
+            </td>
+            <td>损失厌恶（Kahneman &amp; Tversky, 1979）；零和竞争认知；社会比较压力；囚徒困境博弈结构</td>
+            <td>个体心理耗竭、组织创新力下降、社会资源整体浪费；长期可引发职业倦怠（burnout）</td>
+            <td>重新设计竞争激励机制；构建合作共赢的评价体系；组织层面引入增量而非排名导向</td>
+            <td><span class="badge lv3"><span class="badge-dot"></span>Lv.3 中性</span></td>
+          </tr>
+          <tr class="row-lv3" data-type="neutral" data-sev="3">
+            <td class="concept-cell" onclick="showDetail('debate')">
+              <div class="concept-pill"><span class="concept-name">争论</span><span class="concept-en">Debate /
+                  Argument</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('debate')">解析 →</button>
+            </td>
+            <td>围绕具体议题双方展开的言语对抗，以论证与反驳为主要形式。虽情绪激活程度较高，但理性推理仍为主导。与争吵的关键区别在于：争论保持议题聚焦，而非诉诸人身。</td>
+            <td>
+              <div class="tag-list"><span class="tag">说服意图</span><span class="tag">真理探求</span><span
+                  class="tag">立场捍卫</span></div>
+            </td>
+            <td>学术辩论、政策研讨、团队方案选择讨论<div class="example-text">例：研发团队就技术路线选型产生的持续性分歧讨论</div>
+            </td>
+            <td>论证理论（Toulmin, 1958）；认知冲突（Piaget）；双过程理论（系统2为主）</td>
+            <td>结果高度取决于议题管理：良性争论可达成共识并提升决策质量；恶化时可演变为情绪化冲突</td>
+            <td>聚焦议题而非立场；使用"是……还是……"框架替代"你错了"；时间盒与主持机制</td>
+            <td><span class="badge lv3"><span class="badge-dot"></span>Lv.3 中性</span></td>
+          </tr>
+          <tr class="row-lv4" data-type="neutral" data-sev="4">
+            <td class="concept-cell" onclick="showDetail('quarrel')">
+              <div class="concept-pill"><span class="concept-name">争吵</span><span class="concept-en">Quarrel</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('quarrel')">解析 →</button>
+            </td>
+            <td>在强烈情绪激活状态下发生的言语冲突，前额叶皮层的执行功能受到边缘系统激活的干扰，导致理性调节能力下降。内容常偏离原始议题，转向指责与防御的互动模式。</td>
+            <td>
+              <div class="tag-list"><span class="tag">情绪宣泄</span><span class="tag">尊严防御</span><span
+                  class="tag">需求表达受阻</span></div>
+            </td>
+            <td>伴侣争吵、家庭纠纷、同事激烈冲突<div class="example-text">例：因长期积压的不满在一次小摩擦中集中爆发</div>
+            </td>
+            <td>杏仁核劫持（Goleman, 1995）；情绪调节失败；防御机制激活；应激反应（HPA轴）</td>
+            <td>短期可实现情绪释放并暴露潜在问题；若频繁发生且缺乏修复，将持续损伤关系质量与信任</td>
+            <td>情绪暂停（time-out）策略；事后非防御性修复对话；需求-感受-请求沟通框架（NVC）</td>
+            <td><span class="badge lv4"><span class="badge-dot"></span>Lv.4 中性偏消极</span></td>
+          </tr>
+          <tr class="row-lv4" data-type="neutral" data-sev="4">
+            <td class="concept-cell" onclick="showDetail('aversion')">
+              <div class="concept-pill"><span class="concept-name">反感</span><span class="concept-en">Aversion /
+                  Disgust</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('aversion')">解析 →</button>
+            </td>
+            <td>由特定刺激（行为、特征、观念）触发的、具有回避倾向的负性情绪反应。与"厌恶"（disgust）不同，人际反感更多源于价值观不相容或过往负性经验，而非原始威胁刺激。</td>
+            <td>
+              <div class="tag-list"><span class="tag">价值观防卫</span><span class="tag">情绪性回避</span><span
+                  class="tag">认知一致性</span></div>
+            </td>
+            <td>刻意疏远、消极评价、合作抵触、非言语排斥信号<div class="example-text">例：对某同事持续推卸责任行为产生的持久性厌恶感</div>
+            </td>
+            <td>经典条件反射；情绪性条件学习；确认偏见；价值观不一致所致认知失调</td>
+            <td>影响协作质量与沟通效率；若发展为泛化的人际回避，可导致社会功能受损</td>
+            <td>元认知觉察（识别情绪根源）；去中心化思维；增加接触以打破刻板化评价</td>
+            <td><span class="badge lv4"><span class="badge-dot"></span>Lv.4 中性偏消极</span></td>
+          </tr>
+          <tr class="row-lv5" data-type="harmful" data-sev="5">
+            <td class="concept-cell" onclick="showDetail('prejudice')">
+              <div class="concept-pill"><span class="concept-name">偏见</span><span class="concept-en">Prejudice</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('prejudice')">解析 →</button>
+            </td>
+            <td>奥尔波特（1954）将偏见定义为：基于错误或不充分信息，对群体成员持有的负性态度，包括认知（刻板印象）、情感（厌恶）和行为（歧视意向）三要素。核心特征为抗变性——即面对反例仍难以修正。</td>
+            <td>
+              <div class="tag-list"><span class="tag">认知简化</span><span class="tag">群体内偏好</span><span
+                  class="tag">身份认同保护</span></div>
+            </td>
+            <td>刻板印象激活、前判断性评价、选择性信息加工、外群体贬低<div class="example-text">例：在招聘中因应聘者籍贯产生的无意识负面评估</div>
+            </td>
+            <td>社会认同理论（Tajfel &amp; Turner, 1979）；确认偏见；可得性启发；接触假说（Allport, 1954）</td>
+            <td>导致决策系统性偏差；强化社会不平等；成为歧视行为的认知前提；影响受偏见群体的心理健康</td>
+            <td>接触干预（有意义的跨群体接触）；去偏见培训；基于个体的信息处理策略；制度性检查清单</td>
+            <td><span class="badge lv5"><span class="badge-dot"></span>Lv.5 消极</span></td>
+          </tr>
+          <tr class="row-lv5" data-type="harmful" data-sev="5">
+            <td class="concept-cell" onclick="showDetail('hostility')">
+              <div class="concept-pill"><span class="concept-name">敌意</span><span class="concept-en">Hostility</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('hostility')">解析 →</button>
+            </td>
+            <td>指向特定对象的、持久且泛化的负性态度组合，包括负性认知（对他人意图的恶意归因）、负性情感（愤恨、轻蔑）和攻击性行为倾向。区别于情境性愤怒，敌意具有跨情境的稳定性，被视为人格特质变量。</td>
+            <td>
+              <div class="tag-list"><span class="tag">威胁归因偏差</span><span class="tag">报复动机</span><span
+                  class="tag">控制需求</span></div>
+            </td>
+            <td>冷暴力、蓄意阻挠、恶意揣测意图、破坏性竞争<div class="example-text">例：职场中系统性孤立某员工并在背后散布负面信息</div>
+            </td>
+            <td>敌意归因偏差（Dodge, 1980）；A型行为模式；创伤所致的防御性人格结构；权力威胁感知</td>
+            <td>严重破坏人际信任；组织氛围恶化；与心血管疾病风险相关（生理层面）；若升级可演变为攻击</td>
+            <td>认知重构（归因训练）；愤怒管理干预；必要时引入第三方调解；组织层面的早期预警机制</td>
+            <td><span class="badge lv5"><span class="badge-dot"></span>Lv.5 消极</span></td>
+          </tr>
+          <tr class="row-lv6" data-type="harmful" data-sev="6">
+            <td class="concept-cell" onclick="showDetail('attack')">
+              <div class="concept-pill"><span class="concept-name">攻击</span><span class="concept-en">Aggression</span>
+              </div><button class="detail-btn" onclick="event.stopPropagation(); showDetail('attack')">解析 →</button>
+            </td>
+            <td>巴伦与理查森（1994）定义为：以对他人造成伤害（身体、心理或社会层面）为目的，且被害方有意回避的任何形式行为。攻击性行为的界定需同时满足伤害意图与受害方的不情愿两个条件。</td>
+            <td>
+              <div class="tag-list"><span class="tag">愤怒失控</span><span class="tag">工具性支配</span><span
+                  class="tag">挫折-攻击反应</span></div>
+            </td>
+            <td>言语攻击、肢体冲突、关系攻击（排斥、造谣）、网络暴力<div class="example-text">例：职场霸凌、在公共场合对他人进行人身侮辱</div>
+            </td>
+            <td>挫折-攻击假说（Dollard et al., 1939）；社会学习理论（Bandura, 1973）；去个人化效应；执行功能失调</td>
+            <td>造成急性心理创伤（PTSD风险）；关系不可逆破裂；组织声誉与法律责任风险；可能触犯刑事法律</td>
+            <td>即时制止并隔离；寻求法律保护（必要时）；创伤知情的心理危机干预；恢复性正义程序</td>
+            <td><span class="badge lv6"><span class="badge-dot"></span>Lv.6 严重有害</span></td>
+          </tr>
+          <tr class="row-lv6" data-type="harmful" data-sev="6">
+            <td class="concept-cell" onclick="showDetail('discrimination')">
+              <div class="concept-pill"><span class="concept-name">歧视</span><span
+                  class="concept-en">Discrimination</span></div><button class="detail-btn"
+                onclick="event.stopPropagation(); showDetail('discrimination')">解析 →</button>
+            </td>
+            <td>指基于受保护特征（如种族、性别、年龄、宗教、残疾等）而非个体行为或能力，对个人或群体实施差别化对待的行为或制度安排。区别于偏见（态度层面），歧视是偏见的行为化表达，可发生于个体、机构或结构性层面。</td>
+            <td>
+              <div class="tag-list"><span class="tag">既得利益维护</span><span class="tag">群体优越感</span><span
+                  class="tag">制度性惯性</span></div>
+            </td>
+            <td>就业歧视、薪酬差距、机会剥夺、制度性障碍、社会排斥<div class="example-text">例：招聘中系统性回避特定群体简历（已有算法审计研究证实）</div>
+            </td>
+            <td>社会认同理论（Tajfel, 1981）；权力-社会资本结构；制度化偏见；隐性偏见（Implicit Association Test证据）</td>
+            <td>侵犯受害者基本权利与尊严；制造并固化社会不平等；触发受害群体的心理健康损害（少数族裔压力模型）；引发法律及声誉后果</td>
+            <td>法律框架保护与执行；公正性审计（薪酬、晋升等）；隐性偏见培训；结构性DEI政策设计</td>
+            <td><span class="badge lv6"><span class="badge-dot"></span>Lv.6 严重有害</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panels">
+      <div class="panel"><span class="panel-icon">🧠</span>
+        <h3>心理学视角</h3>
+        <p>人际冲突的根源涉及认知偏差（归因错误、确认偏见）、情绪调节失败（杏仁核劫持）及社会认知失误（刻板印象激活）。识别这些心理机制有助于预测冲突走向并制定针对性干预策略。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">🌐</span>
+        <h3>社会学视角</h3>
+        <p>冲突不仅是个体间现象，更是社会结构、权力关系与文化规范的折射。科塞（1956）指出功能性冲突可作为社会整合机制；结构性冲突（如歧视）则需系统性制度干预。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">⚖️</span>
+        <h3>冲突管理视角</h3>
+        <p>托马斯-基尔曼（1974）双维度模型将冲突应对分为竞争、协作、妥协、回避与顺应五类。有效的冲突管理需根据情境选择适宜策略，区分任务冲突与关系冲突的差异处置路径。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">🔬</span>
+        <h3>实证研究基础</h3>
+        <p>本分析框架参考了奥尔波特（偏见理论）、多伊奇与科尔曼（冲突解决）、班杜拉（攻击行为学习理论）及组织行为学领域的系统性实证研究，具有可检验的操作性定义。</p>
+      </div>
+    </div>
+
+    <div class="legend-section">
+      <h3>严重程度分级标准</h3>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#15803d"></div>
+          <div class="legend-text"><strong>Lv.1 积极</strong>建设性互动，整体有益于个体与系统</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#1d4ed8"></div>
+          <div class="legend-text"><strong>Lv.2 中性偏积极</strong>理性分歧，正向效用为主，需适当引导</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#ea580c"></div>
+          <div class="legend-text"><strong>Lv.3 中性</strong>结果取决于情境与处理方式，双向可能</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#be123c"></div>
+          <div class="legend-text"><strong>Lv.4 中性偏消极</strong>负向效用为主，需主动管理以防升级</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#b91c1c"></div>
+          <div class="legend-text"><strong>Lv.5 消极</strong>对个体与关系有明显损害，需专项干预</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#9b1c2c"></div>
+          <div class="legend-text"><strong>Lv.6 严重有害</strong>侵犯权利或造成创伤，须立即采取保护措施</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="references">
+      <strong>📖 主要参考文献</strong>：Allport, G. W. (1954). <em>The Nature of Prejudice.</em> Addison-Wesley. ｜ Bandura, A.
+      (1973). <em>Aggression: A Social Learning Analysis.</em> Prentice-Hall. ｜ Baron, R. A., &amp; Richardson, D. R.
+      (1994). <em>Human Aggression.</em> Plenum. ｜ Deutsch, M., &amp; Coleman, P. T. (2000). <em>The Handbook of
+        Conflict
+        Resolution.</em> Jossey-Bass. ｜ Festinger, L. (1954). A theory of social comparison processes. <em>Human
+        Relations, 7</em>(2), 117–140. ｜ Geertz, C. (1963). <em>Agricultural Involution.</em> UC Press. ｜ Kahneman, D.,
+      &amp; Tversky, A. (1979). Prospect theory. <em>Econometrica, 47</em>(2), 263–291. ｜ Tajfel, H., &amp; Turner, J.
+      C.
+      (1979). An integrative theory of intergroup conflict. ｜ Thomas, K. W. (1992). Conflict and conflict management.
+      <em>Journal of Organizational Behavior, 13</em>, 265–274.
+    </div>
+  </div>
+
+  <div class="modal-bg" id="modal" onclick="handleModalClick(event)">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const details = {
+      competition: {
+        title: "竞争", en: "Competition", lv: "lv1", badge: "Lv.1 积极", sections: [
+          { h: "规则内的能量释放", p: "竞争就像一场有明确边界的游戏——规则清晰、目标公开、胜负条件可接受。它让人类的成就动机在安全框架内流动，既满足了超越的渴望，又避免了无序的伤害。" },
+          { h: "不是敌人，是镜子", p: "好的竞争中，对手更像是你的陪练者。他们的存在让你看到自己的潜力边界，就像跑步时旁边有人会让你不自觉跑得更快一样。这就是费斯廷格说的社会比较效应。" },
+          { h: "心流与陷阱的一念之差", p: "当竞争聚焦于「自我突破」时，它能激活心流体验；但当它变成「必须赢过别人」时，就容易滑向零和思维的陷阱——为了胜利不惜囤积信息、破坏协作。" },
+          { h: "如何设计良性竞争", p: "关键在于把评价标准从「比别人好」转向「比过去的自己好」。加入合作性目标作为补充，确保竞争规则透明，让每个人都觉得「即使输了，也输得明白」。" }
+        ]
+      },
+      opposition: {
+        title: "反对", en: "Opposition", lv: "lv2", badge: "Lv.2 中性偏积极", sections: [
+          { h: "对事不对人的艺术", p: "反对的核心在于「分离命题与命题提出者」。就像你可以批评一道菜做得不好吃，但不需要侮辱厨师。这是一种智力上的诚实，而非人格上的攻击。" },
+          { h: "异议是决策的安全阀", p: "扬尼斯的群体思维研究告诉我们：当团队中没有人敢说「不」时，灾难往往就在酝酿中。哪怕最终少数派没能改变决定，他们的存在本身也能提升决策的深度。" },
+          { h: "从「你错了」到「让我们再想想」", p: "有效的反对不是否定，而是邀请更深入的思考。用「还有另一种可能」替代「你不对」，用「数据显示」替代「我认为」，这样对方更容易听进去。" },
+          { h: "心理安全是前提", p: "只有在一个「说不同意见不会被报复」的环境里，真正的反对才会出现。否则，大家要么沉默，要么只说场面话——这对组织来说是最危险的事情。" }
+        ]
+      },
+      involution: {
+        title: "内卷", en: "Involution", lv: "lv3", badge: "Lv.3 中性", sections: [
+          { h: "越努力，越原地踏步", p: "内卷就像在电影院里，前排的人站起来了，后排的人不得不跟着站起来——最后大家都站着看，但谁也没比之前看得更清楚。这就是「没有发展的增长」。" },
+          { h: "损失厌恶的囚徒困境", p: "卡尼曼说，人对损失的感受是收益的2.5倍。在内卷系统里，你不是在「追求更好」，而是在「害怕失去现有位置」。这就是为什么大家明明知道无效，却不敢停下来。" },
+          { h: "系统病，不能靠个人吃药", p: "内卷不是某个人的问题，是系统设计的问题——当资源总量固定，评价标准单一，竞争通道封闭，内卷几乎是必然的结果。这时候指责个体「不够努力」或「太焦虑」是不公平的。" },
+          { h: "破局之道：从排名到增量", p: "破解内卷需要改变游戏规则：把「排名奖励」变成「创新奖励」，把「零和晋升」变成「多通道发展」，让每个人的努力都能创造新价值，而不是去争夺现有蛋糕。" }
+        ]
+      },
+      debate: {
+        title: "争论", en: "Debate / Argument", lv: "lv3", badge: "Lv.3 中性", sections: [
+          { h: "理性与情绪的拔河", p: "争论就像一场理智与情感的拔河比赛。一开始双方还在用逻辑交锋，但随着情绪升温，话题很容易从「这件事对不对」滑向「你这个人怎么这样」——这时候争论就开始变质了。" },
+          { h: "任务冲突 vs 关系冲突", p: "组织行为学里有个重要区分：对事的争论（任务冲突）往往能提升决策质量；但一旦变成对人的冲突（关系冲突），就会严重破坏团队。关键在于守住这条边界。" },
+          { h: "别让立场绑架了你", p: "争论中最危险的时刻是当你开始为「赢」而争论，而不是为「真相」而争论。一旦你的自我价值感和「我的观点是对的」绑定，你就会本能地维护立场，哪怕证据已经摆在眼前。" },
+          { h: "如何让争论有好结果", p: "试试这几个小技巧：用「是……还是……」替代「非此即彼」；设定时间盒防止无限拉扯；如果发现情绪上来了，主动提议「我们先冷静10分钟再谈」。" }
+        ]
+      },
+      quarrel: {
+        title: "争吵", en: "Quarrel", lv: "lv4", badge: "Lv.4 中性偏消极", sections: [
+          { h: "当大脑被杏仁核接管", p: "戈尔曼说的「杏仁核劫持」就是这种状态：你的理智脑（前额叶）下线了，情绪脑（杏仁核）掌控一切。这时候你说的话、做的事，往往事后会后悔——因为那不是「真正的你」在决策。" },
+          { h: "四骑士预警信号", p: "戈特曼研究了数千对伴侣，发现四个预测关系破裂的最强信号：批评（攻击人格而非行为）、蔑视（人身攻击）、防御（拒绝承认责任）、冷漠（关闭沟通）。如果这四个都出现了，关系就很危险了。" },
+          { h: "争吵也有积极意义？", p: "是的，如果处理得好。剧烈的争吵有时能把平时不敢说的话都摊开——问题终于被看见了。但这里的关键是「事后修复」：如果吵完就冷战，那只会积累更多怨恨；如果吵完能好好谈，反而可能加深理解。" },
+          { h: "暂停不是逃避，是智慧", p: "发现自己心跳加速、声音变高时，主动说「我们先停20分钟」——这不是懦弱，是自我保护。等生理唤醒降下来，理智回归了，再用「需求-感受-请求」的框架好好沟通。" }
+        ]
+      },
+      aversion: {
+        title: "反感", en: "Aversion / Disgust", lv: "lv4", badge: "Lv.4 中性偏消极", sections: [
+          { h: "情绪的条件反射", p: "反感就像一种情绪过敏——可能是因为某次不愉快的经历，让你把「这个人」和「不舒服」联系在了一起。之后每次看到他，那种感觉就自动冒出来，哪怕理智告诉你「他其实没那么糟」。" },
+          { h: "价值观的隐形守卫", p: "很多时候，反感的本质是价值观冲突。对方的某个行为触及了你认为「理所应当」的底线——比如你觉得人应该守时，而他总是迟到；你觉得人应该真诚，而他总是说场面话。这种「他怎么能这样」的感觉，就是反感的源头。" },
+          { h: "确认偏见的雪球效应", p: "一旦你对某个人有了反感，你就会下意识地关注他的缺点，忽视他的优点——这就是确认偏见。于是「他果然很讨厌」的信念被不断强化，形成一个自我实现的预言。" },
+          { h: "打破反感的循环", p: "试试这两步：第一步，元认知觉察——告诉自己「我对他有反感，这是我的情绪，不一定是事实」；第二步，增加结构化接触——在具体任务中合作，而不是空泛地「聊一聊」，用新经验覆盖旧印象。" }
+        ]
+      },
+      prejudice: {
+        title: "偏见", en: "Prejudice", lv: "lv5", badge: "Lv.5 消极", sections: [
+          { h: "大脑的节能模式", p: "偏见本质上是大脑的一种「认知偷懒」策略——世界太复杂了，我们需要简化。但问题是，这种简化往往基于错误或不充分的信息，而且一旦形成，就特别顽固，哪怕遇到反例也不愿意改变。" },
+          { h: "我们 vs 他们", p: "社会认同理论说，人天生就有把世界分成「我们」和「他们」的倾向。我们会美化「自己人」，贬低「外人」——这不是道德问题，这是进化来的认知机制。但在现代社会，这种机制常常制造问题。" },
+          { h: "内隐偏见：你不知道自己知道", p: "IAT（内隐联结测试）揭示了一个令人不安的事实：哪怕你真心认为自己「不歧视」，你的内隐层面可能依然存在偏见。这种偏见会在你意识不到的时候影响你的决策——比如招聘、比如评价他人。" },
+          { h: "接触是最好的解药", p: "奥尔波特的接触假说告诉我们：减少偏见最有效的方法是「有意义的跨群体接触」——平等地位、合作目标、权威支持、个人化接触。这四个条件满足时，偏见就会自然减少。" }
+        ]
+      },
+      hostility: {
+        title: "敌意", en: "Hostility", lv: "lv5", badge: "Lv.5 消极", sections: [
+          { h: "敌意是稳定的人格特质", p: "敌意不是一时的愤怒，而是一种稳定的人格倾向——高敌意者倾向于把别人的意图往坏处想，即使对方只是无心之失。这就是道奇说的「敌意归因偏差」。" },
+          { h: "世界是危险的", p: "高敌意者的内心深处有一个核心信念：「世界是危险的，别人都想害我」。于是他们随时保持警惕，准备攻击或防御——但这种防御姿态反而会引来更多敌意，形成恶性循环。" },
+          { h: "不仅伤关系，还伤身", p: "流行病学研究发现了一个惊人的关联：高敌意特质与冠心病发病率、全因死亡率都显著相关。持续的愤怒和戒备状态会慢慢侵蚀你的心血管系统——这就是情绪的身体代价。" },
+          { h: "重新解读世界", p: "认知行为治疗中的「归因重训练」可以帮助高敌意者：当别人做了某件事，问自己「除了恶意，还有没有其他可能的解释？」——比如「他可能没听见」、「他可能今天心情不好」。" }
+        ]
+      },
+      attack: {
+        title: "攻击", en: "Aggression", lv: "lv6", badge: "Lv.6 严重有害", sections: [
+          { h: "攻击的三个核心要件", p: "巴伦与理查森的定义非常严谨：1. 有伤害意图（不是意外）；2. 针对有生命的对象；3. 被害方不情愿。这三个条件缺一不可——这样我们才能区分「攻击」和「不小心碰到」。" },
+          { h: "愤怒失控 vs 工具性攻击", p: "攻击分两种：一种是「敌意性攻击」——被愤怒驱动，目的就是伤害对方；另一种是「工具性攻击」——伤害只是手段，目的是获取资源或权力。后者往往更冷静，也更可怕。" },
+          { h: "挫折不是借口，但有解释力", p: "多拉德的挫折-攻击假说认为：攻击总是由挫折引发的。虽然后来的研究修正了这个观点（挫折不一定导致攻击），但它确实揭示了一个重要规律：当愿望受阻时，攻击的可能性会上升。" },
+          { h: "零容忍与创伤支持", p: "对于攻击行为，首先要做的是「立即制止并隔离」——安全永远是第一位的。然后评估是否需要法律保护。对于受害者，要提供「创伤知情」的支持——不要说「别往心里去」，要说「我知道这很痛」。" }
+        ]
+      },
+      discrimination: {
+        title: "歧视", en: "Discrimination", lv: "lv6", badge: "Lv.6 严重有害", sections: [
+          { h: "从态度到行为的跨越", p: "偏见是「心里的想法」，歧视是「实际的行动」。歧视可以发生在三个层面：个体层面（某个人歧视你）、机构层面（某个制度歧视你）、结构性层面（整个社会系统都对你不利）——其中结构性歧视最隐蔽，也最难改变。" },
+          { h: "不是你不够好，是系统有问题", p: "歧视最伤人的地方在于：它让你觉得「是我自己的问题」——但实际上，问题不在于你，而在于那个用单一标准评价所有人的系统。审计研究反复证明：同样的简历，不同的名字，得到的面试邀请率完全不同。" },
+          { h: "算法也会歧视", p: "别以为技术中立——AI也会继承训练数据里的偏见。如果历史招聘数据显示「男性更容易成功」，算法就会学会「优先推荐男性」。这就是为什么我们需要「算法审计」——让黑箱透明化。" },
+          { h: "结构性改变才是根本", p: "反歧视不能只靠「提高个人道德」，必须靠「改变制度设计」：比如盲审机制、薪酬透明度审计、多元化配额、DEI政策。这些结构性干预，比一百次「反偏见培训」都有效。" }
+        ]
+      }
+    };
+
+    function showDetail(key) {
+      const d = details[key];
+      if (!d) return;
+      let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
+      d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modal').classList.add('open');
+    }
+    function closeModal() { document.getElementById('modal').classList.remove('open'); }
+    function handleModalClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    function filterTable(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#conflictTable tbody tr').forEach(row => {
+        const t = row.dataset.type;
+        row.style.display = (type === 'all' || t === type) ? '' : 'none';
+      });
+    }
+    function setDataLabels() {
+      const table = document.getElementById('conflictTable');
+      const headers = [];
+      const ths = table.querySelectorAll('thead th');
+      ths.forEach(th => headers.push(th.innerText.trim()));
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((td, idx) => {
+          if (headers[idx]) td.setAttribute('data-label', headers[idx]);
+        });
+      });
+    }
+    setDataLabels();
+  </script>
+</body>
+
+</html>

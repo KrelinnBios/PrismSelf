@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社会学术语表</title>
+  <meta name="description" content="社会学术语表，以可搜索术语表形式收录 200 个社会学入门常见概念、研究方法与理论视角。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="社会学术语表">
+  <meta property="og:description" content="社会学术语表，以可搜索术语表形式收录 200 个社会学入门常见概念、研究方法与理论视角。">
+  <meta property="og:url" content="https://prismself.vip/Glossaries/Sociology-Glossary.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面分类标签配色与焦点样式（其余样式见 glossary-common.css） */
+    .tag.foundations {
+      background: var(--teal);
+    }
+
+    .tag.theory {
+      background: var(--slate);
+    }
+
+    .tag.culture {
+      background: var(--blue);
+    }
+
+    .tag.interaction {
+      background: var(--green);
+    }
+
+    .tag.inequality {
+      background: var(--violet);
+    }
+
+    .tag.institutions {
+      background: var(--amber);
+    }
+
+    .tag.economy {
+      background: var(--rose);
+    }
+
+    .tag.change {
+      background: #7c5a1f;
+    }
+
+    .back-link:focus-visible,
+    .mini-nav a:focus-visible,
+    .filter:focus-visible,
+    .search:focus-visible {
+      outline: 2px solid #1e5f65;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./glossary-common.css?v=20260710b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <nav class="topbar" aria-label="页面导航">
+    <div class="topbar-inner">
+      <a class="back-link" href="../index.html">← 返回知识图谱</a>
+      <div class="mini-nav">
+        <a href="#glossary">术语检索</a>
+        <a href="#usage">使用提醒</a>
+        <a href="#sources">延伸阅读</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">SOCIOLOGY · STRUCTURES, CULTURES AND CHANGE</p>
+        <h1>社会学术语表</h1>
+        <p class="lede">
+          这是一份面向入门阅读和日常讨论的社会学术语表。页面按研究领域整理 200 个常见概念、社会关系与理论视角，帮助你在阅读、写作和自我梳理时更快找到关键词，并通过更完整的正文解释把术语放回具体语境里理解。
+        </p>
+      </div>
+      <aside class="summary-panel" aria-label="术语表摘要">
+        <p>社会学术语常常把个人经验放回结构、制度和历史关系中理解。阅读时可以同时留意：它解释什么关系、依赖哪类证据、涉及哪些权力安排，以及容易被如何自然化。</p>
+        <div class="stats">
+          <div class="stat"><b id="termCount">0</b><span>收录术语</span></div>
+          <div class="stat"><b>8</b><span>筛选分类</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="glossary" aria-labelledby="glossary-title">
+      <p class="notice">
+        本页是学习辅助，不是社会学教材或研究文献索引。不同流派会对同一术语给出不同定义；这里优先给出便于入门的工作性解释，并在补充说明里提示常见误读。
+      </p>
+
+      <div class="tools">
+        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：社会化、阶级" aria-label="搜索术语">
+        <div class="filters" aria-label="分类筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="foundations" aria-pressed="false">基础与方法</button>
+          <button class="filter" type="button" data-filter="theory" aria-pressed="false">理论与经典</button>
+          <button class="filter" type="button" data-filter="culture" aria-pressed="false">文化与社会化</button>
+          <button class="filter" type="button" data-filter="interaction" aria-pressed="false">互动与群体</button>
+          <button class="filter" type="button" data-filter="inequality" aria-pressed="false">分层与不平等</button>
+          <button class="filter" type="button" data-filter="institutions" aria-pressed="false">制度与日常</button>
+          <button class="filter" type="button" data-filter="economy" aria-pressed="false">经济与劳动</button>
+          <button class="filter" type="button" data-filter="change" aria-pressed="false">权力与变迁</button>
+        </div>
+      </div>
+
+      <div class="results-meta">
+        <h2 id="glossary-title">术语检索</h2>
+        <span id="resultCount" aria-live="polite">0 个结果</span>
+      </div>
+      <div id="categoryIntro" class="notice" hidden></div>
+      <div id="termGrid" class="term-grid"></div>
+      <div id="emptyState" class="empty">没有找到匹配的术语。可以换一个关键词，或切回“全部”。</div>
+    </section>
+
+    <section class="appendix" id="usage" aria-label="使用提醒与延伸阅读">
+      <div class="section-panel">
+        <h2>使用提醒</h2>
+        <ul>
+          <li>先看研究领域，再看定义。比如“社会事实”常出现在经典理论中，“污名”常出现在互动、身份和不平等讨论中。</li>
+          <li>同一个词在不同理论传统（如功能主义、冲突理论、符号互动论、女性主义社会学）中可能有不同重心，不宜把一个定义当作唯一版本。</li>
+          <li>读到社会现象解释时，可以留意三点：它基于什么材料、解释的是个人经验还是结构机制、是否忽略了权力和历史条件。</li>
+          <li>页面中的英文用于辅助检索和延伸阅读；术语有多种中文译法时，卡片会列出常见又译。</li>
+        </ul>
+      </div>
+
+      <div class="section-panel" id="sources">
+        <h2>延伸阅读</h2>
+        <ol class="source-list">
+          <li><a href="https://www.asanet.org/">American Sociological Association</a></li>
+          <li><a href="https://www.britsoc.co.uk/">British Sociological Association</a></li>
+          <li><a href="https://revisesociology.com/sociology-dictionary/">ReviseSociology Dictionary</a></li>
+          <li><a href="https://sociologydictionary.org/">Open Education Sociology Dictionary</a></li>
+          <li><a href="https://plato.stanford.edu/entries/social-ontology/">Stanford Encyclopedia of Philosophy: Social
+              Ontology</a></li>
+          <li><a href="https://openstax.org/details/books/introduction-sociology-3e">OpenStax: Introduction to Sociology
+              3e</a></li>
+          <li><a href="https://thesociologicalreview.org/">The Sociological Review</a></li>
+          <li><a href="https://www.ssrc.org/">Social Science Research Council</a></li>
+          <li><a href="https://osf.io/preprints/socarxiv">SocArXiv</a></li>
+          <li><a href="https://www.isa-sociology.org/en">International Sociological Association</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script src="./scripts/sociology-glossary.js" defer></script>
+</body>
+
+</html>

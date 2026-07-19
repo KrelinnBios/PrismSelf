@@ -1,0 +1,14 @@
+/assets/theme.css
+  Cache-Control: no-cache, must-revalidate
+
+/assets/theme.js
+  Cache-Control: no-cache, must-revalidate
+
+/Guides/guide-common.css
+  Cache-Control: no-cache, must-revalidate
+
+/Guides/guide-ai.css
+  Cache-Control: no-cache, must-revalidate
+
+/Guides/guide-ai.js
+  Cache-Control: no-cache, must-revalidate

@@ -1,0 +1,342 @@
+const categoryNames = {
+  foundations: "基础与方法",
+  biological: "生物与神经",
+  cognition: "认知与记忆",
+  development: "发展与成长",
+  personality: "人格与动机",
+  social: "社会与群体",
+  clinical: "临床与健康",
+  schools: "流派与传统"
+};
+
+const terms = [
+  { zh: "心理学", en: "Psychology", cat: "foundations", desc: "研究行为与心理过程的科学，涵盖感知、认知、情绪、发展、人格与社会互动。", note: "它既研究可观察行为，也研究内在心理过程，且强调用系统方法而非直觉下结论。" },
+  { zh: "科学方法", en: "Scientific Method", cat: "foundations", desc: "通过提出问题、形成假设、系统观察和检验来获得可靠知识的程序。", note: "它的关键不是得出结论，而是让结论可被他人重复检验。" },
+  { zh: "假设", en: "Hypothesis", cat: "foundations", aliases: "研究假设", desc: "对变量之间关系的可检验预测。", note: "好假设既要能被证据支持，也要能在原则上被否证。" },
+  { zh: "理论", en: "Theory", cat: "foundations", desc: "用来解释和预测一类现象的系统化命题框架。", note: "在科学语境中，理论不是随口“猜测”，而是有证据支撑的解释体系。" },
+  { zh: "变量", en: "Variable", cat: "foundations", desc: "在研究中可以取不同数值或类别的特征，如年龄、焦虑水平。", note: "把抽象概念变成可测量变量，是研究设计的第一步。" },
+  { zh: "自变量", en: "Independent Variable", cat: "foundations", desc: "研究者主动操纵、用来考察其影响的变量。", note: "只有在实验中主动操纵，才谈得上因果解释。" },
+  { zh: "因变量", en: "Dependent Variable", cat: "foundations", desc: "被测量、用来观察是否随自变量变化的结果变量。", note: "因变量的测量方式会直接影响结论是否可信。" },
+  { zh: "操作性定义", en: "Operational Definition", cat: "foundations", desc: "用具体可测量的程序来界定一个抽象概念。", note: "没有操作性定义，“幸福”“攻击”等词就难以被检验或比较。" },
+  { zh: "实验法", en: "Experiment", cat: "foundations", desc: "通过操纵自变量并控制无关变量来检验因果关系的方法。", note: "实验是少数能支持因果结论的方法，但常以牺牲现实复杂性为代价。" },
+  { zh: "对照组", en: "Control Group", cat: "foundations", desc: "不接受实验处理、用作比较基准的一组被试。", note: "没有对照组，就很难判断变化是否真由处理引起。" },
+  { zh: "随机分配", en: "Random Assignment", cat: "foundations", desc: "用随机方式把被试分到各组，以平衡潜在差异。", note: "它不同于随机抽样；前者关乎因果推断，后者关乎样本代表性。" },
+  { zh: "相关", en: "Correlation", cat: "foundations", desc: "两个变量共同变化的统计关系，可正可负。", note: "相关不等于因果，可能存在反向因果或第三变量。" },
+  { zh: "因果", en: "Causation", cat: "foundations", aliases: "因果关系", desc: "一个变量的变化实际引起另一个变量变化的关系。", note: "确立因果通常需要实验控制，而不仅是观察到关联。" },
+  { zh: "信度", en: "Reliability", cat: "foundations", desc: "测量结果的一致性和可重复程度。", note: "一个测验可以很稳定却测错东西；信度不保证效度。" },
+  { zh: "效度", en: "Validity", cat: "foundations", desc: "测量确实测到了它声称测量之物的程度。", note: "效度是心理测量的核心问题，也最难完全确立。" },
+  { zh: "样本", en: "Sample", cat: "foundations", aliases: "被试样本", desc: "从总体中抽取、用于研究的一部分个体。", note: "样本是否有代表性，决定结论能推广到哪些人群。" },
+  { zh: "概化", en: "Generalization", cat: "foundations", aliases: "外部效度、推广性", desc: "把研究结论推广到其他人群、情境或时间的程度。", note: "只用大学生样本或单一文化样本，会限制概化范围。" },
+  { zh: "安慰剂效应", en: "Placebo Effect", cat: "foundations", desc: "因预期而非实际处理产生的改善现象。", note: "它提醒我们，期待本身就能改变体验和生理反应。" },
+  { zh: "双盲", en: "Double-Blind", cat: "foundations", aliases: "双盲设计", desc: "被试与实验者都不知道谁接受真实处理的设计。", note: "它用来减少期待和暗示对结果的污染。" },
+  { zh: "统计显著性", en: "Statistical Significance", cat: "foundations", desc: "结果不太可能仅由随机波动造成的统计判断。", note: "显著不等于重要；小效应在大样本中也可能显著。" },
+  { zh: "效应量", en: "Effect Size", cat: "foundations", desc: "衡量效应实际大小而非仅是否显著的指标。", note: "只报告显著性而忽略效应量，容易夸大发现的实际意义。" },
+  { zh: "元分析", en: "Meta-analysis", cat: "foundations", desc: "系统整合多项研究结果以估计总体效应的方法。", note: "它的可靠性取决于纳入研究的质量与选择标准。" },
+  { zh: "可重复性", en: "Replicability", cat: "foundations", aliases: "可复制性", desc: "独立研究者按相同方法能否得到相似结果。", note: "心理学的“可重复性危机”推动了更严格的方法与预注册。" },
+  { zh: "出版偏倚", en: "Publication Bias", cat: "foundations", desc: "显著或新奇结果更易被发表而造成的系统性偏差。", note: "它会让已发表文献整体上高估真实效应。" },
+  { zh: "研究知情同意", en: "Informed Consent", cat: "foundations", desc: "参与者在充分了解后自愿参与研究的伦理要求。", note: "它是研究伦理的基石，涉及自主、隐私与随时退出权。" },
+
+  { zh: "神经元", en: "Neuron", cat: "biological", aliases: "神经细胞", desc: "神经系统中负责接收、传导和传递信号的基本细胞。", note: "它是心理活动的物理基础，但单个神经元并不“存储”某个想法。" },
+  { zh: "突触", en: "Synapse", cat: "biological", desc: "神经元之间传递信号的连接间隙。", note: "学习与记忆常被理解为突触连接强度的改变。" },
+  { zh: "神经递质", en: "Neurotransmitter", cat: "biological", desc: "在突触间传递信号的化学物质。", note: "它不是“情绪开关”，同一递质在不同回路的作用可能不同。" },
+  { zh: "多巴胺", en: "Dopamine", cat: "biological", desc: "与奖赏预期、动机和运动控制相关的神经递质。", note: "把它简单叫作“快乐分子”是误解，它更关乎“想要”而非“喜欢”。" },
+  { zh: "血清素", en: "Serotonin", cat: "biological", aliases: "5-羟色胺", desc: "与情绪、睡眠、食欲等调节相关的神经递质。", note: "“血清素低就导致抑郁”是被过度简化的流行说法。" },
+  { zh: "动作电位", en: "Action Potential", cat: "biological", desc: "神经元被激活时沿轴突传导的电信号。", note: "它遵循“全或无”原则，强度不因刺激大小而分级。" },
+  { zh: "中枢神经系统", en: "Central Nervous System", cat: "biological", aliases: "CNS", desc: "由脑和脊髓组成的信息处理中心。", note: "它与周围神经系统相对，二者共同协调身体与环境的互动。" },
+  { zh: "自主神经系统", en: "Autonomic Nervous System", cat: "biological", aliases: "植物神经系统", desc: "调节心跳、呼吸、消化等非随意功能的神经系统。", note: "交感与副交感分支分别偏向动员和恢复。" },
+  { zh: "大脑皮层", en: "Cerebral Cortex", cat: "biological", desc: "大脑表层参与高级认知功能的褶皱结构。", note: "“人只用了 10% 大脑”是没有依据的流行迷思。" },
+  { zh: "额叶", en: "Frontal Lobe", cat: "biological", desc: "参与计划、决策、运动和自我控制的大脑区域。", note: "它的发育持续到成年早期，影响冲动控制。" },
+  { zh: "杏仁核", en: "Amygdala", cat: "biological", desc: "参与情绪特别是恐惧加工的脑区。", note: "把它称作“恐惧中枢”过于简化，它也参与更广泛的显著性评估。" },
+  { zh: "海马体", en: "Hippocampus", cat: "biological", desc: "对形成新的长时记忆至关重要的脑区。", note: "它受损会影响新记忆的形成，但已有的旧记忆可能保留。" },
+  { zh: "前额叶皮层", en: "Prefrontal Cortex", cat: "biological", desc: "参与执行功能、决策和抑制控制的皮层区域。", note: "它常被视为“调控者”，而非情绪本身的产生地。" },
+  { zh: "神经可塑性", en: "Neuroplasticity", cat: "biological", aliases: "大脑可塑性", desc: "大脑结构和连接随经验改变的能力。", note: "可塑性存在于一生，但并非“任何改变都可能、随时可逆”。" },
+  { zh: "内分泌系统", en: "Endocrine System", cat: "biological", desc: "通过激素调节身体和行为的腺体系统。", note: "激素作用较慢但影响广泛，与神经系统协同塑造情绪。" },
+  { zh: "皮质醇", en: "Cortisol", cat: "biological", aliases: "压力激素", desc: "与应激反应相关的激素。", note: "短期升高有适应意义，长期偏高才与健康风险相关。" },
+  { zh: "遗传力", en: "Heritability", cat: "biological", desc: "群体中某性状的变异可归因于遗传差异的比例。", note: "它是群体统计量，不能说明某个个体的性状“有多少来自基因”。" },
+  { zh: "表观遗传", en: "Epigenetics", cat: "biological", desc: "不改变 DNA 序列却影响基因表达的机制。", note: "它显示环境与基因并非对立，而是持续互动。" },
+  { zh: "生物节律", en: "Circadian Rhythm", cat: "biological", aliases: "昼夜节律", desc: "约以 24 小时为周期的生理与行为波动。", note: "打乱它会影响睡眠、情绪和认知表现。" },
+  { zh: "睡眠周期", en: "Sleep Cycle", cat: "biological", desc: "睡眠中不同阶段循环交替的过程。", note: "深睡与快速眼动睡眠各有功能，都影响记忆巩固。" },
+  { zh: "快速眼动睡眠", en: "REM Sleep", cat: "biological", aliases: "REM 睡眠", desc: "伴随快速眼动和生动梦境的睡眠阶段。", note: "它与情绪调节和记忆整合相关，被剥夺后会出现反弹。" },
+  { zh: "应激", en: "Stress", cat: "biological", aliases: "压力", desc: "个体面对被评估为超出自身资源之要求时的身心反应。", note: "适度应激可提升表现，慢性应激才更多带来损害。" },
+  { zh: "战或逃反应", en: "Fight-or-Flight", cat: "biological", desc: "面对威胁时身体动员应对的生理反应。", note: "现代慢性心理威胁也会触发它，却常无处可逃或可战。" },
+  { zh: "奖赏系统", en: "Reward System", cat: "biological", desc: "与动机、愉悦和强化相关的脑回路。", note: "成瘾常被理解为奖赏与控制回路失衡，而非单纯意志薄弱。" },
+  { zh: "镜像神经元", en: "Mirror Neurons", cat: "biological", desc: "在执行动作和观察他人相同动作时都会激活的神经元。", note: "它常被过度用于解释共情，实际机制仍有争议。" },
+
+  { zh: "认知", en: "Cognition", cat: "cognition", desc: "涉及知觉、注意、记忆、思维和语言的心理加工过程。", note: "认知心理学把心灵类比为信息加工系统，但这是模型而非等同。" },
+  { zh: "感觉", en: "Sensation", cat: "cognition", desc: "感官接收物理刺激并转化为神经信号的过程。", note: "感觉是原始输入，知觉才是对它的组织与解释。" },
+  { zh: "知觉", en: "Perception", cat: "cognition", desc: "大脑组织和解释感觉信息、形成经验的过程。", note: "知觉是主动建构，会受期待、语境和经验影响。" },
+  { zh: "注意", en: "Attention", cat: "cognition", desc: "把有限的加工资源分配到特定信息上的过程。", note: "注意像聚光灯，同时也意味着大量信息被忽略。" },
+  { zh: "选择性注意", en: "Selective Attention", cat: "cognition", desc: "聚焦于某些刺激而忽略其他刺激的能力。", note: "“鸡尾酒会效应”和“看不见的大猩猩”都体现它的取舍。" },
+  { zh: "感觉记忆", en: "Sensory Memory", cat: "cognition", desc: "极短暂保存原始感觉信息的记忆系统。", note: "它容量大但衰退极快，多数信息未进入进一步加工。" },
+  { zh: "工作记忆", en: "Working Memory", cat: "cognition", aliases: "短时记忆", desc: "短暂保持并操作当前信息的系统。", note: "容量有限（常说约 4±1 个组块），是思维的“工作台”。" },
+  { zh: "长时记忆", en: "Long-term Memory", cat: "cognition", desc: "相对持久地存储信息的记忆系统。", note: "它容量近乎无限，但提取会重构而非精确回放。" },
+  { zh: "编码", en: "Encoding", cat: "cognition", desc: "把信息转化为可存储形式的加工过程。", note: "加工越深、越有意义，日后越容易被提取。" },
+  { zh: "提取", en: "Retrieval", cat: "cognition", desc: "从记忆中调取已存储信息的过程。", note: "提取依赖线索；“想不起来”常是提取失败而非彻底遗忘。" },
+  { zh: "遗忘曲线", en: "Forgetting Curve", cat: "cognition", desc: "描述记忆随时间先快后慢衰退的规律。", note: "间隔复习正是针对遗忘曲线设计的策略。" },
+  { zh: "图式", en: "Schema", cat: "cognition", desc: "组织知识和期待的心理框架。", note: "图式帮助理解，也可能导致刻板化和记忆扭曲。" },
+  { zh: "启动效应", en: "Priming", cat: "cognition", desc: "先前刺激无意识地影响随后加工的现象。", note: "部分社会启动研究在重复实验中并不稳健，需谨慎解读。" },
+  { zh: "内隐记忆", en: "Implicit Memory", cat: "cognition", desc: "无需有意识回忆即影响行为的记忆。", note: "技能和习惯常属内隐，与可陈述的外显记忆不同。" },
+  { zh: "错误记忆", en: "False Memory", cat: "cognition", desc: "对未发生之事的生动却错误的记忆。", note: "它说明记忆可被暗示塑造，影响目击证词的可靠性。" },
+  { zh: "学习", en: "Learning", cat: "cognition", desc: "经验导致行为或知识相对持久改变的过程。", note: "学习不等于表现；短期表现好未必是持久学习。" },
+  { zh: "经典条件反射", en: "Classical Conditioning", cat: "cognition", aliases: "巴甫洛夫条件反射", desc: "通过刺激配对建立新反应的联结学习。", note: "它可解释许多情绪反应，如条件性恐惧。" },
+  { zh: "操作性条件反射", en: "Operant Conditioning", cat: "cognition", aliases: "工具性条件反射", desc: "通过结果（强化或惩罚）塑造行为的学习。", note: "强化通常比惩罚更有效地建立新行为。" },
+  { zh: "强化", en: "Reinforcement", cat: "cognition", desc: "增加某行为再次发生概率的结果。", note: "正强化是给予、负强化是移除厌恶刺激，二者都增加行为。" },
+  { zh: "观察学习", en: "Observational Learning", cat: "cognition", aliases: "模仿学习、替代学习", desc: "通过观察他人及其行为结果而学习。", note: "班杜拉的波波玩偶实验是经典示例。" },
+  { zh: "启发式", en: "Heuristic", cat: "cognition", aliases: "心理捷径", desc: "快速做出判断的经验性心理捷径。", note: "它高效，但会系统性地导致偏差。" },
+  { zh: "认知偏差", en: "Cognitive Bias", cat: "cognition", desc: "系统性偏离理性判断的思维倾向。", note: "偏差不是随机错误，而是有规律、可预测的。" },
+  { zh: "确认偏误", en: "Confirmation Bias", cat: "cognition", desc: "偏好寻找和记住支持已有信念之证据的倾向。", note: "它让人难以真正检验自己的观点。" },
+  { zh: "心智理论", en: "Theory of Mind", cat: "cognition", desc: "推断他人具有信念、意图等心理状态的能力。", note: "它在幼儿期逐步发展，与社会理解密切相关。" },
+  { zh: "元认知", en: "Metacognition", cat: "cognition", desc: "对自身认知过程的觉察与调控。", note: "“知道自己不懂”正是元认知的重要功能。" },
+
+  { zh: "发展心理学", en: "Developmental Psychology", cat: "development", desc: "研究人一生中身心变化及其规律的领域。", note: "它既关注普遍阶段，也关注个体和文化差异。" },
+  { zh: "先天与后天", en: "Nature vs. Nurture", cat: "development", desc: "关于遗传与环境如何塑造发展的经典议题。", note: "当代共识是二者持续交互，而非非此即彼。" },
+  { zh: "气质", en: "Temperament", cat: "development", desc: "婴儿早期即表现出的、有生物基础的行为风格。", note: "气质是倾向而非命运，会与环境互动而改变。" },
+  { zh: "依恋", en: "Attachment", cat: "development", desc: "婴儿与主要照护者之间形成的情感联结。", note: "早期依恋影响深远，但并不僵化地决定一生的关系。" },
+  { zh: "安全型依恋", en: "Secure Attachment", cat: "development", desc: "以照护者为安全基地、能被安抚的依恋模式。", note: "它更多反映互动质量，而非单方面评价孩子“好坏”。" },
+  { zh: "陌生情境", en: "Strange Situation", cat: "development", desc: "通过分离与重聚观察婴儿依恋类型的实验程序。", note: "其分类在跨文化使用时需谨慎解释。" },
+  { zh: "认知发展阶段", en: "Piaget's Stages", cat: "development", aliases: "皮亚杰阶段论", desc: "皮亚杰提出的儿童思维分阶段发展理论。", note: "阶段划分很有影响力，但后续研究发现儿童能力常被低估。" },
+  { zh: "客体永久性", en: "Object Permanence", cat: "development", desc: "理解物体在看不见时仍然存在的能力。", note: "它在婴儿期逐步出现，是认知发展的里程碑。" },
+  { zh: "守恒", en: "Conservation", cat: "development", desc: "理解数量在外形改变后仍保持不变的能力。", note: "它是皮亚杰用来区分前运算与具体运算阶段的经典任务。" },
+  { zh: "最近发展区", en: "Zone of Proximal Development", cat: "development", aliases: "ZPD", desc: "儿童在帮助下能达到、而独自尚不能达到的区间。", note: "维果茨基以此强调社会互动对学习的作用。" },
+  { zh: "脚手架", en: "Scaffolding", cat: "development", desc: "成人或同伴提供的、随能力增长而逐步撤除的支持。", note: "好的脚手架逐步放手，而不是长期代劳。" },
+  { zh: "心理社会发展", en: "Psychosocial Development", cat: "development", aliases: "埃里克森阶段论", desc: "埃里克森提出的贯穿一生的八阶段发展理论。", note: "每个阶段的“危机”是发展任务，而非病态。" },
+  { zh: "自我同一性", en: "Identity", cat: "development", aliases: "同一性、身份认同", desc: "青少年整合自我、价值与角色而形成的认同感。", note: "同一性混乱常是正常的探索过程，未必是问题。" },
+  { zh: "道德发展", en: "Moral Development", cat: "development", aliases: "柯尔伯格阶段", desc: "关于道德推理如何随年龄发展的理论。", note: "它被批评偏重推理与男性样本，忽视关怀与文化差异。" },
+  { zh: "关键期", en: "Critical Period", cat: "development", desc: "某些能力必须在特定时间窗口内发展的阶段。", note: "人类许多能力更接近“敏感期”而非严格的关键期。" },
+  { zh: "敏感期", en: "Sensitive Period", cat: "development", desc: "对特定经验特别易受影响的发展窗口。", note: "错过并非完全不可弥补，但难度和代价更高。" },
+  { zh: "语言习得", en: "Language Acquisition", cat: "development", desc: "儿童快速而自然地获得语言的过程。", note: "它显示先天准备与语言环境共同起作用。" },
+  { zh: "青少年期", en: "Adolescence", cat: "development", desc: "从儿童向成人过渡、伴随生理与心理剧变的阶段。", note: "冒险倾向部分与大脑发育不同步有关，而非单纯叛逆。" },
+  { zh: "心理弹性", en: "Resilience", cat: "development", aliases: "心理韧性", desc: "在逆境中良好适应或恢复的能力。", note: "弹性不是“天生坚强”，而是可培养、依赖支持的过程。" },
+  { zh: "教养方式", en: "Parenting Styles", cat: "development", desc: "依要求与回应程度划分的养育模式。", note: "权威型（高要求高回应）常与较好结果相关，但受文化调节。" },
+  { zh: "成人发展", en: "Adult Development", cat: "development", desc: "成年期持续的心理与角色变化。", note: "发展不止于成年，价值、关系和目标仍在变化。" },
+  { zh: "老龄化", en: "Aging", cat: "development", desc: "与年龄增长相关的身心变化过程。", note: "认知衰退并非全面必然，经验与情绪调节可能反而改善。" },
+  { zh: "世代效应", en: "Cohort Effect", cat: "development", desc: "同一时代出生者因共同历史经验而产生的差异。", note: "它常被误当作年龄本身的影响。" },
+  { zh: "纵向研究", en: "Longitudinal Study", cat: "development", desc: "对同一批人长期追踪的研究设计。", note: "它能揭示变化，但耗时且易受被试流失影响。" },
+  { zh: "横断研究", en: "Cross-sectional Study", cat: "development", desc: "在同一时间比较不同年龄群体的研究设计。", note: "它快，但会把世代差异误读为发展变化。" },
+
+  { zh: "人格", en: "Personality", cat: "personality", desc: "个体相对稳定的思维、情感和行为模式。", note: "稳定是相对的，情境也在很大程度上影响行为。" },
+  { zh: "特质", en: "Trait", cat: "personality", desc: "描述人格的相对持久的倾向维度。", note: "特质是概率性倾向，而非在任何情境都固定的标签。" },
+  { zh: "大五人格", en: "Big Five", cat: "personality", aliases: "五因素模型、OCEAN", desc: "用开放性、尽责性、外向性、宜人性、神经质来描述人格的模型。", note: "它是描述框架，本身并不直接解释行为的成因。" },
+  { zh: "外向性", en: "Extraversion", cat: "personality", desc: "偏好社交、活跃和寻求刺激的人格维度。", note: "内向不等于社交焦虑，只是能量来源不同。" },
+  { zh: "神经质", en: "Neuroticism", cat: "personality", aliases: "情绪不稳定性", desc: "体验负性情绪倾向较强的人格维度。", note: "高神经质是一种风险因素，但并非疾病本身。" },
+  { zh: "尽责性", en: "Conscientiousness", cat: "personality", desc: "自律、有条理、目标导向的人格维度。", note: "它与学业和职业成就有较稳定的相关。" },
+  { zh: "自我", en: "Self", cat: "personality", desc: "个体对自身作为经验与行动主体的整体感受。", note: "心理学的“自我”涵盖概念、评价与调控多个层面。" },
+  { zh: "自我概念", en: "Self-concept", cat: "personality", desc: "个体对自己特征和身份的认识总和。", note: "它可能与他人评价或客观表现并不一致。" },
+  { zh: "自尊", en: "Self-esteem", cat: "personality", desc: "个体对自身价值的整体评价。", note: "一味追求高自尊未必有益，稳定与真实感更重要。" },
+  { zh: "自我效能", en: "Self-efficacy", cat: "personality", desc: "相信自己能完成特定任务的信念。", note: "班杜拉指出它是任务特定的，而非笼统的自信。" },
+  { zh: "控制点", en: "Locus of Control", cat: "personality", desc: "认为结果由自身还是外部因素决定的倾向。", note: "内控与外控各有适应性，取决于情境是否真的可控。" },
+  { zh: "动机", en: "Motivation", cat: "personality", desc: "启动、指引和维持行为的内在过程。", note: "动机不能直接观察，只能从行为和自述推断。" },
+  { zh: "内在动机", en: "Intrinsic Motivation", cat: "personality", desc: "出于兴趣或满足本身而行动的动机。", note: "过度的外部奖励有时会削弱内在动机。" },
+  { zh: "需求层次", en: "Maslow's Hierarchy", cat: "personality", aliases: "马斯洛需求层次", desc: "马斯洛提出的从生理到自我实现的需求排列。", note: "其严格的层级顺序缺乏充分实证支持，可作启发框架。" },
+  { zh: "驱力", en: "Drive", cat: "personality", desc: "由生理需要引发、推动个体减少紧张的内在状态。", note: "驱力理论难以解释好奇、冒险等增加唤起的行为。" },
+  { zh: "情绪", en: "Emotion", cat: "personality", desc: "包含主观感受、生理唤起和表达的短暂反应。", note: "情绪常携带信息与行动倾向，而非纯粹的干扰。" },
+  { zh: "情绪智力", en: "Emotional Intelligence", cat: "personality", aliases: "情商、EQ", desc: "觉察、理解和调节情绪的能力。", note: "流行的“情商”概念常被夸大，其测量与预测力仍有争议。" },
+  { zh: "詹姆斯-兰格理论", en: "James-Lange Theory", cat: "personality", desc: "认为情绪源于对自身生理反应的感知的理论。", note: "它挑战常识顺序，但难以解释相似生理下的不同情绪。" },
+  { zh: "面部反馈假说", en: "Facial Feedback Hypothesis", cat: "personality", desc: "面部表情能反过来影响情绪体验的假说。", note: "其效应在大规模重复研究中较弱，需谨慎看待。" },
+  { zh: "唤醒", en: "Arousal", cat: "personality", desc: "身心被激活的生理与心理程度。", note: "耶克斯-多德森定律指出适中唤醒常带来最佳表现。" },
+  { zh: "挫折", en: "Frustration", cat: "personality", desc: "目标受阻时产生的负性情绪状态。", note: "挫折不必然导致攻击，反应受解释与情境调节。" },
+  { zh: "自我调节", en: "Self-regulation", cat: "personality", desc: "为达成目标而调控情绪、思维和行为的过程。", note: "它像可训练的能力，也会因疲劳或压力而减弱。" },
+  { zh: "成长型思维", en: "Growth Mindset", cat: "personality", desc: "相信能力可以通过努力发展的信念。", note: "其效应量在近期研究中较为温和，不宜过度承诺。" },
+  { zh: "心流", en: "Flow", cat: "personality", desc: "全神贯注、忘我投入某活动的最佳体验状态。", note: "它常出现在挑战与技能相互匹配时。" },
+  { zh: "延迟满足", en: "Delayed Gratification", cat: "personality", desc: "为更大的长远回报而抑制即时诱惑的能力。", note: "经典“棉花糖实验”的长期预测力在重复研究中被大幅削弱。" },
+
+  { zh: "社会心理学", en: "Social Psychology", cat: "social", desc: "研究他人与情境如何影响个体思想、情感和行为的领域。", note: "它常揭示情境的力量远超我们的直觉估计。" },
+  { zh: "态度", en: "Attitude", cat: "social", desc: "对人、事或观念的评价性倾向。", note: "态度与行为并不总一致，受情境和具体性影响。" },
+  { zh: "认知失调", en: "Cognitive Dissonance", cat: "social", desc: "持有矛盾认知时产生的不适及化解它的动机。", note: "人常通过改变态度而非改变行为来减少失调。" },
+  { zh: "归因", en: "Attribution", cat: "social", desc: "对行为原因作出解释的过程。", note: "我们的归因常带有系统偏差，而非客观推断。" },
+  { zh: "基本归因错误", en: "Fundamental Attribution Error", cat: "social", desc: "高估他人行为的内在原因、低估情境作用的倾向。", note: "对自己却常反过来更强调情境（行动者-观察者差异）。" },
+  { zh: "从众", en: "Conformity", cat: "social", desc: "因群体压力而改变行为或观点。", note: "阿希实验显示，即便答案很明显，人也会屈从多数。" },
+  { zh: "服从", en: "Obedience", cat: "social", desc: "按权威指示行动，即使违背个人意愿。", note: "米尔格拉姆实验揭示情境可使普通人也施加伤害。" },
+  { zh: "社会促进", en: "Social Facilitation", cat: "social", desc: "他人在场提升简单或熟练任务表现的现象。", note: "对困难或不熟练的任务，他人在场反而可能损害表现。" },
+  { zh: "社会惰化", en: "Social Loafing", cat: "social", desc: "群体中个人努力下降的现象。", note: "明确个人责任可以减弱惰化。" },
+  { zh: "去个体化", en: "Deindividuation", cat: "social", desc: "在群体中自我意识和约束下降的状态。", note: "它可解释群体中的越轨，但不是为个人行为免责。" },
+  { zh: "群体思维", en: "Groupthink", cat: "social", desc: "群体为求一致而压制异议、导致糟糕决策。", note: "鼓励异议和独立评估可加以预防。" },
+  { zh: "群体极化", en: "Group Polarization", cat: "social", desc: "讨论后群体倾向变得更极端的现象。", note: "同质群体和信息回音室会加剧极化。" },
+  { zh: "旁观者效应", en: "Bystander Effect", cat: "social", desc: "在场人数越多、个体越不易施以帮助。", note: "责任分散是主因，但明确地向具体的人求助可打破它。" },
+  { zh: "刻板印象", en: "Stereotype", cat: "social", desc: "对某群体成员的概括化信念。", note: "它是认知捷径，未必带敌意，却可能造成不公。" },
+  { zh: "偏见", en: "Prejudice", cat: "social", desc: "基于群体归属的负性态度或情感。", note: "偏见涉及情感，与刻板印象（认知）和歧视（行为）相关但不同。" },
+  { zh: "歧视", en: "Discrimination", cat: "social", desc: "基于群体归属的不公正区别对待行为。", note: "制度性歧视可不依赖个人偏见而持续存在。" },
+  { zh: "内群体偏好", en: "In-group Bias", cat: "social", desc: "偏袒自己所属群体的倾向。", note: "即使是随机分组，也能迅速产生这种偏好。" },
+  { zh: "说服", en: "Persuasion", cat: "social", desc: "通过沟通改变他人态度或行为的过程。", note: "中心与外周两条路径分别依赖论证和表面线索。" },
+  { zh: "亲社会行为", en: "Prosocial Behavior", cat: "social", desc: "意在帮助他人的自愿行为。", note: "其动机可能混合利他与自利，难以完全区分。" },
+  { zh: "利他", en: "Altruism", cat: "social", aliases: "利他主义", desc: "不图回报地增进他人福祉的行为。", note: "纯粹利他是否存在，是长期争论的问题。" },
+  { zh: "攻击", en: "Aggression", cat: "social", aliases: "攻击行为", desc: "意在伤害他人的行为。", note: "它有敌意性与工具性之分，成因涉及生物、情境与学习。" },
+  { zh: "人际吸引", en: "Interpersonal Attraction", cat: "social", desc: "使人彼此喜欢或亲近的因素。", note: "邻近性、相似性和熟悉度的影响常被低估。" },
+  { zh: "自我实现预言", en: "Self-fulfilling Prophecy", cat: "social", desc: "期待促使其自身成真的现象。", note: "教师期待影响学生表现是经典例证。" },
+  { zh: "社会认同", en: "Social Identity", cat: "social", desc: "个体从所属群体获得的那部分自我认同。", note: "它有助于归属感，也可能助长群体间偏见。" },
+  { zh: "光环效应", en: "Halo Effect", cat: "social", desc: "对某一特质的印象泛化到整体评价的偏差。", note: "“长得好看就更可信”是它的典型表现。" },
+
+  { zh: "临床心理学", en: "Clinical Psychology", cat: "clinical", desc: "研究、评估和干预心理困扰与障碍的领域。", note: "临床心理学家与精神科医生角色不同，后者通常可开药。" },
+  { zh: "心理障碍", en: "Mental Disorder", cat: "clinical", aliases: "精神障碍", desc: "造成显著困扰或功能受损的心理与行为综合征。", note: "诊断关注痛苦与功能，而非仅仅“与众不同”。" },
+  { zh: "DSM 诊断手册", en: "DSM", cat: "clinical", aliases: "精神障碍诊断与统计手册", desc: "美国精神医学会编制的精神障碍分类与诊断标准。", note: "它是共识分类工具，标准会随版本和研究更新。" },
+  { zh: "焦虑障碍", en: "Anxiety Disorder", cat: "clinical", desc: "以过度、持久的焦虑为核心的一类障碍。", note: "正常焦虑有适应功能，成为障碍在于过度且损害生活。" },
+  { zh: "抑郁症", en: "Depression", cat: "clinical", aliases: "重性抑郁障碍", desc: "以持续低落、兴趣丧失等为特征的心境障碍。", note: "它不是“想开点”就能解决，也不等于普通的悲伤。" },
+  { zh: "双相障碍", en: "Bipolar Disorder", cat: "clinical", aliases: "躁郁症", desc: "情绪在抑郁与躁狂/轻躁狂之间波动的障碍。", note: "它与日常“情绪多变”不同，涉及明确的发作期。" },
+  { zh: "强迫症", en: "OCD", cat: "clinical", aliases: "强迫性障碍", desc: "以强迫思维和强迫行为为特征的障碍。", note: "它不是“爱干净、追求完美”，而是难以控制且令人痛苦。" },
+  { zh: "创伤后应激障碍", en: "PTSD", cat: "clinical", desc: "经历创伤后出现闯入、回避和过度警觉的障碍。", note: "并非所有经历创伤的人都会发展为 PTSD。" },
+  { zh: "恐惧症", en: "Phobia", cat: "clinical", desc: "对特定对象或情境的强烈且非理性的恐惧。", note: "关键在于恐惧与实际危险不成比例且影响生活。" },
+  { zh: "惊恐发作", en: "Panic Attack", cat: "clinical", desc: "突发的强烈恐惧伴随躯体症状的短暂发作。", note: "它虽极不适却不危险，误认作心脏病会加重恐惧。" },
+  { zh: "精神分裂症", en: "Schizophrenia", cat: "clinical", desc: "涉及幻觉、妄想和思维紊乱的严重精神障碍。", note: "它不是“多重人格”，这是常见误解。" },
+  { zh: "妄想", en: "Delusion", cat: "clinical", desc: "与现实不符却坚信不移的信念。", note: "判断妄想需考虑文化背景，避免误判信仰或习俗。" },
+  { zh: "幻觉", en: "Hallucination", cat: "clinical", desc: "在没有相应外部刺激时产生的感知体验。", note: "幻觉可见于多种状况，并非都指向精神病。" },
+  { zh: "人格障碍", en: "Personality Disorder", cat: "clinical", desc: "长期僵化、造成困扰的人格模式。", note: "诊断需谨慎，避免把它当作贬损性的标签。" },
+  { zh: "进食障碍", en: "Eating Disorder", cat: "clinical", desc: "以异常进食及体像困扰为特征的障碍。", note: "它是严重的心理健康问题，而非单纯的生活方式选择。" },
+  { zh: "注意缺陷多动障碍", en: "ADHD", cat: "clinical", desc: "以持续注意困难、多动或冲动为特征的神经发育障碍。", note: "它有神经发育基础，不等于“不努力”或教养失败。" },
+  { zh: "孤独症谱系", en: "Autism Spectrum", cat: "clinical", aliases: "自闭症谱系", desc: "影响社交沟通与行为模式的神经发育差异。", note: "“谱系”强调多样表现，许多人主张接纳而非“治愈”。" },
+  { zh: "心理治疗", en: "Psychotherapy", cat: "clinical", aliases: "谈话治疗", desc: "通过专业心理互动缓解困扰的干预。", note: "治疗关系的质量本身就是疗效的重要因素。" },
+  { zh: "认知行为疗法", en: "CBT", cat: "clinical", aliases: "认知行为治疗", desc: "通过改变思维与行为模式缓解困扰的循证疗法。", note: "它证据充分，但并非对所有问题都最优。" },
+  { zh: "精神分析", en: "Psychoanalysis", cat: "clinical", desc: "弗洛伊德创立、聚焦潜意识冲突的治疗与理论。", note: "作为疗法影响深远，但其许多主张缺乏实证支持。" },
+  { zh: "暴露疗法", en: "Exposure Therapy", cat: "clinical", desc: "通过逐步面对所惧之物来减弱恐惧的疗法。", note: "它对焦虑和恐惧症有力，需在专业指导下进行。" },
+  { zh: "正念", en: "Mindfulness", cat: "clinical", desc: "有意、不评判地觉察当下的练习。", note: "它有益处但非万能，个别情况下也可能带来不适。" },
+  { zh: "应对", en: "Coping", cat: "clinical", aliases: "应对方式", desc: "应对压力与情绪的认知与行为努力。", note: "问题聚焦与情绪聚焦策略各有其适用情境。" },
+  { zh: "污名", en: "Stigma", cat: "clinical", aliases: "病耻感", desc: "社会对某类人贬低性的标签与排斥。", note: "心理健康污名会阻碍求助，是重要的公共议题。" },
+  { zh: "共病", en: "Comorbidity", cat: "clinical", desc: "同一个体同时存在多种障碍的现象。", note: "共病相当常见，会使评估和治疗更复杂。" },
+
+  { zh: "构造主义", en: "Structuralism", cat: "schools", aliases: "内容心理学", desc: "冯特、铁钦纳主张用内省分析意识基本元素的早期学派。", note: "它标志心理学成为独立学科，但内省法难以客观检验。" },
+  { zh: "机能主义", en: "Functionalism", cat: "schools", desc: "受达尔文影响、关注心理如何帮助适应环境的学派。", note: "它把注意力从“意识由什么构成”转向“意识有何用”。" },
+  { zh: "行为主义", en: "Behaviorism", cat: "schools", desc: "主张心理学只研究可观察行为的学派。", note: "它提升了方法的严格性，却长期回避内在心理过程。" },
+  { zh: "精神分析学派", en: "Psychoanalytic School", cat: "schools", desc: "弗洛伊德创立、强调潜意识与早期经验的传统。", note: "它对文化影响巨大，科学地位则长期受质疑。" },
+  { zh: "潜意识", en: "Unconscious", cat: "schools", aliases: "无意识", desc: "不在意识觉察中却影响行为的心理过程。", note: "现代认知科学的“无意识加工”与弗洛伊德式潜意识并不相同。" },
+  { zh: "本我自我超我", en: "Id, Ego, Superego", cat: "schools", desc: "弗洛伊德关于人格三重结构的划分。", note: "它是理论隐喻，并不对应具体脑区。" },
+  { zh: "防御机制", en: "Defense Mechanism", cat: "schools", desc: "用来减轻焦虑的无意识心理策略，如压抑、投射。", note: "概念影响深远，但具体机制的实证支持参差不齐。" },
+  { zh: "分析心理学", en: "Analytical Psychology", cat: "schools", aliases: "荣格心理学", desc: "荣格创立、强调集体无意识与原型的传统。", note: "它富含象征洞见，但许多概念难以实证检验。" },
+  { zh: "集体无意识", en: "Collective Unconscious", cat: "schools", desc: "荣格提出的、人类共有的深层心理内容。", note: "它是有影响的思辨概念，但缺乏主流实证基础。" },
+  { zh: "人本主义心理学", en: "Humanistic Psychology", cat: "schools", desc: "强调成长、自由与自我实现的心理学取向。", note: "它是对精神分析与行为主义的“第三势力”回应。" },
+  { zh: "来访者中心疗法", en: "Person-centered Therapy", cat: "schools", aliases: "罗杰斯疗法、以人为中心", desc: "罗杰斯创立、以共情和真诚支持来访者成长的疗法。", note: "它把治疗关系本身视为改变的核心。" },
+  { zh: "无条件积极关注", en: "Unconditional Positive Regard", cat: "schools", desc: "不附加条件地接纳来访者的态度。", note: "接纳其人不等于赞同其一切行为。" },
+  { zh: "格式塔心理学", en: "Gestalt Psychology", cat: "schools", aliases: "完形心理学", desc: "主张整体不等于部分之和的知觉学派。", note: "它揭示知觉的组织原则，与格式塔疗法并非一回事。" },
+  { zh: "认知革命", en: "Cognitive Revolution", cat: "schools", desc: "20 世纪中叶心理学重新重视内在心理加工的转向。", note: "它以信息加工取向取代了行为主义的主导地位。" },
+  { zh: "认知心理学", en: "Cognitive Psychology", cat: "schools", desc: "研究知觉、记忆、思维等心理加工的领域。", note: "它常借助计算机隐喻，但心智不必等同于计算机。" },
+  { zh: "进化心理学", en: "Evolutionary Psychology", cat: "schools", desc: "用自然选择解释普遍心理机制的取向。", note: "其假设常难以直接检验，需警惕事后编故事。" },
+  { zh: "积极心理学", en: "Positive Psychology", cat: "schools", desc: "研究幸福、优势与繁荣的心理学取向。", note: "它补充了对病理的偏重，但不应否认真实的痛苦。" },
+  { zh: "生物心理社会模型", en: "Biopsychosocial Model", cat: "schools", desc: "从生物、心理和社会三个层面理解健康的框架。", note: "它反对把心理问题化约为单一层面。" },
+  { zh: "社会文化取向", en: "Sociocultural Perspective", cat: "schools", desc: "强调文化与社会情境塑造心理的视角。", note: "它提醒许多“普遍”结论其实带有文化局限。" },
+  { zh: "依恋理论", en: "Attachment Theory", cat: "schools", desc: "鲍尔比等提出、关于早期联结及其长期影响的理论。", note: "成人依恋类型是倾向性描述，并非固定不可变。" },
+  { zh: "社会学习理论", en: "Social Learning Theory", cat: "schools", aliases: "社会认知理论", desc: "班杜拉强调观察、模仿与认知的学习理论。", note: "它在行为主义与认知取向之间架起了桥梁。" },
+  { zh: "具身认知", en: "Embodied Cognition", cat: "schools", desc: "认为认知依赖身体与环境互动的取向。", note: "它挑战“心智只发生在头脑中”的假设。" },
+  { zh: "神经科学取向", en: "Neuroscience Perspective", cat: "schools", aliases: "生物学取向", desc: "从脑与生理机制解释行为的视角。", note: "神经解释有力，但不能取代心理与社会层面的说明。" },
+  { zh: "心理测量学", en: "Psychometrics", cat: "schools", desc: "研究心理特质如何被测量的学科。", note: "它关注信度与效度，是量表科学性的基础。" },
+  { zh: "智力", en: "Intelligence", cat: "schools", aliases: "智力理论", desc: "关于学习、推理和适应能力的概念与测量。", note: "智力的定义与 IQ 测量都存在文化与公平方面的争议。" }
+];
+
+const categoryIntros = {
+  foundations: "这类词属于研究工具与方法：它帮助界定变量、设计对照、评估证据强弱，也提醒结论要能被重复检验，而不是凭直觉下判断。",
+  biological: "这类词把行为与体验带回其生理基础，涉及神经、激素和节律等机制，但生理解释通常只是其中一层，而非全部原因。",
+  cognition: "这类词关注信息如何被感知、注意、记忆和加工，重点在于心理过程的机制，而不只是行为结果本身。",
+  development: "这类词放在人生历程中理解，关注能力与关系如何随年龄变化，也要区分年龄、世代和研究设计带来的差异。",
+  personality: "这类词描述相对稳定的倾向与内在动力，阅读时要记住它们是概率性倾向，情境同样在塑造具体表现。",
+  social: "这类词强调他人与情境的力量，提醒许多行为并非源自个人特质，而是被处境、群体和角色所塑造。",
+  clinical: "这类词涉及心理困扰的评估与干预，使用时要区分描述与标签，关注痛苦与功能，而非仅仅偏离常态。",
+  schools: "这类词需要放回其历史语境与理论传统中理解，不同取向对同一现象常给出不同解释，各有洞见也各有局限。"
+};
+
+const searchInput = document.getElementById("searchInput");
+const grid = document.getElementById("termGrid");
+const categoryIntro = document.getElementById("categoryIntro");
+const emptyState = document.getElementById("emptyState");
+const resultCount = document.getElementById("resultCount");
+const termCount = document.getElementById("termCount");
+const filterButtons = Array.from(document.querySelectorAll(".filter"));
+let currentFilter = "all";
+
+function normalize(value) {
+  return String(value || "").toLowerCase().trim();
+}
+
+function splitAliases(value) {
+  return String(value || "")
+    .split(/[、，,;/]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+function matchesTerm(term, query) {
+  if (!query) return true;
+  const haystack = `${term.zh} ${term.en || ""} ${term.aliases || ""} ${term.desc} ${term.note}`.toLowerCase();
+  return haystack.includes(query);
+}
+
+function prepareTerm(term) {
+  const seen = new Set();
+  const aliasesList = splitAliases(term.aliases).filter((item) => {
+    const key = normalize(item);
+    if (!key || key === normalize(term.zh) || key === normalize(term.en) || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  return {
+    ...term,
+    aliasesList
+  };
+}
+
+function matchRank(term, query) {
+  if (!query) return 999;
+  const q = query;
+  const prepared = prepareTerm(term);
+  const zh = normalize(prepared.zh);
+  const en = normalize(prepared.en);
+  const aliases = prepared.aliasesList.map((item) => normalize(item));
+  const desc = normalize(term.desc);
+  const note = normalize(term.note);
+
+  if (zh === q || en === q || aliases.includes(q)) return 0;
+  if (zh.startsWith(q) || en.startsWith(q) || aliases.some((item) => item.startsWith(q))) return 1;
+  if (zh.includes(q) || en.includes(q) || aliases.some((item) => item.includes(q))) return 2;
+  if (`${desc} ${note}`.includes(q)) return 3;
+  return 9;
+}
+
+function render() {
+  const query = normalize(searchInput.value);
+  const visible = terms
+    .map((term, index) => ({ term, index }))
+    .filter(({ term }) => {
+      const inCategory = currentFilter === "all" || term.cat === currentFilter;
+      return inCategory && matchesTerm(term, query);
+    });
+
+  if (query) {
+    visible.sort((a, b) => {
+      const rankDiff = matchRank(a.term, query) - matchRank(b.term, query);
+      if (rankDiff) return rankDiff;
+      return a.index - b.index;
+    });
+  }
+
+  grid.innerHTML = visible.map(({ term }) => {
+    const prepared = prepareTerm(term);
+    const tagKey = prepared.cardTag || prepared.cat;
+    const tagName = prepared.tag || categoryNames[tagKey] || categoryNames[prepared.cat] || "术语";
+    return `
+    <article class="term-card" data-category="${prepared.cat}">
+      <div class="term-head">
+        <h3 class="term-title">${prepared.zh}${prepared.en ? `<small>${prepared.en}</small>` : ""}</h3>
+        <span class="tag ${tagKey}">${tagName}</span>
+      </div>
+      ${prepared.aliasesList.length ? `<div class="aliases">别名/又译/近译：${prepared.aliasesList.join("、")}</div>` : ""}
+      <p class="term-body">${prepared.desc}</p>
+      <div class="note">${prepared.note}</div>
+    </article>
+  `;
+  }).join("");
+
+  const intro = categoryIntros[currentFilter] || "";
+  categoryIntro.hidden = !intro;
+  if (intro) categoryIntro.innerHTML = `<b>${categoryNames[currentFilter]}</b>：${intro}`;
+
+  resultCount.textContent = `${visible.length} 个结果`;
+  emptyState.style.display = visible.length ? "none" : "block";
+}
+
+termCount.textContent = String(terms.length);
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    currentFilter = button.dataset.filter;
+    filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    render();
+  });
+});
+searchInput.addEventListener("input", render);
+render();

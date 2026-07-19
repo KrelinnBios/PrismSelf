@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>女权主义流派倾向自评量表</title>
+  <meta name="description" content="女权主义流派倾向自评量表，帮助你了解自身在各女权主义流派上的倾向；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="女权主义流派倾向自评量表">
+  <meta property="og:description" content="女权主义流派倾向自评量表，帮助你了解自身在各女权主义流派上的倾向；结果仅保存在本地。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Feminist-Leanings-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      border-bottom: 2px solid #f97316;
+      padding-bottom: 6px;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-size: 1.25em;
+    }
+
+    .section {
+      transition: box-shadow 0.2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+      transition: all 0.2s ease;
+    }
+
+    .q-number {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 280px;
+      padding: 10px;
+      font-size: 0.95em;
+      cursor: pointer;
+    }
+
+    .intro,
+    .explanation {
+      padding: 24px 28px;
+      margin-bottom: 25px;
+      font-size: 0.98em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: 0.95em;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .result-top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .radar-container {
+      padding: 20px;
+      border: 1px solid #FFE0B2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .result th {
+      padding: 14px 16px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .result td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #fed7aa;
+      font-size: 0.95em;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      font-size: 0.98em;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .insight-card {
+      padding: 24px 28px;
+      margin: 25px 0;
+      border: 1px solid #fef08a;
+    }
+
+    .insight-card h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      border-bottom: none;
+    }
+
+    .theory-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: 0.88rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .action-box {
+      padding: 28px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 850px) {
+      .result-top-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radar-wrapper {
+        max-width: 400px;
+      }
+
+    }
+
+    @media (max-width: 650px) {
+      button {
+        margin-bottom: 12px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+    }
+
+    .result .insight-card p,
+    .result .action-box p,
+    .result .insight-card li {
+      letter-spacing: 0.045em !important;
+      word-spacing: 0.08em;
+      line-height: 1.85 !important;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif !important;
+    }
+
+    .result .insight-card strong,
+    .result .action-box strong {
+      letter-spacing: 0.02em !important;
+    }
+
+    .result .insight-card p span.book-name,
+    .result .insight-card p span.score-text {
+      display: inline-block;
+      padding: 0 2px;
+      letter-spacing: 0.03em;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'feminist-leanings', title: '女权主义流派倾向自评量表', formId: 'feminismQuiz', storageKey: 'feminismQuizAnswers', totalQuestions: 70, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/70</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <h1>女权主义流派倾向自评量表</h1>
+
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p>
+      <strong>女权主义并非单一理念</strong>，而是由不同问题意识、政治策略和价值预设构成的思想谱系。本量表用于帮助你从<strong>法律平等、父权批判、劳动与阶级、交叉压迫、文化伦理、性别解构、生态正义与去殖民视角</strong>等维度，观察自己在当前作答情境下更接近哪些分析框架。
+    </p>
+    <p><strong>为了更好地理解各大流派，我们在此简要介绍量表涉及的八个核心倾向：</strong></p>
+    <ul>
+      <li><strong>自由女权主义（Liberal Feminism）</strong>：重视法律权利、教育机会、职场准入和反歧视机制，倾向于通过制度改革扩大个体选择空间。</li>
+      <li><strong>激进女权主义（Radical Feminism）</strong>：关注父权制如何进入身体、性、家庭和私人生活，强调日常关系中的权力结构并不只是个人问题。</li>
+      <li><strong>社会主义/马克思主义女权（Socialist/Marxist Feminism）</strong>：分析资本主义、阶级关系和无偿照护劳动如何共同塑造性别不平等。</li>
+      <li><strong>交叉性女权主义（Intersectional Feminism）</strong>：强调性别总是与阶级、族裔、性取向、残障、地域和身份制度交织发生。</li>
+      <li><strong>文化/差异女权主义（Cultural/Difference Feminism）</strong>：重新评估照护、关系、合作和脆弱性等长期被贬低的价值资源。</li>
+      <li><strong>酷儿/后结构女权（Queer/Poststructural Feminism）</strong>：检视“女性”“男性”“正常性别”等分类如何被制度和语言生产，并关注不符合规范者的处境。</li>
+      <li><strong>生态女权主义（Ecofeminism）</strong>：把性别压迫、生态破坏、照护危机和反支配伦理放在同一问题网络中讨论。</li>
+      <li><strong>后殖民/全球南方女权（Postcolonial/Global South Feminism）</strong>：批判西方中心叙事，关注殖民历史、全球资本和在地父权如何共同影响不同地区女性。</li>
+    </ul>
+    <p><strong>使用指南：</strong>本量表共包含 70 道题目，分为七个部分。请根据过去几年中较稳定的真实判断选择 0–5 分（0 分＝完全不认同，5
+      分＝完全认同，无绝对中立选项）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看流派匹配度、理论谱系分析、潜在盲区和阅读建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于评价立场高低。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+
+  <form id="feminismQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" onclick="calculateResult()">计算结果</button>
+      <button type="button" class="btn-secondary" onclick="resetForm()">重置问卷</button>
+      <button type="button" class="btn-secondary" onclick="saveResultText()">保存文本结果</button>
+      <button type="button" class="btn-secondary" onclick="saveResultImage()">保存图片结果</button>
+    </div>
+  </form>
+
+  <div class="result" id="result">
+    <h2 class="result-report-title">理论倾向深度评估报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前理论倾向画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div id="currentProfileAnalysis"></div>
+    <div id="mainInterpretation"></div>
+    <div id="deepPersonalAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+
+  <script src="./scripts/feminist-leanings-scale.js" defer></script>
+</body>
+
+</html>

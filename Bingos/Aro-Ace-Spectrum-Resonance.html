@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#7a6597">
+  <title>无浪漫/无性恋谱系 · 共鸣刻度卡</title>
+  <meta name="description" content="无浪漫/无性恋谱系共鸣刻度卡，通过条目自评感受谱系认同与共鸣程度。">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="无浪漫/无性恋谱系 · 共鸣刻度卡">
+  <meta property="og:description" content="无浪漫/无性恋谱系共鸣刻度卡，通过条目自评感受谱系认同与共鸣程度。">
+  <meta property="og:url" content="https://prismself.vip/Bingos/Aro-Ace-Spectrum-Resonance.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./bingo-common.css?v=20260710">
+  <!-- 页面配色使用 bingo-common.css 中的默认紫色系 -->
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="page">
+    <div class="header">
+      <h1>无浪漫/无性恋<em>谱系</em> · 共鸣刻度卡</h1>
+      <p class="sub">每个人都是谱系上的坐标，刻度由你定义</p>
+    </div>
+
+    <div class="tip">
+      🌈 <strong>刻度指南</strong> ：点击任意格子，依次切换 25% → 50% → 75% → 100% → 归零。<br>
+      每个板块右上角会实时显示该板块的“共鸣强度”（平均契合百分比）。
+    </div>
+
+    <!-- 简化图例 -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="ldot lv0"></div><span>0% 无感</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv25"></div><span>25% 轻微</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv50"></div><span>50% 中度</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv75"></div><span>75% 强烈</span>
+      </div>
+      <div class="legend-item">
+        <div class="ldot lv100"></div><span>100% 完全共鸣</span>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetBtn">↺ 重置全部刻度</button>
+
+    <!-- 板块 A B C D 会由js动态渲染，右上角统计也动态注入 -->
+    <div id="sections-container"></div>
+
+    <div class="footer">
+      <h4>⭐ 谱系心语</h4>
+      <ul>
+        <li>没有哪一行/列/区域能单独定义你，每个板块都只是你的一部分</li>
+        <li>你的体验真实而完整，不需要活成“典型样本”</li>
+        <li>刻度是为了帮你看见自己，不必与他人比较高低</li>
+        <li>你可以随时改变格子上的共鸣程度，自我认识是流动的</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const items = {
+      A: [
+        "🚫 几乎从来不会对别人产生性方面的兴趣",
+        "❓ 完全搞不懂别人为什么会看脸就心动",
+        "📖 比起真人，更容易对动漫/小说角色产生好感",
+        "⭐ 心动更偏向欣赏对方的思想、性格，和身体无关",
+        "🕐 就算偶尔有感觉，也像一闪而过的信号，转瞬消失",
+        "🔍 经常琢磨自己到底会被哪种特质吸引",
+        "👥 必须先和对方建立很深的信任，才可能产生吸引",
+        "🔒 有性冲动，但完全不想和别人一起",
+        "≠ 想靠近对方，但完全没有性行为的想法",
+        "🌀 搞不懂为什么大家总把性看得那么重要",
+        "🪞 看到别人觉得好看，但没有任何想进一步的冲动",
+        "🎯 对性的好奇更像'学术研究'，而非真实欲望",
+        "💡 在情感上很难区分'喜欢一个人'和'欣赏一个人'的差别",
+        "🧠 智识上的共鸣比外貌更能引发我的兴趣",
+        "🌊 吸引感来了又走，像浪一样，自己控制不了规律"
+      ],
+      B: [
+        "🛡️ 讨厌别人拿我的外貌身体开和性相关的玩笑/标签",
+        "✋ 对身体接触、暴露身体有很明确的底线",
+        "🤗 很喜欢和信任的人拥抱、牵手这类不带性意味的亲密",
+        "😶 一听到性暗示、荤段子，就下意识躲开/不想回应",
+        "🚷 不管关系多好，都不想发展到发生性行为",
+        "👁️ 看别人的身体，更像在看风景/物品，完全没有欲望",
+        "🙁 完全get不到性在亲密关系里到底有什么意义",
+        "💧 对接吻、体液接触这类事，会觉得不舒服/接受不了",
+        "🧊 情绪上很想亲近一个人，但一旦涉及肢体接触又会退缩",
+        "👤 别人想要的性，和我想要的亲密完全不是一回事",
+        "🌸 享受被照顾、被陪伴，但不需要性来表达亲密",
+        "💬 偶尔配合聊性话题，但内心始终像个旁观者",
+        "🏃 当关系有发展成性关系的苗头，会想逃离或中断",
+        "🎨 欣赏人体之美更偏向艺术审美，而非欲望驱动",
+        "🤝 愿意为伴侣配合，但内心并不真正渴望性行为"
+      ],
+      C: [
+        "💔 几乎从来不会产生'想谈恋爱'的心动感",
+        "❔ 搞不懂自己对别人的好感，到底是友情还是爱情",
+        "🏠 比起情侣，更想要像好朋友、搭档一样的长期关系",
+        "📋 对约会、送花、官宣这些恋爱'套路'完全没兴趣",
+        "💙 比起和对象在一起，一个人待着更舒服、更不焦虑",
+        "💭 想要有人陪、有人关心，但完全不想进入恋爱关系",
+        "🔖 反感别人用'男朋友/女朋友'标签定义我们的关系",
+        "🎭 看别人谈恋爱，就像在看一部和自己无关的剧",
+        "🔀 很向往 QPR（酷儿柏拉图式关系）——非恋爱却有深度的亲密关系",
+        "🤔 经常在想：我是不是真的不会对人产生浪漫心动？",
+        "🎵 听情歌、看恋爱情节，理性上懂，但完全没有代入感",
+        "⏳ 被人喜欢时，感到压力大于感动",
+        "🧭 觉得友情比爱情更稳固、更值得长期投入",
+        "🌙 偶尔会有心动，但转瞬即逝、难以维持",
+        "🗺️ 有时会想：也许我从来没有真正'爱'过任何人？"
+      ],
+      D: [
+        "🌅 只有在非常特定的情况下，才会产生吸引",
+        "〰️ 对别人的吸引忽有忽无，自己也摸不准规律",
+        "🔑 就算有吸引，也特别微弱，而且很快就消失了",
+        "🖥️ 看小说/视频里的亲密会有感觉，但现实里完全不想尝试",
+        "🎮 比起现实中的人，对虚构角色的好感多得多",
+        "🧩 没有一个标签能100%描述我，总觉得自己'卡在中间'",
+        "🔄 有时觉得自己是aro/ace，过段时间又觉得不是，一直在变",
+        "📡 不知道从哪里开始理解自己，但每看到一个描述都忍不住点头",
+        "🏷️ 不执着于给自己贴标签，只把它们当成理解自己的工具",
+        "🌈 觉得自己不是'绝对的有/没有'，而是在谱系中间",
+        "🌫️ 情感状态常常是模糊的，很难用清晰的词描述",
+        "🪐 感觉自己对感情的运作方式和别人生活在不同星球",
+        "📦 把自己放入主流恋爱模式，会感到窒息或格格不入",
+        "🕊️ 看到这张卡的时候，感到一种'终于被看见'的松动",
+        "🌱 还在探索中，不急于定义，但愿意继续认识自己"
+      ]
+    };
+
+    // 板块名称和配色主题
+    const sectionsMeta = [
+      { id: 'A', title: '吸引体验', subtitle: '性吸引 · 核心维度', colorClass: 'sec-A' },
+      { id: 'B', title: '身体与边界', subtitle: '身体感受 · 个人边界', colorClass: 'sec-B' },
+      { id: 'C', title: '浪漫维度 (Aro)', subtitle: '浪漫吸引 · 关系脚本', colorClass: 'sec-C' },
+      { id: 'D', title: '灰谱与特殊体验', subtitle: '模糊地带 · 谱系中间', colorClass: 'sec-D' }
+    ];
+
+    // 存储所有cell的弱引用（用于更新统计）
+    let sectionCells = { A: [], B: [], C: [], D: [] };
+    let statsElements = {}; // 存储每个板块的百分比显示元素
+
+    // 等级 -> 分数 (0,25,50,75,100)
+    function levelToScore(level) {
+      const l = parseInt(level);
+      if (l === 25) return 25;
+      if (l === 50) return 50;
+      if (l === 75) return 75;
+      if (l === 100) return 100;
+      return 0;
+    }
+
+    // 下一等级 (0→25→50→75→100→0)
+    function nextLevel(current) {
+      const order = [0, 25, 50, 75, 100];
+      let idx = order.indexOf(current);
+      if (idx === -1) return 25;
+      const nextIdx = (idx + 1) % order.length;
+      return order[nextIdx];
+    }
+
+    // 更新指定板块的统计 (共鸣百分比)
+    function updateSectionStats(sectionId) {
+      const cells = sectionCells[sectionId];
+      if (!cells || cells.length === 0) return;
+      let totalScore = 0;
+      cells.forEach(cell => {
+        const levelVal = parseInt(cell.getAttribute('data-level') || '0');
+        totalScore += levelToScore(levelVal);
+      });
+      const maxPossible = cells.length * 100;
+      let percent = maxPossible === 0 ? 0 : (totalScore / maxPossible) * 100;
+      percent = Math.round(percent);
+      const statsSpan = statsElements[sectionId];
+      if (statsSpan) {
+        statsSpan.innerText = percent;
+      }
+    }
+
+    // 更新所有板块统计
+    function updateAllSectionsStats() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        updateSectionStats(sec);
+      }
+    }
+
+    // 更新单个cell的ring显示
+    function updateRingLabel(cell) {
+      const level = parseInt(cell.getAttribute('data-level')) || 0;
+      const ringDiv = cell.querySelector('.ring');
+      if (!ringDiv) return;
+      let showTxt = '';
+      if (level === 0) showTxt = '0';
+      else if (level === 25) showTxt = '25%';
+      else if (level === 50) showTxt = '50%';
+      else if (level === 75) showTxt = '75%';
+      else if (level === 100) showTxt = '100%';
+      ringDiv.setAttribute('data-label', showTxt);
+    }
+
+    // 处理点击格子
+    function handleCellClick(e) {
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+      const curLevel = parseInt(cell.getAttribute('data-level')) || 0;
+      const newLevel = nextLevel(curLevel);
+      cell.setAttribute('data-level', newLevel);
+      updateRingLabel(cell);
+
+      // 找出该格子所属板块并更新统计
+      const sectionDiv = cell.closest('.section');
+      if (sectionDiv) {
+        const secClass = Array.from(sectionDiv.classList).find(c => c.startsWith('sec-'));
+        let secId = null;
+        if (secClass === 'sec-A') secId = 'A';
+        else if (secClass === 'sec-B') secId = 'B';
+        else if (secClass === 'sec-C') secId = 'C';
+        else if (secClass === 'sec-D') secId = 'D';
+        if (secId) updateSectionStats(secId);
+      }
+      // 微动效
+      cell.style.transform = 'scale(0.97)';
+      setTimeout(() => { if (cell) cell.style.transform = ''; }, 120);
+    }
+
+    // 重置所有格子
+    function resetAll() {
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 渲染整个页面 (动态构建四个板块)
+    function buildFullPage() {
+      const container = document.getElementById('sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+      // 清空存储
+      sectionCells = { A: [], B: [], C: [], D: [] };
+      statsElements = {};
+
+      sectionsMeta.forEach(meta => {
+        const { id, title, subtitle, colorClass } = meta;
+        const itemsList = items[id];
+        if (!itemsList) return;
+
+        // 创建section元素
+        const section = document.createElement('div');
+        section.className = `section ${colorClass}`;
+
+        // head部分（包含右上角统计占位）
+        const secHead = document.createElement('div');
+        secHead.className = 'sec-head';
+        secHead.innerHTML = `
+        <div class="sec-badge">${id}</div>
+        <div class="sec-info">
+          <h2>${title}</h2>
+          <p>${subtitle}</p>
+        </div>
+        <div class="sec-stats">
+          <span>板块共鸣</span>
+          <span class="sec-ratio" id="stats-${id}">0</span><small>%</small>
+        </div>
+      `;
+        section.appendChild(secHead);
+
+        // grid容器
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+
+        // 生成格子
+        itemsList.forEach(rawText => {
+          // 以第一个空格为界，分离 Emoji 和纯文本
+          const spaceIndex = rawText.indexOf(' ');
+          let emoji = '';
+          let pureText = '';
+
+          if (spaceIndex !== -1) {
+            emoji = rawText.slice(0, spaceIndex).trim();
+            pureText = rawText.slice(spaceIndex + 1).trim();
+          } else {
+            // 兼容万一没有空格的情况
+            emoji = rawText.slice(0, 2);
+            pureText = rawText.slice(2);
+          }
+
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.setAttribute('data-level', '0');
+
+          // 将分离后的 emoji 和 pureText 分别填入对应容器
+          cell.innerHTML = `
+          <div class="ring" data-label="0"></div>
+          <div class="cell-icon">${emoji}</div>
+          <div class="cell-text">${pureText}</div>
+        `;
+          grid.appendChild(cell);
+          sectionCells[id].push(cell);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+
+        // 保存统计显示元素引用
+        const statsSpan = document.getElementById(`stats-${id}`);
+        if (statsSpan) statsElements[id] = statsSpan;
+      });
+
+      // 添加全局点击委托 (因为grid是动态生成的，直接监听父容器)
+      const sectionsContainer = document.getElementById('sections-container');
+      if (sectionsContainer) {
+        sectionsContainer.addEventListener('click', (e) => {
+          const cell = e.target.closest('.cell');
+          if (cell) handleCellClick(e);
+        });
+      }
+
+      // 重置按钮
+      const resetBtn = document.getElementById('resetBtn');
+      if (resetBtn) {
+        // 避免重复绑定
+        const newBtn = resetBtn.cloneNode(true);
+        resetBtn.parentNode.replaceChild(newBtn, resetBtn);
+        newBtn.addEventListener('click', () => {
+          resetAll();
+        });
+      } else {
+        const btn = document.getElementById('resetBtn');
+        if (btn) btn.addEventListener('click', resetAll);
+      }
+
+      // 初始化所有环 & 统计归零
+      for (let sec of ['A', 'B', 'C', 'D']) {
+        const cells = sectionCells[sec];
+        if (cells) {
+          cells.forEach(cell => {
+            cell.setAttribute('data-level', '0');
+            updateRingLabel(cell);
+          });
+          updateSectionStats(sec);
+        }
+      }
+    }
+
+    // 页面启动
+    buildFullPage();
+  </script>
+</body>
+
+</html>

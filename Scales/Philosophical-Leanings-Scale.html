@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>哲学流派倾向自评量表</title>
+  <meta name="description" content="哲学流派倾向自评量表，帮助你了解自身在各哲学流派上的倾向；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="哲学流派倾向自评量表">
+  <meta property="og:description" content="哲学流派倾向自评量表，帮助你了解自身在各哲学流派上的倾向；结果仅保存在本地。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Philosophical-Leanings-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      border-bottom: 2px solid #06b6d4;
+      padding-bottom: 6px;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-size: 1.25em;
+    }
+
+    .section {
+      transition: box-shadow 0.2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+      transition: all 0.2s ease;
+    }
+
+    .q-number {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 280px;
+      padding: 10px;
+      font-size: 0.95em;
+      cursor: pointer;
+    }
+
+    .intro,
+    .explanation {
+      padding: 24px 28px;
+      margin-bottom: 25px;
+      font-size: 0.98em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: 0.95em;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .result-top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .radar-container {
+      padding: 20px;
+      border: 1px solid #a5f3fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .result th {
+      padding: 14px 16px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .result td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #a5f3fc;
+      font-size: 0.95em;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      font-size: 0.98em;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .insight-card {
+      padding: 24px 28px;
+      margin: 25px 0;
+      border: 1px solid #d7f9fc;
+    }
+
+    .insight-card h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      border-bottom: none;
+    }
+
+    .theory-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: 0.88rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .action-box {
+      padding: 28px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 850px) {
+      .result-top-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radar-wrapper {
+        max-width: 400px;
+      }
+
+    }
+
+    @media (max-width: 650px) {
+      button {
+        margin-bottom: 12px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+    }
+
+    .result .insight-card p,
+    .result .action-box p,
+    .result .insight-card li {
+      letter-spacing: 0.045em !important;
+      word-spacing: 0.08em;
+      line-height: 1.85 !important;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif !important;
+    }
+
+    .result .insight-card strong,
+    .result .action-box strong {
+      letter-spacing: 0.02em !important;
+    }
+
+    .result .insight-card p span.book-name,
+    .result .insight-card p span.score-text {
+      display: inline-block;
+      padding: 0 2px;
+      letter-spacing: 0.03em;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'philosophical-leanings', title: '哲学流派倾向自评量表', formId: 'philosophyQuiz', storageKey: 'philosophyQuizAnswers', totalQuestions: 70, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/70</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <h1>哲学流派倾向自评量表</h1>
+
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p>
+      <strong>哲学并非统一的真理大全</strong>，而是由不同世界观、方法论和价值预设构成的思想谱系。本量表将帮助你从<strong>认识论、道德基础、自我认同、社会权力及生活态度</strong>等维度，观察自己在当前作答情境下更接近哪些哲学问题意识。
+    </p>
+    <p><strong>为了更好地理解，我们在此简要介绍量表涉及的八个核心哲学倾向：</strong></p>
+    <ul>
+      <li><strong>存在主义 (Existentialism)</strong>：强调人不是由固定本质完全规定的，意义需要在具体选择、承诺和责任中生成。</li>
+      <li><strong>斯多葛主义 (Stoicism)</strong>：强调区分可控与不可控，重视德性、判断和内在秩序，而非单纯压抑情绪。</li>
+      <li><strong>经验/实证主义 (Empiricism/Positivism)</strong>：重视观察、证据和可修正的检验程序，对不可检验的断言保持审慎态度。</li>
+      <li><strong>理性主义 (Rationalism)</strong>：重视逻辑、概念分析和先验条件，认为经验材料需要通过理性结构才能获得解释力。</li>
+      <li><strong>实用主义 (Pragmatism)</strong>：关注观念在探究和行动中的后果，强调理论应帮助人们澄清问题并改善实践。</li>
+      <li><strong>康德主义/义务论 (Kantianism/Deontology)</strong>：重视普遍化原则、主体尊严和不可被随意牺牲的道德边界。</li>
+      <li><strong>功利主义 (Utilitarianism)</strong>：重视行动后果与总体福祉，倾向于在资源有限时比较不同方案造成的收益和伤害。</li>
+      <li><strong>后现代/解构主义 (Postmodernism)</strong>：关注知识、身份和规范如何受到语言、制度和权力关系塑造，提醒人们检视被排除的视角。</li>
+    </ul>
+    <p><strong>使用指南：</strong>本量表共包含 70 道题目，分为七个部分。请根据过去几年中较稳定的真实判断选择 0–6 分（0 分＝完全不认同，3 分＝中立，6
+      分＝完全认同）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看流派匹配度、认识论分析、潜在盲区和阅读建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于评价思想高低。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+
+  <form id="philosophyQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" onclick="calculateResult()">计算结果</button>
+      <button type="button" class="btn-secondary" onclick="resetForm()">重置问卷</button>
+      <button type="button" class="btn-secondary" onclick="saveResultText()">保存文本结果</button>
+      <button type="button" class="btn-secondary" onclick="saveResultImage()">保存图片结果</button>
+    </div>
+  </form>
+
+  <div class="result" id="result">
+    <h2 class="result-report-title">哲学倾向深度评估报告</h2>
+
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前思想倾向画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div id="currentProfileAnalysis"></div>
+    <div id="mainInterpretation"></div>
+    <div id="deepPersonalAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+
+  <script src="./scripts/philosophical-leanings-scale.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多元性别认同与探索自评量表</title>
+  <meta name="description" content="多元性别认同与探索自评量表，通过多维条目辅助性别体验的自我梳理；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="多元性别认同与探索自评量表">
+  <meta property="og:description" content="多元性别认同与探索自评量表，通过多维条目辅助性别体验的自我梳理；结果仅保存在本地。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Gender-Exploration-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h3 {
+      border-bottom: 2px solid #4a148c;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+
+    .section {
+      transition: box-shadow 0.2s;
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(106, 27, 154, 0.12);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+      transition: all 0.2s ease;
+    }
+
+    .q-number {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .question select {
+      width: 220px;
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    .intro,
+    .explanation {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .result th {
+      padding: 14px;
+      font-weight: 600;
+    }
+
+    .result td {
+      padding: 12px;
+      border-bottom: 1px solid #e9e0f0;
+      border-left: none;
+      border-right: none;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      margin-right: 15px;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    details {
+      margin-bottom: 15px;
+      background-color: #fbf9fc;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    summary:hover {
+      color: #4a148c;
+    }
+
+    .dimension-analysis {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .disclaimer {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+
+    .reflection-hint {
+      background-color: #f0f4ff;
+      padding: 10px;
+      margin-top: 8px;
+      border-left: 3px solid #4a9cff;
+      font-size: 0.9em;
+      border-radius: 4px;
+    }
+
+    .reflection-hint strong {
+      color: #1a56a5;
+    }
+
+    .cultural-note {
+      background-color: #fff3cd;
+      padding: 8px;
+      margin-top: 5px;
+      font-size: 0.85em;
+      border-radius: 4px;
+      border-left: 3px solid #ffc107;
+    }
+
+    .expanded-content {
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-top: 10px;
+      padding: 8px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+
+    .resource-network-step {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      margin: 0 0 26px !important;
+      padding: 0 !important;
+      list-style: none;
+    }
+
+    .resource-network-index {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(62, 90, 128, 0.24);
+      border-radius: 50%;
+      background: var(--scale-tint);
+      color: var(--scale-accent-dark);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .resource-network-content {
+      min-width: 0;
+    }
+
+    .resource-network-title {
+      display: block;
+      margin: 2px 0 14px;
+      color: var(--scale-ink);
+      font-size: 1.12em;
+    }
+
+    .resource-network-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .resource-network-card {
+      min-width: 0;
+      padding: 17px 18px;
+      border: 1px solid var(--scale-line);
+      border-radius: 12px;
+      background: var(--scale-surface);
+    }
+
+    .resource-network-card h5 {
+      margin: 0 0 12px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid var(--scale-line);
+      color: var(--scale-accent-dark);
+      font-size: 0.95rem;
+    }
+
+    .resource-network-card ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--scale-ink);
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+
+    .resource-network-card li+li {
+      margin-top: 5px;
+    }
+
+    @media (max-width: 900px) {
+      .resource-network-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      button {
+        margin-bottom: 10px;
+        border-radius: 30px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'gender-exploration', title: '多元性别认同与探索自评量表', formId: 'genderQuiz', storageKey: 'genderQuizAnswers', totalQuestions: 45, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/45</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width:0%;"></div>
+    </div>
+  </div>
+  <h1>多元性别认同与探索自评量表</h1>
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p><strong>性别认同（Gender Identity）</strong>：指一个人内心深处对自我性别的认知和体验。它可能与出生时被指派的性别（Assigned Sex at
+      Birth）一致，也可能不一致。这是一种深刻的内在知觉，回答了“我是谁”这一核心问题。性别认同不是选择，而是内在本能，与性取向（Sexual
+      Orientation）独立。例如，您可能认同为女性，但对女性有浪漫吸引（女同性恋），或对男性有吸引（异性恋）。请回想：从小到大，您对“男生/女生”的内在归属感如何？它是否像“本该如此”的自然感觉，还是总有“不对劲”的违和？
+    </p>
+    <p><strong>为了更好地理解本量表涉及的概念，我们简要介绍以下术语：</strong></p>
+    <ul>
+      <li>
+        <strong>顺性别（Cisgender）</strong>：性别认同与出生指派性别完全一致。例如：出生指派为女性，内心也完全认同自己是女性，并对此感到舒适。这种一致性通常从童年就很稳定，不会引发内在冲突。值得注意的是，许多顺性别者也可能不严格遵守性别角色，但TA们依然认同自己的指派性别。
+      </li>
+      <li>
+        <strong>跨性别（Transgender）</strong>：性别认同与出生指派性别不一致的统称。这包括二元跨性别（跨性别男性/女性）和非二元跨性别。跨性别者可能体验到强烈的“错身”感，但也可能只是温和的不适。跨性别不等同于想要进行医疗过渡，每个人的过渡需求不同。
+      </li>
+      <li>
+        <strong>非二元（Non-binary）</strong>：性别认同不单纯属于“男性”或“女性”的二元框架。可能感到是两者的混合、介于两者之间、或者是完全不同的性别。例如：您可能觉得有时偏男性，有时偏女性，或完全中性。非二元是一个伞式术语，涵盖多种具体身份。
+      </li>
+      <li>
+        <strong>无性别（Agender）</strong>：感觉自己没有性别，或者对“性别”这一概念缺乏内在共鸣。例如：您可能觉得“性别”像一个不相关的标签，对它无感或困惑。无性别者可能希望被以中性方式对待，或完全不在意性别分类。
+      </li>
+      <li>
+        <strong>流动性别（Genderfluid）</strong>：性别认同不是固定的，而是随时间、环境或情绪在不同性别之间流动和变化。例如：今天觉得是女性，明天可能是男性，或两者皆非。流动频率因人而异，可能是每日、每周、每月或更长时间尺度。
+      </li>
+      <li><strong>多元性别 / 性别酷儿（Genderqueer）</strong>：常被用作非二元的同义词，但更强调对性别规范的挑战和超越。有时特指那些同时拥有多种性别特质或拒绝任何分类的人。
+      </li>
+      <li><strong>性别焦虑（Gender
+          Dysphoria）</strong>：因指派性别与心理认同不一致而产生的显著痛苦、不安或不适（分为身体焦虑和社会焦虑）。这可能表现为对身体部位的厌恶，或被称呼为指派性别时的不适感。但请注意，并非所有跨性别者都有严重焦虑，有些人主要是通过性别愉悦来确认自己。
+      </li>
+      <li><strong>性别愉悦（Gender
+          Euphoria）</strong>：当个人的性别表达或被对待的方式符合其真实的内在认同感时，所产生的强烈的舒适感、正确感或喜悦感。例如：被叫对代词时的开心，或穿对衣服时的“终于对了”的感觉。愉悦感常是比焦虑更积极的指导信号。
+      </li>
+      <li><strong>性别表达（Gender
+          Expression）</strong>：通过外在方式（如服装、发型、行为）展示性别的方式。它可能与性别认同一致或不一致。例如：一个跨性别女性可能通过穿裙子来表达女性气质。表达是文化性的，可以自由选择。
+      </li>
+      <li><strong>性别角色（Gender
+          Role）</strong>：社会期望的“男性/女性”行为规范，如男性强壮、女性温柔。这些是文化构建的，与内在认同无关。许多人不完全遵守这些角色，这本身并不决定性别认同。</li>
+    </ul>
+    <p>
+      <strong>性别探索的深层意义：</strong>探索性别认同不仅仅是寻找一个标签，而是理解“我是谁”的核心旅程。这个过程可能带来困惑，也可能带来解放。无论最终发现自己是顺性别、跨性别还是非二元，自我认知的提升本身就是一种成长。性别不是二元的开关，而是多维的、流动的、个人化的体验谱系。在当代心理学中，性别认同被视为一种内在的、稳定的自我意识，通常在童年早期形成，但可能到青春期或成年后才被充分意识到。文化、家庭和社会环境会影响我们表达和探索性别的方式，但核心认同通常是内在的。
+    </p>
+    <p>
+      <strong>文化背景与安全边界：</strong>社会对性别角色的期待可能影响感受和表达，请结合您所在环境的接受度理解结果。若身份证或出生登记上的性别为女性，题目中的“指派性别”指女性，“异性”指男性；反之亦然。若相关焦虑持续影响生活，可以考虑寻求性别友好的专业支持。
+    </p>
+    <p><strong>使用指南：</strong>本量表共包含 45 道题目，分为五个部分。请根据过去几年中较稳定、较自然的真实体验选择 0–5 分（0 分＝完全不符合，5
+      分＝完全符合）。点击题目可展开详细解释，包括本题用意、测量焦点和具体案例。完成所有题目后，点击“计算结果”即可查看维度得分、类型参考、详细分析和个性化建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断或证明任何身份。
+    </p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+  <form id="genderQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" onclick="calculateResult()">计算结果</button>
+      <button type="button" onclick="resetForm()">重置问卷</button>
+      <button type="button" onclick="saveResultText()">保存文本结果</button>
+      <button type="button" onclick="saveResultImage()">保存图片结果</button>
+    </div>
+  </form>
+
+  <div class="result" id="result">
+    <h2 class="result-report-title">性别探索多维自评报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前性别探索画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas></div>
+      </div>
+    </div>
+    <div id="mainInterpretation"></div>
+    <div id="detailedAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+    <div class="disclaimer">
+      <strong>免责声明：</strong>本测试仅用于自我探索和教育目的，不能替代专业的心理咨询或医疗诊断（如性别不安（Gender
+      Dysphoria）的诊断）。性别认同是高度个人化且流动的，只有您自己能定义您是谁。如果您感到严重痛苦或自杀念头，请立即联系心理危机干预热线或寻求专业帮助。
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/gender-exploration-scale.js" defer></script>
+</body>
+
+</html>

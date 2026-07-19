@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>LGBTQ+概念全景辨析表</title>
+  <meta name="description" content="LGBTQ+ 核心概念全景辨析，系统对照性取向、性别认同与表达等相关术语与定义。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="LGBTQ+概念全景辨析表">
+  <meta property="og:description" content="LGBTQ+ 核心概念全景辨析，系统对照性取向、性别认同与表达等相关术语与定义。">
+  <meta property="og:url" content="https://prismself.vip/Analyses/LGBTQ-Comprehensive-Analysis.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 analysis-common.css（在其后加载并覆盖同名规则）。 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .row-identity {
+      background: linear-gradient(135deg, #eff6ff, #e8f0fe);
+      border-left: 3px solid #2563eb;
+    }
+
+    .row-movement {
+      background: linear-gradient(135deg, #fff7ed, #fff3e6);
+      border-left: 3px solid #ea580c;
+    }
+
+    .row-org {
+      background: linear-gradient(135deg, #ecfeff, #e0f7fa);
+      border-left: 3px solid #0891b2;
+    }
+
+    .row-norm {
+      background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+      border-left: 3px solid #db2777;
+    }
+
+    .highlight-text {
+      margin-top: 4px;
+      font-size: 0.69rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .lv-identity .badge-dot {
+      background: #2563eb;
+    }
+
+    .lv-movement .badge-dot {
+      background: #ea580c;
+    }
+
+    .lv-org .badge-dot {
+      background: #0891b2;
+    }
+
+    .lv-norm .badge-dot {
+      background: #db2777;
+    }
+
+    .disclaimer-box {
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.73rem;
+      line-height: 1.5;
+    }
+
+    .disclaimer-box strong {
+      color: #c2410c;
+    }
+
+    @media (max-width: 780px) {
+      body {
+        padding: 8px;
+      }
+
+      h1 {
+        font-size: 1.25rem;
+      }
+
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        min-width: 100%;
+        width: 100%;
+      }
+
+      tr {
+        margin-bottom: 24px;
+        border-radius: 24px;
+        background: white;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+        padding: 16px 18px;
+        border-left: 5px solid;
+      }
+
+      tr.row-identity {
+        border-left-color: #2563eb;
+      }
+
+      tr.row-movement {
+        border-left-color: #ea580c;
+      }
+
+      tr.row-org {
+        border-left-color: #0891b2;
+      }
+
+      tr.row-norm {
+        border-left-color: #db2777;
+      }
+
+      td {
+        flex-wrap: wrap;
+      }
+
+      td::before {
+        width: 90px;
+        flex-shrink: 0;
+      }
+
+      td.concept-cell {
+        border: none;
+        padding: 0;
+        width: 100%;
+        text-align: left;
+      }
+
+      td.concept-cell::before {
+        display: none;
+      }
+
+      .concept-pill {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .concept-name {
+        font-size: 0.88rem;
+      }
+
+      .concept-en {
+        font-size: 0.55rem;
+      }
+
+      .panels {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .controls {
+        gap: 4px;
+      }
+
+      .filter-btn {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+      }
+
+      .legend-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .modal-box {
+        width: 95%;
+        padding: 20px 16px;
+        border-radius: 24px;
+        max-height: 85vh;
+      }
+
+      .modal-title {
+        font-size: 1.2rem;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+      .panels {
+        grid-template-columns: 1fr;
+      }
+
+      .legend-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-row {
+        gap: 4px;
+      }
+
+      .meta-item {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+      }
+
+      td::before {
+        width: 70px;
+      }
+
+    }
+
+    :root[data-theme="dark"] .row-identity {
+      background: linear-gradient(135deg, #121d2e, #101826);
+    }
+
+    :root[data-theme="dark"] .row-movement {
+      background: linear-gradient(135deg, #2a1c12, #241910);
+    }
+
+    :root[data-theme="dark"] .row-org {
+      background: linear-gradient(135deg, #0e2329, #0c1d22);
+    }
+
+    :root[data-theme="dark"] .row-norm {
+      background: linear-gradient(135deg, #2a1320, #24101a);
+    }
+
+    :root[data-theme="dark"] .disclaimer-box {
+      background: #2a1d12;
+      border-color: #5c3a1e;
+      color: #f0c79a;
+    }
+
+    :root[data-theme="dark"] .disclaimer-box strong {
+      color: #fdba74;
+    }
+
+    :root[data-theme="dark"] td::before {
+      color: #c4b5fd;
+    }
+  </style>
+  <link rel="stylesheet" href="./analysis-common.css">
+  <link rel="stylesheet" href="../assets/theme.css?v=5c6de9e1446b">
+  <script src="../assets/theme.js?v=5c6de9e1446b"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-tag">社会学 · 性别研究 · 政治哲学</div>
+      <h1>LGBTQ+概念全景辨析表</h1>
+      <p class="subtitle">辨析身份群体、社会运动、服务机构与语言规范四个独立层面，澄清常见混淆，建立系统性认知框架</p>
+      <div class="meta-row">
+        <div class="meta-item">📚 分析维度 <span>4 大层面</span></div>
+        <div class="meta-item">📌 核心概念 <span>8 项精选</span></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="filter-btn active" onclick="filterTable('all', this)">全览（8）</button>
+      <button class="filter-btn" onclick="filterTable('identity', this)">身份与群体（2）</button>
+      <button class="filter-btn" onclick="filterTable('movement', this)">运动与诉求（2）</button>
+      <button class="filter-btn" onclick="filterTable('org', this)">组织与服务（2）</button>
+      <button class="filter-btn" onclick="filterTable('norm', this)">规范与争议（2）</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="lgbtTable">
+        <thead>
+          <tr>
+            <th>概念</th>
+            <th>操作性定义</th>
+            <th>核心属性</th>
+            <th>典型表现</th>
+            <th>边界与局限</th>
+            <th>所属层面</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 身份与群体 -->
+          <tr class="row-identity" data-type="identity">
+            <td class="concept-cell" onclick="showDetail('lgbt_population')">
+              <div class="concept-pill"><span class="concept-name">LGBTQ+群体</span><span class="concept-en">LGBTQ+
+                  Population</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('lgbt_population')">解析 →</button>
+            </td>
+            <td>性少数群体的统称，涵盖女同性恋(L)、男同性恋(G)、双性恋(B)、跨性别(T)、酷儿(Q)及其他性/别少数身份(+)。这是一个<strong>描述性身份范畴</strong>，而非组织或政治实体。</td>
+            <td>
+              <div class="tag-list"><span class="tag">身份认同</span><span class="tag">天生特质</span><span
+                  class="tag">高度异质</span><span class="tag">非组织化</span></div>
+            </td>
+            <td>个体以LGBTQ+身份自我认同，过着与主流人群相似的多样化日常生活。<span
+                class="highlight-text">例：一位女同性恋者与伴侣共同养育孩子，其日常生活重心是家庭与职业，与性取向相关的政治参与并不必然相关。</span></td>
+            <td>群体内部存在巨大差异（性别、种族、阶级、性取向子类等交叉），<strong>不存在统一的群体意志或政治立场</strong>。将个体观点归因为"LGBTQ+群体的看法"是典型的生态学谬误。</td>
+            <td><span class="badge lv-identity"><span class="badge-dot"></span>身份与群体</span></td>
+          </tr>
+          <tr class="row-identity" data-type="identity">
+            <td class="concept-cell" onclick="showDetail('coming_out')">
+              <div class="concept-pill"><span class="concept-name">出柜 / 自我认同</span><span class="concept-en">Coming Out &
+                  Identity</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('coming_out')">解析 →</button>
+            </td>
+            <td>个体认识、接纳并向他人披露自身性取向或性别认同的过程。这是一个<strong>终身的、情境性的</strong>个人选择，与政治立场或运动参与无直接关联。</td>
+            <td>
+              <div class="tag-list"><span class="tag">个人抉择</span><span class="tag">情境依赖</span><span
+                  class="tag">非政治行为</span><span class="tag">隐私权</span></div>
+            </td>
+            <td>在安全环境中向信任的人坦诚身份；在另一些场合则选择不披露。<span
+                class="highlight-text">例：一位跨性别者在亲友圈已出柜，但在职场仍保持原有性别表达，这并非"不诚实"，而是对安全与隐私的情境评估。</span></td>
+            <td>"出柜"常被媒体塑造为"勇敢的政治宣言"，实际上它是高度个人化的隐私管理过程。强迫他人出柜（Outing）是严重的隐私侵犯。</td>
+            <td><span class="badge lv-identity"><span class="badge-dot"></span>身份与群体</span></td>
+          </tr>
+
+          <!-- 运动与诉求 -->
+          <tr class="row-movement" data-type="movement">
+            <td class="concept-cell" onclick="showDetail('lgbt_movement')">
+              <div class="concept-pill"><span class="concept-name">LGBTQ+权利运动</span><span class="concept-en">LGBTQ+
+                  Rights Movement</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('lgbt_movement')">解析 →</button>
+            </td>
+            <td>
+              争取性少数群体平等权利与社会接纳的<strong>社会运动</strong>，涵盖反歧视立法、婚姻平等、职场保护、医疗可及性等议题。它是一段延续数十年的<strong>历史进程</strong>，而非单一组织或统一行动。
+            </td>
+            <td>
+              <div class="tag-list"><span class="tag">权利导向</span><span class="tag">历史进程</span><span
+                  class="tag">策略多元</span><span class="tag">非单一组织</span></div>
+            </td>
+            <td>石墙事件（1969）标志现代LGBTQ+权利运动开端；此后婚姻平等在数十个国家实现。<span
+                class="highlight-text">例：运动内部存在不同策略——有人倡导立法游说，有人侧重基层社区教育，有人致力于文化可见度提升。这些策略之间常有张力。</span></td>
+            <td>运动不等同于LGBTQ+群体本身——<strong>大多数LGBTQ+个体并非活动家</strong>，也不必然认同运动的全部诉求或策略。支持群体权利与赞同某一具体运动策略是两回事。</td>
+            <td><span class="badge lv-movement"><span class="badge-dot"></span>运动与诉求</span></td>
+          </tr>
+          <tr class="row-movement" data-type="movement">
+            <td class="concept-cell" onclick="showDetail('pride')">
+              <div class="concept-pill"><span class="concept-name">骄傲游行 / 可见度</span><span class="concept-en">Pride &
+                  Visibility</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('pride')">解析 →</button>
+            </td>
+            <td>以公开活动提升LGBTQ+群体可见度的文化实践，源于对羞耻与隐形的反抗。"骄傲"的正向含义是对历史上被污名化的反向修正，但参与骄傲游行≠认同所有相关主张。</td>
+            <td>
+              <div class="tag-list"><span class="tag">文化实践</span><span class="tag">可见度策略</span><span
+                  class="tag">自愿参与</span><span class="tag">多元形式</span></div>
+            </td>
+            <td>每年六月全球各地的骄傲游行；同志电影展、彩虹旗等文化符号。<span
+                class="highlight-text">例：一位LGBTQ+个体选择不参加骄傲游行，可能因为个人性格、对商业化骄傲的批评、或对特定组织方的不认同，这完全不等于"自我厌恶"。</span></td>
+            <td>骄傲游行是运动策略的一种，不是LGBTQ+身份的义务。近年来对"骄傲过度商业化"和"企业粉红washing"的批评来自LGBTQ+群体内部，反映了运动内部的反思与多元。</td>
+            <td><span class="badge lv-movement"><span class="badge-dot"></span>运动与诉求</span></td>
+          </tr>
+
+          <!-- 组织与服务 -->
+          <tr class="row-org" data-type="org">
+            <td class="concept-cell" onclick="showDetail('lgbt_org')">
+              <div class="concept-pill"><span class="concept-name">LGBTQ+组织</span><span class="concept-en">LGBTQ+
+                  Organizations</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('lgbt_org')">解析 →</button>
+            </td>
+            <td>
+              为LGBTQ+群体提供具体服务或进行政策倡导的<strong>机构化实体</strong>。它们有明确的组织架构、资金来源和特定目标，是LGBTQ+社群中<strong>高度可见但非代表性</strong>的行动者。
+            </td>
+            <td>
+              <div class="tag-list"><span class="tag">机构化</span><span class="tag">专业服务</span><span
+                  class="tag">特定立场</span><span class="tag">非代表性</span></div>
+            </td>
+            <td>法律援助组织、心理健康热线、社区活动中心、政策倡导机构。<span
+                class="highlight-text">例：某LGBTQ+法律倡导组织在诉讼中采取的策略，不代表所有LGBTQ+个体的法律观点；一个社区中心的项目选择，也不应被视为"整个社群的意愿"。</span>
+            </td>
+            <td>组织的立场和决策<strong>不能代表LGBTQ+群体整体</strong>。批评某个LGBTQ+组织的具体做法（如资金使用、倡导策略、内部治理）不等于歧视LGBTQ+群体——这是对机构行为的正常公共问责。
+            </td>
+            <td><span class="badge lv-org"><span class="badge-dot"></span>组织与服务</span></td>
+          </tr>
+          <tr class="row-org" data-type="org">
+            <td class="concept-cell" onclick="showDetail('ally')">
+              <div class="concept-pill"><span class="concept-name">盟友 / 支持者</span><span class="concept-en">Ally &
+                  Support</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('ally')">解析 →</button>
+            </td>
+            <td>非LGBTQ+个体对LGBTQ+群体权利与尊严的支持态度与行动。盟友身份是<strong>行为选择</strong>而非固定身份，支持可以有不同层次：从私人态度到公开倡导，从被动不歧视到主动介入。</td>
+            <td>
+              <div class="tag-list"><span class="tag">行为选择</span><span class="tag">层次差异</span><span
+                  class="tag">非身份标签</span><span class="tag">持续学习</span></div>
+            </td>
+            <td>在同事被不当玩笑时出声制止；投票支持平等政策；在家庭教育中传递多元尊重的价值观。<span
+                class="highlight-text">例：一位家长公开支持LGBTQ+权利，但在自己孩子出柜时仍经历复杂情绪——这种张力是真实的，支持不等于完全没有认知挑战。</span></td>
+            <td>"盟友"标签有时被用于表演性政治（Performative Allyship）——在社交媒体上表态但在实际行动中缺席。真正的盟友关系需要持续的学习与行动，而非一次性标签申领。</td>
+            <td><span class="badge lv-org"><span class="badge-dot"></span>组织与服务</span></td>
+          </tr>
+
+          <!-- 规范与争议 -->
+          <tr class="row-norm" data-type="norm">
+            <td class="concept-cell" onclick="showDetail('political_correctness')">
+              <div class="concept-pill"><span class="concept-name">政治正确</span><span class="concept-en">Political
+                  Correctness</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('political_correctness')">解析
+                →</button>
+            </td>
+            <td>避免使用可能冒犯特定群体的语言或行为的社会规范。它是<strong>语言与礼仪层面的文化现象</strong>，不是LGBTQ+权利本身，也不是强制性的统一标准。其内容随时代、地域和语境变化。</td>
+            <td>
+              <div class="tag-list"><span class="tag">语言规范</span><span class="tag">社会礼仪</span><span
+                  class="tag">时代变迁</span><span class="tag">非强制性</span></div>
+            </td>
+            <td>使用"跨性别者"代替过时的"变性人"；询问代词偏好；避免基于性取向的贬义词汇。<span
+                class="highlight-text">例：一些包容性语言在三十年前可能被视为"激进"，如今已成为主流职场的基本礼仪。同样，今天被视为"政治正确"的某些表达，未来可能被简化为日常用语。</span>
+            </td>
+            <td>政治正确≠LGBTQ+权利——反对某种语言规范（如觉得某些代词用法不习惯）不等于反对LGBTQ+群体的平等权利。两者在概念和层面上的混淆是当前公共讨论中最普遍的误区之一。</td>
+            <td><span class="badge lv-norm"><span class="badge-dot"></span>规范与争议</span></td>
+          </tr>
+          <tr class="row-norm" data-type="norm">
+            <td class="concept-cell" onclick="showDetail('cancel_culture')">
+              <div class="concept-pill"><span class="concept-name">取消文化 / 问责</span><span class="concept-en">Cancel
+                  Culture & Accountability</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('cancel_culture')">解析 →</button>
+            </td>
+            <td>
+              通过公开批评与集体抵制追究个人或机构责任的社会现象。它与LGBTQ+议题有交集但<strong>不是LGBTQ+专属</strong>，也<strong>不等同于LGBTQ+运动</strong>。其合理性、边界和效果在LGBTQ+群体内部也存在激烈争论。
+            </td>
+            <td>
+              <div class="tag-list"><span class="tag">社会现象</span><span class="tag">非LGBTQ+专属</span><span
+                  class="tag">内部分歧</span><span class="tag">边界争议</span></div>
+            </td>
+            <td>某人发表恐同言论后被所在机构解雇或失去商业合作；某品牌被抵制。<span
+                class="highlight-text">例：LGBTQ+群体内部对"取消文化"的态度严重分裂——有人认为它是边缘群体获得问责权的工具，有人批评它营造恐惧文化且不给人改过空间。这一争论本身说明：不存在统一的"LGBTQ+立场"。</span>
+            </td>
+            <td>将"取消文化"等同于LGBTQ+运动是对后者的严重窄化与污名化。LGBTQ+权利运动的核心是平等权利与尊严，而非惩罚个人。同时，反对取消文化不应成为包庇真实歧视行为的借口。</td>
+            <td><span class="badge lv-norm"><span class="badge-dot"></span>规范与争议</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 混淆澄清面板 -->
+    <div class="panels">
+      <div class="panel"><span class="panel-icon">🔀</span>
+        <h3>LGBTQ+ ≠ 运动</h3>
+        <p>性少数群体是身份群体，不是政治运动。大多数LGBTQ+个体是过着日常生活的普通人，不参与任何倡导活动。将个体身份等同于政治立场，是对群体多样性的抹除。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">🏛️</span>
+        <h3>组织 ≠ 群体声音</h3>
+        <p>LGBTQ+组织是具体机构，有自身立场和利益。它们为社群提供服务，但组织的决策和发言不能代表所有LGBTQ+个体的观点。批评组织做法≠歧视群体，这是正常的公民问责。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">💬</span>
+        <h3>政治正确 ≠ 权利</h3>
+        <p>语言规范是社会礼仪层面的文化现象，LGBTQ+权利是法律与政治层面的平等保障。对某种语言表达方式的不习惯或不认同，不等于反对平等权利。两者混淆是当前公共讨论中最普遍的误区。</p>
+      </div>
+      <div class="panel"><span class="panel-icon">📢</span>
+        <h3>取消文化 ≠ LGBTQ+运动</h3>
+        <p>取消/问责文化是社会现象，非LGBTQ+专属，也不代表LGBTQ+运动的核心诉求。LGBTQ+群体内部对此存在严重分歧。反对取消文化不必然反对LGBTQ+权利，支持LGBTQ+权利也不必然支持取消文化。</p>
+      </div>
+    </div>
+
+    <!-- 图例 -->
+    <div class="legend-section">
+      <h3>分析层面标签指引</h3>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#2563eb"></div>
+          <div class="legend-text"><strong>身份与群体</strong>描述性身份范畴，高度异质，非组织化</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#ea580c"></div>
+          <div class="legend-text"><strong>运动与诉求</strong>社会运动与历史进程，策略多元，非单一</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#0891b2"></div>
+          <div class="legend-text"><strong>组织与服务</strong>机构化实体，有特定立场，非群体代表</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="background:#db2777"></div>
+          <div class="legend-text"><strong>规范与争议</strong>语言文化现象，社会礼仪，非LGBTQ+专属</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 结论 -->
+    <div class="disclaimer-box">
+      <strong>📌
+        核心认知框架：</strong>理解这四个层面的独立性有助于——<strong>避免过度简化：</strong>不将复杂问题简化为二元对立；<strong>促进理性讨论：</strong>基于准确概念进行对话，而非在混淆的基础上争论；<strong>尊重多样性：</strong>认识到每个层面内部都存在分歧与多元；<strong>建设性参与：</strong>针对具体问题提出具体建议，而非笼统表态。<br><br>
+      <strong>记住：</strong>支持人的基本尊严和平等权利，不等于必须赞同所有相关的政治主张、组织做法或社会规范。理性分析和批判思考是健康社会讨论的基础。反对某一组织的策略≠歧视LGBTQ+群体；对语言规范有不同看法≠反对平等权利；不参与骄傲游行≠自我厌恶。这些区分不是为歧视辩护，而是为更精确、更有效的公共讨论创造条件。
+    </div>
+
+    <div class="references">
+      <strong>📖 延伸阅读与参考框架</strong>：Gamson, J. (1995). Must Identity Movements Self-Destruct? <em>Social Problems</em>.
+      ｜
+      Bernstein, M. (1997). Celebration and Suppression: The Strategic Uses of Identity by the Lesbian and Gay Movement.
+      <em>AJS</em>. ｜
+      Yoshino, K. (2006). <em>Covering: The Hidden Assault on Our Civil Rights</em>. Random House. ｜
+      Human Rights Campaign Foundation (HRC) 年度报告 ｜
+      ILGA World 全球立法概览 ｜
+      联合国人权高专办《生而自由，一律平等》国际人权法框架
+    </div>
+  </div>
+
+  <div class="modal-bg" id="modal" onclick="handleModalClick(event)">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const details = {
+      lgbt_population: {
+        title: "LGBTQ+群体", en: "LGBTQ+ Population", lv: "lv-identity", badge: "身份与群体",
+        sections: [
+          { h: "身份的谱系", p: "LGBTQ+不是一个单一的标签，而是无数个体生命故事的集合。从性取向到性别认同，每个人的组合都是独特的——有人是双性恋跨性别女性，有人是同性恋顺性别男性，有人是无性恋非二元性别者。这种多样性不是'混乱'，而是人类经验丰富性的体现。" },
+          { h: "日常不是政治", p: "大多数LGBTQ+个体的生活，不是围绕性/别议题展开的。他们关心工作、家庭、健康、娱乐，与主流人群并无二致。将某个LGBTQ+个体的观点等同于整个群体的立场，是对个体独特性的抹除，也是一种新的刻板印象。" },
+          { h: "拒绝代表制", p: "LGBTQ+身份是一个人自我认同的一部分，但不应成为定义其全部的唯一标签。'你作为LGBTQ+怎么看？'这样的问题，隐含着'你代表整个群体'的假设——没有人有资格代表一个包含无数个体的群体。每个人都有权利被当作独立的个体对待。" }
+        ]
+      },
+      coming_out: {
+        title: "出柜 / 自我认同", en: "Coming Out & Identity", lv: "lv-identity", badge: "身份与群体",
+        sections: [
+          { h: "自我接纳的旅程", p: "出柜首先是对自己的——承认、接纳、爱自己真实的样子。这个过程可能需要几个月，也可能需要数年，甚至持续一生。没有'正确的时间表'，只有适合自己的节奏。社会的接纳固然重要，但自我接纳才是根基。" },
+          { h: "情境性的艺术", p: "出柜不是一次性事件，而是在不同场合反复进行的决策：对家人出柜、对朋友出柜、对同事出柜。选择在何时何地向何人披露，是对安全、信任和关系深度的综合考量。这不是'不诚实'，而是对自己和他人负责的智慧。" },
+          { h: "不出柜也是一种选择", p: "选择不公开出柜，绝不是懦弱或自我厌恶的表现。它可能是对个人安全的保护，对隐私边界的尊重，或者只是不想让性/别成为他人关注的焦点。每个人都有权利决定自己的隐私管理方式，这种选择应当被尊重，而不是被评判。" }
+        ]
+      },
+      lgbt_movement: {
+        title: "LGBTQ+权利运动", en: "LGBTQ+ Rights Movement", lv: "lv-movement", badge: "运动与诉求",
+        sections: [
+          { h: "一场持续的对话", p: "LGBTQ+权利运动不是一场单向的斗争，而是社会各群体之间持续的对话与协商。它关注的不仅是法律条文的改变，更是人心的转变——从恐惧到理解，从排斥到接纳。这种转变需要时间，需要耐心，也需要各方的参与。" },
+          { h: "策略的丰富谱系", p: "运动内部从来都不是铁板一块：有人主张渐进式改良，有人追求根本性变革；有人聚焦法律议题，有人侧重文化建设；有人寻求与体制合作，有人选择在体制外行动。这些不同策略之间常有张力，但它们共同构成了运动的生态。没有一种策略是'唯一正确'的。" },
+          { h: "历史的延续性", p: "今天的成就是无数前辈在过去数十年甚至上百年中不懈努力的结果。石墙事件不是运动的起点，而是一个重要的转折点。理解这段历史，有助于我们珍惜当下的成果，也让我们对未来的道路保持清醒——进步不是线性的，倒退总是可能的，警惕和行动永远必要。" }
+        ]
+      },
+      pride: {
+        title: "骄傲游行 / 可见度", en: "Pride & Visibility", lv: "lv-movement", badge: "运动与诉求",
+        sections: [
+          { h: "从抗议到庆祝", p: "骄傲活动起源于对压迫的反抗——1969年石墙酒吧的起义，是对警方持续骚扰的愤怒回应。如今它已演变成为多元性别的文化庆典，但反抗的底色从未消失。这种从'反抗'到'庆祝'的转变，本身就是社会进步的见证，但庆祝永远不应忘记其抗争的根源。" },
+          { h: "可见度的多重意义", p: "提高可见度不仅是为了'被看见'，更是为了打破刻板印象，创造更包容的社会环境。当LGBTQ+群体在各行各业都能被看到——医生、教师、工程师、艺术家、政治家——偏见和歧视的土壤就会逐渐消失。可见度也给正在挣扎中的年轻人带去希望：'我不是一个人。'" },
+          { h: "多元的参与方式", p: "骄傲不是只有一种模样。除了盛大的游行，还有读书会、艺术展、电影放映、社区聚餐等多种形式。每个人都可以选择自己感到舒适的方式参与，或者选择不参与——这都完全没问题。不参与骄傲游行，不代表不认同自己的身份，也不代表不支持群体权利。" }
+        ]
+      },
+      lgbt_org: {
+        title: "LGBTQ+组织", en: "LGBTQ+ Organizations", lv: "lv-org", badge: "组织与服务",
+        sections: [
+          { h: "专业分工的生态系统", p: "LGBTQ+组织是一个丰富的生态系统：有的专注于法律维权，有的聚焦于心理健康，有的致力于青少年支持，有的服务于老年群体，有的关注跨性别议题，有的开展教育倡导。这种专业化分工是社群成熟的标志——不同的组织满足不同的需求，它们之间的协作比竞争更重要。" },
+          { h: "机构的独立性与责任", p: "作为机构化的实体，LGBTQ+组织有自身的运作逻辑、资源约束和决策机制。它们应当为自己的行为负责，接受捐赠者、服务对象和公众的监督。这是所有专业机构都应遵循的基本准则。批评某个LGBTQ+组织的具体做法（如资金使用、倡导策略、内部治理），不等于歧视LGBTQ+群体——这是对机构行为的正常公共问责。" },
+          { h: "服务与倡导的平衡", p: "优秀的LGBTQ+组织善于在提供直接服务和开展政策倡导之间找到平衡——它们既关注个体的即时需求（如法律援助、心理咨询、危机干预），也致力于改善群体的整体环境（如反歧视立法、社会态度改变）。这种平衡需要智慧和耐心，也需要对服务对象需求的深刻理解。" }
+        ]
+      },
+      ally: {
+        title: "盟友 / 支持者", en: "Ally & Support", lv: "lv-org", badge: "组织与服务",
+        sections: [
+          { h: "倾听比诉说更重要", p: "作为盟友，最重要的品质是倾听——倾听LGBTQ+群体的真实声音，理解他们的真实需求，而不是急于'帮助'或'拯救'。真正的支持始于尊重——尊重个体的自主权，尊重群体的多样性，尊重他们定义自己身份和需求的权利。盟友不是'专家'，而是'同行者'。" },
+          { h: "从'我'到'我们'", p: "盟友不是'帮助者'，而是'同行者'。这意味着承认我们生活在同一个社会中，每个人的福祉都与他人息息相关。支持LGBTQ+权利，本质上是在为更公正、更包容的社会而努力——一个包容LGBTQ+群体的社会，也会更包容其他边缘群体，最终让所有人受益。" },
+          { h: "犯错与成长", p: "没有人是完美的盟友。重要的是愿意学习、敢于承认错误、并且持续成长。真诚的道歉比永远正确更有价值。当有人指出你的错误时，不要防御，而是感谢——这是学习的机会。盟友身份不是一个可以'获得'的证书，而是一个持续实践的过程。" }
+        ]
+      },
+      political_correctness: {
+        title: "政治正确", en: "Political Correctness", lv: "lv-norm", badge: "规范与争议",
+        sections: [
+          { h: "语言的温度", p: "语言不仅仅是交流的工具，它还承载着情感和尊重。'政治正确'的核心是意识到语言的力量，选择用更体贴的方式与人交流。这本质上是一种文明的礼仪——就像在餐桌上使用适当的餐具，在社交场合使用适当的语言，是对他人基本的尊重。" },
+          { h: "变化中的规范", p: "语言规范从来不是一成不变的。一代人眼中的'激进'可能成为下一代人的'常识'——从'同志'到'同性恋'再到'性少数'，术语的变迁反映了社会态度的演变。这种变化不是'压迫'，而是进步——它意味着我们正在变得更加体贴，更加尊重他人的感受。" },
+          { h: "原则与灵活性", p: "尊重他人的原则是坚定的，但具体的表达方式可以是灵活的。重要的是沟通的诚意，而不是机械地遵守某些规则。善意和理解往往比完美的措辞更重要。如果你不确定怎么说，真诚地询问'你希望我怎么称呼你？'永远是一个好的开始。" }
+        ]
+      },
+      cancel_culture: {
+        title: "取消文化 / 问责", en: "Cancel Culture & Accountability", lv: "lv-norm", badge: "规范与争议",
+        sections: [
+          { h: "问责的正当性", p: "当人们的言论或行为造成伤害时，要求他们承担后果是合理的。这不是'取消'，而是基本的社会责任。在传统渠道不畅通时——当法律无法提供救济，当机构不愿采取行动——公众舆论有时成为边缘群体获得正义的唯一途径。这种问责不应被污名化为'网络暴力'。" },
+          { h: "比例与救赎", p: "争议往往不在于是否应该问责，而在于问责的方式和程度。理想的问责应当是成比例的、有建设性的，并且给人留下改过自新的空间。惩罚本身不是目的，修复关系和促进成长才是。永久的放逐不是正义的最高形式——给人机会学习、改变和成长，往往比单纯的惩罚更有意义。" },
+          { h: "对话优于对立", p: "最持久的改变往往不是通过对抗，而是通过对话实现的。给人说话的机会，倾听彼此的视角，寻求共同的理解——这虽然艰难，却更有可能带来真正的和解。'取消'的冲动有时源于对对话的失望，但对话仍然是我们作为一个社会解决分歧的最佳方式。" }
+        ]
+      }
+    };
+
+    function showDetail(key) {
+      const d = details[key];
+      if (!d) return;
+      let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
+      d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modal').classList.add('open');
+    }
+    function closeModal() { document.getElementById('modal').classList.remove('open'); }
+    function handleModalClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    function filterTable(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#lgbtTable tbody tr').forEach(row => {
+        row.style.display = (type === 'all' || row.dataset.type === type) ? '' : 'none';
+      });
+    }
+
+    function setDataLabels() {
+      const table = document.getElementById('lgbtTable');
+      const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.innerText.trim());
+      table.querySelectorAll('tbody tr').forEach(row => {
+        row.querySelectorAll('td').forEach((td, idx) => {
+          if (headers[idx] && !td.classList.contains('concept-cell')) {
+            td.setAttribute('data-label', headers[idx]);
+          }
+        });
+      });
+    }
+    setDataLabels();
+  </script>
+</body>
+
+</html>

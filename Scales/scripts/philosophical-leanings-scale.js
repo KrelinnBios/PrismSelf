@@ -1,0 +1,776 @@
+// 哲学流派基础定义
+const categoriesMap = {
+    existentialism: { name: "存在主义", desc: "关注个体如何在没有现成答案的处境中作出选择、承担责任，并通过行动生成自我和意义。" },
+    stoicism: { name: "斯多葛主义", desc: "强调区分可控与不可控，重视德性、判断和内在秩序，使行动不被外部评价和偶然处境完全牵引。" },
+    empiricism: { name: "经验/实证主义", desc: "重视观察、证据、可检验性和可修正性，对超出经验检验范围的断言保持谨慎。" },
+    rationalism: { name: "理性主义", desc: "重视逻辑一致性、概念分析和先验条件，认为理性结构能够为经验材料提供深层解释。" },
+    pragmatism: { name: "实用主义", desc: "把观念理解为探究和行动中的工具，关注它是否帮助人们澄清问题、协调经验并改善实践后果。" },
+    kantianism: { name: "康德主义/义务论", desc: "强调普遍化原则、主体尊严和不可随意牺牲的道德边界，警惕为了好结果而把人仅仅当作手段。" },
+    utilitarianism: { name: "功利主义", desc: "从后果、福祉和伤害减少的角度评价行动，强调在资源有限时比较不同方案对所有相关者的影响。" },
+    postmodernism: { name: "后现代/解构主义", desc: "关注知识、身份和规范如何受到语言、制度和权力关系塑造，强调对单一叙事和默认中心的反思。" }
+};
+
+// 完整70题题库 (包含正负权重校准)
+const fullQuestions = [
+    // 第一部分：知识与真理观
+    { id: 1, sectionIndex: 0, category: "empiricism", weights: { empiricism: 0.8, rationalism: -0.4, postmodernism: -0.2 } },
+    { id: 2, sectionIndex: 0, category: "rationalism", weights: { rationalism: 0.9, empiricism: -0.5, postmodernism: -0.3 } },
+    { id: 3, sectionIndex: 0, category: "postmodernism", weights: { postmodernism: 0.8, rationalism: -0.5, empiricism: -0.2 } },
+    { id: 4, sectionIndex: 0, category: "pragmatism", weights: { pragmatism: 0.8, rationalism: -0.4, kantianism: -0.3 } },
+    { id: 5, sectionIndex: 0, category: "kantianism", weights: { kantianism: 0.8, empiricism: -0.4, utilitarianism: -0.2 } },
+    { id: 6, sectionIndex: 0, category: "existentialism", weights: { existentialism: 0.9, rationalism: -0.4, empiricism: -0.3 } },
+    { id: 7, sectionIndex: 0, category: "empiricism", weights: { empiricism: 0.8, rationalism: -0.5 } },
+    { id: 8, sectionIndex: 0, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.3, postmodernism: -0.2 } },
+    { id: 9, sectionIndex: 0, category: "rationalism", weights: { rationalism: 0.9, postmodernism: -0.5, empiricism: -0.3 } },
+    { id: 10, sectionIndex: 0, category: "postmodernism", weights: { postmodernism: 0.8, rationalism: -0.5, kantianism: -0.2 } },
+
+    // 第二部分：道德、伦理与行动
+    { id: 11, sectionIndex: 1, category: "kantianism", weights: { kantianism: 0.9, utilitarianism: -0.5, pragmatism: -0.3 } },
+    { id: 12, sectionIndex: 1, category: "utilitarianism", weights: { utilitarianism: 0.9, kantianism: -0.6, stoicism: -0.2 } },
+    { id: 13, sectionIndex: 1, category: "existentialism", weights: { existentialism: 0.8, stoicism: -0.2, rationalism: -0.3 } },
+    { id: 14, sectionIndex: 1, category: "stoicism", weights: { stoicism: 0.9, utilitarianism: -0.4, pragmatism: -0.2 } },
+    { id: 15, sectionIndex: 1, category: "pragmatism", weights: { pragmatism: 0.8, kantianism: -0.5, rationalism: -0.3 } },
+    { id: 16, sectionIndex: 1, category: "postmodernism", weights: { postmodernism: 0.8, kantianism: -0.4, stoicism: -0.2 } },
+    { id: 17, sectionIndex: 1, category: "kantianism", weights: { kantianism: 0.9, utilitarianism: -0.5 } },
+    { id: 18, sectionIndex: 1, category: "utilitarianism", weights: { utilitarianism: 0.7, kantianism: -0.2 } },
+    { id: 19, sectionIndex: 1, category: "empiricism", weights: { empiricism: 0.8, kantianism: -0.4, rationalism: -0.4 } },
+    { id: 20, sectionIndex: 1, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.4 } },
+
+    // 第三部分：自我、命运与存在
+    { id: 21, sectionIndex: 2, category: "existentialism", weights: { existentialism: 0.8, rationalism: -0.4 } },
+    { id: 22, sectionIndex: 2, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.4 } },
+    { id: 23, sectionIndex: 2, category: "empiricism", weights: { empiricism: 0.8, rationalism: -0.4 } },
+    { id: 24, sectionIndex: 2, category: "rationalism", weights: { rationalism: 0.8, empiricism: -0.4 } },
+    { id: 25, sectionIndex: 2, category: "postmodernism", weights: { postmodernism: 0.8, rationalism: -0.3 } },
+    { id: 26, sectionIndex: 2, category: "kantianism", weights: { kantianism: 0.8, empiricism: -0.4 } },
+    { id: 27, sectionIndex: 2, category: "pragmatism", weights: { pragmatism: 0.8, rationalism: -0.3 } },
+    { id: 28, sectionIndex: 2, category: "existentialism", weights: { existentialism: 0.9, utilitarianism: -0.3 } },
+    { id: 29, sectionIndex: 2, category: "utilitarianism", weights: { utilitarianism: 0.8, existentialism: -0.4 } },
+    { id: 30, sectionIndex: 2, category: "stoicism", weights: { stoicism: 0.8, postmodernism: -0.2 } },
+
+    // 第四部分：社会、权力与价值
+    { id: 31, sectionIndex: 3, category: "postmodernism", weights: { postmodernism: 0.8, rationalism: -0.3 } },
+    { id: 32, sectionIndex: 3, category: "utilitarianism", weights: { utilitarianism: 0.9, kantianism: -0.5 } },
+    { id: 33, sectionIndex: 3, category: "kantianism", weights: { kantianism: 0.8, pragmatism: -0.4 } },
+    { id: 34, sectionIndex: 3, category: "pragmatism", weights: { pragmatism: 0.8, kantianism: -0.4, rationalism: -0.3 } },
+    { id: 35, sectionIndex: 3, category: "rationalism", weights: { rationalism: 0.8, empiricism: -0.3, postmodernism: -0.4 } },
+    { id: 36, sectionIndex: 3, category: "empiricism", weights: { empiricism: 0.9, rationalism: -0.3 } },
+    { id: 37, sectionIndex: 3, category: "existentialism", weights: { existentialism: 0.8, utilitarianism: -0.4 } },
+    { id: 38, sectionIndex: 3, category: "postmodernism", weights: { postmodernism: 0.8, empiricism: -0.2 } },
+    { id: 39, sectionIndex: 3, category: "utilitarianism", weights: { utilitarianism: 0.8, existentialism: -0.3 } },
+    { id: 40, sectionIndex: 3, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.3 } },
+
+    // 第五部分：面对逆境与无常
+    { id: 41, sectionIndex: 4, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.3 } },
+    { id: 42, sectionIndex: 4, category: "existentialism", weights: { existentialism: 0.9, stoicism: -0.3 } },
+    { id: 43, sectionIndex: 4, category: "rationalism", weights: { rationalism: 0.8, existentialism: -0.4 } },
+    { id: 44, sectionIndex: 4, category: "empiricism", weights: { empiricism: 0.8, rationalism: -0.2 } },
+    { id: 45, sectionIndex: 4, category: "pragmatism", weights: { pragmatism: 0.8, existentialism: -0.3 } },
+    { id: 46, sectionIndex: 4, category: "kantianism", weights: { kantianism: 0.8, utilitarianism: -0.4 } },
+    { id: 47, sectionIndex: 4, category: "postmodernism", weights: { postmodernism: 0.8, empiricism: -0.3 } },
+    { id: 48, sectionIndex: 4, category: "utilitarianism", weights: { utilitarianism: 0.8, stoicism: -0.4 } },
+    { id: 49, sectionIndex: 4, category: "stoicism", weights: { stoicism: 0.8, pragmatism: -0.2 } },
+    { id: 50, sectionIndex: 4, category: "existentialism", weights: { existentialism: 0.8, stoicism: -0.3 } },
+
+    // 第六部分：具体生活情境抉择（一）
+    { id: 51, sectionIndex: 5, category: "utilitarianism", weights: { utilitarianism: 0.8, existentialism: -0.4 } },
+    { id: 52, sectionIndex: 5, category: "kantianism", weights: { kantianism: 0.9, utilitarianism: -0.6, pragmatism: -0.4 } },
+    { id: 53, sectionIndex: 5, category: "postmodernism", weights: { postmodernism: 0.8, rationalism: -0.4 } },
+    { id: 54, sectionIndex: 5, category: "empiricism", weights: { empiricism: 0.8, rationalism: -0.3 } },
+    { id: 55, sectionIndex: 5, category: "rationalism", weights: { rationalism: 0.9, postmodernism: -0.5, empiricism: -0.3 } },
+    { id: 56, sectionIndex: 5, category: "pragmatism", weights: { pragmatism: 0.8, rationalism: -0.4, kantianism: -0.3 } },
+    { id: 57, sectionIndex: 5, category: "existentialism", weights: { existentialism: 0.8, utilitarianism: -0.3 } },
+    { id: 58, sectionIndex: 5, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.2 } },
+    { id: 59, sectionIndex: 5, category: "utilitarianism", weights: { utilitarianism: 0.8, kantianism: -0.4 } },
+    { id: 60, sectionIndex: 5, category: "kantianism", weights: { kantianism: 0.8, utilitarianism: -0.5 } },
+
+    // 第七部分：具体生活情境抉择（二）
+    { id: 61, sectionIndex: 6, category: "existentialism", weights: { existentialism: 0.8, rationalism: -0.3 } },
+    { id: 62, sectionIndex: 6, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.3 } },
+    { id: 63, sectionIndex: 6, category: "postmodernism", weights: { postmodernism: 0.8, rationalism: -0.4, kantianism: -0.3 } },
+    { id: 64, sectionIndex: 6, category: "utilitarianism", weights: { utilitarianism: 0.9, kantianism: -0.5 } },
+    { id: 65, sectionIndex: 6, category: "rationalism", weights: { rationalism: 0.8, empiricism: -0.4 } },
+    { id: 66, sectionIndex: 6, category: "pragmatism", weights: { pragmatism: 0.9, rationalism: -0.5, empiricism: -0.3 } },
+    { id: 67, sectionIndex: 6, category: "kantianism", weights: { kantianism: 0.8, utilitarianism: -0.4 } },
+    { id: 68, sectionIndex: 6, category: "empiricism", weights: { empiricism: 0.8, rationalism: -0.4 } },
+    { id: 69, sectionIndex: 6, category: "stoicism", weights: { stoicism: 0.8, existentialism: -0.4 } },
+    { id: 70, sectionIndex: 6, category: "existentialism", weights: { existentialism: 0.9, stoicism: -0.4 } }
+];
+
+const refinedQuestionContent = {
+    1: { text: "当一个主张无法说明哪些观察会支持或削弱它时，我会倾向于把它视为认识价值有限的信念，而不是可讨论真假的知识命题。", focus: "可检验性与知识边界。", meaning: "高分表示更重视经验检验、可反驳性和证据条件。", example: "讨论灵魂或宇宙目的时，会先追问：如果这个说法是真的或假的，现实中应当出现什么可观察差异？" },
+    2: { text: "即使经验观察会出错，数学证明、逻辑推演和概念分析仍能给出某些不依赖具体观察的必然知识。", focus: "先验知识与演绎推理。", meaning: "高分表示更相信理性结构能够提供独立于经验的确定性。", example: "认为几何、逻辑和形式证明展示的是必然关系，而不只是大量观察后的经验概括。" },
+    3: { text: "科学、法律或医学分类并不是现实的透明复印件；它们也会反映制定者的制度位置、语言习惯和社会权力关系。", focus: "知识分类中的权力与制度条件。", meaning: "高分表示更倾向于追问知识标准由谁制定、服务谁、排除了谁。", example: "讨论某个诊断、身份或犯罪类别时，不只问它是否方便管理，也问它如何改变被分类者的处境。" },
+    4: { text: "评价一个理论时，我更关心它能否帮助人们提出更好的问题、预测后果并改善行动，而不只是它是否宣称对应某种终极实在。", focus: "真理的实践后果。", meaning: "高分表示更重视观念在探究和行动中的实际效用。", example: "比较两种教育理论时，会看哪一种更能改善学习经验，而不是只看哪一种在概念上更优雅。" },
+    5: { text: "我们接触到的世界并不是未经加工的原样现实；时间、空间、因果、对象等框架已经参与塑造了经验本身。", focus: "先验框架与经验条件。", meaning: "高分表示更认同经验需要依赖主体的认知结构才能成为可理解的对象。", example: "认为我们不是先看到一堆纯粹刺激再理解世界，而是总在某种概念框架中辨认事件、对象和因果。" },
+    6: { text: "在“我该如何生活”这类问题上，旁观式的客观证明不能替代个人的承诺、投入和承担。", focus: "主观真理与存在承诺。", meaning: "高分表示更强调切身选择对生命意义的构成作用。", example: "选择职业、信仰或关系时，会认为关键不是找到所有人都同意的答案，而是自己是否愿意为这个选择负责。" },
+    7: { text: "我们所谓的因果规律，很多时候来自对过去重复经验的归纳；它们很可靠，但未必具有逻辑上不可动摇的必然性。", focus: "归纳问题与因果怀疑。", meaning: "高分表示更能区分经验规律和逻辑必然。", example: "即使某种治疗在大量病例中有效，也仍会把它理解为高概率证据，而不是永远不会例外的形而上学保证。" },
+    8: { text: "在把一件事判断为“损失、冒犯或失败”之前，我倾向于先区分事实描述和自己附加的价值评价。", focus: "表象、判断与同意。", meaning: "高分表示更重视在反应之前审查自己的判断。", example: "收到批评时，先确认对方实际说了什么，再判断它是否真的构成羞辱或威胁。" },
+    9: { text: "面对复杂现象，我通常会假设其背后存在可被理性整理的结构，而不是满足于零散经验或不可解释的神秘感。", focus: "世界可理解性与系统解释。", meaning: "高分表示更偏好统一、连贯和原则化的解释。", example: "研究社会冲突时，会试图找到制度、利益和概念层面的稳定结构，而不是只收集个别故事。" },
+    10: { text: "当某套理论宣称自己揭示了人类历史或社会进步的总体方向时，我会特别留意它把哪些经验排除在叙事之外。", focus: "宏大叙事的边界。", meaning: "高分表示更警惕单一进步故事和总体解释。", example: "听到“科技必然让所有人更自由”时，会同时追问哪些群体可能被监控、替代或边缘化。" },
+    11: { text: "判断一个行为是否正当时，我会问：如果每个人都把同一原则当作行动规则，这个规则还能否自洽地维持下去。", focus: "普遍化测试。", meaning: "高分表示更重视规则能否被公开、平等地普遍化。", example: "考虑是否为了方便而违背承诺时，会问如果承诺可以随利益改变，它还是否具有承诺的意义。" },
+    12: { text: "在公共决策中，如果所有方案都会造成伤害，我倾向于选择能最大幅度减少总体严重伤害的方案，即使它会让部分人承担较高代价。", focus: "总体后果与伤害最小化。", meaning: "高分表示更愿意用结果比较来处理道德冲突。", example: "面对医疗资源短缺时，更支持使用公开标准把资源分配给预期收益最大的方案，而不是完全先到先得。" },
+    13: { text: "处境、创伤和压力会限制选择空间，但它们不能完全取消一个人对自身行动的解释和承担。", focus: "限制处境中的责任。", meaning: "高分表示更强调人在约束中仍需面对自己的选择。", example: "理解某人的困难背景，但仍认为他需要说明自己如何回应这些限制，而不是把一切责任交给环境。" },
+    14: { text: "健康、财富和声望很重要，但它们不应决定一个人是否活得好；判断力、公正和勇气更接近生活质量的核心。", focus: "德性与外在善的区分。", meaning: "高分表示更看重品格和判断，而非外部成功指标。", example: "认为一个人在事业受挫后仍能诚实、节制并照顾他人，比单纯保持体面成就更能体现其生活状态。" },
+    15: { text: "道德规范应被看作人类解决共同生活问题的可修正工具；当旧规范持续制造伤害时，就需要重新检验和调整。", focus: "道德规范的可修正性。", meaning: "高分表示更倾向于把伦理看成社会探究过程，而非固定清单。", example: "讨论家庭、性别或婚恋规范时，会问这些规范当前是否仍能减少伤害、促进尊重和协作。" },
+    16: { text: "一些看似天然高尚的道德词汇，也可能保留了特定历史中的利益安排和支配关系，需要追问其形成过程。", focus: "道德谱系学。", meaning: "高分表示更愿意分析道德语言背后的历史和权力结构。", example: "讨论“体面”“贞洁”“成功”时，会追问这些标准由谁定义、用来约束谁、让谁受益。" },
+    17: { text: "即使某项研究或政策可能带来巨大公共收益，也不能绕过当事人的知情同意和基本尊严。", focus: "人作为目的与同意原则。", meaning: "高分表示更坚持个体不可仅被当作实现目标的材料。", example: "反对在弱势群体身上进行未经充分说明的实验，即使研究者相信结果将造福许多人。" },
+    18: { text: "衡量福祉时，不能只计算快乐强度；学习、友谊、审美和自主性等较复杂的经验也应进入效用比较。", focus: "质性功利主义。", meaning: "高分表示更认同福利有不同层次和类型。", example: "制定城市政策时，不只统计消费增长，也会考虑教育机会、公共空间和文化参与带来的生活质量。" },
+    19: { text: "许多道德判断不仅是在描述事实，也是在表达态度、情感和立场；它们不容易像物理命题那样直接验证。", focus: "道德语言与情感主义。", meaning: "高分表示更倾向于把道德命题理解为事实判断与情感评价的混合。", example: "听到“这很不公”时，会同时分析事实依据和说话者表达出的愤怒、同情或抗议。" },
+    20: { text: "很多强烈情绪并非单纯由事件本身造成，而是由我们对事件意义的判断放大或维持。", focus: "情绪的认知成分。", meaning: "高分表示更认同调整判断可以改变情绪反应。", example: "被拒绝后，不只沉浸在痛苦中，也会检查自己是否把一次拒绝解释成了“我毫无价值”。" },
+    21: { text: "性格、家庭和生理因素会影响我，但它们不应被当作完整答案；我仍会通过后续行动持续塑造自己。", focus: "存在先于本质。", meaning: "高分表示更强调自我不是被出身和特质一次性决定的。", example: "承认自己有社交焦虑，但不把它当作永远不能建立关系的最终定义。" },
+    22: { text: "真正的自由并不总是摆脱限制，而是在理解限制之后，让自己的意愿与不可改变的事实形成较清醒的关系。", focus: "顺应自然与相容自由。", meaning: "高分表示更认同自由可以表现为对必然性的理解和接纳。", example: "面对不可逆的身体变化时，会把精力放在仍可选择的照护、安排和态度上。" },
+    23: { text: "当我向内观察时，更容易看到不断变化的感受、记忆和欲望，而不是一个始终不变的自我实体。", focus: "束知觉自我观。", meaning: "高分表示更倾向于把自我理解为经验流和关系网络。", example: "认为“真正的我”并不是藏在深处的固定核心，而是在记忆、习惯和当前关系中不断形成。" },
+    24: { text: "心智和身体不必被理解为两个彼此隔离的实体；它们可以是同一现实秩序在不同层面的表达。", focus: "心物平行与一元论。", meaning: "高分表示更接受用统一的理性框架理解心理和身体。", example: "理解焦虑时，会同时看神经生理、生活处境和观念结构，而不是把它切成互不相关的两件事。" },
+    25: { text: "身份并不只来自一个“真实内核”；它也在职业、家庭、网络平台和消费文化等不同场景中被持续生产。", focus: "主体的多重建构。", meaning: "高分表示更倾向于把自我认同看成多场域的建构结果。", example: "不急着判断哪一个社交角色才是真我，而是分析不同场景如何要求人展示不同版本的自己。" },
+    26: { text: "即使科学能解释许多行为原因，社会仍需要把人视为能够回应理由、承担责任的行动者。", focus: "实践理性与自由假设。", meaning: "高分表示更认同责任制度需要预设人的理性能力。", example: "讨论犯罪成因时，会同时承认环境影响和行为人仍需被要求说明其选择。" },
+    27: { text: "与其寻找隐藏在内心深处的固定真我，不如观察一个人长期形成的习惯、承诺和解决问题的方式。", focus: "实用主义自我观。", meaning: "高分表示更倾向于通过行动模式理解自我。", example: "认为“我重视友谊”需要体现在具体陪伴、守约和沟通中，而不只是自我描述。" },
+    28: { text: "很多人生目标看似是个人愿望，其实来自“大家都这样”的社会脚本；我需要定期检查哪些目标真正经过自己选择。", focus: "常人与沉沦。", meaning: "高分表示更警惕匿名社会期待对个人选择的塑造。", example: "在升学、买房或结婚压力下，会追问这是自己的承诺，还是对默认路径的顺从。" },
+    29: { text: "在道德计算中，陌生人的痛苦和快乐不应只因为距离、身份或亲疏不同而被大幅贬值。", focus: "福利的平等计入。", meaning: "高分表示更认同道德考虑应具有不偏私性。", example: "做捐赠或政策判断时，会把远方陌生人的基本需求也纳入严肃权衡。" },
+    30: { text: "即使外部自由受到限制，人仍保有解释处境、选择回应方式和维护内在秩序的空间。", focus: "内在自由与意义选择。", meaning: "高分表示更重视在困境中的态度和判断自主。", example: "在无法改变的制度压力下，仍尝试决定自己如何说话、如何保持底线、如何安排下一步。" },
+    31: { text: "现代制度不只通过命令管理人，也通过指标、排名、档案和监控让人主动按制度标准审视自己。", focus: "规训权力与自我治理。", meaning: "高分表示更关注日常管理技术如何塑造主体。", example: "分析绩效考核时，不只看效率，也看它如何改变员工对价值、时间和自我评价的理解。" },
+    32: { text: "如果重新分配资源能显著减少可避免的贫困、疾病和不安全感，财产权安排就应接受公共福利的检验。", focus: "福利最大化与分配政策。", meaning: "高分表示更愿意用社会总福祉评价制度安排。", example: "讨论税制时，会关注不同税率对医疗、教育和基本生活保障的总体影响。" },
+    33: { text: "制度的正当性不只来自传统或抽象原则，也取决于它能否让公众持续发现问题、纠正错误并改善共同生活。", focus: "民主实验与公共探究。", meaning: "高分表示更倾向于用实践学习能力评价制度。", example: "评价社区治理时，会看居民能否反馈问题、试行方案并根据结果调整规则。" },
+    34: { text: "即使多数人支持某项政策，也必须受到基本权利、程序正义和人格尊严的限制。", focus: "权利约束与义务论政治观。", meaning: "高分表示更坚持多数利益不能任意越过个人边界。", example: "反对为了治安方便而无差别搜查私人通讯，即使这样可能提高侦查效率。" },
+    35: { text: "判断公共政策时，我更信任透明数据、可复核研究和试点结果，而不是单凭意识形态口号或道德姿态。", focus: "证据导向的政策判断。", meaning: "高分表示更重视经验材料和可评估后果。", example: "讨论教育改革时，会优先查看长期跟踪数据、地区差异和副作用，而不是只听理念宣言。" },
+    36: { text: "一个正义制度应当能从清晰、可辩护的原则中推导出来，而不是只随民意波动或短期利益变化。", focus: "政治原则的理性建构。", meaning: "高分表示更看重制度背后的逻辑一致性。", example: "讨论言论自由边界时，会寻找可普遍适用的原则，而不是根据是否喜欢某次发言来改变标准。" },
+    37: { text: "参与集体行动时，个人不能把责任完全交给组织、岗位或时代；仍要判断自己是否愿意为参与方式负责。", focus: "集体处境中的个人责任。", meaning: "高分表示更强调人在制度角色中仍有存在性选择。", example: "面对不合理流程时，不满足于说“规定如此”，也会思考自己是否可以提出异议或减少伤害。" },
+    38: { text: "公共讨论中使用的词语会决定哪些人被看见、哪些经验被简化，因此语言本身就是政治和价值的一部分。", focus: "话语、命名与可见性。", meaning: "高分表示更关注表达方式如何塑造现实理解。", example: "讨论某个群体时，会留意“问题人群”“弱势者”“当事人”等不同称呼带来的位置差异。" },
+    39: { text: "惩罚的主要理由应是减少未来伤害、修复关系或保护公众，而不是让受罚者单纯承受痛苦。", focus: "惩罚的后果主义 justification。", meaning: "高分表示更倾向于用可改善的社会后果评价惩罚。", example: "支持把部分轻罪处理转向矫治、赔偿和再融入，而不是只提高刑期。" },
+    40: { text: "面对社会不公，我应该尽自己能做的责任，但也要承认结果受许多因素影响，不能让成败完全摧毁内在秩序。", focus: "公民义务与结果不执着。", meaning: "高分表示更倾向于积极行动同时保持对结果的节制期待。", example: "参与公益倡议失败后，会复盘策略并继续做力所能及的事，而不是陷入彻底绝望。" },
+    41: { text: "遭遇突发问题时，我会先区分哪些部分能由我行动改变，哪些部分只能被接受或绕开。", focus: "控制二分法。", meaning: "高分表示更习惯把精力集中在可影响范围内。", example: "航班取消后，先处理改签、住宿和通知，而不是长时间纠结天气或航空公司无法立刻改变的部分。" },
+    42: { text: "世界未必会回应人对终极意义的期待；承认这种落差后，人仍可以清醒地选择继续投入生活。", focus: "荒谬与反抗。", meaning: "高分表示更认同意义可以在无保证的处境中被创造。", example: "明知工作和作品终会被遗忘，仍愿意因为此刻的承诺、关系和创造而认真生活。" },
+    43: { text: "面对痛苦时，把事件放入更大的因果背景和自然过程之中，有时能减少“为什么偏偏是我”的刺痛。", focus: "永恒相下的理性重构。", meaning: "高分表示更倾向于用整体性理解缓和局部痛苦。", example: "经历失去时，会尝试理解疾病、衰老和偶然性作为自然秩序的一部分，而不是只停留在个人惩罚感中。" },
+    44: { text: "人在灾难后容易寻找隐藏寓意，但许多不幸更可能是概率、环境和决策共同作用的结果，而不是命运信号。", focus: "偶然性与认知偏差。", meaning: "高分表示更倾向于用可观察原因解释事件。", example: "发生事故后，会查看天气、设备、流程和风险管理，而不是直接归因于报应或天意。" },
+    45: { text: "经历挫折后，追问原因有其价值；但当解释无法继续推进时，更重要的是找出下一步能改善一点点的行动。", focus: "改善论与问题解决。", meaning: "高分表示更重视从解释转向可执行修正。", example: "项目失败后，既复盘原因，也尽快列出可调整资源、沟通方式和时间表。" },
+    46: { text: "在压力和诱惑下仍能守住基本义务，比只在顺境中表现良好更能说明一个人的道德可靠性。", focus: "义务与动机稳定性。", meaning: "高分表示更看重困境中原则的延续性。", example: "即使被催促完成业绩，也不愿用误导性信息诱导他人购买不需要的服务。" },
+    47: { text: "痛苦经验会受到社会语言和分类方式影响；一个标签可能带来理解和资源，也可能限制人理解自己的方式。", focus: "痛苦经验的社会建构维度。", meaning: "高分表示更关注概念标签如何改变主观经验和社会回应。", example: "讨论心理健康时，会同时承认诊断能帮助求助，也留意标签可能带来的污名或自我窄化。" },
+    48: { text: "使用心理咨询、药物或其他支持来减少痛苦，是一种正当的现实帮助，不应被解释为道德失败或意志薄弱。", focus: "痛苦减少与福利判断。", meaning: "高分表示更倾向于把精神健康支持看作减少伤害的合理工具。", example: "朋友寻求专业帮助时，会把它理解为照护自己，而不是“想不开”或“不够坚强”。" },
+    49: { text: "适度预想可能的失败、误解和失去，可以帮助我提前准备；但这种练习应服务于清醒行动，而不是反复恐惧。", focus: "预想逆境的边界。", meaning: "高分表示更认同通过有限预演降低冲击。", example: "演讲前准备设备故障和忘词方案，目的是更稳定地应对，而不是沉迷于灾难想象。" },
+    50: { text: "意识到生命有限，会让许多惯性目标失去说服力，也会迫使我重新判断什么值得投入时间。", focus: "向死而生。", meaning: "高分表示更认同死亡意识能澄清优先级。", example: "经历重大疾病或亲友离世后，开始重新安排工作、关系和长期承诺。" },
+    51: { text: "如果某种虚拟体验能稳定带来幸福、关系感和成就感，真实性本身是否仍具有压倒性价值，并不是显而易见的。", focus: "体验机与快乐价值。", meaning: "高分表示更愿意认真权衡主观福祉相对于真实性的地位。", example: "面对高度沉浸式虚拟生活时，会问真实接触和主观幸福各自有多少不可替代的价值。" },
+    52: { text: "即使一句谎言短期内能带来好结果，制度和关系仍需要把诚实、承诺和可追责性作为强约束。", focus: "诚实义务与交往条件。", meaning: "高分表示更重视规则和信任结构，而不只看单次后果。", example: "在公共报告中，不愿为了争取支持而故意隐瞒关键风险，即使这样可能让项目更容易通过。" },
+    53: { text: "解释文本、艺术或制度时，作者原意重要，但不应垄断意义；后来的读者和受影响者也会产生新的合法解释。", focus: "作者意图与阐释开放性。", meaning: "高分表示更认可意义在阅读和历史处境中继续生成。", example: "阅读经典作品时，会同时看作者时代背景和当代读者从性别、阶层或殖民经验中提出的新问题。" },
+    54: { text: "判断人工智能或动物是否值得道德考虑时，我更愿意依据可观察的学习、痛苦反应和互动能力，而不是诉诸不可检验的灵魂概念。", focus: "可观察能力与道德地位。", meaning: "高分表示更倾向于用经验指标处理心智问题。", example: "如果某系统长期表现出求生、学习和痛苦回避，我会认真讨论它是否应受到一定保护。" },
+    55: { text: "数学和逻辑命题似乎具有一种特殊的必然性：它们不随个人偏好、文化习惯或历史阶段轻易改变。", focus: "数学真理的独立性。", meaning: "高分表示更认同形式真理具有强稳定性。", example: "认为不同文明可能使用不同符号，但有效推理和数量关系仍会受到类似的逻辑约束。" },
+    56: { text: "教育的重点不应只是传递固定答案，也应训练学生提出问题、修正假设并在真实情境中合作解决问题。", focus: "经验教育与做中学。", meaning: "高分表示更重视探究能力和实践反馈。", example: "比起只背诵环保概念，更支持让学生调查社区垃圾处理流程并提出可测试的改进方案。" },
+    57: { text: "如果一个人长期停留在外界认可但自己并不承担的生活安排中，这可能是一种把自由交给他人定义的自欺。", focus: "坏信仰与责任回避。", meaning: "高分表示更关注人是否真实承担自己的生活选择。", example: "维持一段关系或职业时，会区分“我选择继续”与“我只是因为别人期待才不敢改变”。" },
+    58: { text: "面对网络评价，我应区分可纠正的事实错误、需要承担的责任和完全不可控的他人看法。", focus: "外部评价与内在判断。", meaning: "高分表示更倾向于不让名声波动直接支配自我判断。", example: "被误解时，会澄清必要事实并改进可改之处，但不把所有陌生人的反应都当作自我价值证明。" },
+    59: { text: "一个存在者是否能感受痛苦和快乐，应当是判断其道德地位的重要依据，而不应只看它是否属于人类。", focus: "感受性与道德共同体。", meaning: "高分表示更认同有感受能力的生命应进入伦理考虑。", example: "讨论工厂化养殖时，会把动物承受的痛苦当作真实道德成本，而不只是生产效率问题。" },
+    60: { text: "涉及潜在人类生命、身体材料或高度脆弱个体的研究，即使目标有益，也需要比普通技术创新更严格的道德边界。", focus: "生命伦理中的人格边界。", meaning: "高分表示更强调科研不能把生命或身体完全工具化。", example: "评估胚胎研究、器官移植或人体数据使用时，会特别关注同意、身份地位和不可逆伤害。" },
+    61: { text: "重大选择中的焦虑并不只是信息不足，它也提醒我：没有任何外部权威能替我完成承担。", focus: "自由之重。", meaning: "高分表示更能把焦虑理解为选择责任的信号。", example: "选专业、迁居或结束关系时，会参考建议，但承认最后没有人能替自己生活后果。" },
+    62: { text: "面对长期疾病或衰老，除了争取治疗和支持，我也需要练习如实面对身体限制，并把注意力放回仍可选择的部分。", focus: "疾病、限制与判断自主。", meaning: "高分表示更认同在脆弱处境中维持清醒判断。", example: "慢性病复发时，会安排治疗和求助，同时调整计划，而不是把限制解释为人格失败。" },
+    63: { text: "效率、产出和标准化并不是中立价值；当它们成为唯一尺度时，许多照护、闲暇和异质经验会被误判为无用。", focus: "效率话语的批判。", meaning: "高分表示更倾向于质疑单一生产力标准。", example: "评价社区活动时，不只看经济收益，也看它是否提供陪伴、表达和非竞争性的公共空间。" },
+    64: { text: "在灾难或医疗资源极度紧缺时，应使用公开、一致的分配标准来最大化预期救助效果，而不是只依赖直觉或亲疏。", focus: "稀缺资源下的效用比较。", meaning: "高分表示更愿意在艰难情境中进行后果权衡。", example: "支持重症床位分配时参考存活概率、紧急程度和治疗收益，并要求标准透明可复核。" },
+    65: { text: "如果存在更成熟的外星文明，它们的科学也许形式不同，但仍可能与我们共享某些逻辑、数学和推理规范。", focus: "理性规范的普遍性。", meaning: "高分表示更相信理性结构不完全依赖本地文化。", example: "认为外星文明可能语言不同，却仍需要避免矛盾、比较数量并建立可推导的理论。" },
+    66: { text: "与其急于给“意识本质”下最终定义，不如先建立可操作标准，判断哪些互动方式能减少伤害、改善合作和提升理解。", focus: "操作化与实践后果。", meaning: "高分表示更倾向于用可执行标准推进疑难问题。", example: "讨论陪伴机器人时，会先制定隐私、依赖风险和用户福祉评估，而不是停在“它到底有没有真心”。" },
+    67: { text: "利用人的脆弱、无知或成瘾机制来达成销售、传播或管理目标，即使短期有效，也侵犯了对方作为理性主体的地位。", focus: "操控与主体尊重。", meaning: "高分表示更反对把他人的弱点当成工具。", example: "批评利用焦虑推销课程、用无限滚动诱导沉迷或用信息差迫使消费者选择的设计。" },
+    68: { text: "历史发展没有保证会走向某个预设终点；许多制度和观念是偶然条件、冲突和选择长期叠加的结果。", focus: "历史偶然性与反决定论。", meaning: "高分表示更反对把历史理解为单线必然进步。", example: "解释工业化、民族国家或婚姻制度时，会分析资源、战争、技术和法律偶然组合，而不是说它们注定如此。" },
+    69: { text: "减少对名望、消费和控制感的依赖，常常比获得更多外部资源更能扩大一个人的自由。", focus: "欲望缩减与自足。", meaning: "高分表示更认同自由也来自降低被外物牵引的程度。", example: "通过简化消费和社交比较来减少焦虑，因为需要越少，被威胁和诱导的空间越小。" },
+    70: { text: "人生没有现成图纸可照抄；我更愿意把它理解为一项持续修订的实践，而不是发现某个固定命运。", focus: "自我塑造与开放计划。", meaning: "高分表示更认同生命意义来自持续选择和行动。", example: "在人生中途改变职业、关系模式或生活城市时，会把它看作重新承担项目，而不是偏离唯一正确轨道。" }
+};
+
+fullQuestions.forEach(q => {
+    Object.assign(q, refinedQuestionContent[q.id]);
+});
+const sections = [
+    { title: "第一部分：知识与真理观 (1-10题)", desc: "探讨可靠知识如何形成，以及经验、理性、语言和实践后果各自扮演什么角色。" },
+    { title: "第二部分：道德、伦理与行动 (11-20题)", desc: "考察您在原则、后果、责任、德性和道德语言之间如何取舍。" },
+    { title: "第三部分：自我、命运与存在 (21-30题)", desc: "探讨自我是否固定、自由如何成立，以及人在限制处境中如何承担。" },
+    { title: "第四部分：社会、权力与价值 (31-40题)", desc: "关注制度设计、权力运作、公共政策、惩罚逻辑和政治正当性。" },
+    { title: "第五部分：面对逆境与无常 (41-50题)", desc: "考察您如何理解挫折、痛苦、偶然、死亡意识与可行动空间。" },
+    { title: "第六部分：具体生活情境抉择（一）(51-60题)", desc: "将抽象理论投射到科技伦理、文本解释、教育、关系和生命伦理场景中。" },
+    { title: "第七部分：具体生活情境抉择（二）(61-70题)", desc: "进一步考察重大选择、疾病限制、效率标准、资源分配和历史理解。" }
+];
+
+// 理论最大最小值计算（用于包含负权重的归一化映射）
+const categoryMaxScores = {};
+const categoryMinScores = {};
+Object.keys(categoriesMap).forEach(k => {
+    categoryMaxScores[k] = 0;
+    categoryMinScores[k] = 0;
+});
+
+fullQuestions.forEach(q => {
+    Object.keys(q.weights || {}).forEach(cat => {
+        const w = q.weights[cat];
+        if (w > 0) {
+            categoryMaxScores[cat] += w * 6; // 最大值得分情境：正向题拿满分
+        } else if (w < 0) {
+            categoryMinScores[cat] += w * 6; // 最小值得分情境：反向题拿满分(扣除最多)
+        }
+    });
+});
+
+const STORAGE_KEY = 'philosophyQuizAnswers';
+
+// 本地存储操作
+function saveAnswersToLocalStorage() {
+    const form = document.getElementById('philosophyQuiz');
+    const answers = {};
+    for (let q of fullQuestions) {
+        const select = form.elements[`q${q.id}`];
+        if (select && select.value !== "") {
+            answers[q.id] = select.value;
+        }
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+}
+
+function loadAnswersFromLocalStorage() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    try {
+        const answers = JSON.parse(saved);
+        const form = document.getElementById('philosophyQuiz');
+        for (let q of fullQuestions) {
+            const val = answers[q.id];
+            if (val !== undefined) {
+                const select = form.elements[`q${q.id}`];
+                if (select) select.value = val;
+            }
+        }
+        updateProgress();
+    } catch (e) { console.warn("读取本地存储失败", e); }
+}
+
+function clearLocalStorage() {
+    localStorage.removeItem(STORAGE_KEY);
+}
+
+// 生成表单（包含选项：0到6分，3分为中立）
+function initForm() {
+    const container = document.getElementById("questionsContainer");
+    container.innerHTML = "";
+
+    // 根据权重对象生成“高分会强化/削弱哪些流派”的提示文本
+    function getAntagonismText(weights) {
+        if (!weights) return '';
+        const pos = [], neg = [];
+        for (const [cat, w] of Object.entries(weights)) {
+            const name = categoriesMap[cat]?.name || cat;
+            (w > 0 ? pos : neg).push(name);
+        }
+        const parts = [];
+        if (pos.length) parts.push(`<strong>本题高分会增强</strong>：${pos.join('、')}`);
+        if (neg.length) parts.push(`<strong>本题高分会削弱</strong>：${neg.join('、')}`);
+        return parts.length ? `${parts.join('；')}。` : '';
+    }
+
+    for (let sIdx = 0; sIdx < sections.length; sIdx++) {
+        const sec = sections[sIdx];
+        const secDiv = document.createElement("div");
+        secDiv.className = "section";
+        secDiv.innerHTML = `<h2>${sec.title}</h2><p style="color: #666; margin-bottom: 20px;">${sec.desc}</p>`;
+
+        const qs = fullQuestions
+            .filter(q => q.sectionIndex === sIdx)
+            .sort((a, b) => a.id - b.id);
+
+        qs.forEach(q => {
+            const qDiv = document.createElement("div");
+            qDiv.className = "question";
+            qDiv.innerHTML = `
+                <div class="question-title" onclick="toggleExplanation(this)">
+                    <span class="q-number">${q.id}.</span> ${q.text}
+                </div>
+                <select name="q${q.id}" data-id="${q.id}">
+                    <option value="" disabled selected>请选择...</option>
+                    <option value="0">0 - 完全不认同</option>
+                    <option value="1">1 - 比较不认同</option>
+                    <option value="2">2 - 略微不认同</option>
+                    <option value="3">3 - 中立</option>
+                    <option value="4">4 - 略微认同</option>
+                    <option value="5">5 - 比较认同</option>
+                    <option value="6">6 - 完全认同</option>
+                </select>
+                <div class="explanation">
+                    <p><strong>本题用意：</strong>${q.focus} ${q.meaning} ${getAntagonismText(q.weights)}</p>
+                    <p><strong>具体案例：</strong>${q.example}若这种判断与你过去几年较稳定的立场高度一致，可选 5–6 分；若你会根据情境权衡或暂时中立，可选 3–4 分；若通常不认同或倾向相反判断，可选 0–2 分。</p>
+                </div>
+            `;
+
+            const selectEl = qDiv.querySelector('select');
+            selectEl.addEventListener('change', () => {
+                updateProgress();
+                saveAnswersToLocalStorage();
+            });
+
+            secDiv.appendChild(qDiv);
+        });
+
+        container.appendChild(secDiv);
+    }
+
+    // 恢复用户上次保存的答题记录
+    loadAnswersFromLocalStorage();
+}
+
+window.toggleExplanation = function (titleElement) {
+    const exp = titleElement.parentElement.querySelector('.explanation');
+    if (exp.classList.contains('show')) {
+        exp.classList.remove('show');
+    } else {
+        document.querySelectorAll('.explanation').forEach(el => el.classList.remove('show'));
+        exp.classList.add('show');
+    }
+};
+
+function updateProgress() {
+    const form = document.getElementById('philosophyQuiz');
+    let completed = 0;
+    for (let q of fullQuestions) {
+        if (form.elements[`q${q.id}`] && form.elements[`q${q.id}`].value !== "") completed++;
+    }
+    const percent = (completed / fullQuestions.length) * 100;
+    document.getElementById('globalProgressText').textContent = `进度：${completed}/${fullQuestions.length}`;
+    document.getElementById('globalProgressBar').style.width = percent + '%';
+}
+
+// 文本生成配置
+function getDetailedEpistemology(key) {
+    const map = {
+        existentialism: "意义不是预先写好的答案，而是在具体选择、承诺和承担中逐步形成。您倾向于把人生问题理解为需要亲自回应的处境，而非可由外部权威完全代答的题目。",
+        stoicism: "可靠的行动来自对可控与不可控的区分。您倾向于先审查判断、欲望和反应方式，再决定如何面对外部评价、偶然损失和现实限制。",
+        empiricism: "可靠知识需要接受观察、证据和可修正程序的检验。您倾向于对不可检验的断言保持谨慎，并重视数据、经验和公开论证。",
+        rationalism: "经验材料需要借助逻辑、概念和原则才能获得解释力。您倾向于寻找深层结构、内在一致性和跨情境适用的理性根据。",
+        pragmatism: "观念的意义体现在它如何改变探究和行动。您倾向于把理论视为解决问题、协调经验和改善实践后果的工具。",
+        kantianism: "道德判断需要尊重可普遍化原则和人的主体地位。您倾向于为行动设置不可随意越过的边界，而不只比较结果收益。",
+        utilitarianism: "行动评价需要认真比较后果、福祉和伤害分布。您倾向于在资源有限或选项冲突时寻找总体伤害更小、收益更大的方案。",
+        postmodernism: "知识、身份和规范会受到语言、制度和权力关系塑造。您倾向于追问谁被默认代表、谁被排除，以及某套叙事如何形成权威。"
+    };
+    return map[key];
+}
+
+function getDetailedBlindSpot(key) {
+    const map = {
+        existentialism: "过度强调个人选择时，可能低估阶层、制度、身体条件和关系网络对行动空间的限制。",
+        stoicism: "过度强调内在调适时，可能把本应被改变的外部不公过早转化为个人心态问题。",
+        empiricism: "过度依赖可量化证据时，可能忽视意义、审美、价值承诺和弱势经验中难以被指标捕捉的部分。",
+        rationalism: "过度追求体系一致时，可能低估偶然性、情感动机和复杂现实对理论模型的挑战。",
+        pragmatism: "过度关注可用后果时，可能缺少稳定底线，并把短期有效误认为长期正当。",
+        kantianism: "过度强调原则约束时，可能在多重义务冲突中低估具体伤害和处境差异。",
+        utilitarianism: "过度追求总体收益时，可能弱化个体权利、少数处境和不可替代关系的道德分量。",
+        postmodernism: "过度解构共同标准时，可能削弱公共讨论、证据评估和集体行动所需的最低共识。"
+    };
+    return map[key];
+}
+
+const tensionMap = {
+    existentialism: { tense: ["rationalism", "empiricism"], ally: ["postmodernism", "stoicism"], tenseName: "理性/经验决定论", allyName: "后现代/斯多葛派" },
+    stoicism: { tense: ["utilitarianism", "existentialism"], ally: ["kantianism", "rationalism"], tenseName: "功利/激进存在派", allyName: "康德/理性主义" },
+    empiricism: { tense: ["rationalism", "kantianism"], ally: ["utilitarianism", "pragmatism"], tenseName: "纯理性/先验义务论", allyName: "功利/实用主义" },
+    rationalism: { tense: ["empiricism", "postmodernism"], ally: ["kantianism", "stoicism"], tenseName: "经验主义/解构派", allyName: "康德/斯多葛派" },
+    pragmatism: { tense: ["kantianism", "rationalism"], ally: ["empiricism", "utilitarianism"], tenseName: "绝对义务/纯粹理性", allyName: "经验/功利主义" },
+    kantianism: { tense: ["utilitarianism", "pragmatism"], ally: ["rationalism", "stoicism"], tenseName: "功利/实用主义", allyName: "理性/斯多葛派" },
+    utilitarianism: { tense: ["kantianism", "existentialism"], ally: ["pragmatism", "empiricism"], tenseName: "义务论/存在个体派", allyName: "实用/经验主义" },
+    postmodernism: { tense: ["rationalism", "empiricism"], ally: ["existentialism", "pragmatism"], tenseName: "启蒙理性/实证科学", allyName: "存在主义/实用主义" }
+};
+
+const practiceMap = {
+    existentialism: "在重要选择中明确自己愿意承担什么、定期检查哪些目标只是社会默认脚本、把价值承诺落实为行动",
+    stoicism: "区分可控与不可控、写反思日记、练习事实和评价分离、在行动后复盘而不过度执着结果",
+    empiricism: "查阅可靠资料、比较证据质量、在日常决策中记录结果、用概率和不确定性语言表达判断",
+    rationalism: "梳理概念边界、检查论证是否自洽、寻找更一般的原则、通过逻辑推演发现隐含前提",
+    pragmatism: "小规模试验方案、根据反馈修正做法、优先处理可行动问题、把理论转化为可检验的实践步骤",
+    kantianism: "明确个人底线、尊重同意和边界、检查自己的规则能否公开适用于所有相关者",
+    utilitarianism: "比较方案的收益和伤害、关注资源分配效率、评估政策对不同群体的实际影响",
+    postmodernism: "分析话语和分类如何形成、检查默认中心和被排除经验、对广告、制度语言和身份标签保持反思"
+};
+
+const coreClaimsMap = {
+    existentialism: ["意义需要在选择和承担中生成", "人无法把生活责任完全交给外部权威", "本真生活需要持续检视社会脚本"],
+    stoicism: ["先区分可控与不可控，再决定行动", "德性和判断比外部评价更稳定", "情绪反应需要接受理性审查"],
+    empiricism: ["知识主张需要证据和可修正程序", "不可检验断言应保持审慎", "经验规律可靠但不等于逻辑必然"],
+    rationalism: ["复杂经验需要概念和原则来组织", "逻辑一致性是判断的重要标准", "某些形式真理具有强稳定性"],
+    pragmatism: ["观念的意义体现在实践后果中", "理论应帮助人们解决具体问题", "规则需要根据经验反馈持续修正"],
+    kantianism: ["人不能仅被当作实现目标的手段", "行动规则需要经得起公开普遍化", "好结果不能自动取消基本边界"],
+    utilitarianism: ["行动评价需要比较福祉和伤害", "有限资源应尽量产生更大公共收益", "亲疏距离不应决定痛苦的道德分量"],
+    postmodernism: ["知识和规范会受到语言与制度塑造", "宏大叙事需要接受边缘经验的检验", "命名和分类本身具有价值后果"]
+};
+
+const booksMap = {
+    existentialism: {
+        classics: ['让-保罗·萨特《存在与虚无》', '阿尔贝·加缪《西西弗神话》'],
+        contemporary: ['欧文·亚隆《存在主义心理治疗》', '维克多·弗兰克尔《活出意义来》'],
+        challenge: ['米歇尔·福柯《规训与惩罚》——解构自由主体的神话', '斯金纳《超越自由与尊严》——行为主义对绝对自由的否定']
+    },
+    stoicism: {
+        classics: ['马可·奥勒留《沉思录》', '爱比克泰德《手册》'],
+        contemporary: ['马西莫·匹格里奇《哲学的指引》', '威廉·B·埃尔文《像哲学家一样生活》'],
+        challenge: ['尼采《善恶的彼岸》——对禁欲和过度理性的猛烈抨击', '大卫·休谟《人性论》——理性不过是激情的奴隶']
+    },
+    empiricism: {
+        classics: ['大卫·休谟《人类理解研究》', '约翰·洛克《人类理解论》'],
+        contemporary: ['卡尔·波普尔《猜想与反驳》', '理查德·道金斯《盲眼钟表匠》'],
+        challenge: ['康德《纯粹理性批判》——经验必须依赖先验的认知框架', '托马斯·库恩《科学革命的结构》——科学发展受制于范式而非纯经验积累']
+    },
+    rationalism: {
+        classics: ['笛卡尔《第一哲学沉思集》', '斯宾诺莎《伦理学》'],
+        contemporary: ['罗杰·彭罗斯《皇帝新脑》', '史蒂芬·平克《当下的启蒙》'],
+        challenge: ['大卫·休谟《人类理解研究》——对因果律必然性的质疑', '理查德·罗蒂《哲学和自然之镜》——解构哲学作为基础学科的迷思']
+    },
+    pragmatism: {
+        classics: ['威廉·詹姆斯《实用主义》', '约翰·杜威《民主与教育》'],
+        contemporary: ['理查德·罗蒂《偶然、反讽与团结》', '查尔斯·泰勒《本真性的伦理》'],
+        challenge: ['康德《道德形而上学奠基》——反对将道德降格为效用的工具', '马克斯·霍克海默《工具理性的批判》——警惕实用逻辑对人性的异化']
+    },
+    kantianism: {
+        classics: ['康德《道德形而上学奠基》', '康德《实践理性批判》'],
+        contemporary: ['约翰·罗尔斯《正义论》', '迈克尔·桑德尔《公正：该如何做是好？》'],
+        challenge: ['约翰·斯图尔特·密尔《功利主义》——从结果导向抨击死板规则', '尼采《论道德的谱系》——揭示道德法则背后的虚弱与怨恨']
+    },
+    utilitarianism: {
+        classics: ['杰里米·边沁《道德与立法原理导论》', '约翰·斯图尔特·密尔《功利主义》'],
+        contemporary: ['彼得·辛格《实践伦理学》', '威廉·麦卡斯基尔《做点好事》'],
+        challenge: ['约翰·罗尔斯《正义论》——论证为了整体利益牺牲个体的非正义性', '伯纳德·威廉姆斯《伦理学与哲学的限度》——批判功利主义破坏了个人人格的完整性']
+    },
+    postmodernism: {
+        classics: ['米歇尔·福柯《规训与惩罚》', '让-弗朗索瓦·利奥塔《后现代状况》'],
+        contemporary: ['让·鲍德里亚《消费社会》', '韩炳哲《倦怠社会》'],
+        challenge: ['尤尔根·哈贝马斯《现代性的哲学话语》——捍卫启蒙运动未完成的交往理性', '艾伦·索卡尔《知识的骗局》——来自科学界对解构主义语言滥用的硬核反击']
+    }
+};
+
+function generateDeepInsight(normalized, answersMap) {
+    const top = normalized[0];
+    const second = normalized[1];
+    const third = normalized[2];
+    const lowest = normalized[normalized.length - 1];
+    const tension = tensionMap[top.key];
+    if (!tension) {
+        console.error("未找到流派张力配置:", top.key);
+        return "<p>深度分析生成失败，请刷新页面后重试。</p>";
+    }
+
+    let html = `<div class="insight-card">
+    <h3>一、 认识论与价值基底</h3>
+    <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的底层认知框架中，您主要将世界的运作与人生的意义理解为：${getDetailedEpistemology(top.key)}</p>`;
+
+    if (second && second.score > 50) {
+        html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样高度认同该流派的核心洞见——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的判断中同时存在。</p>`;
+    }
+    if (third && third.score > 45) {
+        html += `<p>「<strong>${third.name}</strong>」（${third.score}%）位列第三倾向，进一步展示了您思想体系的多元维度：${getDetailedEpistemology(third.key).substring(0, 80)}这一维度在您处理复杂现实时往往也会发挥关键作用。</p>`;
+    }
+    html += `</div>`;
+
+    html += `<div class="insight-card">
+    <h3>二、 核心命题确认</h3>
+    <p>根据您的作答模式，以下命题最能代表您当前的核心哲学立场：</p>
+    <ul style="margin:0; padding-left:20px; line-height:2;">
+      ${coreClaimsMap[top.key].map(c => `<li>${c}</li>`).join('')}
+      ${second && second.score > 50 ? coreClaimsMap[second.key].slice(0, 1).map(c => `<li style="color:#666; font-style:italic;">（兼容思考）${c}</li>`).join('') : ''}
+    </ul></div>`;
+
+    html += `<div class="insight-card">
+    <h3>三、 潜在理论盲区与内在张力</h3>
+    <p>${getDetailedBlindSpot(top.key)}</p>
+    <p><strong>与其他流派的张力：</strong>您的立场与「${tension.tenseName}」之间存在明显的理论张力。这并不是谁对谁错的问题，而是底层预设的差异：他们所珍视的（如${lowest.name}的核心价值），恰恰是您的主导流派在建立理论体系时所必须排斥或悬置的。</p>
+    <p><strong>潜在的思想盟友：</strong>「${tension.allyName}」与您的立场在部分核心假设上较为兼容。它们可以作为补充视角，帮助您看到主导框架之外的分析层次。</p>
+    </div>`;
+
+    let contradictions = [];
+    let strongAgrees = [];
+    for (let q of fullQuestions) {
+        let score = answersMap[q.id];
+        if (score !== undefined) {
+            if (score <= 2 && q.category === top.key) {
+                contradictions.push({ text: q.text.substring(0, 70) + "…", score });
+            } else if (score >= 4 && q.category === lowest.key) {
+                strongAgrees.push({ text: q.text.substring(0, 70) + "…", score });
+            }
+        }
+    }
+    html += `<div class="insight-card"><h3>四、 个体思想画像及溢出分析</h3>`;
+    if (contradictions.length > 0) {
+        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留（甚至抵触），这说明您并未教条化地全盘接受，而是保持着高度独立的思辨：</p>
+        <ul style="margin:0; padding-left:20px; line-height:2; color:#164e63;">
+          ${contradictions.slice(0, 4).map(c => `<li>「${c.text}」（您的打分：${c.score} / 6）</li>`).join('')}
+        </ul>`;
+    } else {
+        html += `<p><strong>对主导流派的高度一致：</strong>您在「${top.name}」的全部核心议题上保持了高度一致的给分，说明您在该框架内部的回答较一致。</p>`;
+    }
+    if (strongAgrees.length > 0) {
+        html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>值得注意的是，您在整体得分最低的「${lowest.name}」中，仍对以下议题表示较高认同。这些题目可能提示您对该流派并非完全排斥：</p>
+        <ul style="margin:0; padding-left:20px; line-height:2; color:#164e63;">
+          ${strongAgrees.slice(0, 3).map(c => `<li>「${c.text}」（您的打分：${c.score} / 6）</li>`).join('')}
+        </ul>`;
+    }
+    html += `</div>`;
+
+    // 五、认知对照：最低匹配流派分析 + 推荐阅读
+    let lowestRec = "";
+    switch (lowest.key) {
+        case "existentialism": lowestRec = "《存在与虚无》（萨特）或《西西弗神话》（加缪）——重新理解「自由」与「荒诞」的积极意义。"; break;
+        case "stoicism": lowestRec = "《沉思录》（马可·奥勒留）或《像哲学家一样生活》（威廉·B·埃尔文）——体验理性平静的力量。"; break;
+        case "empiricism": lowestRec = "《人类理解研究》（休谟）或《猜想与反驳》（波普尔）——感受经验证据的坚实魅力。"; break;
+        case "rationalism": lowestRec = "《第一哲学沉思集》（笛卡尔）或《伦理学》（斯宾诺莎）——体验纯粹理性推演的秩序之美。"; break;
+        case "pragmatism": lowestRec = "《实用主义》（威廉·詹姆斯）或《民主与教育》（杜威）——理解「有用即真理」的深层逻辑。"; break;
+        case "kantianism": lowestRec = "《道德形而上学奠基》（康德）或《正义论》（罗尔斯）——重新评估绝对义务的尊严。"; break;
+        case "utilitarianism": lowestRec = "《功利主义》（密尔）或《实践伦理学》（彼得·辛格）——审视结果导向的道德计算。"; break;
+        case "postmodernism": lowestRec = "《规训与惩罚》（福柯）或《后现代状况》（利奥塔）——理解解构的批判力量。"; break;
+        default: lowestRec = "该流派的一本经典入门著作，尝试进入其问题意识。";
+    }
+
+    html += `<div class="insight-card">
+        <h3>五、 认知对照：最低匹配流派分析</h3>
+        <p>您得分最低的流派是「<strong>${lowest.name}</strong>」（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
+        <strong>为何权重较低？</strong>您对该流派的低认同，不一定源于不了解，也可能反映了更深层的前提分歧——${lowest.key === 'existentialism' ? "您可能更相信世界存在某种客观意义或秩序，而非完全由个体自由创造。" :
+            lowest.key === 'stoicism' ? "您可能更倾向于通过改变外部世界或激情投入来解决问题，而非通过内在情绪抽离。" :
+                lowest.key === 'empiricism' ? "您可能更相信先验理性、直觉或形而上学真理的存在，而非仅依赖感官经验。" :
+                    lowest.key === 'rationalism' ? "您可能更看重观察、实验和具体数据，而非纯粹的思辨与演绎。" :
+                        lowest.key === 'pragmatism' ? "您可能更重视原则的绝对正确性或理论的精致性，而非仅以实用效果为标准。" :
+                            lowest.key === 'kantianism' ? "您可能更倾向于结果导向的伦理判断，或认为绝对义务在复杂现实中过于僵化。" :
+                                lowest.key === 'utilitarianism' ? "您可能更重视个体权利、动机纯洁性或非功利的价值，而非单纯的整体效益计算。" :
+                                    "您可能更相信存在某种可被理性把握的客观真理或宏大叙事，而非彻底解构与视角主义。"}
+        <p><strong>扩展建议：</strong>阅读该流派的一手文本往往会发现，它所批判的恰恰是您当前框架中最容易忽视的那部分现实。建议可从以下切入点开始阅读：${lowestRec}</p>
+    </div>`;
+
+    return html;
+}
+
+window.calculateResult = function () {
+    const form = document.getElementById('philosophyQuiz');
+    for (let q of fullQuestions) {
+        if (!form.elements[`q${q.id}`] || form.elements[`q${q.id}`].value === "") {
+            alert(`请完成第 ${q.id} 题后再生成报告。`);
+            return;
+        }
+    }
+
+    // 初始化得分对象
+    const sums = {};
+    Object.keys(categoriesMap).forEach(k => { sums[k] = 0; });
+    const answers = {};
+
+    fullQuestions.forEach(q => {
+        const val = parseInt(form.elements[`q${q.id}`].value, 10);
+        answers[q.id] = val;
+
+        // 多维度加权累加（0-6分）
+        if (q.weights) {
+            Object.keys(q.weights).forEach(cat => {
+                // 选项乘权重进行累加（正权重加分，负权重扣分）
+                sums[cat] += val * q.weights[cat];
+            });
+        }
+    });
+
+    // 将得分归一化至 0-100%
+    let normalized = Object.keys(categoriesMap).map(key => {
+        const range = categoryMaxScores[key] - categoryMinScores[key];
+        let scorePercent = 0;
+        if (range > 0) {
+            scorePercent = ((sums[key] - categoryMinScores[key]) / range) * 100;
+        }
+        // 保险操作，控制在 0-100 内
+        scorePercent = Math.max(0, Math.min(100, scorePercent));
+
+        return {
+            key,
+            name: categoriesMap[key].name,
+            score: Math.round(scorePercent * 10) / 10,
+            desc: categoriesMap[key].desc
+        };
+    }).sort((a, b) => b.score - a.score);
+
+    const topScore = normalized[0].score;
+    const topTies = normalized.filter(n => Math.abs(n.score - topScore) <= 1);
+    const tieOthers = topTies.filter(t => t.key !== normalized[0].key);
+
+    let typeLabel, typeDesc;
+    const above60 = normalized.filter(n => n.score >= 60).length;
+    const above40 = normalized.filter(n => n.score >= 40).length;
+
+    if (above60 >= 5) {
+        typeLabel = "融会贯通型";
+        typeDesc = "您在多个哲学流派上都表现出较高接受度，可能更习惯根据问题类型切换分析框架，而不是固定依附单一理论。";
+    } else if (above60 >= 3) {
+        typeLabel = "多维兼容型";
+        typeDesc = "您以一两个思想内核为主轴，同时吸纳了其他流派的解释资源。您的作答呈现出清晰重心和一定的跨框架兼容性。";
+    } else if (above40 >= 5) {
+        typeLabel = "温和探索型";
+        typeDesc = "您对多类哲学思想都保持审慎而开放的态度，较少在本量表中表现出强烈排斥或单一归属。";
+    } else {
+        typeLabel = "立场鲜明型";
+        typeDesc = "您的回答集中在少数理论方向上，显示出相对清晰的判断偏好和较稳定的原则重心。";
+    }
+
+    const summaryLowest = normalized[normalized.length - 1];
+    const spread = normalized[0].score - summaryLowest.score;
+    const secondaryLabel = tieOthers.length > 0 ? '并列倾向' : '次要倾向';
+    const secondaryValue = tieOthers.length > 0
+        ? tieOthers.map(item => `${item.name} ${item.score}%`).join('、')
+        : `${normalized[1].name} ${normalized[1].score}%`;
+    window.PrismScale.renderResultSummary({
+        title: typeLabel,
+        metrics: [
+            { label: '主导倾向', value: `${normalized[0].name} ${normalized[0].score}%` },
+            { label: secondaryLabel, value: secondaryValue },
+            { label: '最低匹配', value: `${summaryLowest.name} ${summaryLowest.score}%` },
+            { label: '极差跨度', value: `${spread.toFixed(1)} 分` }
+        ],
+        lead: typeDesc
+    });
+
+    let judgmentHtml = `<h3>理论谱系定性解读</h3>`;
+    judgmentHtml += `<p>您的思想坐标系以<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '为核心基底'}</strong>构建，`;
+    if (normalized[0].score >= 80) judgmentHtml += `且认同度极高（${normalized[0].score}%）。这表示该取向在您的作答中非常稳定，可能是您处理道德、知识和生活问题时经常调用的框架。`;
+    else if (normalized[0].score >= 65) judgmentHtml += `立场相对清晰（${normalized[0].score}%）。您拥有一个稳固的价值观大本营，但在遭遇极其复杂的边界问题时，也愿意走出本阵，向其他流派借取智慧。`;
+    else if (normalized[0].score >= 50) judgmentHtml += `认同度属于温和范畴（${normalized[0].score}%）。您似乎不会把自己完全交给某一种单一框架，而是会根据具体情境、问题类型和人生阶段在不同工具间切换。`;
+    else judgmentHtml += `最高得分也没有突破半数界限。这并不代表结果无效，更可能说明您对单一理论归属保持距离，或当前回答更偏向问题导向而非阵营导向。`;
+
+    judgmentHtml += `从雷达分布形态看，极差跨度为 ${spread.toFixed(1)} 分。${spread > 50 ? '这种较大的差距表示您的理论偏好相对集中，不同流派之间的认同区分较清楚。' : spread > 30 ? '分布有主有次，说明您既有较明显的重心，也保留了一定的跨流派弹性。' : '较平缓的分布说明您对多个框架都保留开放态度，或尚未在本量表覆盖的问题上形成强烈分化。'}</p>`;
+    judgmentHtml += `<div class="result-profile-tags">${normalized.map(item => `<span class="result-profile-tag">${item.name} ${item.score}%</span>`).join('')}</div>
+        <p class="result-data-note">极差跨度只用于概括本次作答中最高与最低匹配流派的相对分差，不代表思想立场的优劣、深浅或成熟度。</p>`;
+    document.getElementById('currentProfileAnalysis').innerHTML = `<div class="insight-card">${judgmentHtml}</div>`;
+
+    const books = booksMap[normalized[0].key];
+    let mainHtml = `<h3>核心特征与经典书目</h3>
+    <p>${categoriesMap[normalized[0].key].desc}</p>
+    <p><strong>生活实践应用：</strong>认同「${normalized[0].name}」的人，在日常生活中通常会表现出这类特征：${practiceMap[normalized[0].key]}。</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
+      <div style="background:#fcffff; padding:20px; border-radius:12px; border-top:4px solid #06b6d4; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
+        <strong style="color:#0e7490; font-size:1.05em;">奠基性经典读物</strong>
+        <ul style="margin:12px 0 0; padding-left:20px; line-height:2; font-size:0.95em;">
+          ${books.classics.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      </div>
+      <div style="background:#ecfeff; padding:20px; border-radius:12px; border-top:4px solid #3c9ab1; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
+        <strong style="color:#0e7490; font-size:1.05em;">当代应用与延伸</strong>
+        <ul style="margin:12px 0 0; padding-left:20px; line-height:2; font-size:0.95em;">
+          ${books.contemporary.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    <div style="background:#f0fdfa; padding:18px 24px; border-radius:12px; margin-top:20px; border-left:4px solid #0d9488; font-size:0.95em; color:#115e59;">
+      <strong style="font-size:1.05em;">最强有力的挑战性读物：</strong><br>${books.challenge[0]}<br>${books.challenge[1]}
+    </div>`;
+    document.getElementById('mainInterpretation').innerHTML = mainHtml;
+
+    drawRadar(normalized);
+    const lowest = normalized[normalized.length - 1];
+    const deepPersonal = generateDeepInsight(normalized, answers);
+    document.getElementById('deepPersonalAnalysis').innerHTML = deepPersonal;
+
+    let tableHtml = `<h3>各流派数据分布详情</h3><table><thead><tr><th>排名</th><th>哲学流派</th><th>匹配度</th><th>强度评级</th><th>基础定义</th></tr></thead><tbody>`;
+    normalized.forEach((item, idx) => {
+        let level = item.score >= 90 ? "深度认同" : item.score >= 80 ? "高度认同" : item.score >= 70 ? "较为认同" : item.score >= 60 ? "基本认同" : item.score >= 50 ? "部分认同" : item.score >= 40 ? "略微认同" : "不太认同";
+        tableHtml += `<tr><td>${idx + 1}</td><td><strong>${item.name}</strong></td><td>${item.score}%</td><td>${level}</td><td style="font-size:0.9em; line-height:1.5;">${item.desc}</td></tr>`;
+    });
+    tableHtml += `</tbody></table>`;
+    document.getElementById('sectionScores').innerHTML = tableHtml;
+
+    const reflectQ = fullQuestions.filter(q => q.category === normalized[0].key && answers[q.id] !== undefined)
+        .sort((a, b) => answers[a.id] - answers[b.id])[0];
+
+    let suggestHtml = `<h3>深度反思与人生践行</h3>
+    <div class="action-box" style="margin-top:0;">
+      <p style="margin-top:0;"><strong>1. 将理论锚定为精神支点</strong><br>
+      既然您高度共鸣于「${normalized[0].name}」，不妨尝试系统阅读该派的一本原著。二手解说有助于入门，但原典能呈现概念如何一步步展开，也更适合检验您是否真正认同该框架的前提。</p>
+      <p><strong>2. 主动拥抱「逆耳之言」</strong><br>
+      找机会阅读一本得分最低的「${lowest.name}」代表作。阅读时先暂停反驳，尽量理解它要解决什么问题、为何会形成这样的前提。</p>
+      <p><strong>3. 知行合一的微小演练</strong><br>
+      从明天起，挑选一个日常痛点（例如遭遇工作不顺、或面临人际摩擦）。刻意停顿3秒钟，在心里问自己：「如果用「${normalized[0].name}」的思维方式，现在应该怎么做最佳？」 哲学只有进入具体行动，才会暴露它真正能解释什么、又会遗漏什么。</p>
+      ${reflectQ ? `<p><strong>4. 个人思想边界探测</strong><br>
+      建议以此题作为反观自照的切入点：「${reflectQ.text}」（您的得分：${answers[reflectQ.id]}/6）。虽然这是您的主导阵营，但您在此给出了较低的分数。仔细剖析这处微妙的「违和感」，那里往往能显示您的个人边界和细分立场。</p>` : ''}
+    </div>`;
+    document.getElementById('personalizedSuggestions').innerHTML = suggestHtml;
+
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+};
+
+function drawRadar(dataArr) {
+    if (!window.PrismScale) return;
+    window.PrismScale.renderResultRadar({
+        canvasId: 'radarChart',
+        labels: dataArr.map(d => d.name.split('/')[0]),
+        values: dataArr.map(d => d.score),
+        max: 100,
+        datasetLabel: '流派匹配度'
+    });
+}
+
+window.resetForm = function () {
+    if (confirm("确定要重置所有选项并清空报告吗？重置也会清除本地自动保存的进度。")) {
+        const form = document.getElementById('philosophyQuiz');
+        for (let q of fullQuestions) {
+            const select = form.elements[`q${q.id}`];
+            if (select) select.value = "";
+        }
+        clearLocalStorage();
+        updateProgress();
+        document.getElementById('result').style.display = 'none';
+        if (window.PrismScale) window.PrismScale.destroyResultRadar('radarChart');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
+
+window.saveResultText = function () {
+    if (document.getElementById('result').style.display !== 'block') { alert("请先完成评估并生成报告。"); return; }
+    let content = "哲学流派倾向深度评估报告\n\n";
+    ["scoreSummary", "typeJudgment", "currentProfileAnalysis", "mainInterpretation", "deepPersonalAnalysis", "sectionScores", "personalizedSuggestions"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) content += el.innerText + "\n\n====\n\n";
+    });
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "哲学流派倾向评估报告.txt";
+    a.click();
+    URL.revokeObjectURL(a.href);
+};
+
+window.saveResultImage = async function () {
+    if (document.getElementById('result').style.display !== 'block') { alert("请先完成评估并生成报告。"); return; }
+    const element = document.getElementById('result');
+    const originalOverflow = element.style.overflow;
+    element.style.overflow = 'visible';
+    const btn = event.target;
+    const originalText = btn.innerText;
+    btn.innerText = '生成中，请稍候...';
+    btn.disabled = true;
+    try {
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            backgroundColor: getComputedStyle(element).backgroundColor,
+            useCORS: true,
+            logging: false,
+            windowWidth: element.scrollWidth,
+            windowHeight: element.scrollHeight,
+            onclone: (doc) => {
+                // html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
+                // overrides in scale-common.css. Copy the live computed colors onto the clone
+                // so the exported image matches the on-screen result in either theme.
+                const dstRoot = doc.getElementById('result');
+                if (!dstRoot) return;
+                const src = element.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
+                const copy = (a, b) => {
+                    const cs = getComputedStyle(a);
+                    b.style.setProperty('background-color', cs.backgroundColor, 'important');
+                    b.style.setProperty('background-image', cs.backgroundImage, 'important');
+                    b.style.setProperty('color', cs.color, 'important');
+                    ['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
+                };
+                copy(element, dstRoot);
+                for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
+            }
+        });
+        const link = document.createElement('a');
+        link.download = "哲学流派倾向评估报告.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    } catch (err) {
+        console.error("生成图片失败", err);
+        alert("生成图片失败，请检查浏览器权限或网络。");
+    } finally {
+        element.style.overflow = originalOverflow;
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
+};
+
+// 启动表单
+initForm();
