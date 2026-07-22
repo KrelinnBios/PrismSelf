@@ -144,10 +144,12 @@ header h1 {
   margin-bottom: 0.6rem;
   line-height: 1.2;
   position: relative;
+  color: rgba(247, 248, 252, 0.94) !important;
 }
 
-header h1 .title-gender {
-  color: var(--accent);
+header h1 .title-guide-suffix {
+  color: var(--accent) !important;
+  white-space: nowrap;
 }
 
 .header-sub {
