@@ -7,7 +7,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./guide-common.css?v=5c6de9e1446b">
+  <link rel="stylesheet" href="./guide-common.css?v=d8262b200396">
   <style>
     .intro-section strong,
     #write .term-desc strong {
@@ -97,21 +97,18 @@
       };
 
       const applyAccentTitle = (h, rawTitle) => {
-        const candidates = ['半性恋', 'Demisexual', 'demisexual'];
-        const key = candidates.find((c) => rawTitle.includes(c));
-        if (!key) {
+        const suffix = '全景指南';
+        const index = rawTitle.lastIndexOf(suffix);
+        if (index < 0) {
           h.appendChild(document.createTextNode(rawTitle));
           return;
         }
-        const index = rawTitle.indexOf(key);
         const before = rawTitle.slice(0, index);
-        const after = rawTitle.slice(index + key.length);
         if (before) h.appendChild(document.createTextNode(before));
         const span = document.createElement('span');
-        span.className = 'title-gender';
-        span.textContent = key;
+        span.className = 'title-guide-suffix';
+        span.textContent = suffix;
         h.appendChild(span);
-        if (after) h.appendChild(document.createTextNode(after));
       };
 
       const build = () => {
