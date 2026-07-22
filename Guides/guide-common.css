@@ -147,7 +147,7 @@ header h1 {
   color: var(--accent) !important;
 }
 
-header h1 .title-guide-suffix {
+#write header h1 .title-guide-suffix {
   color: rgba(247, 248, 252, 0.94) !important;
   white-space: nowrap;
 }
