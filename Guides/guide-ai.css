@@ -805,12 +805,78 @@
 }
 
 @media (max-width: 620px) {
+  /* Keep mobile guide controls quiet and coherent: contextual actions scroll
+     away with the page, while the two reading actions share one bottom row. */
+  :root[data-theme] .theme-toggle,
+  :root[data-theme] .prism-back-home,
+  :root[data-theme] .toc-toggle-btn,
+  :root[data-theme] .guide-ai-launcher {
+    min-width: 44px !important;
+    width: auto !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    border: 1px solid var(--guide-control-border, var(--gold, rgba(91, 77, 227, 0.58))) !important;
+    border-radius: 999px !important;
+    background: color-mix(in srgb, var(--paper, #ffffff) 90%, transparent) !important;
+    color: var(--ink, #293146) !important;
+    box-shadow: 0 6px 18px rgba(11, 18, 32, 0.14) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+  }
+
+  :root[data-theme] .theme-toggle,
+  :root[data-theme] .prism-back-home {
+    position: absolute !important;
+    top: calc(12px + env(safe-area-inset-top, 0px)) !important;
+    bottom: auto !important;
+  }
+
+  :root[data-theme] .theme-toggle {
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: auto !important;
+    width: 44px !important;
+  }
+
+  :root[data-theme] .prism-back-home {
+    left: calc(12px + env(safe-area-inset-left, 0px)) !important;
+    right: auto !important;
+    width: 44px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    font-size: 0 !important;
+  }
+
+  :root[data-theme] .prism-back-home::before {
+    content: "←";
+    font: 500 21px/1 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  }
+
+  :root[data-theme] .floating-toc {
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  :root[data-theme] .toc-toggle-btn {
+    width: 44px !important;
+    padding: 0 !important;
+    font-size: 1.15rem !important;
+  }
+
   .guide-ai-launcher {
     left: calc(12px + env(safe-area-inset-left, 0px)) !important;
     bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
-    min-height: 42px !important;
-    padding: 9px 12px !important;
+    padding: 0 14px !important;
+    gap: 7px !important;
     font-size: 12px !important;
+  }
+
+  :root[data-theme] .theme-toggle:active,
+  :root[data-theme] .prism-back-home:active,
+  :root[data-theme] .toc-toggle-btn:active,
+  :root[data-theme] .guide-ai-launcher:active {
+    transform: scale(0.96) !important;
   }
 
   .guide-ai-dialog {
@@ -848,6 +914,23 @@
   .guide-ai-form {
     padding-right: 14px;
     padding-left: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root[data-theme] body > header,
+  :root[data-theme] #write > header {
+    padding-top: calc(4.25rem + env(safe-area-inset-top, 0px)) !important;
+  }
+
+  .guide-ai-launcher {
+    width: 44px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .guide-ai-launcher span {
+    display: none !important;
   }
 }
 
