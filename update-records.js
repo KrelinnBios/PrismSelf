@@ -3,16 +3,11 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-07-22',
     pages: [
-      './Guides/Gender-Concepts-Comprehensive-Guide.html'
-    ]
-  },
-  {
-    date: '2026-07-20',
-    pages: [
       './Guides/Aromantic-Comprehensive-Guide.html',
       './Guides/Asexual-Comprehensive-Guide.html',
       './Guides/BDSM-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   },
