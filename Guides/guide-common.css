@@ -144,11 +144,11 @@ header h1 {
   margin-bottom: 0.6rem;
   line-height: 1.2;
   position: relative;
-  color: rgba(247, 248, 252, 0.94) !important;
+  color: var(--accent) !important;
 }
 
 header h1 .title-guide-suffix {
-  color: var(--accent) !important;
+  color: rgba(247, 248, 252, 0.94) !important;
   white-space: nowrap;
 }
 
