@@ -28,7 +28,7 @@ const pages = {
   'Guides/Asexual-Comprehensive-Guide.html': { desc: '无性恋全景指南，系统介绍无性恋的定义、谱系、常见误解与社群资源。' },
   'Guides/BDSM-Comprehensive-Guide.html': { desc: 'BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。' },
   'Guides/Demisexual-Comprehensive-Guide.html': { desc: '半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。' },
-  'Guides/Gender-Concepts-Terminology.html': { desc: '性别概念与术语指南，系统解释性别认同、性别表达与相关核心术语。' },
+  'Guides/Gender-Concepts-Comprehensive-Guide.html': { desc: '性别概念全景指南，系统解释性别认同、性别表达与相关核心术语。' },
   'Guides/Greysexual-Comprehensive-Guide.html': { desc: '灰性恋全景指南，系统介绍灰性恋的定义、谱系定位、常见误解与社群语境。' },
   'Glossaries/Philosophy-Glossary.html': { desc: '哲学术语表，以可搜索术语表形式收录 200 个哲学入门常见概念、问题意识与思想传统。' },
   'Glossaries/Sexology-Glossary.html': { desc: '性学术语表，以可搜索术语表形式收录性健康、性反应、同意、避孕、性传播感染、亲密关系与研究伦理等常见概念。' },
