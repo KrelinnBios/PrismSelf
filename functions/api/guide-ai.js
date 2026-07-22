@@ -12,7 +12,7 @@ const GUIDE_TITLES = new Map([
   ['/Guides/Asexual-Comprehensive-Guide', '无性恋全景指南'],
   ['/Guides/BDSM-Comprehensive-Guide', 'BDSM 全景指南'],
   ['/Guides/Demisexual-Comprehensive-Guide', '半性恋全景指南'],
-  ['/Guides/Gender-Concepts-Terminology', '性别概念与术语'],
+  ['/Guides/Gender-Concepts-Comprehensive-Guide', '性别概念全景指南'],
   ['/Guides/Greysexual-Comprehensive-Guide', '灰性恋全景指南']
 ]);
 
