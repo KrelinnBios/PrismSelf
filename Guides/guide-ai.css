@@ -74,7 +74,7 @@
 
 .guide-ai-shell {
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   height: 100%;
 }
 
@@ -147,12 +147,15 @@
   color: #4238b5;
 }
 
-.guide-ai-messages {
+.guide-ai-conversation {
   min-height: 0;
-  padding: 18px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
+}
+
+.guide-ai-messages {
+  padding: 18px 18px 0;
 }
 
 .guide-ai-message {
@@ -225,7 +228,7 @@
 .guide-ai-presets {
   display: flex;
   gap: 8px;
-  padding: 0 18px 12px;
+  padding: 0 18px 18px;
   overflow-x: auto;
   scrollbar-width: thin;
 }
@@ -1015,7 +1018,7 @@
   }
 
   .guide-ai-messages {
-    padding: 14px;
+    padding: 14px 14px 0;
   }
 
   .guide-ai-message-body {
@@ -1023,7 +1026,7 @@
   }
 
   .guide-ai-presets {
-    padding: 0 14px 10px;
+    padding: 0 14px 14px;
   }
 
   .guide-ai-shortcut {

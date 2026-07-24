@@ -292,9 +292,11 @@
       '    <button class="guide-ai-close" type="button" aria-label="' + closeLabel + '" title="' + closeLabel + '"><span aria-hidden="true">×</span></button>',
       '  </header>',
       '  <p class="guide-ai-notice">' + notice + '</p>',
-      '  <div class="guide-ai-messages" role="log" aria-live="polite" aria-relevant="additions"></div>',
-      '  <div class="guide-ai-presets" aria-label="快捷提问">',
+      '  <div class="guide-ai-conversation">',
+      '    <div class="guide-ai-messages" role="log" aria-live="polite" aria-relevant="additions"></div>',
+      '    <div class="guide-ai-presets" aria-label="快捷提问">',
       presets,
+      '    </div>',
       '  </div>',
       '  <form class="guide-ai-form">',
       '    <div class="guide-ai-composer">',
@@ -399,13 +401,14 @@
 
   function addMessage(dialog, role, text, state) {
     var messages = dialog.querySelector('.guide-ai-messages');
+    var conversation = dialog.querySelector('.guide-ai-conversation');
     var message = createElement('article', 'guide-ai-message');
     message.dataset.role = role;
     if (state) message.dataset.state = state;
     message.appendChild(createElement('div', 'guide-ai-message-label', role === 'user' ? '你' : (isScale ? 'AI 解读' : 'AI 陪读')));
     message.appendChild(createElement('div', 'guide-ai-message-body', text));
     messages.appendChild(message);
-    messages.scrollTop = messages.scrollHeight;
+    conversation.scrollTop = conversation.scrollHeight;
     return message;
   }
 
