@@ -565,6 +565,125 @@
   color: #edf0f5 !important;
 }
 
+/* Scale pages keep the guide interaction model while using the shared scale palette. */
+:root[data-theme] .guide-ai-launcher--scale,
+:root[data-theme] .guide-ai-dialog--scale {
+  --focus: var(--scale-accent);
+}
+
+:root[data-theme] .guide-ai-launcher--scale {
+  --guide-control-border: color-mix(in srgb, var(--scale-accent) 72%, transparent);
+  --guide-control-border-strong: var(--scale-accent);
+  background: color-mix(in srgb, var(--scale-surface) 94%, transparent) !important;
+  color: var(--scale-ink) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale {
+  border-color: color-mix(in srgb, var(--scale-accent) 32%, var(--scale-line));
+  background: var(--scale-bg);
+  color: var(--scale-ink);
+  box-shadow: 0 28px 80px color-mix(in srgb, var(--scale-ink) 28%, transparent);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-header,
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-form {
+  border-color: var(--scale-line);
+  background: var(--scale-surface);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-title {
+  color: var(--scale-ink) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-eyebrow {
+  color: var(--scale-accent);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-notice {
+  border-color: var(--scale-line);
+  background: var(--scale-tint);
+  color: var(--scale-muted);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-notice strong {
+  color: var(--scale-accent-dark);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-message-label,
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-form-meta,
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-close,
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-clear {
+  color: var(--scale-muted) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-message-body {
+  border-color: var(--scale-line);
+  background: var(--scale-surface);
+  color: var(--scale-ink);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-message[data-role="user"] .guide-ai-message-body {
+  border-color: var(--scale-accent);
+  background: var(--scale-accent);
+  color: var(--scale-bg);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-thinking i {
+  background: var(--scale-accent);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-preset {
+  border-color: var(--scale-line) !important;
+  background: var(--scale-surface) !important;
+  color: var(--scale-muted) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-preset:hover {
+  border-color: var(--scale-accent) !important;
+  background: var(--scale-tint) !important;
+  color: var(--scale-accent-dark) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-composer {
+  border-color: var(--scale-line);
+  background: var(--scale-tint-2);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-composer:focus-within {
+  border-color: var(--scale-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--scale-accent) 18%, transparent);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-input {
+  color: var(--scale-ink) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-input::placeholder {
+  color: var(--scale-muted);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-send {
+  border-color: var(--scale-accent) !important;
+  background: var(--scale-accent) !important;
+  color: var(--scale-bg) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-send:hover {
+  border-color: color-mix(in srgb, var(--scale-accent) 78%, #000000) !important;
+  background: color-mix(in srgb, var(--scale-accent) 78%, #000000) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-close {
+  border-color: var(--scale-line) !important;
+  background: var(--scale-tint) !important;
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-close:hover,
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-clear:hover {
+  border-color: var(--scale-accent) !important;
+  background: var(--scale-tint) !important;
+  color: var(--scale-accent-dark) !important;
+}
 :root[data-theme] .guide-ai-launcher--bdsm {
   border-color: var(--gold) !important;
   background: var(--paper) !important;
@@ -917,6 +1036,13 @@
   }
 }
 
+@media (max-width: 620px) {
+  :root[data-theme] .guide-ai-launcher--scale {
+    border-color: color-mix(in srgb, var(--scale-accent) 72%, transparent) !important;
+    background: color-mix(in srgb, var(--scale-surface) 90%, transparent) !important;
+    color: var(--scale-ink) !important;
+  }
+}
 @media (max-width: 360px) {
   :root[data-theme] body > header,
   :root[data-theme] #write > header {

@@ -249,6 +249,7 @@
     launcher.setAttribute('aria-haspopup', 'dialog');
     launcher.setAttribute('aria-controls', 'guideAiDialog');
     launcher.innerHTML = iconMarkup() + '<span>' + (isScale ? 'AI 解读' : 'AI 陪读') + '</span>';
+    if (isScale) launcher.classList.add('guide-ai-launcher--scale');
 
     var isBdsmGuide = /\/Guides\/BDSM-Comprehensive-Guide(?:\.html)?\/?$/.test(window.location.pathname);
     if (isBdsmGuide) launcher.classList.add('guide-ai-launcher--bdsm');
@@ -256,27 +257,33 @@
     var dialog = createElement('dialog', 'guide-ai-dialog');
     dialog.id = 'guideAiDialog';
     dialog.setAttribute('aria-labelledby', 'guideAiTitle');
+    if (isScale) dialog.classList.add('guide-ai-dialog--scale');
     if (isBdsmGuide) dialog.classList.add('guide-ai-dialog--bdsm');
 
-    var eyebrow = isScale ? 'PrismSelf · Scale Companion' : 'PrismSelf · Guide Companion';
+    var eyebrow = isScale ? 'PrismSelf · Scale Interpretation' : 'PrismSelf · Guide Companion';
     var dialogTitle = isScale ? '量表 AI 解读' : '指南 AI 陪读';
     var closeLabel = isScale ? '关闭量表 AI 解读' : '关闭指南 AI 陪读';
     var notice = isScale
       ? '<strong>仅作自我理解辅助。</strong>提问时，本页说明与已生成的结果摘录会发送至 Cloudflare Workers AI；逐题选择不会发送，本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断、身份判定或专业建议。'
       : '<strong>仅作内容理解辅助。</strong>问题与本页相关摘录会发送至 Cloudflare Workers AI；本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断或专业建议。';
-    var presets = isScale
-      ? [
-          '    <button class="guide-ai-preset" type="button" data-mode="summary" data-prompt="请说明这份量表探索哪些内容，以及应该如何理解它的分数与边界。">了解量表</button>',
-          '    <button class="guide-ai-preset" type="button" data-mode="result" data-prompt="请根据当前结果摘录，梳理最值得关注的倾向、维度关系与需要保留的不确定性。" disabled>解读结果</button>',
-          '    <button class="guide-ai-preset" type="button" data-mode="compare" data-prompt="请比较这份量表中的主要维度，说明它们各自代表什么、哪些地方容易混淆。">维度辨析</button>',
-          '    <button class="guide-ai-preset" type="button" data-mode="reflect" data-prompt="请根据这份量表提出 5 个不带诊断性、不替我定型的自我思考问题。">继续思考</button>'
-        ].join('')
-      : [
-          '    <button class="guide-ai-preset" type="button" data-mode="summary" data-prompt="请概括这篇指南的核心内容，并指出最容易被误解的地方。">概括本页</button>',
-          '    <button class="guide-ai-preset" type="button" data-mode="compare" data-prompt="请梳理这篇指南中最重要的概念，并比较容易混淆的概念。">概念辨析</button>',
-          '    <button class="guide-ai-preset" type="button" data-mode="reflect" data-prompt="请根据这篇指南提出 5 个不带诊断性的自我思考问题。">思考问题</button>',
-          '    <button class="guide-ai-preset" type="button" data-mode="selection" data-prompt="请用通俗、准确的中文解释我选中的原文，并保留必要语境。" disabled>解释选中内容</button>'
-        ].join('');
+    var summaryPrompt = isScale
+      ? '请概括这份量表的核心内容，并指出最容易误解的分数或使用边界。若已有结果，请同时概括结果中最值得关注的倾向。'
+      : '请概括这篇指南的核心内容，并指出最容易被误解的地方。';
+    var comparePrompt = isScale
+      ? '请梳理这份量表中最重要的维度，并比较容易混淆的维度或概念。若已有结果，请结合结果说明维度之间的关系。'
+      : '请梳理这篇指南中最重要的概念，并比较容易混淆的概念。';
+    var reflectPrompt = isScale
+      ? '请根据这份量表及当前结果（如有）提出 5 个不带诊断性、不替我定型的自我思考问题。'
+      : '请根据这篇指南提出 5 个不带诊断性的自我思考问题。';
+    var selectionPrompt = isScale
+      ? '请用通俗、准确的中文解释我选中的量表说明或结果文字，并保留必要语境。'
+      : '请用通俗、准确的中文解释我选中的原文，并保留必要语境。';
+    var presets = [
+      '    <button class="guide-ai-preset" type="button" data-mode="summary" data-prompt="' + summaryPrompt + '">概括本页</button>',
+      '    <button class="guide-ai-preset" type="button" data-mode="compare" data-prompt="' + comparePrompt + '">概念辨析</button>',
+      '    <button class="guide-ai-preset" type="button" data-mode="reflect" data-prompt="' + reflectPrompt + '">思考问题</button>',
+      '    <button class="guide-ai-preset" type="button" data-mode="selection" data-prompt="' + selectionPrompt + '" disabled>解释选中内容</button>'
+    ].join('');
 
     dialog.innerHTML = [
       '<div class="guide-ai-shell">',
@@ -310,7 +317,7 @@
     var sendButton = dialog.querySelector('.guide-ai-send');
     var form = dialog.querySelector('.guide-ai-form');
     var count = dialog.querySelector('.guide-ai-count');
-    var contextButton = dialog.querySelector(isScale ? '[data-mode="result"]' : '[data-mode="selection"]');
+    var contextButton = dialog.querySelector('[data-mode="selection"]');
 
     function updateInput() {
       if (input.value.length > MAX_QUESTION_LENGTH) input.value = input.value.slice(0, MAX_QUESTION_LENGTH);
@@ -319,15 +326,11 @@
     }
 
     function updateContextAction() {
-      if (isScale) {
-        var hasResult = Boolean(currentResultText());
-        contextButton.disabled = !hasResult || Boolean(activeController);
-        contextButton.title = hasResult ? '解读当前已生成的量表结果' : '请先完成量表并生成结果';
-        return;
-      }
       readSelection();
       contextButton.disabled = !selectedText || Boolean(activeController);
-      contextButton.title = selectedText ? '解释当前选中的指南原文' : '请先在指南正文中选择一段文字';
+      contextButton.title = selectedText
+        ? '解释当前选中的' + (isScale ? '量表说明或结果文字' : '指南原文')
+        : '请先在' + (isScale ? '量表页面' : '指南正文') + '中选择一段文字';
     }
 
     function openDialog() {
@@ -388,16 +391,6 @@
       updateContextAction();
     });
 
-    if (isScale) {
-      var scaleResult = document.getElementById((window.PRISM_SCALE_CONFIG || {}).resultId || 'result');
-      if (scaleResult) {
-        new MutationObserver(updateContextAction).observe(scaleResult, {
-          attributes: true,
-          childList: true,
-          subtree: true
-        });
-      }
-    }
 
     addWelcome(dialog);
     updateInput();
@@ -409,7 +402,7 @@
     var message = createElement('article', 'guide-ai-message');
     message.dataset.role = role;
     if (state) message.dataset.state = state;
-    message.appendChild(createElement('div', 'guide-ai-message-label', role === 'user' ? '你' : 'AI 陪读'));
+    message.appendChild(createElement('div', 'guide-ai-message-label', role === 'user' ? '你' : (isScale ? 'AI 解读' : 'AI 陪读')));
     message.appendChild(createElement('div', 'guide-ai-message-body', text));
     messages.appendChild(message);
     messages.scrollTop = messages.scrollHeight;
@@ -421,7 +414,7 @@
       dialog,
       'assistant',
       isScale
-        ? '你好，我可以根据《' + pageTitle() + '》说明量表边界、比较维度，并在你生成结果后提供不带诊断性、不替你定型的解读。'
+        ? '你好，我可以根据《' + pageTitle() + '》帮你梳理量表、比较概念，并在你生成结果后提供不带诊断性、不替你定型的解读。你也可以选中页面说明或结果文字，再让我解释。'
         : '你好，我可以根据《' + pageTitle() + '》帮你梳理、解释和比较概念。你也可以先在正文中选中一段文字，再让我解释。'
     );
   }
@@ -436,16 +429,13 @@
   function setBusy(dialog, busy) {
     dialog.querySelector('.guide-ai-send').disabled = busy || !normalizeText(dialog.querySelector('.guide-ai-input').value);
     dialog.querySelectorAll('.guide-ai-preset').forEach(function (button) {
-      var unavailableContext = button.dataset.mode === 'selection'
-        ? !selectedText
-        : button.dataset.mode === 'result' && !currentResultText();
-      button.disabled = busy || unavailableContext;
+      button.disabled = busy || (button.dataset.mode === 'selection' && !selectedText);
     });
   }
 
   function friendlyError(status, payload) {
     if (status === 429) return '请求有些频繁，请稍后再试。免费额度有限，感谢理解。';
-    if (status === 503 && payload && payload.code === 'AI_BINDING_MISSING') return 'AI 陪读还在完成部署配置，请稍后再试。';
+    if (status === 503 && payload && payload.code === 'AI_BINDING_MISSING') return (isScale ? 'AI 解读' : 'AI 陪读') + '还在完成部署配置，请稍后再试。';
     if (status === 503) return 'AI 服务暂时不可用，可能是今日免费额度已用完，请稍后或明天再试。';
     if (status === 400) return (payload && payload.message) || '这次问题没有成功提交，请缩短内容后再试。';
     return '这次没有成功生成回答，请稍后再试。';
