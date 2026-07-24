@@ -1,6 +1,19 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-07-25',
+    pages: [
+      './Scales/Aromantic-Spectrum-Scale.html',
+      './Scales/Asexual-Spectrum-Scale.html',
+      './Scales/Big-Five-Personality-Scale.html',
+      './Scales/Feminist-Leanings-Scale.html',
+      './Scales/Gender-Exploration-Scale.html',
+      './Scales/HEXACO-Personality-Scale.html',
+      './Scales/Philosophical-Leanings-Scale.html',
+      './Scales/Sexual-Orientation-Scale.html'
+    ]
+  },
+  {
     date: '2026-07-22',
     pages: [
       './Guides/Aromantic-Comprehensive-Guide.html',
@@ -9,24 +22,6 @@ window.PrismSelfUpdateGroups = [
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html'
-    ]
-  },
-  {
-    date: '2026-07-17',
-    pages: [
-      './Scales/HEXACO-Personality-Scale.html',
-      './Scales/Big-Five-Personality-Scale.html'
-    ]
-  },
-  {
-    date: '2026-07-16',
-    pages: [
-      './Scales/Asexual-Spectrum-Scale.html',
-      './Scales/Aromantic-Spectrum-Scale.html',
-      './Scales/Sexual-Orientation-Scale.html',
-      './Scales/Gender-Exploration-Scale.html',
-      './Scales/Feminist-Leanings-Scale.html',
-      './Scales/Philosophical-Leanings-Scale.html'
     ]
   },
   {

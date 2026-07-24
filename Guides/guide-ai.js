@@ -1,14 +1,15 @@
-/* Opt-in AI reading companion shared by every page in Guides/. */
+/* Opt-in AI companion shared by guide and scale pages. */
 (function () {
   'use strict';
 
-  if (window.__prismGuideAiLoaded) return;
-  window.__prismGuideAiLoaded = true;
+  if (window.__prismAiCompanionLoaded) return;
+  window.__prismAiCompanionLoaded = true;
 
   var MAX_QUESTION_LENGTH = 300;
   var MAX_CONTEXT_LENGTH = 8500;
   var MAX_CHUNK_LENGTH = 1300;
   var MAX_CHUNKS = 280;
+  var isScale = Boolean(window.PRISM_SCALE_CONFIG) || /^\/Scales\//.test(window.location.pathname);
   var activeController = null;
   var history = [];
   var chunks = [];
@@ -57,7 +58,7 @@
 
   function pageTitle() {
     var title = normalizeText(document.title).replace(/\s*[|｜-]\s*PrismSelf\s*$/i, '');
-    return title || '当前指南';
+    return title || (isScale ? '当前量表' : '当前指南');
   }
 
   function findArticleRoot() {
@@ -68,7 +69,10 @@
   }
 
   function isExcluded(node) {
-    return Boolean(node.closest('.guide-ai-dialog, .guide-ai-launcher, .floating-toc, nav, script, style'));
+    return Boolean(node.closest(
+      '.guide-ai-dialog, .guide-ai-launcher, .floating-toc, nav, script, style' +
+      (isScale ? ', form, .scale-result, #result' : '')
+    ));
   }
 
   function collectChunks() {
@@ -190,10 +194,25 @@
     return selectedText;
   }
 
+  function currentResultText() {
+    if (!isScale) return '';
+    var config = window.PRISM_SCALE_CONFIG || {};
+    var result = document.getElementById(config.resultId || 'result');
+    if (!result || result.hidden || window.getComputedStyle(result).display === 'none') return '';
+    return normalizeText(result.innerText || result.textContent).slice(0, 4200);
+  }
+
   function buildContext(question, mode) {
     var chosen = (mode === 'summary' || mode === 'reflect') ? overviewChunks() : rankedChunks(question);
     var parts = [];
     var length = 0;
+
+    var resultText = currentResultText();
+    if (resultText) {
+      var resultPart = '【读者当前看到的量表结果】\n' + resultText;
+      parts.push(resultPart);
+      length += resultPart.length + 2;
+    }
 
     if (mode === 'selection' && selectedText) {
       var selectionPart = '【读者选中的原文】\n' + selectedText;
@@ -229,7 +248,7 @@
     launcher.type = 'button';
     launcher.setAttribute('aria-haspopup', 'dialog');
     launcher.setAttribute('aria-controls', 'guideAiDialog');
-    launcher.innerHTML = iconMarkup() + '<span>AI 陪读</span>';
+    launcher.innerHTML = iconMarkup() + '<span>' + (isScale ? 'AI 解读' : 'AI 陪读') + '</span>';
 
     var isBdsmGuide = /\/Guides\/BDSM-Comprehensive-Guide(?:\.html)?\/?$/.test(window.location.pathname);
     if (isBdsmGuide) launcher.classList.add('guide-ai-launcher--bdsm');
@@ -238,23 +257,41 @@
     dialog.id = 'guideAiDialog';
     dialog.setAttribute('aria-labelledby', 'guideAiTitle');
     if (isBdsmGuide) dialog.classList.add('guide-ai-dialog--bdsm');
+
+    var eyebrow = isScale ? 'PrismSelf · Scale Companion' : 'PrismSelf · Guide Companion';
+    var dialogTitle = isScale ? '量表 AI 解读' : '指南 AI 陪读';
+    var closeLabel = isScale ? '关闭量表 AI 解读' : '关闭指南 AI 陪读';
+    var notice = isScale
+      ? '<strong>仅作自我理解辅助。</strong>提问时，本页说明与已生成的结果摘录会发送至 Cloudflare Workers AI；逐题选择不会发送，本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断、身份判定或专业建议。'
+      : '<strong>仅作内容理解辅助。</strong>问题与本页相关摘录会发送至 Cloudflare Workers AI；本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断或专业建议。';
+    var presets = isScale
+      ? [
+          '    <button class="guide-ai-preset" type="button" data-mode="summary" data-prompt="请说明这份量表探索哪些内容，以及应该如何理解它的分数与边界。">了解量表</button>',
+          '    <button class="guide-ai-preset" type="button" data-mode="result" data-prompt="请根据当前结果摘录，梳理最值得关注的倾向、维度关系与需要保留的不确定性。" disabled>解读结果</button>',
+          '    <button class="guide-ai-preset" type="button" data-mode="compare" data-prompt="请比较这份量表中的主要维度，说明它们各自代表什么、哪些地方容易混淆。">维度辨析</button>',
+          '    <button class="guide-ai-preset" type="button" data-mode="reflect" data-prompt="请根据这份量表提出 5 个不带诊断性、不替我定型的自我思考问题。">继续思考</button>'
+        ].join('')
+      : [
+          '    <button class="guide-ai-preset" type="button" data-mode="summary" data-prompt="请概括这篇指南的核心内容，并指出最容易被误解的地方。">概括本页</button>',
+          '    <button class="guide-ai-preset" type="button" data-mode="compare" data-prompt="请梳理这篇指南中最重要的概念，并比较容易混淆的概念。">概念辨析</button>',
+          '    <button class="guide-ai-preset" type="button" data-mode="reflect" data-prompt="请根据这篇指南提出 5 个不带诊断性的自我思考问题。">思考问题</button>',
+          '    <button class="guide-ai-preset" type="button" data-mode="selection" data-prompt="请用通俗、准确的中文解释我选中的原文，并保留必要语境。" disabled>解释选中内容</button>'
+        ].join('');
+
     dialog.innerHTML = [
       '<div class="guide-ai-shell">',
       '  <header class="guide-ai-header">',
-      '    <div class="guide-ai-heading"><p class="guide-ai-eyebrow">PrismSelf · Guide Companion</p><h2 class="guide-ai-title" id="guideAiTitle">指南 AI 陪读</h2></div>',
-      '    <button class="guide-ai-close" type="button" aria-label="关闭 AI 陪读" title="关闭 AI 陪读"><span aria-hidden="true">×</span></button>',
+      '    <div class="guide-ai-heading"><p class="guide-ai-eyebrow">' + eyebrow + '</p><h2 class="guide-ai-title" id="guideAiTitle">' + dialogTitle + '</h2></div>',
+      '    <button class="guide-ai-close" type="button" aria-label="' + closeLabel + '" title="' + closeLabel + '"><span aria-hidden="true">×</span></button>',
       '  </header>',
-      '  <p class="guide-ai-notice"><strong>仅作内容理解辅助。</strong>问题与本页相关摘录会发送至 Cloudflare Workers AI；本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断或专业建议。</p>',
+      '  <p class="guide-ai-notice">' + notice + '</p>',
       '  <div class="guide-ai-messages" role="log" aria-live="polite" aria-relevant="additions"></div>',
       '  <div class="guide-ai-presets" aria-label="快捷提问">',
-      '    <button class="guide-ai-preset" type="button" data-mode="summary" data-prompt="请概括这篇指南的核心内容，并指出最容易被误解的地方。">概括本页</button>',
-      '    <button class="guide-ai-preset" type="button" data-mode="compare" data-prompt="请梳理这篇指南中最重要的概念，并比较容易混淆的概念。">概念辨析</button>',
-      '    <button class="guide-ai-preset" type="button" data-mode="reflect" data-prompt="请根据这篇指南提出 5 个不带诊断性的自我思考问题。">思考问题</button>',
-      '    <button class="guide-ai-preset" type="button" data-mode="selection" data-prompt="请用通俗、准确的中文解释我选中的原文，并保留必要语境。" disabled>解释选中内容</button>',
+      presets,
       '  </div>',
       '  <form class="guide-ai-form">',
       '    <div class="guide-ai-composer">',
-      '      <textarea class="guide-ai-input" rows="2" maxlength="' + MAX_QUESTION_LENGTH + '" aria-label="向指南 AI 陪读提问" placeholder="围绕当前指南提问……"></textarea>',
+      '      <textarea class="guide-ai-input" rows="2" maxlength="' + MAX_QUESTION_LENGTH + '" aria-label="向' + dialogTitle + '提问" placeholder="围绕当前' + (isScale ? '量表或结果' : '指南') + '提问……"></textarea>',
       '      <div class="guide-ai-form-meta">',
       '        <span><span class="guide-ai-count">0</span>/' + MAX_QUESTION_LENGTH + '<span class="guide-ai-shortcut"> · Enter 发送，Shift+Enter 换行</span></span>',
       '        <span class="guide-ai-form-actions"><button class="guide-ai-clear" type="button">清空对话</button><button class="guide-ai-send" type="submit" disabled>发送 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.2 2.5 14 8 2.2 13.5l1.3-4.4L9.2 8 3.5 6.9 2.2 2.5Z" fill="currentColor"/></svg></button></span>',
@@ -273,7 +310,7 @@
     var sendButton = dialog.querySelector('.guide-ai-send');
     var form = dialog.querySelector('.guide-ai-form');
     var count = dialog.querySelector('.guide-ai-count');
-    var selectionButton = dialog.querySelector('[data-mode="selection"]');
+    var contextButton = dialog.querySelector(isScale ? '[data-mode="result"]' : '[data-mode="selection"]');
 
     function updateInput() {
       if (input.value.length > MAX_QUESTION_LENGTH) input.value = input.value.slice(0, MAX_QUESTION_LENGTH);
@@ -281,14 +318,20 @@
       sendButton.disabled = !normalizeText(input.value) || Boolean(activeController);
     }
 
-    function updateSelection() {
+    function updateContextAction() {
+      if (isScale) {
+        var hasResult = Boolean(currentResultText());
+        contextButton.disabled = !hasResult || Boolean(activeController);
+        contextButton.title = hasResult ? '解读当前已生成的量表结果' : '请先完成量表并生成结果';
+        return;
+      }
       readSelection();
-      selectionButton.disabled = !selectedText || Boolean(activeController);
-      selectionButton.title = selectedText ? '解释当前选中的指南原文' : '请先在指南正文中选择一段文字';
+      contextButton.disabled = !selectedText || Boolean(activeController);
+      contextButton.title = selectedText ? '解释当前选中的指南原文' : '请先在指南正文中选择一段文字';
     }
 
     function openDialog() {
-      updateSelection();
+      updateContextAction();
       if (typeof dialog.showModal === 'function') dialog.showModal();
       else dialog.setAttribute('open', '');
       window.setTimeout(function () { input.focus(); }, 0);
@@ -308,6 +351,11 @@
     });
     dialog.addEventListener('click', function (event) {
       if (event.target === dialog) closeDialog();
+    });
+    dialog.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      closeDialog();
     });
     input.addEventListener('input', updateInput);
     input.addEventListener('keydown', function (event) {
@@ -337,11 +385,23 @@
       dialog.querySelector('.guide-ai-messages').innerHTML = '';
       addWelcome(dialog);
       updateInput();
-      updateSelection();
+      updateContextAction();
     });
+
+    if (isScale) {
+      var scaleResult = document.getElementById((window.PRISM_SCALE_CONFIG || {}).resultId || 'result');
+      if (scaleResult) {
+        new MutationObserver(updateContextAction).observe(scaleResult, {
+          attributes: true,
+          childList: true,
+          subtree: true
+        });
+      }
+    }
 
     addWelcome(dialog);
     updateInput();
+    updateContextAction();
   }
 
   function addMessage(dialog, role, text, state) {
@@ -357,7 +417,13 @@
   }
 
   function addWelcome(dialog) {
-    addMessage(dialog, 'assistant', '你好，我可以根据《' + pageTitle() + '》帮你梳理、解释和比较概念。你也可以先在正文中选中一段文字，再让我解释。');
+    addMessage(
+      dialog,
+      'assistant',
+      isScale
+        ? '你好，我可以根据《' + pageTitle() + '》说明量表边界、比较维度，并在你生成结果后提供不带诊断性、不替你定型的解读。'
+        : '你好，我可以根据《' + pageTitle() + '》帮你梳理、解释和比较概念。你也可以先在正文中选中一段文字，再让我解释。'
+    );
   }
 
   function addThinking(dialog) {
@@ -370,7 +436,10 @@
   function setBusy(dialog, busy) {
     dialog.querySelector('.guide-ai-send').disabled = busy || !normalizeText(dialog.querySelector('.guide-ai-input').value);
     dialog.querySelectorAll('.guide-ai-preset').forEach(function (button) {
-      button.disabled = busy || (button.dataset.mode === 'selection' && !selectedText);
+      var unavailableContext = button.dataset.mode === 'selection'
+        ? !selectedText
+        : button.dataset.mode === 'result' && !currentResultText();
+      button.disabled = busy || unavailableContext;
     });
   }
 
