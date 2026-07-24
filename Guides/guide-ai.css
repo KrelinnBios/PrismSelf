@@ -28,13 +28,22 @@
   letter-spacing: 0.02em !important;
   appearance: none !important;
   -webkit-appearance: none !important;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease !important;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.25s ease, color 0.25s ease !important;
 }
 
 .guide-ai-launcher:hover {
-  transform: translateY(-2px) !important;
-  border-color: var(--guide-control-border-strong, rgba(91, 77, 227, 0.95)) !important;
-  box-shadow: 0 14px 32px rgba(24, 33, 47, 0.2) !important;
+  background: rgba(11, 18, 32, 0.94) !important;
+  color: rgba(247, 248, 252, 0.94) !important;
+}
+
+:root[data-theme] .guide-ai-launcher--scale:hover {
+  background: var(--scale-ink) !important;
+  color: var(--scale-surface) !important;
+}
+
+:root[data-theme="dark"] .guide-ai-launcher:hover {
+  background: rgba(247, 248, 252, 0.94) !important;
+  color: #1a2332 !important;
 }
 
 .guide-ai-launcher:focus-visible,
@@ -228,7 +237,7 @@
 .guide-ai-presets {
   display: flex;
   gap: 8px;
-  padding: 0 18px 18px;
+  padding: 10px 0 10px;
   overflow-x: auto;
   scrollbar-width: thin;
 }
@@ -261,7 +270,7 @@
 }
 
 .guide-ai-form {
-  padding: 12px 18px calc(14px + env(safe-area-inset-bottom, 0px));
+  padding: 0 18px calc(14px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid #dce1eb;
   background: #ffffff;
 }
@@ -583,9 +592,8 @@
 
 :root[data-theme] .guide-ai-dialog--scale {
   border-color: color-mix(in srgb, var(--scale-accent) 32%, var(--scale-line));
-  background: var(--scale-bg);
+  background: var(--scale-surface);
   color: var(--scale-ink);
-  box-shadow: 0 28px 80px color-mix(in srgb, var(--scale-ink) 28%, transparent);
 }
 
 :root[data-theme] .guide-ai-dialog--scale .guide-ai-header,
@@ -629,6 +637,18 @@
   border-color: var(--scale-accent);
   background: var(--scale-accent);
   color: var(--scale-bg);
+}
+
+:root[data-theme] .guide-ai-dialog--scale .guide-ai-message[data-state="error"] .guide-ai-message-body {
+  border-color: #e8b4b4;
+  background: #fff4f4;
+  color: #8f2e2e;
+}
+
+:root[data-theme="dark"] .guide-ai-dialog--scale .guide-ai-message[data-state="error"] .guide-ai-message-body {
+  border-color: #6f3c45;
+  background: #351f27;
+  color: #f1b8c0;
 }
 
 :root[data-theme] .guide-ai-dialog--scale .guide-ai-thinking i {
@@ -695,7 +715,8 @@
 }
 
 :root[data-theme] .guide-ai-launcher--bdsm:hover {
-  border-color: var(--gold) !important;
+  background: var(--ink) !important;
+  color: var(--paper) !important;
   box-shadow: 0 14px 32px rgba(45, 29, 20, 0.26) !important;
 }
 
@@ -750,6 +771,18 @@
   border-color: var(--rust);
   background: var(--rust);
   color: var(--paper);
+}
+
+:root[data-theme] .guide-ai-dialog--bdsm .guide-ai-message[data-state="error"] .guide-ai-message-body {
+  border-color: #e8b4b4;
+  background: #fff4f4;
+  color: #8f2e2e;
+}
+
+:root[data-theme="dark"] .guide-ai-dialog--bdsm .guide-ai-message[data-state="error"] .guide-ai-message-body {
+  border-color: #6f3c45;
+  background: #351f27;
+  color: #f1b8c0;
 }
 
 :root[data-theme] .guide-ai-dialog--bdsm .guide-ai-thinking i {
@@ -861,6 +894,18 @@
   border-color: var(--accent);
   background: var(--accent);
   color: var(--paper);
+}
+
+:root[data-theme] body.guide-aromantic .guide-ai-message[data-state="error"] .guide-ai-message-body {
+  border-color: #e8b4b4;
+  background: #fff4f4;
+  color: #8f2e2e;
+}
+
+:root[data-theme="dark"] body.guide-aromantic .guide-ai-message[data-state="error"] .guide-ai-message-body {
+  border-color: #6f3c45;
+  background: #351f27;
+  color: #f1b8c0;
 }
 
 :root[data-theme] body.guide-aromantic .guide-ai-thinking i {
@@ -996,8 +1041,7 @@
 
   :root[data-theme] .theme-toggle:active,
   :root[data-theme] .prism-back-home:active,
-  :root[data-theme] .toc-toggle-btn:active,
-  :root[data-theme] .guide-ai-launcher:active {
+  :root[data-theme] .toc-toggle-btn:active {
     transform: scale(0.96) !important;
   }
 
@@ -1026,7 +1070,7 @@
   }
 
   .guide-ai-presets {
-    padding: 0 14px 14px;
+    padding: 0 0 14px;
   }
 
   .guide-ai-shortcut {
