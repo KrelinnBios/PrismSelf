@@ -244,6 +244,7 @@
 
 .guide-ai-preset {
   flex: 0 0 auto !important;
+  width: auto !important;
   min-height: 34px !important;
   margin: 0 !important;
   padding: 7px 11px !important;
@@ -1070,7 +1071,7 @@
   }
 
   .guide-ai-presets {
-    padding: 0 0 14px;
+    padding: 14px 0;
   }
 
   .guide-ai-shortcut {
