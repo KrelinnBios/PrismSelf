@@ -258,6 +258,222 @@
 		}
 	}
 
+	function cleanExampleText(text) {
+		return String(text || '')
+			.replace(/^\s*(?:具体案例：)?\s*(?:例[一二三]：|例如[：，,]?)/, '')
+			.replace(/\s+/g, ' ')
+			.replace(/[，,]也$/, '')
+			.replace(/[。！？!?；;，,\s]+$/, '')
+			.trim();
+	}
+
+	function replaceExamplePhrase(text, replacements, fallback) {
+		for (const [pattern, replacement] of replacements) {
+			if (pattern.test(text)) return text.replace(pattern, replacement);
+		}
+		return fallback(text);
+	}
+
+	function softenExample(text, fallbackText = '') {
+		const source = cleanExampleText(text);
+		return replaceExamplePhrase(source, [
+			[/很晚才察觉/, '偶尔要到较晚才察觉'],
+			[/没有及时察觉/, '偶尔不能及时察觉'],
+			[/我很难/, '我偶尔会难以'],
+			[/很难/, '偶尔难以'],
+			[/难以/, '偶尔难以'],
+			[/无法/, '偶尔无法'],
+			[/我不太在意/, '我有时不太在意'],
+			[/不太在意/, '有时不太在意'],
+			[/我不把/, '我有时不把'],
+			[/不把/, '有时不把'],
+			[/我不会/, '我有时不会'],
+			[/不会/, '有时不会'],
+			[/我不愿/, '我有时不愿'],
+			[/不愿/, '有时不愿'],
+			[/我可能/, '我有时可能'],
+			[/可能/, '有时可能'],
+			[/我也会/, '我有时也会'],
+			[/也会/, '有时也会'],
+			[/我仍会/, '我有时仍会'],
+			[/仍会/, '有时仍会'],
+			[/我仍能/, '我有时仍能'],
+			[/仍能/, '有时仍能'],
+			[/我仍/, '我有时仍'],
+			[/仍/, '有时仍'],
+			[/总是/, '有时'],
+			[/始终/, '有时'],
+			[/几乎每天/, '偶尔'],
+			[/经常/, '偶尔'],
+			[/常常/, '偶尔'],
+			[/通常/, '有时'],
+			[/我常/, '我偶尔'],
+			[/我会/, '我有时会'],
+			[/我能/, '我有时能'],
+			[/能够/, '有时能够'],
+			[/(?<![功可])能/, '有时能'],
+			[/(^|[，；。,!！?？\s])会/, '$1有时会'],
+			[/容易/, '有时容易'],
+			[/我更习惯/, '我有时更习惯'],
+			[/更习惯/, '有时更习惯'],
+			[/喜欢/, '有时喜欢'],
+			[/不只/, '有时不只'],
+			[/先/, '有时先'],
+			[/应当/, '在部分情境下应当'],
+			[/应该/, '在部分情境下应该'],
+			[/(^|[^不])需要/, '$1偶尔需要'],
+			[/可以/, '有时可以'],
+			[/倾向于/, '有时倾向于'],
+			[/愿意/, '有时愿意'],
+			[/认为/, '有时认为'],
+			[/支持/, '在部分情境下支持'],
+			[/反对/, '在部分情境下反对'],
+			[/关注/, '在部分议题中关注']
+		], value => fallbackText || `只在部分情境下会出现：${value}`);
+	}
+
+	function contrastExample(text, fallbackText = '') {
+		const source = cleanExampleText(text);
+		return replaceExamplePhrase(source, [
+			[/很晚才察觉/, '通常能较早察觉'],
+			[/没有及时察觉/, '通常能及时察觉'],
+			[/并不固定/, '通常比较稳定'],
+			[/我很难/, '我通常能够'],
+			[/很难/, '通常能够'],
+			[/难以/, '通常能够'],
+			[/无法/, '通常能够'],
+			[/不容易/, '通常能够'],
+			[/我不太在意/, '我通常很在意'],
+			[/不太在意/, '通常很在意'],
+			[/我不把/, '我通常会把'],
+			[/不把/, '通常会把'],
+			[/我不会/, '我通常会'],
+			[/不会/, '通常会'],
+			[/我不愿/, '我通常愿意'],
+			[/不愿/, '通常愿意'],
+			[/我可能/, '我通常不会'],
+			[/可能/, '通常不会'],
+			[/我也会/, '我通常不会'],
+			[/也会/, '通常不会'],
+			[/我仍会/, '我通常不会'],
+			[/仍会/, '通常不会'],
+			[/我仍能/, '我通常很难'],
+			[/仍能/, '通常很难'],
+			[/我仍/, '我很少'],
+			[/仍/, '很少'],
+			[/总是/, '很少'],
+			[/始终/, '很少'],
+			[/几乎每天/, '很少'],
+			[/经常/, '很少'],
+			[/常常/, '很少'],
+			[/通常/, '很少'],
+			[/我常/, '我很少'],
+			[/我会/, '我通常不会'],
+			[/我能/, '我通常很难'],
+			[/能够/, '通常很难'],
+			[/(?<![功可])能/, '通常很难'],
+			[/(^|[，；。,!！?？\s])会/, '$1通常不会'],
+			[/容易/, '通常不容易'],
+			[/我更习惯/, '我通常不习惯'],
+			[/更习惯/, '通常不习惯'],
+			[/喜欢/, '通常不喜欢'],
+			[/不只/, '通常只'],
+			[/先/, '通常不先'],
+			[/应当/, '通常不认为应当'],
+			[/应该/, '通常不认为应该'],
+			[/不需要/, '通常需要'],
+			[/(^|[^不])需要/, '$1通常不需要'],
+			[/可以/, '通常不会'],
+			[/必须/, '通常不必'],
+			[/忘记/, '通常能记得'],
+			[/遗漏/, '通常能留意到'],
+			[/倾向于/, '通常不倾向于'],
+			[/愿意/, '通常不愿意'],
+			[/认为/, '通常不认为'],
+			[/支持/, '通常不支持'],
+			[/反对/, '通常不反对'],
+			[/关注/, '通常不会特别关注']
+		], value => fallbackText || `在相同情境下，通常不会出现“${value}”所描述的反应`);
+	}
+
+	function formatExampleSet(primary, options = {}) {
+		const variantSource = options.variantSource || primary;
+		const high = cleanExampleText(primary);
+		const middle = cleanExampleText(options.middle || softenExample(variantSource, options.middleFallback));
+		const low = cleanExampleText(options.low || contrastExample(variantSource, options.lowFallback))
+			.replace(/，不频繁/g, '，并会频繁')
+			.replace(/，不反复/g, '，并会反复')
+			.replace(/，不急于/g, '，反而会急于')
+			.replace(/并要求/g, '也不会要求');
+		const highScore = options.highScore || '4–5';
+		const middleScore = options.middleScore || '2–3';
+		const lowScore = options.lowScore || '0–1';
+		return `例一：${high}，可选 ${highScore} 分；例二：${middle}，可选 ${middleScore} 分；例三：${low}，可选 ${lowScore} 分。`;
+	}
+
+	function classifyLegacyExample(text) {
+		if (/(?:4\s*(?:–|-|或)\s*5|5分|4分|高分)/.test(text)) return 'high';
+		if (/(?:2\s*(?:–|-|或)\s*3|3分|2分|中等分)/.test(text)) return 'middle';
+		if (/(?:0\s*(?:–|-|或)\s*1|1分|0分|低分)/.test(text)) return 'low';
+		return '';
+	}
+
+	function removeLegacyScore(text) {
+		const score = '(?:高分|中等分|低分|\\d\\s*(?:(?:–|-|或)\\s*\\d)?分)';
+		return cleanExampleText(text
+			.replace(new RegExp('[，,]?(?:则)?可据频率选择' + score, 'g'), '')
+			.replace(new RegExp('[，,]?(?:则)?可选择' + score, 'g'), '')
+			.replace(new RegExp('[，,]?(?:则)?可选' + score, 'g'), '')
+			.replace(new RegExp('[，,]?(?:则)?选择' + score, 'g'), '')
+			.replace(new RegExp('[，,]?(?:则)?选' + score, 'g'), '')
+			.replace(new RegExp('[，,]?(?:这)?(?:则)?(?:非常)?符合' + score, 'g'), '')
+			.replace(new RegExp('[，,]?(?:则)?为(?:高|中等|低)分', 'g'), ''));
+	}
+
+	function parseLegacyExamples(text) {
+		const body = String(text || '').replace(/^\s*具体案例：\s*/, '');
+		const chunks = body.split(/例[一二三]：/).slice(1);
+		const result = { high: '', middle: '', low: '', first: '' };
+		chunks.forEach(chunk => {
+			chunk.split(/[；;。]相反，?/).forEach(part => {
+				const cleaned = removeLegacyScore(part);
+				if (!cleaned) return;
+				if (!result.first) result.first = cleaned;
+				const level = classifyLegacyExample(part);
+				if (level && !result[level]) result[level] = cleaned;
+			});
+		});
+		return result;
+	}
+
+	function normalizeQuestionExamples(container, options = {}) {
+		if (!container) return;
+		container.querySelectorAll('.question').forEach(question => {
+			const titleElement = question.querySelector('.question-title');
+			const variantSource = String(titleElement?.textContent || '').replace(/^\s*\d+[.、]\s*/, '').trim();
+			const declarativeSource = variantSource.replace(/^(?:您|你)是否/, '你').replace(/[？?]$/, '');
+			const paragraph = Array.from(question.querySelectorAll('.explanation p')).find(item => item.querySelector('strong')?.textContent.trim() === '具体案例：');
+			if (!paragraph) return;
+			const parsed = parseLegacyExamples(paragraph.textContent);
+			const minimumLength = Number(options.minExampleLength) || 0;
+			const keep = value => value && value.length >= minimumLength ? value : '';
+			const primary = keep(parsed.high) || keep(parsed.first) || declarativeSource;
+			const preferFallback = options.preferFallbackForQuestions && /是否|如何|多少|哪/.test(variantSource);
+			const formatted = formatExampleSet(primary, {
+				variantSource: declarativeSource,
+				middle: keep(parsed.middle) || (preferFallback ? options.middleFallback : ''),
+				low: keep(parsed.low) || (preferFallback ? options.lowFallback : ''),
+				middleFallback: options.middleFallback,
+				lowFallback: options.lowFallback,
+				highScore: options.highScore,
+				middleScore: options.middleScore,
+				lowScore: options.lowScore
+			});
+			const label = document.createElement('strong');
+			label.textContent = '具体案例：';
+			paragraph.replaceChildren(label, document.createTextNode(formatted));
+		});
+	}
 	function bindCommonEvents(config = getConfig()) {
 		const form = getForm(config);
 		if (form) {
@@ -281,6 +497,8 @@
 		markStructure,
 		renderResultRadar,
 		renderResultSummary,
+		formatExampleSet,
+		normalizeQuestionExamples,
 		updateProgress
 	};
 
