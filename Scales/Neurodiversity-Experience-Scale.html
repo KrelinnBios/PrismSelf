@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>神经多样性体验自评量表</title>
+  <meta name="description" content="通过 120 道原创中文情境题，从八个维度梳理感官、注意、执行功能、沟通、转换、活动调节、过载与掩饰体验；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="神经多样性体验自评量表">
+  <meta property="og:description" content="通过八个维度梳理神经多样性相关体验、环境影响与支持需求；不提供诊断或身份判定。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Neurodiversity-Experience-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    .result-top-grid > *,
+    .radar-wrapper,
+    .radar-wrapper canvas {
+      min-width: 0;
+      max-width: 100% !important;
+    }
+
+    .question {
+      margin-bottom: 28px;
+    }
+
+    .question-title {
+      display: block;
+      margin-bottom: 8px;
+      padding: 10px 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.65;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .q-number {
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .question select {
+      width: 220px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .intro,
+    .explanation {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .dimension-intro {
+      margin: -4px 0 24px;
+      color: var(--scale-muted);
+    }
+
+    .result-top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: stretch;
+      gap: 22px;
+      margin-bottom: 14px;
+    }
+
+    .radar-container {
+      padding: 20px;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--scale-surface);
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .result th {
+      padding: 14px 16px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .result td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--scale-line);
+      font-size: .95em;
+      vertical-align: top;
+    }
+
+    .result tr:last-child td {
+      border-bottom: none;
+    }
+
+    .insight-card {
+      padding: 18px 22px;
+      margin: 14px 0;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      background: var(--scale-surface);
+    }
+
+    .insight-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      border-bottom: none;
+    }
+
+    .action-box {
+      padding: 28px;
+      margin-top: 15px;
+    }
+
+    .nd-reflection-actions {
+      margin-bottom: 0;
+    }
+
+    .nd-action-item + .nd-action-item {
+      margin-top: 18px;
+    }
+
+    .nd-action-item h4 {
+      margin: 0 0 8px;
+      font-size: 1.02em;
+      line-height: 1.55;
+    }
+
+    .nd-action-item p {
+      margin: 0;
+    }
+
+    #currentProfileAnalysis > .insight-card,
+    #mainInterpretation > .insight-card,
+    #deepPersonalAnalysis > .insight-card {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    .result .insight-card > :last-child,
+    .result .action-box > :last-child {
+      margin-bottom: 0 !important;
+    }
+
+
+    #currentProfileAnalysis > .insight-card:first-child,
+    #mainInterpretation > .insight-card:first-child,
+    #deepPersonalAnalysis > .insight-card:first-child,
+    #personalizedSuggestions > .insight-card:first-child {
+      margin-top: 14px !important;
+      padding-top: 18px !important;
+    }
+
+    .result .insight-card > .result-section-heading:first-child {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    #typeJudgment {
+      margin-top: 18px;
+    }
+
+    #typeJudgment p {
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    #typeJudgment p + p {
+      margin-top: 8px;
+    }
+
+    .result .insight-card p,
+    .result .action-box p,
+    .result .insight-card li {
+      letter-spacing: .035em;
+      line-height: 1.72;
+    }
+
+    .nd-judgment {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border: 1px solid var(--scale-line);
+      border-radius: 12px;
+      background: var(--scale-tint-2);
+    }
+
+
+
+    /* 结果首屏摘要：组件使用纯文本渲染，关键词在渲染后由 JS 安全加粗 */
+    .result-summary-panel #scoreSummary p strong {
+      font-weight: 700;
+      color: var(--scale-text, inherit);
+    }
+
+    .nd-judgment strong {
+      color: var(--scale-accent-dark);
+    }
+
+    .nd-judgment-kicker {
+      margin: 0 0 4px !important;
+      color: var(--scale-muted);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .nd-judgment h3 {
+      margin: 0 0 10px;
+      border: 0;
+      padding: 0;
+      font-size: 1.18rem;
+    }
+
+    .nd-summary-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .nd-summary-point {
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid var(--scale-line);
+      border-radius: 10px;
+      background: var(--scale-surface);
+    }
+
+    .nd-summary-point span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--scale-muted);
+      font-size: .78rem;
+    }
+
+    .nd-summary-point strong {
+      display: block;
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .nd-judgment-note {
+      margin-top: 14px !important;
+      color: var(--scale-muted);
+      font-size: .88rem;
+    }
+
+    .nd-profile-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 16px;
+    }
+
+    .nd-combination-card {
+      margin-top: 0;
+    }
+
+    .nd-combination-title {
+      margin: 0 0 10px;
+      font-size: 1.08em;
+    }
+
+    .nd-dimension-detail {
+      margin-top: 14px;
+      padding: 20px 24px;
+      min-height: 0 !important;
+      height: auto !important;
+      align-self: start;
+    }
+
+    .nd-dimension-detail > p:first-of-type {
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+
+    .nd-dimension-detail > :last-child {
+      margin-bottom: 0 !important;
+    }
+
+    .nd-signal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .nd-signal-card {
+      min-width: 0;
+      padding: 15px 16px;
+      border: 1px solid var(--scale-line);
+      border-radius: 12px;
+      background: var(--scale-tint-2);
+      min-height: 0;
+    }
+
+    .nd-signal-card h4 {
+      margin: 0 0 7px;
+      font-size: 1em;
+    }
+
+    .nd-signal-card p {
+      margin: 0;
+      font-size: .92em;
+      line-height: 1.62;
+    }
+
+    .nd-dimension-detail > p:not(:first-of-type) {
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+
+    .nd-dimension-reflection {
+      margin-top: 12px !important;
+      margin-bottom: 0 !important;
+      padding-top: 12px;
+      border-top: 1px solid var(--scale-line);
+    }
+
+    .nd-context-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .nd-context-card {
+      padding: 20px 22px;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      background: var(--scale-surface);
+    }
+
+    .nd-context-card h4 {
+      margin: 0 0 10px;
+    }
+
+    .nd-context-card p {
+      margin: 8px 0 0;
+      line-height: 1.75;
+    }
+
+    .nd-support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .nd-support-card {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      background: var(--scale-surface);
+    }
+
+    .nd-support-card h4 {
+      margin: 0 0 8px;
+    }
+
+    .nd-support-card ul {
+      margin-bottom: 0;
+      padding-left: 1.2em;
+    }
+
+    .nd-method-bands {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .nd-method-band {
+      padding: 12px 14px;
+      border: 1px solid var(--scale-line);
+      border-radius: 10px;
+      background: var(--scale-surface);
+      font-size: .9em;
+    }
+
+    @media (max-width: 850px) {
+      .result-top-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radar-wrapper {
+        max-width: 420px;
+      }
+
+      .nd-signal-grid,
+      .nd-support-grid,
+      .nd-context-grid,
+      .nd-method-bands,
+      .nd-summary-points {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .intro,
+      .result {
+        padding: 20px 16px;
+      }
+
+      .question-title {
+        padding-inline: 8px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <link rel="stylesheet" href="../Guides/guide-ai.css?v=68e2569048e6">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'neurodiversity-experience', title: '神经多样性体验自评量表', formId: 'neurodiversityQuiz', storageKey: 'neurodiversityExperienceAnswersV3', totalQuestions: 120, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <script src="../Guides/guide-ai.js?v=d04b7a1f0455" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5a6a8f9306af">
+  <script src="../assets/theme.js?v=5a6a8f9306af"></script>
+  <style id="nd-result-spacing-overrides">
+    /* Result cards: keep the same compact, content-driven rhythm as the Big Five report. */
+    .result #currentProfileAnalysis > .insight-card,
+    .result #mainInterpretation > .insight-card,
+    .result #deepPersonalAnalysis > .insight-card,
+    .result #personalizedSuggestions > .action-box {
+      min-height: 0 !important;
+      height: auto !important;
+      padding: 18px 22px !important;
+      margin: 16px 0 !important;
+    }
+
+    .result #currentProfileAnalysis > .insight-card > :first-child,
+    .result #mainInterpretation > .insight-card > :first-child,
+    .result #deepPersonalAnalysis > .insight-card > :first-child,
+    .result #personalizedSuggestions > .action-box > :first-child {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    .result #currentProfileAnalysis .result-section-heading,
+    .result #mainInterpretation .result-section-heading,
+    .result #personalizedSuggestions + .result-section-heading,
+    .result .nd-dimension-detail .result-section-heading {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    .result #currentProfileAnalysis > .insight-card > h3,
+    .result #mainInterpretation > .insight-card > h3 {
+      margin: 0 0 12px !important;
+    }
+
+    .result #currentProfileAnalysis > .insight-card > p,
+    .result #mainInterpretation > .insight-card > p {
+      margin: 8px 0 0 !important;
+    }
+
+    .result #currentProfileAnalysis > .insight-card > h3 + p,
+    .result #mainInterpretation > .insight-card > h3 + p {
+      margin-top: 0 !important;
+    }
+
+    .result .nd-dimension-detail {
+      padding: 18px 22px !important;
+      margin: 12px 0 !important;
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    .result .nd-dimension-detail > :first-child {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    .result .nd-dimension-detail > p:first-of-type {
+      margin: 8px 0 10px !important;
+    }
+
+    .result .nd-signal-grid {
+      margin-top: 10px !important;
+      gap: 10px !important;
+    }
+
+    .result .nd-signal-card {
+      padding: 13px 15px !important;
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    .result .nd-dimension-reflection {
+      margin-top: 10px !important;
+      padding-top: 10px !important;
+    }
+
+    .result .nd-action-item + .nd-action-item {
+      margin-top: 18px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/120</p>
+    <div class="progress-bar" aria-hidden="true">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width:0%;"></div>
+    </div>
+  </div>
+
+  <h1>神经多样性体验自评量表</h1>
+
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p>神经多样性（Neurodiversity）用于描述人类在感知、注意、学习、沟通、行动和调节方式上的自然差异。本量表参考 <a href="https://www.nih.gov/nih-style-guide/autism" target="_blank" rel="noopener noreferrer">美国国立卫生研究院的神经多样性与包容性用语指南</a>、美国国家心理健康研究所关于 <a href="https://www.nimh.nih.gov/health/publications/autism-spectrum-disorder" target="_blank" rel="noopener noreferrer">自闭谱系</a> 与 <a href="https://www.nimh.nih.gov/health/publications/attention-deficit-hyperactivity-disorder-what-you-need-to-know" target="_blank" rel="noopener noreferrer">ADHD</a> 的概览，以及有关 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9213348/" target="_blank" rel="noopener noreferrer">复杂感官体验</a> 和 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6394586/" target="_blank" rel="noopener noreferrer">社会掩饰行为</a> 的研究框架，设置八个观察维度，每个维度 15 题，共 120 题。全部中文情境题均由本站独立编写，并非任何临床量表的官方中文版，也未经相关机构或作者认证。</p>
+    <p><strong>神经多样性并非一种单一诊断或固定类型</strong>，不同体验可能彼此交错，也可能受到年龄、环境要求、睡眠、压力和可用支持影响。本量表不设置“神经多样性总分”，而是分别呈现八个连续变化的观察维度。分数高低描述相应体验出现的频率、强度或支持需求，不代表缺陷、能力高低或身份归属。</p>
+    <p><strong>为了更好地理解，我们在此简要介绍量表涉及的八个核心观察维度：</strong></p>
+    <ul>
+      <li><strong>感官加工（Sensory Processing）</strong>：观察声音、光线、触感、气味、身体内部信号与刺激寻求。</li>
+      <li><strong>注意调节（Attention Regulation）</strong>：观察注意启动、维持、转移、兴趣驱动和刺激需求。</li>
+      <li><strong>执行功能（Executive Functioning）</strong>：观察任务分解、工作记忆、时间感、步骤排序和外部支持。</li>
+      <li><strong>沟通加工（Communication Processing）</strong>：观察暗示理解、表达组织、交流节奏和沟通媒介偏好。</li>
+      <li><strong>规律与转换（Routine and Transition）</strong>：观察计划变化、活动切换、陌生环境和决策负荷。</li>
+      <li><strong>活动与冲动调节（Activity and Impulse Regulation）</strong>：观察身体活动、等待、回应抑制、行动节奏和风险复核。</li>
+      <li><strong>情绪过载（Emotional Overload）</strong>：观察负荷累积、表达能力变化、早期信号和恢复时间。</li>
+      <li><strong>掩饰与恢复（Masking and Recovery）</strong>：观察模仿、监控、隐藏需要及维持社会表现的成本。</li>
+    </ul>
+    <p><strong>重要提示：</strong>这些体验也可能受到焦虑、抑郁、创伤、慢性压力、身体状况、药物或生活环境影响。自闭症和 ADHD 等正式评估需要结合发展史、多个生活场景、功能影响及其他可能原因，不能由本站结果替代。请把结果理解为整理环境负荷、自我调节方式和支持需求的线索；如果相关体验持续造成明显困扰或功能受损，可以考虑向合适的专业人员求助。</p>
+    <p><strong>使用指南：</strong>本量表共包含 120 道题目，分为八个部分。请根据过去六个月中较稳定、较自然的真实体验选择 0–5 分（0 分＝完全不符合，5 分＝完全符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看八维体验画像、分维度分析和支持建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断、筛查或证明任何身份。</p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
+  </div>
+
+  <form id="neurodiversityQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" id="calculateButton">计算结果</button>
+      <button type="button" class="btn-secondary" id="resetButton">重置问卷</button>
+      <button type="button" class="btn-secondary" id="saveTextButton">保存文本结果</button>
+      <button type="button" class="btn-secondary" id="saveImageButton">保存图片结果</button>
+    </div>
+  </form>
+
+  <div class="result" id="result">
+    <h2 class="result-report-title">神经多样性体验深度自评报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前多维体验画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas></div>
+      </div>
+    </div>
+    <div id="currentProfileAnalysis"></div>
+    <div id="mainInterpretation"></div>
+    <div id="deepPersonalAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/neurodiversity-experience-scale.js" defer></script>
+</body>
+
+</html>
