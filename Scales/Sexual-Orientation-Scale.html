@@ -21,14 +21,14 @@
 	<style>
     /* 页面主题层：仅保留仍生效的旧样式；统一皮肤见 scale-common.css（在其后加载并覆盖同名规则）。 */
     :root {
-      --accent: #2f6f73;
-      --accent-2: #7c6db0;
-      --accent-dark: #214f52;
-      --tint: #eef8f6;
-      --tint-2: #f4f1fb;
-      --ink: #24324a;
-      --soft: #64748b;
-      --line: #e2e8f0;
+      --accent: var(--scale-accent);
+      --accent-2: var(--scale-accent-2);
+      --accent-dark: var(--scale-accent-dark);
+      --tint: var(--scale-tint);
+      --tint-2: var(--scale-tint-2);
+      --ink: var(--scale-ink);
+      --soft: var(--scale-muted);
+      --line: var(--scale-line);
     }
 
     body {
@@ -66,7 +66,7 @@
     }
 
     .question select {
-      width: 230px;
+      width: 220px;
       padding: 10px;
       font-size: 1em;
     }
