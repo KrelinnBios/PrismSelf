@@ -1133,6 +1133,7 @@ const questionMarkup = `
 const scaleQuestionsContainer = document.getElementById('questionsContainer');
 if (!scaleQuestionsContainer) throw new Error('量表题目容器不存在');
 scaleQuestionsContainer.innerHTML = questionMarkup;
+window.PrismScale.normalizeQuestionExamples(scaleQuestionsContainer, { minExampleLength: 12, preferFallbackForQuestions: true, middleFallback: '这种性别相关感受只在少数场合或特定状态下出现', lowFallback: '在相似情境中通常没有这种性别相关感受' });
 
 // 点击题目展开/关闭解释
 function toggleExplanation(titleElement) {
