@@ -286,7 +286,7 @@ function initForm() {
                 </select>
                 <div class="explanation">
                     <p><strong>本题用意：</strong>${q.focus} ${q.meaning} ${getAntagonismText(q.weights)}</p>
-                    <p><strong>具体案例：</strong>${q.example}若这种判断与你过去几年较稳定的立场高度一致，可选 5–6 分；若你会根据情境权衡或暂时中立，可选 3–4 分；若通常不认同或倾向相反判断，可选 0–2 分。</p>
+                    <p><strong>具体案例：</strong>${window.PrismScale.formatExampleSet(q.example, { variantSource: q.example, middleFallback: '只在部分议题或条件下会采用这种判断', lowFallback: '面对同类议题时通常不会采用这种判断', highScore: '5–6', middleScore: '3–4', lowScore: '0–2' })}</p>
                 </div>
             `;
 
