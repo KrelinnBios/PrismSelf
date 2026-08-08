@@ -278,7 +278,7 @@ function initForm() {
             </select>
             <div class="explanation">
                 <p><strong>本题用意：</strong>${q.focus} ${q.meaning}</p>
-                <p><strong>具体案例：</strong>${q.example}若这种判断与你过去几年较稳定的立场高度一致，可选 4–5 分；若只在部分条件下认同，可选 2–3 分；若通常不认同或倾向相反判断，可选 0–1 分。</p>
+                <p><strong>具体案例：</strong>${window.PrismScale.formatExampleSet(q.example, { variantSource: q.example, middleFallback: '只在部分议题或条件下会采用这种判断', lowFallback: '面对同类议题时通常不会采用这种判断' })}</p>
             </div>
         `;
             const selectEl = qDiv.querySelector('select');
