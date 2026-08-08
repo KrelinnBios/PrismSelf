@@ -758,6 +758,7 @@ const questionMarkup = `
 const scaleQuestionsContainer = document.getElementById('questionsContainer');
 if (!scaleQuestionsContainer) throw new Error('量表题目容器不存在');
 scaleQuestionsContainer.innerHTML = questionMarkup;
+window.PrismScale.normalizeQuestionExamples(scaleQuestionsContainer, { preferFallbackForQuestions: true, middleFallback: '这种浪漫体验只在少数对象、关系或特定时期出现', lowFallback: '在相似情境中通常没有这种浪漫体验' });
 
 // 点击题目展开/关闭解释
 function toggleExplanation(titleElement) {
