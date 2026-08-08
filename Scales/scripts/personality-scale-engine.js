@@ -37,7 +37,6 @@
       Object.values(facets).filter(facet => facet.dimension === dimension.key).map(facet => facet.key)
     ]));
     const average = values => values.reduce((sum, value) => sum + value, 0) / values.length;
-    const answerGuidance = config.answerGuidance || '若这种表现与你过去一年中较稳定的自己高度一致，可选 4–5 分；若会随情境变化，可选 3 分；若通常不符合或更接近相反表现，可选 1–2 分。';
 
     function updateProgress() {
       const answered = [...form.querySelectorAll('select')].filter(select => select.value !== '').length;
@@ -98,7 +97,7 @@
             <select name="q${question.id}" data-id="${question.id}" aria-label="第${question.id}题：${question.text}" required>${optionMarkup}</select>
             <div class="explanation" id="explanation-q${question.id}">
               <p><strong>本题用意：</strong>${question.note}</p>
-              <p><strong>具体案例：</strong>${question.example}${answerGuidance}</p>
+              <p><strong>具体案例：</strong>${window.PrismScale.formatExampleSet(question.example, { variantSource: question.example, middleFallback: '只在部分场合会这样做，换到其他任务或关系中表现会不同', lowFallback: '在同类情境中通常会采取与例一不同的做法', highScore: '4–5', middleScore: '3', lowScore: '1–2' })}</p>
             </div>
           `;
           const title = card.querySelector('.question-title');
