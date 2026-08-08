@@ -1,7 +1,7 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-07-25',
+    date: '2026-08-09',
     pages: [
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
@@ -9,6 +9,7 @@ window.PrismSelfUpdateGroups = [
       './Scales/Feminist-Leanings-Scale.html',
       './Scales/Gender-Exploration-Scale.html',
       './Scales/HEXACO-Personality-Scale.html',
+      './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Orientation-Scale.html'
     ]
