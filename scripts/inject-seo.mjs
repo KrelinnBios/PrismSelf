@@ -39,6 +39,7 @@ const pages = {
   'Scales/Asexual-Spectrum-Scale.html': { desc: '无性恋谱系自评量表，通过多维条目帮助你探索性吸引相关的自我倾向；结果仅保存在本地。' },
   'Scales/Feminist-Leanings-Scale.html': { desc: '女权主义流派倾向自评量表，帮助你了解自身在各女权主义流派上的倾向；结果仅保存在本地。' },
   'Scales/Gender-Exploration-Scale.html': { desc: '多元性别认同与探索自评量表，通过多维条目辅助性别体验的自我梳理；结果仅保存在本地。' },
+  'Scales/Neurodiversity-Experience-Scale.html': { desc: '神经多样性体验自评量表，通过 120 道原创中文情境题，从八个维度梳理感官、注意、执行功能、沟通、转换、活动调节、过载与掩饰体验；结果仅保存在本地。' },
   'Scales/Philosophical-Leanings-Scale.html': { desc: '哲学流派倾向自评量表，帮助你了解自身在各哲学流派上的倾向；结果仅保存在本地。' },
   'Scales/Big-Five-Personality-Scale.html': { desc: '大五人格倾向自评量表，通过 120 道本站原创中文情境题，从五个核心维度与三十个子面向梳理人格倾向；结果仅保存在本地。' },
   'Scales/HEXACO-Personality-Scale.html': { desc: 'HEXACO 六维人格倾向自评量表，通过 100 道本站原创中文情境题，从六个核心维度、二十四个子面向与独立利他性梳理人格倾向；结果仅保存在本地。' },
