@@ -37,6 +37,8 @@ h4,
 
 h3 {
 	border-bottom-color: var(--scale-accent) !important;
+	font-size: 1.25rem !important;
+	line-height: 1.55 !important;
 }
 
 a {
@@ -90,6 +92,8 @@ a {
 	border-radius: 12px !important;
 	box-shadow: 0 1px 2px rgba(36, 50, 74, 0.03) !important;
 	color: #334155 !important;
+	font-size: 0.95rem !important;
+	line-height: 1.75 !important;
 }
 
 .explanation {
@@ -105,6 +109,9 @@ a {
 }
 
 .question-title {
+	font-size: 1.05rem !important;
+	font-weight: 600 !important;
+	line-height: 1.7 !important;
 	border-radius: 12px !important;
 }
 
@@ -133,6 +140,11 @@ summary {
 	font-weight: 700;
 	line-height: 1.65;
 	list-style: none;
+}
+
+details {
+	background-color: var(--scale-tint-2) !important;
+	color: var(--scale-ink) !important;
 }
 
 .scale-concept-details>summary::-webkit-details-marker {
@@ -179,6 +191,7 @@ select {
 	border-radius: 8px !important;
 	background-color: #f9fbfd !important;
 	color: #263241 !important;
+	font-size: 0.95rem !important;
 }
 
 button {
@@ -187,6 +200,8 @@ button {
 	border: none !important;
 	border-radius: 40px !important;
 	box-shadow: 0 2px 8px rgba(47, 111, 115, 0.16) !important;
+	font-size: 0.95rem !important;
+	font-weight: 600 !important;
 }
 
 button:hover {
@@ -260,6 +275,16 @@ button:hover {
 	border-spacing: 0 !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;
+}
+
+.result-table-shell th {
+	font-size: 1rem !important;
+	font-weight: 700 !important;
+}
+
+.result-table-shell td {
+	font-size: 0.95rem !important;
+	line-height: 1.7 !important;
 }
 
 .result-score-table,
@@ -820,6 +845,7 @@ button:hover {
 	background-color: #1b2330 !important;
 	color: #d9e2ee !important;
 	border-color: #37445a !important;
+	font-size: 0.95rem !important;
 }
 
 :root[data-theme="dark"] details {
