@@ -52,8 +52,6 @@
       --amber-lt: #c4923a;
       --slate: #475569;
       --slate-lt: #64748b;
-      --cyan: #0e7490;
-      --cyan-lt: #38bdf8;
       --purple: #5b21b6;
       --purple-lt: #8b5cf6;
       --orange: #ea580c;
@@ -469,12 +467,12 @@
       border-color: rgba(71, 85, 105, 0.25);
     }
 
-    .card.cyan::before {
-      background: linear-gradient(90deg, #0e7490 0%, #14b8a6 52%, #67e8f9 100%);
+    .card.hexaco::before {
+      background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 52%, #60a5fa 100%);
     }
 
-    .card:hover.cyan {
-      border-color: rgba(14, 116, 144, 0.25);
+    .card:hover.hexaco {
+      border-color: rgba(29, 78, 216, 0.25);
     }
 
     .card.purple::before {
@@ -508,12 +506,68 @@
       border-color: rgba(139, 92, 246, 0.25);
     }
 
-    .card.scale-teal::before {
-      background: linear-gradient(90deg, #2b7a62 0%, #0d9488 52%, #99f6e4 100%);
+    .card.neuro::before {
+      background: linear-gradient(90deg, #312e81 0%, #4f46e5 52%, #a5b4fc 100%);
     }
 
-    .card:hover.scale-teal {
-      border-color: rgba(47, 111, 115, 0.25);
+    .card:hover.neuro {
+      border-color: rgba(79, 70, 229, 0.30);
+    }
+
+    .card.pride-rainbow::before {
+      background: linear-gradient(90deg, #e40303 0%, #ff8c00 20%, #ffed00 38%, #008026 58%, #24408e 78%, #732982 100%);
+    }
+
+    .card:hover.pride-rainbow {
+      border-color: rgba(99, 102, 241, 0.30);
+    }
+
+    .card.pride-ace::before {
+      background: linear-gradient(90deg, #111827 0%, #6b7280 34%, #f8fafc 62%, #800080 100%);
+    }
+
+    .card:hover.pride-ace {
+      border-color: rgba(128, 0, 128, 0.28);
+    }
+
+    .card.pride-greyace::before {
+      background: linear-gradient(90deg, #740195 0%, #aeb1aa 32%, #f8fafc 50%, #aeb1aa 68%, #740195 100%);
+    }
+
+    .card:hover.pride-greyace {
+      border-color: rgba(116, 1, 149, 0.28);
+    }
+
+    .card.pride-demi::before {
+      background: linear-gradient(90deg, #111827 0%, #f8fafc 38%, #6e007e 68%, #9ca3af 100%);
+    }
+
+    .card:hover.pride-demi {
+      border-color: rgba(110, 0, 126, 0.28);
+    }
+
+    .card.pride-aro::before {
+      background: linear-gradient(90deg, #3da542 0%, #a7d379 28%, #f8fafc 50%, #a9a9a9 72%, #111827 100%);
+    }
+
+    .card:hover.pride-aro {
+      border-color: rgba(61, 165, 66, 0.28);
+    }
+
+    .card.pride-aroace::before {
+      background: linear-gradient(90deg, #e28c00 0%, #eccb27 28%, #f8fafc 50%, #62aedc 72%, #203856 100%);
+    }
+
+    .card:hover.pride-aroace {
+      border-color: rgba(32, 56, 86, 0.28);
+    }
+
+    .card.pride-trans::before {
+      background: linear-gradient(90deg, #5bcefa 0%, #f5a9b8 28%, #f8fafc 50%, #f5a9b8 72%, #5bcefa 100%);
+    }
+
+    .card:hover.pride-trans {
+      border-color: rgba(91, 206, 250, 0.32);
     }
 
     .card-tag {
@@ -549,9 +603,9 @@
       color: var(--slate);
     }
 
-    .tag-cyan {
-      background: rgba(14, 116, 144, 0.08);
-      color: var(--cyan);
+    .tag-hexaco {
+      background: rgba(29, 78, 216, 0.08);
+      color: var(--blue);
     }
 
     .tag-purple {
@@ -571,9 +625,44 @@
       color: #8b5cf6;
     }
 
-    .tag-scale-teal {
-      background: rgba(47, 111, 115, 0.09);
-      color: #2f6f73;
+    .tag-neuro {
+      background: linear-gradient(90deg, rgba(49, 46, 129, 0.12), rgba(79, 70, 229, 0.12), rgba(165, 180, 252, 0.16));
+      color: #3730a3;
+    }
+
+    .tag-pride-rainbow {
+      background: linear-gradient(90deg, rgba(228, 3, 3, 0.10), rgba(255, 140, 0, 0.10), rgba(255, 237, 0, 0.10), rgba(0, 128, 38, 0.10), rgba(36, 64, 142, 0.10), rgba(115, 41, 130, 0.10));
+      color: #334155;
+    }
+
+    .tag-pride-ace {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.12), rgba(156, 163, 175, 0.12), rgba(248, 250, 252, 0.55), rgba(128, 0, 128, 0.12));
+      color: #581c87;
+    }
+
+    .tag-pride-greyace {
+      background: linear-gradient(90deg, rgba(116, 1, 149, 0.12), rgba(174, 177, 170, 0.14), rgba(248, 250, 252, 0.55), rgba(116, 1, 149, 0.12));
+      color: #6b21a8;
+    }
+
+    .tag-pride-demi {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.12), rgba(248, 250, 252, 0.55), rgba(110, 0, 126, 0.14), rgba(156, 163, 175, 0.12));
+      color: #581c87;
+    }
+
+    .tag-pride-aro {
+      background: linear-gradient(90deg, rgba(61, 165, 66, 0.12), rgba(167, 211, 121, 0.14), rgba(248, 250, 252, 0.55), rgba(169, 169, 169, 0.12));
+      color: #166534;
+    }
+
+    .tag-pride-aroace {
+      background: linear-gradient(90deg, rgba(226, 140, 0, 0.12), rgba(236, 203, 39, 0.14), rgba(248, 250, 252, 0.55), rgba(98, 174, 220, 0.14), rgba(32, 56, 86, 0.10));
+      color: #203856;
+    }
+
+    .tag-pride-trans {
+      background: linear-gradient(90deg, rgba(91, 206, 250, 0.14), rgba(245, 169, 184, 0.14), rgba(248, 250, 252, 0.55), rgba(245, 169, 184, 0.14), rgba(91, 206, 250, 0.14));
+      color: #334155;
     }
 
     .card-title {
@@ -1480,8 +1569,6 @@
       --amber-lt: #ddb877;
       --slate: #94a3b8;
       --slate-lt: #aab6c6;
-      --cyan: #38bdf8;
-      --cyan-lt: #7dd3fc;
       --purple: #a78bfa;
       --purple-lt: #c4b5fd;
       --orange: #fb923c;
@@ -1508,7 +1595,7 @@
     }
 
     /* Dark mode: every home tag gets a brighter pill — lighter text plus a
-       visible tinted background — matching the scale-teal treatment below. */
+       visible tinted background — matching the green treatment below. */
     :root[data-theme="dark"] .tag-blue {
       background: rgba(108, 179, 236, 0.16);
       color: var(--blue-lt);
@@ -1529,9 +1616,9 @@
       color: var(--slate-lt);
     }
 
-    :root[data-theme="dark"] .tag-cyan {
-      background: rgba(125, 211, 252, 0.16);
-      color: var(--cyan-lt);
+    :root[data-theme="dark"] .tag-hexaco {
+      background: rgba(147, 197, 253, 0.16);
+      color: var(--blue-lt);
     }
 
     :root[data-theme="dark"] .tag-purple {
@@ -1551,9 +1638,36 @@
       color: #c4b0fa;
     }
 
-    :root[data-theme="dark"] .tag-scale-teal {
-      background: rgba(95, 208, 164, 0.16);
-      color: #9be7c4;
+    :root[data-theme="dark"] .tag-neuro {
+      background: linear-gradient(90deg, rgba(49, 46, 129, 0.34), rgba(99, 102, 241, 0.24), rgba(165, 180, 252, 0.20));
+      color: #c7d2fe;
+    }
+
+    :root[data-theme="dark"] .tag-pride-rainbow {
+      background: linear-gradient(90deg, rgba(248, 113, 113, 0.18), rgba(251, 146, 60, 0.18), rgba(250, 204, 21, 0.18), rgba(74, 222, 128, 0.18), rgba(96, 165, 250, 0.18), rgba(192, 132, 252, 0.18));
+      color: #f8fafc;
+    }
+
+    :root[data-theme="dark"] .tag-pride-ace,
+    :root[data-theme="dark"] .tag-pride-greyace,
+    :root[data-theme="dark"] .tag-pride-demi {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.50), rgba(156, 163, 175, 0.20), rgba(248, 250, 252, 0.12), rgba(192, 132, 252, 0.22));
+      color: #e9d5ff;
+    }
+
+    :root[data-theme="dark"] .tag-pride-aro {
+      background: linear-gradient(90deg, rgba(74, 222, 128, 0.20), rgba(190, 242, 100, 0.18), rgba(248, 250, 252, 0.10), rgba(169, 169, 169, 0.16));
+      color: #bbf7d0;
+    }
+
+    :root[data-theme="dark"] .tag-pride-aroace {
+      background: linear-gradient(90deg, rgba(251, 146, 60, 0.20), rgba(250, 204, 21, 0.18), rgba(248, 250, 252, 0.10), rgba(96, 165, 250, 0.20), rgba(32, 56, 86, 0.28));
+      color: #bfdbfe;
+    }
+
+    :root[data-theme="dark"] .tag-pride-trans {
+      background: linear-gradient(90deg, rgba(91, 206, 250, 0.20), rgba(245, 169, 184, 0.20), rgba(248, 250, 252, 0.12), rgba(245, 169, 184, 0.20), rgba(91, 206, 250, 0.20));
+      color: #fce7f3;
     }
 
     :root[data-theme="dark"] .support-kicker {
@@ -1753,7 +1867,7 @@
         <div class="stat-label">共鸣刻度</div>
       </button>
       <button class="stat" data-filter="scale">
-        <div class="stat-num">8</div>
+        <div class="stat-num">9</div>
         <div class="stat-label">自评量表</div>
       </button>
       <button class="stat" data-filter="tool">
@@ -1776,8 +1890,8 @@
         </div>
         <div class="card-grid">
 
-          <a class="card purple" href="./Analyses/LGBTQ-Comprehensive-Analysis.html">
-            <span class="card-tag tag-purple">LGBTQ+</span>
+          <a class="card pride-rainbow" href="./Analyses/LGBTQ-Comprehensive-Analysis.html">
+            <span class="card-tag tag-pride-rainbow">LGBTQ+</span>
             <p class="card-title">LGBTQ+概念全景辨析表</p>
             <div class="card-meta">
               <span class="card-type">概念辨析</span>
@@ -1785,18 +1899,18 @@
             </div>
           </a>
 
-          <a class="card rose" href="./Analyses/Psychosexual-Concepts-Panorama.html">
-            <span class="card-tag tag-rose">性心理</span>
-            <p class="card-title">性心理核心概念全景分析表</p>
+          <a class="card pride-trans" href="./Analyses/Gender-Theory-Panorama.html">
+            <span class="card-tag tag-pride-trans">性别理论</span>
+            <p class="card-title">性别理论核心概念全景分析表</p>
             <div class="card-meta">
               <span class="card-type">概念全景</span>
               <div class="card-arrow">→</div>
             </div>
           </a>
 
-          <a class="card green" href="./Analyses/Gender-Theory-Panorama.html">
-            <span class="card-tag tag-green">性别理论</span>
-            <p class="card-title">性别理论核心概念全景分析表</p>
+          <a class="card rose" href="./Analyses/Psychosexual-Concepts-Panorama.html">
+            <span class="card-tag tag-rose">性心理</span>
+            <p class="card-title">性心理核心概念全景分析表</p>
             <div class="card-meta">
               <span class="card-type">概念全景</span>
               <div class="card-arrow">→</div>
@@ -1841,8 +1955,8 @@
         </div>
         <div class="card-grid">
 
-          <a class="card blue" href="./Guides/Asexual-Comprehensive-Guide.html">
-            <span class="card-tag tag-blue">无性恋</span>
+          <a class="card pride-ace" href="./Guides/Asexual-Comprehensive-Guide.html">
+            <span class="card-tag tag-pride-ace">无性恋</span>
             <p class="card-title">无性恋全景指南</p>
             <div class="card-meta">
               <span class="card-type">专题指南</span>
@@ -1850,8 +1964,8 @@
             </div>
           </a>
 
-          <a class="card rose" href="./Guides/Greysexual-Comprehensive-Guide.html">
-            <span class="card-tag tag-rose">灰性恋</span>
+          <a class="card pride-greyace" href="./Guides/Greysexual-Comprehensive-Guide.html">
+            <span class="card-tag tag-pride-greyace">灰性恋</span>
             <p class="card-title">灰性恋全景指南</p>
             <div class="card-meta">
               <span class="card-type">专题指南</span>
@@ -1859,8 +1973,8 @@
             </div>
           </a>
 
-          <a class="card violet" href="./Guides/Demisexual-Comprehensive-Guide.html">
-            <span class="card-tag tag-violet">半性恋</span>
+          <a class="card pride-demi" href="./Guides/Demisexual-Comprehensive-Guide.html">
+            <span class="card-tag tag-pride-demi">半性恋</span>
             <p class="card-title">半性恋全景指南</p>
             <div class="card-meta">
               <span class="card-type">专题指南</span>
@@ -1868,8 +1982,8 @@
             </div>
           </a>
 
-          <a class="card green" href="./Guides/Aromantic-Comprehensive-Guide.html">
-            <span class="card-tag tag-green">无浪漫</span>
+          <a class="card pride-aro" href="./Guides/Aromantic-Comprehensive-Guide.html">
+            <span class="card-tag tag-pride-aro">无浪漫</span>
             <p class="card-title">无浪漫全景指南</p>
             <div class="card-meta">
               <span class="card-type">专题指南</span>
@@ -1877,8 +1991,8 @@
             </div>
           </a>
 
-          <a class="card cyan" href="./Guides/Gender-Concepts-Comprehensive-Guide.html">
-            <span class="card-tag tag-cyan">性别术语</span>
+          <a class="card pride-trans" href="./Guides/Gender-Concepts-Comprehensive-Guide.html">
+            <span class="card-tag tag-pride-trans">性别术语</span>
             <p class="card-title">性别概念全景指南</p>
             <div class="card-meta">
               <span class="card-type">专题指南</span>
@@ -1906,8 +2020,8 @@
         </div>
         <div class="card-grid">
 
-          <a class="card violet" href="./Glossaries/SOGIESC-Glossary.html">
-            <span class="card-tag tag-violet">SOGIESC</span>
+          <a class="card pride-rainbow" href="./Glossaries/SOGIESC-Glossary.html">
+            <span class="card-tag tag-pride-rainbow">SOGIESC</span>
             <p class="card-title">SOGIESC 术语表</p>
             <div class="card-meta">
               <span class="card-type">术语表</span>
@@ -1933,8 +2047,8 @@
             </div>
           </a>
 
-          <a class="card cyan" href="./Glossaries/Sociology-Glossary.html">
-            <span class="card-tag tag-cyan">社会学</span>
+          <a class="card green" href="./Glossaries/Sociology-Glossary.html">
+            <span class="card-tag tag-green">社会学</span>
             <p class="card-title">社会学术语表</p>
             <div class="card-meta">
               <span class="card-type">术语表</span>
@@ -1962,8 +2076,8 @@
         </div>
         <div class="card-grid">
 
-          <a class="card blue" href="./Topics/Asexual-Community-Survey.html">
-            <span class="card-tag tag-blue">无性恋社群</span>
+          <a class="card pride-ace" href="./Topics/Asexual-Community-Survey.html">
+            <span class="card-tag tag-pride-ace">无性恋社群</span>
             <p class="card-title">无性恋社群现状与需求调查</p>
             <div class="card-meta">
               <span class="card-type">调查报告</span>
@@ -1971,8 +2085,8 @@
             </div>
           </a>
 
-          <a class="card amber" href="./Topics/A-Conversation-on-Asexuality.html">
-            <span class="card-tag tag-amber">无性恋对谈</span>
+          <a class="card pride-ace" href="./Topics/A-Conversation-on-Asexuality.html">
+            <span class="card-tag tag-pride-ace">无性恋对谈</span>
             <p class="card-title">无性恋专题对谈</p>
             <div class="card-meta">
               <span class="card-type">专题对谈</span>
@@ -1991,8 +2105,8 @@
         </div>
         <div class="card-grid">
 
-          <a class="card purple" href="./Bingos/Aro-Ace-Spectrum-Resonance.html">
-            <span class="card-tag tag-purple">无浪漫/无性恋</span>
+          <a class="card pride-aroace" href="./Bingos/Aro-Ace-Spectrum-Resonance.html">
+            <span class="card-tag tag-pride-aroace">无浪漫/无性恋</span>
             <p class="card-title">无浪漫/无性恋谱系 · 共鸣刻度卡</p>
             <div class="card-meta">
               <span class="card-type">共鸣刻度</span>
@@ -2000,8 +2114,8 @@
             </div>
           </a>
 
-          <a class="card rose" href="./Bingos/Gender-Spectrum-Resonance.html">
-            <span class="card-tag tag-rose">性别谱系</span>
+          <a class="card pride-trans" href="./Bingos/Gender-Spectrum-Resonance.html">
+            <span class="card-tag tag-pride-trans">性别谱系</span>
             <p class="card-title">性别身份与认同谱系 · 共鸣刻度卡</p>
             <div class="card-meta">
               <span class="card-type">共鸣刻度</span>
@@ -2009,8 +2123,8 @@
             </div>
           </a>
 
-          <a class="card green" href="./Bingos/Neurodiversity-Resonance.html">
-            <span class="card-tag tag-green">神经多样性</span>
+          <a class="card neuro" href="./Bingos/Neurodiversity-Resonance.html">
+            <span class="card-tag tag-neuro">神经多样性</span>
             <p class="card-title">神经多样性 · 共鸣刻度卡</p>
             <div class="card-meta">
               <span class="card-type">共鸣刻度</span>
@@ -2025,12 +2139,12 @@
         <div class="section-header">
           <div class="section-icon scale">🔍</div>
           <h2 class="section-title">量表 · 自我评估</h2>
-          <span class="section-count">08 份</span>
+          <span class="section-count">09 份</span>
         </div>
         <div class="card-grid">
 
-          <a class="card scale-teal" href="./Scales/Sexual-Orientation-Scale.html">
-            <span class="card-tag tag-scale-teal">性取向</span>
+          <a class="card pride-rainbow" href="./Scales/Sexual-Orientation-Scale.html">
+            <span class="card-tag tag-pride-rainbow">性取向</span>
             <p class="card-title">性取向自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
@@ -2038,8 +2152,8 @@
             </div>
           </a>
 
-          <a class="card blue" href="./Scales/Asexual-Spectrum-Scale.html">
-            <span class="card-tag tag-blue">无性恋谱系</span>
+          <a class="card pride-ace" href="./Scales/Asexual-Spectrum-Scale.html">
+            <span class="card-tag tag-pride-ace">无性恋谱系</span>
             <p class="card-title">无性恋谱系自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
@@ -2047,8 +2161,8 @@
             </div>
           </a>
 
-          <a class="card green" href="./Scales/Aromantic-Spectrum-Scale.html">
-            <span class="card-tag tag-green">无浪漫谱系</span>
+          <a class="card pride-aro" href="./Scales/Aromantic-Spectrum-Scale.html">
+            <span class="card-tag tag-pride-aro">无浪漫谱系</span>
             <p class="card-title">无浪漫谱系自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
@@ -2056,9 +2170,18 @@
             </div>
           </a>
 
-          <a class="card purple" href="./Scales/Gender-Exploration-Scale.html">
-            <span class="card-tag tag-purple">性别认同</span>
+          <a class="card pride-trans" href="./Scales/Gender-Exploration-Scale.html">
+            <span class="card-tag tag-pride-trans">性别认同</span>
             <p class="card-title">多元性别认同与探索自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card neuro" href="./Scales/Neurodiversity-Experience-Scale.html">
+            <span class="card-tag tag-neuro">神经多样性</span>
+            <p class="card-title">神经多样性体验自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
               <div class="card-arrow">→</div>
@@ -2071,8 +2194,8 @@
             <div class="card-meta"><span class="card-type">自评量表</span><div class="card-arrow">→</div></div>
           </a>
 
-          <a class="card cyan" href="./Scales/HEXACO-Personality-Scale.html">
-            <span class="card-tag tag-cyan">人格心理</span>
+          <a class="card hexaco" href="./Scales/HEXACO-Personality-Scale.html">
+            <span class="card-tag tag-hexaco">人格心理</span>
             <p class="card-title">HEXACO 六维人格倾向自评量表</p>
             <div class="card-meta"><span class="card-type">自评量表</span><div class="card-arrow">→</div></div>
           </a>
@@ -2106,8 +2229,8 @@
         </div>
         <div class="card-grid">
 
-          <a class="card scale-teal" href="./Tools/Relationship-Needs-Menu.html">
-            <span class="card-tag tag-scale-teal">关系需求</span>
+          <a class="card green" href="./Tools/Relationship-Needs-Menu.html">
+            <span class="card-tag tag-green">关系需求</span>
             <p class="card-title">关系需求菜单</p>
             <div class="card-meta">
               <span class="card-type">互动对话工具</span>
