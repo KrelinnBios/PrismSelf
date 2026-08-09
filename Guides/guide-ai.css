@@ -12,11 +12,15 @@
   z-index: 1000 !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  width: 46px !important;
+  min-width: 46px !important;
+  height: 46px !important;
   min-height: 46px !important;
   margin: 0 !important;
-  padding: 10px 15px !important;
-  border: 1px solid var(--guide-control-border, rgba(91, 77, 227, 0.75)) !important;
+  padding: 0 !important;
+  border: 1px solid var(--prism-floating-border, var(--guide-control-border-strong, var(--accent, #5b4de3))) !important;
   border-radius: 999px !important;
   background: rgba(255, 255, 255, 0.94) !important;
   color: #293146 !important;
@@ -24,11 +28,11 @@
   backdrop-filter: blur(14px) !important;
   -webkit-backdrop-filter: blur(14px) !important;
   cursor: pointer !important;
-  font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif !important;
-  letter-spacing: 0.02em !important;
+  font: 700 13px/1 Arial, sans-serif !important;
+  letter-spacing: 0.04em !important;
   appearance: none !important;
   -webkit-appearance: none !important;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.25s ease, color 0.25s ease !important;
+  transition: transform 0.25s ease, box-shadow 0.2s ease, background 0.25s ease, color 0.25s ease !important;
 }
 
 .guide-ai-launcher:hover {
@@ -983,7 +987,7 @@
     width: auto !important;
     height: 44px !important;
     min-height: 44px !important;
-    border: 1px solid var(--guide-control-border, var(--gold, rgba(91, 77, 227, 0.58))) !important;
+    border: 1px solid var(--prism-floating-border, var(--guide-control-border-strong, var(--accent, #5b4de3))) !important;
     border-radius: 999px !important;
     background: color-mix(in srgb, var(--paper, #ffffff) 90%, transparent) !important;
     color: var(--ink, #293146) !important;
@@ -994,7 +998,7 @@
 
   :root[data-theme] .theme-toggle,
   :root[data-theme] .prism-back-home {
-    position: absolute !important;
+    position: fixed !important;
     top: calc(12px + env(safe-area-inset-top, 0px)) !important;
     bottom: auto !important;
   }
@@ -1017,8 +1021,8 @@
   }
 
   :root[data-theme] .prism-back-home::before {
-    content: "←";
-    font: 500 21px/1 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    content: none !important;
+    display: none !important;
   }
 
   :root[data-theme] .floating-toc {
@@ -1035,15 +1039,18 @@
   .guide-ai-launcher {
     left: calc(12px + env(safe-area-inset-left, 0px)) !important;
     bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
-    padding: 0 14px !important;
-    gap: 7px !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    padding: 0 !important;
+    border: 1px solid var(--prism-floating-border, var(--guide-control-border-strong, var(--accent, #5b4de3))) !important;
+    gap: 0 !important;
     font-size: 12px !important;
   }
 
   :root[data-theme] .theme-toggle:active,
   :root[data-theme] .prism-back-home:active,
   :root[data-theme] .toc-toggle-btn:active {
-    transform: scale(0.96) !important;
+    transform: none !important;
   }
 
   .guide-ai-dialog {
@@ -1103,9 +1110,54 @@
     justify-content: center !important;
   }
 
-  .guide-ai-launcher span {
-    display: none !important;
-  }
+}
+
+.guide-ai-launcher span {
+  display: block !important;
+  color: inherit !important;
+  font: 600 13px/1 "Inter", "Noto Sans", "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  text-shadow: none !important;
+}
+
+/* Keep the close icon visually attached to the dialog header. */
+:root[data-theme] body .guide-ai-dialog .guide-ai-close {
+  border: 1px solid color-mix(in srgb, currentColor 36%, transparent) !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: #526176 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: color 0.16s ease, border-color 0.16s ease !important;
+}
+
+:root[data-theme] body .guide-ai-dialog .guide-ai-close:hover,
+:root[data-theme] body .guide-ai-dialog .guide-ai-close:active {
+  border-color: color-mix(in srgb, currentColor 54%, transparent) !important;
+  background: color-mix(in srgb, currentColor 10%, transparent) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+:root[data-theme="dark"] body .guide-ai-dialog .guide-ai-close {
+  color: #c4cedb !important;
+}
+
+.toc-toggle-btn,
+.guide-ai-launcher {
+  transform-box: border-box !important;
+  transform-origin: 50% 50% !important;
+  transition: box-shadow 0.2s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
+}
+
+.toc-toggle-btn:hover,
+.guide-ai-launcher:hover {
+  transform: none !important;
+}
+
+.toc-toggle-btn:active,
+.guide-ai-launcher:active {
+  transform: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1115,4 +1167,36 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Keep every circular page control on one visual system even when this sheet
+   is loaded after the site-wide theme styles. */
+:root[data-theme] body :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher) {
+  --prism-floating-border: var(--scale-accent, var(--guide-control-border-strong, var(--analysis-accent, var(--bingo-accent, var(--teal, var(--accent, #5b4de3))))));
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-surface, var(--paper, #ffffff)) !important;
+  color: var(--scale-ink, var(--ink, #1a2332)) !important;
+  box-shadow: 0 6px 18px rgba(11, 18, 32, 0.14) !important;
+  transform: none !important;
+  transition: box-shadow 0.2s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
+}
+
+:root[data-theme="dark"] body :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher) {
+  background: var(--scale-surface, var(--paper, #161d26)) !important;
+  color: var(--scale-ink, var(--ink, #e7edf3)) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.34) !important;
+}
+
+:root[data-theme="light"] body :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):hover {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-ink, var(--ink, #1a2332)) !important;
+  color: var(--scale-surface, var(--paper, #f7f8fc)) !important;
+  transform: none !important;
+}
+
+:root[data-theme="dark"] body :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):hover {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-ink, var(--ink, #f7f8fc)) !important;
+  color: var(--scale-surface, var(--paper, #1a2332)) !important;
+  transform: none !important;
 }

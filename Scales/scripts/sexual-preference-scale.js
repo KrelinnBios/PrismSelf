@@ -430,9 +430,9 @@
     window.PrismScale.renderResultSummary({
       title: getSummaryTitle(ranked),
       metrics: [
-        { label: '相对最高', value: `${first.shortTitle} ${first.score.toFixed(1)} / 5.0` },
-        { label: '相对次高', value: `${second.shortTitle} ${second.score.toFixed(1)} / 5.0` },
-        { label: '相对最低', value: `${lowest.shortTitle} ${lowest.score.toFixed(1)} / 5.0` },
+        { label: '最高维度', value: `${first.shortTitle} ${first.score.toFixed(1)} / 5.0` },
+        { label: '次高维度', value: `${second.shortTitle} ${second.score.toFixed(1)} / 5.0` },
+        { label: '最低维度', value: `${lowest.shortTitle} ${lowest.score.toFixed(1)} / 5.0` },
         { label: '十五维均值', value: `${average.toFixed(1)} / 5.0` }
       ]
     });
@@ -498,8 +498,8 @@
   function renderScoreTable(scores) {
     document.getElementById('sectionScores').innerHTML = `
       <h3 class="result-section-heading">分项得分一览</h3>
-      <table><thead><tr><th>维度</th><th>平均分</th><th>当前描述</th><th>观察范围</th></tr></thead>
-      <tbody>${dimensions.map(item => `<tr><td><strong>${item.title}</strong></td><td>${scores[item.id].toFixed(1)} / 5</td><td>${scoreLevel(scores[item.id]).label}</td><td>${item.description}</td></tr>`).join('')}</tbody></table>`;
+      <table class="preference-score-table"><thead><tr><th>维度</th><th>平均分</th><th>当前描述</th><th>观察范围</th></tr></thead>
+      <tbody>${dimensions.map(item => `<tr><td data-label="维度"><strong>${item.title}</strong></td><td data-label="平均分">${scores[item.id].toFixed(1)} / 5</td><td data-label="当前描述">${scoreLevel(scores[item.id]).label}</td><td data-label="观察范围">${item.description}</td></tr>`).join('')}</tbody></table>`;
   }
 
   function buildReflectionActions(ranked) {

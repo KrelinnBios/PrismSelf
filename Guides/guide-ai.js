@@ -248,7 +248,9 @@
     launcher.type = 'button';
     launcher.setAttribute('aria-haspopup', 'dialog');
     launcher.setAttribute('aria-controls', 'guideAiDialog');
-    launcher.innerHTML = iconMarkup() + '<span>' + (isScale ? 'AI 解读' : 'AI 陪读') + '</span>';
+    launcher.setAttribute('aria-label', isScale ? '打开量表 AI 解读' : '打开指南 AI 陪读');
+    launcher.title = isScale ? '量表 AI 解读' : '指南 AI 陪读';
+    launcher.innerHTML = '<span aria-hidden="true">AI</span>';
     if (isScale) launcher.classList.add('guide-ai-launcher--scale');
 
     var isBdsmGuide = /\/Guides\/BDSM-Comprehensive-Guide(?:\.html)?\/?$/.test(window.location.pathname);
@@ -289,7 +291,7 @@
       '<div class="guide-ai-shell">',
       '  <header class="guide-ai-header">',
       '    <div class="guide-ai-heading"><p class="guide-ai-eyebrow">' + eyebrow + '</p><h2 class="guide-ai-title" id="guideAiTitle">' + dialogTitle + '</h2></div>',
-      '    <button class="guide-ai-close" type="button" aria-label="' + closeLabel + '" title="' + closeLabel + '"><span aria-hidden="true">×</span></button>',
+      '    <button class="guide-ai-close" type="button" aria-label="' + closeLabel + '"><span aria-hidden="true">×</span></button>',
       '  </header>',
       '  <p class="guide-ai-notice">' + notice + '</p>',
       '  <div class="guide-ai-conversation">',

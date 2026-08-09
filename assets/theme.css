@@ -18,7 +18,7 @@
   display: grid !important;
   place-items: center !important;
   border-radius: 999px !important;
-  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border: 0 !important;
   background: #ffffff !important;
   color: #1a2332 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14) !important;
@@ -29,23 +29,23 @@
   transition: transform 0.25s ease !important;
 }
 .theme-toggle:hover {
-  transform: rotate(-18deg) scale(1.05) !important;
+  transform: scale(1.05) !important;
   background: #ffffff !important;
   color: #1a2332 !important;
-  border-color: rgba(0, 0, 0, 0.12) !important;
+  border: 0 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14) !important;
 }
 
 :root[data-theme="dark"] .theme-toggle:hover {
   background: #161d26 !important;
   color: #e7edf3 !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
+  border: 0 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 .theme-toggle:focus-visible {
   outline: none !important;
-  border-color: rgba(47, 111, 115, 0.42) !important;
+  border: 0 !important;
   box-shadow: 0 0 0 3px rgba(47, 111, 115, 0.18), 0 2px 10px rgba(0, 0, 0, 0.14) !important;
 }
 
@@ -62,12 +62,12 @@
 :root[data-theme="dark"] .theme-toggle {
   background: #161d26 !important;
   color: #e7edf3 !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
+  border: 0 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 :root[data-theme="dark"] .theme-toggle:focus-visible {
-  border-color: rgba(95, 208, 164, 0.5) !important;
+  border: 0 !important;
   box-shadow: 0 0 0 3px rgba(95, 208, 164, 0.18), 0 2px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
@@ -77,6 +77,133 @@
 
 :root[data-theme="dark"] .theme-toggle .icon-moon {
   display: block !important;
+}
+
+/* Shared round back button. Glossary pages do not use this control. */
+.prism-back-home {
+  position: fixed !important;
+  top: 18px !important;
+  left: 18px !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 9999 !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: #1a2332 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14) !important;
+  text-decoration: none !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  backdrop-filter: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.prism-back-home::before {
+  content: none !important;
+  display: none !important;
+}
+
+.prism-back-home svg {
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.prism-back-home:hover {
+  transform: scale(1.05) !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  color: #1a2332 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.prism-back-home:focus-visible {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(47, 111, 115, 0.18), 0 2px 10px rgba(0, 0, 0, 0.14) !important;
+}
+
+:root[data-theme="dark"] .prism-back-home,
+:root[data-theme="dark"] .prism-back-home:hover {
+  border: 0 !important;
+  background: #161d26 !important;
+  color: #e7edf3 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+:root[data-theme="dark"] .prism-back-home:focus-visible {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(95, 208, 164, 0.18), 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.theme-toggle,
+.prism-back-home,
+.toc-toggle-btn,
+.guide-ai-launcher {
+  --prism-floating-border: var(--scale-accent, var(--guide-control-border-strong, var(--analysis-accent, var(--bingo-accent, var(--teal, var(--accent, #5b4de3))))));
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-surface, var(--paper, #ffffff)) !important;
+  color: var(--scale-ink, var(--ink, #1a2332)) !important;
+  box-shadow: 0 6px 18px rgba(11, 18, 32, 0.14) !important;
+  transform-box: border-box !important;
+  transform-origin: 50% 50% !important;
+  transition: box-shadow 0.2s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
+}
+
+:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher) {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-surface, var(--paper, #161d26)) !important;
+  color: var(--scale-ink, var(--ink, #e7edf3)) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.34) !important;
+}
+
+.theme-toggle:hover,
+.prism-back-home:hover,
+.toc-toggle-btn:hover,
+.guide-ai-launcher:hover {
+  transform: none !important;
+}
+
+.theme-toggle:active,
+.prism-back-home:active,
+.toc-toggle-btn:active,
+.guide-ai-launcher:active {
+  transform: none !important;
+}
+
+.theme-toggle:focus-visible,
+.prism-back-home:focus-visible,
+.toc-toggle-btn:focus-visible,
+.guide-ai-launcher:focus-visible {
+  border: 1px solid var(--prism-floating-border) !important;
+}
+
+:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):focus-visible {
+  border: 1px solid var(--prism-floating-border) !important;
+}
+
+:root[data-theme="light"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):hover {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-ink, var(--ink, #1a2332)) !important;
+  color: var(--scale-surface, var(--paper, #f7f8fc)) !important;
+}
+
+:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):hover {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-ink, var(--ink, #f7f8fc)) !important;
+  color: var(--scale-surface, var(--paper, #1a2332)) !important;
 }
 
 :root.guide-links-green #write .term-desc a,
@@ -136,10 +263,78 @@
 }
 
 @media (max-width: 620px) {
-  .theme-toggle {
+  .theme-toggle,
+  .prism-back-home {
     top: 12px !important;
-    right: 12px !important;
-    width: 40px !important;
-    height: 40px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
   }
+
+  .theme-toggle {
+    right: 12px !important;
+  }
+
+  .prism-back-home {
+    left: 12px !important;
+    padding: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .prism-back-home,
+  .toc-toggle-btn,
+  .guide-ai-launcher {
+    transition: none !important;
+  }
+
+  .theme-toggle:hover,
+  .prism-back-home:hover,
+  .toc-toggle-btn:hover,
+  .guide-ai-launcher:hover,
+  .theme-toggle:active,
+  .prism-back-home:active,
+  .toc-toggle-btn:active,
+  .guide-ai-launcher:active {
+    transform: none !important;
+  }
+}
+
+/* Dialog close icons belong to the title bar and should not look like floating actions. */
+:root[data-theme] body .guide-ai-close,
+:root[data-theme] body .modal-close,
+:root[data-theme] body .qr-dialog-close {
+  border: 1px solid color-mix(in srgb, currentColor 36%, transparent) !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transform-origin: 50% 50% !important;
+  transition: color 0.16s ease, border-color 0.16s ease !important;
+}
+
+:root[data-theme] body .guide-ai-close:hover,
+:root[data-theme] body .guide-ai-close:active,
+:root[data-theme] body .modal-close:hover,
+:root[data-theme] body .modal-close:active,
+:root[data-theme] body .qr-dialog-close:hover,
+:root[data-theme] body .qr-dialog-close:active {
+  border-color: color-mix(in srgb, currentColor 54%, transparent) !important;
+  background: color-mix(in srgb, currentColor 10%, transparent) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+:root[data-theme="light"] body .guide-ai-close,
+:root[data-theme="light"] body .modal-close,
+:root[data-theme="light"] body .qr-dialog-close {
+  color: #526176 !important;
+}
+
+:root[data-theme="dark"] body .guide-ai-close,
+:root[data-theme="dark"] body .modal-close,
+:root[data-theme="dark"] body .qr-dialog-close {
+  color: #c4cedb !important;
 }

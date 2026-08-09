@@ -231,12 +231,33 @@
 		});
 
 		result.querySelectorAll('table').forEach(table => {
-			if (table.parentElement?.classList.contains('result-table-shell')) return;
-			const shell = document.createElement('div');
-			shell.className = 'result-table-shell';
-			table.parentNode.insertBefore(shell, table);
-			shell.appendChild(table);
+			const headingRow = table.tHead?.rows[table.tHead.rows.length - 1];
+			const labels = headingRow ? Array.from(headingRow.cells, cell => cell.textContent.trim()) : [];
+			if (labels.length) {
+				table.classList.add('result-responsive-table');
+				Array.from(table.tBodies).forEach(body => {
+					Array.from(body.rows).forEach(row => {
+						Array.from(row.cells).forEach((cell, index) => {
+							if (!cell.dataset.label && labels[index]) cell.dataset.label = labels[index];
+						});
+					});
+				});
+			}
+
+			let shell = table.parentElement;
+			if (!shell?.classList.contains('result-table-shell')) {
+				shell = document.createElement('div');
+				shell.className = 'result-table-shell';
+				table.parentNode.insertBefore(shell, table);
+				shell.appendChild(table);
+			}
+			if (labels.length) shell.classList.add('result-table-shell--responsive');
 		});
+	}
+
+	function syncResultVisibility(result) {
+		const isVisible = result && !result.hidden && getComputedStyle(result).display !== 'none';
+		document.body.classList.toggle('scale-result-visible', Boolean(isVisible));
 	}
 
 	function markStructure(config = getConfig()) {
@@ -266,9 +287,22 @@
 				if (section && result.contains(section)) section.classList.add('result-section-slot');
 			});
 			normalizeResultContent(result);
+			syncResultVisibility(result);
 			if (!resultObservers.has(result)) {
-				const observer = new MutationObserver(() => normalizeResultContent(result));
-				observer.observe(result, { childList: true, subtree: true });
+				const observer = new MutationObserver(mutations => {
+					if (mutations.some(mutation => mutation.type === 'childList')) {
+						normalizeResultContent(result);
+					}
+					if (mutations.some(mutation => mutation.type === 'childList' || mutation.target === result)) {
+						syncResultVisibility(result);
+					}
+				});
+				observer.observe(result, {
+					attributes: true,
+					attributeFilter: ['class', 'hidden', 'style'],
+					childList: true,
+					subtree: true
+				});
 				resultObservers.set(result, observer);
 			}
 		}
