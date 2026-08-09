@@ -506,12 +506,12 @@
       border-color: rgba(139, 92, 246, 0.25);
     }
 
-    .card.neuro::before {
-      background: linear-gradient(90deg, #312e81 0%, #4f46e5 52%, #a5b4fc 100%);
+    .card.pride-neuro::before {
+      background: linear-gradient(90deg, #facc15 0%, #ec4899 24%, #8b5cf6 48%, #06b6d4 74%, #2563eb 100%);
     }
 
-    .card:hover.neuro {
-      border-color: rgba(79, 70, 229, 0.30);
+    .card:hover.pride-neuro {
+      border-color: rgba(139, 92, 246, 0.32);
     }
 
     .card.pride-rainbow::before {
@@ -520,6 +520,22 @@
 
     .card:hover.pride-rainbow {
       border-color: rgba(99, 102, 241, 0.30);
+    }
+
+    .card.pride-kink::before {
+      background: linear-gradient(90deg, #111827 0%, #1e40af 26%, #f8fafc 50%, #1e40af 72%, #111827 88%, #dc2626 100%);
+    }
+
+    .card:hover.pride-kink {
+      border-color: rgba(30, 64, 175, 0.34);
+    }
+
+    .card.pride-feminist::before {
+      background: linear-gradient(90deg, #6d28d9 0%, #9333ea 32%, #f8fafc 50%, #22c55e 72%, #15803d 100%);
+    }
+
+    .card:hover.pride-feminist {
+      border-color: rgba(109, 40, 217, 0.30);
     }
 
     .card.pride-ace::before {
@@ -625,14 +641,24 @@
       color: #8b5cf6;
     }
 
-    .tag-neuro {
-      background: linear-gradient(90deg, rgba(49, 46, 129, 0.12), rgba(79, 70, 229, 0.12), rgba(165, 180, 252, 0.16));
-      color: #3730a3;
+    .tag-pride-neuro {
+      background: linear-gradient(90deg, rgba(250, 204, 21, 0.14), rgba(236, 72, 153, 0.12), rgba(139, 92, 246, 0.14), rgba(6, 182, 212, 0.12), rgba(37, 99, 235, 0.12));
+      color: #5b21b6;
     }
 
     .tag-pride-rainbow {
       background: linear-gradient(90deg, rgba(228, 3, 3, 0.10), rgba(255, 140, 0, 0.10), rgba(255, 237, 0, 0.10), rgba(0, 128, 38, 0.10), rgba(36, 64, 142, 0.10), rgba(115, 41, 130, 0.10));
       color: #334155;
+    }
+
+    .tag-pride-kink {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.12), rgba(30, 64, 175, 0.14), rgba(248, 250, 252, 0.55), rgba(220, 38, 38, 0.10));
+      color: #1e3a8a;
+    }
+
+    .tag-pride-feminist {
+      background: linear-gradient(90deg, rgba(109, 40, 217, 0.13), rgba(248, 250, 252, 0.58), rgba(34, 197, 94, 0.13));
+      color: #5b21b6;
     }
 
     .tag-pride-ace {
@@ -1638,14 +1664,24 @@
       color: #c4b0fa;
     }
 
-    :root[data-theme="dark"] .tag-neuro {
-      background: linear-gradient(90deg, rgba(49, 46, 129, 0.34), rgba(99, 102, 241, 0.24), rgba(165, 180, 252, 0.20));
-      color: #c7d2fe;
+    :root[data-theme="dark"] .tag-pride-neuro {
+      background: linear-gradient(90deg, rgba(250, 204, 21, 0.18), rgba(244, 114, 182, 0.18), rgba(167, 139, 250, 0.22), rgba(34, 211, 238, 0.18), rgba(96, 165, 250, 0.18));
+      color: #ede9fe;
     }
 
     :root[data-theme="dark"] .tag-pride-rainbow {
       background: linear-gradient(90deg, rgba(248, 113, 113, 0.18), rgba(251, 146, 60, 0.18), rgba(250, 204, 21, 0.18), rgba(74, 222, 128, 0.18), rgba(96, 165, 250, 0.18), rgba(192, 132, 252, 0.18));
       color: #f8fafc;
+    }
+
+    :root[data-theme="dark"] .tag-pride-kink {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.52), rgba(59, 130, 246, 0.24), rgba(248, 250, 252, 0.12), rgba(248, 113, 113, 0.18));
+      color: #dbeafe;
+    }
+
+    :root[data-theme="dark"] .tag-pride-feminist {
+      background: linear-gradient(90deg, rgba(167, 139, 250, 0.24), rgba(248, 250, 252, 0.12), rgba(74, 222, 128, 0.20));
+      color: #ede9fe;
     }
 
     :root[data-theme="dark"] .tag-pride-ace,
@@ -2000,8 +2036,8 @@
             </div>
           </a>
 
-          <a class="card amber" href="./Guides/BDSM-Comprehensive-Guide.html">
-            <span class="card-tag tag-amber">BDSM</span>
+          <a class="card pride-kink" href="./Guides/BDSM-Comprehensive-Guide.html">
+            <span class="card-tag tag-pride-kink">BDSM</span>
             <p class="card-title">BDSM 全景指南</p>
             <div class="card-meta">
               <span class="card-type">专题指南</span>
@@ -2123,8 +2159,8 @@
             </div>
           </a>
 
-          <a class="card neuro" href="./Bingos/Neurodiversity-Resonance.html">
-            <span class="card-tag tag-neuro">神经多样性</span>
+          <a class="card pride-neuro" href="./Bingos/Neurodiversity-Resonance.html">
+            <span class="card-tag tag-pride-neuro">神经多样性</span>
             <p class="card-title">神经多样性 · 共鸣刻度卡</p>
             <div class="card-meta">
               <span class="card-type">共鸣刻度</span>
@@ -2146,15 +2182,6 @@
           <a class="card pride-rainbow" href="./Scales/Sexual-Orientation-Scale.html">
             <span class="card-tag tag-pride-rainbow">性取向</span>
             <p class="card-title">性取向自评量表</p>
-            <div class="card-meta">
-              <span class="card-type">自评量表</span>
-              <div class="card-arrow">→</div>
-            </div>
-          </a>
-
-          <a class="card rose" href="./Scales/Sexual-Preference-Scale.html">
-            <span class="card-tag tag-rose">亲密偏好</span>
-            <p class="card-title">亲密互动与性偏好自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
               <div class="card-arrow">→</div>
@@ -2188,8 +2215,17 @@
             </div>
           </a>
 
-          <a class="card neuro" href="./Scales/Neurodiversity-Experience-Scale.html">
-            <span class="card-tag tag-neuro">神经多样性</span>
+          <a class="card pride-kink" href="./Scales/Sexual-Preference-Scale.html">
+            <span class="card-tag tag-pride-kink">亲密偏好</span>
+            <p class="card-title">亲密互动与性偏好自评量表</p>
+            <div class="card-meta">
+              <span class="card-type">自评量表</span>
+              <div class="card-arrow">→</div>
+            </div>
+          </a>
+
+          <a class="card pride-neuro" href="./Scales/Neurodiversity-Experience-Scale.html">
+            <span class="card-tag tag-pride-neuro">神经多样性</span>
             <p class="card-title">神经多样性体验自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
@@ -2209,8 +2245,8 @@
             <div class="card-meta"><span class="card-type">自评量表</span><div class="card-arrow">→</div></div>
           </a>
 
-          <a class="card amber" href="./Scales/Feminist-Leanings-Scale.html">
-            <span class="card-tag tag-amber">女权主义</span>
+          <a class="card pride-feminist" href="./Scales/Feminist-Leanings-Scale.html">
+            <span class="card-tag tag-pride-feminist">女权主义</span>
             <p class="card-title">女权主义流派倾向自评量表</p>
             <div class="card-meta">
               <span class="card-type">自评量表</span>
