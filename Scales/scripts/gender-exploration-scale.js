@@ -6,7 +6,7 @@ const questionMarkup = `
     <!-- 1 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">1.</span>
-            您是否感觉自己的内在性别与出生时医生宣布的性别（指派性别）不一致？</div>
+            您是否感觉自己的内在性别与出生时被指派的性别不一致？</div>
         <select name="q1">
             <option value="" disabled selected>请选择...</option>
             <option value="0">0 - 完全一致，从无怀疑</option>
@@ -17,7 +17,7 @@ const questionMarkup = `
             <option value="5">5 - 持续且显著地感觉不一致</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>这是评估“跨性别倾向”最核心的问题。顺性别者通常不会质疑这种一致性，而跨性别者可能从早年起就有内在冲突。该题聚焦于内在认知的不匹配，帮助区分本能感知与外部影响。通过量化不一致感的强度和频率，我们可以初步定位您在性别谱系上的位置。该题还考虑长期稳定性，避免短期情绪波动影响。
+            <p><strong>本题用意：</strong>观察内在性别感与指派性别之间是否存在持续或反复出现的不一致。这里记录的是当前体验的强度和频率，不能仅凭单题判断任何身份。
             </p>
             <p><strong>具体案例：</strong>例一：若您出生指派为男性，但从小就觉得自己“应该是女孩”，并持续感到这种错位，则可选择5分；相反，若您从未质疑过指派性别，并觉得它完全符合内在，则可选择0分。例二：若您偶尔在梦中或幻想中觉得自己是异性，但醒来后无强烈不适，则可选择2分。例三：若您在青春期后越来越觉得指派性别“不对劲”，则为高分。
             </p>
@@ -59,7 +59,7 @@ const questionMarkup = `
     <!-- 3 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">3.</span>
-            当您被归类为您的指派性别（如被称为“先生/女士”、“男孩/女孩”）时，您是否感到内心有一种本能的排斥或“不对劲”的感觉？</div>
+            当他人按您的指派性别称呼或归类您时，您是否会感到排斥、别扭或“不对劲”？</div>
         <select name="q3">
             <option value="" disabled selected>请选择...</option>
             <option value="0">0 - 完全舒适/无感</option>
@@ -70,8 +70,7 @@ const questionMarkup = `
             <option value="5">5 - 持续且显著的不适或痛苦</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>评估社会性别称谓引发的焦虑感（Social
-                Dysphoria）。这种“不对劲”的感觉往往是潜意识的信号，帮助区分社会互动中的内在不匹配。该题探索外部标签与内在自我的冲突，量化排斥的强度，以识别早期社会焦虑迹象。</p>
+            <p><strong>本题用意：</strong>观察性别化称呼或归类是否会引发不适。重点是这种反应出现的频率、强度和具体情境，不把一般的称谓偏好直接解释为身份结论。</p>
             <p><strong>具体案例：</strong>例一：若每次被叫“先生”时都感到刺耳和不适，像穿错衣服，则可选择5分；相反，若您觉得这些称谓自然且舒适，则可选择0分。例二：若在正式场合偶尔觉得称谓别扭，但不持久，则可选择2分。例三：若在朋友圈被叫指派性别时内心抗拒，则为高分。
             </p>
             <p><strong>心理学视角：</strong>社会性别焦虑通常源于外部社会类别与内部自我概念之间的不匹配。这种不适感可能在公共场合更强烈，因为在私人空间中可以控制他人对自己的称呼。长期的社会性别焦虑可能导致社交回避或抑郁症状。
@@ -97,8 +96,7 @@ const questionMarkup = `
             <option value="5">5 - 那会让我感觉最符合内心</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>评估性别愉悦（Gender
-                Euphoria）的潜在可能性。有时候，人们意识到自己是跨性别并非因为痛苦（焦虑），而是因为意识到另一种状态会带来巨大的“正确感”。该题从积极角度探索切换性别的预期收益，帮助识别内在真实自我的向往。
+            <p><strong>本题用意：</strong>观察想象另一种性别身份或表达方式时，是否会出现更舒适、更自在或更符合内心的感受。积极体验可以作为自我观察线索，但不单独决定身份。
             </p>
             <p><strong>具体案例：</strong>例一：若您想象以异性身份生活时感到巨大解脱和喜悦，则可选择5分；相反，若您觉得当前身份已足够真实，则可选择0分。例二：若您偶尔想想“如果我是异性也许更开心”，但不强烈，则可选择2分。例三：若您在虚拟游戏中选择异性角色时感到更自在，则为高分。
             </p>
@@ -166,7 +164,7 @@ const questionMarkup = `
     <!-- 7 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">7.</span>
-            您是否感觉自己并没有明显的性别感，或者对“拥有性别”这件事感到困惑/不相关？</div>
+            您是否感觉自己没有明显的性别感，或觉得“性别”与自己的内在体验关系不大？</div>
         <select name="q7">
             <option value="" disabled selected>请选择...</option>
             <option value="0">0 - 完全不符，我有明确性别感</option>
@@ -174,10 +172,10 @@ const questionMarkup = `
             <option value="2">2 - 偶尔觉得性别不重要</option>
             <option value="3">3 - 有时感到性别缺失</option>
             <option value="4">4 - 经常感到无性别</option>
-            <option value="5">5 - 完全符合，我是无性别的</option>
+            <option value="5">5 - 几乎没有明显的性别感</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>针对无性别（Agender）的探测。如果您觉得内心没有性别罗盘，这里选高分。该题评估性别概念的内在相关性，帮助识别谱系中的“无”位置。</p>
+            <p><strong>本题用意：</strong>观察性别概念在您的内在体验中是否重要、清晰或具有共鸣。高分只表示性别感较弱或疏离感较强，不要求采用“无性别”等标签。</p>
             <p><strong>具体案例：</strong>例一：若您觉得“性别”像外来标签，无内在共鸣，则可选择5分；相反，若您有强烈性别感，则可选择0分。例二：若您偶尔无视性别标签，但多数时候有感，则可选择2分。例三：若在讨论性别时总觉得“无关我事”，则为高分。
             </p>
             <p><strong>哲学视角：</strong>无性别挑战了“所有人都有性别”的基本假设。一些无性别者描述自己的体验为“性别空白”或“性别虚无”，而另一些则感到性别是完全无意义的社会建构。这种体验与性别冷漠（gender
@@ -216,25 +214,25 @@ const questionMarkup = `
     <!-- 9 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">9.</span>
-            当您看到异性（或您渴望的性别形象）时，您感受到的是“想成为TA”多于“想了解或拥有TA（成为朋友或伴侣）”吗？</div>
+            当您看到某种向往的性别形象时，“想成为对方”的感觉是否比“想与对方建立关系”更强？</div>
         <select name="q9">
             <option value="" disabled selected>请选择...</option>
-            <option value="0">0 - 完全是吸引，不想成为TA</option>
+            <option value="0">0 - 完全是吸引，不想成为对方</option>
             <option value="1">1 - 大多是吸引</option>
             <option value="2">2 - 主要是吸引，偶尔羡慕</option>
             <option value="3">3 - 吸引和羡慕各半</option>
-            <option value="4">4 - 大多是想成为TA</option>
-            <option value="5">5 - 完全是羡慕/想成为TA</option>
+            <option value="4">4 - 大多是想成为对方</option>
+            <option value="5">5 - 几乎完全是羡慕或想成为对方</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>区分“吸引”与“认同”。很多人混淆了“喜欢看”和“想成为”。该题帮助分离性吸引、浪漫吸引等与性别羡慕。</p>
+            <p><strong>本题用意：</strong>区分想接近、欣赏或与对方建立关系的吸引，与希望拥有相似性别特征或被以相似方式看待的羡慕。两者也可能同时出现。</p>
             <p><strong>具体案例：</strong>例一：若看到异性时想“如果我是她该多好”，则可选择5分；相反，若想“想和她交往”，则可选择0分。例二：若两者混杂，则可选择3分。例三：若对明星的欣赏是羡慕身材而非想拥有，则为高分。
             </p>
             <p><strong>跨性别者的常见体验：</strong>许多跨性别女性最初将她们的性别羡慕误解为异性恋吸引，反之亦然。这种混淆被称为“性别羡慕混淆”。区分这两种感受是理解性别认同的关键一步。羡慕通常带有“嫉妒”的情感成分，而吸引则带有“欲望”成分。
             </p>
             <p><strong>心理学视角：</strong>发展心理学中，儿童常通过模仿同性父母来学习性别角色，但跨性别儿童可能模仿异性。这种模仿如果伴随强烈的情感投入，可能演变为“想成为”的愿望。</p>
             <div class="reflection-hint">
-                <strong>深度反思提示：</strong>当您羡慕某人时，是羡慕其整体存在方式，还是特定特征（声音、姿态、社会待遇）？这种羡慕是否伴随着“如果我是TA，生活会更好”的想象？羡慕与吸引在您的情感体验中如何区分？
+                <strong>深度反思提示：</strong>当您羡慕某人时，是羡慕其整体存在方式，还是特定特征（声音、姿态、社会待遇）？这种羡慕是否伴随着“如果我是对方，生活会更好”的想象？羡慕与吸引在您的情感体验中如何区分？
             </div>
         </div>
     </div>
@@ -349,7 +347,7 @@ const questionMarkup = `
     <!-- 14 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">14.</span>
-            您是否会试图掩盖您的性征（如束胸、穿宽松衣物隐藏曲线、刮除体毛/通过衣物增加体积）以改变性别表达？</div>
+            您是否会通过束胸、宽松衣物、处理体毛或调整身体轮廓等方式，弱化某些性征或改变性别表达？</div>
         <select name="q14">
             <option value="" disabled selected>请选择...</option>
             <option value="0">0 - 从不</option>
@@ -357,10 +355,10 @@ const questionMarkup = `
             <option value="2">2 - 偶尔</option>
             <option value="3">3 - 有时</option>
             <option value="4">4 - 经常</option>
-            <option value="5">5 - 总是/如果不掩盖就无法出门</option>
+            <option value="5">5 - 几乎总是，且很难不这样做</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>行为层面的代偿。评估为了缓解焦虑而采取的实际行动。该题连接内在不适与外部行为，帮助评估焦虑的行动影响。</p>
+            <p><strong>本题用意：</strong>观察您是否会通过调整衣着、体毛或身体轮廓来获得更舒适的性别表达，以及这种需要对日常行动有多大影响。</p>
             <p><strong>具体案例：</strong>例一：若您每天束胸才能出门，则可选择5分；相反，若无此需求，则可选择0分。例二：若偶尔穿宽松衣，则可选择2分。例三：若刮体毛是为了性别中性，则为高分。
             </p>
             <p><strong>代偿行为：</strong>这些掩盖行为是应对性别焦虑的常见策略。它们可以提供暂时的缓解，但也可能带来身体不适（如束胸的呼吸困难）或心理负担（如需要时刻注意掩饰）。这些行为的频率和必要性反映了焦虑的严重程度。
@@ -545,7 +543,7 @@ const questionMarkup = `
     <!-- 22 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">22.</span>
-            您是否对异性朋友的互动感到羡慕，因为TA们能自然地被视为那种性别？</div>
+            看到某些性别群体自然地以您向往的方式互动时，您是否会羡慕他们的归属感或被看待的方式？</div>
         <select name="q22">
             <option value="" disabled selected>请选择...</option>
             <option value="0">0 - 从不</option>
@@ -556,13 +554,13 @@ const questionMarkup = `
             <option value="5">5 - 强烈羡慕</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>评估社会羡慕。该题连接身体与社会，帮助识别外部互动的向往。</p>
+            <p><strong>本题用意：</strong>观察您是否会向往某种性别群体的互动方式、社会待遇或归属感，并区分这种向往与对具体个人的吸引。</p>
             <p><strong>具体案例：</strong>例一：若羡慕女性朋友被叫“姐妹”，则可选择5分；相反，若无，则可选择0分。例二：若偶尔，则可选择2分。例三：若看到异性社交时嫉妒，则为高分。</p>
             <p><strong>社交嫉妒：</strong>这种羡慕不仅针对身体特征，也针对社会互动方式。例如，跨性别男性可能羡慕男性间的兄弟情谊和互动模式，而不仅仅是男性身体。这种社交嫉妒反映了对特定性别社会体验的渴望。
             </p>
             <p><strong>社会学习视角：</strong>通过观察同性别群体的互动，个体可能习得性别化的社交脚本。如果内在认同与指派性别不同，可能会感到被排除在外的遗憾。</p>
             <div class="reflection-hint">
-                <strong>深度反思提示：</strong>您羡慕的是TA们的互动方式、社会待遇，还是群体归属感？如果您可以“隐形”体验一天异性社交，您最想体验什么？这种羡慕是否让您回避某些社交场合？
+                <strong>深度反思提示：</strong>您羡慕的是他们的互动方式、社会待遇，还是群体归属感？如果可以安全地体验一天您向往的社交方式，您最想体验什么？这种羡慕是否让您回避某些社交场合？
             </div>
         </div>
     </div>
@@ -684,7 +682,7 @@ const questionMarkup = `
         <div class="explanation">
             <p><strong>本题用意：</strong>评估群体归属。该题帮助识别社会层面的不匹配。</p>
             <p><strong>具体案例：</strong>例一：若在同性聚会中感到外人，则可选择5分；相反，若舒适，则可选择0分。例二：若偶尔，则可选择1分。例三：若话题不合，则为高分。</p>
-            <p><strong>群体归属感：</strong>同性群体往往有共享的性别化经验和期待。当个人内在认同与指派性别不一致时，可能难以融入同性群体。这种疏离感可能是隐性的（“我不完全理解TA们”），也可能是显性的（“我不想像TA们一样”）。
+            <p><strong>群体归属感：</strong>同性群体往往有共享的性别化经验和期待。当个人内在认同与指派性别不一致时，可能难以融入同性群体。这种疏离感可能是隐性的（“我不完全理解他们”），也可能是显性的（“我不想像他们一样”）。
             </p>
             <p><strong>社会认同理论：</strong>个体通过社会分类获得归属感。如果无法认同自己的性别群体，可能转向其他群体或形成新的身份类别。</p>
             <div class="reflection-hint">
@@ -1331,7 +1329,7 @@ function calculateResult() {
     }
 
     // 通用解释块（保持不变）
-    const generalTip = `<div style="background-color: #fff; border-radius: 10px; padding: 20px; margin: 25px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-left: 6px solid #4a148c;"><h3 style="color: #4a148c; margin-top: 0;">确保结果准确性</h3><p>本量表旨在帮助您系统梳理内在认同与外部经验的互动模式。请基于您长期的真实感受作答，而非社会期望、道德压力或一时的冲动。</p><h4 style="color: #4a148c; margin-top: 20px;">如果您发现结果中有任何逻辑矛盾或不一致：</h4><ul style="background-color: #f3e5f5; padding: 15px; border-radius: 6px;"><li><strong>回顾题目解释：</strong>点击每个问题的标题可以查看详细解释和具体示例（如区分外貌审美与性别焦虑）。</li><li><strong>区分表达与认同：</strong>喜欢异性装扮（性别表达）不等于内心认同为异性（性别认同）。跨性别男性可以喜欢穿裙子，顺性别女性可以偏爱中性装扮。</li><li><strong>区分取向与认同：</strong>喜欢同性（性倾向）与想成为另一种性别（性别认同）是独立的。确保您没有将浪漫/性吸引与"想成为TA"的渴望混淆。</li></ul><h4 style="color: #4a148c; margin-top: 20px;">为什么结果可能有矛盾？</h4><ul style="background-color: #e8f5e9; padding: 15px; border-radius: 6px;"><li><strong>探索阶段限制：</strong>很多跨性别者或非二元者早期会因为"内化恐惧"或"社会脚本压力"而下意识压抑自己的真实答案。</li><li><strong>体验的流动性：</strong>人类体验极其丰富，性别并不是非黑即白的开关，有时会溢出单一维度，难以被完整捕捉。</li></ul><p style="margin-top: 15px; font-size: 0.95em; color: #666;"><strong>重要提示：</strong>本结果基于您的当前回答计算。如果您觉得结果与实际体验不符，可以：① 相信当前结果，接纳自己独特的轨迹；② 将矛盾点记录下来，作为深入自我探索或寻求心理咨询师帮助的起点。身份认同是一个流动且终生的过程。</p></div>`;
+    const generalTip = `<div class="insight-card"><h3>结果校准提示</h3><p>请把结果与长期体验和具体情境对照，不要只凭一两道题决定身份。</p><ul><li><strong>区分认同与表达：</strong>服装、发型、气质和角色偏好不必与性别认同完全一致。</li><li><strong>区分认同与吸引：</strong>想成为某种性别形象，与想接近、欣赏或和某人建立关系是不同体验，也可能同时出现。</li><li><strong>留意外部条件：</strong>安全感、家庭和同伴期待、现实接触机会以及近期压力，都可能影响作答。</li></ul><p class="result-data-note">若结果与实际感受不符，可以记录分歧最大的题目，在状态较稳定时重新作答；不需要服从量表给出的类型描述。</p></div>`;
 
     const pressurePeak = socialScore >= physicalScore
         ? { name: '社会相关压力', score: socialScore }
@@ -1572,6 +1570,29 @@ function calculateResult() {
     </li>`;
     personalizedSuggestions += `</ol><div style="background-color: #f3e5f5; border-left: 4px solid #8e24aa; padding: 15px; margin-top: 25px; border-radius: 6px;"><strong style="color: #6a1b9a;">重要提醒：</strong> <p style="margin: 8px 0 0 0; color: #555; font-size: 0.95em;">请不要被一时的测试分数局限。探索性别认同是一场深刻了解自己的旅途，它可能充满挑战，但也孕育着找到真正自由与舒适的希望。无论最终的结论是什么，接纳自己最真实的模样，就是最大的胜利。</p></div></div>`;
 
+    const reflectionActions = [
+        {
+            title: '记录让你更舒适或不适的情境',
+            text: `本次相对突出的压力维度是“${pressurePeak.name}”。记录一次明显不适和一次更舒适的场景，比较当时的称呼、身体感受、表达方式、在场的人和安全程度。`
+        },
+        {
+            title: '区分认同、表达与社会压力',
+            text: '喜欢某种服装、气质或角色，不会自动决定性别认同；对社会规范感到受限，也不等于必须采用某个身份标签。把这些体验分开记录会更清楚。'
+        },
+        {
+            title: '进行低风险、可逆的探索',
+            text: '在安全且私密的环境中，可以尝试不同的称呼、名字、服装或表达方式，并记录舒适度变化。任何尝试都可以暂停、调整或不再继续。'
+        },
+        {
+            title: '优先照顾安全与支持需要',
+            text: '如果表达或公开身份可能影响居住、经济、人际或身体安全，请先保护自己。持续痛苦或明显影响生活时，可以寻找尊重性别多样性的专业支持。'
+        },
+        {
+            title: '允许结论保持开放',
+            text: `“${mainType}”只是对本次作答模式的概括，不是身份判定。可以在经历、环境或自我理解发生变化后重新作答，比较体验而不是追求固定分数。`
+        }
+    ];
+
     window.PrismScale.renderResultSummary({
         title: mainType,
         metrics: [
@@ -1584,7 +1605,7 @@ function calculateResult() {
     document.getElementById('mainInterpretation').innerHTML = mainInterpretation + generalTip;
     document.getElementById('detailedAnalysis').innerHTML = analysisHTML;
     document.getElementById('sectionScores').innerHTML = `<h3>各维度得分详情</h3>${sectionTableHTML}`;
-    document.getElementById('personalizedSuggestions').innerHTML = `<h3>个性化探索路线与成长建议</h3>${personalizedSuggestions}`;
+    window.PrismScale.renderReflectionActions('personalizedSuggestions', reflectionActions);
     if (window.PrismScale) {
         window.PrismScale.renderResultRadar({
             canvasId: 'radarChart',

@@ -728,6 +728,21 @@ button:hover {
 	margin-bottom: 0;
 }
 
+.reflection-action-item + .reflection-action-item {
+	margin-top: 26px;
+}
+
+.reflection-action-item h4 {
+	margin: 0 0 8px;
+	color: var(--scale-ink) !important;
+	font-size: 1.05rem;
+	line-height: 1.5;
+}
+
+.reflection-action-item p {
+	margin: 0 !important;
+}
+
 .result-data-note {
 	margin: 12px 0 0 !important;
 	color: var(--scale-muted) !important;

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>亲密互动与性偏好自评量表</title>
+  <meta name="description" content="通过 90 道原创中文情境题，从十五个维度梳理成年人在亲密互动与性幻想中的当前偏好；结果仅保存在本地。">
+  <meta name="theme-color" content="#2f6f73">
+  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf">
+  <meta property="og:title" content="亲密互动与性偏好自评量表">
+  <meta property="og:description" content="以同意、边界和幻想与实践分离为前提，梳理十五个可并存的亲密互动偏好维度。">
+  <meta property="og:url" content="https://prismself.vip/Scales/Sexual-Preference-Scale.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    body {
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    .result-top-grid > *,
+    .radar-wrapper,
+    .radar-wrapper canvas {
+      min-width: 0;
+      max-width: 100% !important;
+    }
+
+    .question {
+      margin-bottom: 28px;
+    }
+
+    .question-title {
+      display: block;
+      margin-bottom: 8px;
+      padding: 10px 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.65;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .q-number {
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .question select {
+      width: 220px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px 28px;
+      cursor: pointer;
+      font-size: .95rem;
+      font-weight: 500;
+      transition: transform .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .intro,
+    .explanation {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result {
+      display: none;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .global-progress {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .dimension-intro {
+      margin: -4px 0 24px;
+      color: var(--scale-muted);
+    }
+
+    .result-top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: stretch;
+      gap: 22px;
+      margin-bottom: 14px;
+    }
+
+    .radar-container {
+      padding: 18px;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--scale-surface);
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      max-width: 430px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .result-signal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .result-signal-card {
+      padding: 14px 16px;
+      border: 1px solid var(--scale-line);
+      border-radius: 12px;
+      background: var(--scale-surface);
+    }
+
+    .result-signal-card h4 {
+      margin: 0 0 8px;
+      border: 0 !important;
+    }
+
+    .result-signal-card p {
+      margin: 0;
+    }
+
+    .result table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .result th,
+    .result td {
+      padding: 13px 15px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--scale-line);
+    }
+
+    .insight-card {
+      padding: 18px 22px;
+      margin: 14px 0;
+      border: 1px solid var(--scale-line);
+      border-radius: 14px;
+      background: var(--scale-surface);
+    }
+
+    .dimension-detail > :first-child,
+    .insight-card > :first-child {
+      margin-top: 0;
+    }
+
+    .dimension-detail > :last-child,
+    .insight-card > :last-child {
+      margin-bottom: 0;
+    }
+
+    .reflection-list li + li {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 850px) {
+      .result-top-grid,
+      .result-signal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radar-wrapper {
+        max-width: 480px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 12px;
+      }
+
+      .intro,
+      .result {
+        padding: 20px 16px;
+      }
+
+      .result-report-title {
+        font-size: 1.45rem !important;
+      }
+
+      .question-title {
+        padding-inline: 8px;
+      }
+
+      .question select {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./scale-common.css">
+  <link rel="stylesheet" href="../Guides/guide-ai.css?v=68e2569048e6">
+  <script>window.PRISM_SCALE_CONFIG = { id: 'sexual-preference', title: '亲密互动与性偏好自评量表', formId: 'sexualPreferenceQuiz', storageKey: 'sexualPreferenceAnswersV1', totalQuestions: 90, resultId: 'result' };</script>
+  <script src="./scale-common.js" defer></script>
+  <script src="../Guides/guide-ai.js?v=d04b7a1f0455" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=5a6a8f9306af">
+  <script src="../assets/theme.js?v=5a6a8f9306af"></script>
+</head>
+
+<body>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+
+  <div class="global-progress">
+    <p class="progress" id="globalProgressText">进度：0/90</p>
+    <div class="progress-bar" aria-hidden="true">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width:0%;"></div>
+    </div>
+  </div>
+
+  <h1>亲密互动与性偏好自评量表</h1>
+
+  <div class="intro">
+    <h2>关键概念与使用指南</h2>
+    <p>性偏好可以包含对亲密关系、感官氛围、角色位置、互动结构和特定想象主题的当前兴趣。本量表以具备同意能力的成年人、合法私密环境、充分知情同意以及可以随时暂停或退出为共同前提。</p>
+    <p><strong>幻想、意愿与同意不是同一件事。</strong>某个主题在幻想或审美上有吸引力，不等于希望现实发生；愿意了解、讨论或低强度尝试，也不等于同意所有对象、方式、强度和时长。现实同意必须针对具体情境持续确认，任何结果和分数都不能替代逐项协商。</p>
+    <p><strong>本量表对无性恋谱系友好。</strong>性吸引、性欲、身体唤起、幻想、审美兴趣、亲密需求与现实实践意愿可以彼此分离。量表不预设你会产生性吸引、希望发生性行为、拥有伴侣或已有相关经历；无性恋、灰性恋、半性恋以及目前无法确认性取向的人，都可以只按幻想、好奇、审美感受或“完全不符合”作答。多项或全部维度较低是一种有效画像，不会被解释为功能问题。</p>
+    <p><strong>为了更好地理解，我们在此简要介绍量表涉及的十五个偏好维度：</strong></p>
+    <details class="scale-concept-details">
+      <summary>点击展开（附解释说明）</summary>
+      <div class="scale-concept-content">
+        <ul>
+          <li><strong>亲密联结：</strong>情感安全、信任、专属关注与身体或幻想情境之间的联系。</li>
+          <li><strong>氛围与感官：</strong>光线、声音、气味、材质、空间和节奏带来的吸引力。</li>
+          <li><strong>新奇探索：</strong>对新主题、新安排和循序尝试的好奇与开放程度。</li>
+          <li><strong>角色与叙事：</strong>通过虚构身份、情节、称谓和仪式进入不同于日常的状态。</li>
+          <li><strong>主导与引领：</strong>在协商范围内负责安排、决定节奏和承担引导责任的兴趣。</li>
+          <li><strong>跟随与交付：</strong>在信任、边界清楚且可撤回时，把部分决定交给对方的兴趣。</li>
+          <li><strong>挑战与追逐：</strong>通过调皮、角色内抵抗、追逐和回应挑战制造互动张力。</li>
+          <li><strong>强度施予：</strong>在知情、可控范围内向对方施加较强感官刺激并读取反馈的兴趣。</li>
+          <li><strong>强度接收：</strong>在知情、可控范围内接收较强感官刺激或短暂不适的兴趣。</li>
+          <li><strong>束缚与限制：</strong>对活动范围、姿势、规则或技术性束缚被暂时限制的兴趣。</li>
+          <li><strong>言语与心理张力：</strong>命令、肯定、挑逗、羞耻主题或心理反差带来的兴趣。</li>
+          <li><strong>观看与展示：</strong>在相关者知情同意、场所合法且隐私可控时，对观看或被观看的兴趣。</li>
+          <li><strong>物件与意象：</strong>特定服装、材质、身体部位、物件或象征对兴趣的增强作用。</li>
+          <li><strong>多人及关系情境：</strong>对多方均知情同意的多人、旁观、关系开放或嫉妒主题的幻想兴趣。</li>
+          <li><strong>照顾与服务：</strong>照料、服务、过程确认、安抚和事后恢复在互动中的重要性。</li>
+        </ul>
+      </div>
+    </details>
+    <p><strong>重要提示：</strong>任何涉及未成年人、未获同意的第三方、偷拍传播、胁迫或违法行为的内容都不在本量表讨论范围内。本工具不是临床测验、性功能评估、风险筛查或身份判定；若某些幻想或行为令你持续痛苦、失控，或涉及同意与安全问题，请优先停止高风险情境，并考虑寻求合适的专业或支持资源。</p>
+    <p><strong>使用指南：</strong>本量表共包含 90 道题目，分为十五个部分，每个部分对应一个观察维度并包含 6 题。全部中文情境题均由本站独立编写，不是任何既有量表的官方中文版，也未经心理测量学验证。请根据过去一年中较稳定、较自然的兴趣体验选择 0–5 分（0 分＝完全不符合，5 分＝完全符合）。没有相关经历时可以按想象作答，难以想象或没有兴趣时选择 0 分；量表分数不等同于身体唤起或现实意愿。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看十五维雷达图、分维度分析和沟通建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断、筛查、评价偏好高低或证明任何身份。</p>
+    <p><strong>温馨提示：</strong>您的答案会自动保存在当前浏览器中，不会上传，刷新页面不会丢失进度。使用共享设备时，完成后可点击“重置问卷”清除本页记录。</p>
+  </div>
+
+  <form id="sexualPreferenceQuiz">
+    <div id="questionsContainer"></div>
+    <div class="scale-actions">
+      <button type="button" id="calculateButton">计算结果</button>
+      <button type="button" class="btn-secondary" id="resetButton">重置问卷</button>
+      <button type="button" class="btn-secondary" id="saveTextButton">保存文本结果</button>
+      <button type="button" class="btn-secondary" id="saveImageButton">保存图片结果</button>
+    </div>
+  </form>
+
+  <div class="result" id="result">
+    <h2 class="result-report-title">亲密互动与性偏好自评报告</h2>
+    <div class="result-top-grid">
+      <div class="result-summary-panel">
+        <p class="result-eyebrow">你的当前多维偏好画像</p>
+        <div id="scoreSummary"></div>
+        <div id="typeJudgment"></div>
+      </div>
+      <div class="radar-container">
+        <div class="radar-wrapper"><canvas id="radarChart"></canvas></div>
+      </div>
+    </div>
+    <div id="currentProfileAnalysis"></div>
+    <div id="mainInterpretation"></div>
+    <div id="deepPersonalAnalysis"></div>
+    <div id="sectionScores"></div>
+    <div id="personalizedSuggestions"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/sexual-preference-scale.js" defer></script>
+</body>
+
+</html>

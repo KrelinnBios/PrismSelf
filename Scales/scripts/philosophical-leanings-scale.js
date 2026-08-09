@@ -432,6 +432,16 @@ const booksMap = {
     }
 };
 
+function percentageLevel(score) {
+    return score >= 90 ? "深度认同"
+        : score >= 80 ? "高度认同"
+            : score >= 70 ? "较为认同"
+                : score >= 60 ? "基本认同"
+                    : score >= 50 ? "部分认同"
+                        : score >= 40 ? "略微认同"
+                            : "不太认同";
+}
+
 function generateDeepInsight(normalized, answersMap) {
     const top = normalized[0];
     const second = normalized[1];
@@ -443,7 +453,19 @@ function generateDeepInsight(normalized, answersMap) {
         return "<p>深度分析生成失败，请刷新页面后重试。</p>";
     }
 
-    let html = `<div class="insight-card">
+    const dimensionCards = normalized.map((item, index) => `<div class="insight-card">
+    ${window.PrismScale.createResultDimensionHeader({
+        index: index + 1,
+        title: item.name,
+        score: item.score,
+        max: 100,
+        level: percentageLevel(item.score)
+    })}
+    <p><strong>当前解读：</strong>${item.desc}</p>
+    <p><strong>需要校准：</strong>${getDetailedBlindSpot(item.key)}</p>
+    </div>`).join('');
+
+    let html = `${dimensionCards}<h3 class="result-section-heading">综合深度分析</h3><div class="insight-card">
     <h3>一、 认识论与价值基底</h3>
     <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的底层认知框架中，您主要将世界的运作与人生的意义理解为：${getDetailedEpistemology(top.key)}</p>`;
 
@@ -656,7 +678,7 @@ window.calculateResult = function () {
 
     let tableHtml = `<h3>各流派数据分布详情</h3><table><thead><tr><th>排名</th><th>哲学流派</th><th>匹配度</th><th>强度评级</th><th>基础定义</th></tr></thead><tbody>`;
     normalized.forEach((item, idx) => {
-        let level = item.score >= 90 ? "深度认同" : item.score >= 80 ? "高度认同" : item.score >= 70 ? "较为认同" : item.score >= 60 ? "基本认同" : item.score >= 50 ? "部分认同" : item.score >= 40 ? "略微认同" : "不太认同";
+        let level = percentageLevel(item.score);
         tableHtml += `<tr><td>${idx + 1}</td><td><strong>${item.name}</strong></td><td>${item.score}%</td><td>${level}</td><td style="font-size:0.9em; line-height:1.5;">${item.desc}</td></tr>`;
     });
     tableHtml += `</tbody></table>`;
@@ -665,18 +687,30 @@ window.calculateResult = function () {
     const reflectQ = fullQuestions.filter(q => q.category === normalized[0].key && answers[q.id] !== undefined)
         .sort((a, b) => answers[a.id] - answers[b.id])[0];
 
-    let suggestHtml = `<h3>深度反思与人生践行</h3>
-    <div class="action-box" style="margin-top:0;">
-      <p style="margin-top:0;"><strong>1. 将理论锚定为精神支点</strong><br>
-      既然您高度共鸣于「${normalized[0].name}」，不妨尝试系统阅读该派的一本原著。二手解说有助于入门，但原典能呈现概念如何一步步展开，也更适合检验您是否真正认同该框架的前提。</p>
-      <p><strong>2. 主动拥抱「逆耳之言」</strong><br>
-      找机会阅读一本得分最低的「${lowest.name}」代表作。阅读时先暂停反驳，尽量理解它要解决什么问题、为何会形成这样的前提。</p>
-      <p><strong>3. 知行合一的微小演练</strong><br>
-      从明天起，挑选一个日常痛点（例如遭遇工作不顺、或面临人际摩擦）。刻意停顿3秒钟，在心里问自己：「如果用「${normalized[0].name}」的思维方式，现在应该怎么做最佳？」 哲学只有进入具体行动，才会暴露它真正能解释什么、又会遗漏什么。</p>
-      ${reflectQ ? `<p><strong>4. 个人思想边界探测</strong><br>
-      建议以此题作为反观自照的切入点：「${reflectQ.text}」（您的得分：${answers[reflectQ.id]}/6）。虽然这是您的主导阵营，但您在此给出了较低的分数。仔细剖析这处微妙的「违和感」，那里往往能显示您的个人边界和细分立场。</p>` : ''}
-    </div>`;
-    document.getElementById('personalizedSuggestions').innerHTML = suggestHtml;
+    window.PrismScale.renderReflectionActions('personalizedSuggestions', [
+      {
+        title: '回到主导流派的原典',
+        text: `选择「${normalized[0].name}」的一本代表作，观察概念和论证如何逐步展开，再检验自己是否认同其基本前提。`
+      },
+      {
+        title: '理解差异最大的视角',
+        text: `阅读「${lowest.name}」的一篇入门文章或代表作，先理解它要解决什么问题、为何形成这些前提，再决定自己是否赞同。`
+      },
+      {
+        title: '把理论带入日常判断',
+        text: `遇到一次工作、人际或生活选择时，停下来问：“如果从「${normalized[0].name}」出发，我会怎样理解和处理这件事？”再记录这个框架帮到了什么、遗漏了什么。`
+      },
+      {
+        title: '观察个人思想边界',
+        text: reflectQ
+          ? `以「${reflectQ.text}」（本次得分：${answers[reflectQ.id]}/6）为起点，写下你赞同、保留和仍不确定的部分，辨认自己的细分立场。`
+          : '从主导流派中挑选一个最犹豫的命题，分别写下赞同、保留和仍需了解的部分，不必让个人立场完全服从某个流派。'
+      },
+      {
+        title: '在合适时机重新作答',
+        text: '经历重要事件、系统阅读或生活环境改变后，可以再次作答。比较的是思考重心如何变化，而不是追求固定分数。'
+      }
+    ]);
 
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').scrollIntoView({ behavior: 'smooth' });

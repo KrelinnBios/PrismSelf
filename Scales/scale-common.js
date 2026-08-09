@@ -198,6 +198,22 @@
 			'</div>';
 	}
 
+	function renderReflectionActions(target, actions, options = {}) {
+		const container = typeof target === 'string' ? document.getElementById(target) : target;
+		if (!container) return;
+		const items = Array.isArray(actions) ? actions.slice(0, 5) : [];
+		container.innerHTML =
+			'<h3 class="result-section-heading">' + escapeHtml(options.heading || '深度反思与行动建议') + '</h3>' +
+			'<section class="insight-card reflection-actions">' +
+			items.map((item, index) =>
+				'<div class="reflection-action-item">' +
+				'<h4>' + (index + 1) + '. ' + escapeHtml(item.title || '') + '</h4>' +
+				'<p>' + (item.text || '') + '</p>' +
+				'</div>'
+			).join('') +
+			'</section>';
+	}
+
 	function destroyResultRadar(canvasId = 'radarChart') {
 		const chart = radarCharts.get(canvasId);
 		if (chart) chart.destroy();
@@ -397,14 +413,9 @@
 	}
 
 	function formatExampleSet(primary, options = {}) {
-		const variantSource = options.variantSource || primary;
 		const high = cleanExampleText(primary);
-		const middle = cleanExampleText(options.middle || softenExample(variantSource, options.middleFallback));
-		const low = cleanExampleText(options.low || contrastExample(variantSource, options.lowFallback))
-			.replace(/，不频繁/g, '，并会频繁')
-			.replace(/，不反复/g, '，并会反复')
-			.replace(/，不急于/g, '，反而会急于')
-			.replace(/并要求/g, '也不会要求');
+		const middle = cleanExampleText(options.middle || options.middleFallback || '这种情况只在部分场合出现，具体表现会随情境变化');
+		const low = cleanExampleText(options.low || options.lowFallback || '在相似情境中通常不会出现例一所描述的反应');
 		const highScore = options.highScore || '4–5';
 		const middleScore = options.middleScore || '2–3';
 		const lowScore = options.lowScore || '0–1';
@@ -494,6 +505,7 @@
 		getConfig,
 		init,
 		createResultDimensionHeader,
+		renderReflectionActions,
 		markStructure,
 		renderResultRadar,
 		renderResultSummary,

@@ -223,7 +223,7 @@ const questionMarkup = `
 	<p>本部分评估您对他人产生以性欲为基础的内在冲动，包括频率、强度、条件和生理表现。这些题目聚焦于区分性吸引与其他吸引类型，避免将情感或审美体验误认为性吸引。</p>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">1.</span> 您是否曾经对某人产生明确的性欲望，例如：希望与TA发生性行为或进行亲密的身体接触（如亲吻、抚摸生殖器），并伴随强烈的生理或心理兴奋？
+			<span class="q-number">1.</span> 您是否曾对某个具体的人产生明确的性欲望，例如想与对方发生性行为或带有性意味的身体接触？
 		</div>
 		${renderQuestionSelect(1)}
 		<div class="explanation">
@@ -234,7 +234,7 @@ const questionMarkup = `
 	<!-- 2 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">2.</span> 您是否会自然地、自发地想象与某人发生性相关的场景，例如：性交、口交或其他亲密性接触，而非刻意去想？
+			<span class="q-number">2.</span> 您是否会自然而然地想象与某人发生性行为或带有性意味的身体接触，而不是刻意要求自己这样想？
 		</div>
 		${renderQuestionSelect(2)}
 		<div class="explanation">
@@ -245,7 +245,7 @@ const questionMarkup = `
 	<!-- 3 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">3.</span> 您是否体验过因某人而产生的生理性兴奋，例如：心跳加速、性器官反应（如勃起或湿润）、或全身热血沸腾的感觉？
+			<span class="q-number">3.</span> 面对某个具体的人时，您是否体验过明确指向性欲望的身体或心理兴奋？
 		</div>
 		${renderQuestionSelect(3)}
 		<div class="explanation">
@@ -278,7 +278,7 @@ const questionMarkup = `
 	<!-- 6 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">6.</span> 您是否觉得性吸引只在特定情境下发生，例如：特定情绪状态（如放松、兴奋）、环境（如浪漫氛围）或对象特征（如特定性格）？
+			<span class="q-number">6.</span> 您的性吸引是否只会在特定情绪、环境或面对特定类型的人时出现？
 		</div>
 		${renderQuestionSelect(6)}
 		<div class="explanation">
@@ -300,7 +300,7 @@ const questionMarkup = `
 	<!-- 8 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">8.</span> 您是否会因为性吸引而感到强烈的内在驱动力，例如：迫切想采取行动接近对方或发起性行为？
+			<span class="q-number">8.</span> 产生性吸引时，您是否会强烈地想接近对方或发起性互动？
 		</div>
 		${renderQuestionSelect(8)}
 		<div class="explanation">
@@ -322,7 +322,7 @@ const questionMarkup = `
 	<!-- 10 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">10.</span> 您是否觉得性吸引的对象范围广泛，例如：对许多人或类型都能产生？
+			<span class="q-number">10.</span> 您是否可能对多种类型的人产生性吸引，而不是只对很少的特定类型有感觉？
 		</div>
 		${renderQuestionSelect(10)}
 		<div class="explanation">
@@ -333,7 +333,7 @@ const questionMarkup = `
 	<!-- 11 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">11.</span> 您是否觉得性吸引会影响您的日常生活，例如：让您分心或改变行为？
+			<span class="q-number">11.</span> 性吸引是否会让您分心、调整安排或改变日常行为？
 		</div>
 		${renderQuestionSelect(11)}
 		<div class="explanation">
@@ -344,7 +344,7 @@ const questionMarkup = `
 	<!-- 12 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">12.</span> 您是否体验过对虚构角色或性内容的兴趣,但完全不希望自己亲身参与其中？
+			<span class="q-number">12.</span> 您是否会对虚构角色或性相关内容感兴趣，却不希望自己参与相似情境？
 		</div>
 		${renderQuestionSelect(12)}
 		<div class="explanation">
@@ -366,7 +366,7 @@ const questionMarkup = `
 	<!-- 14 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">14.</span> 您是否会主动寻求性吸引的体验，例如：通过约会App或社交活动？
+			<span class="q-number">14.</span> 您是否会通过约会应用或社交活动，主动寻找可能产生性吸引的机会？
 		</div>
 		${renderQuestionSelect(14)}
 		<div class="explanation">
@@ -451,7 +451,7 @@ const questionMarkup = `
 	<!-- 21 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">21.</span> 您是否体验过浪漫吸引，例如：希望与某人约会、表达爱意、共度浪漫时光或建立恋爱关系？
+			<span class="q-number">21.</span> 您是否曾希望与某人约会、表达爱意、共度浪漫时光或建立恋爱关系？
 		</div>
 		${renderQuestionSelect(21)}
 		<div class="explanation">
@@ -462,7 +462,7 @@ const questionMarkup = `
 	<!-- 22 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">22.</span> 您是否觉得浪漫吸引在您的生活中很重要，例如：没有它会感到缺失？
+			<span class="q-number">22.</span> 浪漫吸引在您的生活中是否重要，缺少这类体验时是否会感到遗憾或缺失？
 		</div>
 		${renderQuestionSelect(22)}
 		<div class="explanation">
@@ -473,7 +473,7 @@ const questionMarkup = `
 	<!-- 23 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">23.</span> 您是否能清楚区分浪漫吸引与性吸引，例如：知道“这是想恋爱，不是想性交”？
+			<span class="q-number">23.</span> 您是否能清楚区分想与某人恋爱和想与对方发生性接触这两种体验？
 		</div>
 		${renderQuestionSelect(23)}
 		<div class="explanation">
@@ -484,7 +484,7 @@ const questionMarkup = `
 	<!-- 24 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">24.</span> 您是否发现浪漫吸引的表达方式在不同文化或社会环境中有所变化，例如：在某些情境下更注重情感仪式而非身体亲密？
+			<span class="q-number">24.</span> 您表达浪漫吸引的方式是否会随文化或社会环境变化，例如在某些情境中更重视情感仪式而不是身体亲密？
 		</div>
 		${renderQuestionSelect(24)}
 		<div class="explanation">
@@ -510,7 +510,7 @@ const questionMarkup = `
 	<!-- 26 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">26.</span> 您是否体验过情感吸引，例如：希望与某人建立深层友谊、相互信任或心灵共鸣？
+			<span class="q-number">26.</span> 您是否会希望与某人建立深层友谊、相互信任或心灵共鸣？
 		</div>
 		${renderQuestionSelect(26)}
 		<div class="explanation">
@@ -569,7 +569,7 @@ const questionMarkup = `
 	<!-- 31 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">31.</span> 当您被某人的外貌吸引时,这种感觉是否总是伴随着性幻想或身体欲望?
+			<span class="q-number">31.</span> 当您欣赏某人的外貌时，这种感觉是否总会伴随性幻想或性接触欲望？
 		</div>
 		${renderQuestionSelect(31)}
 		<div class="explanation">
@@ -580,7 +580,7 @@ const questionMarkup = `
 	<!-- 32 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">32.</span> 您能否长时间欣赏某人的外貌而不产生"想要亲近/触碰/发生关系"的冲动?
+			<span class="q-number">32.</span> 您能否长时间欣赏某人的外貌，而不产生接近、触碰或发生性关系的冲动？
 		</div>
 		${renderQuestionSelect(32)}
 		<div class="explanation">
@@ -591,7 +591,7 @@ const questionMarkup = `
 	<!-- 33 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">33.</span> 当您称赞某人"好看/帅/美"时,这个评价是否包含"我想与TA发生性关系"的潜台词?
+			<span class="q-number">33.</span> 当您称赞某人好看时，这种欣赏通常是否包含想与对方发生性关系的意味？
 		</div>
 		${renderQuestionSelect(33)}
 		<div class="explanation">
@@ -602,18 +602,18 @@ const questionMarkup = `
 	<!-- 34 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">34.</span> 您是否会对完全不符合您性取向的人或物种(如异性恋女性欣赏女性,同性恋男性欣赏女性,人类欣赏变种人)产生强烈的审美欣赏?
+			<span class="q-number">34.</span> 您是否会强烈欣赏并不在自己性吸引范围内的人的外貌、气质或风格？
 		</div>
 		${renderQuestionSelect(34)}
 		<div class="explanation">
-									<p><strong>本题用意：</strong>本题通过对非潜在性对象的欣赏，观察审美吸引能否独立于性取向。请关注是否能真切感到外貌、气质或造型之美，而不是是否认同某种审美标准。审美吸引可以很强烈，但不必自动包含性意味。</p>
+									<p><strong>本题用意：</strong>本题通过观察你对并非潜在性吸引对象之人的欣赏，了解审美吸引能否独立于性取向存在。请关注自己是否真切感受到外貌、气质或造型之美，而不是是否认同某种审美标准。审美吸引可以很强烈，但不必包含性意味。</p>
 			<p><strong>具体案例：</strong>例一：经常能强烈欣赏不符合自己性取向者的外貌或气质，可选 4–5 分；例二：偶尔会被这类对象的美打动，可选 2–3 分；例三：几乎只能欣赏可能成为性对象的人，可选 0–1 分。</p>
 		</div>
 	</div>
 	<!-- 35 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">35.</span> 当您在公共场合被某人外貌吸引时,您的第一反应是"真美/真帅"还是"想要TA的联系方式/想约TA"?
+			<span class="q-number">35.</span> 在公共场合注意到某人的外貌时，您的第一反应通常是欣赏，还是想进一步认识或约会？
 		</div>
 		${renderQuestionSelect(35)}
 		<div class="explanation">
@@ -628,7 +628,7 @@ const questionMarkup = `
 	<!-- 36 -->
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">36.</span> 您是否体验过感官吸引，例如：渴望拥抱或依偎以获得温暖？
+			<span class="q-number">36.</span> 您是否会渴望通过拥抱、依偎等非性接触获得温暖和亲近感？
 		</div>
 		${renderQuestionSelect(36)}
 		<div class="explanation">
@@ -1431,7 +1431,7 @@ function calculateResult() {
 
 						<p><strong>您的具体表现：</strong></p>
 						<ul>
-							<li><strong>性吸引缺失：</strong>您可能从未或极少对他人产生过"想与TA发生性行为"的冲动。当别人谈论"性感"或"性吸引"时，您可能感到困惑或难以共鸣。</li>
+							<li><strong>性吸引较少：</strong>您可能从未或极少产生过想与特定对象发生性行为的冲动。当别人谈论性感或性吸引时，您可能较难共鸣。</li>
 							<li><strong>幻想模式：</strong>如果有关性方面的幻想，它们可能是抽象的、不涉及具体人物的，或者完全没有。任何性相关的想法都可能是理性的、分析性的，而非感性的、冲动的。</li>
 							<li><strong>生理反应：</strong>您的生理反应可能与性吸引脱钩，或者即使有生理反应（如晨勃、生理周期变化）也不伴随心理上的性欲望或对特定他人的吸引。</li>
 							<li><strong>社会体验：</strong>您可能难以理解社会中对性的普遍关注和讨论，感到自己像个“旁观者”，在一旁看着别人投入其中。</li>
@@ -1628,8 +1628,29 @@ function calculateResult() {
 	// 10. 生成详细维度分析
 	const detailedAnalysis = generateDetailedAnalysis(scores, sexualCore, primaryTypes, subTypes);
 
-	// 11. 生成个性化建议
-	const personalizedSuggestions = generatePersonalizedSuggestions(scores, sexualCore, baseType, primaryTypes, subTypes, multipleAsexual);
+	// 11. 生成深度反思与行动建议
+	const reflectionActions = [
+		{
+			title: '分开记录性吸引与其他体验',
+			text: '分别记录性吸引、身体唤起、幻想、浪漫吸引、审美吸引、感官亲近和现实行为意愿。它们可以同时出现，也可以彼此独立。'
+		},
+		{
+			title: '观察性吸引出现的条件',
+			text: `本次核心性吸引均分为 ${sexualCore.toFixed(1)} / 5.0。回想最近几次相关体验，留意对象、情感连接、频率、强度和持续时间是否存在稳定规律。`
+		},
+		{
+			title: '尊重现实意愿与行为边界',
+			text: '有过性行为不等于一定体验过性吸引；体验到性吸引也不等于愿意实践。任何现实互动都需要在当时针对具体行为确认同意。'
+		},
+		{
+			title: '保留标签选择空间',
+			text: `“${baseType}”只是对本次作答模式的概括。${primaryTypes.length + subTypes.length > 0 ? '细分维度可用来描述条件差异，' : ''}你可以采用、暂缓或放弃任何标签。`
+		},
+		{
+			title: '在合适时机重新作答',
+			text: '当关系状态、生活环境或自我理解发生变化时，可以再次作答。比较长期模式和情境差异，不必追求固定分数或用结果证明身份。'
+		}
+	];
 
 	// 12. 生成各部分得分表格
 	const sectionScoresTable = generateSectionScoresTable(scores);
@@ -1662,7 +1683,7 @@ function calculateResult() {
 
 	document.getElementById('mainInterpretation').innerHTML = mainContent;
 	document.getElementById('sectionScores').innerHTML = `<h3>各部分得分详情</h3>${sectionScoresTable}`;
-	document.getElementById('personalizedSuggestions').innerHTML = `<h3>个性化探索路线与成长建议</h3>${personalizedSuggestions}`;
+	window.PrismScale.renderReflectionActions('personalizedSuggestions', reflectionActions);
 
 	const radarAvg = (start, end) => {
 		let total = 0;

@@ -11,6 +11,7 @@ window.PrismSelfUpdateGroups = [
       './Scales/HEXACO-Personality-Scale.html',
       './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
+      './Scales/Sexual-Preference-Scale.html',
       './Scales/Sexual-Orientation-Scale.html'
     ]
   },

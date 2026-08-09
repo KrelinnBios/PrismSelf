@@ -438,10 +438,20 @@ const booksMap = {
         contemporary: ['奇玛曼达·恩戈兹·阿迪契《我们都应该是女性主义者》', '法蒂玛·梅尔尼西《揭开面纱：穆斯林社会中的男性-女性动态》', '萨巴·马哈茂德《虔诚的政治》'],
         challenge: [
             '贝尔·胡克斯《女权主义理论：从边缘到中心》——反思后殖民立场如何与全球女权运动保持张力而不沦为相对主义',
-            '佳亚特里·斯皮瓦克《后殖民理性批判：正在消失的的当下历史》——后殖民理论内部的自我批判，反思知识精英与庶民政治的距离'
+            '佳亚特里·斯皮瓦克《后殖民理性批判：正在消失的当下历史》——后殖民理论内部的自我批判，反思知识精英与庶民政治的距离'
         ]
     }
 };
+
+function percentageLevel(score) {
+    return score >= 90 ? "深度认同"
+        : score >= 80 ? "高度认同"
+            : score >= 70 ? "较为认同"
+                : score >= 60 ? "基本认同"
+                    : score >= 50 ? "部分认同"
+                        : score >= 40 ? "略微认同"
+                            : "不太认同";
+}
 
 function generateDeepInsight(normalized, answersMap) {
     const top = normalized[0];
@@ -450,7 +460,19 @@ function generateDeepInsight(normalized, answersMap) {
     const lowest = normalized[normalized.length - 1];
     const tension = tensionMap[top.key];
 
-    let html = `<div class="insight-card">
+    const dimensionCards = normalized.map((item, index) => `<div class="insight-card">
+    ${window.PrismScale.createResultDimensionHeader({
+        index: index + 1,
+        title: item.name,
+        score: item.score,
+        max: 100,
+        level: percentageLevel(item.score)
+    })}
+    <p><strong>当前解读：</strong>${item.desc}</p>
+    <p><strong>需要校准：</strong>${getDetailedBlindSpot(item.key)}</p>
+    </div>`).join('');
+
+    let html = `${dimensionCards}<h3 class="result-section-heading">综合深度分析</h3><div class="insight-card">
     <h3>一、 认识论基础</h3>
     <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的认知框架中，您主要将性别不平等的根源理解为：${getDetailedEpistemology(top.key)}</p>`;
 
@@ -675,7 +697,7 @@ window.calculateResult = function () {
 
     let tableHtml = `<h3>各流派数据分布详情</h3><table><thead><tr><th>排名</th><th>理论流派</th><th>匹配度</th><th>强度评级</th><th>基础定义</th></tr></thead><tbody>`;
     normalized.forEach((item, idx) => {
-        let level = item.score >= 90 ? "深度认同" : item.score >= 80 ? "高度认同" : item.score >= 70 ? "较为认同" : item.score >= 60 ? "基本认同" : item.score >= 50 ? "部分认同" : item.score >= 40 ? "略微认同" : "不太认同";
+        let level = percentageLevel(item.score);
         tableHtml += `<tr><td>${idx + 1}</td><td><strong>${item.name}</strong></td><td>${item.score}%</td><td>${level}</td><td style="font-size:0.9em; line-height:1.5;">${item.desc}</td></tr>`;
     });
     tableHtml += `</tbody></table>`;
@@ -685,28 +707,38 @@ window.calculateResult = function () {
     const reflectQ = fullQuestions.filter(q => q.category === normalized[0].key && answers[q.id] !== undefined)
         .sort((a, b) => answers[a.id] - answers[b.id])[0];
 
-    let suggestHtml = `<h3>深度反思与行动建议</h3>
-    <div class="action-box" style="margin-top:0;">
-      <p style="margin-top:0;"><strong>1. 深化主导立场</strong><br>
-      系统阅读「${normalized[0].name}」的奠基文本，不只是接受其结论，而是追溯其核心论证链条：${normalized[0].key === 'liberal' ? '从沃斯通克拉夫特的理性平等论，到密尔的自由主义女权，再到当代的能力取径（努斯鲍姆），梳理该流派在三个世纪里如何回应批评、自我更新。' :
+    const primaryReading = normalized[0].key === 'liberal' ? '从沃斯通克拉夫特的理性平等论，到密尔的自由主义女权，再到当代的能力取径（努斯鲍姆），梳理该流派在三个世纪里如何回应批评、自我更新。' :
             normalized[0].key === 'radical' ? '从米利特对性权力的命名，到费尔斯通对生殖技术的乌托邦想象，再到麦金农对法律的批判，追踪激进女权如何在坚持父权制优先性的前提下分裂出多个支流。' :
                 normalized[0].key === 'socialist' ? '从恩格斯的家庭起源论，到哈特曼的双重体系论，再到费代里奇的共同体经济学，理解社会主义女权如何持续更新自身的经济分析工具。' :
                     normalized[0].key === 'intersectional' ? '从克伦肖的法律交叉性，到柯林斯的矩阵压迫论，再到当代的交叉性政策分析，思考交叉性如何从法律描述工具演变为完整的社会分析框架。' :
                         normalized[0].key === 'cultural' ? '从吉利根对科尔伯格道德发展理论的挑战，到诺丁斯的关怀伦理教育，再到当代对关怀经济的倡议，理解文化女权如何在差异即劣势与差异即资源之间寻找立足点。' :
                             normalized[0].key === 'queer' ? '从巴特勒对性别表演性的哲学论证，到塞吉维克的同性社会欲望分析，再到近年跨性别理论的发展，追踪酷儿理论如何在去稳定化的同时形成新的政治集结方式。' :
                                 normalized[0].key === 'eco' ? '从麦茜特的历史考古，到普拉姆伍德的价值二元论批判，再到哈拉维的赛博女权主义，理解生态女权如何在本质主义与后人类主义之间的张力中演进。' :
-                                    '从莫汉蒂对第三世界女性的话语分析，到斯皮瓦克的庶民研究，再到当代的去殖民女权行动主义，追踪后殖民女权如何在批判帝国主义的同时处理本地父权的复杂性。'
-        }</p>
-      <p><strong>2. 主动接触挑战性他者</strong><br>
-      建议投入时间重点阅读「${lowest.name}」的一本入门文本（见上方建议）。阅读时暂缓批判，尝试追问：<em>该流派能看见什么，是我目前的框架所遗漏的？</em>这一练习的目的并非动摇立场，而是让自身的理论坐标建立在更广阔的视野之上。</p>
-      <p><strong>3. 具体议题的交叉演练</strong><br>
-      从量表中挑选一个您在作答时最感踌躇的议题（得分处于2-3分之间），尝试分别用您的主导流派和得分最低的流派为其撰写一段分析。比较两段分析的焦点差异，观察理论框架如何决定了我们对现实的看见与看不见。</p>
-      <p><strong>4. 在地实践连接</strong><br>
-      根据您的主导倾向，可考虑关注或参与以下类型的社会实践：${activismMap[normalized[0].key]}。理论进入具体行动后，才能暴露它真正能解释什么、会遗漏什么。</p>
-      ${reflectQ ? `<p><strong>5. 个人思想边界探测</strong><br>
-      建议以此题作为自我检视的起点：「${reflectQ.text}」（您的得分：${answers[reflectQ.id]}）。这是您在主导流派中认同度偏低的议题之一——探究此处产生抵触或保留的具体原因，撰写一段自我对话，这有助于发现您的个人边界和更细分的立场。</p>` : ''}
-    </div>`;
-    document.getElementById('personalizedSuggestions').innerHTML = suggestHtml;
+                                    '从莫汉蒂对第三世界女性的话语分析，到斯皮瓦克的庶民研究，再到当代的去殖民女权行动主义，追踪后殖民女权如何在批判帝国主义的同时处理本地父权的复杂性。';
+    window.PrismScale.renderReflectionActions('personalizedSuggestions', [
+      {
+        title: '深化主导立场',
+        text: `系统阅读「${normalized[0].name}」的奠基文本，不只接受结论，也追溯其核心论证：${primaryReading}`
+      },
+      {
+        title: '主动接触挑战性视角',
+        text: `阅读「${lowest.name}」的一本入门文本，暂缓反驳，先追问这个框架看见了哪些自己容易遗漏的问题。`
+      },
+      {
+        title: '进行具体议题的交叉演练',
+        text: '挑选一道作答时较犹豫的题，分别用主导流派和得分最低的流派写一段分析，比较两种框架关注和遗漏的内容。'
+      },
+      {
+        title: '连接在地实践',
+        text: `可关注或参与这类实践：${activismMap[normalized[0].key]}。观察理论进入具体行动后能够解释什么，又会遗漏什么。`
+      },
+      {
+        title: '观察个人思想边界',
+        text: reflectQ
+          ? `以「${reflectQ.text}」（本次得分：${answers[reflectQ.id]}）为起点，写下产生保留或抵触的具体原因，看看它反映了怎样的个人边界和细分立场。`
+          : '从主导流派中挑选一个最犹豫的议题，写下赞同、保留和仍需了解的部分，允许立场保持细致而不必完全一致。'
+      }
+    ]);
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
 };

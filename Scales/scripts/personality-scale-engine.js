@@ -257,8 +257,14 @@
         }).join('');
         const pattern = config.dimensionPatterns[dimension.key];
         return `<div class="insight-card personality-dimension-detail ${classPrefix}-dimension-detail">
-          <h3>${index + 1}、${dimension.name}：${scoreLevel(dimensionScore)}</h3>
-          <p><strong>当前得分：</strong>${dimensionScore.toFixed(1)}／5.0。${interpretationFor(dimension.key, dimensionScore)}</p>
+          ${window.PrismScale.createResultDimensionHeader({
+            index: index + 1,
+            title: dimension.name,
+            score: dimensionScore,
+            max: 5,
+            level: scoreLevel(dimensionScore)
+          })}
+          <p><strong>当前解读：</strong>${interpretationFor(dimension.key, dimensionScore)}</p>
           <p><strong>在合适情境中可能表现为：</strong>${pattern.help}</p>
           <p><strong>使用过度或情境不合时：</strong>${pattern.watch}</p>
           <h4>${facetKeysByDimension[dimension.key].length} 个子面向逐项解读</h4>
@@ -268,8 +274,14 @@
       }).join('');
 
       const interstitialCard = interstitialFacet ? `<div class="insight-card personality-dimension-detail ${classPrefix}-dimension-detail">
-        <h3>${interstitialFacet.name}：${scoreLevel(facetScores[interstitialFacetKey])}</h3>
-        <p><strong>当前得分：</strong>${facetScores[interstitialFacetKey].toFixed(1)}／5.0。${facetInterpretation(interstitialFacetKey, facetScores[interstitialFacetKey])}</p>
+        ${window.PrismScale.createResultDimensionHeader({
+          index: dimensions.length + 1,
+          title: interstitialFacet.name,
+          score: facetScores[interstitialFacetKey],
+          max: 5,
+          level: scoreLevel(facetScores[interstitialFacetKey])
+        })}
+        <p><strong>当前解读：</strong>${facetInterpretation(interstitialFacetKey, facetScores[interstitialFacetKey])}</p>
         <p><strong>独立计分说明：</strong>${config.interstitialNote}</p>
         <p class="personality-dimension-reflection ${classPrefix}-dimension-reflection"><strong>进一步观察：</strong>${interstitialFacet.observe}</p>
       </div>` : '';
@@ -300,15 +312,28 @@
         return [dimension.key, Math.max(...values) - Math.min(...values)];
       }));
       const mostVariable = [...dimensions].sort((a, b) => contextRanges[b.key] - contextRanges[a.key])[0];
-      document.getElementById('personalizedSuggestions').innerHTML = `
-        <h3>深度反思与行动建议</h3>
-        <div class="action-box" style="margin-top:0">
-          <p style="margin-top:0"><strong>1. 回看相对突出的子面向</strong><br>记录“${highFacet.name}”最近一次帮助你的场景，也记录一次它使用过度、反而增加成本的场景。</p>
-          <p><strong>2. 重新理解相对收敛的子面向</strong><br>“${lowFacet.name}”较低可能反映偏好、精力分配或环境限制，不需要立刻把它理解成缺点。</p>
-          <p><strong>3. 观察情境波动</strong><br>“${mostVariable.name}”在各组情境中的差距相对更明显（约 ${contextRanges[mostVariable.key].toFixed(1)} 分）。比较高低场景中谁在场、你承担什么角色、身体状态如何。</p>
-          <p><strong>4. 区分偏好与困扰</strong><br>只有当某种模式持续缩小选择、损害关系或造成明显痛苦时，才值得进一步寻找专业或社会支持。</p>
-          <p><strong>5. 在合适时机重测</strong><br>若近期处在高压、失眠或重大变化中，可在更稳定阶段重新作答，比较模式而不是追求固定分数。</p>
-        </div>`;
+      window.PrismScale.renderReflectionActions('personalizedSuggestions', [
+        {
+          title: '回看相对突出的子面向',
+          text: `记录“${highFacet.name}”最近一次帮助你的场景，也记录一次它使用过度、反而增加成本的场景。`
+        },
+        {
+          title: '重新理解相对收敛的子面向',
+          text: `“${lowFacet.name}”较低可能反映偏好、精力分配或环境限制，不需要立刻把它理解成缺点。`
+        },
+        {
+          title: '观察情境波动',
+          text: `“${mostVariable.name}”在各组情境中的差距相对更明显（约 ${contextRanges[mostVariable.key].toFixed(1)} 分）。比较高低场景中谁在场、你承担什么角色、身体状态如何。`
+        },
+        {
+          title: '区分偏好与困扰',
+          text: '只有当某种模式持续缩小选择、损害关系或造成明显痛苦时，才值得进一步寻找专业或社会支持。'
+        },
+        {
+          title: '在合适时机重测',
+          text: '若近期处在高压、失眠或重大变化中，可在更稳定阶段重新作答，比较模式而不是追求固定分数。'
+        }
+      ]);
       renderRadar(dimensionScores);
     }
 

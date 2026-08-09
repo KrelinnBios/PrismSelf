@@ -211,7 +211,7 @@ const questionMarkup = `
 	<p>本部分评估您对浪漫吸引的主观体验。请根据您的直觉回答，关注内在感受而非外在行为。</p>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">1.</span> 您是否曾经对某人产生明确的浪漫渴望，例如：希望与TA约会、建立恋爱关系或进行浪漫互动？
+			<span class="q-number">1.</span> 您是否曾对某人产生明确的浪漫渴望，例如希望与对方约会、建立恋爱关系或进行浪漫互动？
 		</div>
 		${renderQuestionSelect(1)}
 		<div class="explanation">
@@ -223,7 +223,7 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">2.</span> 您是否会自然地、自发地想象与某人发展浪漫关系，例如：约会、共同生活或庆祝纪念日，而非刻意去想？
+			<span class="q-number">2.</span> 您是否会自然而然地想象与某人约会、共同生活或庆祝纪念日，而不是刻意要求自己这样想？
 		</div>
 		${renderQuestionSelect(2)}
 		<div class="explanation">
@@ -235,11 +235,11 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">3.</span> 您是否体验过因某人而产生的情感悸动，例如：心跳加速、感到温暖或兴奋，特别是在想到与其有浪漫可能时？
+			<span class="q-number">3.</span> 想到与某人发展浪漫关系的可能时，您是否体验过心跳加速、温暖或兴奋等情感悸动？
 		</div>
 		${renderQuestionSelect(3)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题关注浪漫吸引的情感标志——身体的自发反应。这些生理现象通常是无法靠意志控制的（如想到TA时心跳加速），能有力地证明浪漫吸引的存在。若您很少或从未因特定的人产生这类反应，这是无浪漫谱系的一个重要指标。
+			<p><strong>本题用意：</strong>观察想到与某人发展浪漫关系时，是否会出现心跳加速、温暖或兴奋等自发反应。身体反应只能作为线索，还需结合浪漫想象和关系意愿判断，不能单独证明任何身份。
 			</p>
 			<p><strong>具体案例：</strong>例一：当您与一位朋友交谈时，若突然出现心跳加速、面部泛红等生理反应，并伴随对对方产生浪漫关系的渴望，则可选择5分。例二：若您的生理反应仅表现为一般的兴奋或紧张，且无明确浪漫指向，则可选择0分。
 			</p>
@@ -271,7 +271,7 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">6.</span> 您是否觉得浪漫吸引只在特定情境下发生，例如：特定情绪状态、环境或对象特征？
+			<span class="q-number">6.</span> 您的浪漫吸引是否只会在特定情绪、环境或面对特定类型的人时出现？
 		</div>
 		${renderQuestionSelect(6)}
 		<div class="explanation">
@@ -294,7 +294,7 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">8.</span> 您是否会因为浪漫吸引而感到强烈的内在驱动力，例如：迫切想采取行动接近对方或表达浪漫情感？
+			<span class="q-number">8.</span> 产生浪漫吸引时，您是否会强烈地想接近对方或表达浪漫情感？
 		</div>
 		${renderQuestionSelect(8)}
 		<div class="explanation">
@@ -317,7 +317,7 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">10.</span> 您是否对浪漫吸引的对象范围广泛，例如：对许多人或类型都能产生？
+			<span class="q-number">10.</span> 您是否可能对多种类型的人产生浪漫吸引，而不是只对很少的特定类型有感觉？
 		</div>
 		${renderQuestionSelect(10)}
 		<div class="explanation">
@@ -328,7 +328,7 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">11.</span> 您是否觉得浪漫吸引会影响您的日常生活，例如：让您分心或改变行为？
+			<span class="q-number">11.</span> 浪漫吸引是否会让您分心、调整安排或改变日常行为？
 		</div>
 		${renderQuestionSelect(11)}
 		<div class="explanation">
@@ -363,11 +363,11 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">14.</span> 您是否会主动寻求浪漫吸引的体验，例如：通过约会App或社交活动？
+			<span class="q-number">14.</span> 您是否会通过约会应用或社交活动，主动寻找可能产生浪漫吸引的机会？
 		</div>
 		${renderQuestionSelect(14)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>通过考察您是否会主动创造机会来体验浪漫吸引，本题评估浪漫吸引在您生活中的驱动力。主动寻求是需求和欲望的体现，常见于有浪漫者。无浪漫谱系的人则很少或从不为此做出主观努力，TA们的浪漫体验通常是偶然发生的。
+			<p><strong>本题用意：</strong>观察您是否会主动创造结识对象、约会或体验浪漫互动的机会。主动程度会受兴趣、安全感、社交精力和现实条件共同影响，不直接决定浪漫取向。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您经常使用约会应用主动寻找可能产生浪漫吸引的对象，则可选择5分。例二：若您从不主动寻求此类机会或途径，则可选择0分。</p>
 		</div>
@@ -604,9 +604,9 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(33)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此题用于识别触发浪漫（Apresseromantic）：浪漫吸引依赖多种吸引类型的交互，而非单一情感深度。触发浪漫者不会孤立地体验浪漫吸引，它总是需要其他吸引类型作为"铺垫"或"触发器"。比如，您必须先对某人产生情感连接或审美欣赏，才可能产生浪漫吸引。
+			<p><strong>本题用意：</strong>观察浪漫吸引是否通常需要情感连接、审美欣赏或其他亲近感先出现。相关术语可以描述这种条件性模式，但单题高分不能确认身份。
 			</p>
-			<p><strong>具体案例：</strong>例一：您只有在对某人同时产生情感连接（如分享秘密）并欣赏TA外貌时才会出现浪漫吸引，可选择5分。例二：主要由情感与审美共同触发，可选择4分；例三：浪漫吸引可单独出现，无需其他吸引前提，可选择1分。
+			<p><strong>具体案例：</strong>例一：您只有在与某人产生情感连接并欣赏对方外貌时，才会出现浪漫吸引，可选择5分。例二：主要由情感与审美共同触发，可选择4分；例三：浪漫吸引可单独出现，无需其他吸引前提，可选择1分。
 			</p>
 		</div>
 	</div>
@@ -616,9 +616,9 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(34)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题探讨磨损浪漫（Frayromantic）的模式：吸引随亲密度增加而减少。磨损浪漫者往往对陌生人或关系还处于表层阶段的对象更容易产生浪漫吸引；但随着关系的发展、情感联结的加深，这种浪漫吸引反而会逐渐减弱或完全消失。这与半浪漫正好相反。
+			<p><strong>本题用意：</strong>观察浪漫吸引是否会随着熟悉度和情感联结增加而减弱。重点是这种变化是否反复出现，而不是某段关系中一次短暂的热度变化。
 			</p>
-			<p><strong>具体案例：</strong>例一：您初次见到某人时会对TA产生强烈浪漫幻想和冲动，但相处几周后当TA成为朋友时，这种感觉完全淡去甚至消失，可选择5分。例二：初遇时有冲动但随时间逐渐冷却，可选择4分；例三：关系越深入浪漫吸引越强，可选择0分。
+			<p><strong>具体案例：</strong>例一：您初次见到某人时会产生强烈浪漫幻想，但相处一段时间并成为朋友后，这种感觉明显减弱或消失，可选择5分。例二：初遇时有冲动但随时间逐渐冷却，可选择4分；例三：关系越深入浪漫吸引越强，可选择0分。
 			</p>
 		</div>
 	</div>
@@ -628,10 +628,9 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(35)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此题针对单向浪漫（Lithromantic /
-				Akioromantic）：偏好单向吸引，避免互惠。单向浪漫者能够对他人产生浪漫吸引，但当这种吸引得到对方的回应，或者关系有发展成双向互动的可能时，反而会引发不适、焦虑或兴趣的突然丧失。这种模式可能导致关系困难。
+			<p><strong>本题用意：</strong>观察浪漫吸引在得到回应后是否会减弱或引发不适。关键不是害怕被拒绝，而是当关系真正变为双向时，原有吸引是否难以维持；相关术语只用于描述线索。
 			</p>
-			<p><strong>具体案例：</strong>例一：您在脑海中对某人产生强烈浪漫幻想，觉得那很美好，但当TA表现出兴趣并想进一步发展时，您反而退缩或瞬间失去兴趣，可选择5分。例二：对方回应越积极，您的吸引越强，可选择0分。
+			<p><strong>具体案例：</strong>例一：您在脑海中对某人产生强烈浪漫幻想，但当对方表现出兴趣并想进一步发展时，您反而退缩或迅速失去兴趣，可选择5分。例二：对方回应越积极，您的吸引越强，可选择0分。
 			</p>
 		</div>
 	</div>
@@ -641,9 +640,9 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(36)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题用于判断回应浪漫（Reciproromantic）：吸引依赖互惠信号。回应浪漫者不会主动或独立产生浪漫吸引，它需要一个"镜像"机制：只有当您明确感知到对方对您存在浪漫吸引时，您才会对该对象产生相应的浪漫吸引。这就像一种"回应式"的浪漫吸引。
+			<p><strong>本题用意：</strong>观察浪漫吸引是否通常要在确认对方先有浪漫兴趣后才出现。请区分被认可带来的开心、关系安全感与真正想发展浪漫关系的吸引。
 			</p>
-			<p><strong>具体案例：</strong>例一：您平时对某人无浪漫兴趣，但当TA明确示好、表达对您的浪漫兴趣时，您突然也对TA产生强烈浪漫吸引，可选择5分。例二：您的浪漫吸引始终独立存在，不依赖他人回应，可选择1分。
+			<p><strong>具体案例：</strong>例一：您平时对某人没有浪漫兴趣，但当对方明确示好时，您也开始产生明显的浪漫吸引，可选择5分。例二：您的浪漫吸引通常独立出现，不依赖对方先回应，可选择1分。
 			</p>
 		</div>
 	</div>
@@ -695,11 +694,11 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">41.</span> 您是否难以区分自己体验的是浪漫吸引还是其他类型吸引（如柏拉图式吸引、审美吸引等），存在吸引类别识别上的模糊？
+			<span class="q-number">41.</span> 您是否难以判断自己体验的是浪漫吸引，还是柏拉图式吸引、审美吸引等其他亲近感？
 		</div>
 		${renderQuestionSelect(41)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此题针对吸引模糊浪漫（Idemromantic）：体验多种吸引但难以分类。吸引模糊浪漫者能够体验到多种类型的情感（如柏拉图式吸引、审美吸引、情感吸引等），但很难确定其中哪些是"浪漫吸引"，因为不同类型吸引的感受对TA们来说非常相似或重叠。这不是缺乏吸引，而是分类困难。
+			<p><strong>本题用意：</strong>观察您是否难以区分浪漫吸引、柏拉图式吸引、审美吸引和情感亲近。体验彼此重叠并不等于缺少吸引，也不要求一定为它们找到固定类别。
 			</p>
 			<p><strong>具体案例：</strong>例一：您对某人同时产生想接近、想了解、想分享生活的冲动，但无法确定这是想成为朋友（柏拉图式吸引）还是想成为恋人（浪漫吸引），这些感受交织在一起难以分离，这非常符合5分。例二：如果您能清楚地区分不同类型的吸引，这则符合0分。
 			</p>
@@ -735,7 +734,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(44)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题针对接受浪漫（Accipioromantic）：愿意接受但不主动给予。接受浪漫者在浪漫互动中更倾向于接收方——TA们愿意接受他人的浪漫表达（如被表白、被送礼物、被照顾），但不主动追求或表达浪漫。这可能源于对他人的情感回应，而非内在的浪漫冲动。
+			<p><strong>本题用意：</strong>观察您是否愿意接受浪漫表达，却很少主动追求或表达浪漫。重点是接受和给予之间是否长期存在差异，而不是评价哪一种互动方式更好。
 			</p>
 			<p><strong>具体案例：</strong>例一：当有人向您表达浪漫兴趣时，您可能会接受并参与浪漫关系，享受被爱的感觉，但您从不主动表白或追求他人，这非常符合5分。例二：如果您既不愿接受也不愿给予浪漫，这则符合0分。
 			</p>
@@ -747,7 +746,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(45)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此题针对给予浪漫（Placioromantic）：愿意给予但不期望回报。给予浪漫者在浪漫互动中更倾向于给予方——TA们愿意向他人表达浪漫关怀、提供浪漫体验，但不期望或不希望对方以同样方式回应自己。这种给予可能源于表达关心和爱护的欲望，而非期望建立互惠的浪漫关系。
+			<p><strong>本题用意：</strong>观察您是否愿意给予浪漫关怀，却不期待或不希望对方以同样方式回应。请区分表达关心的愿望与建立互惠浪漫关系的愿望。
 			</p>
 			<p><strong>具体案例：</strong>例一：您喜欢为朋友准备惊喜、写浪漫卡片、创造温馨时刻，但当对方想要以浪漫方式回应您时，您会感到不适并希望保持现状，这非常符合5分。例二：如果您既不给予也不接受浪漫，这则符合0分。
 			</p>
@@ -1147,7 +1146,7 @@ function calculateResult() {
 
            <p><strong>您的具体表现：</strong></p>
            <ul>
-               <li><strong>浪漫吸引缺失：</strong>您可能从未或极少对他人产生过"想与TA建立浪漫关系"的冲动。当别人谈论"浪漫心动"或"恋爱感觉"时，您可能感到困惑或难以共鸣。</li>
+               <li><strong>浪漫吸引较少：</strong>您可能从未或极少产生过想与特定对象建立浪漫关系的冲动。当别人谈论浪漫心动或恋爱感觉时，您可能较难共鸣。</li>
                <li><strong>幻想模式：</strong>如果有关浪漫方面的幻想，它们可能是抽象的、不涉及具体人物的，或者完全没有。任何浪漫相关的想法都可能是理性的、分析性的，而非感性的、冲动的。</li>
                <li><strong>情感反应：</strong>您的情感反应可能与浪漫吸引脱钩，或者即使有情感反应（如温暖感、兴奋感）也不伴随心理上的浪漫欲望或对特定他人的吸引。</li>
                <li><strong>社会体验：</strong>您可能难以理解社会中对浪漫的普遍关注和讨论，感到自己像个“旁观者”，在一旁看着别人投入其中。</li>
@@ -1316,8 +1315,29 @@ function calculateResult() {
 	// 7. 生成详细维度分析
 	const detailedAnalysis = generateDetailedAnalysis(scores, romanticCore, primaryTypes, subTypes);
 
-	// 8. 生成个性化建议
-	const personalizedSuggestions = generatePersonalizedSuggestions(scores, romanticCore, baseType, primaryTypes, subTypes, multipleAromantic);
+	// 8. 生成深度反思与行动建议
+	const reflectionActions = [
+		{
+			title: '区分浪漫吸引与其他亲近感',
+			text: '分别记录浪漫吸引、情感亲近、柏拉图式吸引、审美吸引和感官吸引。它们可以同时出现，也可以彼此独立。'
+		},
+		{
+			title: '观察浪漫体验出现的条件',
+			text: `本次核心浪漫吸引均分为 ${romanticCore.toFixed(1)} / 5.0。回想最近几次相关体验，留意对象、关系阶段、安全感、频率和持续时间是否存在稳定规律。`
+		},
+		{
+			title: '保留不用固定标签的空间',
+			text: `“${baseType}”只是对本次作答模式的概括。${primaryTypes.length + subTypes.length > 0 ? '细分维度可用来描述条件差异，' : ''}你可以采用、暂缓或放弃任何标签。`
+		},
+		{
+			title: '沟通关系期待与边界',
+			text: '与重要他人讨论关系称谓、亲密方式、联系频率、承诺形式和不希望被默认的内容。没有浪漫吸引也不等于缺少关心、责任或建立关系的能力。'
+		},
+		{
+			title: '在合适时机重新作答',
+			text: '当关系状态、生活环境或自我理解发生变化时，可以再次作答。比较长期模式和情境差异，不必追求固定分数或用结果证明身份。'
+		}
+	];
 
 	// 9. 生成各部分得分表格
 	const sectionScoresTable = generateSectionScoresTable(scores);
@@ -1350,7 +1370,7 @@ function calculateResult() {
 
 	document.getElementById('mainInterpretation').innerHTML = mainContent;
 	document.getElementById('sectionScores').innerHTML = `<h3>各部分得分详情</h3>${sectionScoresTable}`;
-	document.getElementById('personalizedSuggestions').innerHTML = `<h3>个性化探索路线与成长建议</h3>${personalizedSuggestions}`;
+	window.PrismScale.renderReflectionActions('personalizedSuggestions', reflectionActions);
 
 	const radarAvg = (start, end) => {
 		let total = 0;
@@ -1558,7 +1578,7 @@ function generateDetailedAnalysis(scores, romanticCore, primaryTypes, subTypes) 
 		} else if (q37 >= 3) {
 			analysis += '您对浪漫关系存在一定程度的厌恶或不适感，但在特定条件下可能参与。';
 			if (q20 >= 3) {
-				analysis += ' 您的事后体验复杂，有时可能感到后悔或不适。';
+				analysis += ' 您的事后体验较为复杂，有时会感到后悔或不适。';
 			}
 			analysis += ' 建议在关系中保持清晰的沟通和退出机制。';
 		} else {
