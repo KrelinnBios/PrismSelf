@@ -63,6 +63,11 @@
   flex: 0 0 auto !important;
 }
 
+.guide-ai-dialog button {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
 .guide-ai-dialog {
   width: min(560px, calc(100vw - 32px));
   max-width: none;
@@ -275,6 +280,7 @@
 }
 
 .guide-ai-form {
+  margin: 0 !important;
   padding: 0 18px calc(14px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid #dce1eb;
   background: #ffffff;
@@ -308,6 +314,7 @@
 
 .guide-ai-send {
   min-width: 68px !important;
+  width: auto !important;
   min-height: 46px !important;
   margin: 0 !important;
   padding: 0 15px !important;
@@ -343,6 +350,7 @@
 }
 
 .guide-ai-clear {
+  width: auto !important;
   padding: 3px 5px !important;
   border-radius: 5px !important;
   font-size: 11px !important;
