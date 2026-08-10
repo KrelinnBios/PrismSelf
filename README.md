@@ -66,7 +66,7 @@ PrismSelf 是一个以静态网页形式呈现的中文知识库，围绕性别�
 - 代码与工程文件：MIT License，见 [LICENSE](./LICENSE)。
 - 文档及网站预设内容：Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International（CC BY-NC-SA 4.0），仅授权非商业使用，改编内容须以相同方式共享；见 [LICENSE-CONTENT.md](./LICENSE-CONTENT.md)。
 
-第三方软件、内容和外部服务不因被本项目引用、加载、讨论或展示而自动纳入上述许可；第三方量表材料、参与者原始表达、未公开原始数据和个人信息等具体边界见 [THIRD-PARTY-NOTICES.md](./THIRD-PARTY-NOTICES.md)。
+第三方软件、内容和外部服务不因被本项目引用、加载或展示而自动纳入上述许可；第三方量表材料、参与者原始表达、未公开原始数据和个人信息等具体边界见 [THIRD-PARTY-NOTICES.md](./THIRD-PARTY-NOTICES.md)。
 
 ## 反馈与贡献
 
