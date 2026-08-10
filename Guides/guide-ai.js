@@ -24,6 +24,20 @@
       .trim();
   }
 
+  function normalizeAssistantText(value) {
+    return normalizeText(value)
+      .replace(/^```[^\n]*\n?/gm, '')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/^\s*(?:[-*_]\s*){3,}$/gm, '')
+      .replace(/^\s*[-*+]\s+/gm, '• ')
+      .replace(/\[([^\]\n]+)\]\([^\)\n]+\)/g, '$1')
+      .replace(/\*\*([^*\n]+)\*\*/g, '$1')
+      .replace(/__([^_\n]+)__/g, '$1')
+      .replace(/`([^`\n]+)`/g, '$1')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
   function splitText(value, maxLength) {
     var text = normalizeText(value);
     if (!text) return [];
@@ -266,8 +280,8 @@
     var dialogTitle = isScale ? '量表 AI 解读' : '指南 AI 陪读';
     var closeLabel = isScale ? '关闭量表 AI 解读' : '关闭指南 AI 陪读';
     var notice = isScale
-      ? '<strong>仅作自我理解辅助。</strong>提问时，本页说明与已生成的结果摘录会发送至 Cloudflare Workers AI；逐题选择不会发送，本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断、身份判定或专业建议。'
-      : '<strong>仅作内容理解辅助。</strong>问题与本页相关摘录会发送至 Cloudflare Workers AI；本站不保存对话。请勿输入可识别个人身份的敏感信息，回答不构成诊断或专业建议。';
+      ? '<strong>隐私说明：</strong>回答由 Cloudflare Workers AI 生成。只有点击发送后，问题、回答所需的本页说明和当前已显示的结果摘要才会提交；逐题选项不会提交，本站不保存对话。请避免填写姓名、联系方式等身份信息。回答仅作自我理解参考，不用于诊断或身份判定。'
+      : '<strong>隐私说明：</strong>回答由 Cloudflare Workers AI 生成。只有点击发送后，问题和回答所需的本页摘录才会提交；本站不保存对话。请避免填写姓名、联系方式等身份信息。回答仅用于帮助理解本页内容。';
     var summaryPrompt = isScale
       ? '请概括这份量表的核心内容，并指出最容易误解的分数或使用边界。若已有结果，请同时概括结果中最值得关注的倾向。'
       : '请概括这篇指南的核心内容，并指出最容易被误解的地方。';
@@ -477,7 +491,7 @@
       var payload = await response.json().catch(function () { return {}; });
       if (!response.ok) throw { status: response.status, payload: payload };
 
-      var answer = normalizeText(payload.answer);
+      var answer = normalizeAssistantText(payload.answer);
       if (!answer) throw { status: 502, payload: {} };
       thinking.querySelector('.guide-ai-message-body').textContent = answer;
       thinking.removeAttribute('data-state');
