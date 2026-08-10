@@ -20,8 +20,10 @@ const PAGE_DEFINITIONS = new Map([
   ['/Scales/Feminist-Leanings-Scale', { kind: 'scale', title: '女权主义流派倾向自评量表' }],
   ['/Scales/Gender-Exploration-Scale', { kind: 'scale', title: '多元性别认同与探索自评量表' }],
   ['/Scales/HEXACO-Personality-Scale', { kind: 'scale', title: 'HEXACO 六维人格倾向自评量表' }],
+  ['/Scales/Neurodiversity-Experience-Scale', { kind: 'scale', title: '神经多样性体验自评量表' }],
   ['/Scales/Philosophical-Leanings-Scale', { kind: 'scale', title: '哲学流派倾向自评量表' }],
-  ['/Scales/Sexual-Orientation-Scale', { kind: 'scale', title: '性取向自评量表' }]
+  ['/Scales/Sexual-Orientation-Scale', { kind: 'scale', title: '性取向自评量表' }],
+  ['/Scales/Sexual-Preference-Scale', { kind: 'scale', title: '亲密互动与性偏好自评量表' }]
 ]);
 
 const rateBuckets = new Map();
