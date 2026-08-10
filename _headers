@@ -7,8 +7,8 @@
 /Guides/guide-common.css
   Cache-Control: no-cache, must-revalidate
 
-/Guides/guide-ai.css
+/AI/ai-companion.css
   Cache-Control: no-cache, must-revalidate
 
-/Guides/guide-ai.js
+/AI/ai-companion.js
   Cache-Control: no-cache, must-revalidate

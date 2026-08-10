@@ -23,6 +23,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 | `Bingos/` | 共鸣刻度与宾果类互动页面 |
 | `Scales/` | 自评量表；共享资源为 `scale-common.css` 和 `scale-common.js` |
 | `Tools/` | 关系沟通与个人梳理工具 |
+| `AI/` | 指南与量表共用的 AI 陪读/解读前端组件 |
 | `scripts/` | 本地预览、批量维护和品牌资源生成脚本 |
 | `update-records.js` | 首页“最近更新”日期与页面路径分组 |
 | `icon/logo.svg` | 站点图标（favicon 与 README 展示图共用） |
@@ -73,6 +74,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 - `Analyses/analysis-common.css` 统一分析页的布局、控件、卡片和主题表现。
 - `Guides/guide-common.css` 统一长篇指南的正文、标题、表格、导航和响应式表现。
 - `Scales/scale-common.css` 与 `Scales/scale-common.js` 统一量表结构、进度和结果区域。
+- `AI/ai-companion.css` 与 `AI/ai-companion.js` 统一指南陪读和量表解读弹窗；页面只保留内容与主题色差异。
 - 首页目前使用内联样式与脚本；修改首页时要特别留意卡片筛选、最近更新和导航逻辑。
 - 共享文件的改动会影响整个分类，提交前至少抽查该分类中结构差异较大的两个页面。
 

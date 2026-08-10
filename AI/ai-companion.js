@@ -1,4 +1,4 @@
-/* Opt-in AI companion shared by guide and scale pages. */
+/* Shared, opt-in AI companion for guide and scale pages. */
 (function () {
   'use strict';
 
@@ -280,8 +280,8 @@
     var dialogTitle = isScale ? '量表 AI 解读' : '指南 AI 陪读';
     var closeLabel = isScale ? '关闭量表 AI 解读' : '关闭指南 AI 陪读';
     var notice = isScale
-      ? '<strong>隐私说明：</strong>回答由 Cloudflare Workers AI 生成。只有点击发送后，问题、回答所需的本页说明和当前已显示的结果摘要才会提交；逐题选项不会提交，本站不保存对话。请避免填写姓名、联系方式等身份信息。回答仅作自我理解参考，不用于诊断或身份判定。'
-      : '<strong>隐私说明：</strong>回答由 Cloudflare Workers AI 生成。只有点击发送后，问题和回答所需的本页摘录才会提交；本站不保存对话。请避免填写姓名、联系方式等身份信息。回答仅用于帮助理解本页内容。';
+      ? '<strong>仅辅助理解。</strong>回答由 Cloudflare Workers AI 生成。只有点击发送后，问题、回答所需的本页说明和当前已显示的结果摘要才会提交；逐题选项不会提交，本站不保存对话。请避免填写姓名、联系方式等身份信息。回答不用于诊断或身份判定。'
+      : '<strong>仅辅助理解。</strong>回答由 Cloudflare Workers AI 生成。只有点击发送后，问题和回答所需的本页摘录才会提交；本站不保存对话。请避免填写姓名、联系方式等身份信息。';
     var summaryPrompt = isScale
       ? '请概括这份量表的核心内容，并指出最容易误解的分数或使用边界。若已有结果，请同时概括结果中最值得关注的倾向。'
       : '请概括这篇指南的核心内容，并指出最容易被误解的地方。';
