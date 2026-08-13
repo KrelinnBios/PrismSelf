@@ -12,7 +12,7 @@ const DEFAULT_THEME = '#2f6f73';
 
 // file -> { desc, title, theme? } ; title falls back to the page's <title>
 const pages = {
-  'index.html': { desc: '聚焦性别理论、心理概念与人际关系的自我探索与科普知识库，涵盖分析图表、专题指南、术语索引、调查对谈、共鸣刻度、自评量表与关系对话工具。', url: '/' },
+  'index.html': { desc: '面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，提供概念分析、专题指南、术语索引、社群观察、共鸣刻度、自评量表、关系工具及按需 AI 陪读与解读。', url: '/' },
   'Analyses/Gender-Theory-Panorama.html': { desc: '系统梳理性别理论的核心概念，对照定义、流派与争议，帮助厘清性别相关术语与思想脉络。' },
   'Analyses/Interpersonal-Attraction-Comparison.html': { desc: '全景比较多种人际吸引类型（性、浪漫、感官、智识等），辨析它们的定义与差异。' },
   'Analyses/Interpersonal-Conflict-Analysis.html': { desc: '全面分析人际冲突的概念、成因与应对模式，厘清相关的心理与沟通术语。' },
@@ -39,8 +39,8 @@ const pages = {
   'Scales/Asexual-Spectrum-Scale.html': { desc: '无性恋谱系自评量表，通过多维条目帮助你探索性吸引相关的自我倾向；结果仅保存在本地。' },
   'Scales/Feminist-Leanings-Scale.html': { desc: '女权主义流派倾向自评量表，帮助你了解自身在各女权主义流派上的倾向；结果仅保存在本地。' },
   'Scales/Gender-Exploration-Scale.html': { desc: '多元性别认同与探索自评量表，通过多维条目辅助性别体验的自我梳理；结果仅保存在本地。' },
-  'Scales/Neurodiversity-Experience-Scale.html': { desc: '神经多样性体验自评量表，通过 120 道原创中文情境题，从八个维度梳理感官、注意、执行功能、沟通、转换、活动调节、过载与掩饰体验；结果仅保存在本地。' },
-  'Scales/Sexual-Preference-Scale.html': { desc: '亲密互动与性偏好自评量表，通过 90 道原创中文情境题，从十五个无性恋谱系友好的维度梳理成年人当前的幻想、审美与互动偏好；结果仅保存在本地。' },
+  'Scales/Neurodiversity-Experience-Scale.html': { desc: '通过 120 道原创中文情境题，从八个维度梳理感官、注意、执行功能、沟通、转换、活动调节、过载与掩饰体验；结果仅保存在本地。' },
+  'Scales/Sexual-Preference-Scale.html': { desc: '通过 90 道原创中文情境题，从十五个维度梳理成年人在亲密互动与性幻想中的当前偏好；结果仅保存在本地。' },
   'Scales/Philosophical-Leanings-Scale.html': { desc: '哲学流派倾向自评量表，帮助你了解自身在各哲学流派上的倾向；结果仅保存在本地。' },
   'Scales/Big-Five-Personality-Scale.html': { desc: '大五人格倾向自评量表，通过 120 道本站原创中文情境题，从五个核心维度与三十个子面向梳理人格倾向；结果仅保存在本地。' },
   'Scales/HEXACO-Personality-Scale.html': { desc: 'HEXACO 六维人格倾向自评量表，通过 100 道本站原创中文情境题，从六个核心维度、二十四个子面向与独立利他性梳理人格倾向；结果仅保存在本地。' },

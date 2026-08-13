@@ -44,9 +44,9 @@ HEXACO 人格模型及 HEXACO-PI-R 由 Kibeom Lee 与 Michael C. Ashton 开发�
 
 部分页面运行时会连接 cdnjs 和 Google Fonts 下载脚本或字体。这些服务的可用性、日志处理、隐私政策和服务条款由各自运营方负责。
 
-`Guides/` 下的页面提供可选的 AI 陪读。只有访问者主动提交问题时，页面才会将问题和为回答选取的本页摘录发送至 [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/)；当前使用的模型为 Cloudflare 托管的 [`@cf/qwen/qwen3-30b-a3b-fp8`](https://developers.cloudflare.com/workers-ai/models/qwen3-30b-a3b-fp8/)。模型、推理服务及其上游材料适用各自的许可、服务条款和数据处理规则，不因本项目调用而纳入 PrismSelf 的 MIT License 或 CC BY-NC-SA 4.0。
+`Guides/` 下的页面提供可选的 AI 陪读，`Scales/` 下的页面提供可选的量表 AI 解读。只有访问者主动提交问题时，指南页面才会发送问题和为回答选取的本页摘录；量表页面会发送问题、量表说明和当前已显示的结果摘要，逐题选项不会发送。上述内容会提交至 [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/)；当前使用的模型为 Cloudflare 托管的 [`@cf/qwen/qwen3-30b-a3b-fp8`](https://developers.cloudflare.com/workers-ai/models/qwen3-30b-a3b-fp8/)。模型、推理服务及其上游材料适用各自的许可、服务条款和数据处理规则，不因本项目调用而纳入 PrismSelf 的 MIT License 或 CC BY-NC-SA 4.0。
 
-PrismSelf 不将 AI 陪读问题或回答写入本站存储，也不在服务端日志中主动记录问题正文。Cloudflare 仍会为提供 Workers AI 服务而处理相应内容，具体边界以其[数据使用说明](https://developers.cloudflare.com/workers-ai/platform/data-usage/)和适用条款为准。访问者不应在问题中提交可识别个人身份的敏感信息。
+PrismSelf 不将 AI 陪读或量表 AI 解读的问题与回答写入本站存储，也不在服务端日志中主动记录问题正文。Cloudflare 仍会为提供 Workers AI 服务而处理相应内容，具体边界以其[数据使用说明](https://developers.cloudflare.com/workers-ai/platform/data-usage/)和适用条款为准。访问者不应在问题中提交可识别个人身份的敏感信息。
 
 ## 版本与反馈
 
