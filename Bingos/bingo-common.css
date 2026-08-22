@@ -2,6 +2,8 @@
    Palette is driven by the --bingo-* variables below; defaults match the
    Aro-Ace page. Other pages override the full set in an inline <style>. */
 :root {
+  --bingo-flag-gradient: linear-gradient(90deg, var(--bingo-accent), var(--bingo-sec-a-grad2));
+  --bingo-title-gradient: var(--bingo-flag-gradient);
   /* 主色（sec-A 渐变起点、标题强调、图例/圆环文字） */
   --bingo-accent: #7a6597;
   --bingo-accent-rgb: 122, 101, 151;
@@ -100,7 +102,7 @@ body {
 .header {
   text-align: center;
   margin-bottom: 24px;
-  padding: 0 8px;
+  padding: 12px 8px 0;
 }
 
 .header h1 {
@@ -113,6 +115,25 @@ body {
 .header h1 em {
   color: var(--bingo-accent);
   font-style: normal;
+}
+
+/* 标题前缀跟随顶部彩条配色（渐变文字） */
+.header h1 .title-main {
+  color: var(--bingo-accent);
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .header h1 .title-main {
+    background: var(--bingo-title-gradient, var(--bingo-flag-gradient));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  :root[data-theme="dark"] .header h1 .title-main {
+    filter: brightness(1.35) saturate(1.08);
+  }
 }
 
 .sub {

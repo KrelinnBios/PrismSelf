@@ -960,7 +960,13 @@ button:hover {
 
 	.section,
 	.result {
-		padding: 14px !important;
+		padding: 16px 14px !important;
+		border-radius: 18px !important;
+	}
+
+	.global-progress {
+		padding: 10px 12px calc(10px + env(safe-area-inset-top, 0px)) !important;
+		border-radius: 0 0 14px 14px !important;
 	}
 
 	body.scale-result-visible .global-progress {
@@ -975,11 +981,16 @@ button:hover {
 	.scale-actions {
 		display: grid !important;
 		grid-template-columns: 1fr !important;
+		gap: 10px !important;
 	}
 
 	button {
 		width: 100% !important;
 		margin-right: 0 !important;
+		min-height: 46px !important;
+		padding: 12px 16px !important;
+		font-size: 0.95rem !important;
+		border-radius: 12px !important;
 	}
 
 	.result-top-grid {

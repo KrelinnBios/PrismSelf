@@ -623,10 +623,12 @@ body.guide-ready #write {
 @media (max-width: 600px) {
   .terms-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
   }
 
   .toc-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   #write .card-num {
@@ -634,11 +636,16 @@ body.guide-ready #write {
   }
 
   header {
-    padding: 3.4rem 1.4rem 2.6rem;
+    padding: calc(3.4rem + env(safe-area-inset-top, 0px)) 1.4rem 2.6rem;
+  }
+
+  header h1 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+    line-height: 1.22;
   }
 
   .intro-section {
-    padding: 2.6rem 1.4rem 1.6rem;
+    padding: 2.2rem 1.4rem 1.4rem;
   }
 
   .main-content {
@@ -646,7 +653,14 @@ body.guide-ready #write {
   }
 
   .term-card {
-    padding: 1.35rem;
+    padding: 1.35rem 1.3rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(24, 33, 47, 0.06);
+  }
+
+  .category-title {
+    font-size: 0.62rem;
+    margin-bottom: 1.15rem;
   }
 
   .floating-toc {
