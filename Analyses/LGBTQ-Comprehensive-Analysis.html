@@ -146,6 +146,10 @@
         padding: 0;
         width: 100%;
         text-align: left;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
       }
 
       td.concept-cell::before {
@@ -153,16 +157,28 @@
       }
 
       .concept-pill {
-        flex-direction: column;
-        gap: 2px;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
       }
 
       .concept-name {
-        font-size: 0.88rem;
+        font-size: 0.98rem !important;
       }
 
       .concept-en {
-        font-size: 0.55rem;
+        font-size: 0.58rem !important;
+        padding: 2px 8px !important;
+        margin-top: 0 !important;
+      }
+
+      .detail-btn {
+        margin-top: 0 !important;
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
+        font-size: 0.65rem !important;
+        padding: 2px 8px !important;
       }
 
       .panels {
@@ -219,6 +235,28 @@
         width: 70px;
       }
 
+      .concept-cell {
+        gap: 6px !important;
+      }
+
+      .concept-pill {
+        gap: 6px !important;
+      }
+
+      .concept-name {
+        font-size: 0.92rem !important;
+      }
+
+      .concept-en {
+        font-size: 0.52rem !important;
+        padding: 2px 6px !important;
+      }
+
+      .detail-btn {
+        font-size: 0.6rem !important;
+        padding: 2px 6px !important;
+      }
+
     }
 
     :root[data-theme="dark"] .row-identity {
@@ -254,9 +292,10 @@
   <link rel="stylesheet" href="./analysis-common.css">
   <link rel="stylesheet" href="../assets/theme.css?v=c4a048cc385a">
   <script src="../assets/theme.js?v=c4a048cc385a"></script>
+  <script defer src="./analysis-common.js"></script>
   <script
     defer
-    src="https://vibecafe.ai/telemetry/v1.js"
+    src="../scripts/vibecafe-shim.js"
     data-vc-product-id="cmsw7u1t7001t0akz1fqinepx"
     data-vc-auth-key="vc_web_b81zU9sD9WzmsRCXG8mTvVXtbrc-r8ow3_t19e98qwg"
   ></script>
@@ -600,7 +639,8 @@
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('#lgbtTable tbody tr').forEach(row => {
-        row.style.display = (type === 'all' || row.dataset.type === type) ? '' : 'none';
+        const show = (type === 'all' || row.dataset.type === type);
+        row.classList.toggle('row-hidden', !show);
       });
     }
 

@@ -118,12 +118,52 @@ h1 {
 
 .controls {
 	display: flex !important;
-	flex-wrap: wrap !important;
+	flex-wrap: nowrap !important;
 	gap: 8px !important;
 	margin: 24px 0 20px !important;
 	padding: 10px 16px !important;
-	justify-content: center !important;
+	justify-content: flex-start !important;
 	border-radius: 18px !important;
+	overflow-x: auto !important;
+	overflow-y: hidden !important;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	scroll-snap-type: x proximity;
+	cursor: grab;
+	touch-action: pan-x;
+	position: relative;
+	z-index: 0;
+	pointer-events: auto;
+}
+
+.controls.centered {
+	justify-content: center !important;
+	cursor: default;
+	overflow-x: hidden !important;
+}
+
+.controls:active {
+	cursor: grabbing;
+}
+
+.controls::-webkit-scrollbar {
+	display: none !important;
+}
+
+.controls .filter-btn {
+	flex: 0 0 auto !important;
+	scroll-snap-align: start;
+	pointer-events: auto !important;
+	position: relative;
+	z-index: 2;
+}
+
+.row-hidden {
+	display: none !important;
+}
+
+.cell-hidden {
+	display: none !important;
 }
 
 .filter-btn,
@@ -151,9 +191,15 @@ h1 {
 }
 
 .filter-btn.active {
-	background: linear-gradient(135deg, var(--analysis-accent), var(--analysis-accent-2)) !important;
-	border-color: transparent !important;
+	background: var(--analysis-ink) !important;
+	border-color: var(--analysis-ink) !important;
 	color: #fff !important;
+}
+
+:root[data-theme="dark"] .filter-btn.active {
+	background: #e2e8f0 !important;
+	border-color: #e2e8f0 !important;
+	color: #0f172a !important;
 }
 
 .table-wrapper {
@@ -176,18 +222,26 @@ table {
 }
 
 th {
-	background: linear-gradient(135deg, var(--analysis-accent), var(--analysis-accent-2)) !important;
+	background: var(--analysis-accent) !important;
 	color: #fff !important;
-	border-right-color: rgba(255, 255, 255, 0.14) !important;
-	padding: 14px 10px !important;
-	font-weight: 600 !important;
-	font-size: 0.78rem !important;
+	border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
+	border-bottom: none !important;
+	padding: 13px 12px !important;
+	font-weight: 650 !important;
+	font-size: 0.76rem !important;
+	letter-spacing: 0.02em;
 	text-align: left !important;
 	white-space: nowrap !important;
 }
 
 th:last-child {
 	border-right: none !important;
+}
+
+:root[data-theme="dark"] th {
+	background: #1e293b !important;
+	color: #e2e8f0 !important;
+	border-right-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 td {
@@ -667,10 +721,35 @@ tbody tr:hover {
 	.concept-cell {
 		min-width: 0 !important;
 		text-align: left !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 10px !important;
 	}
 
 	.concept-pill {
-		align-items: flex-start !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		gap: 8px !important;
+		flex-wrap: wrap !important;
+	}
+
+	.concept-name {
+		font-size: 1.02rem !important;
+	}
+
+	.concept-en {
+		font-size: 0.6rem !important;
+		padding: 2px 8px !important;
+		margin-top: 0 !important;
+	}
+
+	.detail-btn {
+		margin-top: 0 !important;
+		margin-left: auto !important;
+		flex-shrink: 0 !important;
+		font-size: 0.68rem !important;
+		padding: 3px 9px !important;
 	}
 
 	.concept-name,
@@ -690,6 +769,28 @@ tbody tr:hover {
 		left: 10px !important;
 		padding: 7px 10px !important;
 		font-size: 12px !important;
+	}
+
+	.concept-cell {
+		gap: 6px !important;
+	}
+
+	.concept-pill {
+		gap: 6px !important;
+	}
+
+	.concept-name {
+		font-size: 0.95rem !important;
+	}
+
+	.concept-en {
+		font-size: 0.55rem !important;
+		padding: 2px 6px !important;
+	}
+
+	.detail-btn {
+		font-size: 0.62rem !important;
+		padding: 2px 7px !important;
 	}
 }
 
@@ -965,11 +1066,27 @@ tbody tr[class*="row-"] td:first-child {
 	.controls {
 		justify-content: flex-start !important;
 		overflow-x: auto !important;
-		padding: 10px !important;
+		overflow-y: hidden !important;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		padding: 10px 10px 12px !important;
+		gap: 8px !important;
+		flex-wrap: nowrap !important;
+		scroll-snap-type: x proximity;
+		mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+		-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+	}
+
+	.controls::-webkit-scrollbar {
+		display: none !important;
 	}
 
 	.filter-btn {
 		flex: 0 0 auto !important;
+		min-height: 36px !important;
+		padding: 7px 14px !important;
+		font-size: 0.78rem !important;
+		scroll-snap-align: start;
 	}
 
 	.table-wrapper {
