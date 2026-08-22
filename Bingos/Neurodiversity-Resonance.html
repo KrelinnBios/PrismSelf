@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="theme-color" content="#3b756f">
+  <meta name="theme-color" content="#6d28d9">
   <title>神经多样性 · 共鸣刻度卡</title>
   <meta name="description" content="神经多样性共鸣刻度卡，通过条目自评感受神经多样性相关体验的共鸣程度。">
   <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
@@ -93,11 +93,21 @@
       --bingo-dk-lv100-text: #cdf0e8;
     }
   </style>
+  <style>
+    :root {
+      --bingo-flag-gradient: linear-gradient(90deg, #facc15 0%, #ec4899 24%, #8b5cf6 48%, #06b6d4 74%, #2563eb 100%);
+      --bingo-title-gradient: linear-gradient(90deg, #9a7b00 0%, #a82c5e 24%, #5e2ab8 48%, #0c6b85 74%, #1e3a8a 100%);
+      --bingo-accent: #6d28d9; --bingo-accent-rgb: 109, 40, 217;
+      --bingo-sec-a-grad2: #facc15; --bingo-sec-b-grad1: #be185d; --bingo-sec-b-grad2: #ec4899; --bingo-sec-b-rgb: 236, 72, 153;
+      --bingo-sec-c-grad1: #6d28d9; --bingo-sec-c-grad2: #8b5cf6; --bingo-sec-c-rgb: 139, 92, 246; --bingo-sec-d-grad1: #0e7490; --bingo-sec-d-grad2: #2563eb; --bingo-sec-d-rgb: 6, 182, 212;
+      --bingo-dk-accent: #c4b5fd; --bingo-dk-accent-strong: #8b5cf6; --bingo-dk-legend-rgb: 139, 92, 246;
+    }
+  </style>
   <link rel="stylesheet" href="../assets/theme.css?v=c4a048cc385a">
   <script src="../assets/theme.js?v=c4a048cc385a"></script>
   <script
     defer
-    src="https://vibecafe.ai/telemetry/v1.js"
+    src="../scripts/vibecafe-shim.js"
     data-vc-product-id="cmsw7u1t7001t0akz1fqinepx"
     data-vc-auth-key="vc_web_b81zU9sD9WzmsRCXG8mTvVXtbrc-r8ow3_t19e98qwg"
   ></script>
@@ -108,7 +118,7 @@
 
   <div class="page">
     <div class="header">
-      <h1>神经<em>多样性</em> · 共鸣刻度卡</h1>
+      <h1><span class="title-main">神经多样性</span> · 共鸣刻度卡</h1>
       <p class="sub">大脑运作的每一种方式，都值得被温柔看见</p>
     </div>
 

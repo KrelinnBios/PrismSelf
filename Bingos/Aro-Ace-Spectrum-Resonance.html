@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="theme-color" content="#7a6597">
+  <meta name="theme-color" content="#203856">
   <title>无浪漫/无性恋谱系 · 共鸣刻度卡</title>
   <meta name="description" content="无浪漫/无性恋谱系共鸣刻度卡，通过条目自评感受谱系认同与共鸣程度。">
   <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
@@ -23,11 +23,22 @@
     rel="stylesheet">
   <link rel="stylesheet" href="./bingo-common.css?v=20260710">
   <!-- 页面配色使用 bingo-common.css 中的默认紫色系 -->
+  <style>
+    :root {
+      --bingo-flag-gradient: linear-gradient(90deg, #e28c00 0%, #eccb27 28%, #f8fafc 50%, #62aedc 72%, #203856 100%);
+      --bingo-title-gradient: linear-gradient(90deg, #b77900 0%, #8a6400 28%, #2f6e9f 64%, #203856 100%);
+      --bingo-accent: #203856; --bingo-accent-rgb: 32, 56, 86;
+      --bingo-lv25-bg: #eef6fb; --bingo-lv25-border: #a9cee4; --bingo-lv50-bg: #dceef8; --bingo-lv50-border: #62aedc; --bingo-lv50-text: #285f83; --bingo-lv75-bg: #c8e3f2; --bingo-lv75-border: #347fae; --bingo-lv75-text: #203f5d; --bingo-lv100-bg: #a9cee4; --bingo-lv100-text: #162d45;
+      --bingo-sec-a-grad2: #e28c00; --bingo-sec-b-grad1: #735900; --bingo-sec-b-grad2: #c49f12; --bingo-sec-b-rgb: 196, 159, 18;
+      --bingo-sec-c-grad1: #347fae; --bingo-sec-c-grad2: #62aedc; --bingo-sec-c-rgb: 98, 174, 220; --bingo-sec-d-grad1: #203856; --bingo-sec-d-grad2: #496987; --bingo-sec-d-rgb: 32, 56, 86;
+      --bingo-dk-accent: #8bc9ec; --bingo-dk-accent-strong: #62aedc; --bingo-dk-legend-rgb: 98, 174, 220;
+    }
+  </style>
   <link rel="stylesheet" href="../assets/theme.css?v=c4a048cc385a">
   <script src="../assets/theme.js?v=c4a048cc385a"></script>
   <script
     defer
-    src="https://vibecafe.ai/telemetry/v1.js"
+    src="../scripts/vibecafe-shim.js"
     data-vc-product-id="cmsw7u1t7001t0akz1fqinepx"
     data-vc-auth-key="vc_web_b81zU9sD9WzmsRCXG8mTvVXtbrc-r8ow3_t19e98qwg"
   ></script>
@@ -38,7 +49,7 @@
 
   <div class="page">
     <div class="header">
-      <h1>无浪漫/无性恋<em>谱系</em> · 共鸣刻度卡</h1>
+      <h1><span class="title-main">无浪漫/无性恋谱系</span> · 共鸣刻度卡</h1>
       <p class="sub">每个人都是谱系上的坐标，刻度由你定义</p>
     </div>
 
