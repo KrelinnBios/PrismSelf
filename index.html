@@ -165,8 +165,8 @@
     }
 
     .sidebar .stat {
-      --sidebar-highlight: var(--teal);
-      --sidebar-highlight-rgb: 43, 122, 98;
+      --sidebar-highlight: var(--ink);
+      --sidebar-highlight-rgb: 26, 35, 50;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -189,15 +189,14 @@
     }
 
     .sidebar .stat[aria-pressed="true"] {
-      background: linear-gradient(180deg, rgba(var(--sidebar-highlight-rgb), 0.15), rgba(var(--sidebar-highlight-rgb), 0.08));
-      box-shadow:
-        inset 0 0 0 1px rgba(var(--sidebar-highlight-rgb), 0.3),
-        0 8px 20px rgba(var(--sidebar-highlight-rgb), 0.1);
+      background: var(--ink);
+      border-color: var(--ink);
+      box-shadow: 0 4px 16px rgba(26, 35, 50, 0.16);
     }
 
     .sidebar .stat[aria-pressed="true"] .stat-num,
     .sidebar .stat[aria-pressed="true"] .stat-label {
-      color: var(--sidebar-highlight);
+      color: var(--bg-card);
     }
 
     .sidebar .stat-num {
@@ -1453,14 +1452,74 @@
       animation: fadeUp 0.6s 0.65s ease both;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       header {
-        padding-top: 40px;
+        padding: 40px 16px 0;
+        padding-top: calc(48px + env(safe-area-inset-top, 0px));
+      }
+
+      .site-badge {
+        font-size: 0.82rem;
+        padding: 5px 13px;
+        margin-bottom: 18px;
+        letter-spacing: 0.03em;
+      }
+
+      .site-badge-mark {
+        width: 22px;
+        height: 22px;
+      }
+
+      h1.site-title {
+        font-size: clamp(1.9rem, 8vw, 2.5rem);
+        line-height: 1.22;
+        margin-bottom: 14px;
+        letter-spacing: -0.015em;
+      }
+
+      .site-desc {
+        font-size: 0.93rem;
+        line-height: 1.72;
+        max-width: 320px;
+        margin: 0 auto 22px;
+        padding: 0 4px;
+      }
+
+      .site-desc br {
+        display: none;
+      }
+
+      .search-wrap {
+        max-width: none;
+        margin: 0 auto 10px;
+        padding: 0 2px;
+      }
+
+      .search-input {
+        padding: 15px 44px 15px 44px;
+        font-size: 15px;
+        border-radius: 999px;
+        box-shadow: 0 2px 16px rgba(26, 35, 50, 0.07);
+      }
+
+      .search-icon {
+        left: 17px;
+        width: 17px;
+        height: 17px;
+      }
+
+      .search-clear {
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
       }
 
       .layout {
         flex-direction: column;
-        padding: 32px 12px 60px;
+        gap: 18px;
+        padding: 6px 16px 64px;
+        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
         position: relative;
       }
 
@@ -1468,87 +1527,233 @@
         width: 100%;
       }
 
+      /* 横向胶囊筛选条：单行可横滑，滑到顶栏自动吸顶，随内容滚动自动高亮 */
       .sidebar {
-        position: static;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        display: flex;
+        align-self: stretch;
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0;
-        margin-top: 0;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        overflow: hidden;
-        background: var(--bg-card);
-        box-shadow: var(--shadow-sm);
-        width: 100%;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        width: calc(100% + 32px);
+        min-width: 0;
+        max-width: none;
+        margin: 0 -16px;
+        padding: 10px 16px 12px;
+        padding-top: calc(10px + env(safe-area-inset-top, 0px));
+        padding-right: 64px;
+        overflow: visible;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        touch-action: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        background: var(--bg);
+        border: none;
+        border-bottom: 1px solid var(--border);
+        cursor: grab;
+        border-radius: 0;
+        box-shadow: 0 2px 12px rgba(15, 20, 26, 0.06);
+        scroll-snap-type: x proximity;
+        scroll-padding-left: 16px;
+        scroll-padding-right: 64px;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        display: none;
       }
 
       .sidebar .stat {
+        flex: 0 0 auto;
         width: auto;
-        height: auto;
-        flex: 1;
-        min-width: 33.333%;
-        flex-direction: column;
-        border-radius: 0;
-        padding: 12px 8px;
-        text-align: center;
-        border-bottom: 1px solid var(--border);
+        height: 38px;
+        min-width: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 7px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: none;
+        background: none;
+        box-shadow: none;
+        text-align: left;
+        white-space: nowrap;
+        scroll-snap-align: start;
+        touch-action: manipulation;
+      }
+
+      .sidebar .stat:hover {
+        background: rgba(26, 35, 50, 0.06);
+        box-shadow: inset 0 0 0 1px rgba(26, 35, 50, 0.10);
       }
 
       .sidebar .stat:last-child {
-        border-bottom: none;
+        margin-right: 8px;
       }
 
-      .sidebar .stat[aria-pressed=true] {
-        outline: 1px solid rgba(var(--sidebar-highlight-rgb), 0.52);
-        outline-offset: -1px;
-      }
-
-      .sidebar .stat:first-child {
-        border-top-left-radius: 15px;
-      }
-
-      .sidebar .stat:nth-child(3) {
-        border-top-right-radius: 15px;
-      }
-
-      .sidebar .stat:nth-child(7) {
-        border-bottom-left-radius: 15px;
-      }
-
+      .sidebar .stat:first-child,
+      .sidebar .stat:nth-child(3),
+      .sidebar .stat:nth-child(7),
       .sidebar .stat:last-child {
-        border-bottom-right-radius: 15px;
+        border-radius: 999px;
+      }
+
+      .sidebar .stat[aria-pressed="true"] {
+        background: var(--ink);
+        border-color: var(--ink);
+        box-shadow: 0 4px 16px rgba(26, 35, 50, 0.16);
+        outline: none;
       }
 
       .sidebar .stat-num {
-        font-size: 1.3rem;
+        font-size: 0.88rem;
+        font-weight: 600;
+        line-height: 1;
+        margin-bottom: 0;
+        color: var(--ink);
       }
 
       .sidebar .stat-label {
-        font-size: 11px;
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        color: var(--ink-mid);
       }
 
-      .search-wrap {
-        margin-bottom: 0;
+      .sidebar .stat[aria-pressed="true"] .stat-num,
+      .sidebar .stat[aria-pressed="true"] .stat-label {
+        color: var(--bg-card);
+      }
+
+      /* 搜索空状态在移动端占位显示，避免绝对定位遮盖 */
+      .search-empty-wrap {
+        position: static;
+        height: auto;
+        min-height: 52px;
+        padding: 18px 0 6px;
+      }
+
+      .search-empty-wrap.is-visible {
+        display: flex;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        gap: 10px;
+        margin-bottom: 14px;
+        padding-bottom: 12px;
+      }
+
+      .section-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        font-size: 15px;
+      }
+
+      h2.section-title {
+        font-size: 1.07rem;
+        letter-spacing: -0.01em;
+      }
+
+      .section-count {
+        font-size: 11px;
       }
 
       .card-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        border-radius: 18px;
+        padding: 18px 16px 16px;
+        gap: 10px;
+        --r: 18px;
+        box-shadow: 0 2px 14px rgba(26, 35, 50, 0.06);
+      }
+
+      .card:hover,
+      .card:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .card-tag {
+        font-size: 10px;
+        padding: 3px 9px;
+      }
+
+      .card-title {
+        font-size: 0.98rem;
+        line-height: 1.52;
+      }
+
+      .card-meta {
+        padding-top: 2px;
+      }
+
+      .card-type {
+        font-size: 11px;
+      }
+
+      .card-arrow,
+      .support-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
+      }
+
+      .support-section {
+        margin: 2px 0 0;
       }
 
       .support-grid,
       .qr-dialog-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .support-card {
-        grid-template-columns: 40px minmax(0, 1fr) 28px;
+        grid-template-columns: 42px minmax(0, 1fr) 30px;
         align-items: center;
+        min-height: 0;
+        padding: 16px 14px;
+        gap: 12px;
+        border-radius: 18px;
       }
 
       .support-mark {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        font-size: 18px;
+      }
+
+      .support-title {
+        font-size: 0.96rem;
+      }
+
+      .support-desc {
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .support-kicker {
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+
+      footer {
+        padding: 26px 16px calc(28px + env(safe-area-inset-bottom, 0px));
       }
 
       .footer-note-block {
@@ -1562,6 +1767,50 @@
 
       .footer-update-marquee {
         flex: 0 1 220px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      header {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .layout {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .sidebar {
+        margin-left: -14px;
+        margin-right: -14px;
+        width: calc(100% + 28px);
+        padding-left: 14px;
+        padding-right: 64px;
+        scroll-padding-left: 14px;
+        scroll-padding-right: 64px;
+      }
+
+      .sidebar .stat {
+        height: 36px;
+        padding: 0 12px;
+        gap: 6px;
+      }
+
+      .sidebar .stat-num {
+        font-size: 0.84rem;
+      }
+
+      .sidebar .stat-label {
+        font-size: 11.5px;
+      }
+
+      .card {
+        padding: 16px 14px 14px;
+      }
+
+      h2.section-title {
+        font-size: 1.02rem;
       }
     }
 
@@ -1836,8 +2085,16 @@
     }
 
     :root[data-theme="dark"] .sidebar .stat {
-      --sidebar-highlight: var(--teal);
-      --sidebar-highlight-rgb: 67, 184, 140;
+      --sidebar-highlight: #e7edf3;
+      --sidebar-highlight-rgb: 231, 237, 243;
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    :root[data-theme="dark"] .sidebar .stat:hover {
+      background: rgba(var(--sidebar-highlight-rgb), 0.08);
+      box-shadow: inset 0 0 0 1px rgba(var(--sidebar-highlight-rgb), 0.14);
     }
 
     :root[data-theme=dark] .sidebar {
@@ -1845,18 +2102,66 @@
     }
 
     :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] {
-      background: linear-gradient(180deg, rgba(var(--sidebar-highlight-rgb), 0.22), rgba(var(--sidebar-highlight-rgb), 0.1));
-      box-shadow:
-        inset 0 0 0 1px rgba(var(--sidebar-highlight-rgb), 0.32),
-        0 8px 20px rgba(0, 0, 0, 0.25);
+      background: #e7edf3;
+      border-color: #e7edf3;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.36);
     }
+
+    :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] .stat-num,
+    :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] .stat-label {
+      color: #0f141a;
+    }
+
+    /* The final dark-mode override must come after the legacy pressed-state
+       rule above, otherwise the active pill falls back to a low-contrast tint. */
+    @media (max-width: 640px) {
+      :root[data-theme="dark"] .sidebar {
+        align-self: stretch;
+        width: calc(100% + 32px);
+        min-width: 0;
+        background: var(--bg);
+        border-bottom-color: var(--border);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+      }
+
+      :root[data-theme="dark"] .sidebar .stat {
+        background: none;
+        border: none;
+        box-shadow: none;
+      }
+
+      :root[data-theme="dark"] .sidebar .stat-num {
+        color: #f8fafc;
+      }
+
+      :root[data-theme="dark"] .sidebar .stat-label {
+        color: #e2e8f0;
+      }
+
+      :root[data-theme="dark"] .sidebar .stat:hover {
+        background: rgba(231, 237, 243, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(231, 237, 243, 0.12);
+      }
+
+      :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] {
+        background: #e7edf3;
+        border-color: #e7edf3;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.36);
+      }
+
+      :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] .stat-num,
+      :root[data-theme="dark"] .sidebar .stat[aria-pressed="true"] .stat-label {
+        color: #0f141a;
+      }
+    }
+
   </style>
 
   <link rel="stylesheet" href="assets/theme.css?v=c4a048cc385a">
   <script src="assets/theme.js?v=c4a048cc385a"></script>
   <script
     defer
-    src="https://vibecafe.ai/telemetry/v1.js"
+    src="./scripts/vibecafe-shim.js"
     data-vc-product-id="cmsw7u1t7001t0akz1fqinepx"
     data-vc-auth-key="vc_web_b81zU9sD9WzmsRCXG8mTvVXtbrc-r8ow3_t19e98qwg"
   ></script>
@@ -2576,8 +2881,12 @@
       const search = document.getElementById('cardSearch');
       const searchClear = document.getElementById('searchClear');
 
+      const sidebarEl = document.querySelector('.sidebar');
       const setActive = (active) => {
         buttons.forEach((b) => b.setAttribute('aria-pressed', b === active ? 'true' : 'false'));
+        if (active && sidebarEl && typeof active.scrollIntoView === 'function') {
+          try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) { }
+        }
       };
 
       let clickLock = false;
@@ -2599,7 +2908,9 @@
             setTimeout(() => { clickLock = false; }, 800);
             const section = sections.find((s) => s.dataset.category === cat);
             if (section) {
-              const top = section.getBoundingClientRect().top + window.scrollY - window.innerHeight * 2 / 5;
+              const rect = section.getBoundingClientRect();
+              const stickyH = sidebarEl ? sidebarEl.offsetHeight : 0;
+              const top = rect.top + window.scrollY - Math.min(window.innerHeight * 2 / 5, 220) - stickyH - 12;
               window.scrollTo({ top, behavior: 'smooth' });
             }
           }
@@ -2615,8 +2926,7 @@
         });
       }
 
-      // Scroll spy — highlight sidebar button only when a section's title area
-      // (its top edge) is visible in the viewport and within 0 ~ 1/4 from top.
+      // Scroll spy — highlight sidebar button when its section title is near top.
       const btnMap = {};
       buttons.forEach((b) => { btnMap[b.dataset.filter] = b; });
 
@@ -2635,22 +2945,61 @@
         }
 
         if (best) {
-          setActive(btnMap[best.dataset.category] || null);
+          const next = btnMap[best.dataset.category] || null;
+          const cur = buttons.find((b) => b.getAttribute('aria-pressed') === 'true') || null;
+          if (next !== cur) setActive(next);
         } else if (sections[0].getBoundingClientRect().top > triggerY) {
           setActive(null);
         }
-        // Otherwise (no section title in [0, triggerY]): keep current active
+        // Otherwise keep current active
       };
 
-      if (window.innerWidth > 600) {
-        let ticking = false;
-        document.addEventListener('scroll', () => {
-          if (!ticking) {
-            requestAnimationFrame(() => { updateSpy(); ticking = false; });
-            ticking = true;
+      let ticking = false;
+      document.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => { updateSpy(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+      updateSpy();
+
+      // Manual horizontal drag (mouse & touch) — supplements native touch scroll
+      if (sidebarEl) {
+        let isDown = false, startX = 0, startScroll = 0, moved = false;
+        const onDown = (e) => {
+          isDown = true; moved = false;
+          startX = (e.touches ? e.touches[0].clientX : e.clientX);
+          startScroll = sidebarEl.scrollLeft;
+          sidebarEl.style.cursor = 'grabbing';
+          sidebarEl.style.userSelect = 'none';
+        };
+        const onMove = (e) => {
+          if (!isDown) return;
+          const x = (e.touches ? e.touches[0].clientX : e.clientX);
+          const dx = x - startX;
+          if (Math.abs(dx) > 4) moved = true;
+          if (moved) e.preventDefault();
+          sidebarEl.scrollLeft = startScroll - dx;
+        };
+        const onUp = () => {
+          if (!isDown) return;
+          isDown = false;
+          sidebarEl.style.cursor = '';
+          sidebarEl.style.userSelect = '';
+          // if dragged, suppress next click
+          if (moved) {
+            const handler = (ev) => { ev.stopPropagation(); ev.preventDefault(); };
+            sidebarEl.addEventListener('click', handler, { capture: true, once: true });
+            setTimeout(() => sidebarEl.removeEventListener('click', handler, { capture: true }), 0);
           }
-        }, { passive: true });
-        updateSpy();
+        };
+        sidebarEl.addEventListener('mousedown', onDown);
+        sidebarEl.addEventListener('touchstart', onDown, { passive: true });
+        window.addEventListener('mousemove', onMove, { passive: false });
+        window.addEventListener('touchmove', onMove, { passive: false });
+        window.addEventListener('mouseup', onUp);
+        window.addEventListener('touchend', onUp);
+        window.addEventListener('touchcancel', onUp);
       }
     })();
 
