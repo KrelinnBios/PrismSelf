@@ -206,6 +206,20 @@
   color: var(--scale-surface, var(--paper, #1a2332)) !important;
 }
 
+/* A pointer click leaves :hover active while the theme changes. Keep the
+ * toggle in the new theme's resting colours until the pointer moves away. */
+:root[data-theme="light"] .theme-toggle.is-hover-suppressed {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-surface, var(--paper, #ffffff)) !important;
+  color: var(--scale-ink, var(--ink, #1a2332)) !important;
+}
+
+:root[data-theme="dark"] .theme-toggle.is-hover-suppressed {
+  border: 1px solid var(--prism-floating-border) !important;
+  background: var(--scale-surface, var(--paper, #161d26)) !important;
+  color: var(--scale-ink, var(--ink, #e7edf3)) !important;
+}
+
 :root.guide-links-green #write .term-desc a,
 :root:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a,
 :root:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a,
