@@ -1530,7 +1530,7 @@
       /* 横向胶囊筛选条：单行可横滑，滑到顶栏自动吸顶，随内容滚动自动高亮 */
       .sidebar {
         position: sticky;
-        top: 0;
+        top: calc(12px + env(safe-area-inset-top, 0px));
         z-index: 5;
         display: flex;
         align-self: stretch;
