@@ -57,6 +57,13 @@
     btn.innerHTML = SUN + MOON;
     btn.addEventListener('click', function () {
       apply(current() === 'dark' ? 'light' : 'dark', true);
+      btn.classList.add('is-hover-suppressed');
+    });
+    btn.addEventListener('pointerenter', function () {
+      btn.classList.remove('is-hover-suppressed');
+    });
+    btn.addEventListener('pointerleave', function () {
+      btn.classList.remove('is-hover-suppressed');
     });
     document.body.appendChild(btn);
   }
