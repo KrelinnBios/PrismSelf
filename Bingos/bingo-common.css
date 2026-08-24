@@ -869,3 +869,126 @@ body {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.28);
 }
+
+/* 移动端共鸣页优先保证单元格可读、可点按，不强行在视口中塞入三列小格。 */
+@media (max-width: 620px) {
+  body {
+    padding:
+      calc(4.8rem + env(safe-area-inset-top, 0px))
+      12px
+      calc(3rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .header {
+    margin-bottom: 18px;
+    padding: 0 4px;
+  }
+
+  .header h1 {
+    font-size: clamp(1.55rem, 7vw, 1.95rem);
+    line-height: 1.32;
+  }
+
+  .sub {
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .tip {
+    margin-bottom: 14px;
+    padding: 11px 13px;
+    border-radius: 0 11px 11px 0;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    box-shadow: none;
+  }
+
+  .legend {
+    width: calc(100% + 24px);
+    margin: 0 -12px 14px;
+    padding: 2px 12px 8px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .legend::-webkit-scrollbar {
+    display: none;
+  }
+
+  .legend-item {
+    flex: 0 0 auto;
+  }
+
+  .reset-btn {
+    width: 100%;
+    min-height: 44px;
+    margin-bottom: 16px;
+  }
+
+  .section {
+    margin-bottom: 16px;
+    border-radius: 15px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.055);
+  }
+
+  .sec-head {
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 12px 13px;
+  }
+
+  .sec-badge {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+  }
+
+  .sec-info {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .sec-info h2 {
+    font-size: 0.94rem;
+  }
+
+  .sec-stats {
+    padding: 4px 9px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cell {
+    min-height: 120px;
+    padding: 13px 6px 9px;
+    gap: 8px;
+  }
+
+  .cell-icon {
+    font-size: 24px;
+  }
+
+  .cell-text {
+    max-width: 96%;
+    font-size: 0.68rem;
+    line-height: 1.5;
+  }
+
+  .footer {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 15px;
+    box-shadow: none;
+  }
+
+  .footer ul {
+    padding-left: 1.2rem;
+    font-size: 0.8rem;
+    line-height: 1.75;
+  }
+}

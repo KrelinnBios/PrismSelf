@@ -443,8 +443,7 @@
     renderDimensionAnalysis(ranked);
     renderScoreTable(scores);
     renderSuggestions(ranked);
-    result.style.display = 'block';
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.PrismScale.showResult(result);
   }
 
   function renderTypeJudgment(ranked) {
@@ -573,7 +572,7 @@
   function saveResultText() {
     const text = buildTextResult();
     if (!text) return window.alert('请先完成量表并计算结果。');
-    downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), '亲密互动与性偏好自评报告.txt');
+    downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), window.PrismScale.getExportFilename('txt'));
   }
 
   async function saveResultImage() {
@@ -585,8 +584,8 @@
     button.textContent = '正在生成图片…';
     try {
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const canvas = await window.html2canvas(result, { scale: 2, useCORS: true, backgroundColor: dark ? '#18212d' : '#f7f8fa' });
-      canvas.toBlob(blob => { if (blob) downloadBlob(blob, '亲密互动与性偏好自评报告.png'); }, 'image/png');
+      const canvas = await window.PrismScale.captureDesktopResult(result, { backgroundColor: dark ? '#18212d' : '#f7f8fa' });
+      canvas.toBlob(blob => { if (blob) downloadBlob(blob, window.PrismScale.getExportFilename('png')); }, 'image/png');
     } catch (error) {
       console.error('导出性偏好结果图片失败。', error);
       window.alert('图片生成失败，请稍后重试。');

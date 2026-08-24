@@ -345,8 +345,7 @@
       }
       const data = calculateScores(new FormData(form));
       renderReport(data);
-      result.style.display = 'block';
-      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.PrismScale.showResult(result);
       window.__prismPersonalityResult = data;
     }
 
@@ -387,47 +386,20 @@
         const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `${config.fileBaseName || 'personality-scale'}-result.txt`;
+        link.download = window.PrismScale.getExportFilename('txt');
         link.click();
         URL.revokeObjectURL(link.href);
         return;
       }
-      exportImage(textContent);
+      await exportImage();
     }
 
-    function exportImage(textContent) {
-      const lines = textContent.split('\n');
-      const canvas = document.createElement('canvas');
-      const width = 1080;
-      const padding = 72;
-      const lineHeight = 34;
-      canvas.width = width;
-      canvas.height = Math.max(720, padding * 2 + lines.length * lineHeight + 80);
-      const context = canvas.getContext('2d');
-      context.fillStyle = '#f8fafc';
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      context.fillStyle = '#4f46e5';
-      context.fillRect(0, 0, canvas.width, 18);
-      context.fillStyle = '#111827';
-      context.font = '24px system-ui, sans-serif';
-      let y = padding;
-      lines.forEach((line, index) => {
-        if (index === 0) {
-          context.font = 'bold 34px system-ui, sans-serif';
-          context.fillStyle = '#312e81';
-        } else {
-          context.font = '24px system-ui, sans-serif';
-          context.fillStyle = '#1f2937';
-        }
-        context.fillText(line, padding, y, width - padding * 2);
-        y += lineHeight;
-      });
-      context.font = '20px system-ui, sans-serif';
-      context.fillStyle = '#64748b';
-      context.fillText('PrismSelf · 数据仅在本地处理', padding, canvas.height - 42);
+    async function exportImage() {
+      const result = document.getElementById('result');
+      const canvas = await window.PrismScale.captureDesktopResult(result);
       const link = document.createElement('a');
       link.href = canvas.toDataURL('image/png');
-      link.download = `${config.fileBaseName || 'personality-scale'}-result.png`;
+      link.download = window.PrismScale.getExportFilename('png');
       link.click();
     }
 

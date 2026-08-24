@@ -260,6 +260,31 @@
 		document.body.classList.toggle('scale-result-visible', Boolean(isVisible));
 	}
 
+	function showResult(result, options = {}) {
+		if (!result) return;
+
+		const active = document.activeElement;
+		if (active && active !== document.body && typeof active.blur === 'function') active.blur();
+
+		result.hidden = false;
+		result.style.display = 'block';
+		syncResultVisibility(result);
+
+		requestAnimationFrame(() => {
+			const toolbar = document.querySelector('.scale-mobile-toolbar, .global-progress');
+			const toolbarStyle = toolbar ? getComputedStyle(toolbar) : null;
+			const toolbarOffset = toolbar && ['sticky', 'fixed'].includes(toolbarStyle?.position)
+				? toolbar.getBoundingClientRect().height + 16
+				: 16;
+			const top = Math.max(0, window.scrollY + result.getBoundingClientRect().top - toolbarOffset);
+			const behavior = options.behavior || (window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
+
+			document.documentElement.scrollLeft = 0;
+			document.body.scrollLeft = 0;
+			window.scrollTo({ top, left: 0, behavior });
+		});
+	}
+
 	function markStructure(config = getConfig()) {
 		document.body.classList.add('scale-page');
 
@@ -526,6 +551,52 @@
 		}
 	}
 
+	function getExportFilename(extension, config = getConfig()) {
+		const safeExtension = String(extension || '').replace(/^\.+/, '').toLowerCase() || 'png';
+		const title = String(config.title || '量表').trim().replace(/自评量表$/, '').replace(/[\\/:*?"<>|]+/g, '-');
+		return `${title}自评结果.${safeExtension}`;
+	}
+
+	function captureDesktopResult(element, options = {}) {
+		if (!element) return Promise.reject(new Error('未找到需要导出的量表结果。'));
+		if (typeof window.html2canvas !== 'function') return Promise.reject(new Error('图片导出组件尚未加载。'));
+		// 旧页面会按后代元素序号复制计算样式。结果结构统一后序号不再可靠，
+		// 可能把表头颜色误贴到无关单元格，因此忽略旧的克隆回调。
+		const { onclone: _legacyOnclone, ...rendererOptions } = options;
+		const resultId = element.id;
+		const backgroundColor = rendererOptions.backgroundColor || getComputedStyle(element).backgroundColor;
+		return window.html2canvas(element, {
+			scale: 2,
+			useCORS: true,
+			logging: false,
+			backgroundColor,
+			...rendererOptions,
+			// 导出永远使用桌面视口，避免手机媒体查询把结果压成细长单列。
+			windowWidth: 1280,
+			scrollX: 0,
+			scrollY: 0,
+			onclone: doc => {
+				doc.documentElement.classList.add('scale-export-desktop');
+				const clonedResult = resultId ? doc.getElementById(resultId) : doc.querySelector('.result');
+				if (clonedResult) {
+					clonedResult.classList.add('scale-export-sheet');
+					clonedResult.style.setProperty('display', 'block', 'important');
+					clonedResult.style.setProperty('width', '980px', 'important');
+					clonedResult.style.setProperty('max-width', 'none', 'important');
+					clonedResult.style.setProperty('box-sizing', 'border-box', 'important');
+					// 将导出目标固定在克隆画布原点，消除 iPad 滚动位置和可视视口偏移。
+					clonedResult.style.setProperty('position', 'absolute', 'important');
+					clonedResult.style.setProperty('inset', '0 auto auto 0', 'important');
+					clonedResult.style.setProperty('margin', '0', 'important');
+					clonedResult.style.setProperty('transform', 'none', 'important');
+					clonedResult.style.setProperty('overflow', 'visible', 'important');
+					// 桌面导出已有可见表头，移除移动端卡片标签以免重复渲染。
+					clonedResult.querySelectorAll('[data-label]').forEach(cell => cell.removeAttribute('data-label'));
+				}
+			}
+		});
+	}
+
 	function init(config = getConfig()) {
 		markStructure(config);
 		bindCommonEvents(config);
@@ -533,16 +604,19 @@
 	}
 
 	window.PrismScale = {
+		captureDesktopResult,
 		collectAnswers,
 		destroyResultRadar,
 		getAnsweredCount,
 		getConfig,
+		getExportFilename,
 		init,
 		createResultDimensionHeader,
 		renderReflectionActions,
 		markStructure,
 		renderResultRadar,
 		renderResultSummary,
+		showResult,
 		formatExampleSet,
 		normalizeQuestionExamples,
 		updateProgress

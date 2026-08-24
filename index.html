@@ -1530,7 +1530,7 @@
       /* 横向胶囊筛选条：单行可横滑，滑到顶栏自动吸顶，随内容滚动自动高亮 */
       .sidebar {
         position: sticky;
-        top: calc(12px + env(safe-area-inset-top, 0px));
+        top: 0;
         z-index: 5;
         display: flex;
         align-self: stretch;
@@ -2155,9 +2155,103 @@
       }
     }
 
+    /* 移动端把筛选与主题按钮整合为同一工具栏，内容卡片改为紧凑列表行。 */
+    @media (max-width: 640px) {
+      .layout {
+        gap: 16px;
+        padding: 4px 14px calc(64px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .sidebar {
+        width: calc(100% + 28px);
+        margin-inline: -14px;
+        padding: calc(8px + env(safe-area-inset-top, 0px)) 76px 8px 12px;
+        scroll-padding-left: 12px;
+        scroll-padding-right: 76px;
+      }
+
+      .sidebar .stat {
+        height: 40px;
+        padding-inline: 13px;
+      }
+
+      .section {
+        margin-bottom: 28px;
+      }
+
+      .section-header {
+        gap: 9px;
+        margin-bottom: 10px;
+        padding: 0 2px 10px;
+      }
+
+      .section-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        font-size: 14px;
+      }
+
+      h2.section-title {
+        font-size: 1.04rem;
+      }
+
+      .card-grid {
+        gap: 10px;
+      }
+
+      .card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 34px;
+        grid-template-areas:
+          "tag arrow"
+          "title arrow"
+          "meta arrow";
+        align-items: center;
+        min-height: 108px;
+        padding: 13px 13px 12px 15px;
+        column-gap: 12px;
+        row-gap: 5px;
+        border-radius: 15px;
+        --r: 15px;
+        box-shadow: 0 2px 10px rgba(26, 35, 50, 0.045);
+      }
+
+      .card-tag {
+        grid-area: tag;
+        justify-self: start;
+      }
+
+      .card-title {
+        grid-area: title;
+        font-size: 0.97rem;
+        line-height: 1.45;
+      }
+
+      .card-meta {
+        display: contents;
+      }
+
+      .card-type {
+        grid-area: meta;
+      }
+
+      .card-arrow {
+        grid-area: arrow;
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .card {
+        padding: 12px 12px 11px 14px;
+      }
+    }
+
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=33ada475d99f">
+  <link rel="stylesheet" href="assets/theme.css?v=e023aa4e3fd9">
   <script src="assets/theme.js?v=33ada475d99f"></script>
   <script
     defer
@@ -2167,7 +2261,7 @@
   ></script>
 </head>
 
-<body>
+<body class="home-page">
   <header>
     <div class="site-badge">
       <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">

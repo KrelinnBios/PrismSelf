@@ -804,3 +804,108 @@ header {
     transition: none;
   }
 }
+
+/* 移动端阅读布局使用更轻的表面、更清晰的层级与更少的嵌套。 */
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  }
+
+  #write {
+    font-size: 16px !important;
+  }
+
+  header {
+    padding: calc(4.6rem + env(safe-area-inset-top, 0px)) 1rem 2.15rem;
+  }
+
+  header h1 {
+    max-width: 18em;
+    margin-inline: auto;
+    font-size: clamp(1.8rem, 8vw, 2.35rem);
+    letter-spacing: 0.01em;
+  }
+
+  .header-label {
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.2em;
+  }
+
+  .header-sub {
+    margin-top: 0.75rem;
+    line-height: 1.65;
+    letter-spacing: 0.06em;
+  }
+
+  .header-ornament {
+    margin-top: 1.35rem;
+  }
+
+  .intro-section {
+    padding: 1.8rem 1rem 1.25rem;
+  }
+
+  .intro-section p {
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+
+  .main-content {
+    padding: 0 1rem calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .category-section {
+    margin-bottom: 2.4rem;
+  }
+
+  .category-title {
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+  }
+
+  .terms-grid,
+  .toc-grid {
+    gap: 10px;
+  }
+
+  .term-card {
+    padding: 1.15rem 1.05rem;
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .term-en {
+    font-size: 1.3rem;
+  }
+
+  .term-zh {
+    margin-bottom: 0.65rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .term-desc {
+    font-size: 0.95rem;
+    line-height: 1.82;
+  }
+
+  #write .term-desc :is(h2, h3, h4, h5, h6)[data-level] {
+    padding-left: 0;
+  }
+
+  #write .term-desc .guide-note {
+    margin: 0.85rem 0;
+    padding: 0.8rem 0.85rem;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .toc-panel {
+    right: 0;
+    bottom: 62px;
+    width: min(calc(100vw - 24px), 390px);
+    max-height: min(68dvh, 620px);
+    border-radius: 16px;
+  }
+}

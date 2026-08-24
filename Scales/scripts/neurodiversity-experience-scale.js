@@ -577,8 +577,7 @@
     renderDimensionAnalysis(ranked);
     renderScoreTable(scores);
     renderSuggestions(ranked);
-    result.style.display = 'block';
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.PrismScale.showResult(result);
   }
 
   function renderTypeJudgment(ranked) {
@@ -783,7 +782,7 @@
       window.alert('请先完成量表并计算结果。');
       return;
     }
-    downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), '神经多样性体验深度自评报告.txt');
+    downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), window.PrismScale.getExportFilename('txt'));
   }
 
   async function saveResultImage() {
@@ -801,13 +800,11 @@
     button.textContent = '正在生成图片…';
     try {
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const canvas = await window.html2canvas(result, {
-        scale: 2,
-        useCORS: true,
+      const canvas = await window.PrismScale.captureDesktopResult(result, {
         backgroundColor: dark ? '#18212d' : '#f6f8f7'
       });
       canvas.toBlob(blob => {
-        if (blob) downloadBlob(blob, '神经多样性体验深度自评报告.png');
+        if (blob) downloadBlob(blob, window.PrismScale.getExportFilename('png'));
       }, 'image/png');
     } catch (error) {
       console.error('导出神经多样性体验结果图片失败。', error);

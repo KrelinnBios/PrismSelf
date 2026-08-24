@@ -305,7 +305,7 @@
       '<div class="guide-ai-shell">',
       '  <header class="guide-ai-header">',
       '    <div class="guide-ai-heading"><p class="guide-ai-eyebrow">' + eyebrow + '</p><h2 class="guide-ai-title" id="guideAiTitle">' + dialogTitle + '</h2></div>',
-      '    <button class="guide-ai-close" type="button" aria-label="' + closeLabel + '"><span aria-hidden="true">×</span></button>',
+      '    <button class="guide-ai-close" type="button" aria-label="' + closeLabel + '"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>',
       '  </header>',
       '  <p class="guide-ai-notice">' + notice + '</p>',
       '  <div class="guide-ai-conversation">',
@@ -326,7 +326,13 @@
       '</div>'
     ].join('');
 
-    document.body.appendChild(launcher);
+    var scaleToolbar = isScale && document.querySelector('.global-progress');
+    if (scaleToolbar) {
+      scaleToolbar.classList.add('scale-mobile-toolbar');
+      scaleToolbar.appendChild(launcher);
+    } else {
+      document.body.appendChild(launcher);
+    }
     document.body.appendChild(dialog);
 
     var closeButton = dialog.querySelector('.guide-ai-close');

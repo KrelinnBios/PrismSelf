@@ -65,7 +65,14 @@
     btn.addEventListener('pointerleave', function () {
       btn.classList.remove('is-hover-suppressed');
     });
-    document.body.appendChild(btn);
+    var scaleToolbar = document.querySelector('.global-progress');
+    if (scaleToolbar) {
+      scaleToolbar.classList.add('scale-mobile-toolbar');
+      if (back) scaleToolbar.appendChild(back);
+      scaleToolbar.appendChild(btn);
+    } else {
+      document.body.appendChild(btn);
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);

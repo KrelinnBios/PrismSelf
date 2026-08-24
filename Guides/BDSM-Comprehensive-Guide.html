@@ -741,6 +741,99 @@
       }
     }
 
+    /* 独立主题页的移动端阅读优化。 */
+    @media (max-width: 600px) {
+      html {
+        scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+      }
+
+      header {
+        padding: calc(4.6rem + env(safe-area-inset-top, 0px)) 1rem 2.15rem;
+      }
+
+      header h1 {
+        max-width: 18em;
+        margin-inline: auto;
+        font-size: clamp(1.8rem, 8vw, 2.35rem);
+        line-height: 1.22;
+      }
+
+      .header-label {
+        margin-bottom: 0.85rem;
+        letter-spacing: 0.2em;
+      }
+
+      .header-sub {
+        margin-top: 0.75rem;
+        line-height: 1.65;
+        letter-spacing: 0.06em;
+      }
+
+      .header-ornament {
+        margin-top: 1.35rem;
+      }
+
+      .intro-section {
+        padding: 1.8rem 1rem 1.25rem;
+      }
+
+      .intro-section p {
+        font-size: 0.98rem;
+        line-height: 1.85;
+      }
+
+      .main-content {
+        padding: 0 1rem calc(3.5rem + env(safe-area-inset-bottom, 0px));
+      }
+
+      .category-section {
+        margin-bottom: 2.4rem;
+      }
+
+      .category-title {
+        gap: 0.75rem;
+        margin-bottom: 0.9rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+      }
+
+      .terms-grid,
+      .toc-grid {
+        gap: 10px;
+      }
+
+      .term-card,
+      .principle-card,
+      .footer-note {
+        padding: 1.15rem 1.05rem;
+        border-radius: 14px;
+        box-shadow: none;
+      }
+
+      .term-en {
+        font-size: 1.3rem;
+      }
+
+      .term-zh {
+        margin-bottom: 0.65rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+      }
+
+      .term-desc {
+        font-size: 0.95rem;
+        line-height: 1.82;
+      }
+
+      .toc-panel {
+        right: 0;
+        bottom: 62px;
+        width: min(calc(100vw - 24px), 390px);
+        max-height: min(68dvh, 620px);
+        border-radius: 16px;
+      }
+    }
+
   </style>
 
 <style id="prism-back-home-style">
@@ -777,10 +870,10 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="../assets/theme.css?v=33ada475d99f">
-  <link rel="stylesheet" href="../AI/ai-companion.css?v=943ce263b83b">
-<script src="../assets/theme.js?v=33ada475d99f"></script>
-  <script src="../AI/ai-companion.js?v=87192d199d67" defer></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=e023aa4e3fd9">
+  <link rel="stylesheet" href="../AI/ai-companion.css?v=80db44b92a4b">
+<script src="../assets/theme.js?v=7b6b9fefc634"></script>
+  <script src="../AI/ai-companion.js?v=de22f45d412c" defer></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"

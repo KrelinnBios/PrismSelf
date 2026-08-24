@@ -691,3 +691,144 @@ main {
     max-width: 52%;
   }
 }
+
+/* 移动端术语表使用紧凑工具栏、可横向滚动的筛选项和更紧凑但仍易读的卡片。 */
+@media (max-width: 620px) {
+  .topbar-inner {
+    min-height: calc(60px + env(safe-area-inset-top, 0px));
+    padding:
+      calc(8px + env(safe-area-inset-top, 0px))
+      64px
+      8px
+      12px;
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .back-link {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  .back-link::after {
+    content: "←";
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .mini-nav {
+    min-width: 0;
+    gap: 14px;
+    padding: 6px 0;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .mini-nav::-webkit-scrollbar,
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero {
+    padding: 30px 14px 24px;
+    gap: 18px;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 9vw, 2.35rem);
+    line-height: 1.18;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .lede,
+  .summary-panel p {
+    font-size: 0.94rem;
+    line-height: 1.78;
+  }
+
+  .lede {
+    margin-top: 14px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  main {
+    padding: 22px 14px calc(3rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .notice {
+    padding: 11px 12px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .tools {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .filters {
+    width: calc(100% + 28px);
+    margin-inline: -14px;
+    padding: 2px 14px 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .filter {
+    flex: 0 0 auto;
+  }
+
+  .results-meta {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .results-meta h2,
+  .section-panel h2 {
+    font-size: 1.12rem;
+  }
+
+  .term-grid {
+    gap: 10px;
+  }
+
+  .term-card {
+    padding: 15px;
+    border-radius: 14px;
+    gap: 9px;
+    box-shadow: 0 3px 14px rgba(24, 33, 47, 0.05);
+  }
+
+  .term-card p,
+  .term-body {
+    font-size: 0.94rem;
+    line-height: 1.72;
+  }
+
+  .appendix {
+    gap: 10px;
+  }
+
+  .section-panel {
+    padding: 16px;
+    border-radius: 14px;
+  }
+}

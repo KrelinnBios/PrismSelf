@@ -1122,3 +1122,84 @@ tbody tr[class*="row-"] td:first-child {
 		margin-right: 0 !important;
 	}
 }
+
+/* 移动端分析页直接以视口作为画布，避免把整页再次嵌套进大型卡片。 */
+@media (max-width: 780px) {
+	body {
+		padding: 0 !important;
+	}
+
+	.container {
+		width: 100% !important;
+		min-height: 100vh !important;
+		padding: calc(4.8rem + env(safe-area-inset-top, 0px)) 14px
+			calc(2.5rem + env(safe-area-inset-bottom, 0px)) !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+	}
+
+	.header {
+		margin-bottom: 18px !important;
+		padding: 0 4px 16px !important;
+	}
+
+	.header-tag {
+		margin-bottom: 10px !important;
+	}
+
+	h1 {
+		font-size: clamp(1.55rem, 7vw, 1.95rem) !important;
+		letter-spacing: -0.015em !important;
+	}
+
+	.subtitle {
+		font-size: 0.9rem !important;
+		line-height: 1.72 !important;
+	}
+
+	.meta-row {
+		gap: 7px !important;
+		margin-top: 11px !important;
+	}
+
+	.controls {
+		margin-inline: -2px !important;
+		border-radius: 12px !important;
+		padding: 8px 8px 10px !important;
+	}
+
+	tbody {
+		gap: 10px !important;
+	}
+
+	tbody tr {
+		padding: 14px !important;
+		border-radius: 14px !important;
+		box-shadow: 0 3px 12px rgba(36, 50, 74, 0.055) !important;
+	}
+
+	td {
+		gap: 12px !important;
+		padding: 9px 0 !important;
+		font-size: 0.86rem !important;
+		line-height: 1.62 !important;
+	}
+
+	td::before {
+		flex-basis: 5.5em !important;
+		font-size: 0.72rem !important;
+	}
+
+	.concept-name {
+		font-size: 1.05rem !important;
+	}
+
+	.extra-section,
+	.legend-section,
+	.panel,
+	.disclaimer,
+	.disclaimer-box {
+		border-radius: 14px !important;
+	}
+}

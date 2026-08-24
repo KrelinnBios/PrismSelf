@@ -739,8 +739,7 @@ window.calculateResult = function () {
           : '从主导流派中挑选一个最犹豫的议题，写下赞同、保留和仍需了解的部分，允许立场保持细致而不必完全一致。'
       }
     ]);
-    document.getElementById('result').style.display = 'block';
-    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    window.PrismScale.showResult(document.getElementById('result'));
 };
 
 function drawRadar(dataArr) {
@@ -779,7 +778,7 @@ window.saveResultText = function () {
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = "女权主义流派倾向评估报告.txt";
+    a.download = window.PrismScale.getExportFilename('txt');
     a.click();
     URL.revokeObjectURL(a.href);
 };
@@ -794,33 +793,9 @@ window.saveResultImage = async function () {
     btn.innerText = '生成中，请稍候...';
     btn.disabled = true;
     try {
-        const canvas = await html2canvas(element, {
-            scale: 2,
-            backgroundColor: getComputedStyle(element).backgroundColor,
-            useCORS: true,
-            logging: false,
-            windowWidth: element.scrollWidth,
-            windowHeight: element.scrollHeight,
-            onclone: (doc) => {
-                // html2canvas rewrites inline styles, which breaks the [style*=…] dark-mode
-                // overrides in scale-common.css. Copy the live computed colors onto the clone
-                // so the exported image matches the on-screen result in either theme.
-                const dstRoot = doc.getElementById('result');
-                if (!dstRoot) return;
-                const src = element.querySelectorAll('*'), dst = dstRoot.querySelectorAll('*');
-                const copy = (a, b) => {
-                    const cs = getComputedStyle(a);
-                    b.style.setProperty('background-color', cs.backgroundColor, 'important');
-                    b.style.setProperty('background-image', cs.backgroundImage, 'important');
-                    b.style.setProperty('color', cs.color, 'important');
-                    ['Top', 'Right', 'Bottom', 'Left'].forEach(s => b.style.setProperty('border-' + s.toLowerCase() + '-color', cs['border' + s + 'Color'], 'important'));
-                };
-                copy(element, dstRoot);
-                for (let i = 0; i < src.length; i++) if (dst[i]) copy(src[i], dst[i]);
-            }
-        });
+        const canvas = await window.PrismScale.captureDesktopResult(element);
         const link = document.createElement('a');
-        link.download = "女权主义流派倾向评估报告.png";
+        link.download = window.PrismScale.getExportFilename('png');
         link.href = canvas.toDataURL("image/png");
         link.click();
     } catch (err) {

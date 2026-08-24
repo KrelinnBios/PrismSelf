@@ -1190,3 +1190,114 @@ mjx-container {
   color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.28) !important;
 }
+
+/* 移动端专题阅读布局使用高优先级声明覆盖两套 Typora 导出的内联主题，
+   从而无需重写原始文档。 */
+@media screen and (max-width: 620px) {
+  html {
+    font-size: 16px !important;
+    scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  }
+
+  body.typora-export {
+    padding: 0 !important;
+  }
+
+  #write {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding:
+      calc(4.8rem + env(safe-area-inset-top, 0px))
+      16px
+      calc(3.25rem + env(safe-area-inset-bottom, 0px)) !important;
+    font-size: 1rem !important;
+    line-height: 1.82 !important;
+  }
+
+  #write h1 {
+    margin: 0 0 1.35rem !important;
+    padding: 0 0 0.8rem !important;
+    font-size: clamp(1.7rem, 8vw, 2.2rem) !important;
+    line-height: 1.28 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  #write h2 {
+    margin: 2.2rem 0 1rem !important;
+    padding: 0.65rem 0.8rem !important;
+    border-radius: 10px !important;
+    font-size: 1.3rem !important;
+    line-height: 1.4 !important;
+  }
+
+  #write h3 {
+    margin: 1.75rem 0 0.7rem !important;
+    font-size: 1.13rem !important;
+    line-height: 1.48 !important;
+  }
+
+  #write h4,
+  #write h5,
+  #write h6 {
+    margin: 1.4rem 0 0.6rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  #write p,
+  #write li {
+    font-size: 1rem !important;
+    line-height: 1.82 !important;
+  }
+
+  #write blockquote {
+    margin: 1rem 0 !important;
+    padding: 0.85rem 0.95rem !important;
+    border-radius: 0 10px 10px 0 !important;
+  }
+
+  #write blockquote p {
+    font-size: 0.95rem !important;
+  }
+
+  #write ul,
+  #write ol {
+    padding-left: 1.35rem !important;
+  }
+
+  #write img {
+    border-radius: 10px;
+  }
+
+  #write .table-figure,
+  #write figure:has(> table) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 1.1rem 0 !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #write table {
+    width: max-content !important;
+    min-width: 640px !important;
+    max-width: none !important;
+    font-size: 0.88rem !important;
+  }
+
+  #write table th,
+  #write table td {
+    padding: 8px 10px !important;
+  }
+
+  #write pre,
+  #write .md-fences {
+    max-width: 100% !important;
+    padding: 0.85rem !important;
+    overflow-x: auto !important;
+    border-radius: 10px !important;
+    font-size: 0.86rem !important;
+  }
+}
