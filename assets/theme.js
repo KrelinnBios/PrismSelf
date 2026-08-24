@@ -66,10 +66,13 @@
       btn.classList.remove('is-hover-suppressed');
     });
     var scaleToolbar = document.querySelector('.global-progress');
+    var homeToolbar = document.querySelector('body.home-page .sidebar');
     if (scaleToolbar) {
       scaleToolbar.classList.add('scale-mobile-toolbar');
       if (back) scaleToolbar.appendChild(back);
       scaleToolbar.appendChild(btn);
+    } else if (homeToolbar) {
+      homeToolbar.appendChild(btn);
     } else {
       document.body.appendChild(btn);
     }

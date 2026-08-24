@@ -164,6 +164,10 @@
       gap: 6px;
     }
 
+    .sidebar-scroll {
+      display: contents;
+    }
+
     .sidebar .stat {
       --sidebar-highlight: var(--ink);
       --sidebar-highlight-rgb: 26, 35, 50;
@@ -1532,40 +1536,44 @@
         position: sticky;
         top: 0;
         z-index: 5;
-        display: flex;
+        display: grid;
         align-self: stretch;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
+        grid-template-columns: minmax(0, 1fr) 44px;
         align-items: center;
         gap: 8px;
         width: calc(100% + 32px);
         min-width: 0;
         max-width: none;
         margin: 0 -16px;
-        padding: 10px 16px 12px;
+        padding: 10px 10px 12px 0;
         padding-top: calc(10px + env(safe-area-inset-top, 0px));
-        padding-right: 64px;
-        overflow: visible;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-x: contain;
-        touch-action: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        overflow: hidden;
         background: var(--bg);
         border: none;
         border-bottom: 1px solid var(--border);
         cursor: grab;
         border-radius: 0;
         box-shadow: 0 2px 12px rgba(15, 20, 26, 0.06);
-        scroll-snap-type: x proximity;
-        scroll-padding-left: 16px;
-        scroll-padding-right: 64px;
       }
 
-      .sidebar::-webkit-scrollbar {
+      .sidebar-scroll {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-left: 16px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        touch-action: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-snap-type: x proximity;
+        scroll-padding-left: 16px;
+      }
+
+      .sidebar-scroll::-webkit-scrollbar {
         display: none;
       }
 
@@ -2165,9 +2173,12 @@
       .sidebar {
         width: calc(100% + 28px);
         margin-inline: -14px;
-        padding: calc(8px + env(safe-area-inset-top, 0px)) 76px 8px 12px;
+        padding: calc(8px + env(safe-area-inset-top, 0px)) 10px 8px 0;
+      }
+
+      .sidebar-scroll {
+        padding-left: 12px;
         scroll-padding-left: 12px;
-        scroll-padding-right: 76px;
       }
 
       .sidebar .stat {
@@ -2251,8 +2262,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=8ad5c6d33af7">
-  <script src="assets/theme.js?v=8ad5c6d33af7"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=6b7c3f4a2d91">
+  <script src="assets/theme.js?v=6b7c3f4a2d91"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"
@@ -2287,38 +2298,40 @@
       <p class="search-empty" id="searchEmpty">没有找到匹配的内容，换个关键词试试。</p>
     </div>
     <nav class="sidebar" aria-label="分类筛选">
-      <button class="stat" data-filter="analysis">
-        <div class="stat-num">6</div>
-        <div class="stat-label">分析图表</div>
-      </button>
-      <button class="stat" data-filter="guide">
-        <div class="stat-num">6</div>
-        <div class="stat-label">专题指南</div>
-      </button>
-      <button class="stat" data-filter="glossary">
-        <div class="stat-num">5</div>
-        <div class="stat-label">术语索引</div>
-      </button>
-      <button class="stat" data-filter="topic">
-        <div class="stat-num">2</div>
-        <div class="stat-label">社群观察</div>
-      </button>
-      <button class="stat" data-filter="bingo">
-        <div class="stat-num">3</div>
-        <div class="stat-label">共鸣刻度</div>
-      </button>
-      <button class="stat" data-filter="scale">
-        <div class="stat-num">10</div>
-        <div class="stat-label">自评量表</div>
-      </button>
-      <button class="stat" data-filter="tool">
-        <div class="stat-num">1</div>
-        <div class="stat-label">对话工具</div>
-      </button>
-      <button class="stat" data-filter="support">
-        <div class="stat-num">5</div>
-        <div class="stat-label">内容支持</div>
-      </button>
+      <div class="sidebar-scroll">
+        <button class="stat" data-filter="analysis">
+          <div class="stat-num">6</div>
+          <div class="stat-label">分析图表</div>
+        </button>
+        <button class="stat" data-filter="guide">
+          <div class="stat-num">6</div>
+          <div class="stat-label">专题指南</div>
+        </button>
+        <button class="stat" data-filter="glossary">
+          <div class="stat-num">5</div>
+          <div class="stat-label">术语索引</div>
+        </button>
+        <button class="stat" data-filter="topic">
+          <div class="stat-num">2</div>
+          <div class="stat-label">社群观察</div>
+        </button>
+        <button class="stat" data-filter="bingo">
+          <div class="stat-num">3</div>
+          <div class="stat-label">共鸣刻度</div>
+        </button>
+        <button class="stat" data-filter="scale">
+          <div class="stat-num">10</div>
+          <div class="stat-label">自评量表</div>
+        </button>
+        <button class="stat" data-filter="tool">
+          <div class="stat-num">1</div>
+          <div class="stat-label">对话工具</div>
+        </button>
+        <button class="stat" data-filter="support">
+          <div class="stat-num">5</div>
+          <div class="stat-label">内容支持</div>
+        </button>
+      </div>
     </nav>
 
     <main>
@@ -2976,6 +2989,7 @@
       const searchClear = document.getElementById('searchClear');
 
       const sidebarEl = document.querySelector('.sidebar');
+      const sidebarScrollEl = document.querySelector('.sidebar-scroll');
       const setActive = (active) => {
         buttons.forEach((b) => b.setAttribute('aria-pressed', b === active ? 'true' : 'false'));
         if (active && sidebarEl && typeof active.scrollIntoView === 'function') {
@@ -3058,14 +3072,14 @@
       updateSpy();
 
       // Manual horizontal drag (mouse & touch) — supplements native touch scroll
-      if (sidebarEl) {
+      if (sidebarScrollEl) {
         let isDown = false, startX = 0, startScroll = 0, moved = false;
         const onDown = (e) => {
           isDown = true; moved = false;
           startX = (e.touches ? e.touches[0].clientX : e.clientX);
-          startScroll = sidebarEl.scrollLeft;
-          sidebarEl.style.cursor = 'grabbing';
-          sidebarEl.style.userSelect = 'none';
+          startScroll = sidebarScrollEl.scrollLeft;
+          sidebarScrollEl.style.cursor = 'grabbing';
+          sidebarScrollEl.style.userSelect = 'none';
         };
         const onMove = (e) => {
           if (!isDown) return;
@@ -3073,22 +3087,22 @@
           const dx = x - startX;
           if (Math.abs(dx) > 4) moved = true;
           if (moved) e.preventDefault();
-          sidebarEl.scrollLeft = startScroll - dx;
+          sidebarScrollEl.scrollLeft = startScroll - dx;
         };
         const onUp = () => {
           if (!isDown) return;
           isDown = false;
-          sidebarEl.style.cursor = '';
-          sidebarEl.style.userSelect = '';
+          sidebarScrollEl.style.cursor = '';
+          sidebarScrollEl.style.userSelect = '';
           // if dragged, suppress next click
           if (moved) {
             const handler = (ev) => { ev.stopPropagation(); ev.preventDefault(); };
-            sidebarEl.addEventListener('click', handler, { capture: true, once: true });
-            setTimeout(() => sidebarEl.removeEventListener('click', handler, { capture: true }), 0);
+            sidebarScrollEl.addEventListener('click', handler, { capture: true, once: true });
+            setTimeout(() => sidebarScrollEl.removeEventListener('click', handler, { capture: true }), 0);
           }
         };
-        sidebarEl.addEventListener('mousedown', onDown);
-        sidebarEl.addEventListener('touchstart', onDown, { passive: true });
+        sidebarScrollEl.addEventListener('mousedown', onDown);
+        sidebarScrollEl.addEventListener('touchstart', onDown, { passive: true });
         window.addEventListener('mousemove', onMove, { passive: false });
         window.addEventListener('touchmove', onMove, { passive: false });
         window.addEventListener('mouseup', onUp);
