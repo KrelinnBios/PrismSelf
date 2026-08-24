@@ -1692,7 +1692,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		width: 100% !important;
 		max-width: 100% !important;
 		box-sizing: border-box !important;
-		font-size: 0.84rem !important;
+		font-size: 0.95rem !important;
 		font-weight: 500 !important;
 		line-height: 1.35 !important;
 		text-align: center !important;
@@ -1909,5 +1909,16 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		grid-row: 3;
 		color: var(--scale-muted) !important;
 		font-size: 0.9rem !important;
+	}
+}
+
+@media (min-width: 1201px) {
+	body.scale-page .global-progress {
+		backdrop-filter: none !important;
+		-webkit-backdrop-filter: none !important;
+	}
+
+	body.scale-page .global-progress .progress {
+		text-align: center !important;
 	}
 }
