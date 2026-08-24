@@ -95,6 +95,8 @@ a {
 	color: #334155 !important;
 	font-size: 0.95rem !important;
 	line-height: 1.75 !important;
+	padding: 24px 25px !important;
+	margin-bottom: 24px !important;
 }
 
 .explanation {
@@ -210,34 +212,121 @@ button:hover {
 	box-shadow: 0 4px 12px rgba(43, 69, 100, 0.22) !important;
 }
 
+/* Base (desktop ≥ 1181px) app bar — matches the iPad "one panel as
+   wide as the cards below" look, keeps buttons at site-wide float
+   positions so they mirror the guide pages. Side padding is locked to
+   the same 25px used by .section / .intro so the three blocks (top
+   progress bar, intro card, section cards below) share identical left
+   and right inner edges. */
 .global-progress {
-	background: rgba(255, 255, 255, 0.94) !important;
-	padding: 10px 15px !important;
+	background: rgba(255, 255, 255, 0.96) !important;
+	padding: 14px 25px 18px !important;
 	border-bottom: 1px solid var(--scale-line) !important;
-	border-radius: 0 0 12px 12px !important;
-	box-shadow: 0 2px 8px rgba(36, 50, 74, 0.05) !important;
+	border-radius: 0 0 20px 20px !important;
+	box-shadow: none !important;
 	backdrop-filter: blur(12px);
+	position: sticky !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	margin-top: 0 !important;
+	z-index: 998 !important;
+	width: auto !important;
+	min-height: 76px !important;
 }
 
 .progress {
 	color: var(--scale-muted) !important;
-	font-size: 0.9em !important;
-	font-weight: 400 !important;
-	margin: 0 0 5px !important;
+	font-size: 1rem !important;
+	font-weight: 500 !important;
+	margin: 0 0 10px !important;
+	text-align: center !important;
 }
 
 .progress-bar {
 	background-color: #e2e8f0 !important;
-	border-radius: 5px !important;
-	height: 12px !important;
-	margin-bottom: 8px !important;
+	border-radius: 999px !important;
+	height: 10px !important;
+	margin: 0 !important;
 	overflow: hidden !important;
+	border: none !important;
+	box-shadow: none !important;
 }
 
 .progress-bar-fill {
 	background: var(--scale-accent) !important;
-	height: 12px !important;
+	height: 10px !important;
+	border-radius: inherit !important;
+	box-shadow: none !important;
 	transition: width 0.3s ease !important;
+}
+
+/* Stick the toolbar directly against the viewport top, across every
+   breakpoint. The individual scale pages set a legacy `body {padding:20px}`
+   inline that leaves a visible gap above the panel; we tear that out by
+   writing each side explicitly with !important, then reintroduce the
+   side paddings inside the breakpoints below where they're still needed.
+   We also undo the 72px side paddings enforced by theme.css at ≥1201px
+   because that narrowed the progress panel vs. the card content below. */
+body.scale-page {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+body.scale-page .global-progress.scale-mobile-toolbar,
+.global-progress.scale-mobile-toolbar,
+body.scale-page .global-progress {
+	position: sticky !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	margin: 0 !important;
+	margin-top: 0 !important;
+	margin-bottom: 24px !important;
+	z-index: 9998 !important;
+	box-shadow: none !important;
+}
+
+@media (min-width: 1201px) {
+	body.scale-page {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+	body.scale-page .global-progress {
+		padding-right: 24px !important;
+		padding-left: 24px !important;
+	}
+	body.scale-page .global-progress.scale-mobile-toolbar .prism-back-home,
+	body.scale-page .global-progress.scale-mobile-toolbar .theme-toggle,
+	body.scale-page .global-progress.scale-mobile-toolbar .guide-ai-launcher--scale {
+		position: fixed !important;
+	}
+	body.scale-page .global-progress.scale-mobile-toolbar .prism-back-home {
+		top: 18px !important;
+		left: 18px !important;
+		right: auto !important;
+		bottom: auto !important;
+	}
+	body.scale-page .global-progress.scale-mobile-toolbar .theme-toggle {
+		top: 18px !important;
+		right: 18px !important;
+		left: auto !important;
+		bottom: auto !important;
+	}
+	body.scale-page .global-progress.scale-mobile-toolbar .guide-ai-launcher--scale {
+		bottom: 18px !important;
+		left: 18px !important;
+		right: auto !important;
+		top: auto !important;
+	}
 }
 
 .result {
@@ -1296,11 +1385,14 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 }
 
 /* iPad 与平板布局（兼顾 768～1024 像素的横竖屏）：
-   - 顶部工具栏依次放置返回、进度区、主题和 AI 按钮；
+   - 顶部工具栏 4 列 Grid：[返回][进度文字/进度条][AI][主题]；
+   - 进度文字在上、进度条在下同列堆叠；
    - 结果区尽量保留桌面双栏，并让雷达图使用可用空间。 */
 @media (min-width: 651px) and (max-width: 1180px) {
 
-	body {
+	body.scale-page {
+		padding-top: 0 !important;
+		padding-bottom: 48px !important;
 		padding-left: 24px !important;
 		padding-right: 24px !important;
 	}
@@ -1311,37 +1403,66 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		border-radius: 20px !important;
 	}
 
+	.intro,
+	.explanation,
+	.note-box,
+	.disclaimer {
+		padding: 24px 22px !important;
+		margin-bottom: 24px !important;
+	}
+
+	/* App bar grid (shared with theme.css mobile layout, but with 2 rows):
+	   col1 = back, col2 = progress label + bar stacked, col3 = AI,
+	   col4 = theme. 1180 is close to the theme.css 1200 breakpoint so we
+	   deliberately repeat its panel chrome (surface bg + bottom radius)
+	   and then build the 2-row grid on top. */
 	body.scale-page .global-progress.scale-mobile-toolbar,
 	.global-progress.scale-mobile-toolbar,
 	.global-progress {
-		display: flex !important;
-		flex-direction: row !important;
-		flex-wrap: nowrap !important;
-		align-items: center !important;
-		justify-content: flex-start !important;
-		gap: 12px !important;
-		padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px !important;
-		border-radius: 0 0 16px 16px !important;
+		display: grid !important;
+		grid-template-columns: 44px minmax(0, 1fr) 44px 44px !important;
+		grid-template-rows: auto minmax(0, auto) !important;
+		align-items: start !important;
+		justify-items: stretch !important;
+		column-gap: 12px !important;
+		row-gap: 1px !important;
+		align-content: start !important;
+		padding: calc(10px + env(safe-area-inset-top, 0px)) 22px 3px !important;
+		margin: 0 !important;
+		min-height: calc(68px + env(safe-area-inset-top, 0px)) !important;
+		background: var(--scale-surface, #ffffff) !important;
+		border-radius: 0 0 18px 18px !important;
+		box-shadow: none !important;
+	}
+
+	.global-progress > * {
+		order: 10;
 	}
 
 	.global-progress .prism-back-home {
 		order: 1 !important;
-		flex: 0 0 44px !important;
+		grid-column: 1 / 2 !important;
+		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;
 		left: auto !important;
+		right: auto !important;
+		bottom: auto !important;
+		inset: auto !important;
 		z-index: 1 !important;
 		width: 44px !important;
 		height: 44px !important;
 		min-width: 44px !important;
 		min-height: 44px !important;
 		padding: 0 !important;
-		justify-content: center !important;
-		justify-items: center !important;
+		margin: 0 !important;
 		place-self: center center !important;
+		box-sizing: border-box !important;
+		box-shadow: none !important;
+		aspect-ratio: 1 / 1 !important;
+		border-radius: 999px !important;
 	}
 
-	/* 进度文字位于进度条正上方，并共同占据两侧按钮之间的空间。 */
 	body.scale-page .global-progress.scale-mobile-toolbar::after,
 	.global-progress::after {
 		content: none !important;
@@ -1350,16 +1471,21 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	body.scale-page .global-progress.scale-mobile-toolbar .progress,
 	.global-progress .progress {
 		order: 2 !important;
-		flex: 0 0 auto !important;
-		width: calc(100% - (44px * 3) - (12px * 3)) !important;
-		max-width: calc(100% - (44px * 3) - (12px * 3)) !important;
-		align-self: flex-start !important;
+		grid-column: 2 / 3 !important;
+		grid-row: 1 / 2 !important;
+		align-self: start !important;
+		justify-self: stretch !important;
 		position: static !important;
-		font-size: 1rem !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: none !important;
+		font-size: 0.98rem !important;
 		font-weight: 500 !important;
-		margin: 0 0 6px 0 !important;
+		line-height: 1.35 !important;
+		margin: 10px 0 0 !important;
 		padding: 0 !important;
 		box-sizing: border-box !important;
+		text-align: center !important;
 	}
 
 	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar,
@@ -1370,65 +1496,28 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		left: auto !important;
 		right: auto !important;
 		bottom: auto !important;
-		flex: 0 0 calc(100% - (44px * 3) - (12px * 3)) !important;
-		width: calc(100% - (44px * 3) - (12px * 3)) !important;
-		max-width: calc(100% - (44px * 3) - (12px * 3)) !important;
-		height: 10px !important;
-		margin: 0 !important;
-		box-sizing: border-box !important;
-	}
-
-	.global-progress .progress-bar-fill {
-		height: 10px !important;
-	}
-
-	/* 网格中间列把进度文字与进度条组合成上下两行：
-	   [返回][进度文字与进度条][主题][AI]。 */
-
-	body.scale-page .global-progress.scale-mobile-toolbar,
-	.global-progress.scale-mobile-toolbar,
-	.global-progress {
-		display: grid !important;
-		grid-template-columns: 44px minmax(0, 1fr) 44px 44px !important;
-		grid-template-rows: auto auto !important;
-		align-items: center !important;
-		column-gap: 12px !important;
-		row-gap: 6px !important;
-		padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px !important;
-	}
-
-	.global-progress > * {
-		order: 10;
-	}
-
-	.global-progress .prism-back-home {
-		grid-column: 1 / 2 !important;
-		grid-row: 1 / span 2 !important;
-	}
-
-	body.scale-page .global-progress.scale-mobile-toolbar .progress,
-	.global-progress .progress {
-		grid-column: 2 / 3 !important;
-		grid-row: 1 / 2 !important;
-		width: 100% !important;
-		max-width: 100% !important;
-		align-self: end !important;
-		flex: none !important;
-		margin: 0 !important;
-		padding: 0 0 2px 0 !important;
-		text-align: center !important;
-		transform: translateY(8px);
-	}
-
-	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar,
-	.global-progress .progress-bar {
+		inset: auto !important;
 		grid-column: 2 / 3 !important;
 		grid-row: 2 / 3 !important;
+		align-self: start !important;
 		width: 100% !important;
 		max-width: 100% !important;
 		flex: none !important;
+		height: 8px !important;
 		margin: 0 !important;
-		transform: translateY(3px);
+		border-radius: 999px !important;
+		background: color-mix(in srgb, var(--scale-accent) 14%,
+			var(--scale-surface, #ffffff)) !important;
+		box-sizing: border-box !important;
+		box-shadow: none !important;
+		transform: translateY(-10px) !important;
+	}
+
+	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar-fill,
+	.global-progress .progress-bar-fill {
+		height: 8px !important;
+		border-radius: 999px !important;
+		box-shadow: none !important;
 	}
 
 	.global-progress .theme-toggle {
@@ -1440,6 +1529,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		left: auto !important;
 		right: auto !important;
 		bottom: auto !important;
+		inset: auto !important;
 		z-index: 1 !important;
 		width: 44px !important;
 		height: 44px !important;
@@ -1449,6 +1539,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		padding: 0 !important;
 		flex: 0 0 44px !important;
 		place-self: center center !important;
+		box-shadow: none !important;
 	}
 
 	.global-progress .guide-ai-launcher--scale {
@@ -1460,6 +1551,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		left: auto !important;
 		right: auto !important;
 		bottom: auto !important;
+		inset: auto !important;
 		z-index: 1 !important;
 		width: 44px !important;
 		height: 44px !important;
@@ -1469,6 +1561,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		padding: 0 !important;
 		flex: 0 0 44px !important;
 		place-self: center center !important;
+		box-shadow: none !important;
 	}
 
 	.result-top-grid {
@@ -1576,12 +1669,15 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		overflow-x: clip;
 	}
 
-	body {
+	body.scale-page {
 		width: auto !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
 		margin: 0 auto !important;
-		padding: 0 14px calc(2.5rem + env(safe-area-inset-bottom, 0px)) !important;
+		padding-top: 0 !important;
+		padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)) !important;
+		padding-left: 14px !important;
+		padding-right: 14px !important;
 		box-sizing: border-box !important;
 		overflow-x: clip !important;
 	}
@@ -1637,23 +1733,25 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		max-width: 100% !important;
 	}
 
-	/* 移动端沿用平板工具栏顺序：[返回][进度文字与进度条][主题][AI]。
+	/* 移动端沿用平板工具栏顺序：[返回][进度文字与进度条][AI][主题]。
 	   图标使用固定触控尺寸，让中间进度区在窄屏上仍有稳定间距。 */
 	body.scale-page .global-progress.scale-mobile-toolbar,
 	.global-progress.scale-mobile-toolbar,
 	.global-progress {
 		display: grid !important;
 		grid-template-columns: 40px minmax(0, 1fr) 40px 40px !important;
-		grid-template-rows: auto auto !important;
-		align-items: center !important;
+		grid-template-rows: auto minmax(0, auto) !important;
+		align-items: start !important;
+		justify-items: stretch !important;
+		align-content: start !important;
 		column-gap: 8px !important;
-		row-gap: 4px !important;
-		min-height: calc(64px + env(safe-area-inset-top, 0px));
+		row-gap: 0 !important;
+		min-height: calc(60px + env(safe-area-inset-top, 0px));
 		margin: 0 -14px 22px !important;
 		padding:
 			calc(8px + env(safe-area-inset-top, 0px))
-			12px
-			8px !important;
+			14px
+			2px !important;
 		border-radius: 0 0 16px 16px !important;
 	}
 
@@ -1692,16 +1790,15 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		width: 100% !important;
 		max-width: 100% !important;
 		box-sizing: border-box !important;
-		font-size: 0.95rem !important;
+		font-size: 0.9rem !important;
 		font-weight: 500 !important;
-		line-height: 1.35 !important;
+		line-height: 1.3 !important;
 		text-align: center !important;
-		margin: 0 !important;
-		padding: 0 0 1px 0 !important;
+		margin: 2px 0 0 !important;
+		padding: 0 !important;
 		overflow: visible !important;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		transform: translateY(8px);
 	}
 
 	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar,
@@ -1709,23 +1806,27 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		order: 3 !important;
 		grid-column: 2 / 3 !important;
 		grid-row: 2 / 3 !important;
+		align-self: start !important;
 		position: relative !important;
 		top: auto !important;
 		left: auto !important;
 		right: auto !important;
 		bottom: auto !important;
+		inset: auto !important;
 		width: 100% !important;
 		max-width: 100% !important;
 		box-sizing: border-box !important;
 		height: 8px !important;
-		margin: 0 !important;
+		margin: -2px 0 0 !important;
 		border-radius: 999px !important;
-		transform: translateY(3px);
+		box-shadow: none !important;
+		transform: translateY(-8px) !important;
 	}
 
 	.progress-bar-fill {
 		height: 8px !important;
 		border-radius: inherit !important;
+		box-shadow: none !important;
 	}
 
 	.global-progress .theme-toggle {
@@ -1779,7 +1880,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	.explanation,
 	.note-box,
 	.disclaimer {
-		padding: 15px 16px !important;
+		padding: 15px 14px !important;
 		border-radius: 0 12px 12px 0 !important;
 		font-size: 0.94rem !important;
 		line-height: 1.78 !important;
@@ -1913,6 +2014,24 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 }
 
 @media (min-width: 1201px) {
+	body.scale-page {
+		padding-bottom: 48px !important;
+	}
+
+	body.scale-page > .global-progress,
+	body.scale-page > .intro,
+	body.scale-page > .scale-form {
+		width: min(100%, 980px) !important;
+		box-sizing: border-box !important;
+	}
+
+	body.scale-page > .global-progress.scale-mobile-toolbar,
+	body.scale-page > .global-progress,
+	body.scale-page > .intro {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
 	body.scale-page .global-progress {
 		backdrop-filter: none !important;
 		-webkit-backdrop-filter: none !important;

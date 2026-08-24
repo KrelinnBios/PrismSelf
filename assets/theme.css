@@ -360,7 +360,7 @@
     overflow: hidden !important;
     border-radius: 0 0 14px 14px !important;
     background: var(--scale-surface, #ffffff) !important;
-    box-shadow: 0 4px 16px rgba(36, 50, 74, 0.08) !important;
+    box-shadow: none !important;
   }
 
   body.scale-page.scale-result-visible .scale-mobile-toolbar {
