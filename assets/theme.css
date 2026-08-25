@@ -300,19 +300,26 @@
 @media (max-width: 640px) {
 }
 
+/* 首页主题按钮固定在视口右上角，不随目录栏滚动而移位 */
 @media (max-width: 640px) {
-  /* 首页主题按钮是分类工具栏的固定列，不覆盖可横向滚动的目录项。 */
   body.home-page .theme-toggle {
-    position: static !important;
-    inset: auto !important;
-    z-index: auto !important;
-    align-self: center !important;
-    box-shadow: 0 4px 14px rgba(11, 18, 32, 0.16) !important;
+    position: fixed !important;
+    top: calc(6px + env(safe-area-inset-top, 0px)) !important;
+    right: 10px !important;
+    left: auto !important;
+    bottom: auto !important;
+    z-index: 6 !important;
+    align-self: auto !important;
+    box-shadow: 0 0 0 7px var(--bg, #f7f9fb), 0 4px 14px rgba(11, 18, 32, 0.16) !important;
   }
 
   :root[data-theme="dark"] body.home-page .theme-toggle,
   :root[data-theme="dark"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.38) !important;
+    box-shadow: 0 0 0 7px var(--bg, #0f141a), 0 4px 14px rgba(0, 0, 0, 0.38) !important;
+  }
+
+  :root[data-theme="light"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
+    box-shadow: 0 0 0 7px var(--bg, #f7f9fb), 0 4px 14px rgba(11, 18, 32, 0.16) !important;
   }
 }
 

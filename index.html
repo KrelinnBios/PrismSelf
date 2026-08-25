@@ -1536,41 +1536,43 @@
         position: sticky;
         top: 0;
         z-index: 5;
-        display: grid;
-        align-self: stretch;
-        grid-template-columns: minmax(0, 1fr) 44px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
         align-items: center;
         gap: 8px;
+        align-self: stretch;
         width: calc(100% + 32px);
         min-width: 0;
         max-width: none;
         margin: 0 -16px;
-        padding: 10px 10px 12px 0;
+        padding: 10px 16px 12px;
         padding-top: calc(10px + env(safe-area-inset-top, 0px));
-        overflow: hidden;
+        padding-right: 64px;
+        overflow-x: auto;
+        overflow-y: hidden;
         background: var(--bg);
         border: none;
         border-bottom: 1px solid var(--border);
         cursor: grab;
         border-radius: 0;
         box-shadow: 0 2px 12px rgba(15, 20, 26, 0.06);
-      }
-
-      .sidebar-scroll {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-width: 0;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding-left: 16px;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-x: contain;
-        touch-action: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
         scroll-snap-type: x proximity;
         scroll-padding-left: 16px;
+        scroll-padding-right: 64px;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .sidebar-scroll {
+        display: contents;
       }
 
       .sidebar-scroll::-webkit-scrollbar {
@@ -2173,12 +2175,15 @@
       .sidebar {
         width: calc(100% + 28px);
         margin-inline: -14px;
-        padding: calc(8px + env(safe-area-inset-top, 0px)) 10px 8px 0;
+        padding: calc(8px + env(safe-area-inset-top, 0px)) 76px 8px 12px;
+        scroll-padding-left: 12px;
+        scroll-padding-right: 76px;
       }
 
       .sidebar-scroll {
-        padding-left: 12px;
-        scroll-padding-left: 12px;
+        display: contents;
+        padding-left: 0;
+        scroll-padding-left: 0;
       }
 
       .sidebar .stat {
@@ -2262,8 +2267,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=a800fbfdf8d9">
-  <script src="assets/theme.js?v=a800fbfdf8d9"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=6e990bca2125">
+  <script src="assets/theme.js?v=6e990bca2125"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"
@@ -3072,14 +3077,16 @@
       updateSpy();
 
       // Manual horizontal drag (mouse & touch) — supplements native touch scroll
-      if (sidebarScrollEl) {
+      // .sidebar-scroll is display:contents on mobile (outer .sidebar is the scroller) when the toggle is fixed
+      const dragEl = (sidebarScrollEl && getComputedStyle(sidebarScrollEl).display !== 'contents') ? sidebarScrollEl : sidebarEl;
+      if (dragEl) {
         let isDown = false, startX = 0, startScroll = 0, moved = false;
         const onDown = (e) => {
           isDown = true; moved = false;
           startX = (e.touches ? e.touches[0].clientX : e.clientX);
-          startScroll = sidebarScrollEl.scrollLeft;
-          sidebarScrollEl.style.cursor = 'grabbing';
-          sidebarScrollEl.style.userSelect = 'none';
+          startScroll = dragEl.scrollLeft;
+          dragEl.style.cursor = 'grabbing';
+          dragEl.style.userSelect = 'none';
         };
         const onMove = (e) => {
           if (!isDown) return;
@@ -3087,22 +3094,22 @@
           const dx = x - startX;
           if (Math.abs(dx) > 4) moved = true;
           if (moved) e.preventDefault();
-          sidebarScrollEl.scrollLeft = startScroll - dx;
+          dragEl.scrollLeft = startScroll - dx;
         };
         const onUp = () => {
           if (!isDown) return;
           isDown = false;
-          sidebarScrollEl.style.cursor = '';
-          sidebarScrollEl.style.userSelect = '';
+          dragEl.style.cursor = '';
+          dragEl.style.userSelect = '';
           // if dragged, suppress next click
           if (moved) {
             const handler = (ev) => { ev.stopPropagation(); ev.preventDefault(); };
-            sidebarScrollEl.addEventListener('click', handler, { capture: true, once: true });
-            setTimeout(() => sidebarScrollEl.removeEventListener('click', handler, { capture: true }), 0);
+            dragEl.addEventListener('click', handler, { capture: true, once: true });
+            setTimeout(() => dragEl.removeEventListener('click', handler, { capture: true }), 0);
           }
         };
-        sidebarScrollEl.addEventListener('mousedown', onDown);
-        sidebarScrollEl.addEventListener('touchstart', onDown, { passive: true });
+        dragEl.addEventListener('mousedown', onDown);
+        dragEl.addEventListener('touchstart', onDown, { passive: true });
         window.addEventListener('mousemove', onMove, { passive: false });
         window.addEventListener('touchmove', onMove, { passive: false });
         window.addEventListener('mouseup', onUp);
