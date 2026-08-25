@@ -309,17 +309,16 @@
     left: auto !important;
     bottom: auto !important;
     z-index: 6 !important;
-    align-self: auto !important;
-    box-shadow: 0 0 0 7px var(--bg, #f7f9fb), 0 4px 14px rgba(11, 18, 32, 0.16) !important;
+    box-shadow: 0 4px 14px rgba(11, 18, 32, 0.16) !important;
   }
 
   :root[data-theme="dark"] body.home-page .theme-toggle,
   :root[data-theme="dark"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
-    box-shadow: 0 0 0 7px var(--bg, #0f141a), 0 4px 14px rgba(0, 0, 0, 0.38) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.38) !important;
   }
 
   :root[data-theme="light"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
-    box-shadow: 0 0 0 7px var(--bg, #f7f9fb), 0 4px 14px rgba(11, 18, 32, 0.16) !important;
+    box-shadow: 0 4px 14px rgba(11, 18, 32, 0.16) !important;
   }
 }
 
