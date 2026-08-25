@@ -1565,6 +1565,7 @@
         scroll-snap-type: x proximity;
         scroll-padding-left: 16px;
         scroll-padding-right: 64px;
+        touch-action: pan-x;
       }
 
       .sidebar::-webkit-scrollbar {
@@ -1595,7 +1596,7 @@
         text-align: left;
         white-space: nowrap;
         scroll-snap-align: start;
-        touch-action: manipulation;
+        touch-action: pan-x;
       }
 
       .sidebar .stat:hover {
@@ -2267,8 +2268,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=74a5175e4090">
-  <script src="assets/theme.js?v=74a5175e4090"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=280f6c239231">
+  <script src="assets/theme.js?v=280f6c239231"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"
@@ -3076,22 +3077,22 @@
       }, { passive: true });
       updateSpy();
 
-      // Manual horizontal drag (mouse & touch) — supplements native touch scroll
-      // .sidebar-scroll is display:contents on mobile (outer .sidebar is the scroller) when the toggle is fixed
+      // Mouse-only drag — native touch scrolling is handled by the browser via
+      // `overflow-x: auto` + `touch-action: pan-x`, which gives smooth momentum.
+      // Manual touchmove handlers with preventDefault() would cancel that.
       const dragEl = (sidebarScrollEl && getComputedStyle(sidebarScrollEl).display !== 'contents') ? sidebarScrollEl : sidebarEl;
       if (dragEl) {
         let isDown = false, startX = 0, startScroll = 0, moved = false;
         const onDown = (e) => {
           isDown = true; moved = false;
-          startX = (e.touches ? e.touches[0].clientX : e.clientX);
+          startX = e.clientX;
           startScroll = dragEl.scrollLeft;
           dragEl.style.cursor = 'grabbing';
           dragEl.style.userSelect = 'none';
         };
         const onMove = (e) => {
           if (!isDown) return;
-          const x = (e.touches ? e.touches[0].clientX : e.clientX);
-          const dx = x - startX;
+          const dx = e.clientX - startX;
           if (Math.abs(dx) > 4) moved = true;
           if (moved) e.preventDefault();
           dragEl.scrollLeft = startScroll - dx;
@@ -3109,12 +3110,8 @@
           }
         };
         dragEl.addEventListener('mousedown', onDown);
-        dragEl.addEventListener('touchstart', onDown, { passive: true });
         window.addEventListener('mousemove', onMove, { passive: false });
-        window.addEventListener('touchmove', onMove, { passive: false });
         window.addEventListener('mouseup', onUp);
-        window.addEventListener('touchend', onUp);
-        window.addEventListener('touchcancel', onUp);
       }
     })();
 
