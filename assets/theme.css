@@ -308,13 +308,14 @@
     right: 10px !important;
     left: auto !important;
     bottom: auto !important;
-    z-index: 6 !important;
+    z-index: 1000 !important;
+    align-self: auto !important;
     box-shadow: 0 4px 14px rgba(11, 18, 32, 0.16) !important;
   }
 
   :root[data-theme="dark"] body.home-page .theme-toggle,
   :root[data-theme="dark"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.38) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
   }
 
   :root[data-theme="light"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
