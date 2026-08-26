@@ -300,16 +300,9 @@
 @media (max-width: 640px) {
 }
 
-/* 首页主题按钮固定在视口右上角，不随目录栏滚动而移位 */
+/* 首页主题按钮沿用全站共享定位，仅保留主页工具栏需要的阴影。 */
 @media (max-width: 640px) {
   body.home-page .theme-toggle {
-    position: fixed !important;
-    top: calc(6px + env(safe-area-inset-top, 0px)) !important;
-    right: 10px !important;
-    left: auto !important;
-    bottom: auto !important;
-    z-index: 1000 !important;
-    align-self: auto !important;
     box-shadow: 0 4px 14px rgba(11, 18, 32, 0.16) !important;
   }
 

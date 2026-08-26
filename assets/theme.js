@@ -87,10 +87,8 @@
     });
     if (document.body.classList.contains('home-page')) {
       // Keep the home-page control independent from the horizontally scrolling
-      // category bar, even if a stale shared stylesheet is still cached.
+      // category bar, but let the shared stylesheet own the viewport offsets.
       btn.style.setProperty('position', 'fixed', 'important');
-      btn.style.setProperty('top', 'calc(6px + env(safe-area-inset-top, 0px))', 'important');
-      btn.style.setProperty('right', '10px', 'important');
       btn.style.setProperty('left', 'auto', 'important');
       btn.style.setProperty('bottom', 'auto', 'important');
       btn.style.setProperty('z-index', '1000', 'important');
