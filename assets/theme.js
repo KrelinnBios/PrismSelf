@@ -46,7 +46,13 @@
   }
 
   function installFloatingLayout() {
-    if (!document.head || document.getElementById('prismFloatingLayout')) return;
+    if (!document.head) return;
+    var existing = document.getElementById('prismFloatingLayout');
+    if (existing) {
+      // Move the override to the end after page-specific styles have loaded.
+      document.head.appendChild(existing);
+      return;
+    }
     var style = document.createElement('style');
     style.id = 'prismFloatingLayout';
     style.textContent = [
