@@ -45,8 +45,25 @@
     }
   }
 
+  function installFloatingLayout() {
+    if (!document.head || document.getElementById('prismFloatingLayout')) return;
+    var style = document.createElement('style');
+    style.id = 'prismFloatingLayout';
+    style.textContent = [
+      ':root { --prism-corner-inset: 18px; --prism-corner-control-size: 44px; }',
+      'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max-width: var(--prism-corner-control-size) !important; height: var(--prism-corner-control-size) !important; min-height: var(--prism-corner-control-size) !important; max-height: var(--prism-corner-control-size) !important; }',
+      'body:not(.scale-page) .theme-toggle { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: auto !important; left: auto !important; }',
+      'body:not(.scale-page) .prism-back-home { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; left: calc(var(--prism-corner-inset) + env(safe-area-inset-left, 0px)) !important; right: auto !important; bottom: auto !important; }',
+      'body:not(.scale-page) .guide-ai-launcher { position: fixed !important; left: calc(var(--prism-corner-inset) + env(safe-area-inset-left, 0px)) !important; bottom: calc(var(--prism-corner-inset) + env(safe-area-inset-bottom, 0px)) !important; top: auto !important; right: auto !important; }',
+      'body:not(.scale-page) .floating-toc { position: fixed !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: calc(var(--prism-corner-inset) + env(safe-area-inset-bottom, 0px)) !important; top: auto !important; left: auto !important; }',
+      '@media (max-width: 620px) { :root { --prism-corner-inset: 12px; } }'
+    ].join('\n');
+    document.head.appendChild(style);
+  }
+
   // 1) Apply page-specific link palette and theme as early as possible.
   setGuideLinkPalette();
+  installFloatingLayout();
   var initialTheme = stored() || system();
   root.setAttribute('data-theme', initialTheme);
   try { syncThemeColor(initialTheme); } catch (e) {}
@@ -65,6 +82,7 @@
 
   function build() {
     if (!document.body) return;
+    installFloatingLayout();
     try { syncThemeColor(current()); } catch (e) {}
     var back = document.querySelector('.prism-back-home');
     if (back) back.innerHTML = BACK;
@@ -87,7 +105,7 @@
     });
     if (document.body.classList.contains('home-page')) {
       // Keep the home-page control independent from the horizontally scrolling
-      // category bar, but let the shared stylesheet own the viewport offsets.
+      // category bar; the shared four-corner layout owns the viewport offsets.
       btn.style.setProperty('position', 'fixed', 'important');
       btn.style.setProperty('left', 'auto', 'important');
       btn.style.setProperty('bottom', 'auto', 'important');
