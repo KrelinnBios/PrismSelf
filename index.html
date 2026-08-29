@@ -107,21 +107,29 @@
     .site-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
       background: rgba(43, 122, 98, 0.1);
       color: var(--teal);
-      font-size: 0.86rem;
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.04em;
-      padding: 6px 15px;
+      padding: 9px 20px;
       border-radius: 40px;
       border: 1px solid rgba(43, 122, 98, 0.2);
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
 
     .site-badge-mark {
-      width: 26px;
-      height: 26px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .site-badge-label {
+      display: inline-block;
+      line-height: 1;
+      transform: scale(1.12);
+      transform-origin: center;
     }
 
     h1.site-title {
@@ -1463,15 +1471,15 @@
       }
 
       .site-badge {
-        font-size: 0.82rem;
-        padding: 5px 13px;
-        margin-bottom: 18px;
+        font-size: 0.9rem;
+        padding: 7px 17px;
+        margin-bottom: 22px;
         letter-spacing: 0.03em;
       }
 
       .site-badge-mark {
-        width: 22px;
-        height: 22px;
+        width: 26px;
+        height: 26px;
       }
 
       h1.site-title {
@@ -2282,7 +2290,7 @@
   <header>
     <div class="site-badge">
       <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">
-      PrismSelf
+      <span class="site-badge-label">PrismSelf</span>
     </div>
     <h1 class="site-title">性别 · 心理 · 人际</h1>
     <p class="site-desc">
