@@ -449,9 +449,10 @@
   display: block;
   margin: 0 0 5px;
   color: var(--prism-support-primary-ink) !important;
-  font-size: 15px;
-  font-weight: 650;
-  line-height: 1.45;
+  font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
 }
 
 .prism-support-content p {
