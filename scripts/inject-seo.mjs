@@ -1,13 +1,15 @@
-// One-off SEO injector: adds meta description, theme-color, favicon link and
-// Open Graph tags right after each page's <title> line. Idempotent: skips any
-// tag that is already present. Preserves BOM and the file's existing newline
-// style. Run with: node scripts/inject-seo.mjs
+// One-off SEO injector: adds canonical, meta description, theme-color, favicon
+// link and Open Graph tags right after each page's <title> line. It also
+// normalizes the Open Graph site name to the official share identity.
+// Idempotent: skips any tag that is already present. Preserves BOM and the
+// file's existing newline style. Run with: node scripts/inject-seo.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://prismself.vip';
+const OG_SITE_NAME = 'PrismSelf · prismself.vip';
 const DEFAULT_THEME = '#2f6f73';
 
 // file -> { desc, title, theme? } ; title falls back to the page's <title>
@@ -61,6 +63,14 @@ for (const [rel, meta] of Object.entries(pages)) {
   const depth = rel.includes('/') ? '../' : '';
   const url = SITE + (meta.url || '/' + rel.replace(/\\/g, '/'));
 
+  const normalizedHtml = html.replace(
+    /(<meta property=["']og:site_name["'] content=["'])PrismSelf(["']>)/,
+    `$1${OG_SITE_NAME}$2`,
+  );
+  const normalizedOgSiteName = normalizedHtml !== html;
+  html = normalizedHtml;
+
+  const hasCanonical = /rel=["']canonical["']/.test(html);
   const hasDesc = /name=["']description["']/.test(html);
   const hasOg = /property=["']og:/.test(html);
   const hasOgImage = /property=["']og:image["']/.test(html);
@@ -69,12 +79,13 @@ for (const [rel, meta] of Object.entries(pages)) {
   const hasIcon = /rel=["']icon["']/.test(html);
 
   const lines = [];
+  if (!hasCanonical) lines.push(`<link rel="canonical" href="${esc(url)}">`);
   if (!hasDesc) lines.push(`<meta name="description" content="${esc(meta.desc)}">`);
   if (!hasTheme) lines.push(`<meta name="theme-color" content="${meta.theme || DEFAULT_THEME}">`);
   if (!hasIcon) lines.push(`<link rel="icon" href="${depth}icon/logo.svg" type="image/svg+xml">`);
   if (!hasOg) {
     lines.push(`<meta property="og:type" content="website">`);
-    lines.push(`<meta property="og:site_name" content="PrismSelf">`);
+    lines.push(`<meta property="og:site_name" content="${OG_SITE_NAME}">`);
     lines.push(`<meta property="og:title" content="${esc(title)}">`);
     lines.push(`<meta property="og:description" content="${esc(meta.desc)}">`);
     lines.push(`<meta property="og:url" content="${esc(url)}">`);
@@ -88,17 +99,19 @@ for (const [rel, meta] of Object.entries(pages)) {
     lines.push(`<meta property="og:image:height" content="630">`);
   }
   if (!hasTwitter) lines.push(`<meta name="twitter:card" content="summary_large_image">`);
-  if (lines.length === 0) { console.log('skip (already complete):', rel); continue; }
+  if (lines.length === 0 && !normalizedOgSiteName) { console.log('skip (already complete):', rel); continue; }
 
   // Insert after the whole line that contains </title>, matching its indent and newline style.
   const re = /([ \t]*)(<title>[\s\S]*?<\/title>)([^\n]*)(\r?\n)/;
   if (!re.test(html)) { console.warn('title not on its own line, skipping:', rel); continue; }
-  html = html.replace(re, (m, indent, t, rest, nl) => {
-    const block = lines.map((l) => indent + l + nl).join('');
-    return indent + t + rest + nl + block;
-  });
+  if (lines.length > 0) {
+    html = html.replace(re, (m, indent, t, rest, nl) => {
+      const block = lines.map((l) => indent + l + nl).join('');
+      return indent + t + rest + nl + block;
+    });
+  }
   writeFileSync(abs, html);
   changed++;
-  console.log('updated:', rel, `(+${lines.length} tags)`);
+  console.log('updated:', rel, `(+${lines.length} tags${normalizedOgSiteName ? ', normalized og:site_name' : ''})`);
 }
 console.log(`\nDone. ${changed} file(s) updated.`);

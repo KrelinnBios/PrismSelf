@@ -134,12 +134,18 @@ function Draw-OgImage {
 
     $titleFont = [Drawing.Font]::new('Georgia', 30, [Drawing.FontStyle]::Bold)
     $tagFont = [Drawing.Font]::new('Microsoft YaHei', 13)
+    $domainFont = [Drawing.Font]::new('Georgia', 13)
     $titleBrush = [Drawing.SolidBrush]::new([Drawing.ColorTranslator]::FromHtml('#f4f5f8'))
     $tagBrush = [Drawing.SolidBrush]::new([Drawing.ColorTranslator]::FromHtml('#9aa3b2'))
+    $domainBrush = [Drawing.SolidBrush]::new([Drawing.ColorTranslator]::FromHtml('#9aa3b2'))
     $tagline = -join @([char]0x6027, [char]0x522b, ' ', [char]0x00B7, ' ', [char]0x5fc3, [char]0x7406, ' ', [char]0x00B7, ' ', [char]0x4eba, [char]0x9645)
+    $domain = 'prismself.vip'
+    $domainSize = $graphics.MeasureString($domain, $domainFont)
     $graphics.DrawString('PrismSelf', $titleFont, $titleBrush, 78, 520)
     $graphics.DrawString($tagline, $tagFont, $tagBrush, 82, 572)
-    $titleFont.Dispose(); $tagFont.Dispose(); $titleBrush.Dispose(); $tagBrush.Dispose()
+    $graphics.DrawString($domain, $domainFont, $domainBrush, 1120 - $domainSize.Width, 572)
+    $titleFont.Dispose(); $tagFont.Dispose(); $domainFont.Dispose()
+    $titleBrush.Dispose(); $tagBrush.Dispose(); $domainBrush.Dispose()
 
     Save-Png $bitmap $Path
   } finally {

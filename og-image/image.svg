@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
   <title id="title">PrismSelf</title>
-  <desc id="desc">A transparent tetrahedron centered on a black field, dispersing light into a full rainbow spectrum.</desc>
+  <desc id="desc">PrismSelf share card with a transparent tetrahedron, rainbow spectrum, Chinese tagline, and the official prismself.vip domain.</desc>
 
   <defs>
     <radialGradient id="bg" cx="50%" cy="50%" r="62%">
@@ -34,4 +34,5 @@
 
   <text x="80" y="556" font-family="Georgia, 'Noto Serif SC', serif" font-size="46" font-weight="700" fill="#f4f5f8">PrismSelf</text>
   <text x="82" y="590" font-family="Georgia, 'Noto Serif SC', serif" font-size="22" fill="#9aa3b2" letter-spacing="2">性别 · 心理 · 人际</text>
+  <text x="1120" y="590" text-anchor="end" font-family="Georgia, serif" font-size="22" fill="#9aa3b2" letter-spacing="1">prismself.vip</text>
 </svg>
