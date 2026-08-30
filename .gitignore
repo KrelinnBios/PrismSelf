@@ -6,7 +6,6 @@ favicon-*-preview.png
 .agents/
 .claude/
 .codex/
-.vscode/
 .idea/
 
 # OS
