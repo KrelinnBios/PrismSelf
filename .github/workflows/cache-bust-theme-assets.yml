@@ -8,6 +8,7 @@ on:
       - assets/theme.css
       - assets/theme.js
       - Guides/guide-common.css
+      - og-image/image.png
       - .github/workflows/cache-bust-theme-assets.yml
   workflow_dispatch:
 
@@ -26,7 +27,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Add version query to theme assets
+      - name: Add version query to site assets
         run: |
           node <<'NODE'
           const { execFileSync } = require('node:child_process');
@@ -47,6 +48,14 @@ jobs:
           }
           const VERSION = hash.digest('hex').slice(0, 12);
 
+          // Use the latest commit time of the OG image as a deterministic cache-busting timestamp.
+          // It changes only when og-image/image.png changes, so social crawlers see a new URL.
+          const OG_VERSION = execFileSync(
+            'git',
+            ['log', '-1', '--format=%ct', '--', 'og-image/image.png'],
+            { encoding: 'utf8' }
+          ).trim();
+
           const files = execFileSync('git', ['ls-files', '*.html'], { encoding: 'utf8' })
             .trim()
             .split(/\r?\n/)
@@ -60,6 +69,10 @@ jobs:
             after = after.replace(/(href=["'])([^"']*theme\.css)(?:\?v=[^"']*)?(["'])/g, `$1$2?v=${VERSION}$3`);
             after = after.replace(/(src=["'])([^"']*theme\.js)(?:\?v=[^"']*)?(["'])/g, `$1$2?v=${VERSION}$3`);
             after = after.replace(/(href=["'])([^"']*guide-common\.css)(?:\?v=[^"']*)?(["'])/g, `$1$2?v=${VERSION}$3`);
+            after = after.replace(
+              /(content=["']https:\/\/prismself\.vip\/og-image\/image\.png)(?:\?v=[^"']*)?(["'])/g,
+              `$1?v=${OG_VERSION}$2`
+            );
 
             if (after !== before) {
               writeFileSync(file, after);
@@ -68,7 +81,8 @@ jobs:
             }
           }
 
-          console.log(`version: ${VERSION}`);
+          console.log(`theme version: ${VERSION}`);
+          console.log(`og image version: ${OG_VERSION}`);
           console.log(`changed files: ${changed}`);
           NODE
 
@@ -82,5 +96,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html'
-          git commit -m "chore: 更新主题资源版本"
+          git commit -m "chore: 更新资源缓存版本"
           git push
