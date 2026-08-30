@@ -6,7 +6,12 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const IMG = 'https://prismself.vip/og-image/image.png';
+const OG_VERSION = execFileSync(
+  'git',
+  ['log', '-1', '--format=%ct', '--', 'og-image/image.png'],
+  { cwd: root, encoding: 'utf8' },
+).trim();
+const IMG = `https://prismself.vip/og-image/image.png?v=${OG_VERSION}`;
 const files = execFileSync('git', ['ls-files'], { cwd: root, encoding: 'utf8' })
   .trim()
   .split(/\r?\n/)
