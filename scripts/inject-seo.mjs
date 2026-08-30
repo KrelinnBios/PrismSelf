@@ -6,18 +6,11 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execFileSync } from 'node:child_process';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://prismself.vip';
 const OG_SITE_NAME = 'PrismSelf · prismself.vip';
 const DEFAULT_THEME = '#2f6f73';
-const OG_VERSION = execFileSync(
-  'git',
-  ['log', '-1', '--format=%ct', '--', 'og-image/image.png'],
-  { cwd: root, encoding: 'utf8' },
-).trim();
-const OG_IMAGE = `${SITE}/og-image/image.png?v=${OG_VERSION}`;
 
 // file -> { desc, title, theme? } ; title falls back to the page's <title>
 const pages = {
@@ -52,7 +45,7 @@ const pages = {
   'Scales/Sexual-Preference-Scale.html': { desc: '通过 90 道原创中文情境题，从十五个维度梳理成年人在亲密互动与性幻想中的当前偏好；结果仅保存在本地。' },
   'Scales/Philosophical-Leanings-Scale.html': { desc: '哲学流派倾向自评量表，帮助你了解自身在各哲学流派上的倾向；结果仅保存在本地。' },
   'Scales/Big-Five-Personality-Scale.html': { desc: '大五人格倾向自评量表，通过 120 道本站原创中文情境题，从五个核心维度与三十个子面向梳理人格倾向；结果仅保存在本地。' },
-  'Scales/HEXACO-Personality-Scale.html': { desc: 'HEXACO 六维人格倾向自评量表，通过 100 道本站原创中文情境题，从六个核心维度、二十四个子面向与独立利他性梳理人格倾向。' },
+  'Scales/HEXACO-Personality-Scale.html': { desc: 'HEXACO 六维人格倾向自评量表，通过 100 道本站原创中文情境题，从六个核心维度、二十四个子面向与独立利他性梳理人格倾向；结果仅保存在本地。' },
   'Scales/Sexual-Orientation-Scale.html': { desc: '性取向自评量表，通过多维条目帮助你探索性取向相关的自我倾向；结果仅保存在本地。' },
   'Tools/Relationship-Needs-Menu.html': { desc: '关系需求菜单，一个用于梳理和沟通亲密关系需求与边界的互动对话工具。' },
 };
@@ -101,7 +94,7 @@ for (const [rel, meta] of Object.entries(pages)) {
   // og:image is checked independently: a page may already carry other og: tags
   // without a share image, so it must not be gated behind hasOg.
   if (!hasOgImage) {
-    lines.push(`<meta property="og:image" content="${OG_IMAGE}">`);
+    lines.push(`<meta property="og:image" content="${SITE}/og-image/image.png">`);
     lines.push(`<meta property="og:image:width" content="1200">`);
     lines.push(`<meta property="og:image:height" content="630">`);
   }
