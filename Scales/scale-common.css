@@ -219,7 +219,7 @@ button:hover {
    progress bar, intro card, section cards below) share identical left
    and right inner edges. */
 .global-progress {
-	background: rgba(255, 255, 255, 0.96) !important;
+	background: var(--scale-surface) !important;
 	padding: 14px 25px 18px !important;
 	border-bottom: 1px solid var(--scale-line) !important;
 	border-radius: 0 0 20px 20px !important;
@@ -992,7 +992,7 @@ body.scale-page .global-progress {
 }
 
 :root[data-theme="dark"] .global-progress {
-	background: rgba(18, 24, 34, 0.9) !important;
+	background: var(--scale-surface) !important;
 }
 
 :root[data-theme="dark"] .progress-bar {
@@ -2019,17 +2019,28 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	body.scale-page > .global-progress,
+	body.scale-page > h1,
 	body.scale-page > .intro,
-	body.scale-page > .scale-form {
+	body.scale-page > .scale-form,
+	body.scale-page > .result {
 		width: min(100%, 980px) !important;
 		box-sizing: border-box !important;
 	}
 
 	body.scale-page > .global-progress.scale-mobile-toolbar,
 	body.scale-page > .global-progress,
-	body.scale-page > .intro {
+	body.scale-page > h1,
+	body.scale-page > .intro,
+	body.scale-page > .scale-form,
+	body.scale-page > .result {
 		margin-left: auto !important;
 		margin-right: auto !important;
+	}
+
+	body.scale-page > h1 {
+		padding-left: 4px !important;
+		padding-right: 4px !important;
+		text-align: left !important;
 	}
 
 	body.scale-page .global-progress {

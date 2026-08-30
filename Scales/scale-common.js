@@ -262,6 +262,10 @@
 
 	function showResult(result, options = {}) {
 		if (!result) return;
+		if (window.PrismSupport) {
+			const support = window.PrismSupport.mountAfter(result);
+			support?.classList.add('prism-support-cta--scale');
+		}
 
 		const active = document.activeElement;
 		if (active && active !== document.body && typeof active.blur === 'function') active.blur();

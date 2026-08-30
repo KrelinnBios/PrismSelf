@@ -421,54 +421,6 @@
       font-weight: 300;
     }
 
-    /* --- FOOTER NOTE --- */
-    .footer-note {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 3rem 2rem;
-      margin-top: 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-note::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(-45deg, transparent, transparent 40px,
-          rgba(255, 255, 255, 0.01) 40px, rgba(255, 255, 255, 0.01) 41px);
-    }
-
-    .footer-note h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      position: relative;
-    }
-
-    .footer-note p {
-      font-size: 0.88rem;
-      color: rgba(245, 240, 232, 0.65);
-      max-width: 600px;
-      margin: 0 auto 0.8rem;
-      font-weight: 300;
-      position: relative;
-      line-height: 1.9;
-    }
-
-    .footer-note .fn-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      color: rgba(184, 134, 11, 0.6);
-      margin-top: 1.5rem;
-      position: relative;
-    }
-
     @media (max-width: 600px) {
       .pair-card {
         grid-template-columns: 1fr;
@@ -714,7 +666,6 @@
     :root[data-theme="dark"] header,
     :root[data-theme="dark"] .principle-card,
     :root[data-theme="dark"] .pair-half:first-child,
-    :root[data-theme="dark"] .footer-note,
     :root[data-theme="dark"] .term-card.highlight {
         background: #241d14;
         border-color: #241d14;
@@ -803,8 +754,7 @@
       }
 
       .term-card,
-      .principle-card,
-      .footer-note {
+      .principle-card {
         padding: 1.15rem 1.05rem;
         border-radius: 14px;
         box-shadow: none;
@@ -870,9 +820,9 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="../assets/theme.css?v=52265943faef">
+  <link rel="stylesheet" href="../assets/theme.css?v=f9f47b63da1e">
   <link rel="stylesheet" href="../AI/ai-companion.css?v=80db44b92a4b">
-<script src="../assets/theme.js?v=52265943faef"></script>
+<script src="../assets/theme.js?v=f9f47b63da1e"></script>
   <script src="../AI/ai-companion.js?v=de22f45d412c" defer></script>
   <script
     defer
@@ -883,7 +833,7 @@
   </head>
 
 <body>
-  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回知识图谱</a>
+  <a class="prism-back-home" href="../index.html" aria-label="返回知识图谱">← 返回</a>
 
 <header>
     <div class="header-label">BDSM Comprehensive Guide</div>
@@ -897,7 +847,7 @@
       这是一份面向公众的 BDSM 科普与安全指南，目标是用<strong>中立、严谨、可操作</strong>的方式解释核心概念、风险与沟通方法，帮助你在尊重他人和尊重自我的前提下做出明智选择。
     </p>
     <p>
-      本指南强调：BDSM 不能简单等同于“暴力”或“失控”。它讨论的是以<strong>知情同意</strong>为前提的互动与关系动态；任何时候都可以暂停、调整或退出。同意永远不是一次性的，也不能用来抵消伤害和忽视风险。
+      本指南以“同意—风险—照顾”为主线。BDSM 不能简单等同于“暴力”或“失控”；如果打算实践，应把<strong>清醒、可撤回的同意、明确边界、应急准备、事后照顾与复盘</strong>视为最低标准。任何让你感到不安或被逼迫的互动都应当停止，一次同意也不能用来抵消伤害或忽视风险。
     </p>
 
 <div class="principle-grid">
@@ -1771,14 +1721,6 @@
       </div>
     </section>
   </div>
-
-<footer class="footer-note">
-    <h3>关于这份全景指南</h3>
-    <p>本页以“同意—风险—照顾”为主线，梳理 BDSM 的核心概念、实践流程与常见风险。内容旨在支持安全沟通与自我保护，而不是鼓励任何人进行超出能力与边界的尝试。</p>
-    <p>如果你打算实践：把<strong>清醒、可撤回的同意、明确边界、应急准备、事后照顾与复盘</strong>视为最低标准。任何让你感到不安或被逼迫的互动，都应当被停止。</p>
-    <div class="fn-label">SSC · Safe, Sane &amp; Consensual &nbsp;|&nbsp; RACK · Risk-Aware Consensual Kink
-      &nbsp;|&nbsp; PRICK · Personal Responsibility · Informed · Consensual · Kink</div>
-  </footer>
 
 <!-- ========== 悬浮目录组件 ========== -->
   <div class="floating-toc">

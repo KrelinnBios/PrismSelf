@@ -1,14 +1,15 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-08-13',
+    date: '2026-08-30',
     pages: [
-      'home'
-    ]
-  },
-  {
-    date: '2026-08-09',
-    pages: [
+      'home',
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/BDSM-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html',
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',
@@ -18,55 +19,24 @@ window.PrismSelfUpdateGroups = [
       './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Preference-Scale.html',
-      './Scales/Sexual-Orientation-Scale.html'
-    ]
-  },
-  {
-    date: '2026-07-22',
-    pages: [
-      './Guides/Aromantic-Comprehensive-Guide.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
-      './Guides/BDSM-Comprehensive-Guide.html',
-      './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html'
-    ]
-  },
-  {
-    date: '2026-07-10',
-    pages: [
+      './Scales/Sexual-Orientation-Scale.html',
+      './Tools/Relationship-Needs-Menu.html',
       './Glossaries/SOGIESC-Glossary.html',
       './Glossaries/Sexology-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
       './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html'
-    ]
-  },
-  {
-    date: '2026-07-06',
-    pages: [
-      './Topics/A-Conversation-on-Asexuality.html',
-      './Topics/Asexual-Community-Survey.html'
-    ]
-  },
-  {
-    date: '2026-06-19',
-    pages: [
+      './Analyses/Interpersonal-Attraction-Comparison.html',
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html'
-    ]
-  },
-  {
-    date: '2026-06-17',
-    pages: [
+      './Analyses/Neutrality-Type-Analysis.html',
+      './Topics/A-Conversation-on-Asexuality.html',
+      './Topics/Asexual-Community-Survey.html',
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
-      './Bingos/Neurodiversity-Resonance.html',
-      './Tools/Relationship-Needs-Menu.html'
+      './Bingos/Neurodiversity-Resonance.html'
     ]
   }
 ];

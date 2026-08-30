@@ -138,3 +138,246 @@
     else if (mq.addListener) mq.addListener(onChange);
   }
 })();
+
+/* Keep dynamically rendered Chinese copy consistent with the site's spacing
+ * rule without touching code, URLs, or user-entered text. */
+(function () {
+  function normalizeSpacing(value) {
+    return String(value || '')
+      .replace(/([\p{Script=Han}])(?=[A-Za-z0-9])/gu, '$1 ')
+      .replace(/([A-Za-z0-9][A-Za-z0-9+%#_]*)(?=\p{Script=Han})/gu, '$1 ');
+  }
+
+  function isBlocked(node) {
+    var parent = node && node.parentElement;
+    return !parent || !!parent.closest('script,style,pre,code,textarea');
+  }
+
+  function normalizeTextNode(node) {
+    if (!node || node.nodeType !== Node.TEXT_NODE || isBlocked(node)) return;
+    var next = normalizeSpacing(node.nodeValue);
+    if (next !== node.nodeValue) node.nodeValue = next;
+  }
+
+  function normalizeAttributes(element) {
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
+    if (element.closest('script,style,pre,code,textarea')) return;
+    ['alt', 'aria-label', 'data-label', 'data-alt', 'placeholder', 'title'].forEach(function (name) {
+      if (!element.hasAttribute(name)) return;
+      var value = element.getAttribute(name);
+      var next = normalizeSpacing(value);
+      if (next !== value) element.setAttribute(name, next);
+    });
+  }
+
+  function normalizeTextBoundaries(textNodes) {
+    for (var i = 1; i < textNodes.length; i += 1) {
+      var previous = textNodes[i - 1];
+      var current = textNodes[i];
+      if (isBlocked(previous) || isBlocked(current)) continue;
+      var previousValue = previous.nodeValue || '';
+      var currentValue = current.nodeValue || '';
+      if (/[A-Za-z0-9+%#_]$/.test(previousValue) && /^[\p{Script=Han}]/u.test(currentValue)) {
+        previous.nodeValue = previousValue + ' ';
+      }
+      if (/[\p{Script=Han}]$/u.test(previousValue) && /^[A-Za-z0-9]/.test(currentValue)) {
+        current.nodeValue = ' ' + currentValue;
+      }
+    }
+  }
+
+  function normalizeSubtree(root) {
+    if (!root) return;
+    if (root.nodeType === Node.TEXT_NODE) {
+      normalizeTextNode(root);
+      return;
+    }
+    if (root.nodeType !== Node.ELEMENT_NODE || root.closest('script,style,pre,code,textarea')) return;
+    normalizeAttributes(root);
+    var textWalker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    var textNodes = [];
+    var textNode;
+    while ((textNode = textWalker.nextNode())) {
+      textNodes.push(textNode);
+      normalizeTextNode(textNode);
+    }
+    normalizeTextBoundaries(textNodes);
+    var elementWalker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+    var element;
+    while ((element = elementWalker.nextNode())) normalizeAttributes(element);
+  }
+
+  function install() {
+    if (!document.body) return;
+    normalizeSubtree(document.body);
+    if (!window.MutationObserver) return;
+    var observer = new MutationObserver(function (records) {
+      records.forEach(function (record) {
+        if (record.type === 'characterData') normalizeTextNode(record.target);
+        if (record.type === 'attributes') normalizeAttributes(record.target);
+        if (record.type === 'childList') normalizeSubtree(record.target);
+      });
+    });
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ['alt', 'aria-label', 'data-label', 'data-alt', 'placeholder', 'title']
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, { once: true });
+  else install();
+})();
+
+/* Shared, opt-in support prompt used at the point where a reader has finished
+ * a guide or tool. The QR dialog is only opened after an explicit click. */
+(function () {
+  var themeScript = document.currentScript;
+  var supportImage = themeScript && themeScript.src
+    ? new URL('appreciation-code.webp', themeScript.src).href
+    : 'assets/appreciation-code.webp';
+  var CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>';
+  var lastTrigger = null;
+
+  function closeSupport(dialog) {
+    if (!dialog) return;
+    if (typeof dialog.close === 'function') dialog.close();
+    else {
+      dialog.removeAttribute('open');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      lastTrigger = null;
+    }
+  }
+
+  function createDialog() {
+    var existing = document.getElementById('prismSupportDialog');
+    if (existing) return existing;
+
+    var dialog = document.createElement('dialog');
+    dialog.id = 'prismSupportDialog';
+    dialog.className = 'prism-support-dialog';
+    dialog.setAttribute('aria-labelledby', 'prismSupportDialogTitle');
+    dialog.innerHTML = [
+      '<div class="prism-support-dialog-inner">',
+      '  <div class="prism-support-dialog-header">',
+      '    <div>',
+      '      <h2 id="prismSupportDialogTitle">支持 PrismSelf</h2>',
+      '      <p>PrismSelf 免费开放，由个人维护。你的支持将用于分担域名、服务与持续维护成本。</p>',
+      '    </div>',
+      '    <button class="prism-support-close" type="button" aria-label="关闭支持项目弹窗">' + CLOSE + '</button>',
+      '  </div>',
+      '  <a class="prism-support-code" href="' + supportImage + '" target="_blank" rel="noopener noreferrer" aria-label="打开微信赞赏码大图">',
+      '    <img src="' + supportImage + '" alt="PrismSelf 微信赞赏码" loading="lazy" decoding="async">',
+      '  </a>',
+      '  <p class="prism-support-instruction">电脑访问时可使用微信扫码；手机访问时可打开大图后保存，再从微信扫一扫中选择相册识别。</p>',
+      '  <p class="prism-support-note">自愿支持，无任何内容或功能以赞赏为前提。</p>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(dialog);
+    dialog.querySelector('.prism-support-close').addEventListener('click', function () {
+      closeSupport(dialog);
+    });
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) closeSupport(dialog);
+    });
+    dialog.addEventListener('close', function () {
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      lastTrigger = null;
+    });
+    return dialog;
+  }
+
+  function openSupport(trigger) {
+    var dialog = createDialog();
+    lastTrigger = trigger || document.activeElement;
+    if (dialog.open) return;
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+
+  function createCTA() {
+    var section = document.createElement('aside');
+    section.className = 'prism-support-cta';
+    section.setAttribute('aria-label', '支持 PrismSelf');
+    section.innerHTML = [
+      '<span class="prism-support-heart" aria-hidden="true">♡</span>',
+      '<div class="prism-support-content">',
+      '  <strong>支持 PrismSelf</strong>',
+      '  <p>PrismSelf 免费开放，由个人持续维护。如果这里对你有帮助，可以自愿支持项目。</p>',
+      '</div>',
+      '<button class="prism-support-button" type="button" data-prism-support-open>支持项目</button>'
+    ].join('');
+    return section;
+  }
+
+  function hasDirectCTA(target) {
+    return Array.prototype.some.call(target.children || [], function (child) {
+      return child.classList && child.classList.contains('prism-support-cta');
+    });
+  }
+
+  function mount(target) {
+    if (!target || hasDirectCTA(target)) return null;
+    var cta = createCTA();
+    target.appendChild(cta);
+    return cta;
+  }
+
+  function mountAfter(target) {
+    if (!target) return null;
+    var next = target.nextElementSibling;
+    if (next && next.classList.contains('prism-support-cta')) return next;
+    var cta = createCTA();
+    target.insertAdjacentElement('afterend', cta);
+    return cta;
+  }
+
+  function autoMountSupport() {
+    var path = String(window.location.pathname || '').toLowerCase();
+    var support = null;
+    if (path.indexOf('/guides/') !== -1) {
+      support = mount(document.querySelector('#write .main-content, body > .main-content, .main-content'));
+      if (support) support.classList.add('prism-support-cta--guide');
+    } else if (path.indexOf('/analyses/') !== -1) {
+      support = mount(document.querySelector('.container'));
+    } else if (path.indexOf('/bingos/') !== -1) {
+      support = mount(document.querySelector('.page'));
+    } else if (path.indexOf('/glossaries/') !== -1) {
+      support = mount(document.querySelector('main'));
+    } else if (path.indexOf('/topics/') !== -1) {
+      support = mount(document.querySelector('#write'));
+    }
+    if (support && path.indexOf('/guides/') === -1) {
+      support.classList.add('prism-support-cta--embedded');
+    }
+
+    var toolSupport = mountAfter(document.querySelector('#summary.summary-card'));
+    if (toolSupport) toolSupport.classList.add('prism-support-cta--embedded');
+  }
+
+  window.PrismSupport = {
+    open: openSupport,
+    createCTA: createCTA,
+    mount: mount,
+    mountAfter: mountAfter
+  };
+
+  document.addEventListener('click', function (event) {
+    var trigger = event.target && event.target.closest
+      ? event.target.closest('[data-prism-support-open]')
+      : null;
+    if (trigger) openSupport(trigger);
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(autoMountSupport, 0);
+    }, { once: true });
+  } else {
+    setTimeout(autoMountSupport, 0);
+  }
+  window.addEventListener('load', autoMountSupport, { once: true });
+})();

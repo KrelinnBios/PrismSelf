@@ -219,7 +219,7 @@ function renderQuestionSelect(questionNumber) {
 
 const questionMarkup = `
 <div class="section">
-	<h2>第一部分：性吸引（1-15题）</h2>
+	<h2>第一部分：性吸引（1-15 题）</h2>
 	<p>本部分评估您对他人产生以性欲为基础的内在冲动，包括频率、强度、条件和生理表现。这些题目聚焦于区分性吸引与其他吸引类型，避免将情感或审美体验误认为性吸引。</p>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
@@ -387,7 +387,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第二部分：性行为态度（16-20题）</h2>
+	<h2>第二部分：性行为态度（16-20 题）</h2>
 	<p>本部分评估您对性行为（非自慰）的整体态度、参与动机和后体验，与性吸引独立评估。这些题目聚焦于行为偏好，而非内在冲动。</p>
 	<!-- 16 -->
 	<div class="question">
@@ -446,7 +446,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第三部分：浪漫吸引（21-25题）</h2>
+	<h2>第三部分：浪漫吸引（21-25 题）</h2>
 	<p>本部分评估您对恋爱关系的渴望和情感依恋，与性吸引分离。这些题目聚焦于浪漫元素的独立存在，帮助区分情感亲密与身体欲求。</p>
 	<!-- 21 -->
 	<div class="question">
@@ -505,7 +505,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第四部分：情感吸引（26-30题）</h2>
+	<h2>第四部分：情感吸引（26-30 题）</h2>
 	<p>本部分评估您对深层情感联结的渴望，与其他吸引分离。这些题目聚焦于非浪漫、非性的情感纽带，帮助区分心灵亲密与身体或浪漫欲求。</p>
 	<!-- 26 -->
 	<div class="question">
@@ -564,7 +564,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第五部分:审美吸引(31-35题)</h2>
+	<h2>第五部分:审美吸引(31-35 题)</h2>
 	<p>本部分评估您对视觉欣赏的体验,与其他吸引分离。这些题目聚焦于非欲求的美的感知,帮助区分欣赏与性冲动。</p>
 	<!-- 31 -->
 	<div class="question">
@@ -623,7 +623,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第六部分：感官吸引（36-40题）</h2>
+	<h2>第六部分：感官吸引（36-40 题）</h2>
 	<p>本部分评估您对非性身体接触的渴望，与其他吸引分离。这些题目聚焦于舒适触碰，帮助区分感官与性欲。</p>
 	<!-- 36 -->
 	<div class="question">
@@ -682,7 +682,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第七部分：自我认知（41-45题）</h2>
+	<h2>第七部分：自我认知（41-45 题）</h2>
 	<p>本部分评估您对自身吸引模式的认识和接受度。这些题目聚焦于内省，帮助整合谱系身份。</p>
 	<!-- 41 -->
 	<div class="question">
@@ -741,7 +741,7 @@ const questionMarkup = `
 	</div>
 </div>
 <div class="section">
-	<h2>第八部分：细分谱系特征（46-60题）</h2>
+	<h2>第八部分：细分谱系特征（46-60 题）</h2>
 	<p>本部分评估无性恋谱系的细分类型特征。这些题目基于社区和研究定义，帮助细化您的身份认同。</p>
 	<!-- 46 -->
 	<div class="question">
@@ -1450,7 +1450,7 @@ function calculateResult() {
 							<li>需要花时间向他人解释您的体验，因为这是少数派体验</li>
 							<li>寻找理解并尊重您无性恋身份的伴侣或朋友很重要</li>
 							<li>您的关系模式可能需要创新，探索无性浪漫关系、酷儿柏拉图式关系等</li>
-							<li>加入无性恋社区（如AVEN、中文无性恋社群）可以提供归属感和支持</li>
+							<li>加入无性恋社区（如 AVEN、中文无性恋社群）可以提供归属感和支持</li>
 							<li>您的幸福感来源可能更多元，比如事业成就、个人成长、深度友谊、艺术创造等</li>
 						</ul>`;
 		}
@@ -1512,7 +1512,7 @@ function calculateResult() {
 			const keyQuestionsDesc = primaryType.keyQuestions.map(kq =>
 				kq.q === 'core' ?
 					`核心性吸引加权均分：${kq.score.toFixed(1)}/5（极低）` :
-					`第${kq.q}题（${kq.desc}）：${kq.score}/5分`
+					`第${kq.q}题（${kq.desc}）：${kq.score}/5 分`
 			).join('；');
 
 			mainInterpretation = `<h3>${primaryType.name}特征解读</h3>
@@ -1521,7 +1521,7 @@ function calculateResult() {
 
 						<p><strong>您的具体表现：</strong></p>
 						<ul>
-							<li><strong>核心分数：</strong>您的核心性吸引加权均分为${sexualCore.toFixed(1)}分（满分5分），这表明您的性吸引体验总体偏弱或条件严格。</li>
+							<li><strong>核心分数：</strong>您的核心性吸引加权均分为${sexualCore.toFixed(1)}分（满分 5 分），这表明您的性吸引体验总体偏弱或条件严格。</li>
 							<li><strong>关键特征：</strong>${keyQuestionsDesc}</li>
 							<li><strong>体验特点：</strong>${getPrimaryTypeDescription(primaryType.name)}</li>
 						</ul>
@@ -1537,14 +1537,14 @@ function calculateResult() {
 
 			mainInterpretation = `<h3>${subType.name}特征解读</h3>
 						<p><strong>谱系定位：</strong></p>
-						<p>您的得分提示，您可能位于无性恋谱系中，性吸引对您来说不是一种常规、稳定的体验。您的核心性吸引分数${sexualCore.toFixed(1)}分（满分5分）支持这一参考判断。</p>
+						<p>您的得分提示，您可能位于无性恋谱系中，性吸引对您来说不是一种常规、稳定的体验。您的核心性吸引分数${sexualCore.toFixed(1)}分（满分 5 分）支持这一参考判断。</p>
 
 						<p><strong>什么是"${subType.name.split(' ')[0]}"？</strong></p>
 						<p>${subType.desc}</p>
 
 						<p><strong>您的回答表明：</strong></p>
 						<ul>
-							<li><strong>关键题目：</strong>第${subType.keyQuestions[0].q}题得分${subType.score}/5分，明显高于该类型识别的阈值（≥4分）。</li>
+							<li><strong>关键题目：</strong>第${subType.keyQuestions[0].q}题得分${subType.score}/5 分，明显高于该类型识别的阈值（≥4 分）。</li>
 							<li><strong>分数依据：</strong>这结合您${sexualCore.toFixed(1)}分的核心性吸引均分，形成了这一参考。</li>
 							<li><strong>模式参考：</strong>您的体验模式与该类型的社区定义高度吻合。</li>
 						</ul>
@@ -1574,7 +1574,7 @@ function calculateResult() {
 						<ul>
 							<li><strong>微弱灰性恋倾向：</strong>性吸引极其微弱、罕见，但尚未达到特定类型的明确阈值。您的体验可能像远处传来的微弱信号，时有时无，难以捕捉。</li>
 							<li><strong>混合特征：</strong>同时具有多种模式的元素，但没有一种占主导地位。就像调色板上的颜色混合，产生了独特的中间色调。</li>
-							<li><strong>流动特征：</strong>您的体验可能随时间变化，难以用单一时间点的测量固定。今天是A，明天是B，后天又是C，这种流动性本身就是一种模式。</li>
+							<li><strong>流动特征：</strong>您的体验可能随时间变化，难以用单一时间点的测量固定。今天是 A，明天是 B，后天又是 C，这种流动性本身就是一种模式。</li>
 							<li><strong>独特个体模式：</strong>您的吸引模式可能是独特的，不完全符合现有分类体系。人类体验的多样性总是超过我们的分类能力。</li>
 							<li><strong>探索早期阶段：</strong>您可能还在理解自己的体验，模式尚未完全清晰或稳定。</li>
 						</ul>
@@ -1792,10 +1792,10 @@ function calculateResult() {
 					${window.PrismScale.createResultDimensionHeader({ index: 1, title: '性吸引维度', score: sectionAverages.sexual, level: sexualIntensity.text })}
 					<p><strong>关键发现：</strong></p>
 					<ul>
-						<li><strong>频率特征：</strong>第4题得分${scores['q4']}/5 - ${scores['q4'] === 0 ? '无性吸引体验或从未经历过性吸引' : scores['q4'] <= 1 ? '性吸引体验极少，可能一年仅几次或更少' : scores['q4'] <= 2 ? '偶尔体验性吸引，每月几次' : '经常体验性吸引，每周或更频繁'}</li>
-						<li><strong>对象范围：</strong>第10题得分${scores['q10']}/5 - ${scores['q10'] === 0 ? '无相关体验，无法评估对象范围' : scores['q10'] <= 1 ? '范围极窄，仅对极少数特定类型有吸引' : scores['q10'] <= 2 ? '范围较窄，对少数类型有吸引' : scores['q10'] <= 3 ? '中等范围，对若干类型有吸引' : scores['q10'] <= 4 ? '范围较广，对多种类型有吸引' : '范围非常广，对很多人都有吸引'}</li>
-						<li><strong>条件特征：</strong>第5题得分${scores['q5']}/5，第6题得分${scores['q6']}/5 - ${scores['q5'] === 0 && scores['q6'] === 0 ? '无任何条件依赖体验，无法评估条件特征' : scores['q5'] >= 4 ? '强烈依赖情感联结' : scores['q6'] >= 4 ? '高度依赖特定情境' : '条件限制较少'}</li>
-						<li><strong>强度特征：</strong>第7题得分${scores['q7']}/5 - ${scores['q7'] === 0 ? '无强度体验，无法评估强度特征' : scores['q7'] >= 4 ? '微弱短暂，快速消退' : scores['q7'] <= 2 ? '强烈持久，影响显著' : '中等强度，变化多样'}</li>
+						<li><strong>频率特征：</strong>第 4 题得分${scores['q4']}/5 - ${scores['q4'] === 0 ? '无性吸引体验或从未经历过性吸引' : scores['q4'] <= 1 ? '性吸引体验极少，可能一年仅几次或更少' : scores['q4'] <= 2 ? '偶尔体验性吸引，每月几次' : '经常体验性吸引，每周或更频繁'}</li>
+						<li><strong>对象范围：</strong>第 10 题得分${scores['q10']}/5 - ${scores['q10'] === 0 ? '无相关体验，无法评估对象范围' : scores['q10'] <= 1 ? '范围极窄，仅对极少数特定类型有吸引' : scores['q10'] <= 2 ? '范围较窄，对少数类型有吸引' : scores['q10'] <= 3 ? '中等范围，对若干类型有吸引' : scores['q10'] <= 4 ? '范围较广，对多种类型有吸引' : '范围非常广，对很多人都有吸引'}</li>
+						<li><strong>条件特征：</strong>第 5 题得分${scores['q5']}/5，第 6 题得分${scores['q6']}/5 - ${scores['q5'] === 0 && scores['q6'] === 0 ? '无任何条件依赖体验，无法评估条件特征' : scores['q5'] >= 4 ? '强烈依赖情感联结' : scores['q6'] >= 4 ? '高度依赖特定情境' : '条件限制较少'}</li>
+						<li><strong>强度特征：</strong>第 7 题得分${scores['q7']}/5 - ${scores['q7'] === 0 ? '无强度体验，无法评估强度特征' : scores['q7'] >= 4 ? '微弱短暂，快速消退' : scores['q7'] <= 2 ? '强烈持久，影响显著' : '中等强度，变化多样'}</li>
 					</ul>
 					<p><strong>专业解读：</strong>${sexualCore > 2.5 ? '您的性吸引模式符合主流有性恋特征，性吸引是您关系体验中的常规维度。' : sexualCore <= 0.5 ? '您的性吸引体验几乎缺失，这提示您可能位于无性恋谱系的核心区域。' : '您的性吸引体验处于灰色地带，频率低、强度弱或条件严格，这是无性恋谱系的典型特征。'}</p>
 				</div>`;
@@ -1810,13 +1810,13 @@ function calculateResult() {
 
 					<p><strong>关键题项得分：</strong></p>
 					<ul>
-						<li><strong>整体态度（第16题）：</strong>${scores['q16']}/5 - ${scores['q16'] === 0 ? '强烈排斥或厌恶' : scores['q16'] <= 2 ? '大多不感兴趣' : scores['q16'] === 3 ? '中立，无强烈好恶' : scores['q16'] === 4 ? '通常开放或积极' : '非常感兴趣或享受'}</li>
-						<li><strong>接受性恋倾向（第52题）：</strong>${scores['q52']}/5 - ${scores['q52'] >= 4 ? '倾向于接受者角色' : scores['q52'] <= 2 ? '无明显接受倾向' : '中等接受倾向'}</li>
-						<li><strong>给予性恋倾向（第53题）：</strong>${scores['q53']}/5 - ${scores['q53'] >= 4 ? '倾向于给予者角色' : scores['q53'] <= 2 ? '无明显给予倾向' : '中等给予倾向'}</li>
-						<li><strong>厌性恋倾向（第54题）：</strong>${scores['q54']}/5 - ${scores['q54'] >= 4 ? '强烈厌恶或回避' : scores['q54'] >= 3 ? '有时感到厌恶' : scores['q54'] <= 1 ? '基本不厌恶' : '轻微不适'}</li>
-						<li><strong>吸引-行为分离（第55题）：</strong>${scores['q55']}/5 - ${scores['q55'] >= 4 ? '吸引不转化为行为的倾向强' : scores['q55'] <= 2 ? '吸引与行为相对一致' : '中等分离倾向'}</li>
-						<li><strong>行为优先倾向（第56题）：</strong>${scores['q56']}/5 - ${scores['q56'] >= 4 ? '缺乏吸引但渴望行为的倾向强' : scores['q56'] <= 2 ? '行为需求与吸引一致' : '中等行为优先倾向'}</li>
-						<li><strong>事后体验质量（第20题）：</strong>${scores['q20']}/5 - ${scores['q20'] === 0 ? '无性活动参与经验' : scores['q20'] >= 4 ? '经常后悔或不适' : scores['q20'] <= 2 ? '通常感到满足' : '体验复杂，时好时坏'}</li>
+						<li><strong>整体态度（第 16 题）：</strong>${scores['q16']}/5 - ${scores['q16'] === 0 ? '强烈排斥或厌恶' : scores['q16'] <= 2 ? '大多不感兴趣' : scores['q16'] === 3 ? '中立，无强烈好恶' : scores['q16'] === 4 ? '通常开放或积极' : '非常感兴趣或享受'}</li>
+						<li><strong>接受性恋倾向（第 52 题）：</strong>${scores['q52']}/5 - ${scores['q52'] >= 4 ? '倾向于接受者角色' : scores['q52'] <= 2 ? '无明显接受倾向' : '中等接受倾向'}</li>
+						<li><strong>给予性恋倾向（第 53 题）：</strong>${scores['q53']}/5 - ${scores['q53'] >= 4 ? '倾向于给予者角色' : scores['q53'] <= 2 ? '无明显给予倾向' : '中等给予倾向'}</li>
+						<li><strong>厌性恋倾向（第 54 题）：</strong>${scores['q54']}/5 - ${scores['q54'] >= 4 ? '强烈厌恶或回避' : scores['q54'] >= 3 ? '有时感到厌恶' : scores['q54'] <= 1 ? '基本不厌恶' : '轻微不适'}</li>
+						<li><strong>吸引-行为分离（第 55 题）：</strong>${scores['q55']}/5 - ${scores['q55'] >= 4 ? '吸引不转化为行为的倾向强' : scores['q55'] <= 2 ? '吸引与行为相对一致' : '中等分离倾向'}</li>
+						<li><strong>行为优先倾向（第 56 题）：</strong>${scores['q56']}/5 - ${scores['q56'] >= 4 ? '缺乏吸引但渴望行为的倾向强' : scores['q56'] <= 2 ? '行为需求与吸引一致' : '中等行为优先倾向'}</li>
+						<li><strong>事后体验质量（第 20 题）：</strong>${scores['q20']}/5 - ${scores['q20'] === 0 ? '无性活动参与经验' : scores['q20'] >= 4 ? '经常后悔或不适' : scores['q20'] <= 2 ? '通常感到满足' : '体验复杂，时好时坏'}</li>
 					</ul>
 
 					<p><strong>专业解读：</strong>${sectionAverages.behavior < 2.5 ?
@@ -1832,10 +1832,10 @@ function calculateResult() {
 					${window.PrismScale.createResultDimensionHeader({ index: 3, title: '浪漫吸引维度', score: sectionAverages.romantic, level: romanticIntensity.text })}
 					<p><strong>关键发现：</strong></p>
 					<ul>
-						<li><strong>存在参考：</strong>第21题得分${scores['q21']}/5 - ${scores['q21'] >= 4 ? '明确体验过浪漫吸引' : scores['q21'] <= 2 ? '很少或从未体验浪漫吸引' : '偶尔或不确定地体验浪漫吸引'}</li>
-						<li><strong>重要性：</strong>第22题得分${scores['q22']}/5 - ${scores['q22'] >= 4 ? '浪漫关系对幸福感至关重要' : scores['q22'] <= 2 ? '浪漫关系并非生活必需' : '浪漫是重要但不唯一的需求'}</li>
-						<li><strong>区分能力：</strong>第23题得分${scores['q23']}/5 - ${scores['q23'] >= 4 ? '能清晰区分浪漫与性吸引' : scores['q23'] <= 2 ? '难以区分不同类型吸引' : '有一定区分能力但不稳定'}</li>
-						<li><strong>独立性：</strong>第25题得分${scores['q25']}/5 - ${scores['q25'] === 0 ? '无相关体验，无法评估独立性' : scores['q25'] >= 4 ? '浪漫吸引独立于性吸引发生' : scores['q25'] <= 2 ? '浪漫吸引常伴随性吸引' : '两者有时独立有时相关'}</li>
+						<li><strong>存在参考：</strong>第 21 题得分${scores['q21']}/5 - ${scores['q21'] >= 4 ? '明确体验过浪漫吸引' : scores['q21'] <= 2 ? '很少或从未体验浪漫吸引' : '偶尔或不确定地体验浪漫吸引'}</li>
+						<li><strong>重要性：</strong>第 22 题得分${scores['q22']}/5 - ${scores['q22'] >= 4 ? '浪漫关系对幸福感至关重要' : scores['q22'] <= 2 ? '浪漫关系并非生活必需' : '浪漫是重要但不唯一的需求'}</li>
+						<li><strong>区分能力：</strong>第 23 题得分${scores['q23']}/5 - ${scores['q23'] >= 4 ? '能清晰区分浪漫与性吸引' : scores['q23'] <= 2 ? '难以区分不同类型吸引' : '有一定区分能力但不稳定'}</li>
+						<li><strong>独立性：</strong>第 25 题得分${scores['q25']}/5 - ${scores['q25'] === 0 ? '无相关体验，无法评估独立性' : scores['q25'] >= 4 ? '浪漫吸引独立于性吸引发生' : scores['q25'] <= 2 ? '浪漫吸引常伴随性吸引' : '两者有时独立有时相关'}</li>
 					</ul>
 					<p><strong>专业解读：</strong>${sectionAverages.romantic > 3.0 && sexualCore <= 2.5 ? '您的"高浪漫-低性吸引"模式在无性恋社区很常见，适合探索无性浪漫关系、酷儿柏拉图式关系等创新关系形式。' : sectionAverages.romantic <= 2.0 ? '您可能位于无浪漫谱系(Aromantic Spectrum)，深度友谊、亲情或自我实现可能比传统恋爱更能满足您的亲密需求。' : '您的浪漫-性吸引模式相对匹配，传统关系框架可能适用，但仍可根据您的独特比例调整关系期待。'}</p>
 				</div>`;
@@ -1846,10 +1846,10 @@ function calculateResult() {
 					${window.PrismScale.createResultDimensionHeader({ index: 4, title: '情感吸引维度', score: sectionAverages.emotional, level: emotionalIntensity.text })}
 					<p><strong>关键发现：</strong></p>
 					<ul>
-						<li><strong>深度需求：</strong>第27题得分${scores['q27']}/5 - ${scores['q27'] >= 4 ? '深层情感联结是幸福感的核心' : scores['q27'] <= 2 ? '对情感深度需求较低' : '中等情感联结需求'}</li>
-						<li><strong>区分精度：</strong>第28题得分${scores['q28']}/5 - ${scores['q28'] >= 4 ? '能精确区分情感与其他吸引类型' : scores['q28'] <= 2 ? '情感边界模糊，易与其他吸引混淆' : '有一定区分能力'}</li>
-						<li><strong>关系弹性：</strong>第29题得分${scores['q29']}/5 - ${scores['q29'] >= 4 ? '情感投资高度选择性，深度关系稀少' : scores['q29'] <= 2 ? '情感深度在不同关系中相对均匀' : '中等选择性投资模式'}</li>
-						<li><strong>主动寻求：</strong>第30题得分${scores['q30']}/5 - ${scores['q30'] >= 4 ? '主动寻求深度情感连接' : scores['q30'] <= 2 ? '被动等待情感连接发生' : '偶尔主动寻求'}</li>
+						<li><strong>深度需求：</strong>第 27 题得分${scores['q27']}/5 - ${scores['q27'] >= 4 ? '深层情感联结是幸福感的核心' : scores['q27'] <= 2 ? '对情感深度需求较低' : '中等情感联结需求'}</li>
+						<li><strong>区分精度：</strong>第 28 题得分${scores['q28']}/5 - ${scores['q28'] >= 4 ? '能精确区分情感与其他吸引类型' : scores['q28'] <= 2 ? '情感边界模糊，易与其他吸引混淆' : '有一定区分能力'}</li>
+						<li><strong>关系弹性：</strong>第 29 题得分${scores['q29']}/5 - ${scores['q29'] >= 4 ? '情感投资高度选择性，深度关系稀少' : scores['q29'] <= 2 ? '情感深度在不同关系中相对均匀' : '中等选择性投资模式'}</li>
+						<li><strong>主动寻求：</strong>第 30 题得分${scores['q30']}/5 - ${scores['q30'] >= 4 ? '主动寻求深度情感连接' : scores['q30'] <= 2 ? '被动等待情感连接发生' : '偶尔主动寻求'}</li>
 					</ul>
 					<p><strong>专业解读：</strong>${sectionAverages.emotional > 3.5 ? '情感吸引可能是您的主要亲密感来源，建议优先投资高质量友谊和情感支持网络，将深度对话、共同成长作为关系核心。' : sectionAverages.emotional < 2.5 ? '您可能更注重个人独立空间，少量深度关系或充足独处时间对您很重要。不需要强迫自己建立过多情感联结。' : '您的情感联结需求适中，平衡了深度与广度，可以在维持少数深度关系的同时享受更广泛的社会联系。'}</p>
 				</div>`;
@@ -1860,10 +1860,10 @@ function calculateResult() {
 					${window.PrismScale.createResultDimensionHeader({ index: 5, title: '审美吸引维度', score: sectionAverages.aesthetic, level: aestheticIntensity.text })}
 					<p><strong>关键发现：</strong></p>
 					<ul>
-						<li><strong>分离程度：</strong>第31题得分${scores['q31']}/5 - ${scores['q31'] >= 4 ? '审美欣赏与性幻想高度分离' : scores['q31'] <= 2 ? '审美常自动触发性联想' : '审美与性欲部分关联'}</li>
-						<li><strong>欣赏终止点：</strong>第32题得分${scores['q32']}/5 - ${scores['q32'] >= 4 ? '能纯欣赏而无占有欲' : scores['q32'] <= 2 ? '欣赏易转化为接近冲动' : '欣赏与行动意图并存'}</li>
-						<li><strong>性别中立性：</strong>第34题得分${scores['q34']}/5 - ${scores['q34'] >= 4 ? '审美不受性取向限制' : scores['q34'] <= 2 ? '审美高度择偶化' : '审美有一定性别偏好'}</li>
-						<li><strong>即时反应：</strong>第35题得分${scores['q35']}/5 - ${scores['q35'] >= 4 ? '第一反应是纯审美欣赏' : scores['q35'] <= 2 ? '第一反应是接近或占有欲' : '两者混合'}</li>
+						<li><strong>分离程度：</strong>第 31 题得分${scores['q31']}/5 - ${scores['q31'] >= 4 ? '审美欣赏与性幻想高度分离' : scores['q31'] <= 2 ? '审美常自动触发性联想' : '审美与性欲部分关联'}</li>
+						<li><strong>欣赏终止点：</strong>第 32 题得分${scores['q32']}/5 - ${scores['q32'] >= 4 ? '能纯欣赏而无占有欲' : scores['q32'] <= 2 ? '欣赏易转化为接近冲动' : '欣赏与行动意图并存'}</li>
+						<li><strong>性别中立性：</strong>第 34 题得分${scores['q34']}/5 - ${scores['q34'] >= 4 ? '审美不受性取向限制' : scores['q34'] <= 2 ? '审美高度择偶化' : '审美有一定性别偏好'}</li>
+						<li><strong>即时反应：</strong>第 35 题得分${scores['q35']}/5 - ${scores['q35'] >= 4 ? '第一反应是纯审美欣赏' : scores['q35'] <= 2 ? '第一反应是接近或占有欲' : '两者混合'}</li>
 					</ul>
 					<p><strong>专业解读：</strong>${sectionAverages.aesthetic > 3.5 ? '您的纯审美能力发达，视觉艺术和美学体验可能为您带来深层满足。您可以充分利用这一优势，通过艺术欣赏、设计创作、美学讨论等丰富生活质量。' : sectionAverages.aesthetic < 2.5 ? '您的审美可能更功能化或与其他吸引融合，美感体验可能不是您的主要愉悦来源。但这不影响您享受其他形式的丰富体验。' : '您的审美体验适中，能在欣赏美与实际行动之间保持平衡。美感是您生活调色板中的一部分，但非全部。'}</p>
 				</div>`;
@@ -1874,10 +1874,10 @@ function calculateResult() {
 					${window.PrismScale.createResultDimensionHeader({ index: 6, title: '感官吸引维度', score: sectionAverages.sensual, level: sensualIntensity.text })}
 					<p><strong>关键发现：</strong></p>
 					<ul>
-						<li><strong>功能性需求：</strong>第37题得分${scores['q37']}/5 - ${scores['q37'] >= 4 ? '身体接触是重要的情绪调节工具' : scores['q37'] <= 2 ? '对身体接触需求很低' : '中等身体接触需求'}</li>
-						<li><strong>意图解码：</strong>第38题得分${scores['q38']}/5 - ${scores['q38'] >= 4 ? '能清晰区分感官与性意图' : scores['q38'] <= 2 ? '常担心触碰被误解为性暗示' : '有一定区分能力但不稳定'}</li>
-						<li><strong>关系普适性：</strong>第39题得分${scores['q39']}/5 - ${scores['q39'] >= 4 ? '触觉需求广泛适用于多种关系' : scores['q39'] <= 2 ? '触觉需求高度伴侣绑定' : '触觉需求有选择性'}</li>
-						<li><strong>表达主动性：</strong>第40题得分${scores['q40']}/5 - ${scores['q40'] >= 4 ? '主动表达触觉需求' : scores['q40'] <= 2 ? '很少表达触觉需求' : '偶尔表达触觉需求'}</li>
+						<li><strong>功能性需求：</strong>第 37 题得分${scores['q37']}/5 - ${scores['q37'] >= 4 ? '身体接触是重要的情绪调节工具' : scores['q37'] <= 2 ? '对身体接触需求很低' : '中等身体接触需求'}</li>
+						<li><strong>意图解码：</strong>第 38 题得分${scores['q38']}/5 - ${scores['q38'] >= 4 ? '能清晰区分感官与性意图' : scores['q38'] <= 2 ? '常担心触碰被误解为性暗示' : '有一定区分能力但不稳定'}</li>
+						<li><strong>关系普适性：</strong>第 39 题得分${scores['q39']}/5 - ${scores['q39'] >= 4 ? '触觉需求广泛适用于多种关系' : scores['q39'] <= 2 ? '触觉需求高度伴侣绑定' : '触觉需求有选择性'}</li>
+						<li><strong>表达主动性：</strong>第 40 题得分${scores['q40']}/5 - ${scores['q40'] >= 4 ? '主动表达触觉需求' : scores['q40'] <= 2 ? '很少表达触觉需求' : '偶尔表达触觉需求'}</li>
 					</ul>
 					<p><strong>专业解读：</strong>${sectionAverages.sensual > 3.0 ? '非性身体接触可能是您表达和接收关爱的重要方式，建议在关系中明确沟通您的触觉偏好，建立清晰的触碰边界和共识。考虑将拥抱、握手、依偎等作为重要的关系仪式。' : sectionAverages.sensual < 2.0 ? '您可能更偏好语言交流、共同活动或礼物赠送等亲密表达方式，触觉不是您的主要连接渠道。明确告知他人您的偏好，避免不必要的触碰压力。' : '您的触觉需求适中，能在需要时享受身体接触，也能在独处时感到满足。这种灵活性有助于适应不同关系和情境。'}</p>
 				</div>`;
@@ -1888,10 +1888,10 @@ function calculateResult() {
 					${window.PrismScale.createResultDimensionHeader({ index: 7, title: '自我认知维度', score: sectionAverages.self, level: selfIntensity.text })}
 					<p><strong>关键发现：</strong></p>
 					<ul>
-						<li><strong>差异感知：</strong>第41题得分${scores['q41']}/5 - ${scores['q41'] >= 4 ? '强烈意识到自身模式与主流不同' : scores['q41'] <= 2 ? '较少感知到自身独特性' : '偶尔察觉差异但不强烈'}</li>
-						<li><strong>接纳程度：</strong>第42题得分${scores['q42']}/5 - ${scores['q42'] >= 4 ? '高度自我接纳，身份认同稳固' : scores['q42'] <= 2 ? '存在内部冲突或否认' : '中立态度，正在适应'}</li>
-						<li><strong>知识获取：</strong>第43题得分${scores['q43']}/5 - ${scores['q43'] >= 4 ? '主动深入学习谱系知识' : scores['q43'] <= 2 ? '信息接触有限' : '中等探索兴趣'}</li>
-						<li><strong>沟通实践：</strong>第44题得分${scores['q44']}/5 - ${scores['q44'] >= 4 ? '主动在关系中沟通吸引模式' : scores['q44'] <= 2 ? '很少沟通吸引模式' : '偶尔或选择性沟通'}</li>
+						<li><strong>差异感知：</strong>第 41 题得分${scores['q41']}/5 - ${scores['q41'] >= 4 ? '强烈意识到自身模式与主流不同' : scores['q41'] <= 2 ? '较少感知到自身独特性' : '偶尔察觉差异但不强烈'}</li>
+						<li><strong>接纳程度：</strong>第 42 题得分${scores['q42']}/5 - ${scores['q42'] >= 4 ? '高度自我接纳，身份认同稳固' : scores['q42'] <= 2 ? '存在内部冲突或否认' : '中立态度，正在适应'}</li>
+						<li><strong>知识获取：</strong>第 43 题得分${scores['q43']}/5 - ${scores['q43'] >= 4 ? '主动深入学习谱系知识' : scores['q43'] <= 2 ? '信息接触有限' : '中等探索兴趣'}</li>
+						<li><strong>沟通实践：</strong>第 44 题得分${scores['q44']}/5 - ${scores['q44'] >= 4 ? '主动在关系中沟通吸引模式' : scores['q44'] <= 2 ? '很少沟通吸引模式' : '偶尔或选择性沟通'}</li>
 					</ul>
 					<p><strong>专业解读：</strong>${sectionAverages.self > 3.5 ? '您的自我认知成熟度高，能有效利用身份知识优化生活质量。您可以进一步将这种自我认知转化为关系沟通技巧和生活方式设计，成为自己生活的专家。' : sectionAverages.self < 2.5 ? '您正处于有价值的自我发现过程中，建议保持好奇和耐心，允许认知随时间发展。参与社区讨论、阅读相关书籍、记录自我观察可能有助于加速这一过程。' : '您的自我认知处于发展中期，已有一定理解但仍在探索中。继续观察、反思和对话，您的自我认知可能会进一步清晰和巩固。'}</p>
 				</div>`;
@@ -1912,7 +1912,7 @@ function calculateResult() {
 						<span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">1</span>
 						<strong style="color: #1a3c66; font-size: 1.1em;">深化谱系认同与社区连接</strong>
 						<ul style="margin-top: 10px; color: #444;">
-							<li><strong>社区连接：</strong>加入AVEN国际论坛（www.asexuality.org）或中文无性恋社群（如豆瓣小组、QQ群、Discord社群），与有相似体验的人交流，验证自身经历，减轻孤立感。</li>
+							<li><strong>社区连接：</strong>加入 AVEN 国际论坛（www.asexuality.org）或中文无性恋社群（如豆瓣小组、QQ 群、Discord 社群），与有相似体验的人交流，验证自身经历，减轻孤立感。</li>
 							<li><strong>教育资源：</strong>系统学习《The Invisible Orientation》、《Ace: What Asexuality Reveals About Desire, Society, and the Meaning of Sex》等专业书籍，建立科学认知框架。</li>
 							<li><strong>身份整合：</strong>将"无性恋谱系"视为神经多样性的一部分，而非缺陷或障碍。练习用积极语言描述自己的体验，如"我以不同的方式体验吸引"而非"我缺少什么"。</li>
 							<li><strong>自我叙事：</strong>撰写个人吸引体验故事，记录关键经历、感受变化和自我发现过程，这有助于整合自我认知。</li>
@@ -1940,7 +1940,7 @@ function calculateResult() {
 							<li><strong>明确沟通：</strong>恋爱初期清晰说明"高浪漫需求+低性需求"的特征。准备简明的解释材料，如"对我来说，爱更多是关于情感亲密和共同成长，而不是性亲密"。</li>
 							<li><strong>关系模式创新：</strong>探索酷儿柏拉图式关系（QPR）、无性婚姻、生活伴侣等非传统关系形式。这些关系强调情感承诺和共同生活，而不预设性亲密。</li>
 							<li><strong>亲密感替代：</strong>开发情感交流、智力共鸣、共同兴趣、生活照顾、仪式创造等非性亲密渠道。建立您们专属的"亲密感工具箱"。</li>
-							<li><strong>伴侣寻找策略：</strong>在无性恋友好平台（如ACEapp、无性恋社群活动）寻找伴侣，或在传统平台明确标注您的需求和身份。</li>
+							<li><strong>伴侣寻找策略：</strong>在无性恋友好平台（如 ACEapp、无性恋社群活动）寻找伴侣，或在传统平台明确标注您的需求和身份。</li>
 						</ul>
 					</li>`;
 		}
@@ -2040,7 +2040,7 @@ function calculateResult() {
 					<li><strong>区分渴望与行动：</strong>仔细思考您对"性关系"的渴望是抽象概念还是具体行为。有时我们渴望的是亲密感、连接感或关系形式，而非性行为本身。</li>
 					<li><strong>探索替代形式：</strong>考虑非插入式性行为、边缘性行为或其他身体亲密方式，这些可能更符合您的实际意愿。</li>
 					<li><strong>沟通期望：</strong>如果进入关系，明确沟通您对性行为的实际意愿和边界，避免期望错位。</li>
-					<li><strong>重新评估：</strong>回顾第19题和第56题，确认是否准确理解了问题含义。渴望关系性恋不一定意味着渴望传统性行为。</li>
+					<li><strong>重新评估：</strong>回顾第 19 题和第 56 题，确认是否准确理解了问题含义。渴望关系性恋不一定意味着渴望传统性行为。</li>
 					</ul>
 				</li>`;
 		}

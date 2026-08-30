@@ -1058,7 +1058,6 @@
 
     #resourceDialog,
     #contactDialog,
-    #appreciationDialog,
     #friendDialog {
       width: min(88vw, 360px);
     }
@@ -2276,8 +2275,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=52265943faef">
-  <script src="assets/theme.js?v=52265943faef"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=f9f47b63da1e">
+  <script src="assets/theme.js?v=f9f47b63da1e"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"
@@ -2360,7 +2359,7 @@
 
           <a class="card pride-rainbow" href="./Analyses/LGBTQ-Comprehensive-Analysis.html">
             <span class="card-tag tag-pride-rainbow">LGBTQ+</span>
-            <p class="card-title">LGBTQ+概念全景辨析表</p>
+            <p class="card-title">LGBTQ+ 概念全景辨析表</p>
             <div class="card-meta">
               <span class="card-type">概念辨析</span>
               <div class="card-arrow">→</div>
@@ -2721,17 +2720,17 @@
       <section class="support-section" data-category="support" aria-labelledby="support-title">
         <div class="section-header">
           <div class="section-icon support">🤝</div>
-          <h2 class="section-title" id="support-title">支持 · 相关链接</h2>
+          <h2 class="section-title" id="support-title">支持项目 · 相关链接</h2>
           <span class="section-count">05 项</span>
         </div>
         <div class="support-grid">
-          <button class="support-card support" type="button" data-dialog-target="appreciationDialog"
-            aria-controls="appreciationDialog">
+          <button class="support-card support" type="button" data-prism-support-open
+            aria-controls="prismSupportDialog">
             <span class="support-mark" aria-hidden="true">♥</span>
             <span class="support-copy">
-              <span class="support-kicker">友情赞助</span>
-              <span class="support-title">赞赏码</span>
-              <span class="support-desc">支持站点持续更新与维护</span>
+              <span class="support-kicker">项目维护</span>
+              <span class="support-title">支持 PrismSelf</span>
+              <span class="support-desc">分担域名与服务开支</span>
             </span>
             <span class="support-arrow" aria-hidden="true">→</span>
           </button>
@@ -2782,23 +2781,6 @@
         </div>
       </section>
 
-      <dialog class="qr-dialog" id="appreciationDialog" aria-labelledby="appreciationDialogTitle">
-        <div class="qr-dialog-inner">
-          <div class="qr-dialog-header">
-            <div class="qr-dialog-copy">
-              <h3 class="qr-dialog-title" id="appreciationDialogTitle">赞赏码</h3>
-              <p class="qr-dialog-desc">微信扫码赞赏，支持站点持续更新与维护。</p>
-            </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭赞赏码弹窗">×</button>
-          </div>
-          <a class="qr-dialog-image" href="./assets/appreciation-code.webp" target="_blank" rel="noopener noreferrer"
-            aria-label="打开赞赏码大图">
-            <img src="./assets/appreciation-code.webp" alt="赞赏码二维码" loading="lazy" decoding="async">
-          </a>
-          <p class="qr-dialog-note">感谢您的关注与支持。</p>
-        </div>
-      </dialog>
-
       <dialog class="qr-dialog" id="friendDialog" aria-labelledby="friendDialogTitle">
         <div class="qr-dialog-inner">
           <div class="qr-dialog-header">
@@ -2809,8 +2791,8 @@
             <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭友情链接弹窗">×</button>
           </div>
           <a class="qr-dialog-image" href="./assets/spade-a.webp" target="_blank" rel="noopener noreferrer"
-            aria-label="打开黑桃 Spade A关注二维码大图">
-            <img src="./assets/spade-a.webp" alt="黑桃 Spade A微信公众号二维码" loading="lazy" decoding="async">
+            aria-label="打开黑桃 Spade A 关注二维码大图">
+            <img src="./assets/spade-a.webp" alt="黑桃 Spade A 微信公众号二维码" loading="lazy" decoding="async">
           </a>
           <p class="qr-dialog-note">站外内容以对方账号发布为准。</p>
         </div>

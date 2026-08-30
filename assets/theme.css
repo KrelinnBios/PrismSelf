@@ -152,7 +152,7 @@
 .prism-back-home,
 .toc-toggle-btn,
 .guide-ai-launcher {
-  --prism-floating-border: var(--scale-accent, var(--guide-control-border-strong, var(--analysis-accent, var(--bingo-accent, var(--teal, var(--accent, #5b4de3))))));
+  --prism-floating-border: var(--scale-accent, var(--guide-control-border-strong, var(--analysis-accent, var(--bingo-accent, var(--teal, var(--primary-color, var(--text-color, var(--ink, var(--accent, #5b4de3)))))))));
   border: 1px solid var(--prism-floating-border) !important;
   background: var(--scale-surface, var(--paper, #ffffff)) !important;
   color: var(--scale-ink, var(--ink, #1a2332)) !important;
@@ -313,6 +313,376 @@
 
   :root[data-theme="light"] body.home-page .theme-toggle:is(:hover, :focus-visible) {
     box-shadow: 0 4px 14px rgba(11, 18, 32, 0.16) !important;
+  }
+}
+
+/* Shared support prompt. It stays visually quiet and only reveals payment
+ * details after the visitor explicitly chooses to support the project. */
+:root {
+  --prism-support-page-primary: var(
+    --scale-accent,
+    var(
+      --guide-control-border-strong,
+      var(
+        --analysis-accent,
+        var(
+          --bingo-accent,
+          var(
+            --glossary-accent,
+            var(--teal, var(--primary-color, var(--text-color, var(--ink, var(--accent, #5b4de3)))))
+          )
+        )
+      )
+    )
+  );
+}
+
+:root[data-theme="dark"] {
+  --prism-support-page-primary: var(
+    --scale-accent,
+    var(
+      --guide-control-border-strong,
+      var(
+        --analysis-accent,
+        var(
+          --bingo-dk-accent,
+          var(
+            --glossary-accent,
+            var(--teal, var(--primary-color, var(--text-color, var(--ink, var(--accent, #7fd3c2)))))
+          )
+        )
+      )
+    )
+  );
+}
+
+.prism-support-cta {
+  --prism-support-primary: var(--prism-support-page-primary);
+  --prism-support-secondary: var(--scale-accent-2, var(--rust, var(--accent-2, var(--rose, var(--teal-dark, var(--prism-support-primary))))));
+  --prism-support-primary-ink: color-mix(in srgb, var(--prism-support-primary) 78%, var(--scale-ink, var(--ink, #1a2332)));
+  --prism-support-secondary-ink: color-mix(in srgb, var(--prism-support-secondary) 82%, var(--scale-ink, var(--ink, #1a2332)));
+  --prism-support-fallback-surface: var(--bg-color, #ffffff);
+  --prism-support-page-surface: var(
+    --analysis-surface,
+    var(
+      --scale-surface,
+      var(
+        --panel,
+        var(
+          --block-bg-color,
+          var(--cream, var(--paper, var(--bg-card, var(--bingo-cell-lv25, var(--prism-support-fallback-surface)))))
+        )
+      )
+    )
+  );
+  --prism-support-surface: color-mix(in srgb, var(--prism-support-primary) 8%, var(--prism-support-page-surface));
+  width: min(100% - 48px, 932px);
+  margin: 0 auto 48px;
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--prism-support-primary) 52%, transparent);
+  border-radius: 18px;
+  background: var(--prism-support-surface);
+  color: inherit;
+  box-shadow: 0 8px 28px rgba(11, 18, 32, 0.07);
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
+  text-align: left;
+}
+
+.scale-result + .prism-support-cta--scale {
+  width: min(100%, 980px);
+  max-width: 980px;
+  margin: 32px auto 0;
+}
+
+.prism-support-cta--guide {
+  width: 100%;
+  max-width: 860px;
+  margin: 32px auto 0;
+}
+
+.prism-support-cta--embedded,
+.prism-support-cta--scale {
+  width: 100%;
+  max-width: none;
+  margin: 24px 0 0;
+  background: var(--prism-support-surface);
+  box-shadow: none !important;
+}
+
+.prism-support-cta--scale {
+  width: min(100%, 980px);
+  max-width: 980px;
+  margin: 32px auto 0;
+}
+
+.prism-support-cta--embedded {
+  padding: 18px 20px;
+  gap: 14px;
+  border-radius: 14px;
+}
+
+.prism-support-cta--embedded .prism-support-heart {
+  font-size: 27px;
+}
+
+#summary.summary-card + .prism-support-cta {
+  width: 100%;
+  margin: 24px 0 0;
+}
+
+.prism-support-heart {
+  color: var(--prism-support-secondary-ink);
+  font: 400 30px/1 Georgia, serif;
+  opacity: 0.82;
+}
+
+.prism-support-content {
+  min-width: 0;
+}
+
+.prism-support-content strong {
+  display: block;
+  margin: 0 0 5px;
+  color: var(--prism-support-primary-ink) !important;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.prism-support-content p {
+  margin: 0 !important;
+  color: color-mix(in srgb, currentColor 72%, transparent) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+  text-indent: 0 !important;
+}
+
+:root[data-theme] body .prism-support-button {
+  min-width: 96px !important;
+  margin: 0 !important;
+  padding: 9px 16px !important;
+  border: 1px solid var(--prism-support-primary-ink) !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: var(--prism-support-primary-ink) !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  font: 600 13px/1.4 'Noto Sans SC', system-ui, sans-serif !important;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
+}
+
+:root[data-theme] body .prism-support-button:hover {
+  background: var(--prism-support-primary-ink) !important;
+  color: var(--prism-support-surface) !important;
+  transform: none !important;
+}
+
+:root[data-theme] body .prism-support-button:focus-visible,
+.prism-support-close:focus-visible,
+.prism-support-code:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--prism-support-primary) 32%, transparent) !important;
+  outline-offset: 3px !important;
+}
+
+/* The support dialog mirrors the homepage popup on every page: fixed neutral
+ * surfaces and accents instead of the host page's themed card colors. */
+.prism-support-dialog {
+  --prism-support-primary: #2b7a62;
+  --prism-support-dialog-muted: #6b7f96;
+  --prism-support-dialog-note-border: rgba(0, 0, 0, 0.07);
+  width: min(88vw, 390px);
+  max-height: min(90vh, 720px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--prism-support-page-primary) 60%, transparent);
+  border-radius: 20px;
+  background: #ffffff;
+  color: #1a2332;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
+}
+
+.prism-support-dialog::backdrop {
+  background: rgba(15, 20, 26, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+.prism-support-dialog-inner {
+  padding: 22px;
+}
+
+.prism-support-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.prism-support-dialog-header h2 {
+  margin: 0 0 6px !important;
+  color: inherit !important;
+  font-family: 'Noto Serif SC', serif !important;
+  font-size: 1.12rem !important;
+  font-weight: 650 !important;
+  line-height: 1.45 !important;
+}
+
+.prism-support-dialog-header p,
+.prism-support-instruction,
+.prism-support-note {
+  margin: 0 !important;
+  color: var(--prism-support-dialog-muted) !important;
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+}
+
+:root[data-theme] body .prism-support-close {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent) !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  font: 400 22px/1 system-ui, sans-serif !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+:root[data-theme] body .prism-support-close svg {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+:root[data-theme] body .prism-support-close:hover {
+  border-color: color-mix(in srgb, currentColor 52%, transparent) !important;
+  background: color-mix(in srgb, currentColor 9%, transparent) !important;
+  transform: none !important;
+}
+
+.prism-support-code {
+  display: block;
+  width: min(100%, 260px);
+  margin: 0 auto 14px;
+  border-radius: 14px;
+}
+
+.prism-support-code img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+.prism-support-instruction {
+  margin-bottom: 10px !important;
+}
+
+.prism-support-note {
+  padding-top: 10px;
+  border-top: 1px solid var(--prism-support-dialog-note-border);
+}
+
+:root[data-theme="dark"] .prism-support-cta {
+  --prism-support-primary: var(--prism-support-page-primary);
+  --prism-support-primary-ink: color-mix(in srgb, var(--prism-support-primary) 38%, #e7edf3);
+  --prism-support-secondary-ink: color-mix(in srgb, var(--prism-support-secondary) 38%, #e7edf3);
+  --prism-support-fallback-surface: var(--bg-color, #161d26);
+  --prism-support-page-surface: var(
+    --analysis-surface,
+    var(
+      --scale-surface,
+      var(
+        --panel,
+        var(
+          --block-bg-color,
+          var(
+            --cream,
+            var(
+              --paper,
+              var(
+                --bg-card,
+                var(--bingo-dk-lv25-bg, var(--bg-color, #161d26))
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+  border-color: color-mix(in srgb, var(--prism-support-primary) 58%, transparent);
+  color: #d9e2ee;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+}
+
+:root[data-theme="dark"] .prism-support-content p {
+  color: #c5d0dc !important;
+}
+
+:root[data-theme="dark"] .prism-support-content strong {
+  color: var(--prism-support-primary-ink) !important;
+}
+
+:root[data-theme="dark"] .prism-support-dialog {
+  --prism-support-primary: #43b88c;
+  --prism-support-dialog-muted: #8a99a8;
+  --prism-support-dialog-note-border: rgba(255, 255, 255, 0.1);
+  background: #161d26;
+  color: #e7edf3;
+}
+
+@media (max-width: 620px) {
+  .prism-support-cta {
+    width: calc(100% - 32px);
+    margin-bottom: 32px;
+    padding: 18px;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 13px;
+    border-radius: 16px;
+  }
+
+  .scale-result + .prism-support-cta,
+  #summary.summary-card + .prism-support-cta {
+    width: 100%;
+  }
+
+  .prism-support-cta--guide,
+  .prism-support-cta--embedded,
+  .prism-support-cta--scale {
+    width: 100%;
+    margin: 20px 0 0;
+  }
+
+  :root[data-theme] body .prism-support-button {
+    grid-column: 1 / -1;
+    width: 100% !important;
+    min-height: 42px !important;
+  }
+
+  .prism-support-dialog {
+    width: calc(100vw - 28px);
+  }
+
+  .prism-support-dialog-inner {
+    padding: 18px;
   }
 }
 
