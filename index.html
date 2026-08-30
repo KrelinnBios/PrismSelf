@@ -2765,7 +2765,7 @@
       <section class="support-section" data-category="support" aria-labelledby="support-title">
         <div class="section-header">
           <div class="section-icon support">🤝</div>
-          <h2 class="section-title" id="support-title">支持项目 · 相关链接</h2>
+          <h2 class="section-title" id="support-title">支持 · 相关链接</h2>
           <span class="section-count">05 项</span>
         </div>
         <div class="support-grid">
@@ -3058,7 +3058,8 @@
             const section = sections.find((s) => s.dataset.category === cat);
             if (section) {
               const rect = section.getBoundingClientRect();
-              const stickyH = sidebarEl ? sidebarEl.offsetHeight : 0;
+              const isMobileBar = window.matchMedia('(max-width: 640px)').matches;
+              const stickyH = isMobileBar && sidebarEl ? sidebarEl.offsetHeight : 0;
               const top = rect.top + window.scrollY - Math.min(window.innerHeight * 2 / 5, 220) - stickyH - 12;
               window.scrollTo({ top, behavior: 'smooth' });
             }
