@@ -742,14 +742,6 @@ h1 em {
   gap: 10px;
 }
 
-.footer-note {
-  max-width: 780px;
-  margin: 28px auto 0;
-  color: var(--ink-soft);
-  font-size: 12px;
-  text-align: center;
-}
-
 .toast {
   position: fixed;
   left: 50%;
@@ -1108,11 +1100,5 @@ h1 em {
     padding: 16px 14px;
     border-radius: 16px;
     box-shadow: none;
-  }
-
-  .footer-note {
-    margin-top: 20px;
-    font-size: 0.76rem;
-    line-height: 1.7;
   }
 }
