@@ -28,7 +28,7 @@ const pages = {
   'Topics/Asexual-Community-Survey.html': { desc: '无性恋社群现状与需求调查报告，呈现社群构成、处境与支持需求等数据与解读。' },
   'Guides/Aromantic-Comprehensive-Guide.html': { desc: '无浪漫全景指南，系统介绍无浪漫的定义、谱系、心理机制、常见误解、关系实践、社群文化与法律处境。', theme: '#166534' },
   'Guides/Asexual-Comprehensive-Guide.html': { desc: '无性恋全景指南，系统介绍无性恋的定义、谱系、常见误解与社群资源。' },
-  'Guides/BDSM-Comprehensive-Guide.html': { desc: 'BDSM 全景指南，系统介绍核心概念、安全原则、角色倾向、偏好测试解读、知情同意与风险管理。' },
+  'Guides/BDSM-Comprehensive-Guide.html': { desc: 'BDSM 全景指南，系统介绍核心概念、角色与关系、偏好探索、知情同意、风险管理和求助边界。' },
   'Guides/Demisexual-Comprehensive-Guide.html': { desc: '半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。' },
   'Guides/Gender-Concepts-Comprehensive-Guide.html': { desc: '性别概念全景指南，系统解释性别认同、性别表达与相关核心术语。' },
   'Guides/Greysexual-Comprehensive-Guide.html': { desc: '灰性恋全景指南，系统介绍灰性恋的定义、谱系定位、常见误解与社群语境。' },
