@@ -31,32 +31,32 @@
       box-sizing: border-box;
     }
 
-    .row-lv1 {
+    .row-group-evidence {
       background: linear-gradient(135deg, #f0fdf4, #eafaf1);
       border-left: 3px solid #15803d;
     }
 
-    .row-lv2 {
+    .row-group-context {
       background: linear-gradient(135deg, #eff6ff, #e8f0fe);
       border-left: 3px solid #1d4ed8;
     }
 
-    .row-lv3 {
+    .row-group-contingent {
       background: linear-gradient(135deg, #fff7ed, #fff3e6);
       border-left: 3px solid #ea580c;
     }
 
-    .row-lv4 {
+    .row-group-structural-risk {
       background: linear-gradient(135deg, #fef9ee, #fef3c7);
       border-left: 3px solid #b45309;
     }
 
-    .row-lv5 {
+    .row-group-epistemic-risk {
       background: linear-gradient(135deg, #fef2f2, #fee8e8);
       border-left: 3px solid #b91c1c;
     }
 
-    .row-lv6 {
+    .row-group-power-obscuring-risk {
       background: linear-gradient(135deg, #fdf2f5, #fce8ef);
       border-left: 3px solid #9b1c2c;
     }
@@ -73,27 +73,27 @@
       font-style: italic;
     }
 
-    .lv1 .badge-dot {
+    .group-evidence .badge-dot {
       background: #15803d;
     }
 
-    .lv2 .badge-dot {
+    .group-context .badge-dot {
       background: #1d4ed8;
     }
 
-    .lv3 .badge-dot {
+    .group-contingent .badge-dot {
       background: #ea580c;
     }
 
-    .lv4 .badge-dot {
+    .group-structural-risk .badge-dot {
       background: #b45309;
     }
 
-    .lv5 .badge-dot {
+    .group-epistemic-risk .badge-dot {
       background: #b91c1c;
     }
 
-    .lv6 .badge-dot {
+    .group-power-obscuring-risk .badge-dot {
       background: #9b1c2c;
     }
 
@@ -115,32 +115,32 @@
         border-left: 5px solid;
       }
 
-      .row-lv1 {
+      .row-group-evidence {
         background: #f0fdf4;
         border-left-color: #15803d;
       }
 
-      .row-lv2 {
+      .row-group-context {
         background: #eff6ff;
         border-left-color: #1d4ed8;
       }
 
-      .row-lv3 {
+      .row-group-contingent {
         background: #fff7ed;
         border-left-color: #ea580c;
       }
 
-      .row-lv4 {
+      .row-group-structural-risk {
         background: #fefce8;
         border-left-color: #b45309;
       }
 
-      .row-lv5 {
+      .row-group-epistemic-risk {
         background: #fef2f2;
         border-left-color: #b91c1c;
       }
 
-      .row-lv6 {
+      .row-group-power-obscuring-risk {
         background: #fdf2f5;
         border-left-color: #9b1c2c;
       }
@@ -226,27 +226,27 @@
       }
     }
 
-    :root[data-theme="dark"] .row-lv1 {
+    :root[data-theme="dark"] .row-group-evidence {
       background: linear-gradient(135deg, #0f2417, #0d2014);
     }
 
-    :root[data-theme="dark"] .row-lv2 {
+    :root[data-theme="dark"] .row-group-context {
       background: linear-gradient(135deg, #121d2e, #101826);
     }
 
-    :root[data-theme="dark"] .row-lv3 {
+    :root[data-theme="dark"] .row-group-contingent {
       background: linear-gradient(135deg, #2a1c12, #241910);
     }
 
-    :root[data-theme="dark"] .row-lv4 {
+    :root[data-theme="dark"] .row-group-structural-risk {
       background: linear-gradient(135deg, #241f10, #1f1a0c);
     }
 
-    :root[data-theme="dark"] .row-lv5 {
+    :root[data-theme="dark"] .row-group-epistemic-risk {
       background: linear-gradient(135deg, #2a1414, #241010);
     }
 
-    :root[data-theme="dark"] .row-lv6 {
+    :root[data-theme="dark"] .row-group-power-obscuring-risk {
       background: linear-gradient(135deg, #2a1320, #24101a);
     }
 
@@ -277,19 +277,19 @@
     <div class="header">
       <div class="header-tag">政治哲学 · 社会心理学 · 批判理论</div>
       <h1>中立类型全面分析表</h1>
-      <p class="subtitle">基于权力结构分析、社会心理学与批判理论的多维框架，涵盖操作性定义、心理机制、社会功能与应对策略，系统区分 16 种形态各异的“中立”</p>
+      <p class="subtitle">用 16 个观察角度拆解“不表态、延迟判断或强调中立”可能承担的不同功能，并提醒结合证据、风险与权力情境判断</p>
       <div class="meta-row">
         <div class="meta-item">📚 理论基础 <span>Lukes; Fraser; Bourdieu; Habermas</span></div>
-        <div class="meta-item">📌 类型总数 <span>16 种</span></div>
-        <div class="meta-item">⚖️ 功能性分级 <span>6 级</span></div>
+        <div class="meta-item">📌 阅读角度 <span>16 种</span></div>
+        <div class="meta-item">⚖️ 观察角度归类 <span>（非测评）</span></div>
       </div>
     </div>
 
     <div class="controls" id="filterControls">
       <button class="filter-btn active" data-filter="all">全部 (16)</button>
-      <button class="filter-btn" data-filter="genuine">相对真实 (3)</button>
-      <button class="filter-btn" data-filter="ambiguous">功能模糊 (7)</button>
-      <button class="filter-btn" data-filter="distorting">结构性遮蔽 (6)</button>
+      <button class="filter-btn" data-filter="genuine">证据与安全 (3)</button>
+      <button class="filter-btn" data-filter="ambiguous">情境与策略 (7)</button>
+      <button class="filter-btn" data-filter="distorting">遮蔽风险 (6)</button>
     </div>
 
     <div class="table-wrapper">
@@ -303,12 +303,12 @@
             <th>心理与社会机制</th>
             <th>社会功能与风险</th>
             <th>识别与应对策略</th>
-            <th>功能评级</th>
+            <th>观察角度归类</th>
           </tr>
         </thead>
         <tbody>
           <!-- 数据行：data-type / data-key 严格对应 -->
-          <tr class="row-lv1" data-type="genuine" data-key="analytic">
+          <tr class="row-group-evidence" data-type="genuine" data-key="analytic">
             <td class="concept-cell" data-key="analytic">
               <div class="concept-pill"><span class="concept-name">分析型中立</span><span class="concept-en">Analytical
                   Neutrality</span></div><button class="detail-btn" data-key="analytic">解析 →</button>
@@ -321,11 +321,11 @@
             <td>结合证据和权力分析后做出差异化判断，明确责任比例。<div class="example-text">例：分析劳资纠纷时区分结构性权力差异，而非等量评价双方诉求</div>
             </td>
             <td>批判性思维；结构性权力分析（Lukes）；情境化归因</td>
-            <td>最接近客观的判断形态；需要高认知投入。</td>
+            <td>有助于形成有依据的判断；仍受资料质量、分析框架与观察者位置限制。</td>
             <td>以“谁从现状中获益/谁承担后果/谁被牺牲”三问框架系统性核验</td>
-            <td><span class="badge lv1"><span class="badge-dot"></span>Lv.1 认识论健全</span></td>
+            <td><span class="badge group-evidence"><span class="badge-dot"></span>证据审慎</span></td>
           </tr>
-          <tr class="row-lv1" data-type="genuine" data-key="info">
+          <tr class="row-group-evidence" data-type="genuine" data-key="info">
             <td class="concept-cell" data-key="info">
               <div class="concept-pill"><span class="concept-name">信息不足型中立</span><span class="concept-en">Epistemic
                   Suspension</span></div><button class="detail-btn" data-key="info">解析 →</button>
@@ -340,14 +340,14 @@
             <td>认识论谦逊；贝叶斯更新；不确定性容忍</td>
             <td>防止草率判断；可能被误读为回避。</td>
             <td>追问“什么条件下你会形成判断”以区分认识论悬置与逃避。</td>
-            <td><span class="badge lv1"><span class="badge-dot"></span>Lv.1 认识论健全</span></td>
+            <td><span class="badge group-evidence"><span class="badge-dot"></span>证据审慎</span></td>
           </tr>
-          <tr class="row-lv2" data-type="genuine" data-key="selfprotect">
+          <tr class="row-group-context" data-type="genuine" data-key="selfprotect">
             <td class="concept-cell" data-key="selfprotect">
               <div class="concept-pill"><span class="concept-name">自我保护型中立</span><span class="concept-en">Protective
                   Silence</span></div><button class="detail-btn" data-key="selfprotect">解析 →</button>
             </td>
-            <td>边缘群体/高风险个体因表态成本过高（网暴、失业等）选择公开沉默，结构性压力下的生存理性。</td>
+            <td>个体因网暴、失业、关系报复等现实风险而选择不公开表态。任何人都可能面临这类成本，弱势处境往往会进一步压缩安全表达空间。</td>
             <td>
               <div class="tag-list"><span class="tag">生存压力规避</span><span class="tag">风险意识</span><span
                   class="tag">结构性弱势</span></div>
@@ -357,9 +357,9 @@
             <td>自我呈现理论（Goffman）；风险认知与情境顺从</td>
             <td>个人合理保护机制；折射表达安全缺失。</td>
             <td>分析“是否拥有安全表达条件”，改善结构性环境。</td>
-            <td><span class="badge lv2"><span class="badge-dot"></span>Lv.2 情境合理</span></td>
+            <td><span class="badge group-context"><span class="badge-dot"></span>情境约束</span></td>
           </tr>
-          <tr class="row-lv2" data-type="ambiguous" data-key="procedural">
+          <tr class="row-group-context" data-type="ambiguous" data-key="procedural">
             <td class="concept-cell" data-key="procedural">
               <div class="concept-pill"><span class="concept-name">程序型中立</span><span class="concept-en">Procedural
                   Neutrality</span></div><button class="detail-btn" data-key="procedural">解析 →</button>
@@ -371,51 +371,51 @@
             </td>
             <td>“程序是合规的”“按规定处理”<div class="example-text">例：法律程序合规但对弱势方系统性不利</div>
             </td>
-            <td>程序正义（Rawls）；法律形式主义；官僚理性化</td>
+            <td>程序正义与正当程序；法律形式主义；官僚制的形式理性</td>
             <td>降低随意性；但规则若由强者制定，程序公平≠实质公平。</td>
             <td>追问“谁制定规则”“规则本身是否公平”“资源获取是否对等”。</td>
-            <td><span class="badge lv2"><span class="badge-dot"></span>Lv.2 情境合理</span></td>
+            <td><span class="badge group-context"><span class="badge-dot"></span>情境约束</span></td>
           </tr>
-          <tr class="row-lv3" data-type="ambiguous" data-key="avoidance">
+          <tr class="row-group-contingent" data-type="ambiguous" data-key="avoidance">
             <td class="concept-cell" data-key="avoidance">
               <div class="concept-pill"><span class="concept-name">回避型中立</span><span class="concept-en">Conflict
                   Avoidance</span></div><button class="detail-btn" data-key="avoidance">解析 →</button>
             </td>
-            <td>以“不卷入”为核心驱动，通过不表态、转移话题规避冲突，源于对冲突本身的焦虑。</td>
+            <td>通过不表态、退出或转移话题减少卷入冲突。可能与焦虑、经验、职责边界、精力或风险判断有关，不能仅凭沉默确定动机。</td>
             <td>
               <div class="tag-list"><span class="tag">冲突焦虑</span><span class="tag">社交风险规避</span><span
                   class="tag">情绪防御</span></div>
             </td>
             <td>“我不了解情况”“别问我”<div class="example-text">例：目睹职场不公但主动回避以免被波及</div>
             </td>
-            <td>冲突回避人格（Thomas-Kilmann）；习得性无助</td>
+            <td>冲突应对中的回避策略（Thomas-Kilmann）；焦虑与风险评估；有限资源</td>
             <td>个体减少短期焦虑；系统层面可能默许不平等。</td>
             <td>区分“焦虑驱动”与“安全成本驱动”；前者适用心理支持。</td>
-            <td><span class="badge lv3"><span class="badge-dot"></span>Lv.3 功能模糊</span></td>
+            <td><span class="badge group-contingent"><span class="badge-dot"></span>效果依情境</span></td>
           </tr>
-          <tr class="row-lv3" data-type="ambiguous" data-key="civility">
+          <tr class="row-group-contingent" data-type="ambiguous" data-key="civility">
             <td class="concept-cell" data-key="civility">
               <div class="concept-pill"><span class="concept-name">礼仪型中立</span><span class="concept-en">Civility
                   Neutrality</span></div><button class="detail-btn" data-key="civility">解析 →</button>
             </td>
-            <td>将维持表达形式的文明规范置于内容正确性之上，以礼仪门槛隐性压制弱势表达。</td>
+            <td>优先强调语气、秩序或礼仪，而较少回应内容。当这些要求只针对一方或被用来回避实质问题时，可能构成“语气规训”；在安全沟通中，表达边界也可能有正当作用。</td>
             <td>
               <div class="tag-list"><span class="tag">体面维护</span><span class="tag">形式规范优先</span><span
                   class="tag">情绪管控</span></div>
             </td>
             <td>“能不能理性一点”“注意场合”<div class="example-text">例：要求长期受压迫抗议者“保持理性”，对施压者不适用同等标准</div>
             </td>
-            <td>礼仪阶级化（Bourdieu）；情感规则（Hochschild）；tone policing</td>
-            <td>维持表面秩序但偏向强势方，压制弱势愤怒表达。</td>
+            <td>文化资本与身份差异；情感规范；tone policing（语气规训）</td>
+            <td>可能降低即时冲突，也可能转移议题或不对称限制表达；须根据规则适用方式判断。</td>
             <td>追问礼仪要求的对称适用性，区分“形式粗糙但内容真”与“形式优雅但内容空”。</td>
-            <td><span class="badge lv3"><span class="badge-dot"></span>Lv.3 功能模糊</span></td>
+            <td><span class="badge group-contingent"><span class="badge-dot"></span>效果依情境</span></td>
           </tr>
-          <tr class="row-lv3" data-type="ambiguous" data-key="interest">
+          <tr class="row-group-contingent" data-type="ambiguous" data-key="interest">
             <td class="concept-cell" data-key="interest">
               <div class="concept-pill"><span class="concept-name">利益型中立</span><span class="concept-en">Strategic
                   Neutrality</span></div><button class="detail-btn" data-key="interest">解析 →</button>
             </td>
-            <td>以风险收益计算为实质驱动，表面立场随情境动态调整，“中立”是工具而非信仰。</td>
+            <td>基于利益、关系或风险收益而调整公开立场。策略性并不自动等于欺骗；关键在于是否隐瞒利益冲突、是否前后标准不一及其实际影响。</td>
             <td>
               <div class="tag-list"><span class="tag">风险收益计算</span><span class="tag">机会主义</span><span
                   class="tag">立场弹性</span></div>
@@ -425,9 +425,9 @@
             <td>社会交换理论（Blau）；博弈论策略；印象管理</td>
             <td>个体有效管理风险；系统层面用中立语言强化既有权力结构。</td>
             <td>追踪行为一致性，对比公开表态与实际选择。</td>
-            <td><span class="badge lv3"><span class="badge-dot"></span>Lv.3 功能模糊</span></td>
+            <td><span class="badge group-contingent"><span class="badge-dot"></span>效果依情境</span></td>
           </tr>
-          <tr class="row-lv4" data-type="ambiguous" data-key="order">
+          <tr class="row-group-structural-risk" data-type="ambiguous" data-key="order">
             <td class="concept-cell" data-key="order">
               <div class="concept-pill"><span class="concept-name">维护秩序型中立</span><span
                   class="concept-en">Order-Preserving Neutrality</span></div><button class="detail-btn"
@@ -443,14 +443,14 @@
             <td>系统正当化（Jost & Banaji）；权威人格；冲突成本厌恶</td>
             <td>短期减少冲突烈度，在不平等情境中偏向强势方。</td>
             <td>追问“谁从秩序中获益”，区分“稳定”与“正义”。</td>
-            <td><span class="badge lv4"><span class="badge-dot"></span>Lv.4 结构性偏向</span></td>
+            <td><span class="badge group-structural-risk"><span class="badge-dot"></span>结构偏向风险</span></td>
           </tr>
-          <tr class="row-lv4" data-type="ambiguous" data-key="deflect">
+          <tr class="row-group-structural-risk" data-type="ambiguous" data-key="deflect">
             <td class="concept-cell" data-key="deflect">
-              <div class="concept-pill"><span class="concept-name">甩锅型中立</span><span class="concept-en">Structural
+              <div class="concept-pill"><span class="concept-name">责任转移型中立</span><span class="concept-en">Structural
                   Deflection</span></div><button class="detail-btn" data-key="deflect">解析 →</button>
             </td>
-            <td>将所有行为归因于结构/制度，系统性消解具体责任，以“理解”为名洗白加害行为。</td>
+            <td>用结构或制度解释替代对具体行动者责任的讨论。结构分析本身必要；问题出在把“行为受到限制”直接推成“个体无需承担任何责任”。</td>
             <td>
               <div class="tag-list"><span class="tag">责任转移</span><span class="tag">结构归因滥用</span><span
                   class="tag">主体性消解</span></div>
@@ -460,14 +460,14 @@
             <td>道德推脱（Bandura）；责任扩散；结构解释的合法性借用</td>
             <td>结构分析有价值，但免除个体责任会稀释现实伤害。</td>
             <td>区分“结构限制了空间”与“结构消灭了主体性”，追问相同结构下其他人的选择。</td>
-            <td><span class="badge lv4"><span class="badge-dot"></span>Lv.4 结构性偏向</span></td>
+            <td><span class="badge group-structural-risk"><span class="badge-dot"></span>结构偏向风险</span></td>
           </tr>
-          <tr class="row-lv4" data-type="ambiguous" data-key="spectator">
+          <tr class="row-group-structural-risk" data-type="ambiguous" data-key="spectator">
             <td class="concept-cell" data-key="spectator">
-              <div class="concept-pill"><span class="concept-name">消费型中立</span><span class="concept-en">Spectator
+              <div class="concept-pill"><span class="concept-name">娱乐化旁观型中立</span><span class="concept-en">Spectator
                   Neutrality</span></div><button class="detail-btn" data-key="spectator">解析 →</button>
             </td>
-            <td>将冲突作为娱乐内容消费，“不站队”成为免责声明，通过围观与传播转化真实伤害为素材。</td>
+            <td>以猎奇或娱乐方式围观、转发冲突，同时以“不站队”否认自己的传播参与。并非所有了解或旁观都有同样后果，需看是否增加曝光、骚扰或错误信息扩散。</td>
             <td>
               <div class="tag-list"><span class="tag">娱乐化旁观</span><span class="tag">情绪消费</span><span
                   class="tag">道德脱钩</span></div>
@@ -477,11 +477,11 @@
             <td>奇观化（Debord）；道德去激活；平台算法激励冲突</td>
             <td>加剧冲突升级，将伤害商品化，削弱道德责任。</td>
             <td>追问“围观行为是否客观上放大了伤害”，区分“了解事件”与“消费事件”。</td>
-            <td><span class="badge lv4"><span class="badge-dot"></span>Lv.4 结构性偏向</span></td>
+            <td><span class="badge group-structural-risk"><span class="badge-dot"></span>结构偏向风险</span></td>
           </tr>
-          <tr class="row-lv5" data-type="distorting" data-key="absolute">
+          <tr class="row-group-epistemic-risk" data-type="distorting" data-key="absolute">
             <td class="concept-cell" data-key="absolute">
-              <div class="concept-pill"><span class="concept-name">绝对型中立</span><span class="concept-en">False
+              <div class="concept-pill"><span class="concept-name">形式对称型中立</span><span class="concept-en">False
                   Balance</span></div><button class="detail-btn" data-key="absolute">解析 →</button>
             </td>
             <td>无视权力差异，坚持形式等量对待，以“对称”为公正标准，忽略结构性责任比例。</td>
@@ -494,14 +494,14 @@
             <td>false balance 偏误；两边主义；认知闭合需要</td>
             <td>貌似公平但扭曲现实，常被强势方策略利用。</td>
             <td>引入“谁先制造问题/谁掌握资源/后果由谁承担”等非对称维度纠偏。</td>
-            <td><span class="badge lv5"><span class="badge-dot"></span>Lv.5 认识论扭曲</span></td>
+            <td><span class="badge group-epistemic-risk"><span class="badge-dot"></span>认识偏差风险</span></td>
           </tr>
-          <tr class="row-lv5" data-type="distorting" data-key="cynical">
+          <tr class="row-group-epistemic-risk" data-type="distorting" data-key="cynical">
             <td class="concept-cell" data-key="cynical">
               <div class="concept-pill"><span class="concept-name">犬儒型中立</span><span class="concept-en">Cynical
                   Neutrality</span></div><button class="detail-btn" data-key="cynical">解析 →</button>
             </td>
-            <td>以“所有人都一样”拒绝差异化分析，用廉价超脱感替代认知努力。</td>
+            <td>以“所有人都一样”为结论，停止比较证据、责任或后果。它可能来自判断疲劳、不信任或策略性回避，不应据一句话直接推断其心理。</td>
             <td>
               <div class="tag-list"><span class="tag">判断疲劳</span><span class="tag">信任崩塌</span><span
                   class="tag">廉价超脱感</span></div>
@@ -511,9 +511,9 @@
             <td>道德愤世嫉俗（Sloterdijk）；习得性无助；判断疲劳</td>
             <td>抹平压迫差异，使强者与弱者获得等同道德评价。</td>
             <td>追问“‘都一样’建立在分析上还是情绪投射”，区分有证据悲观与虚无。</td>
-            <td><span class="badge lv5"><span class="badge-dot"></span>Lv.5 认识论扭曲</span></td>
+            <td><span class="badge group-epistemic-risk"><span class="badge-dot"></span>认识偏差风险</span></td>
           </tr>
-          <tr class="row-lv5" data-type="distorting" data-key="technocrat">
+          <tr class="row-group-epistemic-risk" data-type="distorting" data-key="technocrat">
             <td class="concept-cell" data-key="technocrat">
               <div class="concept-pill"><span class="concept-name">技术官僚型中立</span><span class="concept-en">Technocratic
                   Neutrality</span></div><button class="detail-btn" data-key="technocrat">解析 →</button>
@@ -528,15 +528,15 @@
             <td>技术理性意识形态（Habermas）；算法偏见（Eubanks）</td>
             <td>系统性掩盖设计中的价值选择，削弱公共问责。</td>
             <td>追问“数据如何收集/指标如何定义/推荐如何设计”，要求算法审计。</td>
-            <td><span class="badge lv5"><span class="badge-dot"></span>Lv.5 认识论扭曲</span></td>
+            <td><span class="badge group-epistemic-risk"><span class="badge-dot"></span>认识偏差风险</span></td>
           </tr>
-          <tr class="row-lv6" data-type="distorting" data-key="pseudo">
+          <tr class="row-group-power-obscuring-risk" data-type="distorting" data-key="pseudo">
             <td class="concept-cell" data-key="pseudo">
-              <div class="concept-pill"><span class="concept-name">伪超越型中立</span><span
+              <div class="concept-pill"><span class="concept-name">抽象超越型中立</span><span
                   class="concept-en">Pseudo-Transcendence</span></div><button class="detail-btn" data-key="pseudo">解析
                 →</button>
             </td>
-            <td>以“超越左右”“跳出二元对立”的姿态包装不判断，建立认知优越感回避具体分析。</td>
+            <td>强调“超越左右”或“跳出二元对立”，却不说明在具体事实、责任与权力问题上如何判断。超越二分本身可能有分析价值；风险在于抽象姿态取代可检验的论证。</td>
             <td>
               <div class="tag-list"><span class="tag">认知优越感</span><span class="tag">抽象化回避</span><span
                   class="tag">现实逃离</span></div>
@@ -546,14 +546,14 @@
             <td>自我提升偏误；元认知滥用；精英主义认识论</td>
             <td>以“超越”之名回避权力分析，为不平等提供高雅辩护。</td>
             <td>追问“超越具体超越了什么，为什么选择在此时不判断”，要求落地具体情境。</td>
-            <td><span class="badge lv6"><span class="badge-dot"></span>Lv.6 认识论遮蔽</span></td>
+            <td><span class="badge group-power-obscuring-risk"><span class="badge-dot"></span>权力遮蔽风险</span></td>
           </tr>
-          <tr class="row-lv6" data-type="distorting" data-key="nihil">
+          <tr class="row-group-power-obscuring-risk" data-type="distorting" data-key="nihil">
             <td class="concept-cell" data-key="nihil">
               <div class="concept-pill"><span class="concept-name">虚无型中立</span><span class="concept-en">Nihilistic
                   Neutrality</span></div><button class="detail-btn" data-key="nihil">解析 →</button>
             </td>
-            <td>认为判断本身失去意义，全面放弃评价，连批判意愿也已消解。</td>
+            <td>以“没有意义”或“无法改变”为由撤出判断与行动，可能反映无力感、政治冷漠、耗竭或价值立场；日常短暂退出不等同于哲学虚无主义。</td>
             <td>
               <div class="tag-list"><span class="tag">存在主义崩塌</span><span class="tag">意义感丧失</span><span
                   class="tag">集体信任瓦解</span></div>
@@ -563,14 +563,14 @@
             <td>存在主义虚无感（Camus/Frankl）；政治冷漠结构性成因</td>
             <td>瘫痪道德判断与集体行动，权力最不害怕的反对形式。</td>
             <td>追问虚无感的历史与结构来源，区分“已放弃”与“需要恢复能动性”。</td>
-            <td><span class="badge lv6"><span class="badge-dot"></span>Lv.6 认识论遮蔽</span></td>
+            <td><span class="badge group-power-obscuring-risk"><span class="badge-dot"></span>权力遮蔽风险</span></td>
           </tr>
-          <tr class="row-lv6" data-type="distorting" data-key="conformity">
+          <tr class="row-group-power-obscuring-risk" data-type="distorting" data-key="conformity">
             <td class="concept-cell" data-key="conformity">
-              <div class="concept-pill"><span class="concept-name">默认服从型中立</span><span class="concept-en">Default
+              <div class="concept-pill"><span class="concept-name">默认现状型中立</span><span class="concept-en">Default
                   Conformity</span></div><button class="detail-btn" data-key="conformity">解析 →</button>
             </td>
-            <td>以“没有明确表态”为形式，实质默许并强化既有秩序，将现状视为理所当然。</td>
+            <td>未主动检视既有规则或把现状视为默认起点。在某些情境中，这可能让不平等继续运作；但沉默本身不能证明认同，还需考察行动能力、风险与制度角色。</td>
             <td>
               <div class="tag-list"><span class="tag">权威服从</span><span class="tag">现状自然化</span><span
                   class="tag">批判意识缺失</span></div>
@@ -578,9 +578,9 @@
             <td>不质疑现有规则，默认既定框架为正当。<div class="example-text">例：系统性歧视中“保持中立”，客观上为歧视运行提供沉默支持</div>
             </td>
             <td>权威服从（Milgram）；系统正当化（Jost）；意识形态内化</td>
-            <td>最深层的权力形式——塑造“自然”的偏好，不表态即支持现状。</td>
+            <td>可能把历史形成的安排自然化，并在效果上维持现状；不应把所有未表态者一概等同于主动支持者。</td>
             <td>培养批判性现状意识：“你认为理所当然的规则由谁、在何种权力关系下制定？”</td>
-            <td><span class="badge lv6"><span class="badge-dot"></span>Lv.6 认识论遮蔽</span></td>
+            <td><span class="badge group-power-obscuring-risk"><span class="badge-dot"></span>权力遮蔽风险</span></td>
           </tr>
         </tbody>
       </table>
@@ -589,48 +589,49 @@
     <div class="panels">
       <div class="panel"><span class="panel-icon">⚖️</span>
         <h3>权力维度</h3>
-        <p>路克斯的三维权力模型揭示：权力不仅通过强制运作，更通过塑造偏好与“自然”框架运作。分析中立类型时，必须识别“谁从中获益”。</p>
+        <p>路克斯的权力分析提醒我们关注议程与偏好如何形成。“谁获益、谁承担后果”是有用问题，但不能单独证明某人的动机或某项安排的因果机制。</p>
       </div>
       <div class="panel"><span class="panel-icon">🧠</span>
         <h3>认识论维度</h3>
-        <p>“冷静”不等于“客观”，“对称”不等于“公平”。分析型与信息不足型体现认识论诚实；绝对型、犬儒型等制造认识论扭曲。</p>
+        <p>“冷静”不自动保证准确，“对称”也不自动等于公平。判断质量取决于证据、推理、可修正性与对权力情境的说明，而非是否落入本页某个标签。</p>
       </div>
       <div class="panel"><span class="panel-icon">🌐</span>
         <h3>结构维度</h3>
-        <p>在结构性不对等情境中，“维持现状”本身就是偏向。甩锅型、维护秩序型等以中立之名提供合法性外衣。</p>
+        <p>在结构性不对等情境中，维持现状可能产生不对称后果；同时，评价具体沉默或程序还应考虑权限、替代方案、风险和可预见影响。</p>
       </div>
       <div class="panel"><span class="panel-icon">🔬</span>
         <h3>心理维度</h3>
-        <p>回避型、自我保护型与虚无型中立嵌入心理史与结构压力，系统正当化使真正的判断投入更为困难。</p>
+        <p>不表态可能与焦虑、安全、耗竭、角色职责或信息不足有关。页面列出的心理机制只是待核查的解释，不应用作隔空诊断。</p>
       </div>
     </div>
 
     <div class="legend-section">
-      <h3>功能性分级标准</h3>
+      <h3>观察角度归类（非测评）</h3>
+      <p style="margin:0 0 18px;color:var(--text-secondary);line-height:1.8">以下分组用于整理不同“中立”表达可能承担的功能及其风险，不是由实证研究建立的等级量表。各组之间可能重叠，也不能用于给个人打分、判型或评定道德高低。</p>
       <div class="legend-grid">
         <div class="legend-item">
           <div class="legend-bar" style="background:#15803d"></div>
-          <div class="legend-text"><strong>Lv.1 认识论健全</strong>基于证据与结构分析的真实判断延迟或差异化评估</div>
+          <div class="legend-text"><strong>证据审慎</strong>基于证据与结构分析，暂缓判断或进行差异化评估</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#1d4ed8"></div>
-          <div class="legend-text"><strong>Lv.2 情境合理</strong>特定压力下具有合理性，需区分个体保护与系统缺陷</div>
+          <div class="legend-text"><strong>情境约束</strong>受安全、职责或程序条件影响，需结合可行动空间判断</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#ea580c"></div>
-          <div class="legend-text"><strong>Lv.3 功能模糊</strong>效果取决于权力格局，可能被策略性利用</div>
+          <div class="legend-text"><strong>效果依情境</strong>实际效果取决于权力格局、适用方式与可预见后果</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#b45309"></div>
-          <div class="legend-text"><strong>Lv.4 结构性偏向</strong>客观上偏向强势方或既有秩序，需主动识别与纠正</div>
+          <div class="legend-text"><strong>结构偏向风险</strong>可能在效果上偏向强势方或维持既有秩序</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#b91c1c"></div>
-          <div class="legend-text"><strong>Lv.5 认识论扭曲</strong>系统性扭曲对现实差异的感知，需批判性解构</div>
+          <div class="legend-text"><strong>认识偏差风险</strong>可能抹平证据、责任或后果之间的重要差异</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#9b1c2c"></div>
-          <div class="legend-text"><strong>Lv.6 认识论遮蔽</strong>将不判断包装为优越立场，深度遮蔽权力运作机制</div>
+          <div class="legend-text"><strong>权力遮蔽风险</strong>可能以抽象、退场或默认现状取代对具体权力关系的分析</div>
         </div>
       </div>
     </div>
@@ -639,6 +640,8 @@
       Rethinking the public sphere. · Bourdieu, P. (1984). Distinction. · Jost & Banaji (1994). System justification. ·
       Habermas (1968). Technik und Wissenschaft als "Ideologie". · Milgram (1963). · Bandura (1999). · Eubanks (2018). ·
       Hochschild (1983). · Thomas & Kilmann (1974).</div>
+
+    <div class="references"><strong>📌 阅读边界</strong>：本页的 16 个名称与观察角度归类是为批判性阅读整理的<strong>编辑性启发框架</strong>，并非政治哲学或心理学中的统一分类，也不是心理测量工具；这些名称与分组尚未经过正式的概念操作化、专家共识或独立实证研究验证。它们可能重叠，同一句话也可能源于证据不足、安全顾虑、职责边界或策略计算；不能据此打分判型，也不能脱离语境推断他人的内在动机、人格或道德等级。</div>
   </div>
 
   <div class="modal-bg" id="modal">
@@ -651,22 +654,22 @@
     (function () {
       // ---------- 详情数据（修复语法：字符串外部单引号，内部双引号无冲突）---------
       const details = {
-        analytic: { title: '分析型中立', en: 'Analytical Neutrality', lv: 'lv1', badge: 'Lv.1 认识论健全', sections: [{ h: '拒绝偷懒式判断，而非拒绝判断', p: '分析型中立不是“双方都有问题”的终点，而是分析工作的起点。它要求持续追问：谁先制造了问题？谁掌握更多资源？谁承担更大后果？结论可能并不对称——这正是它的价值所在。' }, { h: '追求准确而非平均', p: '形式上的对称不等于事实上的准确。分析型中立接受“一方责任更大”的结论，因为它关心的是现实本身是否被正确理解，而不是表达上是否看起来公平。' }, { h: '需要结构意识作为前提', p: '真正的分析型中立必须将权力结构、历史积累与情境差异纳入分析框架，否则很容易滑向绝对型中立的形式对称。路克斯的权力三维模型是重要的分析工具。' }, { h: '稀缺且费力', p: '它比“各打五十大板”难得多，因为它要求真正进入复杂现实：收集信息、识别结构、区分责任、承担立场风险。正因如此，它也是最少被实践的一种中立。' }] },
-        info: { title: '信息不足型中立', en: 'Epistemic Suspension', lv: 'lv1', badge: 'Lv.1 认识论健全', sections: [{ h: '延迟判断不等于拒绝判断', p: '信息不足型中立的核心是“现在证据不够，待信息完备后仍会形成立场”。这与犬儒主义的“反正所有人都一样”有本质区别。' }, { h: '认识论谨慎的表达', p: '贝叶斯更新模型告诉我们：判断应当随证据更新。在信息混乱期悬置结论，等待事实澄清，是认识论上的诚实，而非怯懦。' }, { h: '如何区分真实的悬置与伪装的回避', p: '一个可操作的测试是：追问“什么条件下你会形成判断”。如果对方能给出具体的信息条件，这通常是真实的信息不足型。' }, { h: '可能被误用的风险', p: '在某些情境中，“信息不足”会被策略性援引，以维持模糊性。需结合行为一致性来判断。' }] },
-        selfprotect: { title: '自我保护型中立', en: 'Protective Silence', lv: 'lv2', badge: 'Lv.2 情境合理', sections: [{ h: '沉默不等于认同', p: '处于强权压制、网络暴力或职业风险高压下的个体，其公开沉默往往并不反映其真实立场，而是对现实代价的理性估算。' }, { h: '表达安全是结构性资源', p: '戈夫曼的自我呈现理论指出，人们会根据情境调整公开表达。真正的问题是：谁拥有安全表达的条件，谁没有？' }, { h: '与回避型中立的关键区别', p: '自我保护型沉默的驱动力是外部的结构性压力，而非内部的冲突焦虑。干预路径完全不同。' }, { h: '避免对沉默者的道德评判', p: '分析中立类型时，必须将“是否拥有安全表达条件”纳入考量。对高压情境中的沉默者进行道德批评，是对结构性压力的忽视。' }] },
-        procedural: { title: '程序型中立', en: 'Procedural Neutrality', lv: 'lv2', badge: 'Lv.2 情境合理', sections: [{ h: '程序公平不等于实质公平', p: '罗尔斯区分了“纯粹程序正义”与“完美程序正义”。程序型中立往往追求前者：只要程序合规，结果便具有合法性，而不管结果是否实质公平。' }, { h: '规则由谁制定？', p: '程序型中立的根本局限在于，它接受程序本身的合法性而不予质疑。当规则由强者制定、发声资源不对等时，“一视同仁”的程序执行反而会固化不平等。' }, { h: '官僚理性化的代价', p: '韦伯指出，现代官僚制以形式合理性换取可预测性。这确实降低了随意性——但其代价是，实质性公正问题可能在程序的严格性中被遮蔽。' }] },
-        avoidance: { title: '回避型中立', en: 'Conflict Avoidance', lv: 'lv3', badge: 'Lv.3 功能模糊', sections: [{ h: '焦虑驱动，而非计算驱动', p: '回避型中立的核心是对冲突本身的情绪性恐惧：怕被卷入、怕被攻击。这与利益型中立的理性计算不同。' }, { h: '常见于高压或创伤后人群', p: '长期处于高压环境、遭受网络暴力或关系攻击的人，更容易发展出回避型中立作为自我保护机制。' }, { h: '与自我保护型的区别', p: '自我保护型的沉默源于外部结构性代价；回避型的不表态源于内部焦虑。前者私下通常有清晰立场，后者可能真的没有明确立场。' }, { h: '默许的客观效果', p: '无论动机如何，回避型中立在客观上对既存现状构成默许。对于有能力表态但选择不表态的人来说，这种客观效果值得纳入道德考量。' }] },
-        civility: { title: '礼仪型中立', en: 'Civility Neutrality', lv: 'lv3', badge: 'Lv.3 功能模糊', sections: [{ h: 'Tone Policing：对声调的政治管理', p: '礼仪型中立的典型操作是 tone policing：将注意力从内容转向表达方式，以情绪强烈为由拒绝处理实质问题。' }, { h: '礼仪规范的阶级来源', p: '布迪厄指出，“优雅”和“克制”是有余裕者的文化资本。当礼仪标准被用作参与讨论的门槛时，它天然对更难保持“优雅”的弱势方不利。' }, { h: '对愤怒的规训即对诉求的消解', p: '霍希尔德的情感规则研究表明，不同社会群体被允许公开表达的情绪类型存在显著差异。要求受害者“理性表达”，本质上是要求他们用强势方更熟悉的语言呈现痛苦。' }] },
-        interest: { title: '利益型中立', en: 'Strategic Neutrality', lv: 'lv3', badge: 'Lv.3 功能模糊', sections: [{ h: '中立作为工具，而非信仰', p: '利益型中立者并非真的认为双方都对，而是认为“哪边更安全，就站哪边”。他们以理性、温和的语言包装立场选择。' }, { h: '动态调整的原则', p: '利益型中立的核心特征是：原则随情境变化。强势时强调规则，弱势时呼吁包容。这种内在不一致性是识别的关键依据。' }, { h: '识别方法：追踪行为一致性', p: '评估利益型中立的核心方法是：将公开表态与实际行为选择进行系统性对照；考察“中立”在权力格局变化时是否相应变化。' }] },
-        order: { title: '维护秩序型中立', en: 'Order-Preserving Neutrality', lv: 'lv4', badge: 'Lv.4 结构性偏向', sections: [{ h: '冲突比不公平更让他们害怕', p: '维护秩序型中立的核心预设是：混乱比不公平更危险。因此他们优先消灭冲突的表征，而不是消灭冲突的成因。' }, { h: '受害者的愤怒先被要求冷静', p: '越是情绪激烈的受害者，越先被要求“理性”“冷静”。因为受害者的激烈反应可见且扰乱秩序感；而长期运行的不公平，如果足够“平静”，反而不可见。' }, { h: '系统正当化的社会心理基础', p: '约斯特与班纳吉（1994）的系统正当化理论表明，人们倾向于将现有社会秩序合理化，哪怕这种秩序对自己不利。' }] },
-        deflect: { title: '甩锅型中立', en: 'Structural Deflection', lv: 'lv4', badge: 'Lv.4 结构性偏向', sections: [{ h: '理解不等于免责', p: '“他也是体制的受害者”是结构分析——但结构分析的价值在于理解，而不在于将理解直接转化为免责。甩锅型中立的核心操作，是把“为何如此”（解释）偷换为“因此无罪”（辩护）。' }, { h: '结构限制行动空间，但不消灭主体性', p: '即使在相同的结构下，人依然会在执行规则时选择方式，选择是否滥用权力。“大家都这样”不等于“没有其他选择”。' }, { h: '道德推脱机制', p: '班杜拉（1999）系统描述了道德推脱的几种机制，包括责任扩散、效果最小化和责任归因他处。甩锅型中立常综合运用这些机制。' }] },
-        spectator: { title: '消费型中立', en: 'Spectator Neutrality', lv: 'lv4', badge: 'Lv.4 结构性偏向', sections: [{ h: '奇观化机制', p: '德波（1967）在《景观社会》中描述了现代媒体将现实转化为景观的机制。消费型中立是这一机制的人际层面表达：冲突成为内容，真实伤害成为戏剧性素材。' }, { h: '不站队不等于不参与', p: '“我只是看，没有站队”是消费型中立的核心自我辩护。但传播行为、围观行为都构成对冲突动态的实质参与。在网络暴力事件中，“吃瓜”群体的规模本身就是暴力的结构性条件。' }, { h: '道德责任的界定', p: '追问自己的参与行为是否客观上放大了伤害：转发是否增加了当事人的暴露度？围观是否给施害者提供了观众？' }] },
-        absolute: { title: '绝对型中立', en: 'False Balance', lv: 'lv5', badge: 'Lv.5 认识论扭曲', sections: [{ h: '对称性偏误：看起来公平的陷阱', p: '绝对型中立将形式对称误认为认识论美德，用“各打五十大板”替代对事实差异的真实评估，并将这种替代包装成公正。' }, { h: '现实不是数学公式', p: '长期霸凌中的反击、家暴中的自卫、被长期羞辱后的情绪失控——如果只看行为表面，它们都属于“冲突”。但背后的权力结构完全不同。绝对型中立主动忽略这些差异。' }, { h: '被强势方策略性利用', p: '绝对型中立对强势方尤其有利：当双方权力本就不对等时，要求“平等对待”客观上放大了强者的相对优势。' }] },
-        cynical: { title: '犬儒型中立', en: 'Cynical Neutrality', lv: 'lv5', badge: 'Lv.5 认识论扭曲', sections: [{ h: '廉价超脱感替代认知努力', p: '犬儒型中立提供了一条认知捷径：跳过信息收集、结构分析与责任拆分，直接得出“反正所有人都一样烂”的结论。这比真正的分析省力得多。' }, { h: '抹平现实中的压迫差异', p: '当强者与弱者、加害者与受害者都被纳入“天下乌鸦一般黑”的框架时，压迫的差异被消除，不平等被等同，批判的可能性被关闭。' }, { h: '习得性无助的认识论形式', p: '塞利格曼（1975）的习得性无助理论指出，长期无力感会导致个体放弃尝试。犬儒主义往往是多次尝试判断、多次感到无效之后的疲劳性撤退。' }] },
-        technocrat: { title: '技术官僚型中立', en: 'Technocratic Neutrality', lv: 'lv5', badge: 'Lv.5 认识论扭曲', sections: [{ h: '技术从来不是纯中立的', p: '哈贝马斯（1968）早已指出，技术理性的意识形态功能在于：将价值判断转化为技术问题，使其逃脱公共问责。' }, { h: '算法偏见的实证依据', p: '尤班克斯（2018）等人的研究揭示了自动化系统如何复制甚至放大历史偏见：招聘算法歧视女性候选人，福利算法剥夺弱势群体权利。' }, { h: '问责路径：打开黑箱', p: '有效的应对需要：算法审计（公开审查系统决策逻辑）、设计文档透明化、多元利益相关方参与系统设计。' }] },
-        pseudo: { title: '伪超越型中立', en: 'Pseudo-Transcendence', lv: 'lv6', badge: 'Lv.6 认识论遮蔽', sections: [{ h: '不是超越，是拒绝进入', p: '伪超越型中立以“跳出二元对立”为名，实质上拒绝进入具体的权力分析。真正的超越需要先深入理解具体情境，再在更高层面形成综合判断。' }, { h: '认知优越感作为自我保护', p: '通过将自己定位在比争论者更高维度的位置，规避了参与争论并可能犯错的风险，同时获得了观察者的道德舒适感。' }, { h: '一个测试性追问', p: '对声称超越立场者的有效追问是：你的超越在什么具体情境下发生？你为什么选择在此时不做判断？如果无法给出具体回答，超越很可能只是回避的更优雅版本。' }] },
-        nihil: { title: '虚无型中立', en: 'Nihilistic Neutrality', lv: 'lv6', badge: 'Lv.6 认识论遮蔽', sections: [{ h: '比犬儒更深的放弃', p: '犬儒主义至少还保留批判的情绪，会愤怒地说“都一样烂”。虚无型中立则连批判的意愿也已消解：不是“都一样烂”，而是“有什么意义呢”。' }, { h: '结构成因：长期无力感', p: '当一个人长期感到自己的判断、表态与行动都不产生任何效果时，放弃判断本身是一种心理性的自我保护。' }, { h: '对权力最有利的反对声音', p: '权力最不害怕的反对，是不存在的反对。虚无型中立通过取消判断的必要性，从根本上关闭了改变的可能性。' }] },
-        conformity: { title: '默认服从型中立', en: 'Default Conformity', lv: 'lv6', badge: 'Lv.6 认识论遮蔽', sections: [{ h: '平庸之恶的认识论基础', p: '汉娜·阿伦特的“平庸之恶”描述了不思考本身如何成为参与伤害的方式。默认服从型中立是其认识论版本：不是选择支持现状，而是从未质疑现状是否需要被选择。' }, { h: '路克斯的第三维度权力', p: '路克斯（1974）指出，权力的最深层形式不是强制（让人做不想做的事），而是塑造（让人认为现状是自然的，从而甚至不产生反对的念头）。' }, { h: '培养批判性现状意识', p: '打破默认服从型中立的核心工具是去自然化：系统性追问那些被视为理所当然的规则是如何产生的，谁从中受益，谁付出了代价。' }] }
+        analytic: { title: '分析型中立', en: 'Analytical Neutrality', group: 'group-evidence', badge: '证据审慎', sections: [{ h: '延迟站队，但不停止分析', p: '这种阅读姿态把资料收集、因果链与权力差异放在先表态之前，并允许结论并不对称。它是本页的描述性命名，不代表唯一正确的判断方法。' }, { h: '追求有依据，而非机械平均', p: '形式对称不等于事实准确；同样，强调结构也不能替代对具体证据、行动与反例的检验。' }, { h: '把观察位置也纳入分析', p: '权力、历史与制度背景值得考察，资料来源、概念选择和分析者自身位置也会影响结论。' }, { h: '保留可修正性', p: '较可靠的分析会说明证据限度、区分事实与价值判断，并在新信息出现时更新，而不是把某套问题清单当作客观性的保证。' }] },
+        info: { title: '信息不足型中立', en: 'Epistemic Suspension', group: 'group-evidence', badge: '证据审慎', sections: [{ h: '延迟判断不等于拒绝判断', p: '信息不足型中立的核心是“现在证据不够，待信息完备后仍会形成立场”。这与犬儒主义的“反正所有人都一样”有本质区别。' }, { h: '认识论谨慎的表达', p: '贝叶斯更新模型告诉我们：判断应当随证据更新。在信息混乱期悬置结论，等待事实澄清，是认识论上的诚实，而非怯懦。' }, { h: '如何区分真实的悬置与伪装的回避', p: '一个可操作的测试是：追问“什么条件下你会形成判断”。如果对方能给出具体的信息条件，这通常是真实的信息不足型。' }, { h: '可能被误用的风险', p: '在某些情境中，“信息不足”会被策略性援引，以维持模糊性。需结合行为一致性来判断。' }] },
+        selfprotect: { title: '自我保护型中立', en: 'Protective Silence', group: 'group-context', badge: '情境约束', sections: [{ h: '沉默不等于认同', p: '公开沉默可能反映对网暴、职业或关系代价的评估，也可能有其他原因；不能只凭不表态推断真实立场。' }, { h: '表达安全是一种不均等资源', p: '人们会随受众和情境调整公开表达。分析时可以追问：谁更容易遭遇报复，谁拥有安全表达与退出的条件？' }, { h: '与回避型可能重叠', p: '外部风险、内部焦虑和精力限制常共同作用，很难从外部表现截然区分。支持应先尊重当事人的边界，再讨论可降低哪些风险。' }, { h: '避免强迫表态', p: '高压情境下，道德化要求公开站队可能把代价转嫁给风险更高的人；是否表达及向谁表达，应保留个人自主。' }] },
+        procedural: { title: '程序型中立', en: 'Procedural Neutrality', group: 'group-context', badge: '情境约束', sections: [{ h: '程序价值与结果审查并存', p: '一致、公开和可申诉的程序可减少任意性，但程序合规不自动证明结果公正。罗尔斯关于程序正义的区分可提供参照，却不直接定义本页这一类型。' }, { h: '检查规则及参与条件', p: '应同时追问规则如何形成、各方是否能平等取得信息和表达、是否存在纠错与救济，而不是预设程序必由强者制定。' }, { h: '形式理性的两面', p: '标准化能够提升可预测性，也可能忽略背景差异。是否需要例外、合理便利或结果复核，要结合制度目标与权利边界。' }] },
+        avoidance: { title: '回避型中立', en: 'Conflict Avoidance', group: 'group-contingent', badge: '效果依情境', sections: [{ h: '回避是一种应对方式', p: '退出、不表态或延后讨论可能减少短期冲突，也可能错过处理问题的机会。Thomas-Kilmann 描述的是冲突应对方式，不是“回避人格”。' }, { h: '不要隔空归因为创伤', p: '焦虑、高压经验、安全风险、职责边界和精力不足都可能影响选择，外部观察者通常无法只靠一句话区分。' }, { h: '与自我保护型可能重叠', p: '心理感受与外部代价不是互斥原因；同一人也会随关系和场景改变应对。' }, { h: '评估可行动性与后果', p: '与其把沉默直接等同默许，不如考察当事人是否有安全、有效的行动选项，以及其角色是否负有明确责任。' }] },
+        civility: { title: '礼仪型中立', en: 'Civility Neutrality', group: 'group-contingent', badge: '效果依情境', sections: [{ h: '何时构成语气规训', p: '如果只因表达者愤怒就拒绝回应内容，或礼仪规则只约束权力较弱的一方，就可能把语气当成转移议题的门槛。' }, { h: '礼仪也可能保护交流安全', p: '禁止威胁、骚扰和人身攻击并非天然压制。关键是规则是否清楚、一致、允许表达实质异议，并为不同沟通能力提供合理空间。' }, { h: '不要用理论替代情境证据', p: '文化资本与情感规范可帮助提问谁更容易被视为“得体”，但不能据此断言每项礼仪要求都服务于强势方。' }] },
+        interest: { title: '利益型中立', en: 'Strategic Neutrality', group: 'group-contingent', badge: '效果依情境', sections: [{ h: '中立也可能是策略', p: '个人或机构可能为了安全、关系、商业或外交空间保持模糊。策略考虑不自动证明其真实信念，也不自动构成不当。' }, { h: '检查利益披露和标准一致性', p: '如果公开理由与实际受益关系不一致，或相似事件采用相反标准，可以要求说明利益冲突和判断原则。' }, { h: '关注行为而非猜心', p: '把公开表态、实际选择和可预见后果放在一起分析，比断言当事人“包装立场”更可核查。' }] },
+        order: { title: '维护秩序型中立', en: 'Order-Preserving Neutrality', group: 'group-structural-risk', badge: '结构偏向风险', sections: [{ h: '冲突比不公平更让他们害怕', p: '维护秩序型中立的核心预设是：混乱比不公平更危险。因此他们优先消灭冲突的表征，而不是消灭冲突的成因。' }, { h: '受害者的愤怒先被要求冷静', p: '越是情绪激烈的受害者，越先被要求“理性”“冷静”。因为受害者的激烈反应可见且扰乱秩序感；而长期运行的不公平，如果足够“平静”，反而不可见。' }, { h: '系统正当化的社会心理基础', p: '约斯特与班纳吉（1994）的系统正当化理论表明，人们倾向于将现有社会秩序合理化，哪怕这种秩序对自己不利。' }] },
+        deflect: { title: '责任转移型中立', en: 'Structural Deflection', group: 'group-structural-risk', badge: '结构偏向风险', sections: [{ h: '解释不自动免责', p: '结构分析可以说明选择为何受限，但责任判断还需考察权限、知识、可行替代与实际行为，不能从“受制度影响”直接推出“完全无责”。' }, { h: '责任也不必只落在个体', p: '强调个体能动性时，同样不能忽略组织激励、命令链和制度责任。较完整的分析会区分多层责任，而非在个人与结构间二选一。' }, { h: '谨慎援引道德推脱', p: '责任扩散等概念可解释部分自我辩护方式，但不能仅凭“制度要求”一句话判断当事人正在进行道德推脱。' }] },
+        spectator: { title: '娱乐化旁观型中立', en: 'Spectator Neutrality', group: 'group-structural-risk', badge: '结构偏向风险', sections: [{ h: '从了解转向娱乐化', p: '当真实伤害主要被当作猎奇素材，且当事人的隐私、准确性与后果被忽略时，旁观就可能参与事件的奇观化。' }, { h: '传播具有不同程度的参与', p: '浏览、保存证据、善意提醒和煽动转发的作用并不相同。判断时应看具体行为是否增加曝光、误导、骚扰或收益。' }, { h: '用可预见后果校准选择', p: '转发前可检查来源、隐去身份信息，并问自己：分享是否必要、会不会扩大伤害、是否有更安全的支持渠道？' }] },
+        absolute: { title: '形式对称型中立', en: 'False Balance', group: 'group-epistemic-risk', badge: '认识偏差风险', sections: [{ h: '对称表达不等于证据对称', p: '为了显得平衡而给证据强弱悬殊的观点相同权重，可能造成 false balance。这个概念首先评估呈现方式，而不是给说话者贴人格标签。' }, { h: '区分行为表面与关系背景', p: '霸凌、胁迫或自卫情境中，双方出现冲突行为不代表责任、能力和风险相等；仍需逐项核查事实，不能仅凭身份预设结论。' }, { h: '公平可能需要相同规则，也可能需要差异安排', p: '是否采用同一标准，要看目标、相关差异及权利保障。形式一致和情境化处理都需要公开理由与复核。' }] },
+        cynical: { title: '犬儒型中立', en: 'Cynical Neutrality', group: 'group-epistemic-risk', badge: '认识偏差风险', sections: [{ h: '“都一样”需要证据', p: '把不同主体概括成“都一样”可能省略重要差异，也可能是基于长期观察的悲观判断。可以请对方说明比较标准、证据和例外，而不是先推断其认知努力不足。' }, { h: '比较实际责任与后果', p: '即使对多方都不信任，也仍可比较具体政策、行动能力、伤害程度和可问责性，避免让总体失望替代逐项判断。' }, { h: '无力感不等于犬儒人格', p: '长期受挫可能降低行动意愿，但不能据此诊断习得性无助，也不能把所有犬儒表达都解释成同一种心理来源。' }] },
+        technocrat: { title: '技术官僚型中立', en: 'Technocratic Neutrality', group: 'group-epistemic-risk', badge: '认识偏差风险', sections: [{ h: '技术决策也包含价值选择', p: '目标、指标、数据和误差容忍度都需要规范判断。技术可以提高一致性，却不会自动消除利益取舍或问责责任。' }, { h: '风险需要针对具体系统证明', p: '自动化系统可能复制或放大既有不平等，也可能减少某些人工偏差。应检查具体数据、群体误差、部署情境与救济渠道，避免把所有算法概括成同一后果。' }, { h: '透明之外还要可质疑、可救济', p: '审计、设计文档、影响评估、利益相关方参与和申诉机制各有作用；公开源代码或所谓“打开黑箱”本身不保证公正。' }] },
+        pseudo: { title: '抽象超越型中立', en: 'Pseudo-Transcendence', group: 'group-power-obscuring-risk', badge: '权力遮蔽风险', sections: [{ h: '超越二分需要给出内容', p: '指出两分法不足可能很有价值；如果没有提出更能解释事实的分类、证据或判断标准，“高维视角”就难以检验。' }, { h: '避免猜测认知优越感', p: '抽象表达可能源于回避，也可能源于确实不同的理论框架。与其推断心理，不如请对方说明具体事实、责任和行动含义。' }, { h: '一个澄清性追问', p: '可以问：原有二分遗漏了什么？新框架会改变哪些具体判断？在什么证据下你会修正？回答本身比贴上“伪超越”标签更重要。' }] },
+        nihil: { title: '虚无型中立', en: 'Nihilistic Neutrality', group: 'group-power-obscuring-risk', badge: '权力遮蔽风险', sections: [{ h: '先区分哲学立场与日常无力感', p: '“没有意义”可能表达暂时耗竭、低效能感或对具体渠道失望，不足以判定一个人持有虚无主义。' }, { h: '无力感有多种来源', p: '反复受挫、资源不足、健康状况和制度障碍都可能降低行动意愿；需要倾听具体经历，而不是把撤出行动视为道德失败。' }, { h: '从可行的小范围选择开始', p: '若当事人愿意，可以把宏大议题拆成安全、可控的行动；若持续出现广泛绝望或功能受损，则适合寻求可信支持。' }] },
+        conformity: { title: '默认现状型中立', en: 'Default Conformity', group: 'group-power-obscuring-risk', badge: '权力遮蔽风险', sections: [{ h: '默认并不等于主动服从', p: '人们常以既有规则为起点，但原因可能是认可、不了解、缺乏权限或风险过高。不能把所有未质疑者直接类比为参与伤害。' }, { h: '权力也会塑造议程与偏好', p: '路克斯的第三维度有助于分析哪些选项被视为自然、哪些问题未进入议程；它是一种理论视角，不是对个体思想状态的直接测量。' }, { h: '把现状重新变成可讨论对象', p: '可以追问规则如何形成、谁能参与修订、成本和收益如何分配，同时给沉默者说明限制与不同意见的空间。' }] }
       };
 
       // 模态框元素
@@ -677,7 +680,8 @@
       function showDetail(key) {
         const d = details[key];
         if (!d) return;
-        let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
+        const badgeText = d.badge;
+        let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.group}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${badgeText}</span></div>`;
         d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
         modalContent.innerHTML = html;
         modal.classList.add('open');
