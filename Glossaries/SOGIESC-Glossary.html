@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap">
   <link rel="stylesheet" href="../assets/theme.css?v=e21f7bf7a6f3">
-  <link rel="stylesheet" href="./glossary-common.css?v=7d8b118a344c">
+  <link rel="stylesheet" href="./glossary-common.css?v=5116c3a87726">
   <style>
     /* 本页与标准词汇表的差异样式（基础样式见 glossary-common.css，需在其后加载） */
     :root {
@@ -38,26 +38,6 @@
       --green: #247344;
       --violet: #6b46a8;
       --shadow: 0 10px 30px rgba(24, 33, 47, 0.08);
-    }
-
-    :root[data-theme="dark"] .back-link {
-      color: #8a9bb0;
-    }
-
-    :root[data-theme="dark"] .back-link:hover {
-      color: #ffffff;
-    }
-
-    .back-link:focus-visible {
-      outline: 2px solid #1e5f65;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-
-    .mini-nav a:focus-visible {
-      outline: 2px solid #1e5f65;
-      outline-offset: 2px;
-      border-radius: 4px;
     }
 
     .eyebrow {
@@ -159,7 +139,7 @@
     .appendix {
       margin-top: 42px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
       gap: 18px;
       align-items: stretch;
     }
@@ -324,10 +304,6 @@
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    :root[data-theme="dark"] .topbar {
-      background: rgba(15, 20, 27, 0.92);
-    }
-
     :root[data-theme="dark"] header,
     :root[data-theme="dark"] .search,
     :root[data-theme="dark"] .filter,
@@ -353,14 +329,6 @@
 
     :root[data-theme="dark"] .friend-link:hover {
       background: #1b2230;
-    }
-
-    :root[data-theme="dark"] .mini-nav a {
-      color: #8a9bb0;
-    }
-
-    :root[data-theme="dark"] .mini-nav a:hover {
-      color: #ffffff;
     }
 
     /* 抵消公共层(标准词汇表)与本页的差异 */
@@ -398,18 +366,6 @@
 </head>
 
 <body>
-  <nav class="topbar" aria-label="页面导航">
-    <div class="topbar-inner">
-      <a class="back-link" href="../index.html">← 返回</a>
-      <div class="mini-nav">
-        <a href="#glossary">术语检索</a>
-        <a href="#usage">使用提醒</a>
-        <a href="#sources">来源</a>
-        <a href="#friends">友情链接</a>
-      </div>
-    </div>
-  </nav>
-
   <header>
     <div class="hero">
       <div>

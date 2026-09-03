@@ -322,10 +322,10 @@ body.scale-page .global-progress {
 		bottom: auto !important;
 	}
 	body.scale-page .global-progress.scale-mobile-toolbar .guide-ai-launcher--scale {
-		bottom: 18px !important;
-		left: 18px !important;
+		top: calc(18px + env(safe-area-inset-top, 0px)) !important;
+		left: calc(18px + env(safe-area-inset-left, 0px)) !important;
 		right: auto !important;
-		top: auto !important;
+		bottom: auto !important;
 	}
 }
 
@@ -1385,7 +1385,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 }
 
 /* iPad 与平板布局（兼顾 768～1024 像素的横竖屏）：
-   - 顶部工具栏 4 列 Grid：[返回][进度文字/进度条][AI][主题]；
+   - 顶部工具栏 3 列 Grid：[AI][进度文字/进度条][主题]；
    - 进度文字在上、进度条在下同列堆叠；
    - 结果区尽量保留桌面双栏，并让雷达图使用可用空间。 */
 @media (min-width: 651px) and (max-width: 1180px) {
@@ -1412,15 +1412,15 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	/* App bar grid (shared with theme.css mobile layout, but with 2 rows):
-	   col1 = back, col2 = progress label + bar stacked, col3 = AI,
-	   col4 = theme. 1180 is close to the theme.css 1200 breakpoint so we
+	   col1 = AI, col2 = progress label + bar stacked, col3 = theme.
+	   1180 is close to the theme.css 1200 breakpoint so we
 	   deliberately repeat its panel chrome (surface bg + bottom radius)
 	   and then build the 2-row grid on top. */
 	body.scale-page .global-progress.scale-mobile-toolbar,
 	.global-progress.scale-mobile-toolbar,
 	.global-progress {
 		display: grid !important;
-		grid-template-columns: 44px minmax(0, 1fr) 44px 44px !important;
+		grid-template-columns: 44px minmax(0, 1fr) 44px !important;
 		grid-template-rows: auto minmax(0, auto) !important;
 		align-items: start !important;
 		justify-items: stretch !important;
@@ -1521,8 +1521,8 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	.global-progress .theme-toggle {
-		order: 5 !important;
-		grid-column: 4 / 5 !important;
+		order: 4 !important;
+		grid-column: 3 / 4 !important;
 		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;
@@ -1543,8 +1543,8 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	.global-progress .guide-ai-launcher--scale {
-		order: 4 !important;
-		grid-column: 3 / 4 !important;
+		order: 1 !important;
+		grid-column: 1 / 2 !important;
 		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;
@@ -1733,13 +1733,13 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		max-width: 100% !important;
 	}
 
-	/* 移动端沿用平板工具栏顺序：[返回][进度文字与进度条][AI][主题]。
+	/* 移动端沿用平板工具栏顺序：[AI][进度文字与进度条][主题]。
 	   图标使用固定触控尺寸，让中间进度区在窄屏上仍有稳定间距。 */
 	body.scale-page .global-progress.scale-mobile-toolbar,
 	.global-progress.scale-mobile-toolbar,
 	.global-progress {
 		display: grid !important;
-		grid-template-columns: 40px minmax(0, 1fr) 40px 40px !important;
+		grid-template-columns: 44px minmax(0, 1fr) 44px !important;
 		grid-template-rows: auto minmax(0, auto) !important;
 		align-items: start !important;
 		justify-items: stretch !important;
@@ -1830,8 +1830,8 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	.global-progress .theme-toggle {
-		order: 5 !important;
-		grid-column: 4 / 5 !important;
+		order: 4 !important;
+		grid-column: 3 / 4 !important;
 		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;
@@ -1850,8 +1850,8 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	.global-progress .guide-ai-launcher--scale {
-		order: 4 !important;
-		grid-column: 3 / 4 !important;
+		order: 1 !important;
+		grid-column: 1 / 2 !important;
 		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;

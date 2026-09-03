@@ -329,9 +329,9 @@
     var scaleToolbar = isScale && document.querySelector('.global-progress');
     if (scaleToolbar) {
       scaleToolbar.classList.add('scale-mobile-toolbar');
-      scaleToolbar.appendChild(launcher);
+      scaleToolbar.prepend(launcher);
     } else {
-      document.body.appendChild(launcher);
+      document.body.prepend(launcher);
     }
     document.body.appendChild(dialog);
 

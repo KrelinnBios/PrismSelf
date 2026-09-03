@@ -716,7 +716,7 @@
     top: 0 !important;
     z-index: 9998 !important;
     display: grid !important;
-    grid-template-columns: 44px minmax(0, 1fr) 44px 44px !important;
+    grid-template-columns: 44px minmax(0, 1fr) 44px !important;
     grid-template-rows: 44px !important;
     column-gap: 7px !important;
     row-gap: 0 !important;
@@ -788,13 +788,8 @@
     box-shadow: none !important;
   }
 
-  body.scale-page .scale-mobile-toolbar .prism-back-home {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
   body.scale-page .scale-mobile-toolbar .guide-ai-launcher {
-    grid-column: 3;
+    grid-column: 1;
     grid-row: 1;
   }
 
@@ -813,7 +808,7 @@
   }
 
   body.scale-page .scale-mobile-toolbar .theme-toggle {
-    grid-column: 4;
+    grid-column: 3;
     grid-row: 1;
   }
 }

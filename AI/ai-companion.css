@@ -8,7 +8,9 @@
 .guide-ai-launcher {
   position: fixed !important;
   left: calc(18px + env(safe-area-inset-left, 0px)) !important;
-  bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  top: calc(18px + env(safe-area-inset-top, 0px)) !important;
+  right: auto !important;
+  bottom: auto !important;
   z-index: 1000 !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -1003,8 +1005,8 @@
 }
 
 @media (max-width: 620px) {
-  /* Keep mobile guide controls quiet and coherent: contextual actions scroll
-     away with the page, while the two reading actions share one bottom row. */
+  /* Keep mobile guide controls coherent: AI and theme stay in the top corners,
+     while the table of contents stays in the bottom-right corner. */
   :root[data-theme] .theme-toggle,
   :root[data-theme] .prism-back-home,
   :root[data-theme] .toc-toggle-btn,
@@ -1064,7 +1066,8 @@
 
   .guide-ai-launcher {
     left: calc(12px + env(safe-area-inset-left, 0px)) !important;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    top: calc(12px + env(safe-area-inset-top, 0px)) !important;
+    bottom: auto !important;
     width: 44px !important;
     min-width: 44px !important;
     padding: 0 !important;
