@@ -1,6 +1,17 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-09-04',
+    pages: [
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/BDSM-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html'
+    ]
+  },
+  {
     date: '2026-09-03',
     pages: [
       './Analyses/Gender-Theory-Panorama.html',
@@ -17,12 +28,6 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
       './Glossaries/SOGIESC-Glossary.html',
-      './Guides/Aromantic-Comprehensive-Guide.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
-      './Guides/BDSM-Comprehensive-Guide.html',
-      './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',

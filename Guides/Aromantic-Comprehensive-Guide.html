@@ -7,7 +7,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./guide-common.css?v=a293243d9cbf">
+  <link rel="stylesheet" href="./guide-common.css?v=2a56e22b0d73">
   <style>
     :root {
       --accent: #228b4f;
@@ -17,6 +17,10 @@
       --guide-control-border: rgba(34, 139, 79, 0.72);
       --guide-control-border-strong: rgba(34, 139, 79, 0.95);
       --guide-control-ring: rgba(34, 139, 79, 0.18);
+      --guide-toc-hover-bg: rgba(34, 139, 79, 0.12);
+      --guide-toc-hover-border: rgba(34, 139, 79, 0.55);
+      --guide-toc-highlight-hover-bg: #123b2a;
+      --guide-toc-highlight-hover-border: rgba(34, 139, 79, 0.95);
     }
 
     :root[data-theme="dark"] {
@@ -27,6 +31,12 @@
       --guide-control-border: rgba(143, 214, 148, 0.72);
       --guide-control-border-strong: rgba(196, 241, 201, 0.95);
       --guide-control-ring: rgba(143, 214, 148, 0.2);
+      --guide-toc-hover-bg: rgba(143, 214, 148, 0.2);
+      --guide-toc-hover-border: rgba(196, 241, 201, 0.85);
+      --guide-toc-highlight-hover-bg: #2f563c;
+      --guide-toc-highlight-hover-border: rgba(196, 241, 201, 0.95);
+      --guide-highlight-bg: #183124;
+      --guide-highlight-border: rgba(143, 214, 148, 0.32);
     }
 
     #write :is(strong, b) {
@@ -61,11 +71,6 @@
 
     #write .term-desc .guide-note-title {
       color: rgba(22, 101, 52, 0.95);
-    }
-
-    .term-card.toc-card:not(.highlight):hover {
-      background: rgba(34, 139, 79, 0.07);
-      border-color: rgba(34, 139, 79, 0.38);
     }
 
     .toc-toggle-btn,

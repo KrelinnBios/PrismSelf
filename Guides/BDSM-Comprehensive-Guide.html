@@ -35,6 +35,10 @@
       --guide-control-border: color-mix(in srgb, var(--gold) 72%, transparent);
       --guide-control-border-strong: var(--gold);
       --guide-control-ring: color-mix(in srgb, var(--gold) 18%, transparent);
+      --guide-toc-hover-bg: rgba(139, 58, 42, 0.12);
+      --guide-toc-hover-border: rgba(139, 58, 42, 0.55);
+      --guide-toc-highlight-hover-bg: #443616;
+      --guide-toc-highlight-hover-border: rgba(184, 134, 11, 0.95);
     }
 
     * {
@@ -445,6 +449,17 @@
       display: block;
       text-decoration: none;
       color: inherit;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .term-card.toc-card:not(.highlight):hover {
+      background: var(--guide-toc-hover-bg);
+      border-color: var(--guide-toc-hover-border);
+    }
+
+    .term-card.toc-card.highlight:hover {
+      background: var(--guide-toc-highlight-hover-bg);
+      border-color: var(--guide-toc-highlight-hover-border);
     }
 
     .toc-card:focus-visible {
@@ -656,6 +671,12 @@
         --muted: #b3a892;
         --border: #3a3329;
         --accent-light: #241d14;
+        --guide-toc-hover-bg: rgba(217, 180, 84, 0.2);
+        --guide-toc-hover-border: rgba(217, 180, 84, 0.84);
+        --guide-toc-highlight-hover-bg: #4a3918;
+        --guide-toc-highlight-hover-border: rgba(217, 180, 84, 0.94);
+        --guide-highlight-bg: #2a2117;
+        --guide-highlight-border: rgba(217, 180, 84, 0.32);
       }
 
     :root[data-theme="dark"] .toc-toggle-btn:hover {
@@ -673,6 +694,16 @@
         color: #f0e9dd;
       }
 
+    :root[data-theme="dark"] .term-card.highlight {
+        background: var(--guide-highlight-bg);
+        border-color: var(--guide-highlight-border);
+      }
+
+    :root[data-theme="dark"] .term-card.toc-card.highlight:hover {
+        background: var(--guide-toc-highlight-hover-bg);
+        border-color: var(--guide-toc-highlight-hover-border);
+      }
+
     :root[data-theme="dark"] .term-desc {
         color: #d8cfc0;
       }
@@ -688,7 +719,8 @@
         border-color: rgba(255, 255, 255, 0.28) !important;
       }
     @media (prefers-reduced-motion: reduce) {
-      .toc-toggle-btn {
+      .toc-toggle-btn,
+      .toc-card {
         transition: none;
       }
     }

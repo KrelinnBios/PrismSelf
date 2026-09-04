@@ -12,6 +12,10 @@
   --guide-control-border: rgba(91, 77, 227, 0.75);
   --guide-control-border-strong: rgba(91, 77, 227, 0.95);
   --guide-control-ring: rgba(91, 77, 227, 0.18);
+  --guide-toc-hover-bg: rgba(91, 77, 227, 0.12);
+  --guide-toc-hover-border: rgba(91, 77, 227, 0.55);
+  --guide-toc-highlight-hover-bg: #1b2450;
+  --guide-toc-highlight-hover-border: rgba(91, 77, 227, 0.95);
 }
 
 * {
@@ -436,11 +440,17 @@ header h1 {
   display: block;
   text-decoration: none;
   color: inherit;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .term-card.toc-card:not(.highlight):hover {
-  background: rgba(91, 77, 227, 0.06);
-  border-color: rgba(91, 77, 227, 0.35);
+  background: var(--guide-toc-hover-bg);
+  border-color: var(--guide-toc-hover-border);
+}
+
+.term-card.toc-card.highlight:hover {
+  background: var(--guide-toc-highlight-hover-bg);
+  border-color: var(--guide-toc-highlight-hover-border);
 }
 
 .toc-card:focus-visible {
@@ -705,6 +715,12 @@ body.guide-ready #write {
   --guide-control-border: rgba(169, 155, 255, 0.6);
   --guide-control-border-strong: rgba(196, 184, 255, 0.82);
   --guide-control-ring: rgba(169, 155, 255, 0.16);
+  --guide-toc-hover-bg: rgba(169, 155, 255, 0.2);
+  --guide-toc-hover-border: rgba(196, 184, 255, 0.85);
+  --guide-toc-highlight-hover-bg: #354268;
+  --guide-toc-highlight-hover-border: rgba(196, 184, 255, 0.92);
+  --guide-highlight-bg: #192238;
+  --guide-highlight-border: rgba(196, 184, 255, 0.3);
 }
 
 :root[data-theme="dark"] .toc-toggle-btn:hover {
@@ -723,9 +739,14 @@ header {
 }
 
 :root[data-theme="dark"] .term-card.highlight {
-  background: #0f1626;
-  border-color: #0f1626;
+  background: var(--guide-highlight-bg);
+  border-color: var(--guide-highlight-border);
   color: rgba(247, 248, 252, 0.92);
+}
+
+:root[data-theme="dark"] .term-card.toc-card.highlight:hover {
+  background: var(--guide-toc-highlight-hover-bg);
+  border-color: var(--guide-toc-highlight-hover-border);
 }
 
 :root[data-theme="dark"] .term-desc {
@@ -800,7 +821,8 @@ header {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toc-toggle-btn {
+  .toc-toggle-btn,
+  .toc-card {
     transition: none;
   }
 }
