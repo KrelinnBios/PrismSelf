@@ -60,13 +60,12 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 新增内容页时，还需要同步：
 
 1. 在 `index.html` 增加入口，并确认分类和搜索关键词合理。
-2. 在 `scripts/inject-seo.mjs` 的 `pages` 映射中补充准确的页面描述。
-3. 添加完整的 description、favicon、Open Graph 和 Twitter Card 元数据。
-4. 在 `update-records.js` 最新日期分组登记页面路径。
-5. 在 `sitemap.xml` 添加公开 URL。
-6. 根据页面类型复用对应目录的共享资源，并检查相对路径。
+2. 添加完整的 description、favicon、Open Graph 和 Twitter Card 元数据，描述需准确。
+3. 在 `update-records.js` 最新日期分组登记页面路径。
+4. 在 `sitemap.xml` 添加公开 URL。
+5. 根据页面类型复用对应目录的共享资源，并检查相对路径。
 
-删除或重命名页面时，应从首页、更新记录、SEO 映射、站点地图和所有站内链接中同步移除或替换旧路径。
+删除或重命名页面时，应从首页、更新记录、站点地图和所有站内链接中同步移除或替换旧路径。
 
 ## 共享资源
 
@@ -107,8 +106,6 @@ node .\scripts\static-server.mjs
 
 它会生成 `og-image/image.png`。本地 favicon 预览文件已由 `.gitignore` 排除。
 
-`scripts/inject-seo.mjs` 和 `scripts/inject-og-image.mjs` 是一次性批量迁移脚本。它们会直接写入多个 HTML，不应作为日常检查命令运行；确需使用时，先确认映射和影响范围，运行后逐文件审阅差异。
-
 ## 检查清单
 
 提交前根据改动范围执行：
@@ -116,8 +113,6 @@ node .\scripts\static-server.mjs
 ```powershell
 node --check .\update-records.js
 node --check .\scripts\static-server.mjs
-node --check .\scripts\inject-seo.mjs
-node --check .\scripts\inject-og-image.mjs
 .\scripts\cleanup-guide-whitespace.ps1
 ```
 
@@ -128,7 +123,7 @@ node --check .\scripts\inject-og-image.mjs
 - 页面在窄屏和宽屏下没有明显溢出。
 - 浅色与深色主题的文字、边框和交互状态可辨认。
 - 键盘可以到达主要控件，焦点状态清晰。
-- 新增页面已更新首页、SEO 映射、更新记录和站点地图。
+- 新增页面已更新首页、更新记录和站点地图。
 - Git diff 只包含本次任务所需内容，没有批量格式化或生成的临时文件。
 
 仓库目前没有自动化测试套件。对读者可见的页面改动，以本地浏览器检查为主要验证方式。
