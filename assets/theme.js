@@ -151,6 +151,8 @@
   function normalizeTextNode(node) {
     if (!node || node.nodeType !== Node.TEXT_NODE || isBlocked(node)) return;
     var next = normalizeSpacing(node.nodeValue);
+    var parent = node.parentElement;
+    if (parent && parent.classList.contains('footer-note-text')) next = next.replace(/。$/, '');
     if (next !== node.nodeValue) node.nodeValue = next;
   }
 
