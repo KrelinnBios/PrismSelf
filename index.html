@@ -1113,14 +1113,14 @@
     }
 
     .qr-dialog-inner {
+      position: relative;
       padding: 22px;
     }
 
     .qr-dialog-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      display: block;
       margin-bottom: 12px;
+      padding-right: 44px;
     }
 
     .qr-dialog-copy {
@@ -1142,38 +1142,37 @@
     }
 
     .qr-dialog-close {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 32px;
-      width: 32px;
-      min-width: 32px;
-      height: 32px;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      width: 34px;
+      min-width: 34px;
+      height: 34px;
+      margin: 0;
       padding: 0;
-      margin-left: auto;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background: #f1f5f9;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+      border-radius: 10px;
+      background: transparent;
       color: var(--ink-soft);
-      font: inherit;
-      font-size: 18px;
-      line-height: 1;
+      box-shadow: none;
       cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      font-size: 0;
+      line-height: 0;
+      transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+
+    .qr-dialog-close svg {
+      display: block;
+      width: 18px;
+      height: 18px;
     }
 
     .qr-dialog-close:hover {
-      background: #e2e8f0;
-      border-color: #cbd5e1;
-    }
-
-    :root[data-theme="dark"] .qr-dialog-close {
-      background: #1e293b;
-    }
-
-    :root[data-theme="dark"] .qr-dialog-close:hover {
-      background: #334155;
-      border-color: #475569;
+      border-color: color-mix(in srgb, currentColor 52%, transparent);
+      background: color-mix(in srgb, currentColor 9%, transparent);
     }
 
     .qr-dialog-image {
@@ -2833,7 +2832,7 @@
               <h3 class="qr-dialog-title" id="friendDialogTitle">黑桃 Spade A</h3>
               <p class="qr-dialog-desc">微信扫码关注，阅览无性恋相关专题内容。</p>
             </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭友情链接弹窗">×</button>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭友情链接弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
           </div>
           <a class="qr-dialog-image" href="./assets/spade-a.webp" target="_blank" rel="noopener noreferrer"
             aria-label="打开黑桃 Spade A 关注二维码大图">
@@ -2850,7 +2849,7 @@
               <h3 class="qr-dialog-title" id="guyuliangDialogTitle">谷语粱</h3>
               <p class="qr-dialog-desc">哔哩哔哩、小红书扫码关注，了解福瑞与美国兽展相关内容。</p>
             </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭谷语粱二维码弹窗">×</button>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭谷语粱二维码弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
           </div>
           <div class="qr-dialog-grid">
             <div class="qr-platform">
@@ -2877,7 +2876,7 @@
               <h3 class="qr-dialog-title" id="resourceDialogTitle">常用订阅入口</h3>
               <p class="qr-dialog-desc">请遵守当地法律法规，合规使用网络代理服务。</p>
             </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭代理与 AI 订阅弹窗">×</button>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭代理与 AI 订阅弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
           </div>
           <div class="resource-list">
             <a class="resource-link elephant" href="https://sakuracat-1.com/register?code=Kuc1kZi6" target="_blank"
@@ -2919,7 +2918,7 @@
               <h3 class="qr-dialog-title" id="contactDialogTitle">邮箱与仓库</h3>
               <p class="qr-dialog-desc">欢迎反馈错漏、排版兼容、引用纠错与内容建议。</p>
             </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭联系我们弹窗">×</button>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭联系我们弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
           </div>
           <div class="resource-list">
             <button class="resource-link mail" type="button" id="copyEmailButton">

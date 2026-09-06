@@ -167,8 +167,7 @@ h1 {
 }
 
 .filter-btn,
-.detail-btn,
-.modal-close {
+.detail-btn {
 	border-radius: 999px !important;
 	transition: all 0.2s ease !important;
 }
@@ -462,22 +461,37 @@ tbody tr:hover {
 
 .modal-close {
 	position: absolute !important;
-	top: 12px !important;
-	right: 12px !important;
-	background: #f1f5f9 !important;
+	top: 16px !important;
+	right: 16px !important;
+	z-index: 2 !important;
+	flex: none !important;
+	width: 34px !important;
+	min-width: 34px !important;
+	height: 34px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: inline-grid !important;
+	place-items: center !important;
+	border: 1px solid color-mix(in srgb, currentColor 30%, transparent) !important;
+	border-radius: 10px !important;
+	background: transparent !important;
 	color: var(--analysis-muted) !important;
-	border: none !important;
-	width: 36px !important;
-	height: 36px !important;
-	font-size: 20px !important;
+	box-shadow: none !important;
 	cursor: pointer !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease !important;
+}
+
+.modal-close svg {
+	display: block !important;
+	width: 18px !important;
+	height: 18px !important;
 }
 
 .modal-close:hover {
-	background: var(--analysis-tint-2) !important;
+	border-color: color-mix(in srgb, currentColor 52%, transparent) !important;
+	background: color-mix(in srgb, currentColor 9%, transparent) !important;
 	color: var(--analysis-ink) !important;
 }
 
@@ -595,10 +609,6 @@ tbody tr:hover {
 
 :root[data-theme="dark"] tbody tr:hover {
 	background: rgba(255, 255, 255, 0.04) !important;
-}
-
-:root[data-theme="dark"] .modal-close {
-	background: #1b2330 !important;
 }
 
 :root[data-theme="dark"] .modal-section p {
