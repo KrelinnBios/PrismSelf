@@ -279,8 +279,6 @@ body.scale-page {
 	padding-right: 0 !important;
 }
 
-body.scale-page .global-progress.scale-mobile-toolbar,
-.global-progress.scale-mobile-toolbar,
 body.scale-page .global-progress {
 	position: sticky !important;
 	top: 0 !important;
@@ -303,29 +301,6 @@ body.scale-page .global-progress {
 	body.scale-page .global-progress {
 		padding-right: 24px !important;
 		padding-left: 24px !important;
-	}
-	body.scale-page .global-progress.scale-mobile-toolbar .prism-back-home,
-	body.scale-page .global-progress.scale-mobile-toolbar .theme-toggle,
-	body.scale-page .global-progress.scale-mobile-toolbar .guide-ai-launcher--scale {
-		position: fixed !important;
-	}
-	body.scale-page .global-progress.scale-mobile-toolbar .prism-back-home {
-		top: 18px !important;
-		left: 18px !important;
-		right: auto !important;
-		bottom: auto !important;
-	}
-	body.scale-page .global-progress.scale-mobile-toolbar .theme-toggle {
-		top: 18px !important;
-		right: 18px !important;
-		left: auto !important;
-		bottom: auto !important;
-	}
-	body.scale-page .global-progress.scale-mobile-toolbar .guide-ai-launcher--scale {
-		top: calc(18px + env(safe-area-inset-top, 0px)) !important;
-		left: calc(18px + env(safe-area-inset-left, 0px)) !important;
-		right: auto !important;
-		bottom: auto !important;
 	}
 }
 
@@ -1385,7 +1360,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 }
 
 /* iPad 与平板布局（兼顾 768～1024 像素的横竖屏）：
-   - 顶部工具栏 3 列 Grid：[AI][进度文字/进度条][主题]；
+   - 顶部工具栏 2 列 Grid：[进度文字/进度条][主题]；
    - 进度文字在上、进度条在下同列堆叠；
    - 结果区尽量保留桌面双栏，并让雷达图使用可用空间。 */
 @media (min-width: 651px) and (max-width: 1180px) {
@@ -1412,15 +1387,13 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	/* App bar grid (shared with theme.css mobile layout, but with 2 rows):
-	   col1 = AI, col2 = progress label + bar stacked, col3 = theme.
+	   col1 = progress label + bar stacked, col2 = theme.
 	   1180 is close to the theme.css 1200 breakpoint so we
 	   deliberately repeat its panel chrome (surface bg + bottom radius)
 	   and then build the 2-row grid on top. */
-	body.scale-page .global-progress.scale-mobile-toolbar,
-	.global-progress.scale-mobile-toolbar,
 	.global-progress {
 		display: grid !important;
-		grid-template-columns: 44px minmax(0, 1fr) 44px !important;
+		grid-template-columns: minmax(0, 1fr) 44px !important;
 		grid-template-rows: auto minmax(0, auto) !important;
 		align-items: start !important;
 		justify-items: stretch !important;
@@ -1439,39 +1412,13 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		order: 10;
 	}
 
-	.global-progress .prism-back-home {
-		order: 1 !important;
-		grid-column: 1 / 2 !important;
-		grid-row: 1 / span 2 !important;
-		position: static !important;
-		top: auto !important;
-		left: auto !important;
-		right: auto !important;
-		bottom: auto !important;
-		inset: auto !important;
-		z-index: 1 !important;
-		width: 44px !important;
-		height: 44px !important;
-		min-width: 44px !important;
-		min-height: 44px !important;
-		padding: 0 !important;
-		margin: 0 !important;
-		place-self: center center !important;
-		box-sizing: border-box !important;
-		box-shadow: none !important;
-		aspect-ratio: 1 / 1 !important;
-		border-radius: 999px !important;
-	}
-
-	body.scale-page .global-progress.scale-mobile-toolbar::after,
 	.global-progress::after {
 		content: none !important;
 	}
 
-	body.scale-page .global-progress.scale-mobile-toolbar .progress,
 	.global-progress .progress {
 		order: 2 !important;
-		grid-column: 2 / 3 !important;
+		grid-column: 1 / 2 !important;
 		grid-row: 1 / 2 !important;
 		align-self: start !important;
 		justify-self: stretch !important;
@@ -1488,7 +1435,6 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		text-align: center !important;
 	}
 
-	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar,
 	.global-progress .progress-bar {
 		order: 3 !important;
 		position: relative !important;
@@ -1497,7 +1443,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		right: auto !important;
 		bottom: auto !important;
 		inset: auto !important;
-		grid-column: 2 / 3 !important;
+		grid-column: 1 / 2 !important;
 		grid-row: 2 / 3 !important;
 		align-self: start !important;
 		width: 100% !important;
@@ -1513,7 +1459,6 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		transform: translateY(-10px) !important;
 	}
 
-	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar-fill,
 	.global-progress .progress-bar-fill {
 		height: 8px !important;
 		border-radius: 999px !important;
@@ -1522,29 +1467,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 
 	.global-progress .theme-toggle {
 		order: 4 !important;
-		grid-column: 3 / 4 !important;
-		grid-row: 1 / span 2 !important;
-		position: static !important;
-		top: auto !important;
-		left: auto !important;
-		right: auto !important;
-		bottom: auto !important;
-		inset: auto !important;
-		z-index: 1 !important;
-		width: 44px !important;
-		height: 44px !important;
-		min-width: 44px !important;
-		min-height: 44px !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		flex: 0 0 44px !important;
-		place-self: center center !important;
-		box-shadow: none !important;
-	}
-
-	.global-progress .guide-ai-launcher--scale {
-		order: 1 !important;
-		grid-column: 1 / 2 !important;
+		grid-column: 2 / 3 !important;
 		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;
@@ -1733,13 +1656,11 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		max-width: 100% !important;
 	}
 
-	/* 移动端沿用平板工具栏顺序：[AI][进度文字与进度条][主题]。
+	/* 移动端沿用平板工具栏顺序：[进度文字与进度条][主题]。
 	   图标使用固定触控尺寸，让中间进度区在窄屏上仍有稳定间距。 */
-	body.scale-page .global-progress.scale-mobile-toolbar,
-	.global-progress.scale-mobile-toolbar,
 	.global-progress {
 		display: grid !important;
-		grid-template-columns: 44px minmax(0, 1fr) 44px !important;
+		grid-template-columns: minmax(0, 1fr) 40px !important;
 		grid-template-rows: auto minmax(0, auto) !important;
 		align-items: start !important;
 		justify-items: stretch !important;
@@ -1759,32 +1680,9 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		order: 10;
 	}
 
-	.global-progress .prism-back-home {
-		order: 1 !important;
-		grid-column: 1 / 2 !important;
-		grid-row: 1 / span 2 !important;
-		position: static !important;
-		top: auto !important;
-		left: auto !important;
-		right: auto !important;
-		bottom: auto !important;
-		z-index: 1 !important;
-		width: 40px !important;
-		height: 40px !important;
-		min-width: 40px !important;
-		min-height: 40px !important;
-		padding: 0 !important;
-		margin: 0 !important;
-		box-sizing: border-box !important;
-		place-self: center center !important;
-		border-radius: 999px !important;
-		aspect-ratio: 1 / 1 !important;
-	}
-
-	body.scale-page .global-progress.scale-mobile-toolbar .progress,
 	.global-progress .progress {
 		order: 2 !important;
-		grid-column: 2 / 3 !important;
+		grid-column: 1 / 2 !important;
 		grid-row: 1 / 2 !important;
 		position: static !important;
 		width: 100% !important;
@@ -1801,10 +1699,9 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		text-overflow: ellipsis;
 	}
 
-	body.scale-page .global-progress.scale-mobile-toolbar .progress-bar,
 	.global-progress .progress-bar {
 		order: 3 !important;
-		grid-column: 2 / 3 !important;
+		grid-column: 1 / 2 !important;
 		grid-row: 2 / 3 !important;
 		align-self: start !important;
 		position: relative !important;
@@ -1831,27 +1728,7 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 
 	.global-progress .theme-toggle {
 		order: 4 !important;
-		grid-column: 3 / 4 !important;
-		grid-row: 1 / span 2 !important;
-		position: static !important;
-		top: auto !important;
-		left: auto !important;
-		right: auto !important;
-		bottom: auto !important;
-		z-index: 1 !important;
-		width: 40px !important;
-		height: 40px !important;
-		min-width: 40px !important;
-		min-height: 40px !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		flex: 0 0 40px !important;
-		place-self: center center !important;
-	}
-
-	.global-progress .guide-ai-launcher--scale {
-		order: 1 !important;
-		grid-column: 1 / 2 !important;
+		grid-column: 2 / 3 !important;
 		grid-row: 1 / span 2 !important;
 		position: static !important;
 		top: auto !important;
@@ -2027,7 +1904,6 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		box-sizing: border-box !important;
 	}
 
-	body.scale-page > .global-progress.scale-mobile-toolbar,
 	body.scale-page > .global-progress,
 	body.scale-page > h1,
 	body.scale-page > .intro,

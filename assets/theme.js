@@ -39,9 +39,9 @@
     root.classList.remove('guide-links-green', 'guide-links-purple');
 
     if (/(?:asexual|greysexual|graysexual|demisexual)/.test(path)) {
-      root.classList.add('guide-links-green');
-    } else if (/aromantic/.test(path)) {
       root.classList.add('guide-links-purple');
+    } else if (/aromantic/.test(path)) {
+      root.classList.add('guide-links-green');
     }
   }
 
@@ -57,9 +57,8 @@
     style.id = 'prismFloatingLayout';
     style.textContent = [
       ':root { --prism-corner-inset: 18px; --prism-corner-control-size: 44px; }',
-      'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max-width: var(--prism-corner-control-size) !important; height: var(--prism-corner-control-size) !important; min-height: var(--prism-corner-control-size) !important; max-height: var(--prism-corner-control-size) !important; }',
+      'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max-width: var(--prism-corner-control-size) !important; height: var(--prism-corner-control-size) !important; min-height: var(--prism-corner-control-size) !important; max-height: var(--prism-corner-control-size) !important; }',
       'body:not(.scale-page) .theme-toggle { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: auto !important; left: auto !important; }',
-      'body:not(.scale-page) .guide-ai-launcher { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; left: calc(var(--prism-corner-inset) + env(safe-area-inset-left, 0px)) !important; right: auto !important; bottom: auto !important; }',
       'body:not(.scale-page) .floating-toc { position: fixed !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: calc(var(--prism-corner-inset) + env(safe-area-inset-bottom, 0px)) !important; top: auto !important; left: auto !important; }',
       '@media (max-width: 620px) { :root { --prism-corner-inset: 12px; } }'
     ].join('\n');
@@ -115,7 +114,6 @@
     }
     var scaleToolbar = document.querySelector('.global-progress');
     if (scaleToolbar) {
-      scaleToolbar.classList.add('scale-mobile-toolbar');
       scaleToolbar.appendChild(btn);
     } else {
       document.body.appendChild(btn);

@@ -14,7 +14,7 @@ const DEFAULT_THEME = '#2f6f73';
 
 // file -> { desc, title, theme? } ; title falls back to the page's <title>
 const pages = {
-  'index.html': { desc: '面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，提供概念分析、专题指南、术语索引、社群观察、共鸣刻度、自评量表、关系工具及按需 AI 陪读与解读。', url: '/' },
+  'index.html': { desc: '面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，提供概念分析、专题指南、术语索引、社群观察、共鸣刻度、自评量表与关系工具。', url: '/' },
   'Analyses/Gender-Theory-Panorama.html': { desc: '系统梳理性别理论的核心概念，对照定义、流派与争议，帮助厘清性别相关术语与思想脉络。' },
   'Analyses/Interpersonal-Attraction-Comparison.html': { desc: '全景比较多种人际吸引类型（性、浪漫、感官、智识等），辨析它们的定义与差异。' },
   'Analyses/Interpersonal-Conflict-Analysis.html': { desc: '全面分析人际冲突的概念、成因与应对模式，厘清相关的心理与沟通术语。' },

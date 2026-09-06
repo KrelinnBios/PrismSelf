@@ -11,7 +11,7 @@
   <style>
     :root {
       --accent: #228b4f;
-      --accent-2: #4238b5;
+      --accent-2: #166534;
       --accent-light: #e7f6ec;
       --focus: rgba(34, 139, 79, 0.7);
       --guide-control-border: rgba(34, 139, 79, 0.72);
@@ -25,7 +25,7 @@
 
     :root[data-theme="dark"] {
       --accent: #8fd694;
-      --accent-2: #c4baff;
+      --accent-2: #c4f1c9;
       --accent-light: #14271a;
       --focus: rgba(143, 214, 148, 0.72);
       --guide-control-border: rgba(143, 214, 148, 0.72);
@@ -114,6 +114,18 @@
     :root[data-theme="dark"] .toc-list a:hover,
     :root[data-theme="dark"] .toc-list a[aria-current="true"] {
       color: rgba(143, 214, 148, 0.96);
+    }
+
+    .header-ornament {
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+    }
+
+    .term-card.highlight .term-en {
+      color: var(--accent) !important;
+    }
+
+    #write .term-card.highlight .term-desc .guide-note {
+      border-left-color: var(--accent);
     }
   </style>
   <script>
@@ -418,6 +430,8 @@
         write.appendChild(intro);
         write.appendChild(main);
         write.appendChild(floating);
+        document.body.classList.remove('guide-building');
+        document.body.classList.add('guide-ready');
 
         const tocLinks = Array.from(panel.querySelectorAll('a'));
         const sectionEls = Array.from(write.querySelectorAll('.category-section'));
@@ -443,8 +457,6 @@
         }
         const initialId = location.hash ? location.hash.slice(1) : sections[0] && sections[0].id;
         if (initialId && byId.has(initialId)) setCurrent(initialId);
-        document.body.classList.remove('guide-building');
-        document.body.classList.add('guide-ready');
       };
 
       if (document.readyState === 'loading') {
@@ -456,13 +468,13 @@
   </script>
   <title>无浪漫全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/Aromantic-Comprehensive-Guide.html">
-  <meta name="description" content="无浪漫全景指南，系统介绍无浪漫的定义、谱系、心理机制、常见误解、关系实践、社群文化与法律处境。">
+   <meta name="description" content="无浪漫全景指南，系统介绍无浪漫的定义、谱系、心理机制、常见误解、关系相处方式、社群文化与法律处境。">
   <meta name="theme-color" content="#228b4f">
   <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="无浪漫全景指南">
-  <meta property="og:description" content="无浪漫全景指南，系统介绍无浪漫的定义、谱系、心理机制、常见误解、关系实践、社群文化与法律处境。">
+   <meta property="og:description" content="无浪漫全景指南，系统介绍无浪漫的定义、谱系、心理机制、常见误解、关系相处方式、社群文化与法律处境。">
   <meta property="og:url" content="https://prismself.vip/Guides/Aromantic-Comprehensive-Guide.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.vip/og-image/image.png?v=1788098160">
@@ -470,9 +482,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../assets/theme.css?v=12d3942b5240">
-  <link rel="stylesheet" href="../AI/ai-companion.css?v=f0751f3d1af0">
   <script src="../assets/theme.js?v=12d3942b5240"></script>
-  <script src="../AI/ai-companion.js?v=8698277816c9" defer></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -487,349 +497,468 @@
     <div id="write" class="">
       <h2 id="引言重新理解浪漫与亲密的多元谱系"><span>引言：重新理解浪漫与亲密的多元谱系</span></h2>
       <h3 id="重新理解浪漫取向"><span>重新理解浪漫取向</span></h3>
-      <p><span>在多数文化叙事中，恋爱被写成一种几乎必然发生的人生阶段：人会长大，会心动，会遇见“特别的人”，会把亲密、承诺、共同生活与未来规划集中交给恋爱或婚姻关系。这样的叙事非常有力量，它帮助很多人理解自己的浪漫经验；但它也会遮蔽另一类同样真实的生命经验：有些人很少、条件性或几乎完全不体验浪漫吸引。</span></p>
-      <p><span>之所以说需要“重新理解”，是因为长期以来，人类对取向的理解在很大程度上受限于一种</span><strong><span>把浪漫与性捆绑在一起的解释框架</span></strong><span>：“取向”几乎默认等同于性取向，而喜欢一个人则被默认为既想与之恋爱、又渴望与之亲密接触的一体化经验。然而，浪漫吸引与性吸引是可以彼此分离的维度。</span><strong><span>浪漫取向（Romantic Orientation）</span></strong><span>正是把其中的浪漫维度单独拿出来审视：一个人是否体验浪漫吸引、以何种频率和条件体验、指向哪些性别。</span><strong><span>无浪漫（Aromantic，简称 Aro）</span></strong><span>作为浪漫取向谱系中一个独特且逐渐受到关注的组成部分，通常</span><strong><span>指个体在根本上不体验，或仅极少体验浪漫吸引（Romantic Attraction）</span></strong><span>的状态。这并不意味着无浪漫者缺乏情感能力、无法建立深度关系，或不能体验性吸引、审美吸引等其他形式的吸引；其关键特征在于：“想与特定对象建立恋爱关系、成为彼此浪漫意义上的特别存在”的内在渴望，并非其生命经验的核心构成要素，甚至可能完全缺席。</span></p>
-      <p><span>与</span><strong><span>灰浪漫（Greyromantic）所描述的仅在特定情境、关系或心理条件下，偶发性或微弱地体验浪漫吸引的状态不同，较为典型的无浪漫者通常报告完全不体验浪漫吸引</span></strong><span>。然而，需要强调的是，</span><strong><span>“无浪漫”本身亦是一个具有谱系性的概念，其内部存在显著的个体差异</span></strong><span>。一些无浪漫者仍然喜爱恋爱题材的作品、能够享受浪漫氛围或参与恋爱式互动，只是不会对现实中的具体对象产生恋爱渴望；另一些无浪漫者则对浪漫互动无感甚至排斥。</span><span>因此，</span><strong><span>无浪漫的核心界定并不在于是否谈过恋爱、是否进入婚姻或是否喜欢浪漫叙事，而在于是否体验到指向他人的浪漫吸引</span></strong><span>。这一点构成了无浪漫与“暂时不想恋爱”、独身选择或回避亲密之间最关键、也最容易被混淆的理论区分。</span></p>
+       <p><span>在多数文化叙事中，恋爱被呈现为几乎必然发生的人生阶段：人会长大，会心动，会遇见“特别的人”，并把亲密、承诺、共同生活和未来规划都寄托在恋爱或婚姻关系上。这样的叙事很有力量，能帮助很多人理解自己的浪漫经验；但它也会遮蔽另一种同样真实的人生经验：有些人很少体验浪漫吸引，有些人只在特定条件下体验，还有些人几乎从不体验。</span></p>
+         <p><span>之所以需要“重新理解”，是因为长期以来，人们常把取向简单等同于</span><strong><span>性取向</span></strong><span>，也常把“喜欢一个人”理解成既想和对方恋爱、又想与对方亲密接触的整体经验。然而，浪漫吸引与性吸引可以彼此分开。</span><strong><span>浪漫取向（Romantic Orientation）</span></strong><span>是把浪漫这一维度单独提出来考察：一个人是否体验浪漫吸引、这种体验出现的频率和条件，以及吸引可能指向哪些性别。</span><strong><span>无浪漫（Aromantic，简称 Aro）</span></strong><span>是浪漫取向中的一种形式，通常</span><strong><span>用于描述很少或不体验浪漫吸引（Romantic Attraction）的人</span></strong><span>。这并不意味着无浪漫者缺乏情感能力、无法建立深度关系，或不能体验性吸引、审美吸引等其他形式的吸引；对浪漫关系的愿望、对浪漫行为的态度，以及是否恋爱或结婚，也不能单独用来界定或否定这一身份。</span></p>
+        <p><span>灰浪漫（Greyromantic）是一个较宽泛的统称，可以描述浪漫吸引很少出现、强度很弱、不稳定、只在特定条件下出现，或难以辨认的情况；每个人对它的具体理解可能不同。需要强调的是，</span><strong><span>“无浪漫”本身也包含显著的个体差异</span></strong><span>。一些无浪漫者仍然喜爱恋爱题材的作品、能够享受浪漫氛围或参与恋爱式互动，只是不会把这些经验理解为对特定对象的浪漫吸引；另一些无浪漫者则对浪漫互动无感甚至排斥。</span><span>因此，</span><strong><span>无浪漫的界定重点在于本人如何理解自己的浪漫吸引体验</span></strong><span>，而不是是否谈过恋爱、是否进入婚姻或是否喜欢浪漫叙事。这也是它与“暂时不想恋爱”、独身选择或回避亲密之间的重要区分。</span></p>
       <h3 id="为什么需要关注无浪漫"><span>为什么需要关注无浪漫？</span></h3>
       <h4 id="看见浪漫规范的局限"><span>看见浪漫规范的局限</span></h4>
-      <p><span>当社会默认恋爱关系是成年人最重要、最成熟、最有优先级的亲密关系时，友谊、选择家庭、共同生活伙伴、酷儿柏拉图式关系、社群互助和单身生活都会被降级为“暂时的”“不完整的”或“没有找到真爱之前的替代品”。无浪漫经验提醒我们：关系的深度不必由浪漫标签证明，承诺也不只存在于恋爱关系之中。</span></p>
+       <p><span>当社会默认恋爱关系是成年人最重要、最成熟、也最应该优先发展的亲密关系时，友谊、选择家庭、共同生活伙伴、酷儿柏拉图式关系、社群互助和单身生活就容易被看作“暂时的”“不完整的”，或“找到真爱之前的替代品”。无浪漫经验也提醒我们：关系的深度不需要靠浪漫标签来证明，承诺也不只存在于恋爱关系中。</span></p>
       <h4 id="提供自我理解的语言"><span>提供自我理解的语言</span></h4>
-      <p><span>许多无浪漫谱系者在接触这一概念前，只能把自己的经验解释为冷淡、挑剔、迟钝、害怕亲密或还没遇到对的人。一个准确的标签不是为了把人固定在某个格子里，而是帮助个体把长期零散的不适、困惑与差异感组织起来，明白自己并非孤例，也不需要被矫正成某种标准恋爱主体。</span></p>
+       <p><span>许多处于无浪漫谱系的人在接触这个概念之前，只能把自己的经验解释为冷淡、挑剔、迟钝、害怕亲密，或只是还没遇到对的人。一个合适的标签不是为了把人固定在某个格子里，而是帮助人整理长期零散的不适、困惑和差异感，明白自己并非孤例，也不必被矫正成符合主流恋爱规范的样子。</span></p>
       <h4 id="扩展关系想象"><span>扩展关系想象</span></h4>
-      <p><span>理解无浪漫并不只服务于无浪漫者。它也帮助所有人重新审视自己对恋爱、伴侣、排他、同居、婚姻、照护责任和未来规划的想象：哪些是自己真正想要的，哪些只是被文化脚本推着走的默认选项。把浪漫从唯一中心的位置移开，并不是贬低恋爱，而是让每种关系形式都回到当事人的真实需求中被评估。</span></p>
+       <p><span>理解无浪漫不只是为了帮助无浪漫者。它也能帮助所有人重新想一想自己对恋爱、伴侣、排他、同居、婚姻、照护责任和未来规划的期待：哪些是自己真正想要的，哪些只是顺着社会默认的生活剧本在选择。不把浪漫放在唯一的中心位置，并不是贬低恋爱，而是按照当事人的实际需求来衡量每种关系形式。</span></p>
       <blockquote>
-        <p><strong><span>核心提示</span></strong><span>：本指南用于科普与自我探索，不提供诊断或专业评估。浪漫吸引是高度主观的体验；如果某个标签能帮助你理解自己，它就可以暂时成为工具；如果它不再贴合，也可以被放下或调整。</span></p>
+         <p><strong><span>核心提示</span></strong><span>：本指南用于科普与自我探索，不提供诊断或专业评估。浪漫吸引是高度主观的体验；如果某个标签能帮助你理解自己，可以暂时用它来描述自己；如果它不再贴合，也可以放下或换一种说法。</span></p>
       </blockquote>
       <hr>
 
       <h2 id="概念与定义深入剖析无浪漫"><span>概念与定义：深入剖析无浪漫</span></h2>
-      <h3 id="浪漫吸引的工作性定义"><span>浪漫吸引的工作性定义</span></h3>
-      <p><strong><span>浪漫吸引（Romantic Attraction）</span></strong><span>通常指对特定对象产生、并被本人理解为“想以浪漫方式靠近或建立关系”的吸引。它可能涉及约会、浪漫表达或共同生活的想象，也可能没有明显身体反应。哪些行为算“浪漫”会受到个人与文化影响；牵手、同居、承诺和彼此特别都不天然专属于恋爱，排他性也不是浪漫吸引的必要条件。因此，这里使用的是帮助沟通经验的工作性定义，而不是可以从外部行为精确判定的标准。</span></p>
+       <h3 id="浪漫吸引的工作性定义"><span>浪漫吸引：便于讨论的定义</span></h3>
+       <p><strong><span>浪漫吸引（Romantic Attraction）</span></strong><span>通常指一个人对特定对象产生的一种吸引，本人会将它理解为希望以浪漫方式接近对方或与其建立关系。它可能涉及约会、浪漫表达或共同生活的想象，也可能没有明显的身体反应。哪些行为算“浪漫”会因个人和文化而异；牵手、同居、承诺，以及把彼此视为特殊对象，都不天然属于恋爱关系，排他性也不是浪漫吸引的必要条件。因此，这里采用的是便于讨论的定义，不能仅凭外在行为准确判断一个人是否有这种吸引。</span></p>
       <aside class="guide-note">
         <span class="guide-note-title">阅读边界 · Reading Note</span>
-        <p><span>是否谈过恋爱、喜欢恋爱作品、愿意结婚或拥有强烈情感需求，都不能单独判定一个人的浪漫取向。理解无浪漫经验时，应区分本人如何命名内在感受、如何看待浪漫互动，以及实际选择了怎样的关系生活。</span></p>
+         <p><span>是否谈过恋爱、喜欢恋爱作品、愿意结婚或拥有强烈的情感需求，都不能单独判定一个人的浪漫取向。理解无浪漫经验时，应区分本人如何描述自己的感受、如何看待浪漫互动，以及实际如何安排关系与生活。</span></p>
       </aside>
       <h3 id="常见吸引类型"><span>常见吸引类型</span></h3>
       <ul>
-        <li><p><strong><span>性吸引（Sexual Attraction）</span></strong><span>：对特定对象产生的、以性接触或性行为为指向的心理与生理驱动力。它通常表现为希望与对方发生性行为或进行具有性意味的亲密身体接触，并可能伴随生理反应（如心跳加速、生理唤起）或心理兴奋（如性幻想的涌现）。性吸引是一种由内向外、以他人为对象、以性为取向的主动心理动力，有别于单纯的外貌欣赏（审美吸引）、情感依恋（情感吸引）或浪漫渴望（浪漫吸引）。值得注意的是，性吸引并非总是与浪漫吸引同步出现——有些人可能对某人产生性吸引却无浪漫情感，反之亦然。</span></p></li>
-        <li><p><strong><span>情感吸引（Emotional Attraction）</span></strong><span>：被某人的内心世界、性格、思想或情感深度吸引，并希望与对方建立信任、倾诉、理解和情绪支持的深层连接。情感吸引可以构成亲密关系的重要基础，但本身不必然包含浪漫或性欲望。</span></p></li>
-        <li><p><strong><span>柏拉图式吸引（Platonic Attraction）</span></strong><span>：渴望与某人建立深厚、稳定且非浪漫的友谊关系，强调陪伴、共同兴趣、价值观契合和彼此同行。它可能非常强烈，却不一定指向恋爱或性接触。</span></p></li>
+         <li><p><strong><span>性吸引（Sexual Attraction）</span></strong><span>：对特定对象产生的、希望与对方发生性接触或性行为的吸引。它也可能伴随生理反应（如心跳加速、生理唤起）或心理兴奋（如性幻想）。性吸引是一种指向他人的性方面的吸引，不同于单纯欣赏外貌（审美吸引）、对他人的情感依恋（情感吸引）或浪漫期待（浪漫吸引）。值得注意的是，性吸引并不总是与浪漫吸引同时出现：有些人可能对某人有性吸引，却没有浪漫情感，反过来也一样。</span></p></li>
+         <li><p><strong><span>情感吸引（Emotional Attraction）</span></strong><span>：会被某人的内心世界、性格、思想或情感深度打动，并希望与对方建立信任、互相倾诉、彼此理解，在情绪上互相支持。情感吸引可以成为亲密关系的重要基础，但本身不一定包含浪漫或性方面的欲望。</span></p></li>
+         <li><p><strong><span>柏拉图式吸引（Platonic Attraction）</span></strong><span>：渴望和某人建立深厚、稳定而非浪漫的友谊，重视陪伴、共同兴趣、价值观契合和彼此同行。它可能非常强烈，却不一定指向恋爱或性接触。</span></p></li>
         <li><p><strong><span>审美吸引（Aesthetic Attraction）</span></strong><span>：单纯地欣赏他人的外貌、气质、风格、声音、肢体语言或整体美感，觉得对方“好看”“有魅力”或“像艺术品一样值得欣赏”，但并不伴随想恋爱、想触碰或想发生性关系的欲望。</span></p></li>
-        <li><p><strong><span>感官吸引（Sensual Attraction）</span></strong><span>：渴望与某人进行非性的身体亲密接触，例如拥抱、牵手、依偎、轻抚或靠近，以获得舒适、安全感、温暖或放松。感官吸引的核心是触觉亲密，不必然涉及性唤起或性欲望。</span></p></li>
+         <li><p><strong><span>感官吸引（Sensual Attraction）</span></strong><span>：希望以非性的方式和某人有身体接触，例如拥抱、牵手、依偎、轻抚或靠近，从中获得舒适、安全感、温暖或放松。感官吸引的核心是身体上的亲近，不一定涉及性唤起或性欲望。</span></p></li>
       </ul>
       <h3 id="分离吸引模型"><span>分离吸引模型</span></h3>
-      <p><strong><span>分离吸引模型（Split Attraction Model, SAM）</span></strong><span>把人际吸引拆分为多个维度分别理解。这个模型常见于无性恋与无浪漫社群，因为它能解释一个人为什么可能体验性吸引却不体验浪漫吸引，或体验浪漫吸引却不体验性吸引。SAM 不是每个人都必须套用的身份公式，而是一种帮助区分经验的语言工具。</span></p>
+        <p><strong><span>分离吸引模型（Split Attraction Model, SAM）</span></strong><span>把人与人之间的吸引分成几个维度来理解。这个模型常见于无性恋与无浪漫社群，因为它能解释一个人为什么可能体验性吸引却不体验浪漫吸引，或体验浪漫吸引却不体验性吸引。SAM 不是每个人都需要用来定义自己的身份，而是一套帮助区分不同体验的说法。</span></p>
       <p><span>例如，一个无浪漫有性恋者可能会体验性吸引，愿意建立诚实、尊重边界的性关系，却并不希望把这段关系定义为恋爱。一个有浪漫无性恋者则可能强烈渴望恋爱关系，却不体验性吸引。二者都提醒我们：爱、性、亲密、承诺和共同生活并不是同一个维度。</span></p>
       <h3 id="无浪漫的精确定义"><span>无浪漫的精确定义</span></h3>
-      <p><strong><span>无浪漫（Aromantic，简称 Aro）</span></strong><span>通常指完全或几乎不体验浪漫吸引的人群。这并不意味着缺乏情感、智力、审美或感官感受，也不意味着不能建立关系；它只说明个体的吸引结构中，浪漫渴望并非一种常规、稳定或核心的体验。</span></p>
-      <p><span>AUREA 将无浪漫理解为一种浪漫取向。人们可能因为很少或不体验浪漫吸引、对浪漫关系没有兴趣、对浪漫感到排斥，或不把浪漫作为关系核心，而认同为无浪漫。这个定义保留弹性，是因为无浪漫社群内部本来就存在高度个体差异。</span></p>
+       <p><strong><span>无浪漫（Aromantic，简称 Aro）</span></strong><span>通常用于描述很少或不体验浪漫吸引的人。这并不意味着缺乏情感、智力、审美或感官感受，也不意味着不能建立关系；个人是否希望进入关系、如何看待浪漫行为，以及是否把浪漫放在生活核心，都不能单独作为定义标准。</span></p>
+        <p><span>本指南主要从浪漫吸引来说明这个概念；AUREA 的资料也把一些与主流浪漫期待不一致的经验纳入描述，例如对浪漫关系不感兴趣或对浪漫感到排斥。这些只是资料中记录的可能表现，不要求所有无浪漫者都具备，也不应由旁人据此替当事人决定该不该使用这个标签。这个区分很重要，因为无浪漫社群内部本来就存在高度个体差异。</span></p>
       <h3 id="无浪漫谱系"><span>无浪漫谱系</span></h3>
-      <p><strong><span>无浪漫谱系（Aromantic Spectrum, Arospec）</span></strong><span>是一个连续谱，描述那些很少、条件性、微弱、模糊、流动或完全不体验浪漫吸引的人群。谱系内的各种身份标签不是互斥的，可能重叠、周期性交替或随人生阶段变化。</span></p>
-      <p><span>有浪漫（Alloromantic）通常描述经常或以较典型方式体验浪漫吸引的人；无浪漫谱系则容纳很少、条件性、微弱、模糊、流动或没有浪漫吸引的经验。这些词来自社群实践，不是按强度划出的医学区间，也没有一条所有人都必须达到的数值边界。</span></p>
+        <p><strong><span>无浪漫谱系（Aromantic Spectrum, Arospec）</span></strong><span>通常是一个总称，涵盖很少体验浪漫吸引、只在特定条件下才体验到浪漫吸引、这种吸引微弱或难以辨认、浪漫取向会变化，以及完全不体验浪漫吸引等情况。谱系内的标签不一定互相排斥，有些人可能同时使用多个标签，也可能随着时间改变用法。</span></p>
+        <p><span>有浪漫（Alloromantic）通常指体验浪漫吸引的人，也可以泛指不在无浪漫谱系中的人；无浪漫谱系则包括很少体验、只在特定条件下体验、体验微弱或模糊、体验会变化，以及完全不体验浪漫吸引等情况。这些词来自社群中的实际使用，不是医学上按强度划分的区间，也没有一条所有人都必须达到的数值边界。</span></p>
       <h3 id="与无性恋的区别"><span>与无性恋的区别</span></h3>
-      <p><span>无浪漫讨论浪漫吸引，无性恋讨论性吸引。一个人可以同时是无浪漫和无性恋，也可以是无浪漫但有性恋，或有浪漫但无性恋。二者经常被放在一起讨论，是因为它们都挑战了主流文化中“爱、性、伴侣关系必须自然绑定”的假设，但它们不是同一个概念。</span></p>
+       <p><span>无浪漫关注的是浪漫吸引，无性恋关注的是性吸引。一个人可以同时是无浪漫和无性恋，也可以是无浪漫且有性恋，或有浪漫但无性恋。二者经常被放在一起讨论，是因为它们都挑战了主流文化中“爱、性、伴侣关系必须自然绑定”的假设，但它们不是同一个概念。</span></p>
       <ul>
         <li><p><strong><span>AroAce</span></strong><span>：同时位于无浪漫谱系与无性恋谱系。</span></p></li>
-        <li><p><strong><span>AroAllo</span></strong><span>：位于无浪漫谱系，但仍体验性吸引或认同为有性恋。</span></p></li>
+          <li><p><strong><span>AroAllo</span></strong><span>：通常指有性恋（allosexual）且无浪漫（aromantic）的人；具体用法以本人认同为准。</span></p></li>
         <li><p><strong><span>AlloAce</span></strong><span>：体验浪漫吸引，但很少或不体验性吸引。</span></p></li>
       </ul>
       <h3 id="与不想恋爱独身和回避亲密的区别"><span>与“不想恋爱”、独身和回避亲密的区别</span></h3>
-      <p><span>不想恋爱可以是阶段性选择，也可以来自学业、工作、创伤恢复、家庭压力、生活规划或对关系成本的评估。独身更偏向生活方式、宗教伦理或个人选择。无浪漫的重点不是“有没有进入恋爱关系”，而是个体是否体验到浪漫吸引以及这种吸引在生命中是否具有核心位置。</span></p>
-      <p><span>同样，无浪漫也不等于害怕亲密。许多无浪漫者需要深度陪伴、信任、照护、共同生活或身体亲近，只是不希望这些需求被自动翻译成恋爱。也有一些无浪漫者偏好独处、低关系投入或非伴侣式生活，这属于个人差异，而非无浪漫的必然结果。</span></p>
+       <p><span>不想恋爱可以是阶段性选择，也可能与学业、工作、创伤恢复、家庭压力、生活规划或对关系成本的评估有关。独身更多指一种生活方式、宗教伦理或个人选择。无浪漫的关键在于一个人如何理解自己的浪漫吸引经验；是否进入恋爱关系、是否希望进入关系或是否把浪漫放在生活核心，都不能单独定义这一取向。</span></p>
+       <p><span>同样，无浪漫也不等于害怕亲密。许多无浪漫者需要深度陪伴、信任、照护、共同生活或身体亲近，只是不希望别人自动把这些需求理解成恋爱。也有一些无浪漫者偏好独处、较少投入关系或非伴侣式生活，这属于个人差异，而不是无浪漫的必然结果。</span></p>
       <h3 id="无浪漫谱系的多样性"><span>无浪漫谱系的多样性</span></h3>
-      <p><strong><span>无浪漫（Aromantic）并非一种非此即彼的二元状态，而是一个具有内在差异的连续性谱系</span></strong><span>，涵盖了从完全不体验浪漫吸引到接近有浪漫（Alloromantic）的多种体验形态。处于无浪漫谱系中的个体，</span><strong><span>在对浪漫及恋爱关系的态度上可能呈现出显著差异</span></strong><span>：有些人对浪漫互动持排斥或回避态度，有些人态度中立，也有些人并不排斥浪漫本身，甚至持开放或肯定立场。这些差异并不削弱或否定无浪漫作为一种浪漫取向的成立，反而清晰地表明，</span><strong><span>浪漫取向的体验结构与个体对浪漫的态度并非同一维度</span></strong><span>，同时也揭示了人类浪漫经验的高度复杂性与个体化特征。</span></p>
-      <p><strong><span>阅读提示</span></strong><span>：以下多为英语无浪漫社群形成的自我描述词，并非临床分类或边界固定的术语表。不同社群和个人可能使用不同定义，标签也会演变；遇到具体的人时，以其自我解释为准。</span></p>
+        <p><strong><span>无浪漫谱系（Aromantic Spectrum）不是一种非此即彼的二元状态，而是涵盖多种非规范浪漫吸引或关系经验的总称</span></strong><span>。处于无浪漫谱系中的人，</span><strong><span>对浪漫和恋爱关系的态度可能差别很大</span></strong><span>：有些人排斥或回避浪漫互动，有些人对此无所谓，也有些人并不排斥浪漫，甚至愿意接受或享受某些浪漫互动。这些差异并不影响无浪漫谱系作为一种浪漫取向的意义，反而说明，</span><strong><span>一个人的浪漫吸引体验与其对浪漫的态度并不是同一回事</span></strong><span>，每个人的浪漫经验也可能很不一样。</span></p>
+        <p><strong><span>阅读提示</span></strong><span>：以下多是英语语境中的无浪漫社群常用自我描述词，不属于临床分类，边界也未必固定。不同社群和个人可能使用不同定义，标签也会演变；遇到具体的人时，应以其自我解释为准。</span></p>
       <h4 id="浪漫吸引强度相关"><span>浪漫吸引强度相关</span></h4>
       <ul>
-        <li><p><strong><span>灰浪漫（Greyromantic）</span></strong><span>：常用于描述浪漫吸引很少、很弱、难辨认，或只在某些条件下出现的经验。它是宽泛的伞形用语，不要求达到某个次数或强度。</span></p></li>
-        <li><p><strong><span>流动无浪漫（Aroflux）</span></strong><span>：用于描述一个人在无浪漫谱系内的体验或标签会随时间变化；变化的范围和意义由本人界定。</span></p></li>
-        <li><p><strong><span>突发无浪漫（Arospike）</span></strong><span>：部分社群成员用来描述通常很少或没有浪漫吸引、偶尔出现较明显吸引的经验；该词并非普遍使用。</span></p></li>
+         <li><p><strong><span>灰浪漫（Greyromantic）</span></strong><span>：常用于描述浪漫吸引很少出现、强度很弱、难以辨认，或只在某些条件下出现的经验。它是宽泛的统称，不要求达到某个次数或强度。</span></p></li>
+          <li><p><strong><span>流动无浪漫（Aroflux）</span></strong><span>：用于描述浪漫取向会随时间波动；这种波动可以始终发生在无浪漫谱系内，也可以发生在无浪漫与有浪漫之间，具体怎么变化、如何理解，由本人决定。</span></p></li>
+           <li><p><strong><span>突发浪漫（Arospike）</span></strong><span>：部分社群成员用来描述浪漫取向快速波动：浪漫吸引突然变得强烈，随后又骤降到几乎没有或完全没有。这个词并非社群普遍使用。</span></p></li>
       </ul>
       <h4 id="情感联结相关"><span>情感联结相关</span></h4>
       <ul>
-        <li><p><strong><span>半浪漫（Demiromantic）</span></strong><span>：仅在与特定对象建立深度情感联结后，才可能体验到浪漫吸引。情感联结是必要条件，但不是保证；即使关系很深，也不一定必然产生浪漫吸引。</span></p></li>
-        <li><p><strong><span>触发浪漫（Apresseromantic）</span></strong><span>：浪漫吸引的产生需要其他类型吸引（如情感吸引、审美吸引、智识吸引等）作为前提条件。与半浪漫的区别在于：半浪漫强调“</span><strong><span>深度情感联结</span></strong><span>”，而触发浪漫强调“</span><strong><span>任何其他类型的吸引先于浪漫吸引</span></strong><span>”（包括审美、感官等，不一定要深度）。</span></p></li>
-        <li><p><strong><span>磨损浪漫（Frayromantic）</span></strong><span>：对陌生人或关系表层化的对象容易产生浪漫吸引，但随着情感联结的加深和关系的发展，浪漫吸引反而会减弱或消失。呈现出与半浪漫完全相反的模式。</span></p></li>
+          <li><p><strong><span>半浪漫（Demiromantic）</span></strong><span>：通常指只有在与某人建立情感联结后，才可能对其产生浪漫吸引。联结的性质和深浅由本人理解，也不保证一定会产生吸引。</span></p></li>
+          <li><p><strong><span>后置浪漫（Apresromantic）</span></strong><span>：只有在体验到其他类型的吸引后，才可能体验浪漫吸引；先出现的吸引可能持续，也可能被新的吸引取代或减弱。它与半浪漫的区别在于：半浪漫强调“</span><strong><span>情感联结</span></strong><span>”，后置浪漫强调“</span><strong><span>其他类型的吸引先于浪漫吸引</span></strong><span>”，不限定先出现的吸引类型。</span></p></li>
+           <li><p><strong><span>磨损浪漫（Frayromantic）</span></strong><span>：部分社群成员用来描述：自己较容易对陌生人或关系尚浅的对象产生浪漫吸引，但随着了解加深或关系发展，这种吸引可能减弱或消失。这种描述通常与半浪漫方向相反，但两者不必视为完全互斥。</span></p></li>
       </ul>
       <h4 id="互动方式相关"><span>互动方式相关</span></h4>
       <ul>
-        <li><p><strong><span>单向浪漫（Lithromantic/Akioromantic）</span></strong><span>：能够对他人产生浪漫吸引，但当这种吸引得到回应或可能发展为双向关系时，反而会产生不适感或失去兴趣。倾向于维持吸引关系的单向性质。</span></p></li>
-        <li><p><strong><span>回应浪漫（Reciproromantic）</span></strong><span>：仅在明确感知到对方对自己存在浪漫吸引时，才可能对该对象产生相应的浪漫吸引。需要他人的吸引表达作为自身浪漫吸引产生的必要条件。</span></p></li>
-        <li><p><strong><span>接受浪漫（Accipioromantic）</span></strong><span>：愿意接受来自他人的浪漫表达或浪漫关系，但缺乏主动发起或追求浪漫的意愿。在浪漫互动中更倾向于扮演接受者角色。</span></p></li>
-        <li><p><strong><span>给予浪漫（Placioromantic）</span></strong><span>：愿意为他人提供浪漫表达或浪漫关怀，但不期望或不愿意成为浪漫对待的被动接受方。在浪漫互动中更倾向于扮演给予者角色。</span></p></li>
+          <li><p><strong><span>单向浪漫（Lithromantic/Akioromantic）</span></strong><span>：能够体验浪漫吸引，但不一定需要对方回应，也不一定想和对方建立浪漫关系；有些人在进入关系后会失去这种吸引，或不再享受这段关系。这些经验不一定包含不适感，也不要求维持单向关系。</span></p></li>
+          <li><p><strong><span>回应浪漫（Reciproromantic）</span></strong><span>：部分社群成员用来描述只有在察觉到对方也对自己有浪漫吸引时，才可能对对方产生浪漫吸引的情况。是否以及如何使用这一标签由本人决定。</span></p></li>
+         <li><p><strong><span>接受浪漫（Accipioromantic）</span></strong><span>：愿意接受来自他人的浪漫表达或进入浪漫关系，但缺乏主动发起或追求浪漫的意愿。在浪漫互动中更倾向于被动接受。</span></p></li>
+         <li><p><strong><span>给予浪漫（Placioromantic）</span></strong><span>：愿意向他人表达浪漫或给予浪漫式关怀，但不希望或不愿意成为浪漫表达的接受方。在浪漫互动中更倾向于主动付出。</span></p></li>
       </ul>
       <h4 id="对浪漫关系的态度"><span>对浪漫关系的态度</span></h4>
       <ul>
-        <li><p><strong><span>厌浪漫（Apothiromantic）</span></strong><span>：对浪漫关系、浪漫表达或浪漫互动本身存在强烈的反感、厌恶或回避情绪，明确拒绝参与任何形式的浪漫互动。这种态度通常是稳定和持续的。</span></p></li>
-        <li><p><strong><span>不渴望关系浪漫（Orchidromantic）</span></strong><span>：能够体验到浪漫吸引，但不希望将这种吸引转化为实际的浪漫关系。存在吸引感受与行为意愿的分离。</span></p></li>
-        <li><p><strong><span>渴望关系浪漫（Cupioromantic）</span></strong><span>：尽管缺乏典型的浪漫吸引体验，但基于寻求亲密感、陪伴、情感联结或社会归属等非浪漫吸引动机，仍然渴望建立浪漫关系。</span></p></li>
-        <li><p><strong><span>无参与浪漫（Aegoromantic）</span></strong><span>：能够被浪漫幻想、浪漫作品或恋爱叙事打动，但对参与真实的、涉及自己的浪漫关系缺乏兴趣或感到排斥。更偏好“观察性”而非“参与性”的浪漫体验模式。</span></p></li>
+          <li><p><strong><span>厌浪漫（Apothiromantic）</span></strong><span>：不体验任何形式的浪漫吸引，同时排斥浪漫或浪漫表达；排斥的对象、范围和持续性可能因人而异。</span></p></li>
+          <li><p><strong><span>有吸引但不求恋爱（Orchidromantic）</span></strong><span>：能够体验浪漫吸引，但不希望把这种吸引发展成现实中的浪漫关系。也就是说，感受到吸引和想不想建立关系可以是两回事。</span></p></li>
+          <li><p><strong><span>无浪漫但想恋爱（Cupioromantic）</span></strong><span>：通常指不体验浪漫吸引，却希望建立浪漫关系的人；产生这种愿望的原因并不固定。</span></p></li>
+         <li><p><strong><span>不参与浪漫（Aegoromantic）</span></strong><span>：喜欢浪漫的想法，但不希望参与浪漫活动。一个人可以喜欢浪漫幻想或作品，同时不希望自己成为浪漫活动的参与者；这不要求其排斥浪漫。</span></p></li>
       </ul>
       <h4 id="理解与认知相关"><span>理解与认知相关</span></h4>
       <ul>
-        <li><p><strong><span>疑浪漫（Quoiromantic）</span></strong><span>：对“浪漫吸引”这一概念本身存在理解困难，无法确定自己是否曾经体验过浪漫吸引，也不确定该概念是否适用于描述自己的体验。</span></p></li>
-        <li><p><strong><span>吸引模糊浪漫（Idemromantic）</span></strong><span>：难以区分自己所体验的是浪漫吸引还是其他类型的吸引（如柏拉图式吸引、审美吸引、情感吸引等），存在吸引类型识别的困难。</span></p></li>
-        <li><p><strong><span>感受模糊浪漫（Desinoromantic）</span></strong><span>：无法体验典型、明确的浪漫吸引，只能感受到模糊、难以定义的情感悸动，难以判断这种体验是否属于浪漫吸引范畴。</span></p></li>
-        <li><p><strong><span>浪漫学兴趣浪漫（Bellusromantic）</span></strong><span>：虽然不体验浪漫吸引，但对浪漫主题、浪漫文化、情感研究或恋爱叙事保持浓厚的兴趣或好奇心。</span></p></li>
+          <li><p><strong><span>疑浪漫（Quoiromantic）</span></strong><span>：用于描述难以理解“浪漫吸引”是什么、无法把它与其他吸引区分开，或觉得这个概念不适用于自己的经验。</span></p></li>
+          <li><p><strong><span>同感浪漫（Idemromantic）</span></strong><span>：无法凭内在感受区分浪漫吸引与柏拉图式吸引，主要根据年龄、性格是否合拍、是否适合共同生活等因素来区分关系类型。</span></p></li>
+          <li><p><strong><span>止于喜欢浪漫（Desinoromantic）</span></strong><span>：用来描述自己会喜欢某个人，却不会把这种喜欢体验为完整或典型的浪漫吸引。</span></p></li>
+          <li><p><strong><span>浪漫行为偏好者（Bellusromantic）</span></strong><span>：喜欢通常被视为浪漫的行为，但不想建立浪漫关系。</span></p></li>
       </ul>
       <h4 id="特殊情况"><span>特殊情况</span></h4>
       <ul>
-        <li><p><strong><span>创伤无浪漫（Caedromantic）</span></strong><span>：原本具有体验浪漫吸引的能力，但由于创伤性经历（如关系创伤、情感虐待等）的影响，逐渐失去体验浪漫吸引的能力或意愿。</span></p></li>
-        <li><p><strong><span>多重无浪漫（Myrromantic）</span></strong><span>：同时符合无浪漫谱系中两种或多种身份认同的特征描述。这些身份可能同时存在、周期性交替出现，或呈现复杂的重叠模式。</span></p></li>
+          <li><p><strong><span>创伤后无浪漫（Caedromantic）</span></strong><span>：部分社群成员使用的自我描述词，用来表达自己曾体验过浪漫吸引，后来把浪漫吸引的减少或消失与过去的创伤联系起来。它不是医学分类，也不证明创伤会导致无浪漫；是否使用以及如何理解由本人决定。</span></p></li>
+         <li><p><strong><span>多重无浪漫（Myrromantic）</span></strong><span>：用于描述同时符合无浪漫谱系中两种或多种身份特征的情况。这些身份可能同时存在、周期性交替出现，或彼此重叠。</span></p></li>
       </ul>
-      <p><em><span>注：这些标签旨在帮助表达经验，而不是要求每个人找到唯一、永久、完全精确的分类。一个人可以只使用“无浪漫谱系”作为宽泛身份，也可以不使用任何细分标签。</span></em></p>
+       <p><em><span>注：这些标签旨在帮助表达经验，而不是要求每个人找到唯一、永久且完全精确的分类。一个人可以只使用“无浪漫谱系”这个宽泛标签，也可以不使用任何细分标签。</span></em></p>
       <h3 id="无浪漫与其他概念的细致比较"><span>无浪漫与其他概念的细致比较</span></h3>
-      <p><span>为了更清晰地界定无浪漫，以下将其与相关但不同的概念进行比较：</span></p>
+       <p><span>为了更清楚地说明无浪漫的含义，下面将它和几个相关但不同的概念进行比较：</span></p>
       <figure class="table-figure">
         <table>
           <thead>
             <tr>
               <th><strong><span>特征/概念</span></strong></th>
-              <th><strong><span>无浪漫 (Aromanticism)</span></strong></th>
-              <th><strong><span>不想恋爱/不婚 (行为选择)</span></strong></th>
-              <th><strong><span>回避型依恋 (Avoidant Attachment)</span></strong></th>
-              <th><strong><span>灰浪漫 (Greyromanticism)</span></strong></th>
-              <th><strong><span>半浪漫 (Demiromanticism)</span></strong></th>
+               <th><strong><span>无浪漫（Aromanticism）</span></strong></th>
+               <th><strong><span>不想恋爱/不婚（行为选择）</span></strong></th>
+               <th><strong><span>回避型依恋（Avoidant Attachment）</span></strong></th>
+               <th><strong><span>灰浪漫（Greyromanticism）</span></strong></th>
+               <th><strong><span>半浪漫（Demiromanticism）</span></strong></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong><span>核心特征</span></strong></td>
-              <td><strong><span>几乎或完全体验不到</span></strong><span>浪漫吸引。</span></td>
-              <td><strong><span>行为选择</span></strong><span>，即选择不进入恋爱或婚姻关系，但通常仍体验浪漫吸引。</span></td>
-              <td><strong><span>心理模式</span></strong><span>，在亲密关系中回避依赖与情感暴露，常与早期依恋经验相关，且常伴随内在冲突。</span></td>
-              <td><strong><span>极少体验</span></strong><span>浪漫吸引，或</span><strong><span>仅在特定、模糊条件</span></strong><span>下才能体验到微弱浪漫吸引。</span></td>
-              <td><span>仅在与对方建立</span><strong><span>深厚情感联结后</span></strong><span>才可能体验到浪漫吸引。</span></td>
+               <td><strong><span>很少体验或完全不体验</span></strong><span>浪漫吸引。</span></td>
+               <td><strong><span>行为选择</span></strong><span>，即选择不进入恋爱或婚姻关系；这一选择本身不说明是否体验浪漫吸引。</span></td>
+               <td><strong><span>心理模式</span></strong><span>，在亲密关系中倾向于回避依赖和情感暴露；有时与早期依恋经验有关，也可能伴随内在冲突。</span></td>
+               <td><strong><span>体验很少、很弱或不稳定</span></strong><span>，或者只在不寻常、不明确的条件下获得或失去浪漫吸引。</span></td>
+               <td><span>仅在与对方建立</span><strong><span>情感联结后</span></strong><span>才可能体验到浪漫吸引。</span></td>
             </tr>
             <tr>
               <td><strong><span>本质</span></strong></td>
               <td><span>一种</span><strong><span>浪漫取向</span></strong><span>。</span></td>
               <td><span>一种</span><strong><span>生活方式</span></strong><span>或</span><strong><span>个人选择</span></strong><span>。</span></td>
-              <td><span>一种</span><strong><span>关系中的心理模式</span></strong><span>，可能随经验、关系或心理工作而变化。</span></td>
-              <td><span>一种位于无浪漫谱系上的</span><strong><span>浪漫取向</span></strong><span>。</span></td>
-              <td><span>一种位于无浪漫谱系上的</span><strong><span>浪漫取向</span></strong><span>。</span></td>
+               <td><span>一种</span><strong><span>关系中的心理模式</span></strong><span>，可能随着个人经历、关系变化或心理咨询与自我调整而变化。</span></td>
+               <td><span>无浪漫谱系中的一种</span><strong><span>浪漫取向</span></strong><span>。</span></td>
+               <td><span>无浪漫谱系中的一种</span><strong><span>浪漫取向</span></strong><span>。</span></td>
             </tr>
             <tr>
               <td><strong><span>浪漫吸引体验</span></strong></td>
-              <td><span>几乎或完全没有。</span></td>
-              <td><span>通常有，但选择不付诸行动。</span></td>
-              <td><span>可能有，但亲密与依赖令其不安。</span></td>
+               <td><span>很少或完全没有。</span></td>
+               <td><span>不能由不恋爱或不婚的行为选择推断。</span></td>
+               <td><span>可能体验到，但亲密和依赖会让人感到不安。</span></td>
               <td><span>极少、微弱或条件模糊。</span></td>
-              <td><span>有条件：以深度情感联结为前提。</span></td>
+               <td><span>有条件：以情感联结为前提。</span></td>
             </tr>
             <tr>
               <td><strong><span>与恋爱行为的关系</span></strong></td>
-              <td><span>可能恋爱也可能不恋爱；行为不决定身份。</span></td>
+               <td><span>可以恋爱，也可以不恋爱；行为不决定身份。</span></td>
               <td><span>明确选择不恋爱或不婚。</span></td>
-              <td><span>可能反复进入关系，但难以维持稳定亲密。</span></td>
-              <td><span>可能恋爱也可能不恋爱。</span></td>
-              <td><span>可能在深交后进入恋爱关系。</span></td>
+               <td><span>可能反复进入关系，但在维持稳定的亲密关系时遇到困难。</span></td>
+               <td><span>可以恋爱，也可以不恋爱。</span></td>
+               <td><span>可能在建立较深的感情联结后进入恋爱关系。</span></td>
             </tr>
           </tbody>
         </table>
       </figure>
       <h3 id="理解无浪漫经验的几个坐标"><span>理解无浪漫经验的几个坐标</span></h3>
-      <p><span>无浪漫经验很难靠一个问题概括。更合适的理解方式，是把下列坐标分开观察；它们彼此相关但不互相决定，也不需要汇总成一个分数。</span></p>
+       <p><span>无浪漫经验很难靠一个问题概括。更合适的做法，是把下面几个方面分开来看；它们彼此有关，但不会互相决定，也不需要汇总成一个分数。</span></p>
       <h4 id="浪漫吸引如何出现"><span>浪漫吸引如何出现</span></h4>
-      <p><span>有人从未识别到浪漫吸引，有人只在少数对象、特定联结或某些时期体验，也有人难以把浪漫吸引与友情、依恋、审美欣赏区分开。回看经验时，可以关注频率、条件和本人赋予它的意义，但心跳、思念、想共同生活等单一表现都不是判定标准。</span></p>
+        <p><span>有人从未体验过或从未辨认出浪漫吸引，有人只对少数对象、在建立某种关系后或在某些时期体验到它，也有人难以把浪漫吸引与友情、依恋、审美欣赏区分开。回看自己的经历时，可以关注它出现的频率、条件，以及自己赋予它的意义；但心跳、思念、想共同生活等单一表现都不是判定标准。</span></p>
       <h4 id="对浪漫互动的态度"><span>对浪漫互动的态度</span></h4>
       <p><span>浪漫态度与浪漫吸引不是同一个维度：缺乏浪漫吸引的人可能排斥、无感、接受或喜欢某些浪漫互动；体验浪漫吸引的人也可能不想进入恋爱关系。态度还会随对象、行为、公开程度与安全感变化。</span></p>
       <ul>
-        <li><p><strong><span>浪漫厌恶/排斥（Romance-Averse/Repulsed）</span></strong><span>：对浪漫行为或相关内容感到强烈不适、排斥或厌恶。</span></p></li>
-        <li><p><strong><span>浪漫无感（Romance-Indifferent）</span></strong><span>：对浪漫关系没有强烈好恶，可能出于伴侣需求、社会期待、陪伴需求或其他原因参与，但不主动追求。</span></p></li>
-        <li><p><strong><span>浪漫积极/友好（Romance-Positive/Favorable）</span></strong><span>：对浪漫关系持积极或开放态度，甚至可能享受某些浪漫互动，尽管缺乏强烈浪漫吸引。</span></p></li>
+         <li><p><strong><span>浪漫厌恶/排斥（Romance-Averse/Repulsed）</span></strong><span>：对指向自己的浪漫或浪漫表达感到轻度至重度不适。</span></p></li>
+         <li><p><strong><span>浪漫无感（Romance-Indifferent）</span></strong><span>：对指向自己的浪漫或浪漫表达既不感到不适，也不特别热衷。</span></p></li>
+         <li><p><strong><span>浪漫积极/友好（Romance-Positive/Favorable）</span></strong><span>：对浪漫或浪漫表达感到舒适，并可能享受其中。</span></p></li>
       </ul>
       <h4 id="浪漫吸引的性别指向"><span>浪漫吸引的性别指向</span></h4>
-      <p><span>如果一个人体验浪漫吸引，它可能具有一个或多个性别指向，也可能与性别关系不大。体验很少或难以辨认时，有人会暂不描述方向；这不是资料“样本不足”，而是允许经验保持不确定。</span></p>
+       <p><span>如果一个人体验浪漫吸引，这种吸引可能指向一个或多个性别，也可能与性别关系不大。体验很少或难以辨认时，有人会暂不描述方向；这不代表相关信息不足，而是允许个人经验暂时保持不确定。</span></p>
       <figure class="table-figure">
         <table>
           <thead>
             <tr><th><span>标签</span></th><th><span>基本含义</span></th><th><span>与无浪漫谱系的关系</span></th></tr>
           </thead>
           <tbody>
-            <tr><td><strong><span>异性浪漫</span></strong></td><td><span>体验指向异性的浪漫吸引。</span></td><td><span>可与无性恋、灰性恋等性取向组合。</span></td></tr>
-            <tr><td><strong><span>同性浪漫</span></strong></td><td><span>体验指向同性的浪漫吸引。</span></td><td><span>若频率极低，也可能同时位于灰浪漫谱系。</span></td></tr>
-            <tr><td><strong><span>双性浪漫</span></strong></td><td><span>体验指向两种或多种性别的浪漫吸引。</span></td><td><span>描述方向，不直接描述强度或频率。</span></td></tr>
-            <tr><td><strong><span>泛性浪漫</span></strong></td><td><span>体验指向任何性别的浪漫吸引，且性别不是关键因素。</span></td><td><span>可与有性恋、无性恋或其他性吸引模式组合。</span></td></tr>
-            <tr><td><strong><span>无浪漫</span></strong></td><td><span>极少或完全不体验指向任何性别的浪漫吸引。</span></td><td><span>方向维度上可能表现为“无明确性别指向”。</span></td></tr>
+             <tr><td><strong><span>异性浪漫</span></strong></td><td><span>对异性产生浪漫吸引。</span></td><td><span>可与无性恋、灰性恋等性取向组合。</span></td></tr>
+             <tr><td><strong><span>同性浪漫</span></strong></td><td><span>对同性别的人产生浪漫吸引。</span></td><td><span>若频率极低，也可能同时位于灰浪漫谱系。</span></td></tr>
+             <tr><td><strong><span>双性浪漫</span></strong></td><td><span>对两种或多种性别的人产生浪漫吸引。</span></td><td><span>描述吸引方向，不直接描述强度或频率。</span></td></tr>
+             <tr><td><strong><span>泛性浪漫</span></strong></td><td><span>对任何性别的人产生浪漫吸引，且对方的性别不是关键因素。</span></td><td><span>可与有性恋、无性恋或其他性吸引模式组合。</span></td></tr>
+              <tr><td><strong><span>无浪漫</span></strong></td><td><span>很少或完全不会对任何性别的人产生浪漫吸引。</span></td><td><span>在方向上可能表现为没有明确的性别指向。</span></td></tr>
           </tbody>
         </table>
       </figure>
       <h4 id="关系愿望与实际选择"><span>关系愿望与实际选择</span></h4>
-      <p><span>想单身、想恋爱、想建立酷儿柏拉图式关系、愿意同居或共同养育，描述的是关系愿望与生活安排，不直接等同于浪漫取向。类似地，一个人进入过恋爱关系，也不能反推其一定体验过浪漫吸引。</span></p>
+       <p><span>想保持单身、想恋爱、想建立酷儿柏拉图式关系、愿意同居或共同养育子女，描述的是关系愿望与生活安排，并不直接等同于浪漫取向。类似地，一个人进入过恋爱关系，也不能反推出自己一定体验过浪漫吸引。</span></p>
       <h4 id="标签与自我认同"><span>标签与自我认同</span></h4>
-      <p><span>灰浪漫、半浪漫、疑浪漫、磨损浪漫等细分词可以帮助表达条件和变化，但并非从“初级”通向“高级”的层级。是否使用、同时使用几个、何时调整，都由本人决定；暂时没有标签同样是完整有效的状态。</span></p>
+       <p><span>灰浪漫、半浪漫、疑浪漫、磨损浪漫等细分标签可以帮助表达条件和变化，但它们并不是从“初级”到“高级”的层级。是否使用、是否同时使用多个标签，以及何时调整，都由本人决定；暂时没有标签同样是完整有效的状态。</span></p>
       <blockquote>
-        <p><strong><span>阅读建议</span></strong><span>：与其寻找能“证明身份”的外部标准，不如观察哪些描述能持续帮助你理解经验、表达边界和安排关系。标签可以提供语言，但不替你作决定。</span></p>
+         <p><strong><span>阅读建议</span></strong><span>：与其寻找能“证明身份”的外部标准，不如观察哪些描述能持续帮助你理解经验、表达边界和安排关系。标签可以提供一套说法，但不能替你作决定。</span></p>
       </blockquote>
+      <h4 id="吸引类型的自我观察练习"><span>吸引类型的自我观察练习</span></h4>
+       <p><span>分离吸引模型听起来抽象，放到自己的经历里，可以分几步观察。不必一次完成，也不必追求“标准答案”：</span></p>
+      <ul>
+          <li><p><strong><span>浪漫维度</span></strong><span>：我是否产生过想与某人恋爱、想被某个特定的人特别对待、渴望建立排他性浪漫关系的冲动？它有多频繁、在什么条件下出现？</span></p></li>
+         <li><p><strong><span>性维度</span></strong><span>：我是否对某人产生性吸引或性欲？我想和对方有身体上的亲近，还是想与之建立某种感情联结？这两件事对我是分开的，还是混在一起？</span></p></li>
+         <li><p><strong><span>亲密与依恋</span></strong><span>：我希望与某人保持亲近、被理解、被照顾、共同生活，这是我对“重要他人”的一般需求，还是对某个特定对象的特别联结？</span></p></li>
+          <li><p><strong><span>行为与脚本</span></strong><span>：拥抱、约会、互称伴侣、公开关系，哪些行为让我舒服，哪些行为只有在明确不带“恋爱”含义时才舒服？</span></p></li>
+         <li><p><strong><span>先放下外界声音</span></strong><span>：把“别人期待我怎样”“这看上去像不像恋爱”“我是不是伤害了谁”等问题暂时搁置，先只记录“我实际上体验到了什么”。</span></p></li>
+      </ul>
+       <p><span>这些观察不是为了给经验打分，而是为了把原本被压缩成“我该不该恋爱”的问题，拆成几个可以分别认识的部分。</span></p>
       <hr>
 
-      <h2 id="心理学与社会科学的探索"><span>心理学与社会科学的探索</span></h2>
-      <h3 id="浪漫吸引的心理机制"><span>浪漫吸引的心理机制</span></h3>
-      <p><span>Tennov 提出的</span><strong><span>迷恋（Limerence）</span></strong><span>概念，描述了部分人恋爱时可能出现的侵入性思念、情绪随回应波动等体验；另一些研究框架则尝试区分性欲、浪漫爱与依恋。它们有助于提醒我们：不同形式的吸引与联结不必总是同时出现，但这些框架并不是人人适用的固定模块。</span></p>
-      <p><span>因此，无浪漫者能够拥有性欲、依恋、情感深度与长期承诺，并不矛盾。不过，这种经验差异不应被改写成“某个浪漫系统低激活”或“某条神经回路缺失”；目前没有相应证据，也无需用生物机制证明身份真实。</span></p>
-      <blockquote>
-        <p><strong><span>注意</span></strong><span>：针对无浪漫经验的直接研究仍很有限。现有理论只能帮助提出问题，不能用于判定个人，也不能把社群语言包装成已经验证的神经科学结论。</span></p>
-      </blockquote>
-      <h3 id="无浪漫不是依恋障碍"><span>无浪漫不是依恋障碍</span></h3>
-      <p><span>无浪漫常被混淆的心理学概念之一是</span><strong><span>回避型依恋（Avoidant Attachment）</span></strong><span>。依恋风格描述人在关系中处理依赖、亲近和安全感的倾向，形成过程复杂，不能只归因于早期照护，也不能一概概括为“渴望但防御”。它可以出现在任何浪漫取向的人身上。无浪漫关注的则是</span><strong><span>浪漫吸引是否以及如何出现</span></strong><span>。一个人可以既无浪漫又偏回避，也可以既无浪漫又有安全、稳定的依恋；不能用其中一个概念解释掉另一个。</span></p>
+      <h2 id="研究证据与解释边界"><span>研究证据与解释边界</span></h2>
+       <p><span>关于无浪漫的研究主要关注自我认同、吸引经验、关系经历、心理健康和污名处境。总体而言，这个领域的直接实证研究仍然很少，而且多数来自无性恋研究中附带进行的分析，或来自线上社群问卷。下面先说明研究者想了解什么、目前能确定什么，再说明哪些说法超出了证据范围。</span></p>
+      <h3 id="心理学视角"><span>心理学视角</span></h3>
+      <h4 id="浪漫吸引的心理机制"><span>浪漫吸引的心理机制</span></h4>
+       <p><span>Tennov 提出的</span><strong><span>迷恋（Limerence）</span></strong><span>概念，描述了部分人在恋爱时可能出现的反复思念、难以控制地想着对方，以及情绪随着对方回应而起伏等体验；另一些研究框架则尝试区分性欲、浪漫爱与依恋。这些概念可以帮助我们理解不同形式的吸引和联结不一定同时出现，但并不是人人都会经历的固定模式。</span></p>
+      <h4 id="浪漫爱的可分离成分"><span>浪漫爱的可分离成分</span></h4>
+         <p><span>一些关于恋爱与亲密关系的研究，会把“处于恋爱中”拆成几个可以分别讨论的部分：反复出现、难以控制的关于某人的想法（</span><strong><span>侵入性思维（intrusive thinking）</span></strong><span>）、会随着对方回应而起伏的</span><strong><span>依赖感（dependency）</span></strong><span>，以及想要进行浪漫表达的</span><strong><span>动机</span></strong><span>。这些部分并不总是同时出现，也不等同于“想和对方一起生活”的长期承诺。这样区分，不是为了证明无浪漫者“缺少了什么”，而是说明浪漫经验可以从不同角度理解，每个人的组合也可能不同。</span></p>
+      <h4 id="浪漫吸引与依恋的关系"><span>浪漫吸引与依恋的关系</span></h4>
+       <p><span>现有心理学文献通常把</span><strong><span>性欲（sexual desire）</span></strong><span>、</span><strong><span>浪漫吸引（romantic attraction）</span></strong><span>与</span><strong><span>依恋（attachment）</span></strong><span>视为彼此有关、但可以分开的过程。一个人可以很依恋某人、重视对方带来的安全感和亲近感，却不体验指向对方的浪漫渴望；也可以在缺乏安全依恋的情况下体验浪漫吸引。因此，无浪漫者拥有性欲、依恋、深厚情感和长期承诺，并不矛盾。不过，这种经验差异不应被解释成“某个浪漫系统活性较低”或“某条神经回路缺失”；目前没有这样的证据，也不需要靠某种生物机制来证明自己的身份。</span></p>
+      <h4 id="无浪漫与依恋障碍的区分"><span>无浪漫与依恋障碍的区分</span></h4>
+       <p><span>无浪漫常被混淆的心理学概念之一是</span><strong><span>回避型依恋（Avoidant Attachment）</span></strong><span>。依恋风格描述的是一个人在关系中如何处理依赖、亲近和安全感；形成过程很复杂，不能只归因于早期照护，也不能一概简化为“既有渴望又有防御”。回避型依恋可以出现在任何浪漫取向的人身上。无浪漫关注的则是</span><strong><span>浪漫吸引是否以及如何出现</span></strong><span>。一个人可以既无浪漫又有回避型依恋，也可以既无浪漫又拥有安全、稳定的依恋；不能用其中一个概念取代另一个。</span></p>
       <p><span>区分二者的实际意义在于：把无浪漫误判为依恋问题，会把不存在的“病灶”当作干预目标；而真正的依恋困扰——无论出现在谁身上——值得被单独处理，与浪漫取向无关。二者也可能在同一个人身上并存，这时更需要分开讨论，而不是用一个去解释另一个。</span></p>
-      <h3 id="流行率与数据现状"><span>流行率与数据现状</span></h3>
-      <p><span>目前没有针对一般人口的可靠无浪漫流行率估计。部分无性恋社群样本中，有约四分之一到三分之一的参与者报告自己同时位于无浪漫谱系，另有人选择灰浪漫、疑浪漫或“不确定”；该比例只能描述相应样本，不能用于估算一般人口。AroAllo（无浪漫但有性恋）的经验尤其缺乏系统研究。</span></p>
-      <p><span>社群层面，AUREA 等组织自 2020 年起发起面向无浪漫谱系的社群普查（Aro Census），提供了关于标签使用、关系偏好和社群构成的描述性数据。但这些样本以线上英语社群为主，年龄偏低，不能直接推广到一般人口，也难以反映中文语境下的经验分布。</span></p>
+      <h4 id="流行率与数据现状"><span>流行率与数据现状</span></h4>
+       <p><span>目前没有针对一般人口的可靠无浪漫流行率估计。Antonsen 等人对七项既有无性恋研究进行二次分析，合并样本为 4032 人；74.0% 报告曾体验过浪漫吸引，约 26.0% 未报告有过这种体验。这些数字只反映该合并无性恋样本，不能用于估算一般人口。关于 AroAllo（无浪漫有性恋）的直接证据尤其有限。社群层面，AUREA 自 2020 年起发起面向无浪漫谱系的社群普查（Aro Census），提供了有关标签使用、关系偏好和社群构成的描述性数据，但这些样本不能直接推广到一般人口，也难以反映中文语境下的经验分布。</span></p>
+      <h4 id="研究中的测量问题"><span>研究中的测量问题</span></h4>
+       <p><span>“浪漫吸引”是什么、如何与其他吸引区分、达到什么频率才算“有”，至今没有统一的操作性定义。不同文化对“恋爱”的边界理解差异很大，问卷中的“谈过恋爱”“暗恋过”等选项也会因当事人的理解不同而产生差异。因此，阅读涉及无浪漫的流行率、组间差异和心理健康的研究时，都应结合其测量方式和样本来源来解读。</span></p>
+      <h4 id="无性恋研究中的浪漫取向差异"><span>无性恋研究中的浪漫取向差异</span></h4>
+         <p><span>Antonsen、Zdaniuk、Yule 与 Brotto 于 2020 年发表的一项研究，题为 </span><em><span>Ace and Aro: Understanding Differences in Romantic Attractions Among Persons Identifying as Asexual</span></em><span>，对七项既有无性恋研究的数据进行二次分析，共纳入 4032 人。结果显示：74.0% 的自认无性恋者报告曾体验过浪漫吸引；在有浪漫无性恋者中，36.0% 报告自己是异性浪漫取向，而有性恋对照组为 76.2%。这说明无性恋者的浪漫取向并不单一。与无浪漫无性恋者相比，有浪漫无性恋者更可能在调查时处于恋爱关系，有过更多浪漫关系和伴侣经历，接吻也更频繁，对伴侣的性欲望更强；两组在性别、年龄等人口学特征、是否有子女、独处时的性欲、性功能、自慰和性幻想频率，以及抑郁指标上没有显著差异。这里的结果不能用来估算无浪漫在人群中的比例，也不能把无浪漫经验当作心理健康问题的代理指标。</span></p>
+      <aside class="guide-note">
+        <span class="guide-note-title">证据边界 · Evidence Note</span>
+         <p><span>上述研究的样本来源和招募方式并不完全相同。Antonsen 等人的分析合并了七项既有无性恋研究，主要回答无性恋样本内部的浪漫取向差异，而不是无浪漫在一般人口中的比例。无浪漫有性恋（AroAllo）、灰浪漫、半浪漫等经验也没有在这些研究中得到充分、单独的讨论。</span></p>
+      </aside>
+         <p><strong><span>关系经验与依恋差异。</span></strong><span>Carvalho 与 Rodrigues 于 2022 年对来自不同无性恋线上社群的 447 人开展横断面研究，比较有浪漫无性恋者和无浪漫无性恋者在性与关系经历、对关系承诺和性表现的担忧，以及依恋风格等方面的差异。无浪漫无性恋者报告的无性恋认同程度更高、依恋风格更回避，也更担心关系承诺；有浪漫无性恋者则报告较少性厌恶，有过更多性经历、性伴侣和浪漫关系，也更希望未来进入浪漫关系，并更担心性表现。这里的结果是组间差异，不能据此说明无浪漫导致依恋回避，也不能把无浪漫还原为依恋障碍。</span></p>
+         <p><strong><span>污名与拒绝经验。</span></strong><span>AUREA Aro Census 2020 共收到 9758 份回应。在“因无浪漫而经历的情况”一题中（可多选），4911 人（82.43%）选择“不被认真对待、被忽视或被否定”，2880 人（48.34%）选择“被建议或尝试修正/治愈”。这些是自愿参加线上社群调查的人所报告的经历；该题的有效回答数与调查总回应数不同，不能推广为一般人口比例，也不能将两项百分比相加。</span></p>
+      <blockquote>
+         <p><strong><span>注意</span></strong><span>：针对无浪漫经验的直接研究仍很有限。现有理论只能帮助提出问题，不能用于判定个人，也不能把社群语言说成已经被神经科学验证的结论。</span></p>
+      </blockquote>
+      <h3 id="神经科学能说明什么"><span>神经科学能说明什么</span></h3>
+        <p><span>目前还没有任何可以判定一个人是否无浪漫的脑部检查。许多关于“恋爱大脑”的研究测量的是处于恋爱中或观看浪漫刺激的人群的平均活动，也不能据此判断一个人的身份、吸引对象或关系意义；相关脑区和神经网络同样参与许多非浪漫活动。无浪漫者可以拥有稳定的依恋和情绪加工能力，也不需要靠某种生物机制来证明自己的身份。</span></p>
+      <h3 id="当前研究的局限与未来方向"><span>当前研究的局限与未来方向</span></h3>
+      <ul>
+        <li><p><strong><span>样本偏差</span></strong><span>：现有研究常依赖线上社群和英语语境，难以代表不同文化、阶层、年龄和地区的无浪漫者。</span></p></li>
+         <li><p><strong><span>概念测量困难</span></strong><span>：浪漫吸引高度主观，跨文化定义也不一致，解读量表和访谈结果时需格外谨慎。</span></p></li>
+        <li><p><strong><span>横断面局限</span></strong><span>：多数研究在同一时间点收集数据，无法区分“经验的后果”与“经验的成因”。</span></p></li>
+        <li><p><strong><span>AroAllo 不可见</span></strong><span>：无浪漫有性恋者在研究和社群中都容易被忽略，尤其容易遭遇污名化。</span></p></li>
+         <li><p><strong><span>反病理化的依据</span></strong><span>：无浪漫不被视为精神障碍，依据在于区分身份经验与功能受损或临床困扰，并尊重当事人为经验命名的权利，而不是依赖找到某种脑区、激素或遗传标记。</span></p></li>
+      </ul>
       <hr>
 
       <h2 id="发展历程从困惑到自我命名"><span>发展历程：从困惑到自我命名</span></h2>
+       <p><span>无浪漫者的自我认同没有固定的发展路线，但许多人的叙述会呈现出相互交错的阶段：先感到自己和别人不太一样，再勉强用既有解释框架（晚熟、太挑剔、缘分没到）解释自己的经验，直到接触相关概念后重新整理这些经历，才逐步找到适合自己的说法，接纳自己并安排生活。本章先给出一个可以参考的阶段轮廓，再具体说明这些经验。</span></p>
       <h3 id="早期差异感"><span>早期差异感</span></h3>
-      <p><span>许多无浪漫者在青少年时期就感到自己与同龄人的恋爱兴趣不同：不理解为什么大家会突然沉迷暗恋、告白、对象、磕 CP 或“脱单”；被问到喜欢谁时需要临时编造答案；觉得所谓心动更像社会游戏，而不是自身真实经验。</span></p>
-      <p><span>这种差异也可能出现得更晚。有些人在经历几段关系后才意识到，自己并不是对某个具体伴侣“不够喜欢”，而是对“恋爱关系”本身没有主流所期待的吸引、投入方式或情绪结构。</span></p>
+       <p><span>许多无浪漫者在青少年时期就感到自己与同龄人的恋爱兴趣不同：不理解为什么大家会突然沉迷暗恋、告白、谈对象、磕 CP 或“脱单”；被问到喜欢谁时需要临时编造答案；觉得所谓心动更像社交游戏，而不是自己的真实体验。</span></p>
+        <p><span>这种差异也可能到很晚才被意识到。有些人在经历几段关系后才发现，自己并不是对某个具体伴侣“不够喜欢”，而是没有主流所期待的那种恋爱吸引、投入方式或情绪体验。</span></p>
       <h3 id="模仿与自我怀疑"><span>模仿与自我怀疑</span></h3>
       <p><span>在强烈的恋爱规范下，个体可能尝试模仿同龄人的行为：选择一个“应该喜欢”的人、按恋爱步骤行动、把亲密友谊解释成暗恋，或说服自己“关系久了就会有感觉”。这些尝试不一定都是痛苦的，但当它们长期无法产生预期体验时，个体容易怀疑自己是否冷漠、迟钝、要求太高或缺乏成熟能力。</span></p>
       <h3 id="接触概念后的重组"><span>接触概念后的重组</span></h3>
-      <p><span>接触“无浪漫”概念后，许多人会重新回看过去的经历：原来自己不是没有努力，也不是不懂人际关系，而是一直被放进了不适合自己的解释框架。这个过程可能带来释然，也可能带来遗憾，例如想起曾经为了符合期待而进入关系、伤害自己或让他人误解。</span></p>
+       <p><span>接触“无浪漫”概念后，许多人会重新回看过去的经历：原来自己不是没有努力，也不是不懂人际关系，而是一直在用不适合自己的框架理解这些经历。这个过程可能带来释然，也可能带来遗憾，例如想起自己曾为了符合期待而进入关系，伤害了自己，或让他人产生误解。</span></p>
       <h3 id="认同整合与出柜选择"><span>认同整合与出柜选择</span></h3>
-      <p><span>无浪漫认同不一定需要公开。是否告诉家人、朋友或伴侣，应根据安全、依赖关系、对方理解能力和自己的情绪成本决定。对一些人来说，公开身份能减少误会并建立更诚实的关系；对另一些人来说，只在必要关系中说明具体边界，可能比公开标签更实用。</span></p>
+       <p><span>无浪漫身份不一定要公开。是否告诉家人、朋友或伴侣，应根据现实安全、彼此的依赖关系、对方是否能够理解，以及自己的情绪负担来决定。对一些人来说，公开身份能减少误会并建立更坦诚的关系；对另一些人来说，只在确有必要时说明具体边界，可能比公开标签更实用。</span></p>
       <blockquote>
-        <p><strong><span>实践提示</span></strong><span>：出柜时可以先解释具体经验，而不是从抽象标签开始。例如：“我很重视你，但我不太会产生恋爱式心动，也不希望我们的关系被默认推向恋爱。”这种说法往往比单独抛出术语更容易进入沟通。</span></p>
+         <p><strong><span>实践提示</span></strong><span>：出柜时可以先解释具体经验，而不是从抽象标签开始。例如：“我很重视你，但我不太会产生恋爱式心动，也不希望我们的关系被默认推向恋爱。”这种说法往往比单独抛出术语更容易开始沟通。</span></p>
       </blockquote>
+      <h3 id="认同阶段的重访与反复"><span>认同阶段的重访与反复</span></h3>
+        <p><span>接触“无浪漫”概念并不是一劳永逸的终点。之后仍可能有反复：在强烈恋爱规范的环境里再次怀疑自己“是不是只是没尝试够”，或在遇到罕见的强烈吸引时重新审视标签。这些反复不代表认同失败，而是理解自己的过程本来就可能经历确认、犹豫和调整；社群中的标签也可以是“稳定、流动、模糊”或暂时的。</span></p>
+      <h3 id="浪漫脚本的遗留影响"><span>浪漫脚本的遗留影响</span></h3>
+       <p><span>一个人在接触无浪漫概念之前，很可能已经按照默认的恋爱脚本生活了很久：被安排相亲、在朋友起哄中“表个态”、把结婚写进人生计划、为了让家人安心而进入关系。这些经历即使后来不再认同，也可能留下影响——例如对“自己是否在利用对方”的愧疚、对关系分类的持续困惑，或需要时间重新学习如何不把恋爱写进未来规划。理解这一点，有助于承认调整需要时间，而不是要求自己在结束一段按脚本发展的关系后立刻想清楚一切。</span></p>
+      <h3 id="影响认同发展的因素"><span>影响认同发展的因素</span></h3>
+       <p><span>认同如何形成、何时形成，并没有统一的时间表，但下列因素常出现在无浪漫者的叙述中：</span></p>
+      <ul>
+         <li><p><strong><span>信息接触</span></strong><span>：是否接触过“无浪漫”这个词，会影响一个人能否为模糊的差异找到说法；缺少相关词汇时，同样的经验更容易被归因于“挑剔”“慢热”或“不正常”。</span></p></li>
+         <li><p><strong><span>文化环境</span></strong><span>：婚恋规范的强弱、家庭催婚的压力，以及能否公开讨论，都会影响一个人是否敢于探索，以及探索时是否感到安全。</span></p></li>
+         <li><p><strong><span>关系经历</span></strong><span>：是否谈过恋爱、暗恋或恋情的结果，以及被拒绝或被追求的经历，可能让人更难辨认浪漫吸引，也可能影响对关系脚本的理解。</span></p></li>
+         <li><p><strong><span>神经多样性与身心状况</span></strong><span>：自闭谱系、ADHD、慢性疾病等会影响社交脚本和情感体验的组织方式，但它们是经验发生的语境，而不是无浪漫的原因，不能用来解释或否定无浪漫经验。</span></p></li>
+         <li><p><strong><span>年龄与人生阶段</span></strong><span>：有人在青少年时期把这种差异理解为“晚熟”；也有人到了中年，先建立起完整的成年生活后，才重新理解过去的经验。这些情况都可能发生。</span></p></li>
+      </ul>
+      <h3 id="认同发生后的生活调整"><span>认同发生后的生活调整</span></h3>
+       <p><span>为自己的认同找到说法之后，生活层面的调整往往比“身份”本身更具体：如何回应亲友的询问，如何处理既有关系中的期待，是否搬家、换工作或重新安排照护责任，以及如何重新分配曾经留给“未来恋爱对象”的时间和资源。这些调整不必一次完成，也可以随时改变。</span></p>
       <hr>
 
-      <h2 id="社会文化语境恋爱规范与不可见性"><span>社会文化语境：恋爱规范与不可见性</span></h2>
+       <h2 id="社会文化语境恋爱规范与不可见性"><span>社会文化语境：恋爱规范与关系排除</span></h2>
       <h3 id="恋爱中心主义"><span>恋爱中心主义</span></h3>
-      <p><strong><span>恋爱中心主义或伴侣规范（Amatonormativity）</span></strong><span>指一种广泛假设：每个人都追求排他的、浪漫的、长期伴侣关系，并且这种关系会让人生更完整。它不仅体现在影视作品和亲友催促中，也体现在住房、照护、税务、签证、医疗知情、家庭认可和社交礼仪等制度安排里。</span></p>
-      <p><span>对无浪漫者而言，问题并不只是“别人爱问你怎么还不谈恋爱”，而是当一个社会把重要关系资源集中分配给恋人或配偶时，非浪漫关系会被系统性低估。朋友可能被认为迟早会让位于恋人，室友关系被认为不稳定，选择家庭缺乏制度承认，单身者也更容易被视为临时状态。</span></p>
-      <h3 id="媒体再现的缺席"><span>媒体再现的缺席</span></h3>
-      <p><span>主流叙事常把角色成长与恋爱线绑定，仿佛一个角色只有进入爱情才算完成情感弧光。无浪漫者很少被明确书写；即便出现，也容易被塑造成冷酷、机器人式、创伤后遗症、等待被爱情改变的人。这样的再现会让读者和观众误以为无浪漫只是人格缺陷或剧情过渡。</span></p>
+       <p><strong><span>恋爱中心主义或伴侣规范（Amatonormativity）</span></strong><span>指一种广泛存在的假设：每个人都在追求排他的、浪漫的长期伴侣关系，并且这种关系会让人生更完整。它不仅体现在影视作品和亲友催促中，也体现在住房、照护、税务、签证、医疗知情、家庭认可和社交礼仪等制度与日常安排中。</span></p>
+       <p><span>对无浪漫者而言，问题并不只是“别人爱问你怎么还不谈恋爱”，而是当社会把重要的关系资源集中分配给恋人或配偶时，非浪漫关系会被系统性低估。朋友可能被认为迟早会让位给恋人，室友关系被认为不稳定，选择家庭缺乏制度承认，单身者也更容易被视为暂时状态。</span></p>
+         <p><span>恋爱中心主义可能体现在以下方面：</span></p>
+      <ul>
+          <li><p><strong><span>叙事层面</span></strong><span>：一些主角故事把“找到爱情/维持爱情”作为成长线的重要终点，独身者有时被写成悲剧或过渡角色。</span></p></li>
+         <li><p><strong><span>社交层面</span></strong><span>：日常聊天默认问“有没有对象”“什么时候结婚”；长期单身者被反复要求解释，而深厚的友谊却很少得到公开承认。</span></p></li>
+           <li><p><strong><span>制度层面</span></strong><span>：在一些制度和表格中，医疗探视、继承、居留、福利、保险受益人资格等权益可能优先按婚姻或伴侣关系安排。</span></p></li>
+          <li><p><strong><span>仪式层面</span></strong><span>：婚礼、情人节、纪念日等活动更容易被看见，而友谊与社群关系的公开仪式相对较少。</span></p></li>
+      </ul>
+       <h3 id="媒体再现的缺席"><span>媒体中的缺席</span></h3>
+       <p><span>主流叙事常把角色成长与恋爱线绑定，仿佛一个角色只有进入爱情才算完成情感成长。无浪漫者很少被明确写出来；即使出现，也容易被塑造成冷酷、像机器人一样，或被设定为因创伤而无法爱人、等待被爱情改变的人。这样的写法会让读者和观众误以为无浪漫只是人格缺陷或剧情过渡。</span></p>
+       <p><span>值得警惕的叙事套路包括：</span><strong><span>“缺爱即无情”</span></strong><span>（把理性、冷静、超脱直接等同于缺乏情感）、</span><strong><span>“恋爱是解药”</span></strong><span>（用一段爱情修正角色的“问题”，暗示无浪漫只是暂时出了问题、可以被治好）、</span><strong><span>“反派合理化”</span></strong><span>（把“不会爱”当作作恶的动机，强化无浪漫与道德缺陷的联想）。更好的写法是让角色拥有完整的生活、职业、友谊、爱好与价值选择，只是不以恋爱安排生活，并把这种生活写成充实而正当的状态。</span></p>
       <h3 id="家庭与亲密义务"><span>家庭与亲密义务</span></h3>
-      <p><span>在重视婚恋和生育的语境中，无浪漫者常面临额外压力：被催促恋爱、结婚、生育，被要求给出“合理解释”，或被用家庭责任、孝顺和稳定生活来规训。即使个体并不反对婚姻或养育，也应有权根据自己的吸引体验、关系需求和生活目标作出选择。</span></p>
+       <p><span>在重视婚恋和生育的环境中，无浪漫者常面临额外压力：被催促恋爱、结婚、生育，被要求给出“合理解释”，或被拿家庭责任、孝顺和稳定生活来约束。即使一个人并不反对婚姻或养育，也有权根据自己的吸引体验、关系需求和生活目标作出选择。</span></p>
+      <h3 id="节日婚礼与公共仪式的在场压力"><span>节日、婚礼与公共仪式的在场压力</span></h3>
+         <p><span>情人节、七夕、婚礼、纪念日、家庭聚会里的“相亲环节”等公共仪式，可能把恋爱关系呈现为最常见或最受重视的关系形式。对无浪漫者而言，这些场合带来的困扰不只是“被催问”，还包括：自己重视的友谊、师徒、照护或长期伙伴关系很少在公共场合得到承认，也没有多少现成的仪式可以使用。可以按自己的意愿参加或不参加，自行安排替代仪式，或直接说明边界，不必把每一次在场都当作对规范的服从。</span></p>
+      <h3 id="语言中默认的恋爱化"><span>语言中默认的恋爱化</span></h3>
+        <p><span>只要一个人表现出长期而亲密的关系，周围就很容易默认那是“恋爱”：室友被称为“对象”，多年好友被问“怎么还没在一起”，照护关系被解读为爱情。周围的人也会不断把这些关系往恋爱上理解。可以直接用“伙伴”“家人”“重要他人”等称呼说明关系，不必让它被恋爱规范重新定义；这不是矫情，而是保留自己解释关系的空间。</span></p>
       <h3 id="社群内部的误读"><span>社群内部的误读</span></h3>
-      <p><span>无浪漫也可能在 LGBTQ+ 或无性恋社群内部被边缘化。例如，有人会把无浪漫当作无性恋的附属标签，忽视 AroAllo 的存在；也有人会把浪漫关系视为“更高级”的亲密形式，使无浪漫者在解释自身关系时再次承受证明压力。</span></p>
+       <p><span>无浪漫也可能在 LGBTQ+ 或无性恋社群内部被边缘化。例如，有人会把无浪漫当作无性恋的附属标签，忽视 AroAllo 的存在；也有人会把浪漫关系视为“更高级”的亲密形式，使无浪漫者在解释自己的关系时又要花力气证明自己。</span></p>
+      <h3 id="与性取向议题的交叠"><span>与性取向议题的交叠</span></h3>
+        <p><span>无浪漫可以作为独立议题讨论，但它常常与其他身份交织：无浪漫无性恋（AroAce）和无浪漫有性恋（AroAllo）面对的支持需求、误解来源和社群位置可能不同；跨性别者与性别非二元者可能在恋爱规范和性别规范的双重压力中长大；社群讨论中也会出现神经多样性与无浪漫经验交叉的个人叙事，但线上可见度不代表流行率，也不能据此推断因果。一个人的多重身份不必被拆开、分别证明，也可以同时从不同语境来理解。</span></p>
       <h3 id="常见误解与概念边界"><span>常见误解与概念边界</span></h3>
       <h4 id="误解一无浪漫者没有爱"><span>误解一：无浪漫者没有爱</span></h4>
-      <p><span>无浪漫只说明一个人与浪漫吸引的关系，不决定其是否会关心他人、承担责任、形成深厚联结或体验爱。许多无浪漫者拥有强烈的友情、亲情、社群归属、照护关系或对世界的热爱。也有一些人不使用“爱”来描述自己的情感，但这不等于他们没有情绪、道德感或关系能力。</span></p>
+       <p><span>无浪漫只说明一个人与浪漫吸引的关系，并不决定其是否会关心他人、承担责任、建立深厚的联结或体验爱。许多无浪漫者拥有深厚的友谊、亲情、社群归属、照护关系，或对世界的热爱。也有一些人不使用“爱”来描述自己的感情，但这不等于他们没有情绪、道德感或建立关系的能力。</span></p>
       <h4 id="误解二无浪漫者一定孤独"><span>误解二：无浪漫者一定孤独</span></h4>
-      <p><span>孤独来自需求与现实支持之间的落差，而不是来自是否拥有恋人。一个人可以在恋爱关系里感到孤独，也可以在朋友、家人、室友、社群、同事和自我陪伴中获得稳定支持。真正需要关注的是关系质量、可依赖性和边界是否被尊重。</span></p>
+        <p><span>孤独来自需求和实际得到的支持之间的落差，而不是来自有没有恋人。一个人可以在恋爱关系中感到孤独，也可以从朋友、家人、室友、社群和同事那里获得稳定支持，或从独处中获得安定。真正需要关注的是关系质量、能否相互依靠，以及边界是否得到尊重。</span></p>
       <h4 id="误解三无浪漫只是还没遇到对的人"><span>误解三：无浪漫只是还没遇到对的人</span></h4>
       <p><span>“还没遇到对的人”把浪漫吸引视为必然会发生的未来事件，否认了当事人对自身经验的长期观察。有些无浪漫者确实可能在罕见条件下体验浪漫吸引，这并不推翻无浪漫谱系；也有许多人终身不体验浪漫吸引。外界不应把可能性当作推翻身份的证据。</span></p>
       <h4 id="误解四无浪漫等于反对恋爱"><span>误解四：无浪漫等于反对恋爱</span></h4>
       <p><span>无浪漫者对浪漫的态度差异很大。有人喜欢浪漫小说或恋爱综艺，有人对朋友恋爱感到真诚祝福，有人对被浪漫追求感到不适，有人完全不关心恋爱话题。反思浪漫规范并不等于反对他人恋爱，而是反对把恋爱当作每个人都应追求的唯一正道。</span></p>
       <h4 id="误解五无浪漫无法进入关系"><span>误解五：无浪漫无法进入关系</span></h4>
-      <p><span>无浪漫者可以单身，也可以进入浪漫关系、非浪漫伴侣关系、性关系、共同养育关系、酷儿柏拉图式关系或选择家庭。关系是否成立，取决于当事人如何定义、协商和承担，而不是取决于它是否符合传统恋爱模板。</span></p>
-      <h4 id="误解六必须证明自己足够无浪漫"><span>误解六：必须证明自己“足够无浪漫”</span></h4>
-      <p><span>身份不是考试答案，也不存在人人适用的纯度门槛。过去谈过恋爱、喜欢浪漫作品、偶尔心动、愿意尝试某种关系，或仍在分辨自己的感受，都不会自动取消一个人使用无浪漫谱系语言的资格。更重要的是这个词是否贴近当下经验并有助于生活。</span></p>
+       <p><span>无浪漫者可以单身，也可以进入浪漫关系、非浪漫伴侣关系、性关系、共同养育子女的伙伴关系、酷儿柏拉图式关系或选择家庭。关系是否成立，取决于当事人如何定义、协商和承担，而不是它是否符合传统恋爱模板。</span></p>
+       <h4 id="误解六必须证明自己足够无浪漫"><span>误解六：必须证明自己“足够无浪漫”</span></h4>
+       <p><span>身份不是考试答案，也不存在人人适用的纯度门槛。过去谈过恋爱、喜欢浪漫作品、偶尔心动、愿意尝试某种关系，或仍在分辨自己的感受，都不意味着一个人就不能使用无浪漫谱系的说法。重要的是，这个词是否贴合当下的经验，并且对生活有帮助。</span></p>
       <h3 id="社群历史符号与文化"><span>社群历史、符号与文化</span></h3>
       <h4 id="术语与社群简史"><span>术语与社群简史</span></h4>
-      <p><span>“Aromantic”一词在 2000 年代中期的无性恋社群（如 AVEN 论坛）讨论浪漫取向差异时逐渐流通，最初主要用于区分“有浪漫的无性恋者”与“无浪漫的无性恋者”。2010 年代，随着社交平台上微标签文化的发展和 Arocalypse 等独立论坛的建立，无浪漫社群逐渐发展出不再依附于无性恋社群的自我组织。2019 年，倡导组织 AUREA 成立，开始系统整理术语、FAQ 与资源；2020 年起的 Aro Census 则为社群提供了首批大规模自我描述数据。</span></p>
-      <p><span>这段历史也解释了为什么许多无浪漫术语（如灰浪漫、半浪漫）与无性恋术语呈现平行结构：两个社群共享分离吸引模型的语言传统，但无浪漫社群一直在强调自身议题——恋爱规范、非浪漫关系的正当性、AroAllo 的可见度——并不能被无性恋议题完全覆盖。</span></p>
+        <p><span>“Aromantic”一词与无性恋社群早期对浪漫取向差异的讨论有关；随着社交平台、独立论坛和倡导组织的发展，无浪漫社群逐渐建立起更独立的组织和讨论空间。AUREA 于 2020 年开展的 Aro Census，则通过线上社群调查记录参与者的身份、关系和经验。具体术语和社群历史仍应以相关档案为准，不宜把一条时间线写成唯一的起源故事。</span></p>
+       <p><span>这段历史也解释了为什么许多无浪漫术语（如灰浪漫、半浪漫）与无性恋术语有相似的结构：两个社群都使用分离吸引模型这套语言，但无浪漫社群也不断提出自己的议题——恋爱规范、非浪漫关系的正当性和 AroAllo 的可见度。这些议题不能被无性恋议题完全覆盖。</span></p>
       <h4 id="旗帜与象征"><span>旗帜与象征</span></h4>
-      <p><span>目前通行的无浪漫旗帜由社群成员于 2014 年设计，自上而下为</span><strong><span>深绿、浅绿、白、灰、黑</span></strong><span>五条横纹：两种绿色代表无浪漫谱系——绿色是常用来象征浪漫的红色的互补色；白色代表柏拉图式的爱、友谊与其他非浪漫形式的亲密；灰色与黑色代表无浪漫社群内部性取向的多样性，从无性恋到有性恋都包括在内。</span></p>
+        <p><span>按照 AUREA FAQ 的介绍，目前社群中常用的无浪漫旗帜自上而下是</span><strong><span>深绿、浅绿、白、灰、黑</span></strong><span>五条横纹：绿色代表无浪漫谱系，白色代表友谊、家庭、QPR 等非浪漫关系与非浪漫的爱，灰色与黑色代表社群内部性取向的多样性。旗帜的使用历史和象征解释可能因社群而异，不必视为唯一或固定的解释。</span></p>
       <h4 id="无浪漫谱系认知周"><span>无浪漫谱系认知周</span></h4>
-      <p><strong><span>无浪漫谱系认知周（Aromantic Spectrum Awareness Week, ASAW）</span></strong><span>始于 2014 年，现固定在每年 2 月情人节之后的第一个完整周举行，通过科普、个人叙事和社群活动提升无浪漫谱系的可见度。把认知周安排在情人节之后，本身就带有温和的提示意味：在被浪漫叙事集中包围的时刻过去之后，为不以浪漫为中心的人留出一段被看见的时间。</span></p>
+        <p><strong><span>无浪漫谱系认知周（Aromantic Spectrum Awareness Week, ASAW）</span></strong><span>是社群开展科普、分享个人故事和提供支持的主题周，通常安排在 2 月情人节之后。具体日期和活动形式可能因年份与组织而异。把活动安排在浪漫话题集中的时段附近，也可以为不以浪漫为中心的人留出被看见和交流的空间。</span></p>
       <h4 id="社群语言"><span>社群语言</span></h4>
       <ul>
-        <li><p><strong><span>柏拉图式心动（Squish）</span></strong><span>：渴望与某人成为亲密朋友的强烈愿望，类似“心动”的柏拉图式版本，不含恋爱或性的指向。</span></p></li>
-        <li><p><strong><span>介态吸引（Alterous Attraction）</span></strong><span>：一种介于浪漫与柏拉图式之间、或不适合被归入任何一类的亲密渴望，常被描述为“想要情感上的亲近，但说不清是想恋爱还是想做朋友”。</span></p></li>
-        <li><p><strong><span>QPR 伙伴（Queerplatonic Partner, QPP）</span></strong><span>：酷儿柏拉图式关系中对彼此的称呼，强调这段关系拥有伴侣级的承诺与优先级，但不被定义为恋爱。</span></p></li>
-        <li><p><strong><span>Loveless Aro</span></strong><span>：一些无浪漫者不使用“爱”来组织自我描述，以此拒绝“人必须有爱才完整”的规范。这是社群内部有讨论度的自我定位，而非对其他无浪漫者的要求。</span></p></li>
+          <li><p><strong><span>柏拉图式心动（Squish）</span></strong><span>：通常指很想和某人成为亲密朋友，不以浪漫或性吸引为定义。</span></p></li>
+         <li><p><strong><span>介态吸引（Alterous Attraction）</span></strong><span>：介于浪漫吸引和柏拉图式吸引之间，或者无法归入任何一类的亲密渴望，常被描述为“想和对方亲近，但说不清是想恋爱还是想做朋友”。</span></p></li>
+          <li><p><strong><span>QPR 伙伴（Queerplatonic Partner, QPP）</span></strong><span>：QPR 参与者对彼此的称呼；承诺、亲密程度和优先级由参与者协商，不意味着关系一定要达到通常所说的“伴侣级别”。</span></p></li>
+         <li><p><strong><span>Loveless Aro</span></strong><span>：一些无浪漫者不使用“爱”来组织自我描述，以此拒绝“人必须有爱才完整”的规范。这是社群中有一定讨论的自我定位，而不是对其他无浪漫者的要求。</span></p></li>
       </ul>
       <hr>
 
-      <h2 id="亲密关系与关系实践的多样图景"><span>亲密关系与关系实践的多样图景</span></h2>
+        <h2 id="亲密关系与关系实践的多样图景"><span>亲密关系与相处方式的多种可能</span></h2>
       <h3 id="单身不是失败状态"><span>单身不是失败状态</span></h3>
-      <p><span>有些无浪漫者偏好单身或非伴侣生活。这里的单身不是“还没有找到关系”，而可能是一种积极的生活结构：把时间、资源和情感投入放在自我发展、朋友、家人、社群、创作、工作或公共事务上。重要的是，单身不应被自动理解为缺失或失败。</span></p>
+       <p><span>有些无浪漫者偏好单身或非伴侣生活。这里的单身不是“还没有找到关系”，而可能是一种主动选择的生活安排：把时间、精力和情感放在自我发展、友谊、家人、社群、创作、工作或公共事务上。重要的是，单身不应被自动理解为缺失或失败。</span></p>
       <h3 id="友谊与选择家庭"><span>友谊与选择家庭</span></h3>
-      <p><span>对许多无浪漫者来说，友谊不是恋爱之前的预备阶段，而是可以承载承诺、照护、共同生活和长期规划的核心关系。选择家庭则强调人们可以在血缘和婚恋之外，主动建构稳定的互助网络。</span></p>
+       <p><span>对许多无浪漫者来说，友谊不是恋爱之前的预备阶段，而是可以承载承诺、照护、共同生活和长期规划的核心关系。选择家庭则强调人们可以在血缘和婚恋之外，主动建立稳定的互助网络。</span></p>
+      <h3 id="友谊为什么可以成为核心"><span>友谊为什么可以成为核心</span></h3>
+         <p><strong><span>友谊位阶（friendship hierarchy）</span></strong><span>可以用来描述某些社会脚本默认恋人或配偶优先于朋友；现实中的关系排序会因个人、文化和关系协商而不同。当一个人把友谊放在生活核心位置，就不必接受这种默认排序：谁在生命中最重要，应由关系中的人自己决定，而不是由恋爱脚本预先安排。</span></p>
+       <p><span>要让友谊成为生活中的核心关系，往往需要把一些通常只出现在伴侣关系里的安排主动带进友谊：例如约定每周固定见面、共同储蓄或制定养老计划、讨论身体接触的舒适范围、约定生病时如何照护、安排节日，以及当别人默认把你们当作恋人时如何共同回应。这些安排没有统一范本，但提前说清楚，能让友谊从“顺其自然”变成一种值得依靠的关系。</span></p>
       <h3 id="酷儿柏拉图式关系qpr"><span>酷儿柏拉图式关系（QPR）</span></h3>
-      <p><strong><span>酷儿柏拉图式关系（Queerplatonic Relationship, QPR）</span></strong><span>通常指一种承诺性非浪漫关系，它超出所在文化对普通友谊的默认期待，但并不被当事人定义为恋爱。它可能包含同居、共同财务、身体亲近、共同育儿、照护承诺或排他约定，也可能只是拥有特殊优先级的深度伙伴关系。</span></p>
-      <p><span>QPR 的关键不在外部行为像不像恋爱，而在当事人如何理解这段关系。两个人拥抱、约会、同住或互称伴侣，不必然意味着浪漫；同样，一段关系没有这些行为，也可以具有深度承诺。</span></p>
+         <p><strong><span>酷儿柏拉图式关系（Queerplatonic Relationship, QPR）</span></strong><span>通常指一种以承诺为基础的非浪漫关系，参与者认为它超出了自己所处文化对普通友谊的通常期待，但并不把它定义为恋爱。亲密程度、互动方式和承诺形式可以各不相同，由参与者协商。</span></p>
+       <p><span>QPR 的关键不在于外部行为像不像恋爱，而在于参与者如何理解这段关系。两个人拥抱、约会、同住或互称伴侣，不一定意味着浪漫；同样，一段关系即使没有这些行为，也可以有深厚的承诺。</span></p>
+      <h3 id="qpr的公共生活与结构限制"><span>QPR 的公共生活与结构限制</span></h3>
+        <p><span>部分 QPR 参与者在公共场合可能需要把关系说成别人更容易理解的样子：对家人称作“好朋友”，在登记或工作场合则不提具体称呼。这样做会消耗精力，也会让这段关系的一部分难以被公开承认。结构上的限制同样可能存在：一些制度默认人们以伴侣关系生活，QPR 在缺乏相应法律身份或制度安排时，可能需要依靠私下协议和彼此信任来补足。</span></p>
+       <p><span>另一个常见问题是 QPR 和多重伴侣关系（polyamory）是什么关系。两者可以重叠：一段或几段 QPR 可以和浪漫关系、性关系同时存在，只要所有参与者都知情并同意。QPR 不是“没有爱的替代品”，而是承认非浪漫亲密关系也值得被认真对待。</span></p>
       <h3 id="浪漫关系与重新协商"><span>浪漫关系与重新协商</span></h3>
-      <p><span>一些无浪漫者会进入或维持浪漫关系，原因可能包括珍视伴侣、享受某些浪漫行为、希望共同生活，或身份是在关系中后期才逐渐清晰。无浪漫身份本身不自动要求分手。更关键的是双方能否诚实讨论：哪些行为舒适，哪些称呼不适，关系是否仍被称为恋爱，是否需要改变期待、节奏或承诺形式。</span></p>
+       <p><span>一些无浪漫者会进入或维持浪漫关系，原因可能包括珍视伴侣、享受某些浪漫行为、希望共同生活，或是在关系发展到后期才逐渐看清自己的身份。发现自己是无浪漫，并不意味着一定要分手。更重要的是双方能否坦诚讨论：哪些行为让人舒服，哪些称呼让人不适，是否继续把关系称为恋爱，以及是否需要调整彼此的期待、相处节奏或承诺方式。</span></p>
+      <h3 id="混合取向的伴侣关系"><span>混合取向的伴侣关系</span></h3>
+        <p><span>当一方处于无浪漫谱系、另一方仍会体验浪漫吸引时，这段关系通常被称为</span><strong><span>混合取向关系（mixed-orientation relationship）</span></strong><span>。这类关系不一定脆弱：不少伴侣都能通过明确协商长期相处。关键是</span><strong><span>不要把浪漫期待的差异当成某一方的缺失</span></strong><span>，而要把它视为双方需要共同面对和协商的现实。</span></p>
+        <p><span>实践中常被讨论的问题包括：浪漫一方如何确认对方确实以浪漫方式重视自己（例如通过专属于自己的仪式、语言或时间），无浪漫一方又如何在不表演心动的前提下提供稳定与承诺；双方如何看待“外人以为我们在恋爱”的误解；节日、纪念日和公开称呼是否需要重新定义。这些问题没有标准答案，但任何一方都不应该为了满足对方的期待而长期压抑自己的边界。</span></p>
+      <aside class="guide-note">
+        <span class="guide-note-title">阅读提示 · Reading Note</span>
+         <p><span>一些人会把“心动/迷恋”（指对特定对象的浪漫渴望）与“爱”分开使用。无浪漫者可能不用“恋爱式心动”描述自己的经验，但仍然用“爱”表达关怀与承诺，也可能反过来。关系是否真实，由双方如何理解和定义决定，不取决于是否使用某个术语。</span></p>
+      </aside>
       <h3 id="性关系与身体亲密"><span>性关系与身体亲密</span></h3>
-      <p><span>无浪漫者可能是无性恋，也可能体验性吸引。AroAllo 无浪漫者尤其容易被误解为“只想要性不要责任”，这是一种污名化判断。性吸引、浪漫吸引和责任感是不同维度。一个人不体验浪漫吸引，并不代表不能诚实沟通、尊重边界、承担照护或建立稳定关系。</span></p>
+       <p><span>无浪漫者可能是无性恋，也可能体验性吸引。无浪漫有性恋者尤其容易被误解为“只想要性，不想承担责任”，但这是一种污名化的判断。性吸引、浪漫吸引和责任感是不同的维度。一个人不体验浪漫吸引，并不代表不能诚实沟通、尊重边界、承担照护责任或建立稳定关系。</span></p>
       <h3 id="关系菜单与边界协商"><span>关系菜单与边界协商</span></h3>
-      <p><span>无浪漫者在关系中常需要把默认脚本拆开讨论。可以逐项协商称呼、公开程度、身体接触、节日安排、同居、财务、排他性、性、照护责任、未来规划、家庭参与和分手/关系转型机制。清晰协商并不会削弱关系，反而能减少把对方放进错误期待中的风险。</span></p>
+        <p><span>对一些无浪漫者而言，把通常被捆在一起的事情分别说清楚会更有帮助。可以逐项协商称呼、公开程度、身体接触、节日安排、同居、财务、排他性、性、照护责任、未来规划、家庭参与，以及分手或关系转变的方式。清晰协商并不会削弱关系，反而能减少让对方陷入错误期待的风险。</span></p>
       <ul>
-        <li><p><strong><span>称呼</span></strong><span>：恋人、伴侣、朋友、家人、搭子、共同生活者、QPR 伙伴，哪一种更贴合？</span></p></li>
-        <li><p><strong><span>互动</span></strong><span>：拥抱、牵手、亲吻、约会、纪念日、公开表达，哪些舒适，哪些不适？</span></p></li>
+         <li><p><strong><span>称呼</span></strong><span>：恋人、伴侣、朋友、家人、搭子、共同生活者、QPR 伙伴，哪个称呼更合适？</span></p></li>
+         <li><p><strong><span>互动</span></strong><span>：拥抱、牵手、亲吻、约会、纪念日、公开表达，哪些让人舒服，哪些让人不适？</span></p></li>
         <li><p><strong><span>承诺</span></strong><span>：是否排他，是否同居，是否共同财务，是否共同照护，是否向家人公开？</span></p></li>
-        <li><p><strong><span>转型</span></strong><span>：如果一方期待变化，如何沟通，如何退出或转换关系形式？</span></p></li>
+         <li><p><strong><span>转变</span></strong><span>：如果一方对关系有了新的期待，如何沟通，如何退出或改变关系形式？</span></p></li>
       </ul>
+       <h3 id="关系礼仪与关系转型机制"><span>关系调整与相处约定</span></h3>
+       <p><span>关系重新命名不一定意味着失败，也可以是双方事先约定好的一种转变方式。可以考虑：</span></p>
+      <ul>
+         <li><p><strong><span>统一说法</span></strong><span>：对内对外都用同一种说法解释关系变化（“我们把关系调整为朋友/伙伴关系”），减少双方各自向不同亲友解释时产生的分歧。</span></p></li>
+        <li><p><strong><span>过渡安排</span></strong><span>：为共同居住、财务或照护安排设定明确的过渡时间表，而不是因为一时情绪就马上结束这些安排。</span></p></li>
+         <li><p><strong><span>取消标记</span></strong><span>：主动取消“默认恋爱”的外部标记（情侣头像、称呼、共同节日安排），为新的关系形式留出空间。</span></p></li>
+         <li><p><strong><span>面对遗憾</span></strong><span>：双方可以承认这段关系没有沿着浪漫脚本继续发展所带来的遗憾，同时尊重彼此曾在对方人生中占据的重要位置；遗憾不等于后悔维持过这段关系。</span></p></li>
+      </ul>
+       <p><span>这些安排并不只在“分手”或关系转变时有用。对以友谊、选择家庭或 QPR 为生活核心的无浪漫者来说，在作出同居、共同财务或照护等承诺之前，先约定好“将来如何退出或转换”，反而更有助于双方放心地把关系建立得更深入。</span></p>
+       <h3 id="约会文化中的无浪漫者"><span>约会文化中的无浪漫者：重新协商约会方式</span></h3>
+       <p><span>交友软件、相亲、暧昧、公布关系等约会文化的默认环节，并不会因为无浪漫者的身份而自动消失。一些人会在交友软件上明确标注“无浪漫/不找恋爱对象”，用来寻找同好、友伴或边界清晰的性关系；另一些人则会对被追求的过程感到警惕或不适，因为追求往往默认包含浪漫期待。可以把约会中的每件事分开协商：这顿饭是朋友聚餐还是约会，牵手是身体亲近还是恋爱信号，见家长是关系升级还是单纯社交。每一项安排都可以单独讨论，不必滑向恋爱或婚姻。</span></p>
+       <h3 id="同居与经济协作"><span>同居与经济安排：非浪漫的共同生活</span></h3>
+       <p><span>无浪漫者常与他人在非恋爱前提下共同生活：与朋友合租、与 QPR 伙伴合住、与兄弟姐妹或父母共同照护、与社群伙伴一起规划养老。这些安排同样需要讨论经济分工、账单分配、公共空间边界、探访和隐私约定，以及“如果一方要离开”时怎么办。把共同生活当作一项重要的生活安排来认真讨论，而不是当成“顺其自然”，是非浪漫生活中最容易被低估、也最需要规划的事项之一。</span></p>
       <hr>
 
-      <h2 id="心理健康与自我认同的构建"><span>心理健康与自我认同的构建</span></h2>
+       <h2 id="心理健康与自我认同的构建"><span>心理健康与自我认同</span></h2>
       <h3 id="潜在挑战"><span>潜在挑战</span></h3>
       <ul>
-        <li><p><strong><span>自我怀疑</span></strong><span>：在“人人都会恋爱”的环境中，缺乏浪漫吸引很容易被内化为缺陷。</span></p></li>
-        <li><p><strong><span>关系压力</span></strong><span>：当朋友、家人或伴侣把恋爱关系视为最终目标时，无浪漫者可能承受解释、拒绝或妥协压力。</span></p></li>
-        <li><p><strong><span>孤立感</span></strong><span>：缺少可见榜样和社群语言，会让人误以为只有自己这样。</span></p></li>
+         <li><p><strong><span>自我怀疑</span></strong><span>：在“人人都会恋爱”的环境中，人很容易把缺乏浪漫吸引理解成自己的缺陷。</span></p></li>
+         <li><p><strong><span>关系压力</span></strong><span>：当朋友、家人或伴侣把恋爱关系视为最终目标时，无浪漫者可能承受反复解释、拒绝他人或迁就对方的压力。</span></p></li>
+          <li><p><strong><span>孤立感</span></strong><span>：缺少可供参考的榜样和描述自己的词汇，会让人误以为只有自己这样。</span></p></li>
         <li><p><strong><span>专业误读</span></strong><span>：不熟悉无浪漫议题的咨询或医疗人员，可能把身份经验误判为回避依恋、创伤反应、抑郁、人格问题或发展迟滞。</span></p></li>
       </ul>
+      <h3 id="无浪漫身份与心理议题如何分开看"><span>无浪漫身份与心理议题如何分开看</span></h3>
+        <p><span>缺乏浪漫吸引本身不必然构成障碍或临床困扰。痛苦可能来自个人处境、人际压力、污名、孤独，也可能与其他心理因素有关。因此，处理心理议题时，可以同时承认身份经验的正当性，并区分哪些痛苦与身份有关、哪些问题需要单独处理。例如，抑郁、焦虑、创伤回忆或长期孤独都值得被认真对待，但不应借此否定无浪漫身份。</span></p>
       <h3 id="自我支持策略"><span>自我支持策略</span></h3>
-      <p><span>自我支持可以从三个层面开始：首先，学习可靠资料，区分浪漫吸引、性吸引、亲密需求和关系选择；其次，记录自己的舒适和不适，例如哪些行为只有在非浪漫语境下才舒服；最后，寻找能尊重非浪漫亲密的朋友、社群或专业支持。</span></p>
+       <p><span>自我支持可以从三个方面开始：首先，阅读可靠资料，区分浪漫吸引、性吸引、亲密需求和关系选择；其次，记录让自己舒服或不舒服的情况，例如哪些行为只有在非浪漫语境下才舒服；最后，寻找能尊重非浪漫亲密的朋友、社群或专业支持。</span></p>
+       <p><span>面对“被要求解释”的压力时，可以准备几种以后能直接使用的回答，不必每次都临场应付：概括型（“我不太谈恋爱，更喜欢把深度关系放在友谊和伙伴关系上”）、边界型（“这个话题让我不舒服，我们换个话题吧”）、转移型（“如果你想知道我重视的关系是什么样的，我可以说说我的朋友/伙伴”）。这些回答不是为了“演给谁看”，而是让自己保留决定怎么说的权利。</span></p>
       <h3 id="寻找专业支持"><span>寻找专业支持</span></h3>
-      <p><span>如果无浪漫身份伴随焦虑、抑郁、创伤回忆或关系困扰，可以寻求心理咨询，但咨询目标不应是“变得会恋爱”。更合适的目标是减少羞耻、理解压力来源、建立边界、改善沟通，并处理任何与身份无关或交织的心理议题。</span></p>
+       <p><span>如果无浪漫身份伴随焦虑、抑郁、创伤回忆或关系困扰，可以寻求心理咨询，但咨询目标不应是“变得会恋爱”。更合适的目标是减少羞耻、理解压力来源、建立边界、改善沟通，并处理其他心理议题。选择咨询师时，可以优先寻找对性与性别多样性友好、愿意了解浪漫取向的人；也可以主动说明自己的期望，不要假定对方了解无浪漫议题。</span></p>
       <h3 id="给亲友和伴侣的支持原则"><span>给亲友和伴侣的支持原则</span></h3>
       <ul>
-        <li><p><strong><span>相信当事人</span></strong><span>：不要用“以后会变”“只是没遇到对的人”覆盖其自我理解。</span></p></li>
-        <li><p><strong><span>问具体需求</span></strong><span>：比起追问标签真假，更应询问对方希望怎样被称呼、哪些玩笑或期待会造成压力。</span></p></li>
+         <li><p><strong><span>相信当事人</span></strong><span>：不要用“以后会变”“只是没遇到对的人”否定或盖过对方的自我理解。</span></p></li>
+         <li><p><strong><span>问具体需求</span></strong><span>：比起追问标签是否真实，更应询问对方希望怎样被称呼、哪些玩笑或期待会造成压力。</span></p></li>
         <li><p><strong><span>尊重关系定义</span></strong><span>：不要把深厚友谊、QPR 或非浪漫伴侣关系自动说成“其实就是恋爱”。</span></p></li>
-        <li><p><strong><span>自行学习</span></strong><span>：不要把全部解释责任都交给当事人。</span></p></li>
+         <li><p><strong><span>主动学习</span></strong><span>：不要把全部解释责任都交给当事人。</span></p></li>
       </ul>
+       <h3 id="给专业助人者的提醒"><span>给专业人员的提醒</span></h3>
+       <p><span>心理咨询师、教师和医疗人员遇到无浪漫者时，先了解而不是急着评估，通常更有帮助：先听对方如何描述自己的关系需求和困扰，再判断哪些需要支持、哪些属于社会压力。避免把“是否恋爱/结婚”当作发展模板，也不要在没有明确困扰证据时把身份经验当作干预对象。若当事人同时存在需要独立处理的心理议题，两者应分别讨论，而不是用身份解释一切。</span></p>
+       <h3 id="解释疲劳与自我慈悲"><span>解释疲劳与自我关怀</span></h3>
+       <p><span>反复向不同人解释同一个身份，即使对方语气和善，也可能让人越来越疲惫：一方面担心对方觉得自己在找借口，另一方面又不知道是否还要再解释一遍。应对这种疲劳，不必每次都给出完整答案。可以只说一句边界，不展开论证，也不把说服对方当成自己的责任；同时也可以分辨哪些询问值得回应，哪些只是礼貌性的好奇或否定。承认“这很累”本身就是善待自己的一部分，不必为了显得坚强而否认它的成本。</span></p>
+      <blockquote>
+         <p><strong><span>提醒</span></strong><span>：表达边界也可以采用更温和的语言方式（“这个话题我们跳过吧”“我只和我愿意讲的人谈这个”），同样有效，也更省力。这样做不是逃避，而是在分配自己的精力。</span></p>
+      </blockquote>
       <hr>
 
       <h2 id="法律权益与社会包容"><span>法律权益与社会包容</span></h2>
-      <p><strong><span>时效与地域说明</span></strong><span>：婚姻、继承、医疗代理、反歧视和家庭制度因司法辖区而异，并会更新。本节讨论的是常见结构性问题，不断言某项权利在读者所在地必然存在或缺失，也不构成法律建议。</span></p>
+       <p><strong><span>时效与地域说明</span></strong><span>：婚姻、继承、医疗代理、反歧视和家庭制度因司法辖区而异，并会更新。本节只讨论常见的结构性问题，不表示某项权利在读者所在地必然存在或缺失，也不构成法律建议。</span></p>
       <h3 id="制度如何默认恋爱与婚姻"><span>制度如何默认恋爱与婚姻</span></h3>
-      <p><span>在大多数社会中，一整套重要权益被捆绑在婚姻或伴侣关系上：税收优惠、继承顺位、医疗知情与代理决策、探视权、签证与移民资格、住房政策、保险受益人、育儿资格等。对不以恋爱和婚姻组织生活的人来说，这不只是文化压力，而是实打实的制度性成本：一段共同生活二十年的挚友关系，其法律地位可能不如一段刚刚登记的婚姻；选择家庭与酷儿柏拉图式关系目前几乎没有对应的法律容器。</span></p>
-      <p><span>这类安排的影响不限于无浪漫者——所有单身者、非婚同居者和以友谊、社群组织生活的人都会受到波及——但无浪漫者往往终身处于这套制度的默认受益范围之外，因此更早、更持续地感受到它的重量。</span></p>
+       <p><span>在大多数社会中，一整套重要权益被捆绑在婚姻或伴侣关系上：税收优惠、继承顺位、医疗知情与代理决策、探视权、签证与移民资格、住房政策、保险受益人、育儿资格等。对不以恋爱和婚姻组织生活的人来说，这不只是文化压力，也是实实在在的制度成本：一段共同生活二十年的挚友关系，其法律地位可能不如一段刚刚登记的婚姻；选择家庭和酷儿柏拉图式关系目前几乎没有与之对应的法律身份或制度安排。</span></p>
+       <p><span>这类安排的影响不限于无浪漫者——所有单身者、非婚同居者和以友谊、社群为生活核心的人都会受到波及——但无浪漫者往往一生都更容易被排除在制度默认优待的范围之外，因此更早、更持续地感受到它的影响。</span></p>
       <h3 id="反歧视保护的空白"><span>反歧视保护的空白</span></h3>
-      <p><span>即便在性倾向受到反歧视法保护的地区，法律列举的通常是性取向，浪漫取向很少被单独提及。无浪漫者面对的偏见——例如被视为不成熟、冷漠，或被默认不适合需要“稳定家庭形象”的职位——更多落入针对单身者的普遍歧视（Singlism），难以被识别和救济。而在婚恋规范更强的语境中，压力更多以催婚、家庭义务和舆论评价的形式出现，处于正式制度之外，却同样真实。</span></p>
+       <p><span>即便在性倾向受到反歧视法保护的地区，法律列举的通常是性取向，浪漫取向很少被单独提及。无浪漫者面对的偏见——例如被视为不成熟、冷漠，或被默认不适合需要“稳定家庭形象”的职位——更多被归入对单身者的普遍歧视（Singlism），因而难以被识别和救济。而在婚恋规范更强的语境中，这些压力更多以催婚、家庭义务和舆论评价的形式出现，往往不属于正式制度，却同样真实。</span></p>
       <h3 id="推动包容的方向"><span>推动包容的方向</span></h3>
       <ul>
         <li><p><strong><span>权益与婚姻脱钩</span></strong><span>：允许个人自由指定紧急联系人、医疗代理人、共同居住人和受益人，而不默认绑定配偶或血亲。</span></p></li>
         <li><p><strong><span>承认多元关系结构</span></strong><span>：为长期共同生活、互相照护的非婚关系提供可选择的法律安排。</span></p></li>
-        <li><p><strong><span>教育与专业培训</span></strong><span>：在性教育、心理咨询与医疗培训中纳入浪漫取向，减少把无浪漫经验病理化的专业误读。</span></p></li>
+         <li><p><strong><span>教育与专业培训</span></strong><span>：在性教育、心理咨询与医疗培训中加入浪漫取向，减少把无浪漫经验病理化的专业误读。</span></p></li>
         <li><p><strong><span>公共叙事调整</span></strong><span>：在政策宣传与公共活动中，避免把“家庭”默认等同于“婚姻加子女”。</span></p></li>
       </ul>
+      <h3 id="工作居住与日常场景的摩擦"><span>工作、居住与日常场景中的实际摩擦</span></h3>
+       <p><span>制度压力会在具体场景中变成具体的麻烦：紧急住院时，多年的室友或伙伴可能因为没有亲属身份而无法进入探视名单；租房申请与担保制度常以“稳定家庭”为默认前提，使非婚共同居住者被要求额外证明关系；公司的福利表格只提供“配偶/子女”，办公室聚餐文化也常默认“带上对象”。这些摩擦不是个人性格问题，而是关系资源被集中分配给婚恋关系后在现实中留下的痕迹。在个人层面可以有限应对（遗嘱、意定监护、书面委托、明确的同事边界），但这些方案往往繁琐且需要提前了解；改善这些问题属于制度议题，而不是个人修养议题。</span></p>
       <hr>
 
-      <h2 id="实践指南理解接纳与联结"><span>实践指南：理解、接纳与联结</span></h2>
+       <h2 id="实践指南理解接纳与联结"><span>实践指南：理解、接纳与相处</span></h2>
       <h3 id="给正在自我探索的人"><span>给正在自我探索的人</span></h3>
       <ul>
         <li><p><strong><span>从经验出发</span></strong><span>：比起急着判断身份，可以先写下自己对恋爱、暗恋、告白、约会、婚姻、亲密友谊和身体接触的真实反应。</span></p></li>
         <li><p><strong><span>允许不确定</span></strong><span>：你可以暂时使用“无浪漫谱系”“灰浪漫”“疑浪漫”这样的开放标签。</span></p></li>
-        <li><p><strong><span>区分喜欢和恋爱</span></strong><span>：对一个人重视、依赖、欣赏、想陪伴，并不必然等于浪漫吸引。</span></p></li>
-        <li><p><strong><span>保护安全</span></strong><span>：在对身份不友好的家庭、学校或工作环境中，优先考虑现实安全和经济依赖。</span></p></li>
+         <li><p><strong><span>区分喜欢和恋爱</span></strong><span>：重视一个人、依赖一个人、欣赏一个人或想陪伴对方，并不必然等于浪漫吸引。</span></p></li>
+         <li><p><strong><span>优先保证安全</span></strong><span>：在对身份不友好的家庭、学校或工作环境中，优先考虑现实安全和经济依赖。</span></p></li>
       </ul>
       <h3 id="给无浪漫者的关系沟通"><span>给无浪漫者的关系沟通</span></h3>
-      <p><span>沟通时可以把抽象身份翻译成具体边界：“我不希望被追求”“我喜欢拥抱，但不希望它被理解成恋爱信号”“我愿意长期互相照顾，但不想用恋人称呼”“我需要时间判断我们适合什么关系”。越具体，越能减少对方自行套用默认脚本。</span></p>
+       <p><span>沟通时，与其只说抽象的身份，不如说明具体边界：“我不希望被追求”“我喜欢拥抱，但不希望它被理解成恋爱信号”“我愿意长期互相照顾，但不想用恋人称呼”“我需要时间判断我们适合什么关系”。说得越具体，越能减少对方自行套用默认的恋爱脚本。</span></p>
       <h3 id="给创作者和教育者"><span>给创作者和教育者</span></h3>
-      <p><span>书写无浪漫角色时，应避免把无浪漫当成唯一人格特征，也不要把“被爱情治愈”作为默认结局。更好的呈现方式是让角色拥有完整生活、价值选择、关系网络和情绪深度，并明确承认非浪漫关系的正当性。</span></p>
+       <p><span>书写无浪漫角色时，应避免把无浪漫当成唯一的人格特征，也不要把“被爱情治愈”作为默认结局。更好的呈现方式是让角色拥有完整的生活、价值选择、关系网络和情绪深度，并明确承认非浪漫关系的正当性。</span></p>
       <h3 id="给组织和公共空间"><span>给组织和公共空间</span></h3>
-      <p><span>学校、社群和工作场所可以从语言与制度入手：减少“对象/伴侣/结婚”作为默认闲聊，允许紧急联系人、福利和活动邀请不只绑定配偶或恋人，在性教育与心理健康材料中纳入浪漫取向和无浪漫谱系。</span></p>
+       <p><span>学校、社群和工作场所可以从语言与制度入手：减少把“对象”“伴侣”“结婚”当作默认闲聊话题的做法，允许紧急联系人、福利和活动邀请不只绑定配偶或恋人，并在性教育与心理健康材料中纳入浪漫取向和无浪漫谱系。</span></p>
+      <h3 id="常见问题faq"><span>常见问题（FAQ）</span></h3>
+      <h4 id="无浪漫者真的不爱任何人吗"><span>无浪漫者真的“不爱任何人”吗？</span></h4>
+       <p><span>关键在于把“爱”和“浪漫吸引”分开。许多无浪漫者很爱家人、朋友和伙伴，只是不用恋爱式的心动来理解这些关系；也有人不使用“爱”这个词描述自己，这同样是正当的。一个人是否用“爱”来描述自己的感情，应由本人决定。</span></p>
+      <h4 id="无浪漫是性取向吗"><span>无浪漫是“性取向”吗？</span></h4>
+       <p><span>无浪漫属于</span><strong><span>浪漫取向（romantic orientation）</span></strong><span>，而不是性取向。它描述一个人是否对他人产生浪漫吸引，以及这种吸引通常如何出现，与性吸引相互独立。一个人可以是无浪漫且有性恋（AroAllo）、无浪漫且无性恋（AroAce），也可以在浪漫取向和性取向上分别处于灰色谱系。</span></p>
+      <h4 id="无浪漫会变化吗"><span>无浪漫会变化吗？会“好”吗？</span></h4>
+        <p><span>有些人的浪漫取向会随时间波动，例如流动无浪漫或突发浪漫；对另一些人而言它非常稳定。变化本身不证明过去的认同是错的，也不代表需要被“治好”。“等遇到对的人”并不能证明什么，因为这种说法把浪漫吸引设定成必然会发生的事情。</span></p>
+      <h4 id="如何判断自己是不是无浪漫"><span>如何判断自己是不是无浪漫？</span></h4>
+       <p><span>没有可靠的“检测”。比较实用的方式是观察长期经验：把暗恋、心动、想被特别对待、约会冲动等浪漫信号与自己真实的吸引经验对照；允许使用“无浪漫谱系”“灰浪漫”“疑浪漫”等开放标签；也可以把“恋爱”和“深厚友谊”分开，分别写下自己的真实反应。本站的无浪漫谱系自评量表与共鸣刻度卡可以作为辅助工具，但它们不决定身份。</span></p>
+      <h4 id="无浪漫者能结婚或进入伴侣关系吗"><span>无浪漫者能结婚或进入伴侣关系吗？</span></h4>
+       <p><span>可以。是否进入浪漫或伴侣关系是关系选择，不是浪漫取向的反证。一些人进入基于友谊、合作与共同生活的婚姻；一些人和体验浪漫吸引的伴侣维持长期关系；也有人选择单身或非浪漫伴侣生活。关键在于双方坦诚协商关系定义、边界与期待。</span></p>
+      <h4 id="如何回应你只是没遇到对的人"><span>如何回应“你只是没遇到对的人”？</span></h4>
+       <p><span>无须反驳整句话，也可以只说明自己的立场：“这是我现在对自己经验的命名，我希望被尊重。”如果需要展开，可以补充：“我不期待被爱情改变，也不觉得这需要被解决。”看对方是否愿意停止催促，比试图一次说服对方更重要；真正的尊重不要求对方完全理解。</span></p>
+      <h4 id="作为伴侣或亲友能做什么"><span>作为伴侣/亲友，我能做什么？</span></h4>
+      <p><span>信任对方对自己的判断，减少“会不会是你太挑/太独立”之类的引导；邀请对方说明具体舒适的边界；不以恋爱脚本默认安排假日、称呼或公开方式；主动学习而不是把解释责任全部交给当事人。具体而稳定的支持，比一次热情的表态更有效。</span></p>
+      <h4 id="无浪漫是后天造成的吗"><span>无浪漫是“后天造成的吗”？会被压力或创伤影响吗？</span></h4>
+       <p><span>浪漫吸引的有无不能用一句“先天还是后天”概括。现有知识既无法证明无浪漫由创伤、教养或文化压力“造成”，也无法把它归因为纯粹的生理结果。被否定、被强迫、长期不被看见，会消耗当事人的关系安全感，但这些经历既不是无浪漫的前提，也不能因此抹去或否定一个人的自我命名。把“可能受经历影响”和“因此可以被修正”强行挂钩，是对经验复杂性的过度简化。</span></p>
+      <h4 id="无浪漫与独身不婚主义一样吗"><span>无浪漫和不婚主义、独身主义是一样的吗？</span></h4>
+       <p><span>不一样。不婚主义、独身主义是关系选择与生活安排：一个人主动决定不结婚或不进入伴侣关系（无论有没有浪漫吸引）。无浪漫则是浪漫取向：它描述吸引经验，而不是婚姻选择。无浪漫者可能选择结婚、进入伴侣关系或保持单身；不婚主义者也可能有强烈的浪漫吸引。两者可以重叠，但不能互相替代。</span></p>
       <hr>
 
       <h2 id="研究前沿与未来展望"><span>研究前沿与未来展望</span></h2>
-      <h3 id="当前研究状况"><span>当前研究状况</span></h3>
-      <p><span>相比无性恋研究，无浪漫作为独立议题进入学术视野的时间更晚，许多研究仍把它作为无性恋社群内部差异来讨论。Antonsen、Zdaniuk、Yule 与 Brotto 于 2020 年发表的研究通过七项既有无性恋研究的二次分析，比较了有浪漫无性恋者与无浪漫无性恋者，显示浪漫吸引和性吸引确实需要被分开理解。</span></p>
-      <p><span>这类研究的价值不在于为每个人规定身份，而在于揭示：即使在同属无性恋的人群中，浪漫取向也会显著影响关系经历、伴侣欲望和自我描述。由此可见，无浪漫不应只被当作无性恋的脚注，而应作为独立的浪漫取向与关系经验加以研究。</span></p>
-      <h3 id="研究限制"><span>研究限制</span></h3>
-      <ul>
-        <li><p><strong><span>样本偏差</span></strong><span>：现有研究常依赖线上社群和英语语境，难以代表不同文化、阶层、年龄和地区的无浪漫者。</span></p></li>
-        <li><p><strong><span>概念测量困难</span></strong><span>：浪漫吸引本身高度主观，不同文化对“恋爱”的理解也不同，导致量表和访谈解释需要格外谨慎。</span></p></li>
-        <li><p><strong><span>AroAllo 不可见</span></strong><span>：无浪漫但有性恋者在研究和社群中都容易被忽略，尤其容易遭遇污名化。</span></p></li>
-        <li><p><strong><span>跨文化资料不足</span></strong><span>：中文语境中的催婚、家庭主义、性别期待和亲密关系制度，会塑造与英语社群不同的无浪漫经验。</span></p></li>
-      </ul>
-      <h3 id="未来方向"><span>未来方向</span></h3>
-      <p><span>未来研究需要更清楚地区分浪漫吸引、性吸引、亲密需求、关系选择和社会压力；需要纳入 AroAllo、AroAce、灰浪漫、半浪漫、疑浪漫等不同经验；也需要关注无浪漫者的心理健康、关系实践、媒体再现、制度权益与跨文化差异。</span></p>
+      <h3 id="研究前沿与未来方向"><span>研究前沿与未来方向</span></h3>
+       <p><span>相比无性恋研究，无浪漫作为独立议题进入学术视野的时间更晚，许多研究仍把它作为无性恋社群内部差异来讨论。目前比较重要的方向包括：建立更稳定、可跨文化比较的浪漫吸引测量方式；扩大对 AroAllo、灰浪漫、半浪漫及不同年龄阶段的研究；了解无浪漫者如何安排友谊、选择家庭、QPR、共同生活和照护关系；以及分析恋爱中心主义、污名和制度安排如何影响生活质量。</span></p>
+       <p><span>现有研究的价值不在于替每个人规定身份，而在于显示浪漫取向会影响关系经历、伴侣欲望和自我描述，同时提醒研究者不要把无浪漫只当作无性恋的脚注。把无浪漫作为独立的浪漫取向和关系经验来研究，才能看见 AroAllo 等容易被忽略的群体，也能避免用单一的恋爱模式解释所有人的亲密生活。</span></p>
+      <h3 id="对未来的展望"><span>对未来的展望</span></h3>
+       <p><span>未来研究需要更清楚地区分浪漫吸引、性吸引、亲密需求、关系选择和社会压力；需要纳入 AroAllo、AroAce、灰浪漫、半浪漫、疑浪漫等不同经验；也需要关注无浪漫者的心理健康、关系和相处方式、媒体呈现、制度权益和跨文化差异。</span></p>
+      <h3 id="从社群普查中可以学到什么"><span>从社群普查中可以学到什么</span></h3>
+          <p><span>AUREA 的 Aro Census 2020 共收到 9758 份回应，并在公开图表中提供了若干描述性线索。在“你是否曾对某人产生浪漫吸引”的问题上，45% 的受访者选择“否”、34.3% 选择“不确定”、20.7% 选择“是”。调查通过自愿报名的方式招募参加者，具体题目的有效回答数可能不同，不能当作一般人口估计。</span></p>
+       <p><span>同样值得注意的是，在“因无浪漫而经历的情况”一题中（可多选），4911 人（82.43%）表示自己“不被认真对待、被忽视或被否定”，2880 人（48.34%）表示曾被建议或尝试“修正/治愈”。这些是参加者自报的经历，不能代表所有无浪漫者；两项经历可以同时被选择，百分比不能相加，也不代表“无浪漫的本质”。这类调查也显示，无浪漫者并非与情感和社会关系绝缘：许多受访者在寻找深厚的友谊、建立选择家庭或参与社群支持，只是不把恋爱当作唯一或优先的路径。</span></p>
+      <h3 id="跨文化与中文语境的研究空间"><span>跨文化与中文语境的研究空间</span></h3>
+          <p><span>本页引用的资料样本来源各不相同：AUREA Aro Census 是以英语进行的线上社群调查，参加者自行报名；Carvalho 与 Rodrigues 的研究来自不同无性恋线上社群；Antonsen 等人则对七项既有无性恋研究进行二次分析。这些资料都不能直接替代跨文化的一般人口研究，中文语境下的经验分布仍缺少直接证据。中文语境中的催婚文化、家庭主义、性别角色期待与婚恋制度，可能塑造不同于英语社群的无浪漫经验；在这些语境中开展本地化描述与研究，是无浪漫领域下一阶段的重要方向。</span></p>
       <hr>
 
       <h2 id="结语看见不以浪漫为中心的人生"><span>结语：看见不以浪漫为中心的人生</span></h2>
       <h3 id="总结"><span>总结</span></h3>
-      <p><span>无浪漫并不是对亲密的否定，而是对单一浪漫脚本的松动。它告诉我们，有些人不以恋爱来组织生命的核心关系，有些人的深度联结并不以心动、告白和情侣身份为前提，有些人的人生规划并不需要被浪漫伴侣关系证明。</span></p>
-      <p><span>理解无浪漫，也是在理解更广义的人类亲密多样性。每个人都可以借此重新思考：我真正需要的关系是什么？我愿意承担哪些责任？我是否把某些关系形式看得太轻，又把恋爱关系放得太高？当这些问题被认真提出，关系就不再只是按脚本推进，而能成为更诚实、更具体、更符合当事人需求的共同实践。</span></p>
+       <p><span>无浪漫不等于拒绝亲密，也不等于反对恋爱。它描述的是一个人的浪漫吸引体验，而不是这个人能不能关心别人、建立关系，或如何安排自己的生活。有些人很少或从不产生浪漫吸引，却依然重视友谊、亲情、伙伴关系和其他形式的亲密。</span></p>
+        <p><span>理解无浪漫，也是在承认人的亲密需求本来就有多种形式。我们都可以借此想一想：自己真正需要怎样的关系？愿意为关系承担哪些责任？是不是把某些关系看得太轻，又默认恋爱必须排在最前面？把这些问题说开，关系就不必照着现成的恋爱脚本发展，而可以根据当事人的需求、边界和承诺来安排。</span></p>
       <blockquote>
-        <p><strong><span>提示</span></strong><span>：如果你正在探索自己是否位于无浪漫谱系，不必急着给出终局答案。稳定、流动、模糊、暂时，都可以成为自我理解的一部分。重要的是你的边界、需求和感受能够被认真对待。</span></p>
+         <p><strong><span>提示</span></strong><span>：如果你正在探索自己是否位于无浪漫谱系，不必急着得出最终结论。稳定、流动、模糊、暂时，都可以成为自我理解的一部分。重要的是你的边界、需求和感受能够被认真对待。</span></p>
       </blockquote>
       <hr>
 
@@ -843,16 +972,34 @@
       </ul>
       <h3 id="本站内继续探索"><span>本站内继续探索</span></h3>
       <ul>
-        <li><p><strong><span>无浪漫谱系自评量表</span></strong><span>：独立的自我探索工具；可帮助回想经验，但不用于证明、认证或决定身份。</span></p></li>
-        <li><p><strong><span>无性恋谱系自评量表</span></strong><span>：独立梳理性吸引相关经验，不应与浪漫取向分数合并判断。</span></p></li>
-        <li><p><strong><span>无浪漫/无性恋谱系共鸣刻度卡</span></strong><span>：以短句寻找共鸣的互动页面，不是筛查或诊断工具。</span></p></li>
-        <li><p><strong><span>关系需求菜单</span></strong><span>：适合把关系中的称呼、边界、亲密方式和承诺结构具体化。</span></p></li>
+         <li><p><strong><a href="../Scales/Aromantic-Spectrum-Scale.html">无浪漫谱系自评量表</a></strong><span>：独立的自我探索工具；可以帮助你回顾自己的经历，但不用于证明、认证或决定身份。</span></p></li>
+         <li><p><strong><a href="../Scales/Asexual-Spectrum-Scale.html">无性恋谱系自评量表</a></strong><span>：帮助你单独梳理性吸引相关经历，不应与浪漫取向的结果合并判断。</span></p></li>
+         <li><p><strong><a href="../Bingos/Aro-Ace-Spectrum-Resonance.html">无浪漫/无性恋谱系 · 共鸣刻度卡</a></strong><span>：以短句寻找共鸣的互动页面，不是筛查或诊断工具。</span></p></li>
+         <li><p><strong><a href="../Tools/Relationship-Needs-Menu.html">关系需求菜单</a></strong><span>：帮助你把关系中的称呼、边界、亲密方式和承诺形式说具体。</span></p></li>
       </ul>
       <h3 id="学术与理论阅读"><span>学术与理论阅读</span></h3>
       <ul>
-        <li><p><span>Antonsen, A. N., Zdaniuk, B., Yule, M., &amp; Brotto, L. A. (2020). </span><em><span>Ace and Aro: Understanding Differences in Romantic Attractions Among Persons Identifying as Asexual.</span></em><span> Archives of Sexual Behavior, 49, 1615-1630.</span> <a href="https://link.springer.com/article/10.1007/s10508-019-01600-1" target="_blank" rel="noopener" class="url">https://link.springer.com/article/10.1007/s10508-019-01600-1</a></p></li>
+         <li><p><span>Antonsen, A. N., Zdaniuk, B., Yule, M., &amp; Brotto, L. A. (2020). </span><em><span>Ace and Aro: Understanding Differences in Romantic Attractions Among Persons Identifying as Asexual.</span></em><span> Archives of Sexual Behavior, 49(5), 1615-1630.</span> <a href="https://link.springer.com/article/10.1007/s10508-019-01600-1" target="_blank" rel="noopener" class="url">https://link.springer.com/article/10.1007/s10508-019-01600-1</a> <span>这是梳理无性恋群体内部浪漫取向差异的少数直接研究之一；阅读和引用时应注意，它采用了七项既有研究的合并分析。</span></p></li>
         <li><p><span>Brake, E. (2012). </span><em><span>Minimizing Marriage: Marriage, Morality, and the Law.</span></em><span> Oxford University Press. 本书提出并讨论 amatonormativity，对理解恋爱/婚姻规范很有帮助。</span></p></li>
-        <li><p><span>Decker, J. S. (2015). </span><em><span>The Invisible Orientation: An Introduction to Asexuality.</span></em><span> Skyhorse Publishing. 虽以无性恋为主，也包含浪漫取向与分离吸引模型的基础讨论。</span></p></li>
+         <li><p><span>Decker, J. S. (2015). </span><em><span>The Invisible Orientation: An Introduction to Asexuality.</span></em><span> Skyhorse Publishing. 虽以无性恋为主，也对浪漫取向和分离吸引模型作了基础介绍。</span></p></li>
+          <li><p><span>Carvalho, A. C., &amp; Rodrigues, D. L. (2022). </span><em><span>Sexuality, Sexual Behavior, and Relationships of Asexual Individuals: Differences Between Aromantic and Romantic Orientation.</span></em><span> Archives of Sexual Behavior, 51(4), 2159-2168.</span> <a href="https://doi.org/10.1007/s10508-021-02187-2" target="_blank" rel="noopener" class="url">https://doi.org/10.1007/s10508-021-02187-2</a> <span>比较无浪漫与有浪漫无性恋者的依恋风格与关系经历；这是横断面的线上样本，不宜据此把无浪漫还原为依恋问题。</span></p></li>
+          <li><p><span>AUREA Aro Census Team. (2021). </span><em><span>The Aro Census 2020 Report.</span></em><span> AUREA。调查于 2020 年进行，报告于 2021 年发布。参与者通过线上社群自愿报名，调查结果不能代表一般人口。</span> <a href="https://www.aromanticism.org/s/Aro-Census-2020-Report.pdf" target="_blank" rel="noopener" class="url">https://www.aromanticism.org/s/Aro-Census-2020-Report.pdf</a></p></li>
+      </ul>
+      <h3 id="延伸阅读与媒体资源"><span>延伸阅读与媒体资源</span></h3>
+      <ul>
+         <li><p><strong><span>学术检索建议</span></strong><span>：在 Google Scholar、PubMed 上使用 “aromantic”“romantic attraction”“aromanticism” 等关键词，可以持续关注新文献；检索时注意区分无浪漫（aromantic）与反浪漫（anti-romance）这两个不同概念。</span></p></li>
+        <li><p><strong><span>Platonic &amp; QPR 相关博客/播客</span></strong><span>：不少无浪漫与无性恋社群的独立播客持续讨论友谊位阶、选择家庭与 QPR 实践，可按 “aromantic”“queerplatonic” 等关键词检索最新节目。</span></p></li>
+         <li><p><strong><span>媒体中的“Aromantic”角色</span></strong><span>：英文媒体与 AUREA 官方渠道会整理电影、剧集和书籍中出现或可被解读为无浪漫的角色，可以用来了解媒体呈现如何变化。</span></p></li>
+         <li><p><strong><span>神经多样性视角</span></strong><span>：部分与自闭谱系、ADHD 相关的博主会讨论如何命名吸引类型、如何应对社交脚本和划定关系边界，可作为理解交叉身份经验的补充材料；注意区分个人叙事与学术结论。</span></p></li>
+      </ul>
+       <h3 id="中文语境资源检索建议"><span>中文资料检索建议</span></h3>
+       <p><span>中文语境下的无浪漫资料目前分散在科普文章、社交媒体讨论和个人叙事中。可以在知乎、B 站、即刻、豆瓣社群等平台以“无浪漫”“aro”“无浪漫谱系”“酷儿柏拉图式关系”等关键词检索，但要区分标签的使用和资料的来源：社群经验分享、科普整理和学术文献是三种性质不同的资料，阅读时各有参考价值，也各有边界。本站的量表与共鸣卡片属于自我探索辅助，不用于诊断或认证。</span></p>
+       <h3 id="寻求专业帮助与支持安全原则"><span>寻求专业帮助：安全原则</span></h3>
+      <ul>
+        <li><p><strong><span>确认立场</span></strong><span>：寻求咨询或医疗支持时，可以先询问对方是否熟悉性/性别多样性议题，以及是否认同“浪漫取向与身份经验本身就是正当的”。</span></p></li>
+        <li><p><strong><span>设定目标</span></strong><span>：把求助目标写下来（减少羞耻、管理压力、改善沟通、处理创伤），并注意区分“想要更了解自己”和“想被改造为会恋爱的人”。</span></p></li>
+         <li><p><strong><span>安全优先</span></strong><span>：如果在家庭或其他环境中出柜存在现实风险，应先保证人身、经济和居住安全，再考虑公开到什么程度；不出柜本身不需要理由。</span></p></li>
+        <li><p><strong><span>紧急情况</span></strong><span>：如果出现自伤风险或严重情绪危机，请优先联系医疗机构、当地心理援助热线或可信赖的现实支持者，而不是独自承担。</span></p></li>
       </ul>
       <hr>    </div>
   </div>

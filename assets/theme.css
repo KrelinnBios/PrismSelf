@@ -131,7 +131,7 @@
 .prism-back-home:focus-visible {
   border: 0 !important;
   outline: none !important;
-  box-shadow: 0 0 0 3px rgba(47, 111, 115, 0.18), 0 2px 10px rgba(0, 0, 0, 0.14) !important;
+  box-shadow: 0 0 0 3px var(--guide-control-ring, rgba(47, 111, 115, 0.18)), 0 2px 10px rgba(0, 0, 0, 0.14) !important;
 }
 
 :root[data-theme="dark"] .prism-back-home,
@@ -145,13 +145,12 @@
 :root[data-theme="dark"] .prism-back-home:focus-visible {
   border: 0 !important;
   outline: none !important;
-  box-shadow: 0 0 0 3px rgba(95, 208, 164, 0.18), 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 0 0 3px var(--guide-control-ring, rgba(95, 208, 164, 0.18)), 0 2px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 .theme-toggle,
 .prism-back-home,
-.toc-toggle-btn,
-.guide-ai-launcher {
+.toc-toggle-btn {
   --prism-floating-border: var(--scale-accent, var(--guide-control-border-strong, var(--analysis-accent, var(--bingo-accent, var(--teal, var(--primary-color, var(--text-color, var(--ink, var(--accent, #5b4de3)))))))));
   border: 1px solid var(--prism-floating-border) !important;
   background: var(--scale-surface, var(--paper, #ffffff)) !important;
@@ -162,7 +161,7 @@
   transition: box-shadow 0.2s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
 }
 
-:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher) {
+:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn) {
   border: 1px solid var(--prism-floating-border) !important;
   background: var(--scale-surface, var(--paper, #161d26)) !important;
   color: var(--scale-ink, var(--ink, #e7edf3)) !important;
@@ -171,36 +170,33 @@
 
 .theme-toggle:hover,
 .prism-back-home:hover,
-.toc-toggle-btn:hover,
-.guide-ai-launcher:hover {
+.toc-toggle-btn:hover {
   transform: none !important;
 }
 
 .theme-toggle:active,
 .prism-back-home:active,
-.toc-toggle-btn:active,
-.guide-ai-launcher:active {
+.toc-toggle-btn:active {
   transform: none !important;
 }
 
 .theme-toggle:focus-visible,
 .prism-back-home:focus-visible,
-.toc-toggle-btn:focus-visible,
-.guide-ai-launcher:focus-visible {
+.toc-toggle-btn:focus-visible {
   border: 1px solid var(--prism-floating-border) !important;
 }
 
-:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):focus-visible {
+:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):focus-visible {
   border: 1px solid var(--prism-floating-border) !important;
 }
 
-:root[data-theme="light"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):hover {
+:root[data-theme="light"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):hover {
   border: 1px solid var(--prism-floating-border) !important;
   background: var(--scale-ink, var(--ink, #1a2332)) !important;
   color: var(--scale-surface, var(--paper, #f7f8fc)) !important;
 }
 
-:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn, .guide-ai-launcher):hover {
+:root[data-theme="dark"] :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):hover {
   border: 1px solid var(--prism-floating-border) !important;
   background: var(--scale-ink, var(--ink, #f7f8fc)) !important;
   color: var(--scale-surface, var(--paper, #1a2332)) !important;
@@ -220,59 +216,59 @@
   color: var(--scale-ink, var(--ink, #e7edf3)) !important;
 }
 
-:root.guide-links-green #write .term-desc a,
+:root.guide-links-purple #write .term-desc a,
 :root:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a,
 :root:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a,
 :root:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a {
-  color: rgba(34, 139, 79, 0.95) !important;
-  text-decoration-color: rgba(34, 139, 79, 0.38) !important;
-}
-
-:root.guide-links-green #write .term-desc a:hover,
-:root:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
-:root:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
-:root:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a:hover {
-  color: rgba(22, 101, 52, 0.98) !important;
-  text-decoration-color: currentColor !important;
-}
-
-:root[data-theme="dark"].guide-links-green #write .term-desc a,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a {
-  color: rgba(143, 214, 148, 0.96) !important;
-  text-decoration-color: rgba(143, 214, 148, 0.48) !important;
-}
-
-:root[data-theme="dark"].guide-links-green #write .term-desc a:hover,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a:hover {
-  color: rgba(185, 245, 190, 0.98) !important;
-  text-decoration-color: currentColor !important;
-}
-
-:root.guide-links-purple #write .term-desc a,
-:root:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a {
   color: #5b4de3 !important;
   text-decoration-color: rgba(91, 77, 227, 0.38) !important;
 }
 
 :root.guide-links-purple #write .term-desc a:hover,
-:root:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a:hover {
+:root:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
+:root:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
+:root:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a:hover {
   color: #4338ca !important;
   text-decoration-color: currentColor !important;
 }
 
 :root[data-theme="dark"].guide-links-purple #write .term-desc a,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a {
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a,
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a,
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a {
   color: #a99bff !important;
   text-decoration-color: rgba(169, 155, 255, 0.48) !important;
 }
 
 :root[data-theme="dark"].guide-links-purple #write .term-desc a:hover,
-:root[data-theme="dark"]:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a:hover {
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Asexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Greysexual-Comprehensive-Guide.html"]) #write .term-desc a:hover,
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Demisexual-Comprehensive-Guide.html"]) #write .term-desc a:hover {
   color: #c4b8ff !important;
+  text-decoration-color: currentColor !important;
+}
+
+:root.guide-links-green #write .term-desc a,
+:root:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a {
+  color: rgba(34, 139, 79, 0.95) !important;
+  text-decoration-color: rgba(34, 139, 79, 0.38) !important;
+}
+
+:root.guide-links-green #write .term-desc a:hover,
+:root:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a:hover {
+  color: rgba(22, 101, 52, 0.98) !important;
+  text-decoration-color: currentColor !important;
+}
+
+:root[data-theme="dark"].guide-links-green #write .term-desc a,
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a {
+  color: rgba(143, 214, 148, 0.96) !important;
+  text-decoration-color: rgba(143, 214, 148, 0.48) !important;
+}
+
+:root[data-theme="dark"].guide-links-green #write .term-desc a:hover,
+:root[data-theme="dark"]:has(meta[property="og:url"][content*="Aromantic-Comprehensive-Guide.html"]) #write .term-desc a:hover {
+  color: rgba(196, 241, 201, 0.98) !important;
   text-decoration-color: currentColor !important;
 }
 
@@ -693,30 +689,27 @@
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle,
   .prism-back-home,
-  .toc-toggle-btn,
-  .guide-ai-launcher {
+  .toc-toggle-btn {
     transition: none !important;
   }
 
   .theme-toggle:hover,
   .prism-back-home:hover,
   .toc-toggle-btn:hover,
-  .guide-ai-launcher:hover,
   .theme-toggle:active,
   .prism-back-home:active,
-  .toc-toggle-btn:active,
-  .guide-ai-launcher:active {
+  .toc-toggle-btn:active {
     transform: none !important;
   }
 }
 
 @media (max-width: 1200px) {
-  body.scale-page .scale-mobile-toolbar {
+  body.scale-page .global-progress {
     position: sticky !important;
     top: 0 !important;
     z-index: 9998 !important;
     display: grid !important;
-    grid-template-columns: 44px minmax(0, 1fr) 44px !important;
+    grid-template-columns: minmax(0, 1fr) 44px !important;
     grid-template-rows: 44px !important;
     column-gap: 7px !important;
     row-gap: 0 !important;
@@ -730,13 +723,13 @@
     box-shadow: none !important;
   }
 
-  body.scale-page.scale-result-visible .scale-mobile-toolbar {
+  body.scale-page.scale-result-visible .global-progress {
     position: sticky !important;
     top: 0 !important;
   }
 
-  body.scale-page .scale-mobile-toolbar .progress {
-    grid-column: 2;
+  body.scale-page .global-progress .progress {
+    grid-column: 1;
     grid-row: 1;
     align-self: center;
     justify-self: stretch;
@@ -750,7 +743,7 @@
     text-align: center !important;
   }
 
-  body.scale-page .scale-mobile-toolbar .progress-bar {
+  body.scale-page .global-progress .progress-bar {
     position: absolute !important;
     right: 0 !important;
     bottom: 0 !important;
@@ -762,12 +755,12 @@
     background: color-mix(in srgb, var(--scale-accent) 14%, var(--scale-surface, #ffffff)) !important;
   }
 
-  body.scale-page .scale-mobile-toolbar .progress-bar-fill {
+  body.scale-page .global-progress .progress-bar-fill {
     height: 4px !important;
     border-radius: 0 999px 999px 0 !important;
   }
 
-  body.scale-page .scale-mobile-toolbar :is(.prism-back-home, .theme-toggle, .guide-ai-launcher) {
+  body.scale-page .global-progress .theme-toggle {
     position: static !important;
     inset: auto !important;
     display: grid !important;
@@ -788,33 +781,14 @@
     box-shadow: none !important;
   }
 
-  body.scale-page .scale-mobile-toolbar .guide-ai-launcher {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  body.scale-page .scale-mobile-toolbar .guide-ai-launcher span {
-    display: inline-grid !important;
-    place-items: center !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    color: inherit !important;
-    font: 600 14px/1 Arial, sans-serif !important;
-    letter-spacing: 0 !important;
-    line-height: 1 !important;
-    transform: translateY(1px);
-  }
-
-  body.scale-page .scale-mobile-toolbar .theme-toggle {
-    grid-column: 3;
+  body.scale-page .global-progress .theme-toggle {
+    grid-column: 2;
     grid-row: 1;
   }
 }
 
 @media (min-width: 651px) and (max-width: 1200px) {
-  body.scale-page .scale-mobile-toolbar {
+  body.scale-page .global-progress {
     min-height: calc(64px + env(safe-area-inset-top, 0px)) !important;
     margin: 0 0 24px !important;
     padding:
@@ -825,7 +799,7 @@
     border-radius: 0 0 16px 16px !important;
   }
 
-  body.scale-page .scale-mobile-toolbar .progress {
+  body.scale-page .global-progress .progress {
     font-size: 0.95rem !important;
   }
 }
@@ -838,7 +812,6 @@
 }
 
 /* Dialog close icons belong to the title bar and should not look like floating actions. */
-:root[data-theme] body .guide-ai-close,
 :root[data-theme] body .modal-close,
 :root[data-theme] body .qr-dialog-close {
   border: 1px solid color-mix(in srgb, currentColor 36%, transparent) !important;
@@ -850,8 +823,6 @@
   transition: color 0.16s ease, border-color 0.16s ease !important;
 }
 
-:root[data-theme] body .guide-ai-close:hover,
-:root[data-theme] body .guide-ai-close:active,
 :root[data-theme] body .modal-close:hover,
 :root[data-theme] body .modal-close:active,
 :root[data-theme] body .qr-dialog-close:hover,
@@ -862,13 +833,11 @@
   transform: none !important;
 }
 
-:root[data-theme="light"] body .guide-ai-close,
 :root[data-theme="light"] body .modal-close,
 :root[data-theme="light"] body .qr-dialog-close {
   color: #526176 !important;
 }
 
-:root[data-theme="dark"] body .guide-ai-close,
 :root[data-theme="dark"] body .modal-close,
 :root[data-theme="dark"] body .qr-dialog-close {
   color: #c4cedb !important;

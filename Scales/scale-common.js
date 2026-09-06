@@ -275,7 +275,7 @@
 		syncResultVisibility(result);
 
 		requestAnimationFrame(() => {
-			const toolbar = document.querySelector('.scale-mobile-toolbar, .global-progress');
+			const toolbar = document.querySelector('.global-progress');
 			const toolbarStyle = toolbar ? getComputedStyle(toolbar) : null;
 			const toolbarOffset = toolbar && ['sticky', 'fixed'].includes(toolbarStyle?.position)
 				? toolbar.getBoundingClientRect().height + 16
