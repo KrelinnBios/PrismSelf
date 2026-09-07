@@ -51,7 +51,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 
 修改现有内容页时：
 
-1. 保持页面 `<title>`、描述、正文标题和首页卡片名称一致。
+1. 保持页面描述、正文标题和首页卡片名称一致；浏览器 `<title>` 与 `og:title` 统一为 `PrismSelf - <页面名>`（首页为 `PrismSelf - 性别·心理·人际`）。若脚本会设置 `document.title`，也必须带此前缀。
 2. 检查站内返回首页、目录锚点、共享样式、脚本和图片路径。
 3. 如果页面内容发生实质更新，将对应路径移动到 `update-records.js` 最新日期分组；同一路径只保留一次。
 4. 纯格式、拼写或工程调整通常不需要更新页面日期，除非它改变了读者可见内容或使用体验。
@@ -74,6 +74,49 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 - `Scales/scale-common.css` 与 `Scales/scale-common.js` 统一量表结构、进度和结果区域。
 - 首页目前使用内联样式与脚本；修改首页时要特别留意卡片筛选、最近更新和导航逻辑。
 - 共享文件的改动会影响整个分类，提交前至少抽查该分类中结构差异较大的两个页面。
+
+## 缓存与静态资源版本号维护（重要）
+
+由于 GitHub Pages 等静态托管平台和浏览器会强缓存本地资源，**每次修改以下任一共享文件后都必须同步更新所有引用页面中的 `?v=` 版本号**。
+
+### 需要维护版本号的资源分组
+
+| 分组 | 资源路径 | 影响范围 | 当前版本号示例 |
+| --- | --- | --- | --- |
+| 全局主题 | `assets/theme.css` | 全部 HTML 页面 | `2cb01e99accc` |
+| 全局主题 | `assets/theme.js` | 全部 HTML 页面 | 同上，与 theme.css 保持一致 |
+| 全局图标 | `icon/logo.svg`（favicon 引用） | 全部 HTML 页面 | 同上，与 theme.css 保持一致 |
+| 社交分享 | `og-image/image.png`（OG meta 引用） | 全部 HTML 页面 | `1788098160`（Unix 时间戳） |
+| 分析分类 | `Analyses/analysis-common.css` | `Analyses/*.html` | `df85df96eb3d` |
+| 指南分类 | `Guides/guide-common.css` | `Guides/*.html` | 同上，与 theme.css 保持一致 |
+| 话题分类 | `Topics/topic-common.css` | `Topics/*.html` | `86a7e72bf70a` |
+| 共鸣分类 | `Bingos/bingo-common.css` | `Bingos/*.html` | `eef02f60c1a7` |
+| 量表分类 | `Scales/scale-common.css` | `Scales/*.html` | `c3c09e65b819` |
+| 量表分类 | `Scales/scale-common.js` | `Scales/*.html` | `dd9a2a8dac1a` |
+| 工具分类 | `Tools/tool-common.css` | `Tools/*.html` | `8a9d45337303` |
+| 术语分类 | `Glossaries/glossary-common.css` | `Glossaries/*.html` | `5116c3a87726` |
+
+### 操作步骤
+
+1. 完成对共享 CSS/JS/图片的改动后，确定改动属于上表中的哪一组。
+2. 生成新版本号：推荐格式 `YYYYMMDDX`（日期 + 序号，例如 `202609081`）。
+3. 组内规则：
+   - **theme.css / theme.js / favicon (logo.svg)** 三组始终使用同一个版本号，一起改动。
+   - **guide-common.css** 与 theme 组共用同一个版本号。
+   - 其余分类资源（analysis-common、scale-common.css/js、bingo-common 等）各自独立维护。
+   - **og-image/image.png** 使用该文件的 git 最新提交 Unix 时间戳，或与主题组同步。
+4. 全仓搜索替换：在所有受影响的 HTML 中把旧的 `?v=旧版号` 替换为 `?v=新版号`。
+5. 对于 og-image，还要替换 `<meta property="og:image">` 中的 `?v=` 后缀。
+6. 对于 favicon，替换 `<link rel="icon">` 中的 `?v=` 后缀。
+7. 替换完成后再执行 `git commit / push`。
+
+只改动单个 HTML 内容本身（不涉及上表中的共享文件），不需要更新版本号。
+
+### 为什么必须这样做
+
+- 全部 HTML 页面都已通过 `<meta http-equiv="Cache-Control">` 已设为不缓存，但 CSS / JS / 图片仍会被浏览器和 CDN 缓存。
+- 只有资源 URL 发生变化（即 query string `?v=` 取值不同）时，浏览器才会强制重新下载对应资源。
+- 漏改版本号会导致用户访问站点时仍加载旧的样式或脚本行为，出现与本地修改后线上不一致的问题。
 
 ## 维护脚本
 

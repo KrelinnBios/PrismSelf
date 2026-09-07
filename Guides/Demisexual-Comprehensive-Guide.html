@@ -4,6 +4,9 @@
 <head>
   <meta charset='UTF-8'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
@@ -130,7 +133,7 @@
         const originalElements = Array.from(write.children);
         const h1 = originalElements.find((n) => n.tagName === 'H1');
         const title = textOf(h1) || '半性恋全景指南';
-        document.title = title;
+        document.title = 'PrismSelf - ' + title;
 
         const children = Array.from(originalElements).filter((n) => n !== h1);
         const sections = [];
@@ -320,14 +323,14 @@
       }
     })();
   </script>
-  <title>半性恋全景指南</title>
+  <title>PrismSelf - 半性恋全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/Demisexual-Comprehensive-Guide.html">
   <meta name="description" content="半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。">
   <meta name="theme-color" content="#5b4de3">
-  <link rel="icon" href="../icon/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="../icon/logo.svg?v=2cb01e99accc" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
-  <meta property="og:title" content="半性恋全景指南">
+  <meta property="og:title" content="PrismSelf - 半性恋全景指南">
   <meta property="og:description" content="半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。">
   <meta property="og:url" content="https://prismself.vip/Guides/Demisexual-Comprehensive-Guide.html">
   <meta property="og:locale" content="zh_CN">
