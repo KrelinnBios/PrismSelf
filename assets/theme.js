@@ -199,7 +199,7 @@
       scrollTimer = setTimeout(function() {
         thumbVisible = false;
         schedule();
-      }, 1500);
+      }, 500);
     }
 
     function endDrag(e) {
