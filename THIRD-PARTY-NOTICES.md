@@ -22,16 +22,6 @@ IPIP 公有领域材料本身不因收录于本仓库而采用 CC BY-NC-SA 4.0�
 
 该页面没有翻译或改写 IPIP-NEO-120 的具体题目，也不是 IPIP-NEO-120 的官方中文版，且未经相关机构或作者认证；页面中的题目、计分方式和结果解释不代表 IPIP、Oregon Research Institute 或相关研究者的认可或背书。
 
-### HEXACO 人格模型与 PrismSelf HEXACO 六维人格倾向自评量表
-
-HEXACO 人格模型及 HEXACO-PI-R 由 Kibeom Lee 与 Michael C. Ashton 开发。[HEXACO 官方量表页面](https://hexaco.org/hexaco-inventory)对官方量表材料的下载、研究使用和在线施测设有专门条件，并要求非学术用途联系作者。
-
-[PrismSelf HEXACO 六维人格倾向自评量表](./Scales/HEXACO-Personality-Scale.html)及其[预设内容脚本](./Scales/scripts/hexaco-personality-scale.js)参考 HEXACO 六维人格模型及其公开的维度与分面框架。页面中的 100 道中文情境题、题目解释、示例、结果文案、图表说明和内容编排均由 PrismSelf 独立编写；这些原创表达在本项目有权许可的范围内采用 CC BY-NC-SA 4.0。相关 HTML、CSS 和 JavaScript 的通用程序实现采用 MIT License。
-
-该页面没有翻译或改写 HEXACO-PI-R 的具体题目，也不是 HEXACO-PI-R 的官方中文版，且未经相关机构或作者认证；页面中的题目、计分方式和结果解释不代表 Kibeom Lee、Michael C. Ashton 或其他 HEXACO-PI-R 相关权利人的认可或背书。
-
-本项目的 MIT License 和 CC BY-NC-SA 4.0 均不涵盖 HEXACO-PI-R 的官方题目、评分键、手册、官方翻译或其他第三方量表材料；希望使用这些官方材料的使用者，应自行核对官方条件并在需要时联系量表作者。
-
 ## 参与者内容与数据
 
 [无性恋专题对谈](./Topics/A-Conversation-on-Asexuality.html)中由“杂粮”说出的回答和其他可归属于对谈参与者的原始表达，不纳入 PrismSelf 的 CC BY-NC-SA 4.0 内容许可。PrismSelf 只对自己有权许可的编辑导语、提问和页面编排适用 CC BY-NC-SA 4.0。

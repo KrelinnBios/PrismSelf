@@ -20,7 +20,6 @@ window.PrismSelfUpdateGroups = [
       './Scales/Big-Five-Personality-Scale.html',
       './Scales/Feminist-Leanings-Scale.html',
       './Scales/Gender-Exploration-Scale.html',
-      './Scales/HEXACO-Personality-Scale.html',
       './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Orientation-Scale.html',
