@@ -22,7 +22,7 @@ html {
 
 body {
 	font-family: 'Inter', 'Microsoft YaHei', system-ui, -apple-system, sans-serif !important;
-	background: linear-gradient(180deg, #f7fafb 0%, #f4f7fb 52%, #f8fafc 100%) !important;
+	background: linear-gradient(180deg, #f7fafb 0%, #f4f7fb 52%, #f8fafc 100%) #f4f7fb !important;
 	color: #263241 !important;
 	padding: 20px 16px !important;
 	min-height: 100vh !important;
@@ -582,7 +582,7 @@ tbody tr:hover {
 }
 
 :root[data-theme="dark"] body {
-	background: linear-gradient(180deg, #0f141b 0%, #11161f 52%, #0e131a 100%) !important;
+	background: linear-gradient(180deg, #0f141b 0%, #11161f 52%, #0e131a 100%) #11161f !important;
 	color: #d9e2ee !important;
 }
 
@@ -1030,7 +1030,7 @@ tbody tr[class*="row-"] td:first-child {
 }
 
 :root[data-theme="dark"] body {
-	background: linear-gradient(180deg, #0d131a 0%, #101720 52%, #0d1218 100%) !important;
+	background: linear-gradient(180deg, #0d131a 0%, #101720 52%, #0d1218 100%) #101720 !important;
 }
 
 :root[data-theme="dark"] .container {

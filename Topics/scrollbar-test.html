@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滚动条测试</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+
+    .container {
+      height: 2000px;
+      padding: 20px;
+      background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    /* 自定义滚动条样式 - 仅桌面端 */
+    @media screen and (min-width: 769px) {
+      /* WebKit 浏览器（Chrome, Safari, Edge） */
+      ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888888;
+        border-radius: 6px;
+        border: 2px solid #f0f0f0;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555555;
+      }
+
+      /* Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #888888 #f0f0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>滚动条样式测试页面</h1>
+    <p>请向下滚动查看自定义滚动条效果</p>
+    <p>如果你在桌面端（宽度 > 768px），应该看到灰色和黑色的自定义滚动条</p>
+    <p>如果你在移动端，应该看到浏览器默认的滚动条</p>
+
+    <h2>滚动条特征：</h2>
+    <ul>
+      <li>轨道颜色：浅灰色 (#f0f0f0)</li>
+      <li>滑块颜色：深灰色 (#888888)</li>
+      <li>鼠标悬停：深黑色 (#555555)</li>
+      <li>圆角设计</li>
+    </ul>
+
+    <div style="margin-top: 50px;">
+      <p>继续滚动...</p>
+    </div>
+  </div>
+</body>
+</html>

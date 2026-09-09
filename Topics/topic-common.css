@@ -1301,3 +1301,30 @@ mjx-container {
     font-size: 0.86rem !important;
   }
 }
+
+/* 自定义滚动条样式 - 仅桌面端 */
+@media screen and (min-width: 769px) {
+  /* WebKit 浏览器（Chrome, Safari, Edge） */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e8e8e8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #888888 #e8e8e8;
+  }
+}

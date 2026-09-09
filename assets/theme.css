@@ -888,7 +888,7 @@
     )
   );
   --prism-scrollbar-thumb: color-mix(in srgb, var(--prism-scrollbar-source) 38%, white);
-  --prism-scrollbar-thumb-hover: color-mix(in srgb, var(--prism-scrollbar-source) 58%, white);
+  --prism-scrollbar-thumb-hover: var(--prism-scrollbar-source);
 }
 
 :root[data-theme="dark"] {
@@ -915,9 +915,17 @@
   scrollbar-color: var(--prism-scrollbar-thumb) transparent;
 }
 
+@supports selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+}
+
 *::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
+  width: 6px !important;
+  height: 6px !important;
+  background: transparent !important;
 }
 
 *::-webkit-scrollbar-track,
@@ -927,8 +935,81 @@
 
 *::-webkit-scrollbar-thumb {
   background: var(--prism-scrollbar-thumb) !important;
+  border-radius: 999px !important;
 }
 
-*::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+*::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:active {
   background: var(--prism-scrollbar-thumb-hover) !important;
+}
+
+html.prism-overlay-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html.prism-overlay-scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+.prism-overlay-thumb {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 900;
+  width: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--prism-scrollbar-thumb);
+  touch-action: none;
+}
+
+.prism-overlay-thumb:hover,
+.prism-overlay-thumb:active,
+.prism-overlay-thumb.is-dragging {
+  background: var(--prism-scrollbar-thumb-hover);
+}
+
+.prism-overlay-thumb:focus {
+  outline: none;
+}
+
+.prism-overlay-thumb:focus-visible {
+  outline: 2px solid var(--prism-scrollbar-thumb-hover);
+  outline-offset: 1px;
+}
+
+.prism-overlay-thumb[hidden] {
+  display: none !important;
+}
+
+@media print {
+  .prism-overlay-thumb {
+    display: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  html.prism-overlay-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: CanvasText Canvas;
+  }
+
+  html.prism-overlay-scrollbar::-webkit-scrollbar {
+    display: block !important;
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  .prism-overlay-thumb {
+    display: none !important;
+  }
 }

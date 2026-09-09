@@ -8,8 +8,35 @@
         html {
             overflow-x: initial !important;
         }
+
+        /* 自定义滚动条样式 - 仅桌面端 */
+        @media screen and (min-width: 769px) {
+            /* WebKit 浏览器（Chrome, Safari, Edge） */
+            ::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #e8e8e8;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #888888;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555555;
+            }
+
+            /* Firefox */
+            html {
+                scrollbar-width: thin;
+                scrollbar-color: #888888 #e8e8e8;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="./topic-common.css?v=86a7e72bf70a">
+    <link rel="stylesheet" href="./topic-common.css?v=202609102">
     <style type='text/css' id="style-theme_css">
         /* 
        *     Typora Theme - Lapis    /    Author - YiNN 
@@ -719,31 +746,6 @@
         }
 
         /*
-       * Scrollbar
-       */
-
-        #outline-content::-webkit-scrollbar {
-            width: .5rem;
-        }
-
-        #file-library::-webkit-scrollbar {
-            width: .5rem;
-        }
-
-        ::-webkit-scrollbar-track {
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background: rgba(179, 179, 179, 0.425);
-        }
-
-        ::-webkit-scrollbar {
-            width: 1rem;
-        }
-
-        /* 
        * Code Block - Style
        */
 
@@ -1262,10 +1264,6 @@
             color: var(--md-char-color);
         }
 
-        :root[data-theme="dark"] ::-webkit-scrollbar-thumb {
-            background: var(--block-bg-color);
-        }
-
         :root[data-theme="dark"] .export-detail,
         :root[data-theme="dark"] .export-item.active,
         :root[data-theme="dark"] .export-items-list-control {
@@ -1443,7 +1441,7 @@
     <link rel="canonical" href="https://prismself.vip/Topics/A-Conversation-on-Asexuality.html">
     <meta name="description" content="无性恋专题对谈：通过一位同性浪漫倾向无性恋者的个人经历，讨论性、身体亲密、恋爱、家庭与社群归属之间的复杂关系。">
     <meta name="theme-color" content="#4870ac">
-    <link rel="icon" href="../icon/logo.svg?v=202609092" type="image/svg+xml">
+    <link rel="icon" href="../icon/logo.svg?v=202609095" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PrismSelf · prismself.vip">
     <meta property="og:title" content="PrismSelf - 无性恋专题对谈">
@@ -1455,8 +1453,8 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap">
-    <link rel="stylesheet" href="../assets/theme.css?v=01cc15eb795b">
-    <script src="../assets/theme.js?v=01cc15eb795b"></script>
+    <link rel="stylesheet" href="../assets/theme.css?v=202609095">
+    <script src="../assets/theme.js?v=202609095"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
