@@ -234,9 +234,40 @@
     update();
   }
 
+  function installMobileScrollbarAutoHide() {
+    // 检测是否为触控设备
+    var isTouchDevice = window.matchMedia && (
+      window.matchMedia('(hover: none)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+    );
+
+    if (!isTouchDevice) return;
+
+    var scrollTimer = null;
+    var isScrolling = false;
+
+    function showScrollbar() {
+      if (!isScrolling) {
+        isScrolling = true;
+        root.classList.add('is-scrolling');
+      }
+
+      if (scrollTimer) clearTimeout(scrollTimer);
+
+      scrollTimer = setTimeout(function() {
+        isScrolling = false;
+        root.classList.remove('is-scrolling');
+      }, 1500);
+    }
+
+    window.addEventListener('scroll', showScrollbar, { passive: true });
+    window.addEventListener('touchmove', showScrollbar, { passive: true });
+  }
+
   function start() {
     build();
     installOverlayScrollbar();
+    installMobileScrollbarAutoHide();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
