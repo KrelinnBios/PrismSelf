@@ -871,7 +871,7 @@
 
 /* Shared themed scrollbars. */
 :root {
-  --prism-scrollbar-thumb: var(
+  --prism-scrollbar-source: var(
     --scale-accent,
     var(
       --guide-control-border-strong,
@@ -887,12 +887,12 @@
       )
     )
   );
-  --prism-scrollbar-thumb-hover: color-mix(in srgb, var(--prism-scrollbar-thumb) 82%, white);
-  --prism-scrollbar-thumb-active: color-mix(in srgb, var(--prism-scrollbar-thumb) 82%, black);
+  --prism-scrollbar-thumb: color-mix(in srgb, var(--prism-scrollbar-source) 38%, white);
+  --prism-scrollbar-thumb-hover: color-mix(in srgb, var(--prism-scrollbar-source) 58%, white);
 }
 
 :root[data-theme="dark"] {
-  --prism-scrollbar-thumb: var(
+  --prism-scrollbar-source: var(
     --scale-accent,
     var(
       --guide-control-border-strong,
@@ -932,8 +932,3 @@
 *::-webkit-scrollbar-thumb:hover {
   background: var(--prism-scrollbar-thumb-hover) !important;
 }
-
-*::-webkit-scrollbar-thumb:active {
-  background: var(--prism-scrollbar-thumb-active) !important;
-}
-
