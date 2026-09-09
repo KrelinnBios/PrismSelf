@@ -868,3 +868,72 @@
 :root[data-theme="dark"] body .qr-dialog-close {
   color: #c4cedb !important;
 }
+
+/* Shared themed scrollbars. */
+:root {
+  --prism-scrollbar-thumb: var(
+    --scale-accent,
+    var(
+      --guide-control-border-strong,
+      var(
+        --analysis-accent,
+        var(
+          --bingo-accent,
+          var(
+            --glossary-accent,
+            var(--teal, var(--primary-color, var(--accent, #2f6f73)))
+          )
+        )
+      )
+    )
+  );
+  --prism-scrollbar-thumb-hover: color-mix(in srgb, var(--prism-scrollbar-thumb) 82%, white);
+  --prism-scrollbar-thumb-active: color-mix(in srgb, var(--prism-scrollbar-thumb) 82%, black);
+}
+
+:root[data-theme="dark"] {
+  --prism-scrollbar-thumb: var(
+    --scale-accent,
+    var(
+      --guide-control-border-strong,
+      var(
+        --analysis-accent,
+        var(
+          --bingo-dk-accent,
+          var(
+            --glossary-accent,
+            var(--teal, var(--primary-color, var(--accent, #5fd0a4)))
+          )
+        )
+      )
+    )
+  );
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--prism-scrollbar-thumb) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--prism-scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--prism-scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: var(--prism-scrollbar-thumb-active);
+}
+
