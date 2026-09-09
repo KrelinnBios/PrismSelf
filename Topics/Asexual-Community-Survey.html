@@ -9,10 +9,14 @@
       overflow-x: initial !important;
     }
 
-    /* 复用共享滚动条，常态灰色，悬停或拖动时黑色。 */
+    /* 复用共享滚动条，常态灰色，悬停或拖动时按主题提高对比度。 */
     html:root {
       --prism-scrollbar-thumb: #888888;
       --prism-scrollbar-thumb-hover: #000000;
+    }
+
+    html:root[data-theme="dark"] {
+      --prism-scrollbar-thumb-hover: var(--text-color);
     }
   </style>
   <link rel="stylesheet" href="./topic-common.css?v=202609102">
