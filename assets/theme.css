@@ -916,24 +916,24 @@
 }
 
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 10px !important;
+  height: 10px !important;
 }
 
 *::-webkit-scrollbar-track,
 *::-webkit-scrollbar-corner {
-  background: transparent;
+  background: transparent !important;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--prism-scrollbar-thumb);
+  background: var(--prism-scrollbar-thumb) !important;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--prism-scrollbar-thumb-hover);
+  background: var(--prism-scrollbar-thumb-hover) !important;
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background: var(--prism-scrollbar-thumb-active);
+  background: var(--prism-scrollbar-thumb-active) !important;
 }
 
