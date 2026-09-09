@@ -23,80 +23,12 @@ jobs:
 
           css_path = Path("assets/theme.css")
           css = css_path.read_text(encoding="utf-8")
-          marker = "/* Shared themed scrollbars. */"
-          start = css.index(marker)
-          prefix = css[:start].rstrip()
-          block = r'''
-
-/* Shared themed scrollbars. */
-:root {
-  --prism-scrollbar-thumb: var(
-    --scale-accent,
-    var(
-      --guide-control-border-strong,
-      var(
-        --analysis-accent,
-        var(
-          --bingo-accent,
-          var(
-            --glossary-accent,
-            var(--teal, var(--primary-color, var(--accent, #2f6f73)))
-          )
-        )
-      )
-    )
-  );
-  --prism-scrollbar-thumb-hover: color-mix(in srgb, var(--prism-scrollbar-thumb) 82%, white);
-  --prism-scrollbar-thumb-active: color-mix(in srgb, var(--prism-scrollbar-thumb) 82%, black);
-}
-
-:root[data-theme="dark"] {
-  --prism-scrollbar-thumb: var(
-    --scale-accent,
-    var(
-      --guide-control-border-strong,
-      var(
-        --analysis-accent,
-        var(
-          --bingo-dk-accent,
-          var(
-            --glossary-accent,
-            var(--teal, var(--primary-color, var(--accent, #5fd0a4)))
-          )
-        )
-      )
-    )
-  );
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--prism-scrollbar-thumb) transparent;
-}
-
-*::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
-}
-
-*::-webkit-scrollbar-track,
-*::-webkit-scrollbar-corner {
-  background: transparent !important;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: var(--prism-scrollbar-thumb) !important;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--prism-scrollbar-thumb-hover) !important;
-}
-
-*::-webkit-scrollbar-thumb:active {
-  background: var(--prism-scrollbar-thumb-active) !important;
-}
-'''
-          css_path.write_text(prefix + block + "\n", encoding="utf-8")
+          css = css.replace("width: 10px;\n  height: 10px;", "width: 10px !important;\n  height: 10px !important;")
+          css = css.replace("background: transparent;\n}\n\n*::-webkit-scrollbar-thumb", "background: transparent !important;\n}\n\n*::-webkit-scrollbar-thumb")
+          css = css.replace("background: var(--prism-scrollbar-thumb);\n}", "background: var(--prism-scrollbar-thumb) !important;\n}")
+          css = css.replace("background: var(--prism-scrollbar-thumb-hover);\n}", "background: var(--prism-scrollbar-thumb-hover) !important;\n}")
+          css = css.replace("background: var(--prism-scrollbar-thumb-active);\n}", "background: var(--prism-scrollbar-thumb-active) !important;\n}")
+          css_path.write_text(css, encoding="utf-8")
 
           version = "202609092"
           patterns = ("theme.css", "theme.js", "logo.svg", "guide-common.css")
