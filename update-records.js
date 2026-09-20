@@ -3,6 +3,10 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-20',
     pages: [
+      './Analyses/LGBTQ-Comprehensive-Analysis.html',
+      './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Analyses/Interpersonal-Attraction-Comparison.html',
       './Analyses/Interpersonal-Conflict-Analysis.html',
       './Analyses/Neutrality-Type-Analysis.html',
       './Guides/Aromantic-Comprehensive-Guide.html',
@@ -11,20 +15,6 @@ window.PrismSelfUpdateGroups = [
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html'
-    ]
-  },
-  {
-    date: '2026-09-18',
-    pages: [
-      './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html'
-    ]
-  },
-  {
-    date: '2026-09-17',
-    pages: [
-      './Analyses/LGBTQ-Comprehensive-Analysis.html'
     ]
   },
   {

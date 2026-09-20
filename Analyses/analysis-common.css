@@ -403,14 +403,84 @@ tbody tr:hover {
 }
 
 .references {
-	background: linear-gradient(135deg, var(--analysis-tint), var(--analysis-tint-2)) !important;
-	padding: 20px 22px !important;
-	border-radius: 20px !important;
-	font-size: 0.73rem !important;
+	background: var(--analysis-surface-2) !important;
+	padding: 18px !important;
+	border-radius: 14px !important;
+	font-size: 0.8rem !important;
 	color: var(--analysis-muted) !important;
 	line-height: 1.65 !important;
-	border-left: 5px solid var(--analysis-accent) !important;
+	border: 1px solid var(--analysis-line) !important;
 	margin-top: 24px !important;
+}
+
+.references h2 {
+	margin: 0 0 8px;
+	font-size: 1rem;
+	color: var(--analysis-ink);
+}
+
+.references details {
+	margin-top: 12px;
+	border-top: 1px solid var(--analysis-line);
+}
+
+.references summary {
+	padding: 12px 0 0;
+	min-height: 44px;
+	color: var(--analysis-accent-dark);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.references ol {
+	margin: 12px 0 0;
+	padding-left: 1.8em;
+}
+
+.references li {
+	padding: 8px 0;
+	overflow-wrap: anywhere;
+	scroll-margin-top: 80px;
+}
+
+.references li + li {
+	margin-top: 0;
+	border-top: 1px solid var(--analysis-line);
+}
+
+.references li::marker {
+	color: var(--analysis-accent-dark);
+	font-weight: 600;
+}
+
+.references li:target {
+	background: var(--analysis-tint);
+	outline: 2px solid var(--analysis-accent-dark);
+	outline-offset: 4px;
+}
+
+.references .reference-note {
+	display: block;
+	margin-top: 4px;
+}
+
+.references a,
+a[href^="#ref-"] {
+	color: var(--analysis-accent-dark);
+	text-underline-offset: 3px;
+}
+
+.references a:hover,
+a[href^="#ref-"]:hover {
+	color: var(--analysis-ink);
+}
+
+.references summary:focus-visible,
+.references a:focus-visible,
+.references li:focus-visible,
+a[href^="#ref-"]:focus-visible {
+	outline: 2px solid var(--analysis-accent-dark);
+	outline-offset: 3px;
 }
 
 .badge {
