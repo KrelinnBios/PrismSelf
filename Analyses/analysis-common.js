@@ -66,13 +66,26 @@
     }
 
     function initReferences() {
+        let activeReference = null;
+
+        function clearReference() {
+            if (!activeReference) return;
+            activeReference.classList.remove('reference-highlight');
+            if (document.activeElement === activeReference) activeReference.blur();
+            activeReference = null;
+        }
+
         function revealReference(hash) {
+            clearReference();
             if (!/^#ref-\d+$/.test(hash)) return;
             const reference = document.getElementById(hash.slice(1));
             const list = reference && reference.closest('.references details');
             if (!list) return;
             list.open = true;
+            reference.classList.add('reference-highlight');
+            activeReference = reference;
             requestAnimationFrame(() => {
+                if (activeReference !== reference) return;
                 reference.tabIndex = -1;
                 reference.focus({ preventScroll: true });
                 reference.scrollIntoView({ block: 'start', behavior: 'instant' });
@@ -80,12 +93,20 @@
         }
 
         document.addEventListener('click', (event) => {
-            if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-            const link = event.target.closest('a[href^="#ref-"]');
-            if (!link) return;
-            const modal = link.closest('.modal-bg.open');
-            if (modal) modal.querySelector('.modal-close')?.click();
-            revealReference(link.getAttribute('href'));
+            if (event.button !== 0) return;
+            const target = event.target instanceof Element ? event.target : null;
+            const link = target?.closest('a[href^="#ref-"]');
+            if (link) {
+                if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+                    clearReference();
+                    return;
+                }
+                const modal = link.closest('.modal-bg.open');
+                if (modal) modal.querySelector('.modal-close')?.click();
+                revealReference(link.getAttribute('href'));
+                return;
+            }
+            clearReference();
         });
         window.addEventListener('hashchange', () => revealReference(window.location.hash));
         revealReference(window.location.hash);

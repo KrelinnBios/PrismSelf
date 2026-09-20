@@ -438,9 +438,11 @@ tbody tr:hover {
 }
 
 .references li {
+	position: relative;
 	padding: 8px 0;
 	overflow-wrap: anywhere;
 	scroll-margin-top: 80px;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, margin 0.2s ease, padding 0.2s ease;
 }
 
 .references li + li {
@@ -453,10 +455,20 @@ tbody tr:hover {
 	font-weight: 600;
 }
 
-.references li:target {
+.references li.reference-highlight {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding: 10px 0;
 	background: var(--analysis-tint);
-	outline: 2px solid var(--analysis-accent-dark);
-	outline-offset: 4px;
+	border: 0;
+	border-top: 1px solid var(--analysis-accent-dark);
+	border-bottom: 1px solid var(--analysis-accent-dark);
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.references li + li.reference-highlight {
+	border-top: 1px solid var(--analysis-accent-dark);
 }
 
 .references .reference-note {
