@@ -1,6 +1,33 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-09-20',
+    pages: [
+      './Analyses/Interpersonal-Conflict-Analysis.html',
+      './Analyses/Neutrality-Type-Analysis.html',
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/BDSM-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html'
+    ]
+  },
+  {
+    date: '2026-09-18',
+    pages: [
+      './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Analyses/Interpersonal-Attraction-Comparison.html'
+    ]
+  },
+  {
+    date: '2026-09-17',
+    pages: [
+      './Analyses/LGBTQ-Comprehensive-Analysis.html'
+    ]
+  },
+  {
     date: '2026-09-10',
     pages: [
       './Topics/Asexual-Community-Survey.html'
@@ -9,12 +36,6 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-06',
     pages: [
-      './Guides/Aromantic-Comprehensive-Guide.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
-      './Guides/BDSM-Comprehensive-Guide.html',
-      './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',
@@ -29,12 +50,6 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-03',
     pages: [
-      './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html',
-      './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/LGBTQ-Comprehensive-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html',
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',

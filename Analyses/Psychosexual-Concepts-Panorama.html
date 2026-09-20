@@ -9,13 +9,13 @@
   <meta http-equiv="Expires" content="0">
     <title>PrismSelf - 性心理核心概念全景分析表</title>
     <link rel="canonical" href="https://prismself.vip/Analyses/Psychosexual-Concepts-Panorama.html">
-    <meta name="description" content="性心理核心概念全景分析，梳理欲望、唤起、依恋等相关术语的定义与彼此关系。">
+    <meta name="description" content="结合近期研究与专业分类，辨析性取向、性吸引、欲望、唤起、行为和性健康困扰等 28 个概念，说明证据边界与支持方式。">
     <meta name="theme-color" content="#2f6f73">
     <link rel="icon" href="../icon/logo.svg?v=202609095" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PrismSelf · prismself.vip">
     <meta property="og:title" content="PrismSelf - 性心理核心概念全景分析表">
-    <meta property="og:description" content="性心理核心概念全景分析，梳理欲望、唤起、依恋等相关术语的定义与彼此关系。">
+    <meta property="og:description" content="结合近期研究与专业分类，辨析性取向、性吸引、欲望、唤起、行为和性健康困扰等 28 个概念，说明证据边界与支持方式。">
     <meta property="og:url" content="https://prismself.vip/Analyses/Psychosexual-Concepts-Panorama.html">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:image" content="https://prismself.vip/og-image/image.png?v=1788098160">
@@ -107,6 +107,45 @@
 
         .disclaimer strong {
             color: #c2410c;
+        }
+
+        .references h2 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .references ol {
+            margin-top: 12px;
+            padding-left: 1.6em;
+        }
+
+        .references li {
+            overflow-wrap: anywhere;
+            scroll-margin-top: 76px;
+        }
+
+        .references li + li {
+            margin-top: 12px;
+        }
+
+        #genderTable a,
+        .references a,
+        .disclaimer a {
+            color: var(--analysis-accent-dark);
+            text-underline-offset: 3px;
+        }
+
+        #genderTable a:hover,
+        .references a:hover,
+        .disclaimer a:hover {
+            color: var(--analysis-ink);
+        }
+
+        #genderTable a:focus-visible,
+        .references a:focus-visible,
+        .disclaimer a:focus-visible {
+            outline: 2px solid var(--analysis-accent-dark);
+            outline-offset: 3px;
         }
 
         @media (max-width: 780px) {
@@ -340,11 +379,11 @@
         <div class="header">
             <div class="header-tag">心理学 · 性学 · 发展与关系</div>
             <h1>性心理核心概念全景分析表</h1>
-            <p class="subtitle">比较性吸引、欲望、唤起与行为等相关概念，涵盖身份取向、发展、调节表达及可能带来困扰的情形</p>
+            <p class="subtitle">从身份与自我理解，到欲望、身体反应和关系体验，辨清 28 个常用概念，以及个人差异、边界与临床困扰之间的区别。</p>
             <div class="meta-row">
-                <div class="meta-item">📚 理论基石 <span>Bancroft; Janssen; Diamond</span></div>
+                <div class="meta-item">📚 文献依据 <span>研究综述与专业分类</span></div>
                 <div class="meta-item">📌 核心概念 <span>28 项精选</span></div>
-                <div class="meta-item">⚖️ 分析维度 <span>5 大体系</span></div>
+                <div class="meta-item">⚖️ 阅读分组 <span>5 类主题</span></div>
             </div>
         </div>
 
@@ -352,7 +391,7 @@
             <button class="filter-btn active" onclick="filterTable('all', this)">全览（28）</button>
             <button class="filter-btn" onclick="filterTable('identity', this)">性身份与取向（6）</button>
             <button class="filter-btn" onclick="filterTable('development', this)">性心理发展（3）</button>
-            <button class="filter-btn" onclick="filterTable('response', this)">性反应循环（8）</button>
+            <button class="filter-btn" onclick="filterTable('response', this)">性反应相关过程（8）</button>
             <button class="filter-btn" onclick="filterTable('regulation', this)">调节与表达（5）</button>
             <button class="filter-btn" onclick="filterTable('distress', this)">困扰与问题（6）</button>
         </div>
@@ -362,13 +401,13 @@
                 <thead>
                     <tr>
                         <th>概念</th>
-                        <th>操作性定义</th>
-                        <th>辅助类比（有局限）</th>
-                        <th>核心特征与机制</th>
-                        <th>典型表征与现象</th>
-                        <th>理论基础</th>
-                        <th>影响与后果</th>
-                        <th>调节/应对策略</th>
+                        <th>含义与边界</th>
+                        <th>辨析提示</th>
+                        <th>核心维度</th>
+                        <th>典型体验与例子</th>
+                        <th>研究与依据</th>
+                        <th>证据与局限</th>
+                        <th>理解与支持</th>
                         <th>所属范畴</th>
                     </tr>
                 </thead>
@@ -381,17 +420,17 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('heterosexuality')">解析 →</button>
                         </td>
-                        <td>主要对与自己不同性别的人产生情感、浪漫和/或性吸引，或据此形成的性取向身份；吸引、行为与身份不必完全一致。</td>
-                        <td><span class="analogy-highlight">偏爱甜食的人</span></td>
+                        <td>通常指主要对与自己不同性别的人产生性或浪漫吸引，也可指相应的身份标签。性取向研究常分别测量吸引、行为与身份，三者不必完全一致。</td>
+                        <td><span class="analogy-highlight">性取向不能由生育意愿或当前伴侣推定。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">异性吸引</span><span class="tag">生殖导向</span><span
-                                    class="tag">社会多数</span></div>
+                            <div class="tag-list"><span class="tag">吸引模式</span><span class="tag">自我称谓</span><span
+                                    class="tag">多维测量</span></div>
                         </td>
-                        <td>可能对不同性别的人产生浪漫或性吸引，并据此想象或建立亲密关系。<div class="example-text">例：对不同性别的同学产生好感，但是否使用异性恋标签仍由本人决定。</div>
+                        <td>可以有稳定的吸引经验，也可以尚无伴侣或性经历。<div class="example-text">例：一个人认同异性恋，同时选择不恋爱、不生育；这些选择不矛盾。</div>
                         </td>
-                        <td>进化心理学（配偶选择理论）；社会角色理论；生物社会学。</td>
-                        <td>作为社会多数群体，其性取向常被默认为"正常标准"，需注意避免异性恋本位与异性恋霸权思维。</td>
-                        <td>理解性取向多样性；避免将异性恋视为"唯一自然"的默认假设。</td>
+                        <td>性取向测量共识强调概念精确与自我报告，不把关系状态当作身份的替代指标。<a href="#ref-1" aria-label="参考文献 1">[1]</a></td>
+                        <td>人口调查中的多数地位不能证明某种取向更健康；单一理论也无法解释每个人的取向形成。</td>
+                        <td>按本人自称理解身份；需要讨论健康时，询问具体经历与需要，避免默认其有伴侣或希望生育。</td>
                         <td><span class="badge lv1"><span class="badge-dot"></span>性身份与取向</span></td>
                     </tr>
                     <tr class="row-lv1" data-type="identity">
@@ -401,17 +440,17 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('homosexuality')">解析
                                 →</button>
                         </td>
-                        <td>主要对与自己相同性别的人产生情感、浪漫和/或性吸引，或据此形成的性取向身份；它不是精神疾病。</td>
-                        <td><span class="analogy-highlight">偏爱辣食的人</span></td>
+                        <td>通常指主要对与自己相同性别的人产生性或浪漫吸引，也可指同性恋、女同性恋、男同性恋等身份。同性恋本身不是精神疾病。</td>
+                        <td><span class="analogy-highlight">同性吸引、同性性行为和同性恋身份需分别了解。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">同性吸引</span><span class="tag">自然变异</span><span
-                                    class="tag">跨文化存在</span></div>
+                            <div class="tag-list"><span class="tag">同性吸引</span><span class="tag">自我认同</span><span
+                                    class="tag">社会情境</span></div>
                         </td>
-                        <td>对同性产生浪漫情感、性幻想与亲密关系需求。<div class="example-text">例：个体在青春期意识到自己对同性的情感吸引不同于同龄人的异性恋模式。</div>
+                        <td>认识或命名自身取向的时间因人而异。<div class="example-text">例：一位女性在成年后用女同性恋描述自己；不能因此断言她此前的经历虚假。</div>
                         </td>
-                        <td>生物心理学（神经内分泌研究）；遗传学双生子研究；社会建构论。</td>
-                        <td>在异性恋本位社会中可能面临歧视与少数群体压力；但性取向本身无病理特征。</td>
-                        <td>社会包容与反歧视；肯定的心理支持；社群联结。</td>
+                        <td>多维性取向测量与性健康框架，有助于区分个人经验和外部歧视。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-2" aria-label="参考文献 2">[2]</a></td>
+                        <td>群体健康差异不能证明身份致病，也不能替代个体评估；不能从脑影像、外表或家庭关系判断某人的取向。</td>
+                        <td>尊重披露与保密选择；有需要时提供接纳其身份的支持，目标是减轻困扰，而非改变取向。</td>
                         <td><span class="badge lv1"><span class="badge-dot"></span>性身份与取向</span></td>
                     </tr>
                     <tr class="row-lv1" data-type="identity">
@@ -421,17 +460,17 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('bisexuality')">解析
                                 →</button>
                         </td>
-                        <td>可能对不止一个性别产生情感、浪漫和/或性吸引，或据此形成的身份；吸引不要求同时、等量或以相同方式出现。</td>
-                        <td><span class="analogy-highlight">既爱甜食也爱辣食</span></td>
+                        <td>通常指能够对不止一个性别产生性或浪漫吸引，或使用相应身份标签。吸引不要求同时、等量或以相同方式出现，也不预设只有两种性别。</td>
+                        <td><span class="analogy-highlight">双性恋不要求吸引随时间变化，也不规定伴侣数量。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">多性别吸引</span><span class="tag">流动性</span><span
-                                    class="tag">非二元</span></div>
+                            <div class="tag-list"><span class="tag">多性别吸引</span><span class="tag">可有偏好</span><span
+                                    class="tag">身份自主</span></div>
                         </td>
-                        <td>对不同性别的人都能体验到真实的性吸引与情感联结。<div class="example-text">例：一个人在不同人生阶段分别与男性和女性建立过有意义的亲密关系。</div>
+                        <td>即使一直与某一性别的伴侣交往，也可以认同双性恋。<div class="example-text">例：一位双性恋者与异性结婚后仍使用原有标签，无需靠新的关系经历证明身份。</div>
                         </td>
-                        <td>性取向谱系理论；Klein 性取向网格；发展心理学。</td>
-                        <td>常被误解为"犹豫不决"或"过渡阶段"，遭受来自异性恋和同性恋社群的双重质疑。</td>
-                        <td>提高双性恋可见度；消除"双性恋抹除"现象；肯定流动谱系身份。</td>
+                        <td>性取向测量研究承认多性别吸引及标签的多样性；单一男女刻度未必完整覆盖这些经验。<a href="#ref-1" aria-label="参考文献 1">[1]</a></td>
+                        <td>把双性恋写成异性恋与同性恋之间的过渡，会遗漏稳定的双性恋经验；伴侣性别不能说明忠诚或风险。</td>
+                        <td>使用当事人的标签；讨论具体的关系约定与行为，避免要求其“选一边”。</td>
                         <td><span class="badge lv1"><span class="badge-dot"></span>性身份与取向</span></td>
                     </tr>
                     <tr class="row-lv1" data-type="identity">
@@ -441,18 +480,18 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('pansexuality')">解析
                                 →</button>
                         </td>
-                        <td>可能对任何性别的人产生情感、浪漫和/或性吸引，或认为性别不是限制吸引对象的必要条件。</td>
-                        <td><span class="analogy-highlight">对所有菜系都感兴趣</span></td>
+                        <td>通常指吸引对象的性别范围不受限制，或认为性别不是决定自己是否受吸引的主要条件。不同使用者对这个标签的解释可能有所不同。</td>
+                        <td><span class="analogy-highlight">泛性恋与双性恋可有重叠，不存在谁更包容的等级。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">不限性别</span><span class="tag">个体差异</span><span
-                                    class="tag">包容多元性别</span></div>
+                            <div class="tag-list"><span class="tag">不限性别</span><span class="tag">标签重叠</span><span
+                                    class="tag">个人解释</span></div>
                         </td>
-                        <td>性别对吸引的重要性因人而异；泛性恋不等于看不见性别，也不代表会被所有人吸引。<div class="example-text">
-                                例：泛性恋者可能对多种性别的人产生吸引，但仍有个人偏好与边界。</div>
+                        <td>可以在意一个人的性别经验，同时不把性别作为排除条件。<div class="example-text">
+                                例：某人可能对多种性别的人产生吸引，但对多数具体的人并没有性或浪漫兴趣。</div>
                         </td>
-                        <td>后结构主义性别理论；酷儿理论延伸；人本主义心理学。</td>
-                        <td>挑战了以性别为基础的吸引范式，有时被误解为"随便"或"没有标准"。</td>
-                        <td>推广性别包容语言；承认超越性别的吸引模式。</td>
+                        <td>身份测量文献讨论泛性恋等多性别吸引标签，并指出固定问卷选项的覆盖局限。<a href="#ref-1" aria-label="参考文献 1">[1]</a></td>
+                        <td>目前没有用来划分双性恋与泛性恋的统一生物指标；“只看内在”也不是泛性恋者独有的特征。</td>
+                        <td>了解本人如何使用标签；允许同时使用、调整或不使用标签，尊重具体偏好与边界。</td>
                         <td><span class="badge lv1"><span class="badge-dot"></span>性身份与取向</span></td>
                     </tr>
                     <tr class="row-lv1" data-type="identity">
@@ -462,17 +501,17 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('asexuality')">解析
                                 →</button>
                         </td>
-                        <td>指不会、很少或仅在特定条件下体验性吸引的一组谱系经验。它不是疾病；性欲、性行为与浪漫吸引可分别存在。</td>
-                        <td><span class="analogy-highlight">对西瓜不感兴趣</span></td>
+                        <td>无性恋通常指很少或不体验对他人的性吸引，也是一种自我认同。更广的无性恋谱系包含灰性恋、半性恋等经验；性欲、唤起、行为与浪漫吸引需要分别理解。</td>
+                        <td><span class="analogy-highlight">没有性吸引不等于没有性欲，也不等于排斥性活动。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">缺乏性吸引</span><span class="tag">谱系分布</span><span
+                            <div class="tag-list"><span class="tag">少或无性吸引</span><span class="tag">谱系经验</span><span
                                     class="tag">非病理化</span></div>
                         </td>
                         <td>很少或不体验对特定对象的性吸引，但可能有性欲、浪漫关系、性行为或不具有这些体验。<div class="example-text">
                                 例：无性恋者可以建立亲密关系，也可以选择不建立；身份不能由行为频率推断。</div>
                         </td>
-                        <td>性取向谱系模型；分离吸引模型（SAM）；Bogaert 无性恋理论。</td>
-                        <td>常被误解为性功能障碍或心理问题。无性恋身份本身无需治疗；困扰若来自压力、关系或健康变化，可针对困扰本身寻求支持。</td>
+                        <td>2023 年综述讨论身份发展、关系及交叉身份；分开描述性与浪漫吸引也有助于表达经验。<a href="#ref-3" aria-label="参考文献 3">[3]</a></td>
+                        <td>研究样本与定义仍有限。无性恋身份本身无需治疗，但无性恋者同样可能有独立的健康问题，不能因身份而忽视。</td>
                         <td>尊重自我标签与多元关系模式；分别理解性吸引、性欲和困扰，不以行为替身份下结论。</td>
                         <td><span class="badge lv1"><span class="badge-dot"></span>性身份与取向</span></td>
                     </tr>
@@ -484,17 +523,17 @@
                                 onclick="event.stopPropagation(); showDetail('gender_identity')">解析 →</button>
                         </td>
                         <td>个体对自身性别的内在理解与称谓，可能与出生时被指派的性别一致或不一致，也可能位于二元性别之外。</td>
-                        <td><span class="analogy-highlight">用餐文化认同（中式/西式）</span></td>
+                        <td><span class="analogy-highlight">性别认同回答“我如何认识自己的性别”，不回答“我被谁吸引”。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">内在感知</span><span class="tag">顺性别/跨性别</span><span
                                     class="tag">非二元</span></div>
                         </td>
-                        <td>个体内心确认自己是男性、女性、两者皆是、两者皆非或其他性别身份。<div class="example-text">例：跨性别男性出生时被分配为女性，但其深层自我认知始终为男性。
+                        <td>可以认同为男性、女性、非二元或使用其他称谓，认识与表达的时间因人而异。<div class="example-text">例：一位跨性别男性到成年才找到贴近自身经验的说法；较晚命名不使其认同失效。
                             </div>
                         </td>
-                        <td>性别研究；少数群体压力框架；DSM-5-TR 的性别烦躁诊断与 ICD-11 的性别不一致分类需同身份本身区分。</td>
-                        <td>部分人会体验性别烦躁，也有人不会；歧视、缺乏支持和医疗障碍可能增加心理压力。</td>
-                        <td>性别肯定护理支持；社会姓名/代词尊重；法律性别标记自主更正权。</td>
+                        <td>WHO 将 ICD-11 的性别不一致移出精神障碍章节，强调性别多元身份本身并非精神疾病。<a href="#ref-4" aria-label="参考文献 4">[4]</a></td>
+                        <td>认同、身体性征和表达不能相互替代；是否困扰、是否需要医疗支持，不能仅按身份或衣着判断。</td>
+                        <td>尊重姓名、称谓与隐私；按本人目标及具体情况提供信息或专业支持，不预设人人需要相同的社会或医疗改变。</td>
                         <td><span class="badge lv1"><span class="badge-dot"></span>性身份与取向</span></td>
                     </tr>
 
@@ -506,17 +545,17 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_awakening')">解析 →</button>
                         </td>
-                        <td>日常用语，指逐步获得身体、边界、关系、性与生殖知识并理解自身体验的过程，不是统一的临床发展阶段。</td>
-                        <td><span class="analogy-highlight">从母乳到辅食的转变</span></td>
+                        <td>日常中文常指逐步认识身体、边界、关系与性的过程。英语 sexual awakening 更常侧重开始意识到性感受；两者并非严格对译，也不是统一的临床发展阶段。</td>
+                        <td><span class="analogy-highlight">获得性知识与开始体验性吸引，是不同的事。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">认知开启</span><span class="tag">身体觉察</span><span
                                     class="tag">信息接收</span></div>
                         </td>
-                        <td>开始对身体变化、性感受、性别差异产生好奇与初步认知。<div class="example-text">例：儿童询问"我从哪里来"，或青春期初期对身体发育的困惑与好奇。</div>
+                        <td>内容随年龄与发展需要调整，包括身体知识、隐私、同意和求助。<div class="example-text">例：儿童学习哪些触碰可以拒绝；青少年进一步了解身体变化、避孕与关系边界。</div>
                         </td>
-                        <td>皮亚杰认知发展理论；弗洛伊德性心理发展阶段；社会学习理论。</td>
-                        <td>健康的性启蒙有助于建立积极的性自我概念；缺乏或扭曲的启蒙则可能导致成年后的性困扰。</td>
-                        <td>适龄性教育；开放的亲子沟通；科学而非羞耻化的信息传递。</td>
+                        <td>WHO 全面性教育说明强调科学、适龄、渐进的课程，以及身体自主和尊重关系。<a href="#ref-5" aria-label="参考文献 5">[5]</a></td>
+                        <td>教育项目的效果取决于内容与实施质量；不能凭一个人的早期知识来源解释其成年困扰，也不能套用固定精神分析阶段。</td>
+                        <td>用准确、易懂的语言回应问题，提供可信的求助渠道；保护隐私，不要求披露私人经历。</td>
                         <td><span class="badge lv2"><span class="badge-dot"></span>性心理发展</span></td>
                     </tr>
                     <tr class="row-lv2" data-type="development">
@@ -526,17 +565,17 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_exploration')">解析 →</button>
                         </td>
-                        <td>在安全范围内探索自己的性偏好、界限和身份，是了解自我性心理的正常过程，包括对性幻想、性行为、情感连接的实验和体验。</td>
-                        <td><span class="analogy-highlight">尝试不同菜系和口味</span></td>
+                        <td>通过思考、阅读、交流或自愿的经验了解自己的感受、偏好与边界。它可以只发生在认知层面，不要求参与性行为，也不是确认身份的必经程序。</td>
+                        <td><span class="analogy-highlight">不尝试、暂缓或改变主意，也可以是了解自己的结果。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">边界探索</span><span class="tag">偏好形成</span><span
-                                    class="tag">身份实验</span></div>
+                            <div class="tag-list"><span class="tag">自我理解</span><span class="tag">自愿选择</span><span
+                                    class="tag">边界意识</span></div>
                         </td>
-                        <td>通过阅读、幻想、自慰或与伴侣的互动来了解自己的性偏好。<div class="example-text">例：年轻人在安全关系中尝试不同亲密方式，逐步明确自己的喜好与界限。</div>
+                        <td>可以逐步找出适合自己的称谓和关系方式。<div class="example-text">例：读到他人的经历后，某人发现自己更需要非性的亲密，并向伴侣说明这一点。</div>
                         </td>
-                        <td>埃里克森心理社会发展阶段（身份 vs 角色混乱）；性脚本理论。</td>
-                        <td>适度的探索促进性成熟和自我认知；缺乏探索空间可能导致身份困惑或成年后的性压抑。</td>
-                        <td>创造安全的探索环境；尊重探索节奏；提供非评判的性教育资源。</td>
+                        <td>生命历程的性健康框架与身份研究提供理解视角，而非规定必须积累哪些经历。<a href="#ref-2" aria-label="参考文献 2">[2]</a><a href="#ref-3" aria-label="参考文献 3">[3]</a></td>
+                        <td>不能断言缺少性经历会导致不成熟或性压抑；探索机会、意愿与安全条件也因人而异。</td>
+                        <td>尊重节奏与拒绝；涉及他人的互动须符合适用法律、同意能力和安全条件，不能用“探索”施压。</td>
                         <td><span class="badge lv2"><span class="badge-dot"></span>性心理发展</span></td>
                     </tr>
                     <tr class="row-lv2" data-type="development">
@@ -546,22 +585,22 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_maturity')">解析 →</button>
                         </td>
-                        <td>描述一个人能够理解并表达自身需要、尊重同意与边界、处理风险和差异的能力；不要求身份固定、有伴侣或参与性行为。</td>
-                        <td><span class="analogy-highlight">形成稳定的饮食习惯</span></td>
+                        <td>这个词有不同含义：生物学上常指生殖发育；日常讨论也用来描述理解需要、沟通边界和处理风险的能力。两种含义需要分开，不能用生理发育推定心理或法律上的准备程度。</td>
+                        <td><span class="analogy-highlight">身体发育、关系能力和法律上的同意条件不能互相替代。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">身份稳定</span><span class="tag">关系能力</span><span
+                            <div class="tag-list"><span class="tag">含义须区分</span><span class="tag">关系能力</span><span
                                     class="tag">界限尊重</span></div>
                         </td>
                         <td>能够在独处或关系中理解自己的变化，清楚沟通需要，并尊重自己与他人的选择。<div class="example-text">例：当偏好变化时能够坦诚表达，并允许自己或他人拒绝或改变主意。
                             </div>
                         </td>
-                        <td>成人发展心理学；依恋理论；性健康模型（WHO）。</td>
-                        <td>这些能力有助于降低误解和伤害；“成熟”不应被用来贬低无伴侣、无性行为或身份仍在探索的人。</td>
-                        <td>持续的性自我反思；伴侣间的开放沟通；必要时寻求专业咨询。</td>
+                        <td>性健康与全面性教育框架强调知情、自主和尊重；并不提供统一的“心理性成熟”分数。<a href="#ref-2" aria-label="参考文献 2">[2]</a><a href="#ref-5" aria-label="参考文献 5">[5]</a></td>
+                        <td>关系能力会随经验与条件变化；标签稳定、有伴侣或有性经验，都不能单独证明成熟。</td>
+                        <td>关注能否理解风险、表达和尊重边界、获得支持；避免用“你该成熟了”推动别人接受性活动。</td>
                         <td><span class="badge lv2"><span class="badge-dot"></span>性心理发展</span></td>
                     </tr>
 
-                    <!-- ========== 性反应循环（8）========== -->
+                    <!-- ========== 性反应相关过程（8）========== -->
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('sexual_desire')">
                             <div class="concept-pill"><span class="concept-name">性欲望</span><span
@@ -570,17 +609,17 @@
                                 →</button>
                         </td>
                         <td>对性活动、性刺激或性满足产生兴趣与动机的体验，可能自发出现，也可能在安全、亲密或刺激之后响应性出现。</td>
-                        <td><span class="analogy-highlight">基础饥饿感</span></td>
+                        <td><span class="analogy-highlight">欲望可以指向某个人，也可以没有特定对象。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">多因素影响</span><span class="tag">可能波动</span><span
                                     class="tag">自发或响应性</span></div>
                         </td>
-                        <td>寻求性接触行为增加、性幻想频率上升、对性刺激敏感度提高。<div class="example-text">例：与伴侣分离数日后，持续感到想要亲密接触的强烈愿望。</div>
+                        <td>可能先有兴趣，也可能在本人愿意的亲密互动中逐渐产生兴趣。<div class="example-text">例：某人自愿拥抱后开始想要进一步接触，也完全可以一直没有这种愿望。</div>
                         </td>
-                        <td>生物心理社会模型；响应性欲望模型；性脚本与关系情境研究。</td>
-                        <td>欲望高低没有统一正常值；只有当变化持续造成本人困扰或功能影响时，才需要进一步评估。</td>
-                        <td>先确认本人是否困扰，再按需要评估健康、药物、压力、睡眠、关系与情境因素。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>Basson 的响应性模型与双重控制模型，分别强调互动情境及兴奋、抑制过程。<a href="#ref-6" aria-label="参考文献 6">[6]</a><a href="#ref-7" aria-label="参考文献 7">[7]</a></td>
+                        <td>这些是解释框架，不是男女各自固定的反应程序；响应性欲望不保证发生，更不能作为“先做再说”的理由。</td>
+                        <td>允许自然波动；本人有困扰或明显变化时，可按需了解睡眠、压力、健康、药物和关系因素。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('sexual_attraction')">
@@ -590,7 +629,7 @@
                                 onclick="event.stopPropagation(); showDetail('sexual_attraction')">解析 →</button>
                         </td>
                         <td>对特定对象产生的性意味接近愿望或兴趣；可能伴随幻想或身体反应，也可能没有，且不等同于行动、同意或关系承诺。</td>
-                        <td><span class="analogy-highlight">看到心仪美食的瞬间</span></td>
+                        <td><span class="analogy-highlight">觉得好看、想恋爱与产生性吸引，可以重合，也可以不同。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">对象指向</span><span class="tag">个体差异</span><span
                                     class="tag">可与唤起分离</span></div>
@@ -598,10 +637,10 @@
                         <td>可能出现性相关的接近愿望、幻想或身体反应，也可能只出现其中一部分。<div class="example-text">
                                 例：对某人产生性意味的亲近愿望，但仍可选择不行动。</div>
                         </td>
-                        <td>进化心理学（配偶识别）；神经美学；Diamond 生物行为模型。</td>
-                        <td>性吸引可以与欲望、唤起、行为和身份不一致，不能单独决定一个人的性取向标签或行动选择。</td>
-                        <td>理解体验与行动的区别；尊重边界和同意；需要时进行非评判的自我探索。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>多维性取向测量与无性恋研究支持把吸引、行为和身份分开描述。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-3" aria-label="参考文献 3">[3]</a></td>
+                        <td>不同研究对吸引与欲望的用词有重叠；这份表提供辨析方式，不是一套能给所有体验自动分类的检测标准。</td>
+                        <td>按自己的经验描述感受；不必通过性行为验证吸引，对方也没有回应吸引的义务。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('sexual_fantasy')">
@@ -610,18 +649,18 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_fantasy')">解析 →</button>
                         </td>
-                        <td>在脑海中构建性相关情境和画面的心理活动，是正常的心理过程，可增强性体验并帮助探索性偏好，不一定与现实行为一致。</td>
-                        <td><span class="analogy-highlight">想象美食的味道和口感</span></td>
+                        <td>带有性意味的想象、意象或情节，可以主动构想，也可以自发出现。幻想内容、享受程度、现实愿望与实际行为不是同一件事。</td>
+                        <td><span class="analogy-highlight">幻想不是现实行动的承诺；令人不安的侵入性念头也不能直接当作欲望。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">心理模拟</span><span class="tag">欲望增强</span><span
-                                    class="tag">安全探索</span></div>
+                            <div class="tag-list"><span class="tag">心理内容</span><span class="tag">主观意义</span><span
+                                    class="tag">不等于意图</span></div>
                         </td>
-                        <td>自发或有意识地想象性场景、角色或情节，伴随性唤起。<div class="example-text">例：在性行为前或自慰时，通过幻想增强性兴奋和愉悦体验。</div>
+                        <td>有些幻想带来兴奋，有些让人困惑，也有人很少有性幻想。<div class="example-text">例：某人喜欢一个虚构情节，却明确不愿在现实中经历它。</div>
                         </td>
-                        <td>认知心理学；Leitenberg & Henning 性幻想研究；精神分析欲望理论。</td>
-                        <td>性幻想是健康的心理活动；过度羞耻或强迫性幻想可能引发焦虑或影响现实关系。</td>
-                        <td>接纳幻想为正常心理现象；区分幻想与现实行为边界；利用幻想增进伴侣亲密。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>2023 年综述指出，幻想内容不必对应现实兴趣或行为；现有研究仍偏重北美年轻顺性别异性恋者。<a href="#ref-10" aria-label="参考文献 10">[10]</a></td>
+                        <td>不能仅凭主题判断身份、人格或是否会伤害他人；也不能把所有幻想都描述为令人愉快或有益。</td>
+                        <td>尊重心理隐私；持续侵入、明显困扰或担心失控时，可寻求专业评估。现实互动仍受同意与法律边界约束。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('sexual_arousal')">
@@ -631,17 +670,17 @@
                                 onclick="event.stopPropagation(); showDetail('sexual_arousal')">解析 →</button>
                         </td>
                         <td>性相关的主观兴奋与身体反应，二者可能一致也可能不一致；身体反应不代表欲望或同意。</td>
-                        <td><span class="analogy-highlight">闻到香味时的生理反应</span></td>
+                        <td><span class="analogy-highlight">勃起、润滑或高潮，都不能替代本人表达同意。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">自主神经激活</span><span class="tag">血管舒张</span><span
-                                    class="tag">短期情境依赖</span></div>
+                            <div class="tag-list"><span class="tag">主观兴奋</span><span class="tag">身体反应</span><span
+                                    class="tag">情境影响</span></div>
                         </td>
-                        <td>生殖器充血、心率加速、呼吸急促、肌肉紧张、皮肤温度升高。<div class="example-text">例：观看浪漫电影的亲密镜头时，感受到明显的身体变化和兴奋感。</div>
+                        <td>主观兴奋与生殖器反应可以不同步；心跳加快等一般反应也并非性唤起所独有。<div class="example-text">例：身体出现润滑，但本人不想继续接触，此时仍应停止。</div>
                         </td>
-                        <td>生理心理学；Janssen 性唤起模型；Barlow 焦虑与唤起研究。</td>
-                        <td>唤起反应存在个体与情境差异；只有持续造成困扰或疼痛时才需要进一步评估。</td>
-                        <td>减少压力与表现要求；改善安全感和沟通；持续困扰时按需接受医学或心理评估。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>唤起一致性元分析及 2024 年非自愿情境综述，都支持区分身体反应与主观经验。<a href="#ref-8" aria-label="参考文献 8">[8]</a><a href="#ref-9" aria-label="参考文献 9">[9]</a></td>
+                        <td>群体平均一致性不能套用到个人；非自愿情境综述确认身体反应可能发生，但不足以估计其发生率。</td>
+                        <td>以本人意愿为准，减少表现压力；疼痛、持续不适或突然的明显变化可及时就医，无须等待满足诊断时长。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('sexual_impulse')">
@@ -651,17 +690,17 @@
                                 onclick="event.stopPropagation(); showDetail('sexual_impulse')">解析 →</button>
                         </td>
                         <td>突然出现、带有较强行动倾向的性相关念头或愿望；体验冲动并不等于失去控制，也不构成行动许可。</td>
-                        <td><span class="analogy-highlight">迫不及待想品尝</span></td>
+                        <td><span class="analogy-highlight">想立即行动，不等于无法控制，更不免除行为责任。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">行动倾向</span><span class="tag">仍可选择</span><span
                                     class="tag">情境相关</span></div>
                         </td>
-                        <td>肢体紧张、注意力高度集中、决策速度加快、风险评估降低。<div class="example-text">例：在高度唤起状态下，突然强烈想要立即与伴侣发生性行为，难以等待。</div>
+                        <td>可能暂时很想进行某种互动，同时仍能选择等待或停止。<div class="example-text">例：某人很想亲近伴侣，听到对方拒绝后停下来，给彼此空间。</div>
                         </td>
-                        <td>冲动控制、情绪调节与情境决策研究；不能从一次强烈冲动推断神经系统“失调”。</td>
-                        <td>冲动控制不足可能导致高风险性行为或侵犯他人边界；过度抑制则影响性表达。</td>
-                        <td>冲动控制训练；认知重构；行为替代技术；环境管理。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>双重控制研究与临床分类区分兴奋倾向、控制困难和功能损害。<a href="#ref-7" aria-label="参考文献 7">[7]</a><a href="#ref-16" aria-label="参考文献 16">[16]</a></td>
+                        <td>“性冲动”不是固定的反应阶段；不能从一次强烈愿望推断前额叶失控，或把侵犯解释为不可避免的生理结果。</td>
+                        <td>需要时暂停、离开施压情境，提前讨论边界；长期反复失控且影响生活时寻求评估。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('sexual_behavior')">
@@ -670,18 +709,18 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_behavior')">解析 →</button>
                         </td>
-                        <td>具有性意义的行为，可独自或与他人进行，也不必包含插入、高潮、满足或情感联结；涉及他人时必须有持续同意。</td>
-                        <td><span class="analogy-highlight">实际进食过程</span></td>
+                        <td>具有性意义的活动，可独自或与他人进行，也不必包含身体接触、插入、高潮或情感联结。具体研究对行为的纳入范围可能不同。</td>
+                        <td><span class="analogy-highlight">一次同意只适用于当时约定的活动，随时可以撤回。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">知情同意</span><span class="tag">身体接触</span><span
-                                    class="tag">亲密表达</span></div>
+                            <div class="tag-list"><span class="tag">行为范围</span><span class="tag">具体同意</span><span
+                                    class="tag">健康情境</span></div>
                         </td>
-                        <td>伴侣间通过身体互动实现性满足与情感联结。<div class="example-text">例：伴侣在充分沟通后进行的、双方都感到舒适和愉悦的性互动。</div>
+                        <td>参与某项活动并不说明取向标签或是否满意。<div class="example-text">例：同意接吻不等于同意进一步接触；过去有过性行为也不代表这次同意。</div>
                         </td>
-                        <td>Masters & Johnson 性反应周期；性脚本理论；亲密关系心理学。</td>
+                        <td>WHO 性健康框架与性行为测量强调行为、关系、风险和自主的不同维度。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-2" aria-label="参考文献 2">[2]</a></td>
                         <td>其影响取决于意愿、安全、健康、关系与社会情境；非自愿或强迫行为可能造成严重伤害。</td>
-                        <td>知情同意文化；安全性行为教育；沟通技巧训练。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>涉及他人时确认其具备同意能力、知情且自愿，并尊重撤回；按具体行为讨论避孕、感染预防与隐私。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('orgasm')">
@@ -690,18 +729,18 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('orgasm')">解析
                                 →</button>
                         </td>
-                        <td>快感达到顶点的强烈体验，涉及肌肉节律性收缩、心率加快、愉悦感释放等多种生理心理反应，每个人的体验都是独特的。</td>
-                        <td><span class="analogy-highlight">品尝到最精华的部分</span></td>
+                        <td>通常指短暂的性反应高峰，可伴随强烈感觉、肌肉节律性收缩及自主神经变化。主观感受和身体表现有差异，不必都被体验为愉悦。</td>
+                        <td><span class="analogy-highlight">高潮、射精、愉悦和满意度彼此相关，但不能画等号。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">快感峰值</span><span class="tag">肌肉收缩</span><span
+                            <div class="tag-list"><span class="tag">反应高峰</span><span class="tag">身心变化</span><span
                                     class="tag">体验差异</span></div>
                         </td>
-                        <td>骨盆肌肉节律性收缩、强烈愉悦感、短暂意识改变。<div class="example-text">例：性行为中达到的强烈快感巅峰体验，伴随全身肌肉紧张后的放松。</div>
+                        <td>体验可能强烈、温和或难以描述，也可能出现疼痛或不适。<div class="example-text">例：某次没有高潮，但本人仍觉得互动舒适而满意；另一次有高潮却并不满意。</div>
                         </td>
-                        <td>神经生理学；Masters & Johnson 高潮研究；fMRI 脑成像研究。</td>
-                        <td>高潮是性满足的重要但非必需组成部分；高潮障碍是常见的性功能问题之一。</td>
-                        <td>性高潮障碍的医学评估；伴侣配合的感觉聚焦训练；减少表现焦虑。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>非自愿情境综述及性功能治疗研究，分别涉及身体反应与临床困扰，不能混为一谈。<a href="#ref-9" aria-label="参考文献 9">[9]</a><a href="#ref-19" aria-label="参考文献 19">[19]</a></td>
+                        <td>高潮次数不是关系质量或同意的指标；偶尔没有高潮也不足以诊断障碍，需要看持续性、情境与本人困扰。</td>
+                        <td>减少“必须达到”的要求，沟通舒适程度；疼痛、明显变化或持续困扰时评估身体、药物与心理因素。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
                     <tr class="row-lv3" data-type="response">
                         <td class="concept-cell" onclick="showDetail('refractory_period')">
@@ -710,19 +749,19 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('refractory_period')">解析 →</button>
                         </td>
-                        <td>高潮后再次产生唤起或高潮能力暂时降低的时期；是否明显出现及持续多久存在很大个体和情境差异。</td>
-                        <td><span class="analogy-highlight">饭后消化休息时间</span></td>
+                        <td>射精或高潮后，性兴趣、再次唤起或再次高潮的能力暂时降低的时期。相关研究尤其关注射精后不应期；这些能力的恢复并不一定同步。</td>
+                        <td><span class="analogy-highlight">没有人人适用的时长，也不能仅凭性别预设反应。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">生理恢复</span><span class="tag">个体差异大</span><span
-                                    class="tag">年龄相关</span></div>
+                            <div class="tag-list"><span class="tag">反应暂降</span><span class="tag">个体差异</span><span
+                                    class="tag">机制未明</span></div>
                         </td>
                         <td>高潮后可能暂时降低对刺激的兴趣或反应，需要恢复时间。<div class="example-text">例：不同个体、不同时间的不应期都可能明显不同，不能仅按性别预设。
                             </div>
                         </td>
-                        <td>性反应研究；自主神经、生理恢复与主观体验的个体差异；现有激素研究尚不能给出单一决定机制。</td>
-                        <td>不应期的存在是正常生理现象；伴侣间对不应期差异的理解不足可能引发误解。</td>
-                        <td>理解并尊重伴侣的不应期；通过非性交方式维持亲密感。</td>
-                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应循环</span></td>
+                        <td>神经生物学综述指出机制尚不清楚；2021 年小鼠实验未支持泌乳素直接决定不应期的假说。<a href="#ref-11" aria-label="参考文献 11">[11]</a><a href="#ref-12" aria-label="参考文献 12">[12]</a></td>
+                        <td>动物机制研究不能直接给出人类的正常时长或治疗方案；激素在高潮后变化，也不自动证明它造成不应期。</td>
+                        <td>尊重休息需要，不把再次反应的速度当作能力考核；是否继续任何接触仍由本人决定。</td>
+                        <td><span class="badge lv3"><span class="badge-dot"></span>性反应相关过程</span></td>
                     </tr>
 
                     <!-- ========== 性心理调节与表达（5）========== -->
@@ -733,15 +772,15 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('masturbation')">解析
                                 →</button>
                         </td>
-                        <td>独立的性满足方式，是正常的自我调节机制，帮助了解自己身体、释放性压力。没有年龄、性别或性取向的限制，是普遍的性行为。</td>
-                        <td><span class="analogy-highlight">自己下厨满足口腹之欲</span></td>
+                        <td>为获得性相关感觉或愉悦而进行的自我刺激，可以独自进行，也可以在与他人的自愿互动中进行；不要求以高潮为目标。</td>
+                        <td><span class="analogy-highlight">自慰与不自慰都可以是个人选择，没有统一的健康频率。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">自我满足</span><span class="tag">正常普遍</span><span
+                            <div class="tag-list"><span class="tag">自我刺激</span><span class="tag">自主选择</span><span
                                     class="tag">身体探索</span></div>
                         </td>
-                        <td>通过自我刺激获得性快感和释放。<div class="example-text">例：个体在私密空间通过自慰了解自己的性敏感区域和偏好，释放累积的性张力。</div>
+                        <td>可能出于愉悦、放松或了解身体，也有人没有兴趣。<div class="example-text">例：某人有时自慰、有时数月不自慰；仅凭频率变化不能判断是否健康。</div>
                         </td>
-                        <td>性健康学；Kinsey 性行为研究；自我调节理论。</td>
+                        <td>WHO 性教育说明强调纠正自慰有害的误解，同时学习身体边界与隐私。<a href="#ref-5" aria-label="参考文献 5">[5]</a></td>
                         <td>自慰本身不以频率判定健康或不健康；需看是否自愿、安全，以及是否持续影响生活、造成损伤或明显困扰。</td>
                         <td>去羞耻化的性教育；注意隐私与身体安全；若难以控制且影响生活，可寻求专业支持。</td>
                         <td><span class="badge lv4"><span class="badge-dot"></span>调节与表达</span></td>
@@ -754,16 +793,16 @@
                                 onclick="event.stopPropagation(); showDetail('sexual_communication')">解析 →</button>
                         </td>
                         <td>与伴侣就性需求、界限、偏好进行开放交流。良好的性沟通是健康性关系的基础，包括表达欲望、协商界限、反馈体验等多个方面。</td>
-                        <td><span class="analogy-highlight">点菜时的需求表达</span></td>
+                        <td><span class="analogy-highlight">能否安全表达拒绝，比谈了多少次更重要。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">需求表达</span><span class="tag">界限协商</span><span
                                     class="tag">反馈机制</span></div>
                         </td>
                         <td>伴侣间坦诚讨论性偏好、频率、舒适度和界限。<div class="example-text">例：在亲密关系中说"我喜欢这样"或"这个让我不太舒服，我们可以试试别的"。</div>
                         </td>
-                        <td>沟通心理学；Gottman 伴侣关系研究；性治疗中的沟通干预。</td>
-                        <td>开放且安全的沟通常与较高的关系和性满意度相关，但效果受冲突、安全、权力与沟通质量影响。</td>
-                        <td>主动倾听训练；非暴力沟通技巧；定期关系检查对话。</td>
+                        <td>2022 年元分析纳入 93 项研究：沟通与关系及性满意度相关，沟通质量的关联大于谈话频率。<a href="#ref-13" aria-label="参考文献 13">[13]</a></td>
+                        <td>这主要是关联证据，不能证明“多谈就一定改善”；满意的关系也可能让沟通更容易，测量和文化情境会影响结果。</td>
+                        <td>在适合的时机说清需要、拒绝和可接受范围，并倾听反馈；有控制或暴力时，优先考虑安全和独立支持。</td>
                         <td><span class="badge lv4"><span class="badge-dot"></span>调节与表达</span></td>
                     </tr>
                     <tr class="row-lv4" data-type="regulation">
@@ -773,18 +812,18 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_preference')">解析 →</button>
                         </td>
-                        <td>对特定性行为、情境或刺激的偏好。在合法、安全、双方同意的前提下，多样化的性偏好都是正常的，包括姿势、情境、角色扮演等多种形式。</td>
-                        <td><span class="analogy-highlight">特定的口味偏好</span></td>
+                        <td>这里指对某些互动方式、情境、角色或刺激的兴趣倾向。它与性取向的含义不同；有某种兴趣，也不等于一定想在现实中实践。</td>
+                        <td><span class="analogy-highlight">少见不等于患病；同意也不意味着任何活动都没有风险。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">个体差异</span><span class="tag">多样性</span><span
                                     class="tag">非评判</span></div>
                         </td>
-                        <td>对某些性刺激、场景或互动模式有特别的兴趣和喜好。<div class="example-text">
-                                例：有人偏好特定情境的性互动，有人对某些感官刺激更敏感，这些差异在同意成人间都是正常的。</div>
+                        <td>偏好可以稳定，也可以随生活和关系变化。<div class="example-text">
+                                例：两位成年人喜欢不同互动方式，最后约定只进行彼此都愿意且了解风险的活动。</div>
                         </td>
-                        <td>性心理学；性脚本理论；性多元主义。</td>
-                        <td>在不伤害自己和他人的前提下，性偏好的多样性是健康的；被污名化的偏好可能导致羞耻和压抑。</td>
-                        <td>在安全界限内探索和接纳自己的偏好；与伴侣协商兼容的性脚本。</td>
+                        <td>幻想研究与 ICD-11 临床分类区分兴趣、现实行为及临床障碍。<a href="#ref-10" aria-label="参考文献 10">[10]</a><a href="#ref-15" aria-label="参考文献 15">[15]</a></td>
+                        <td>不能仅凭非典型兴趣诊断障碍；需结合非自愿对象、非仅由污名产生的明显困扰或严重伤害风险等具体条件。</td>
+                        <td>尊重不兼容与拒绝，不要求折中接受不愿意的活动；实际行动须符合知情、自愿、同意能力与法律要求。</td>
                         <td><span class="badge lv4"><span class="badge-dot"></span>调节与表达</span></td>
                     </tr>
                     <tr class="row-lv4" data-type="regulation">
@@ -794,17 +833,17 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_intimacy')">解析 →</button>
                         </td>
-                        <td>在带有性意味的互动中体验到的信任、脆弱、被理解或连接感；并非每次性行为都会产生，也不是所有关系都需要。</td>
-                        <td><span class="analogy-highlight">共同用餐的仪式感</span></td>
+                        <td>在带有性意味的互动中体验到信任、被理解或连接感，有时也包括愿意表达脆弱的感受；并非每次性行为都会产生，也不是所有关系都需要。</td>
+                        <td><span class="analogy-highlight">性活动不必带来亲密，亲密也可以完全不涉及性。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">情感联结</span><span class="tag">信任脆弱</span><span
-                                    class="tag">超越生理</span></div>
+                            <div class="tag-list"><span class="tag">被理解感</span><span class="tag">信任与自主</span><span
+                                    class="tag">关系情境</span></div>
                         </td>
-                        <td>在性互动中同时体验到被看见、被接纳和被珍视的深层情感。<div class="example-text">例：伴侣在性行为后的拥抱和深度交谈中感受到的情感融合与安全感。</div>
+                        <td>可能来自被倾听、边界被尊重，或在互动中感到安心。<div class="example-text">例：某人提出暂停后得到体谅，因此更信任伴侣；亲密没有因停止性活动而中断。</div>
                         </td>
-                        <td>依恋理论；Sternberg 爱情三角理论（亲密成分）；情感神经科学。</td>
-                        <td>对重视性亲密的人，它可能与关系满意度相关；低频或没有性亲密并不自动意味着关系失败或情感疏离。</td>
-                        <td>培养情感脆弱性的表达；创造性互动后的情感连接时间。</td>
+                        <td>性健康框架把亲密作为相关维度；伴侣沟通研究提供部分经验依据，但测量的并不都是“性亲密”。<a href="#ref-2" aria-label="参考文献 2">[2]</a><a href="#ref-13" aria-label="参考文献 13">[13]</a></td>
+                        <td>不同研究的定义不一；不能用某种依恋标签预测一段关系，也不能承诺特定练习对所有伴侣有效。</td>
+                        <td>了解双方希望怎样连接，容纳独处、交谈或非性接触的需要；没有性互动也可以拥有重要而亲密的关系。</td>
                         <td><span class="badge lv4"><span class="badge-dot"></span>调节与表达</span></td>
                     </tr>
                     <tr class="row-lv4" data-type="regulation">
@@ -814,17 +853,17 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_satisfaction')">解析 →</button>
                         </td>
-                        <td>性行为后的身心满足状态，不仅是生理需求的满足，更包括情感连接、亲密感和心理愉悦。性满足有助于增强关系质量和情感连接。</td>
-                        <td><span class="analogy-highlight">饱餐后的愉悦感</span></td>
+                        <td>这里主要指性满意度：一个人对自身性生活或性相关体验的主观评价，可以针对一次经历，也可以针对较长时期，不只指性活动结束后的放松。</td>
+                        <td><span class="analogy-highlight">满意度需由本人评价，不能用次数或伴侣评价代替。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">身心整合</span><span class="tag">关系增强</span><span
-                                    class="tag">主观幸福感</span></div>
+                            <div class="tag-list"><span class="tag">主观评价</span><span class="tag">需要与期待</span><span
+                                    class="tag">时间范围</span></div>
                         </td>
-                        <td>性活动后感到放松、愉悦、与伴侣更亲近。<div class="example-text">例：伴侣在满意性爱后相拥入睡，第二天感到关系更加亲近和积极。</div>
+                        <td>舒适、自主、愉悦及需要是否得到回应，都可能影响评价。<div class="example-text">例：两个人的性活动次数相近，却可能因期待和体验不同而有不同满意度。</div>
                         </td>
-                        <td>性健康模型；积极心理学；关系满意度研究。</td>
-                        <td>性满足是主观体验，可与关系和身心状态相关；不能用频率、高潮次数或统一标准衡量。</td>
-                        <td>关注性体验质量而非频率；多样化性表达方式；定期评估性满意度。</td>
+                        <td>沟通元分析分别评估性满意度与关系满意度，显示二者相关但不是同一指标。<a href="#ref-13" aria-label="参考文献 13">[13]</a></td>
+                        <td>频率和高潮可能与满意度有关，却不是充分条件；以有性活动伴侣为主的量表，未必适合没有性活动的人。</td>
+                        <td>先了解本人是否满意、是否希望改变，以及希望改变什么；支持目标可以是增加舒适与自主，无须预设次数。</td>
                         <td><span class="badge lv4"><span class="badge-dot"></span>调节与表达</span></td>
                     </tr>
 
@@ -836,18 +875,18 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('low_desire')">解析
                                 →</button>
                         </td>
-                        <td>性兴趣或欲望较低，或相较个人以往出现下降。只有持续造成本人明显困扰且不能由其他情况更好解释时，才可能进入临床评估。</td>
-                        <td><span class="analogy-highlight">食欲变化（仅作有限类比）</span></td>
+                        <td>描述性兴趣或动机较低，或相较个人以往有所下降，本身不等于障碍。临床诊断还需考虑持续性、本人困扰、情境及身体、药物等因素。</td>
+                        <td><span class="analogy-highlight">比伴侣欲望低，不等于自己的欲望出了问题。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">个体差异</span><span class="tag">多因素</span><span
                                     class="tag">需结合困扰</span></div>
                         </td>
-                        <td>对性活动持续缺乏兴趣，与个人既往基线相比明显下降。<div class="example-text">例：一位过去有正常性欲的女性在长期工作压力后，连续数月对性毫无兴趣且为此感到困扰。
+                        <td>可能一直兴趣较少，也可能在疲劳、用药或关系变化后下降。<div class="example-text">例：某人发现开始用药后性体验明显改变，愿意与开药医生讨论；这仍需评估原因。
                             </div>
                         </td>
-                        <td>生物心理社会模型；现行诊断标准；药物、健康、压力、关系与文化情境的综合评估。</td>
+                        <td>欧洲性医学学会的欲望差异立场文件强调关系情境；近期治疗综述支持按症状与目标评估。<a href="#ref-14" aria-label="参考文献 14">[14]</a><a href="#ref-19" aria-label="参考文献 19">[19]</a></td>
                         <td>低欲望本身不一定是问题；应分别理解性吸引、欲望、身份与关系期待，并避免把伴侣不匹配自动归咎一方。</td>
-                        <td>若本人困扰，可按需评估健康、药物、压力和关系因素；不以“恢复到高欲望”为唯一目标。</td>
+                        <td>本人希望了解变化时即可求助；可评估健康、药物、压力和关系，目标由本人决定，不自行停药或补充激素。</td>
                         <td><span class="badge lv5"><span class="badge-dot"></span>困扰与问题</span></td>
                     </tr>
                     <tr class="row-lv5" data-type="distress">
@@ -857,38 +896,38 @@
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_aversion')">解析 →</button>
                         </td>
-                        <td>对性相关情境产生排斥、不适或回避的体验，原因可能多样，也可能只是稳定边界；它不是现行 DSM-5-TR 中的独立诊断。</td>
-                        <td><span class="analogy-highlight">不宜用食物偏好类比</span></td>
+                        <td>对某些或较广泛的性相关情境感到排斥、厌恶或不适的描述性用语；其范围与强度因人而异。这里不把它用作独立诊断。</td>
+                        <td><span class="analogy-highlight">厌恶不证明有创伤，也不能用来判定是否无性恋。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">强烈回避</span><span class="tag">创伤关联</span><span
-                                    class="tag">恐惧反应</span></div>
+                            <div class="tag-list"><span class="tag">主观排斥</span><span class="tag">范围不同</span><span
+                                    class="tag">原因多样</span></div>
                         </td>
-                        <td>想到或面对性情境时产生焦虑、恶心、恐惧等强烈负面反应。<div class="example-text">例：性创伤幸存者在伴侣尝试亲密接触时出现惊恐发作或僵直反应。</div>
+                        <td>有人只排斥某些活动，也有人普遍不想接触性内容。<div class="example-text">例：某人能接受拥抱，却不愿进行性接触；这个边界不需要先有诊断才值得尊重。</div>
                         </td>
-                        <td>创伤心理学；经典条件反射；焦虑障碍模型。</td>
-                        <td>若本人并不困扰，它可以只是边界或偏好；若伴随恐惧、创伤或功能受损，应按具体原因理解。</td>
-                        <td>尊重拒绝和边界；持续困扰时选择创伤知情、非强迫且个体化的专业支持。</td>
+                        <td>性健康与无性恋研究提醒区分兴趣、态度、身份和困扰，不能用其中一项解释全部经验。<a href="#ref-2" aria-label="参考文献 2">[2]</a><a href="#ref-3" aria-label="参考文献 3">[3]</a></td>
+                        <td>疼痛、压力、创伤或稳定偏好均可能相关；仅凭回避无法识别原因，也不能默认恢复性活动才是改善。</td>
+                        <td>先尊重拒绝；本人希望减轻不适时，可了解具体诱因并选择支持，不以伴侣要求推动暴露或接触。</td>
                         <td><span class="badge lv5"><span class="badge-dot"></span>困扰与问题</span></td>
                     </tr>
                     <tr class="row-lv5" data-type="distress">
                         <td class="concept-cell" onclick="showDetail('sexual_addiction')">
                             <div class="concept-pill"><span class="concept-name">强迫性性行为障碍</span><span
-                                    class="concept-en">Compulsive Sexual Behavior</span></div>
+                                    class="concept-en">Compulsive Sexual Behavior Disorder</span></div>
                             <button class="detail-btn"
                                 onclick="event.stopPropagation(); showDetail('sexual_addiction')">解析 →</button>
                         </td>
-                        <td>ICD-11 中的冲动控制障碍，指长期无法控制强烈、重复的性冲动或行为并造成明显痛苦或功能损害；单凭高性欲或道德羞耻不能诊断。</td>
-                        <td><span class="analogy-highlight">反复失控行为（不等同物质成瘾）</span></td>
+                        <td>ICD-11 的冲动控制障碍（CSBD）：持续难以控制强烈、重复的性冲动或欲求，导致反复性行为，并造成明显痛苦或功能损害。模式须延续较长时期，例如六个月或以上。</td>
+                        <td><span class="analogy-highlight">高频不等于失控；仅因道德判断产生的痛苦不足以诊断。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">失控重复</span><span class="tag">负面后果</span><span
-                                    class="tag">冲动强迫</span></div>
+                            <div class="tag-list"><span class="tag">持续失控</span><span class="tag">生活受损</span><span
+                                    class="tag">综合评估</span></div>
                         </td>
-                        <td>花费大量时间在性相关活动上，无法减少或停止，即使已造成关系破裂或职业风险。<div class="example-text">
-                                例：某人明知频繁的匿名性行为可能带来健康和法律风险，却无法自控地持续进行。</div>
+                        <td>反复减少行为却难以做到，持续忽略健康或重要职责，即使后果明显仍重复。<div class="example-text">
+                                例：某人长期因相关行为耽误工作，多次尝试调整仍失败；这些线索需要专业评估，不能单独确诊。</div>
                         </td>
-                        <td>ICD-11 强迫性性行为障碍标准；冲动控制与强迫行为研究。其是否适合“成瘾”模型仍有争议。</td>
-                        <td>导致关系破裂、职业损失、经济困境、性传播感染风险增加及严重羞耻感。</td>
-                        <td>由合格专业人员评估功能损害、共病和具体诱因，再共同制定心理、关系或医学支持方案。</td>
+                        <td>WHO 临床要求、分类说明与 2026 年跨学科叙述综述。ICD-11 并未将其归为成瘾障碍。<a href="#ref-15" aria-label="参考文献 15">[15]</a><a href="#ref-16" aria-label="参考文献 16">[16]</a><a href="#ref-17" aria-label="参考文献 17">[17]</a></td>
+                        <td>“性成瘾”不是可直接互换的诊断名。需排查躁狂、药物或物质作用等解释；治疗研究与代表性样本仍有局限。</td>
+                        <td>评估控制能力、实际后果与共病后共同制定方案；目标包括减少伤害、恢复自主和生活功能，而非一律禁欲。</td>
                         <td><span class="badge lv5"><span class="badge-dot"></span>困扰与问题</span></td>
                     </tr>
                     <tr class="row-lv5" data-type="distress">
@@ -898,18 +937,18 @@
                             <button class="detail-btn" onclick="event.stopPropagation(); showDetail('sexual_trauma')">解析
                                 →</button>
                         </td>
-                        <td>非自愿性经历可能造成的创伤影响，包括侵入性回忆、回避、警觉、解离或关系困难；反应和支持需要因人而异。</td>
-                        <td><span class="analogy-highlight">不宜以食物中毒类比</span></td>
+                        <td>通常指性暴力等经历及其可能造成的创伤影响。事件、即时反应与后续创伤后应激障碍（PTSD）等诊断需要区分；经历相似的人也可能有不同反应。</td>
+                        <td><span class="analogy-highlight">没有反抗、出现身体反应或事后表现平静，都不能证明同意。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">非自愿经历</span><span class="tag">深度创伤</span><span
-                                    class="tag">信任破坏</span></div>
+                            <div class="tag-list"><span class="tag">经历与影响</span><span class="tag">反应多样</span><span
+                                    class="tag">安全与选择</span></div>
                         </td>
-                        <td>创伤后应激反应、闪回、噩梦、对性情境的极度回避或过度警觉。<div class="example-text">例：幸存者在特定气味、声音或触碰触发下，突然重新体验创伤时刻的恐惧与无助。
+                        <td>可能有侵入性回忆、回避、警觉或麻木，也可能暂时没有明显症状。<div class="example-text">例：某人难以接受突然触碰，希望朋友先询问；支持可以从尊重这项需要开始。
                             </div>
                         </td>
-                        <td>创伤心理学；PTSD 诊断框架；Judith Herman 创伤与复原理论。</td>
-                        <td>可能影响安全感、信任、身体体验或心理健康，也有人呈现不同或延迟反应；不能替幸存者规定复原方式。</td>
-                        <td>优先恢复安全与控制感；由受过训练的专业人员根据需要选择有证据支持的创伤干预。</td>
+                        <td>2024 年唤起综述与 PTSD 临床指南分别讨论非自愿身体反应和有证据支持的治疗。<a href="#ref-9" aria-label="参考文献 9">[9]</a><a href="#ref-20" aria-label="参考文献 20">[20]</a></td>
+                        <td>并非所有幸存者都会发展为 PTSD；治疗证据不能用来规定其应该如何反应、何时报案或是否恢复性活动。</td>
+                        <td>优先安全、医疗需要和自主选择，避免追问细节或责备；有 PTSD 时，可与专业人员讨论创伤聚焦治疗等选项。</td>
                         <td><span class="badge lv5"><span class="badge-dot"></span>困扰与问题</span></td>
                     </tr>
                     <tr class="row-lv5" data-type="distress">
@@ -920,17 +959,17 @@
                                 onclick="event.stopPropagation(); showDetail('sexual_dysfunction')">解析 →</button>
                         </td>
                         <td>在欲望、唤起、高潮、射精或疼痛等方面持续或反复出现困难，并造成本人明显困扰的临床问题总称；需结合身体、心理、药物和关系情境评估。</td>
-                        <td><span class="analogy-highlight">身体功能困难（仅作有限类比）</span></td>
+                        <td><span class="analogy-highlight">症状、筛查分数与正式诊断是不同层次。</span></td>
                         <td>
-                            <div class="tag-list"><span class="tag">生理/心理因素</span><span class="tag">可治疗</span><span
-                                    class="tag">多类型</span></div>
+                            <div class="tag-list"><span class="tag">持续困难</span><span class="tag">本人困扰</span><span
+                                    class="tag">具体评估</span></div>
                         </td>
-                        <td>持续或反复出现的性反应困难，导致个人痛苦。<div class="example-text">例：勃起功能障碍使男性无法获得或维持足够勃起；性交疼痛使女性在性行为中经历持续不适。
+                        <td>可能涉及勃起、润滑、高潮、射精或性相关疼痛等不同问题。<div class="example-text">例：持续疼痛让某人不愿接触，需要了解身体原因与个人感受，不能只归因于“不够放松”。
                             </div>
                         </td>
-                        <td>DSM-5 性功能障碍分类；Barlow 性功能模型；血管与神经生理学。</td>
-                        <td>可能影响满意度、自我感受或关系，也可能主要反映可治疗的健康、药物或情境因素。</td>
-                        <td>按症状和个人目标进行医学与心理评估；是否邀请伴侣参与由本人意愿和关系安全决定。</td>
+                        <td>2026 年 SSRI 类抗抑郁药随机试验元分析发现高潮困难风险增加；治疗综述则支持部分心理与药物方案。<a href="#ref-18" aria-label="参考文献 18">[18]</a><a href="#ref-19" aria-label="参考文献 19">[19]</a></td>
+                        <td>分类系统对名称、时长及排除条件的要求不同；研究对象与结局也不同，不能把某类治疗套用于所有困难。</td>
+                        <td>按症状和本人目标就医，讨论健康、药物与情境；疼痛或突然明显变化应及时评估，药物调整与医生商议。</td>
                         <td><span class="badge lv5"><span class="badge-dot"></span>困扰与问题</span></td>
                     </tr>
                     <tr class="row-lv5" data-type="distress">
@@ -941,17 +980,17 @@
                                 onclick="event.stopPropagation(); showDetail('sexual_anxiety')">解析 →</button>
                         </td>
                         <td>在性相关情境中对表现、身体、同意、安全或关系后果产生的紧张和担忧；程度与影响因人而异。</td>
-                        <td><span class="analogy-highlight">对用餐社交的恐惧</span></td>
+                        <td><span class="analogy-highlight">担心可能来自表现要求，也可能回应真实的不安全。</span></td>
                         <td>
                             <div class="tag-list"><span class="tag">表现焦虑</span><span class="tag">外貌担忧</span><span
                                     class="tag">回避行为</span></div>
                         </td>
-                        <td>在性情境前或中感到紧张、担忧，自我意识过度增强，干扰性反应的自然流程。<div class="example-text">
-                                例：男性因担心"表现不够好"而无法勃起，女性因身体意象焦虑而无法放松享受性爱。</div>
+                        <td>可能反复检查身体表现，也可能担心疼痛、怀孕、感染或被拒绝。<div class="example-text">
+                                例：某人不断担心自己是否让伴侣失望，难以关注舒适程度；这需要了解关系中的实际期待。</div>
                         </td>
-                        <td>焦虑障碍模型；Barlow 性焦虑与功能障碍理论；认知行为框架。</td>
-                        <td>焦虑可能干扰注意与唤起，也可能是疼痛、创伤、关系压力或其他问题的结果，不能预设单一因果方向。</td>
-                        <td>认知重构；正念减压；感觉聚焦练习；伴侣支持性沟通。</td>
+                        <td>双重控制模型关注情境与抑制；近期综述发现部分认知行为干预可改善特定人群的性功能和困扰。<a href="#ref-7" aria-label="参考文献 7">[7]</a><a href="#ref-19" aria-label="参考文献 19">[19]</a></td>
+                        <td>性焦虑是描述性概念，不能自动等同焦虑障碍。相关治疗证据不能推出正念或放松对所有人、所有情境有效。</td>
+                        <td>先处理疼痛、风险和关系压力，减少表现要求；本人希望时再选择专业支持，练习不以忍受不适为目标。</td>
                         <td><span class="badge lv5"><span class="badge-dot"></span>困扰与问题</span></td>
                     </tr>
                 </tbody>
@@ -959,8 +998,8 @@
         </div>
 
         <div class="disclaimer">
-            <strong>⚠️
-                重要说明：</strong>食欲类比只帮助区分部分概念，不能对应真实机制，也不适合解释创伤或诊断。<strong>无性恋身份本身不是性功能障碍，无需“治疗”或“矫正”。</strong>低欲望与无性恋并非靠“先天/后天”简单二分：评估重点是性吸引、欲望、身份、个人基线与困扰是否一致。如持续困扰生活，可按需要咨询合格专业人士。
+            <strong>先把几件事分开：</strong>被谁吸引、是否有欲望、身体怎样反应、愿不愿意参与，以及事后是否满意，都需要分别了解。身体反应不能证明同意；无性恋身份也不等于性功能障碍。<br><br>
+            <strong>何时考虑支持：</strong>本人感到困扰、出现疼痛或明显变化、行为持续失控，或遭遇强迫与暴力时，都可以求助。寻求帮助不需要先符合诊断标准；支持目标应围绕安全、自主和本人希望改善的事，而不是统一提高性欲或频率。本表用于学习与自我理解，不作诊断或个体治疗建议。
         </div>
 
         <div class="panels">
@@ -970,7 +1009,7 @@
             </div>
             <div class="panel"><span class="panel-icon">🌱</span>
                 <h3>性心理发展</h3>
-                <p>性知识、自我理解和边界意识会在生命历程中不断发展，并不存在人人依次经过的统一“启蒙—探索—成熟”阶段。</p>
+                <p>性知识、自我理解和边界意识会在生命历程中变化。“启蒙、探索、成熟”是含义各异的日常表达，不能排列成人人必须完成的发展任务。</p>
             </div>
             <div class="panel"><span class="panel-icon">⚡</span>
                 <h3>性反应相关过程</h3>
@@ -978,11 +1017,11 @@
             </div>
             <div class="panel"><span class="panel-icon">🛠️</span>
                 <h3>调节与表达</h3>
-                <p>自慰、沟通、探索和亲密都可能是健康表达方式，前提是自愿、安全并尊重边界；是否适合仍取决于个人和关系情境。</p>
+                <p>表达方式没有统一清单。沟通研究提示应重视交流质量、理解和自主，但不能保证某项练习对所有关系都有效；拒绝、暂停与不参与也应受到尊重。</p>
             </div>
             <div class="panel"><span class="panel-icon">⚠️</span>
                 <h3>困扰与问题</h3>
-                <p>低欲望、排斥、焦虑或功能困难只有在造成本人困扰、伤害或功能受损时才需要进一步评估；性创伤与失控行为则应优先考虑安全和个体化支持。</p>
+                <p>低欲望、厌恶与焦虑是体验描述，CSBD 和具体性功能障碍则有各自的诊断要求。先看本人需要、变化与实际影响，不用频率、身份或单项分数代替评估。</p>
             </div>
         </div>
 
@@ -1003,26 +1042,40 @@
                 </div>
                 <div class="legend-item">
                     <div class="legend-bar" style="background:#db2777"></div>
-                    <div class="legend-text"><strong>调节与表达</strong>健康的性满足方式与人际沟通策略</div>
+                    <div class="legend-text"><strong>调节与表达</strong>如何表达需要、沟通边界和评价自身体验</div>
                 </div>
                 <div class="legend-item">
                     <div class="legend-bar" style="background:#be123c"></div>
-                    <div class="legend-text"><strong>困扰与问题</strong>需要专业评估与干预的性心理困难</div>
+                    <div class="legend-text"><strong>困扰与问题</strong>区分体验描述、临床诊断与个人支持需要</div>
                 </div>
             </div>
         </div>
 
-        <div class="references">
-            <strong>📖 核心学术参考</strong>：Bancroft, J. (2009). <em>Human Sexuality and Its Problems.</em> Elsevier. ｜
-            Janssen, E. (2011). Sexual arousal in men: A review. <em>Hormones and Behavior.</em> ｜
-            Levine, S. B. (2003). The nature of sexual desire. <em>Archives of Sexual Behavior.</em> ｜
-            Diamond, L. M. (2003). What does sexual orientation orient? <em>Psychological Review.</em> ｜
-            Barlow, D. H. (1986). Causes of sexual dysfunction. <em>Journal of Consulting and Clinical Psychology.</em>
-            ｜
-            Bogaert, A. F. (2004). Asexuality: Prevalence and associated factors. <em>Journal of Sex Research.</em> ｜
-            Masters, W. H. & Johnson, V. E. (1966). <em>Human Sexual Response.</em> ｜
-            Basson, R. (2000). <a href="https://pubmed.ncbi.nlm.nih.gov/10693116/" target="_blank" rel="noopener noreferrer"><em>The Female Sexual Response: A Different Model.</em></a> <em>Journal of Sex &amp; Marital Therapy, 26</em>(1), 51–65. ｜
-            World Health Organization. (2024). <a href="https://www.who.int/publications/i/item/9789240077263" target="_blank" rel="noopener noreferrer"><em>Clinical descriptions and diagnostic requirements for ICD-11 mental, behavioural and neurodevelopmental disorders (CDDR).</em></a>
+        <div class="references" aria-labelledby="references-title">
+            <h2 id="references-title">参考资料与证据说明</h2>
+            <p>资料核对日期：2026-09-18。概念界定参照共识报告与专业分类，机制和关联参照综述，干预效果参照相应临床研究。以下包括核实到的 2024—2026 年研究与仍有参考价值的早期文献；年份较新不自动代表证据更强。五类主题仅为阅读分组，表内例子不是研究个案。部分研究以顺性别、异性恋或特定临床样本为主，对其他人群及中文文化情境的适用性需另行评估。</p>
+            <ol>
+                <li id="ref-1">National Academies of Sciences, Engineering, and Medicine. (2022). <a href="https://www.nationalacademies.org/read/26424/chapter/1" target="_blank" rel="noopener noreferrer"><em>Measuring Sex, Gender Identity, and Sexual Orientation.</em></a> DOI: 10.17226/26424。共识报告，区分性取向的吸引、行为、身份维度与性别认同；具体测量建议主要面向美国。</li>
+                <li id="ref-2">World Health Organization. <a href="https://www.who.int/health-topics/sexual-health" target="_blank" rel="noopener noreferrer"><em>Sexual health.</em></a> 性健康与 sexuality 的工作定义强调身心和社会福祉、自主以及免受强迫；并不要求每个人体验或表达所有维度。</li>
+                <li id="ref-3">Hille, J. J. (2023; 2022 年在线发表). <a href="https://doi.org/10.1016/j.copsyc.2022.101516" target="_blank" rel="noopener noreferrer"><em>Beyond sex: A review of recent literature on asexuality.</em></a> <em>Current Opinion in Psychology, 49</em>, 101516。综述 28 项研究，讨论身份、关系与交叉经验，并指出灰性恋、半性恋等谱系人群的研究不足。</li>
+                <li id="ref-4">World Health Organization. <a href="https://www.who.int/standards/classifications/frequently-asked-questions/gender-incongruence-and-transgender-health-in-the-icd" target="_blank" rel="noopener noreferrer"><em>Gender incongruence and transgender health in the ICD.</em></a> 解释 ICD-11 的分类调整；性别多元身份不属于精神疾病，具体医疗需要须另行评估。</li>
+                <li id="ref-5">World Health Organization. (2023). <a href="https://www.who.int/news-room/questions-and-answers/item/comprehensive-sexuality-education" target="_blank" rel="noopener noreferrer"><em>Comprehensive sexuality education.</em></a> 科学、适龄、渐进的教育说明，涉及身体、隐私、同意与关系；不是固定心理发展阶段理论。</li>
+                <li id="ref-6">Basson, R. (2000). <a href="https://doi.org/10.1080/009262300278641" target="_blank" rel="noopener noreferrer"><em>The female sexual response: A different model.</em></a> <em>Journal of Sex &amp; Marital Therapy, 26</em>(1), 51–65。强调响应性欲望的经典模型，最初关注长期关系中的女性经验；不能当作所有女性或所有人的固定反应程序。</li>
+                <li id="ref-7">Janssen, E., &amp; Bancroft, J. (2023). <a href="https://doi.org/10.1080/00224499.2023.2219247" target="_blank" rel="noopener noreferrer"><em>The Dual Control Model of Sexual Response: A Scoping Review, 2009–2022.</em></a> <em>The Journal of Sex Research, 60</em>(7), 948–968。纳入 152 篇论文，梳理兴奋与抑制倾向的测量及应用；框架与量表关联不等于单个人的神经机制诊断。</li>
+                <li id="ref-8">Chivers, M. L., et al. (2010). <a href="https://doi.org/10.1007/s10508-009-9556-9" target="_blank" rel="noopener noreferrer"><em>Agreement of self-reported and genital measures of sexual arousal in men and women: A meta-analysis.</em></a> <em>Archives of Sexual Behavior, 39</em>, 5–56。综合 132 项实验室研究；自报与生殖器指标的一致性受方法影响，群体平均值不能用于判断个体意愿。</li>
+                <li id="ref-9">Vandervoort, M., et al. (2024). <a href="https://doi.org/10.1007/s10508-024-02852-2" target="_blank" rel="noopener noreferrer"><em>Victim Sexual Arousal During Nonconsensual Sex: A Scoping Review.</em></a> <em>Archives of Sexual Behavior, 53</em>, 2305–2318。确认非自愿情境下可能发生生殖器反应或高潮；纳入资料的方法差异大，无法确定发生率或发生条件。</li>
+                <li id="ref-10">Lehmiller, J. J., &amp; Gormezano, A. M. (2023; 2022 年在线发表). <a href="https://doi.org/10.1016/j.copsyc.2022.101496" target="_blank" rel="noopener noreferrer"><em>Sexual fantasy research: A contemporary review.</em></a> <em>Current Opinion in Psychology, 49</em>, 101496。区分幻想内容与现实兴趣、行为，并指出样本人群及跨文化研究的局限。</li>
+                <li id="ref-11">Seizert, C. A. (2018). <a href="https://doi.org/10.1016/j.neubiorev.2018.06.011" target="_blank" rel="noopener noreferrer"><em>The neurobiology of the male sexual refractory period.</em></a> <em>Neuroscience &amp; Biobehavioral Reviews.</em> 机制综述；许多线索来自动物研究，人类不应期机制仍未充分明确。</li>
+                <li id="ref-12">Valente, S., Marques, T., &amp; Lima, S. Q. (2021). <a href="https://doi.org/10.1038/s42003-020-01570-4" target="_blank" rel="noopener noreferrer"><em>No evidence for prolactin’s involvement in the post-ejaculatory refractory period.</em></a> <em>Communications Biology.</em> 两种小鼠品系的实验未支持相关因果假说，不能据此直接断言人类机制或提出用药建议。</li>
+                <li id="ref-13">Mallory, A. B. (2022; 2021 年在线发表). <a href="https://doi.org/10.1037/fam0000946" target="_blank" rel="noopener noreferrer"><em>Dimensions of couples’ sexual communication, relationship satisfaction, and sexual satisfaction: A meta-analysis.</em></a> <em>Journal of Family Psychology, 36</em>(3), 358–371。纳入 93 项研究；沟通质量、频率与自我披露的关联不同，不能将相关关系解释为谈话次数的治疗效果。</li>
+                <li id="ref-14">European Society for Sexual Medicine. (2020). <a href="https://doi.org/10.1016/j.esxm.2020.02.008" target="_blank" rel="noopener noreferrer"><em>Sexual Desire Discrepancy: A Position Statement of the European Society for Sexual Medicine.</em></a> <em>Sexual Medicine, 8</em>(2), 121–131。强调欲望差异的关系性与相对性；作者明确指出证据有限，建议主要来自专家意见，而非高确定性疗效证据。</li>
+                <li id="ref-15">World Health Organization. (2024). <a href="https://www.who.int/publications/i/item/9789240077263" target="_blank" rel="noopener noreferrer"><em>Clinical descriptions and diagnostic requirements for ICD-11 mental, behavioural and neurodevelopmental disorders.</em></a> 临床分类手册，用于核对 CSBD 等诊断要求和非典型兴趣与障碍的区别；不是读者自我诊断清单。</li>
+                <li id="ref-16">Kraus, S. W., et al. (2018). <a href="https://doi.org/10.1002/wps.20499" target="_blank" rel="noopener noreferrer"><em>Compulsive sexual behaviour disorder in the ICD-11.</em></a> <em>World Psychiatry, 17</em>(1), 109–110。解释持续控制失败、功能损害、道德判断相关痛苦的排除要求及冲动控制分类。</li>
+                <li id="ref-17">Ince, C., et al. (2026). <a href="https://doi.org/10.1556/2006.2025.00337" target="_blank" rel="noopener noreferrer"><em>Compulsive sexual behavior disorder (CSBD) and problematic pornography use (PPU): A comprehensive, interdisciplinary, and expert-informed narrative review with suggested future directions.</em></a> <em>Journal of Behavioral Addictions, 15</em>(1), 32–98。跨学科叙述综述，讨论评估、治疗、代表不足的人群及争议；不是干预效果元分析。</li>
+                <li id="ref-18">Dagostin Ferraz, S., et al. (2026). <a href="https://doi.org/10.1007/s00228-026-04011-z" target="_blank" rel="noopener noreferrer"><em>Sexual dysfunction associated with selective serotonin reuptake inhibitors in adults with depression: A systematic review and meta-analysis.</em></a> <em>European Journal of Clinical Pharmacology, 82</em>, 82。纳入 13 项随机试验，6 项进入元分析；发现高潮困难风险增加及满意度降低，欲望下降的合并差异未达显著。不能推广为所有抗抑郁药或所有性功能维度的相同效应。</li>
+                <li id="ref-19">Toledo, R. G., et al. (2026; 2025 年在线发表). <a href="https://doi.org/10.1016/j.jmig.2025.06.004" target="_blank" rel="noopener noreferrer"><em>Female Sexual Desire, Arousal, and Orgasmic Dysfunctions: A Systematic Review and Meta-Analysis of Treatment Options.</em></a> <em>Journal of Minimally Invasive Gynecology, 33</em>(1), 16–33.e3。纳入 36 项研究，排除性疼痛人群；部分正念认知行为干预与药物改善了相应指标，但没有直接比较心理与药物治疗，不能推广为所有性焦虑的统一方案。</li>
+                <li id="ref-20">National Center for PTSD. <a href="https://www.ptsd.va.gov/professional/treat/txessentials/overview_therapy.asp" target="_blank" rel="noopener noreferrer"><em>Overview of Psychotherapy for PTSD.</em></a> 依据 2023 年 VA/DoD 指南介绍延长暴露、认知加工治疗和 EMDR 等证据。适用对象为有相应临床需要者；创伤经历本身不意味着人人需要同一治疗。</li>
+            </ol>
         </div>
     </div>
 
@@ -1041,9 +1094,9 @@
                 lv: "lv1",
                 badge: "性身份与取向",
                 sections: [
-                    { h: "多数不等于标准", p: "异性恋是人类最常见的性取向形式，但'常见'不等于'正确'或'正常'。就像右撇子是多数，但左撇子不是'不正常'一样——性取向的多样性只是人类自然变异的结果，没有高低优劣之分。" },
-                    { h: "反思异性恋本位与霸权", p: "作为社会多数群体，异性恋经验常被默认为'标准'——电影里的爱情故事默认是异性恋，家人会问'什么时候结婚对象'默认是异性。这种异性恋本位（Heteronormativity）会把异性恋设为默认脚本；当它通过教育、媒体、家庭和制度取得主导地位时，就形成异性恋霸权（Heterosexual Hegemony）。意识到这一点，是培养性多元包容意识的第一步。" },
-                    { h: "关系的本质", p: "无论性取向如何，健康关系的核心要素是相同的——信任、尊重、沟通和知情同意。这些才是定义一段关系质量的关键，而非性取向本身。一个好的伴侣，首先是一个好的人。" }
+                    { h: "标签与测量各自说明什么", p: "异性恋通常描述对不同性别的人的性或浪漫吸引，也可以是身份自称。研究者可能分别询问吸引对象、实际行为和自我认同；问了不同的问题，就可能得到不同的分组。一个人没有性经历，并不妨碍其使用这个标签。[1]" },
+                    { h: "生育与关系选择另有含义", p: "异性恋身份不等于希望生育，也不说明是否有生育能力、是否结婚或采用哪种关系安排。跨性别者同样可以是异性恋者；不能用出生时被指定的性别替代其当前的性别认同，再由旁人为其划定取向。" },
+                    { h: "具体了解一个人的需要", p: "人口中的多数地位不构成健康标准。讨论健康时，应了解具体行为、身体情况和本人关心的问题；讨论关系时，则关注自愿、沟通和边界。性取向标签本身不能回答这些问题。[1][2]" }
                 ]
             },
             homosexuality: {
@@ -1052,9 +1105,9 @@
                 lv: "lv1",
                 badge: "性身份与取向",
                 sections: [
-                    { h: "历史的痕迹", p: "同性恋在人类历史和不同文化中一直存在。从古希腊到古代中国，从原住民部落到现代社会，同性吸引和同性关系是人类经验的自然组成部分，不是'现代病'或'西方影响'。" },
-                    { h: "少数群体压力", p: "在异性恋本位社会中，同性恋者可能面临独特的心理压力——隐藏身份的焦虑、被歧视的恐惧、缺乏角色模型的孤独。这种'少数群体压力'（Minority Stress）是心理健康风险的主要来源，而非性取向本身。" },
-                    { h: "肯定的自我接纳", p: "自我接纳是一段旅程。从意识到自己的性取向，到逐渐接纳，再到可能选择向他人出柜，每个人都有自己的节奏。社群支持、肯定的心理咨询和自我教育都是这段旅程中的重要资源。" }
+                    { h: "吸引、行为与认同并非完全重合", p: "有同性吸引的人可能使用同性恋、双性恋、酷儿等标签，也可能不命名；有过同性性行为，也不自动确定身份。研究中的行为分组常服务于某个具体问题，不应替代当事人的自我称谓。[1]" },
+                    { h: "身份本身不是疾病", p: "同性恋本身不构成精神疾病，也不需要矫正。一个人仍可能像其他人一样遇到抑郁、焦虑、关系冲突或身体问题，还可能遭遇歧视和披露压力。支持需要针对这些实际经历，不能把所有困扰归结为取向。[2]" },
+                    { h: "允许不同的认识与披露过程", p: "有人较早认识自身吸引，也有人很晚才找到合适的语言。自我理解、自我接纳和向他人披露可以有不同节奏；公开身份不是证明其真实性的义务。支持者可以先了解保密范围和本人希望得到的帮助。" }
                 ]
             },
             bisexuality: {
@@ -1063,9 +1116,9 @@
                 lv: "lv1",
                 badge: "性身份与取向",
                 sections: [
-                    { h: "谱系的中间地带", p: "双性恋不是'非此即彼'，而是'两者皆是'或'两者都可以'。吸引可能同时存在，也可能在不同时期有所侧重；可能对不同性别有相似程度的吸引，也可能有明显偏好。这种流动性和复杂性是双性恋经验的核心。" },
-                    { h: "被抹除的存在", p: "双性恋者常面临'双性恋抹除'——被质疑为'犹豫不决'、'还没搞清楚'、'其实是同性恋/异性恋'。这种抹除可能来自异性恋和同性恋社群双方，让双性恋者感到不被任何一方完全接纳。" },
-                    { h: "多元的可能性", p: "双性恋提醒我们，性取向不是二元对立的。它是一条谱系，每个人在这条谱系上都有自己独特的位置。接纳这种多元性，就是接纳人类经验的丰富性。" }
+                    { h: "不必各占一半，也不必不断变化", p: "双性恋通常指对不止一个性别产生吸引的可能性。有的人有明显偏好，有的人没有；吸引可以长期稳定，也可以发生变化。流动性既不是双性恋的必备条件，也不专属于双性恋者。性取向的多个维度不能压缩成一个固定位置。[1]" },
+                    { h: "伴侣不能替身份重新命名", p: "一个双性恋者与某一性别的人建立关系后，不会因此自动成为异性恋或同性恋。未与不同性别的人交往，也不使其身份失效。要求别人以关系经历证明身份，会把行为和自我认同混在一起。" },
+                    { h: "取向与关系约定分开讨论", p: "对多个性别可能产生吸引，不意味着需要多个伴侣、不能忠诚或更容易发生高风险行为。是否单偶、如何处理界限和怎样保护健康，应依据实际约定与行为讨论，而不是从标签推断。" }
                 ]
             },
             pansexuality: {
@@ -1074,8 +1127,9 @@
                 lv: "lv1",
                 badge: "性身份与取向",
                 sections: [
-                    { h: "超越性别二元", p: "泛性恋更明确地挑战了传统的性别二元框架——'男'和'女'不是仅有的可能性。对泛性恋者来说，性别可能不是筛选伴侣的相关因素，或者至少不是最重要的因素。" },
-                    { h: "关注'人'本身", p: "泛性恋常被描述为'性别盲视'，但这可能是一种简化。更准确地说，泛性恋者关注的是'这个人'——他们的性格、气质、幽默感、价值观——而非其性别标签。吸引源于人与人之间的连接，而非预设的类别。" }
+                    { h: "标签表达的重点可以不同", p: "有些人用泛性恋强调吸引范围不限性别，有些人强调性别不是吸引的主要条件。它不表示对所有人都感兴趣，也不要求忽略性别对他人生活的重要性。了解本人怎样解释这个词，往往比套用一句统一口号更准确。[1]" },
+                    { h: "与双性恋有重叠", p: "不少双性恋者的吸引同样包含非二元者，因此不能把双性恋定义为只承认两个性别，再把泛性恋放在更高的包容等级。有些人使用一个标签，有些人同时使用两个；研究问卷的固定选项也未必覆盖这种重叠。[1]" },
+                    { h: "不用人格特征解释取向", p: "重视性格、价值观或情感连接，并不专属于泛性恋者。取向标签不能说明一个人是否肤浅、开放或善于建立关系，也不能由此推出某套神经或哲学机制。个人偏好、边界与现实选择仍需分别了解。" }
                 ]
             },
             asexuality: {
@@ -1084,9 +1138,9 @@
                 lv: "lv1",
                 badge: "性身份与取向",
                 sections: [
-                    { h: "性取向谱系中的经验", p: "无性恋（Asexuality，简称 Ace）通常指很少或不体验对他人的性吸引。它不等于没有性欲、没有性行为或没有亲密关系，也不能用单一成因解释。" },
-                    { h: "丰富的谱系体验", p: "无性恋不是单一的类别，而是一条丰富的谱系。有灰性恋（Greysexual，偶尔体验微弱性吸引）、半性恋（Demisexual，只对有深度情感联结的人产生性吸引），以及各种浪漫取向的组合——无性恋者可以是同性浪漫、异性浪漫、双性浪漫或无浪漫等。" },
-                    { h: "关系的多元可能性", p: "无性恋者可以有亲密关系，可以有浪漫关系，可以有性行为（尽管性吸引不是驱动力），也可以选择不。无性恋只是意味着性吸引不是内在的驱动力，不意味着没有爱的能力，没有亲密的需求，或没有建立深度连接的愿望。" }
+                    { h: "把吸引与其他体验分开", p: "无性恋通常指很少或不体验对他人的性吸引，也可以是一种身份。无性恋者可能有性欲、身体唤起、自慰或伴侣性行为，也可能没有。是否喜欢性内容、是否愿意参与性活动，则是另外的问题，不能拿来代替性吸引与身份。[3]" },
+                    { h: "谱系标签帮助描述差异", p: "灰性恋常用于描述罕见、较弱、条件有限或难以归类的性吸引；半性恋通常指只有建立较深情感联结后才可能产生性吸引，联结不是保证吸引出现的充分条件。性吸引与浪漫吸引也可分别命名；这种表达方式有帮助，但不是人人必须采用的诊断系统。[3]" },
+                    { h: "支持困扰而不否定身份", p: "无性恋身份本身无需治疗。若出现新的疼痛、欲望或唤起变化，可以像其他人一样寻求医疗支持；若困扰来自关系期待或被否定，则应处理这些问题。既不能把身份病理化，也不能用身份解释一切而忽略实际症状。" }
                 ]
             },
             gender_identity: {
@@ -1095,9 +1149,9 @@
                 lv: "lv1",
                 badge: "性身份与取向",
                 sections: [
-                    { h: "深层的自我认知", p: "性别认同是个体对自己性别身份的深层认知和归属感——'我知道我是谁'。这种认知通常在儿童早期就已形成，是个人身份的核心组成部分，独立于性取向。" },
-                    { h: "超越二元的可能性", p: "性别不是只有'男'和'女'两种选项。非二元性别（Non-binary）、性别酷儿（Genderqueer）、性别流动（Genderfluid）等身份，都在挑战传统的性别二元框架，提醒我们性别经验的多元性。" },
-                    { h: "尊重是核心", p: "使用个体偏好的姓名和代词，是最基本也是最重要的尊重。这不是'政治正确'，而是承认他人的自我认知，就像我们希望自己的自我认知被承认一样。" }
+                    { h: "认同与其他维度分开", p: "性别认同涉及一个人如何认识自身的性别；性取向涉及吸引模式，性别表达涉及外在呈现，性征涉及身体特征。这些维度可以相关，但不能互相替代。喜欢某种衣着或职业，也不能单独证明一个人的性别认同。[1]" },
+                    { h: "没有统一的命名时间表", p: "有人很早就能描述自己的性别，有人后来才找到合适的语言或安全的表达条件。身份可以稳定，也可以变化；不能要求所有跨性别或非二元者都报告“从小一直知道”，才能承认其当前经验。" },
+                    { h: "身份与医疗需要分别理解", p: "WHO 已将 ICD-11 的性别不一致移到性健康相关章节，明确性别多元身份本身不是精神疾病。有些人希望获得社会、心理或医疗支持，有些人没有相关需要。尊重姓名、称谓和隐私，与具体诊疗的个体化评估是不同层次的事。[4]" }
                 ]
             },
             sexual_awakening: {
@@ -1106,9 +1160,9 @@
                 lv: "lv2",
                 badge: "性心理发展",
                 sections: [
-                    { h: "从好奇到理解", p: "性启蒙不是一个单一事件，而是一个渐进的过程——从儿童期对身体的自然好奇，到青春期对性感受、性关系和性别差异的逐步认识。这是每个人成长旅程的一部分。" },
-                    { h: "信息的来源", p: "健康的性启蒙来自开放、诚实和科学的信息。羞耻化、神秘化或错误信息，可能在成年后留下持久的影响。父母、学校和社会都有责任提供适龄的、非评判的性教育。" },
-                    { h: "身体的尊严", p: "性启蒙的核心是学习尊重自己和他人的身体——理解身体的变化是自然的，认识到每个人都有权利决定自己身体的边界。这种身体自主性的意识，是健康性心理的基础。" }
+                    { h: "日常用语不等于研究阶段", p: "“性启蒙”可以指获得性知识，也可能指开始注意到性相关感受；英语 sexual awakening 通常更接近后一种意思。知识学习、身体发育和性吸引出现的时间可以不同，因此这里没有把它们合并为必经的一步。" },
+                    { h: "内容随年龄与需要递进", p: "全面性教育包括身体与关系知识、隐私、尊重、同意、避孕、感染预防和求助。年幼儿童可以先学习身体边界与哪些人能提供帮助，青春期再逐步加入相应的发育和健康知识。WHO 强调科学准确与发展适宜，而非一次性讲完所有内容。[5]" },
+                    { h: "教育效果不能简化为命运", p: "高质量性教育有研究支持，但课程内容、实施方式和环境会影响效果。不能由一个人的早期信息不足直接解释其成年困扰，更不能把弗洛伊德阶段理论当作已经验证的统一发展路线。学习和获得支持可以在生命中不同阶段继续进行。" }
                 ]
             },
             sexual_exploration: {
@@ -1117,8 +1171,9 @@
                 lv: "lv2",
                 badge: "性心理发展",
                 sections: [
-                    { h: "了解自己的旅程", p: "性探索是了解自己的性偏好、界限和身份的过程。这可能包括幻想、自慰、阅读，或在安全的关系中尝试不同的亲密方式。关键在于安全、自愿和自我接纳。" },
-                    { h: "试错的空间", p: "探索意味着可能会犯错，可能会发现某些事情不适合自己，可能会改变主意。这都是正常的。重要的是有一个安全的环境，让个体可以在没有评判的情况下探索和学习。" }
+                    { h: "了解自己有多种途径", p: "阅读可信资料、回顾感受、与信任的人交流，都可以帮助理解偏好和身份。性行为只是某些人可能选择的经验，不是认识取向的必要验证。一个人也可以通过发现自己不想参与什么，更清楚地表达边界。[1][2]" },
+                    { h: "允许暂停和重新判断", p: "先前感兴趣的事，后来可能不再合适；预先同意的互动，也可以在进行中停止。探索不要求不断增加经验，更不能以证明信任、开放或成熟为由要求别人参与。涉及他人时，须考虑同意能力、适用法律和实际风险。" },
+                    { h: "经历多少不衡量健康", p: "没有伴侣、不自慰或不主动探索，并不自动表示压抑或发展受阻。需要支持的是本人希望理解的疑问、限制其自主的压力或实际困扰，而不是与某种人生进度表不一致。" }
                 ]
             },
             sexual_maturity: {
@@ -1127,91 +1182,97 @@
                 lv: "lv2",
                 badge: "性心理发展",
                 sections: [
-                    { h: "能力而非固定身份", p: "这里的“成熟”强调理解需要、沟通边界、尊重同意与处理差异的能力，不要求性取向标签稳定、拥有伴侣、参与性行为或达到某种经验数量。" },
-                    { h: "持续的成长", p: "性成熟不是一个终点，而是一个持续的过程。随着年龄增长、关系变化、生活经历累积，我们对自己的性心理的理解也在不断深化。保持开放和好奇的心态，是性心理健康的重要组成部分。" }
+                    { h: "生理与心理含义不能混用", p: "在生物学中，sexual maturity 常指生殖发育达到相应阶段。日常所说的心理或关系上的成熟，则涉及理解信息、作出选择、尊重边界等能力。身体发育并不能证明一个人已经具备法律上的同意条件或准备好参与性关系。" },
+                    { h: "能力需要具体描述", p: "比笼统判断“成熟不成熟”更有用的，是了解一个人能否识别和表达不适、理解具体风险、尊重他人拒绝，以及在需要时得到支持。这些是性健康教育关注的能力，并没有一个适用于所有人的成熟分数。[2][5]" },
+                    { h: "经验和稳定标签都不是门槛", p: "性经历多不必然意味着善于沟通；没有经历、没有伴侣或仍在探索身份，也不表示能力不足。人可以持续学习处理差异，不需要用接受性活动、固定身份或保持高欲望来证明成长。" }
                 ]
             },
             sexual_desire: {
                 title: "性欲望",
                 en: "Sexual Desire",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "自发与响应性欲望", p: "欲望可以在刺激之前自发出现，也可能在安全、亲密或身体唤起之后响应性出现；因此它不必是性反应的固定起点，也不一定持续或弥散。" },
-                    { h: "波动是正常的", p: "性欲望不是恒定不变的。压力、疲劳、激素波动、关系满意度、生活事件……许多因素都可能影响欲望水平。接受这种自然的波动，比追求'恒定的高欲望'更有助于性健康。" },
-                    { h: "个体基线", p: "每个人都有自己独特的欲望基线。对一个人来说'正常'的频率，对另一个人来说可能太多或太少。重要的是找到适合自己的节奏，以及与伴侣的欲望差异进行有效沟通。" }
+                    { h: "欲望可以在不同环节出现", p: "欲望描述性相关的兴趣或动机，可以指向某个人，也可以没有特定对象。它有时自发出现，有时在本人愿意的互动、刺激或主观唤起之后逐渐出现。Basson 的模型强调后一种响应性成分，帮助解释传统线性周期难以覆盖的经验。[6]" },
+                    { h: "响应性不意味着先接受不想要的活动", p: "没有当下的强烈欲望时，一个人仍可能自愿尝试某种亲密互动，但前提是自己愿意、随时能停止。欲望也可能一直不出现。这个模型不能用于说服别人忍耐接触，不能把身体反应当作同意，更不是“男性自发、女性响应”的固定分工。" },
+                    { h: "关注变化，也关注所处情境", p: "健康、药物、睡眠、压力、关系与可获得的刺激，都可能影响欲望。双重控制模型用兴奋和抑制过程理解部分差异，但不能据此给个人判定某个“开关”出了问题。[7] 本人是否困扰、变化是否明显，以及希望改变什么，比与他人比较次数更有意义。" }
                 ]
             },
             sexual_attraction: {
                 title: "性吸引",
                 en: "Sexual Attraction",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "是什么让我们被吸引？", p: "性吸引的触发因素非常复杂——外貌、气味、声音、肢体语言、性格、气质、共同的经历，甚至某些特定的小动作，都可能共同参与。它通常不是单一条件触发，而是身体感知、情境记忆和关系想象同时作用的结果。" },
-                    { h: "和性欲望、性唤起的区别", p: "性欲望更像背景性的开放状态，性唤起是身体进入反应模式，而性吸引多了一个明确的对象：这个人让我产生性相关的接近冲动。三者可以连续出现，也可能彼此错开。" },
-                    { h: "不要和审美或浪漫混在一起", p: "觉得某人好看，可能只是审美吸引；想和某人恋爱，可能是浪漫吸引；被某人理解和支持，可能是情感吸引。性吸引的判断重点，是体验是否自然指向性意味的亲密接触。" },
-                    { h: "吸引不等于行动许可", p: "体验到性吸引并不意味着必须行动，也不意味着对方有任何义务回应。成熟的性心理需要把内在体验、现实边界、同意原则和关系责任区分开来。" }
+                    { h: "对象指向是辨析的重点", p: "性吸引常用来描述某个人对自己产生了性意味的吸引力。性欲望则更强调兴趣或动机，两者可能同时出现；欲望也可以指向对象，所以不能仅用“有对象或没对象”机械划线。研究中各词的操作定义并不完全一致。[1]" },
+                    { h: "身体反应不能代替体验", p: "有人受吸引时会有幻想或身体反应，有人没有明显身体变化；也有人有身体反应，却不觉得被这个人吸引。唤起研究支持把主观感受与生殖器反应分开测量，不能用其中一项认证另一项。[8]" },
+                    { h: "不必马上给感受定类", p: "觉得好看、想恋爱、想靠近和想进行性互动，可以重合，也可以分离。分开描述有助于自我理解，尤其能容纳无性恋谱系经验，但不要求人人都能清晰划分每一种吸引。[3] 内在体验不构成行动许可，是否参与现实互动仍须各方自愿。" }
                 ]
             },
             sexual_fantasy: {
                 title: "性幻想",
                 en: "Sexual Fantasy",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "安全的心理空间", p: "性幻想是正常的心理活动，是一个安全的心理空间——在那里，我们可以探索各种欲望、偏好和可能性，而不必承担现实世界的后果。性幻想的内容不一定反映现实行为意愿，这一点非常重要。" },
-                    { h: "幻想与现实的边界", p: "区分幻想与现实是心理健康的重要指标。享受某种幻想，不意味着必须在现实中实现它；同样，在幻想中探索某些内容，也不代表在现实中会接受或渴望它。" }
+                    { h: "内容、感受与意图分开看", p: "2023 年综述强调，人们幻想的内容不一定是其在现实中感兴趣或会做的事。[10] 同一个情节可能因虚构、可控制或与日常生活不同而具有特定意义；不能仅凭主题推断身份、人格、同意或行动意图。" },
+                    { h: "不是每个念头都令人愉快", p: "性相关意象可能自发出现，也可能是本人主动构想。令人恐惧、反复侵入的念头，与主动享受的幻想在主观体验和评估需要上不同；念头出现本身不能证明想要实施。若持续困扰或影响生活，可以向专业人员说明念头的出现方式、感受与影响。" },
+                    { h: "研究仍有样本边界", p: "既有幻想研究较多关注北美年轻顺性别异性恋者，对其他年龄、性别和文化的覆盖不足。[10] 幻想可以是部分人的体验，也有人很少幻想；无需把幻想频率或题材当作健康考核。若涉及现实行为，则必须另外评估同意、法律和风险。" }
                 ]
             },
             sexual_arousal: {
                 title: "性唤起",
                 en: "Sexual Arousal",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "身体与心灵的连接", p: "性唤起涉及客观生理变化和主观感受两个可分离的层面。有时身体有反应但心理没感觉，有时心理兴奋但身体没反应。这种不一致是正常的，不是'性功能障碍'的标志。" },
-                    { h: "情境的重要性", p: "性唤起高度依赖于情境和心理状态。安全感、放松、信任、与伴侣的连接……这些心理因素往往比纯粹的'物理刺激'更重要。这就是为什么性不仅仅是生理活动，更是心理和关系活动。" }
+                    { h: "主观兴奋与生殖器反应是两种测量", p: "自报兴奋、勃起或润滑等指标之间可以不一致。2010 年元分析发现这种一致性受测量方法等因素影响，研究中的男女平均差异不能用来判断某个人的体验。[8] 偶尔不同步不足以诊断障碍，持续困难仍可根据本人需要评估。" },
+                    { h: "非自愿情境也可能有身体反应", p: "2024 年范围综述确认，一些幸存者在非自愿性经历中报告了生殖器反应或高潮。资料方法差异较大，无法可靠估计发生率或确定哪些条件更容易发生。[9] 这些反应不能证明喜欢、享受或同意，也不能把责任转给幸存者。" },
+                    { h: "没有单一因素决定反应", p: "感觉刺激、注意、期待、药物、身体健康和关系情境都值得了解。双重控制模型提供兴奋与抑制的解释框架，但不能断言心理因素总比身体因素重要。[7] 支持应围绕个人目标，疼痛或明显变化可及时就医，不需要先证明自己达到某个诊断门槛。" }
                 ]
             },
             sexual_impulse: {
                 title: "性冲动",
                 en: "Sexual Impulse",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "从反应到行动", p: "性冲动是从被动反应向主动行为转变的关键点——强烈的、突发的、想要立即行动的欲望。这时，前额叶皮质的抑制功能减弱，边缘系统的激活增强，导致风险评估降低，决策加速。" },
-                    { h: "冲动的管理", p: "性冲动的可控性相对较低，但这并不意味着我们无能为力。环境管理（如避免高风险情境）、提前计划（如与伴侣约定暂停信号）、以及冲动控制训练（如正念、深呼吸），都可以帮助我们在冲动来临时做出更有意识的选择。" }
+                    { h: "强烈愿望与控制失败是不同问题", p: "日常所说的性冲动，强调突然或迫切的行动倾向。它不一定是从唤起到行为的必经环节，也不意味着控制能力消失。强烈的愿望可以存在，同时一个人仍选择等待、转移注意或停止。" },
+                    { h: "神经机制不能替代行为判断", p: "一次强烈冲动不能证明前额叶失灵或某个神经系统接管了行为。群体机制研究也不能直接解释具体个人为什么越界。无论欲望多强，涉及他人的行为仍需要其同意；拒绝不构成可以继续施压的理由。" },
+                    { h: "何时需要更具体的评估", p: "如果多次尝试调整仍难以控制、行为长期挤占重要职责或造成明显损害，应进一步了解控制模式、诱因和共病。CSBD 的临床要求关注持续失控与实际影响，不能由冲动强度或行为频率直接推出。[16][17]" }
                 ]
             },
             sexual_behavior: {
                 title: "性行为",
                 en: "Sexual Behavior",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "知情同意的核心", p: "健康的性行为建立在知情同意的基础上——同意必须是自愿的、清醒的、可撤销的，且在所有性互动中都应持续确认。任何非自愿性行为都是性暴力，这是不可接受的。" },
-                    { h: "超越高潮", p: "性行为的目的不仅仅是达到高潮。身体接触、情感连接、亲密感、与伴侣的玩耍——这些都是性行为的重要组成部分。以高潮为唯一目标的性行为，反而可能增加表现焦虑，减少性满足。" }
+                    { h: "行为范围取决于具体语境", p: "性行为可以独自进行，也可以涉及他人；并不限于性交或身体接触。研究为评估感染、关系或其他问题而采用不同定义，所以比较数据前需要看具体问了哪些活动。行为不能单独决定身份，也不保证满足或亲密。[1]" },
+                    { h: "同意必须具体且持续有效", p: "涉及他人的互动，需要各方具备相应的同意能力、知情且自愿，并能随时撤回。同意一种活动不等于同意另一种；沉默、没有反抗、过去的关系或身体唤起，都不能代替当前同意。法律上的年龄与能力条件还取决于适用司法辖区。[2][9]" },
+                    { h: "健康与满意需另行了解", p: "根据具体活动讨论避孕、感染预防、身体舒适和隐私，比只按身份判断风险更有用。活动结束后是否满意，应由本人表达；没有高潮不必然意味着失败，有高潮也不能说明过程自愿或满意。" }
                 ]
             },
             orgasm: {
                 title: "性高潮",
                 en: "Orgasm",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "每个人的体验都是独特的", p: "没有'标准'的性高潮。有些人的高潮强烈而短暂，有些人的温和而持久；有些人需要特定的刺激方式，有些人更容易达到。最重要的是，一个人自己觉得满意的高潮，就是'好'的高潮。" },
-                    { h: "不是必需的", p: "性高潮是性满足的重要但非必需组成部分。没有达到高潮，不代表性行为'失败'，也不代表你'有问题'。许多人在没有高潮的情况下，也能体验到高度的性满足和亲密感。" }
+                    { h: "身体事件与主观评价分开", p: "高潮通常包含短暂的性反应高峰，可能伴随节律性肌肉收缩和自主神经变化；外在表现和感受存在差异。高潮与射精是相关但可分离的过程，高潮也可能并不愉快，不能把它当作同意或满意的证明。[9]" },
+                    { h: "没有高潮不自动构成障碍", p: "一次没有高潮可能与刺激方式、疲劳、情境、药物或个人选择有关。是否需要支持，要了解困难的持续性、本人困扰和希望达到的目标，而不是要求每次性活动必须完成一个固定终点。" },
+                    { h: "证据支持按问题选择方案", p: "2026 年刊载的治疗综述发现，部分正念认知行为干预能改善特定女性临床样本的高潮等指标，但该综述排除了性疼痛人群，也未直接比较心理治疗与药物治疗。[19] 不能据此承诺一种练习适用于所有人；疼痛或新的明显变化应具体评估。" }
                 ]
             },
             refractory_period: {
                 title: "不应期",
                 en: "Refractory Period",
                 lv: "lv3",
-                badge: "性反应循环",
+                badge: "性反应相关过程",
                 sections: [
-                    { h: "自然的恢复过程", p: "不应期是性高潮后的自然恢复期，身体和心理都需要回到平常状态。这就像运动后需要休息，饱餐后需要消化——是身体的自然节律。" },
-                    { h: "个体差异", p: "不应期的长度存在巨大的个体差异。男性通常有更明显的不应期，从数分钟到数小时不等；女性的不应期通常较短或不存在，部分女性能在短时间内经历多次高潮。年龄、健康状况、性刺激强度等，都会影响不应期的长度。" }
+                    { h: "先说明哪种反应暂时降低", p: "不应期研究尤其关注射精后暂时减少的性活动或反应。主观兴趣、再次勃起、再次射精或再次高潮，未必同时恢复；用一个时长概括所有体验可能造成混淆。是否明显出现、多久恢复，都存在个体和情境差异。[11]" },
+                    { h: "泌乳素不是已证实的唯一开关", p: "高潮或射精前后观察到某种激素变化，不足以证明它造成不应期。2021 年研究在两种小鼠品系中操纵泌乳素，未发现支持其决定不应期的结果。[12] 这挑战了一个简单假说，但小鼠结果也不能直接证明人类的全部机制。" },
+                    { h: "把休息需要当作信息", p: "需要休息不说明缺乏爱意或能力不足；不应期较短也不是健康优越的证明。是否继续拥抱、交谈或完全停止接触，都应听取本人意愿。若相较以往有突然明显变化、疼痛或持续困扰，可以就医讨论，而不是自行寻求缩短不应期的药物。" }
                 ]
             },
             masturbation: {
@@ -1220,8 +1281,9 @@
                 lv: "lv4",
                 badge: "调节与表达",
                 sections: [
-                    { h: "正常的自我照顾", p: "自慰是正常的自我调节机制，是自我照顾的一种方式——就像饿了吃饭、困了睡觉一样自然。它帮助我们了解自己的身体、释放性压力、改善睡眠，是普遍的人类性行为。" },
-                    { h: "去羞耻化", p: "许多文化对自慰有羞耻感，但这种羞耻是文化建构的，不是自慰本身有什么'错'。科学研究一致表明，适度的自慰对健康无害。接纳自慰为正常的性活动，是性心理健康的重要一步。" }
+                    { h: "可以选择，也可以不选择", p: "自慰是自我刺激的一种性活动，可以带来愉悦，也可能帮助部分人了解身体。有人感到放松，有人没有这种需要；不能把它描述为每个人都必须完成的生理任务，也不能保证它改善睡眠或关系。" },
+                    { h: "频率不能单独判断健康", p: "没有适用于所有年龄、性别和健康状况的“适度次数”。需要关注是否造成疼痛或损伤、是否挤占重要生活活动，以及是否反复失控。另一方面，单纯觉得行为违背道德而羞耻，也不足以诊断 CSBD。[16]" },
+                    { h: "隐私与准确知识同样重要", p: "WHO 性教育说明强调纠正自慰有害的误解，并以适龄方式教授身体边界和隐私。[5] 自慰本身不应成为羞辱的理由；是否参与仍由本人选择。持续疼痛或其他身体变化应具体评估，不宜靠次数判断原因。" }
                 ]
             },
             sexual_communication: {
@@ -1230,8 +1292,9 @@
                 lv: "lv4",
                 badge: "调节与表达",
                 sections: [
-                    { h: "关系的基石", p: "良好的性沟通是健康性关系的基础。研究一致显示，能够进行开放、坦诚性沟通的伴侣，其关系满意度和性满意度都显著更高。性沟通不是一次性的'尴尬谈话'，而是持续的对话。" },
-                    { h: "如何开始？", p: "开始性沟通的最简单方式，是从分享积极体验开始——'我喜欢这样'、'这让我感觉很好'。然后，再逐渐引入更有挑战性的话题。选择一个不被打扰的时间，在放松、非性的情境下进行，会更容易。" }
+                    { h: "研究强调交流质量", p: "Mallory 的元分析综合了 93 项研究、38,499 名处于关系中的参与者，发现性沟通与性满意度、关系满意度均正相关；沟通质量的关联大于交流频率或自我披露。[13] 这提示值得关注是否被理解、是否能安心表达，而不只是谈话次数。" },
+                    { h: "相关关系不等于单向疗效", p: "更满意的关系可能让沟通更容易，较好的沟通也可能帮助协调需要；研究的测量方式、样本和文化情境会改变关联。不能把这些结果写成“只要坦诚说出来，关系就会改善”，也不能据此责怪难以开口的人。" },
+                    { h: "说清具体需要并允许拒绝", p: "可以选择不受打扰的时机，谈一项具体需要，例如“这样让我不舒服，我希望停下来”或“这件事我还没想好”。重要的是对方能否接受反馈与拒绝。存在控制、威胁或暴力时，普通沟通练习未必合适，应优先考虑安全及独立支持。" }
                 ]
             },
             sexual_preference: {
@@ -1240,8 +1303,9 @@
                 lv: "lv4",
                 badge: "调节与表达",
                 sections: [
-                    { h: "人类性表达的丰富性", p: "在合法、安全、双方同意的前提下，性偏好的多样性是人类性表达的丰富体现。有人喜欢温柔缓慢，有人喜欢热烈激情；有人偏好特定情境，有人喜欢自发即兴——这些差异都是正常的。" },
-                    { h: "与伴侣的协商", p: "伴侣间的性偏好可能不完全匹配，这是正常的。关键在于协商——找到双方都舒适的中间地带，在某些方面妥协，在另一些方面探索新的可能性。重要的是，没有人需要为了满足对方而做自己不舒服的事情。" }
+                    { h: "先说明这里的偏好指什么", p: "本表用性偏好描述互动方式、角色、情境或刺激方面的兴趣，不把 sexual preference 当作性取向的替代词。对某种幻想感兴趣，也不必然想在现实中实践；这两者在研究中需要分别测量。[10]" },
+                    { h: "兴趣、行为与障碍有不同边界", p: "少见的兴趣本身不足以诊断障碍。ICD-11 对相关障碍的判断关注非自愿对象、非仅由污名或被排斥产生的明显困扰，以及严重伤害风险等具体条件，不能只看兴趣是否符合主流期待。[15] 现实行为是否获得有效同意、是否合乎法律，以及有什么身体风险，仍需分别判断。" },
+                    { h: "协商不要求接受折中接触", p: "双方可以寻找都愿意的选择，也可以发现没有兼容的活动。拒绝不需要通过勉强尝试来证明合理；对一种情境的同意也不能自动延伸到另一种。知情和自愿是必要条件，但不会让所有实践的健康风险消失。" }
                 ]
             },
             sexual_intimacy: {
@@ -1250,8 +1314,9 @@
                 lv: "lv4",
                 badge: "调节与表达",
                 sections: [
-                    { h: "超越生理", p: "性亲密是通过性行为建立的深度情感连接，它超越了纯粹的生理满足。当我们在性互动中展现真实自我、表达脆弱、并接纳对方的脆弱时，性就不仅仅是'做'，而是'成为'——与另一个人在深层情感层面连接。" },
-                    { h: "培养路径", p: "性亲密需要时间和耐心。性行为后的情感连接时间（如拥抱、交谈、安静地躺在一起），对性亲密的培养至关重要。安全型依恋的伴侣更容易建立深层性亲密，但通过有意识的练习，任何伴侣都可以增强这种连接。" }
+                    { h: "亲密描述连接感", p: "性亲密常指在性意味互动中感到被理解、信任或接纳。它不等于一次性行为，也不要求每次互动都有深刻的情感体验。WHO 将亲密列为 sexuality 的相关维度之一，同时指出并非所有维度都被每个人体验或表达。[2]" },
+                    { h: "不要用单一脚本评价关系", p: "有人喜欢事后拥抱或交谈，有人需要安静、休息或独处。具体安排是否带来连接，要看当事人的感受，不能规定某一种仪式必不可少。无性恋者、没有性活动的人，也可以通过其他方式建立重要的亲密关系。[3]" },
+                    { h: "研究指标与日常体验未必重合", p: "依恋、回应性、沟通和关系满意度是相关但不同的研究对象。沟通与满意度的关联并不能直接证明某项活动一定增加性亲密。[13] 更实际的做法是了解彼此需要，允许差异，并留意边界是否受到尊重。" }
                 ]
             },
             sexual_satisfaction: {
@@ -1260,8 +1325,9 @@
                 lv: "lv4",
                 badge: "调节与表达",
                 sections: [
-                    { h: "不只是频率", p: "性满足不取决于性行为的频率，而取决于体验的质量。许多人发现，较少但更专注、更连接的性互动，比较频繁但分心或例行公事的性互动，带来更高的满足感。" },
-                    { h: "关系的镜子", p: "性满足往往是整体关系质量的镜子。当关系中存在未解决的冲突、沟通障碍或情感疏离时，性满足通常会下降；反之，当关系健康、连接紧密时，性满足往往也会更高。" }
+                    { h: "先确定评价的时间与对象", p: "这里的性满足主要对应 sexual satisfaction，即对性相关体验或性生活的主观评价。一次互动的满意程度与过去几个月的总体评价可能不同；研究量表也可能分别询问身体体验、需要是否得到回应和关系方面的感受。" },
+                    { h: "次数、高潮和关系质量都不是替代指标", p: "频率、高潮、交流和关系状态都可能与满意度有关，却不能单独决定它。性满意度与关系满意度在研究中通常分别测量；有性方面的困难，不代表整段关系失败，关系亲密也不保证所有性体验都满意。[13]" },
+                    { h: "评价应容纳不参与性活动的人", p: "某些量表默认近期有性活动，因此对没有活动的人可能不适用，低分也不能直接解释为功能障碍。了解本人是否满意、希望什么改变，比套用统一标准更有帮助。支持目标可以是减少疼痛、解除压力或保有不参与的自主。" }
                 ]
             },
             low_desire: {
@@ -1270,8 +1336,9 @@
                 lv: "lv5",
                 badge: "困扰与问题",
                 sections: [
-                    { h: "分别看吸引、欲望、身份与困扰", p: "无性恋主要描述性吸引与身份，低欲望描述兴趣或动机，二者不能用“先天/后天”或是否有过性行为简单划线。临床评估更关注变化、本人困扰、功能影响和其他可能解释。" },
-                    { h: "多因素的可能性", p: "性欲低下很少是单一原因造成的。压力、疲劳、激素失衡、药物副作用、关系问题、抑郁、焦虑……都可能影响性欲。全面的医学评估和心理咨询，有助于找出可能的原因并制定适当的干预方案。" }
+                    { h: "描述低欲望不等于下诊断", p: "低欲望可以是长期经验，也可以是近期变化；不能仅与伴侣或人群平均值比较。临床判断还要了解持续时间、发生情境、本人困扰以及其他可能解释。寻求帮助则不必等待达到诊断要求，本人希望了解变化就可以咨询。" },
+                    { h: "欲望差异是关系中的相对问题", p: "两个人希望的频率或互动方式不同，不自动说明较低欲望的一方患病。ESSM 立场文件强调应了解双方需要、关系情境与实际困扰，同时明确承认这方面的干预证据仍有限。[14] 目标不是规定谁必须配合谁，而是减少压力、尊重边界并讨论可接受的安排。" },
+                    { h: "健康、身份与用药分别评估", p: "无性恋涉及性吸引与身份，不能与低欲望简单按先天或后天划线。药物影响也因结局而异：2026 年 SSRI 元分析发现高潮困难风险增加，但欲望下降的合并差异未达显著。[18] 若怀疑与用药有关，应与医生讨论时间关系和调整选择，不能自行停药或把一切归因于激素。" }
                 ]
             },
             sexual_aversion: {
@@ -1280,18 +1347,21 @@
                 lv: "lv5",
                 badge: "困扰与问题",
                 sections: [
-                    { h: "先区分边界与困扰", p: "对性活动感到排斥不等于“不够放松”或“不够爱对方”，也不自动构成疾病。是否需要支持取决于本人是否困扰、是否涉及创伤以及生活功能是否受影响。" },
-                    { h: "原因不能预设", p: "创伤、疼痛、关系压力、文化经验或稳定偏好都可能相关。支持应从尊重拒绝与控制感开始，而不是用暴露或伴侣需求推动当事人改变。" }
+                    { h: "先描述具体排斥什么", p: "厌恶可以针对某种触碰、某个情境、特定对象，也可以涉及较广泛的性内容。厌恶、恐惧、没有兴趣与暂时不愿意，彼此也不完全相同。这里使用描述性概念，不能由一个词直接判断临床问题。" },
+                    { h: "不能从反应倒推经历或身份", p: "性厌恶不能证明一个人曾遭受创伤，也不能证明其属于无性恋谱系。无性恋者对性活动可以有不同态度；非无性恋者也可能排斥某些活动。[3] 疼痛、压力、关系经历和稳定偏好等因素，需要通过本人愿意提供的信息分别了解。" },
+                    { h: "目标由本人决定", p: "拒绝不需要通过诊断来获得正当性。若本人希望减轻恐惧或不适，可以选择创伤知情、尊重自主的支持；若只是稳定边界，则不必以恢复性活动为目标。伴侣不能自行施加所谓脱敏训练，也不应将接受接触作为关系承诺的证明。" }
                 ]
             },
             sexual_addiction: {
                 title: "强迫性性行为障碍",
-                en: "Compulsive Sexual Behavior",
+                en: "Compulsive Sexual Behavior Disorder",
                 lv: "lv5",
                 badge: "困扰与问题",
                 sections: [
-                    { h: "关键是失控与功能损害", p: "ICD-11 将强迫性性行为障碍列为冲动控制障碍。诊断需要长期失控并造成明显痛苦或功能损害；高性欲、频繁性行为或仅由道德评判产生的羞耻都不足以诊断。" },
-                    { h: "支持需要个体化", p: "专业评估应考虑共病、创伤、药物、关系和具体行为模式，再共同制定心理或医学支持方案；没有一种支持小组或药物适用于所有人。" }
+                    { h: "持续控制失败是核心", p: "ICD-11 的 CSBD 指持续难以控制强烈、重复的性冲动或欲求，导致反复性行为。相关模式延续较长时期，例如六个月或以上，并造成明显痛苦或重要生活领域的损害；可表现为多次减少行为失败、忽视职责，或即使后果明显仍反复进行。[15][16]" },
+                    { h: "排除条件同样重要", p: "高性欲、频繁自慰、观看色情材料或非典型兴趣，本身都不足以诊断。完全由道德判断或他人不赞同产生的痛苦，也不满足要求；但道德冲突与实际控制困难可以并存，需要分别评估。还应排查躁狂发作、物质、药物和其他健康状况的影响。[16]" },
+                    { h: "近期研究仍保留争议", p: "2026 年跨学科叙述综述讨论了 CSBD、问题性色情使用、评估和治疗，也指出定义、测量及代表不足的人群等问题。[17] ICD-11 目前将 CSBD 列为冲动控制障碍；“性成瘾”并不是可以无条件替换的诊断名，量表分数或脑影像关联也不能单独确诊。" },
+                    { h: "改善不只看行为是否归零", p: "专业支持应结合控制能力、生活功能、共病、关系与本人目标。减少伤害、恢复自主、改善健康与职责履行，都可能是有意义的结果。没有一种药物、支持小组或统一禁欲方案适用于所有人；诊断也不能免除对侵犯边界等具体行为的责任。" }
                 ]
             },
             sexual_trauma: {
@@ -1300,9 +1370,10 @@
                 lv: "lv5",
                 badge: "困扰与问题",
                 sections: [
-                    { h: "权力与控制的侵犯", p: "Judith Herman 指出，性创伤的核心是权力与控制的侵犯——受害者在创伤时刻失去了对自己身体和边界的控制。这不是单纯的'性行为'，而是暴力和侵犯。" },
-                    { h: "冻结不是'不反抗'", p: "创伤冻结反应（Tonic Immobility）是许多幸存者在侵犯期间经历的生理性僵直——身体无法移动，无法说话，无法反抗。这是神经系统的自动保护反应，不是'软弱'，不是'同意'，不是受害者的错。" },
-                    { h: "复原路径因人而异", p: "创伤知情支持强调安全、选择、协作和控制感。具体治疗应由受过训练的专业人员依据症状、证据、可及性和当事人意愿选择，不能把某一种疗法列为人人必需。" }
+                    { h: "经历与后续诊断需要分开", p: "“性创伤”常同时指性暴力等经历及其影响，而创伤后应激障碍（PTSD）是有具体要求的临床诊断。有人出现回忆侵入、回避、警觉或麻木，有人反应较轻或延迟出现；没有一种外在表现能够证明或否定遭受过侵犯，也不能要求幸存者按固定阶段恢复。[15]" },
+                    { h: "当时的反应不能承担同意的含义", p: "人在威胁下可能无法说话或行动，也可能为了安全而顺从；没有反抗不等于同意。2024 年范围综述还确认非自愿情境中可能出现生殖器反应或高潮，但不能可靠估计发生率。[9] 身体反应不说明当事人希望事件发生，也不改变施害者的责任。" },
+                    { h: "支持从实际需要开始", p: "可以先了解安全、医疗、保密与陪伴需要，避免追问细节、质疑反应或替当事人决定是否报案。性暴力后的某些医疗处理有时间要求，因此即使尚无明显心理症状，也可以及时联系医疗服务。是否接受接触、何时谈及经历，应保留选择权。" },
+                    { h: "治疗证据适用于相应临床需要", p: "2023 年美国退伍军人事务部与国防部（VA/DoD）指南支持延长暴露、认知加工治疗和眼动脱敏与再加工（EMDR）等创伤聚焦心理治疗用于 PTSD。[20] 这不意味着每位幸存者都必须接受同一方案。具体选择应与受过训练的专业人员共同讨论，考虑意愿、症状与可及性；治疗也不等于强迫恢复性活动。" }
                 ]
             },
             sexual_dysfunction: {
@@ -1311,9 +1382,10 @@
                 lv: "lv5",
                 badge: "困扰与问题",
                 sections: [
-                    { h: "生理与心理的交互", p: "性功能障碍很少是纯粹'生理'或纯粹'心理'的，通常是两者的复杂交互。例如，勃起功能障碍可能最初有生理原因，但随后产生的表现焦虑会进一步恶化问题，形成恶性循环。" },
-                    { h: "Barlow 模型", p: "Barlow 的性功能障碍模型强调认知干扰和焦虑的核心作用。表现焦虑导致注意力从性刺激转向自我监控（'我表现得够好吗？'），从而干扰自然的性反应，形成'焦虑-失败-更焦虑'的恶性循环。" },
-                    { h: "综合治疗", p: "有效治疗通常是综合性的——医学评估（血管、神经、激素）、药物或器械治疗（如 PDE5 抑制剂、真空勃起装置），以及性治疗中的感觉聚焦（Sensate Focus）练习。感觉聚焦通过渐进的非性交亲密，重建身体信任和性反应的自然流动。" }
+                    { h: "具体困难比总标签更有用", p: "欲望、唤起、勃起、润滑、高潮、射精与疼痛涉及不同问题，分类系统的名称、时长和排除条件也不完全相同。一次不理想的体验或筛查分数，不能直接等同正式诊断。评估还需了解本人困扰、情境、身体健康与用药。" },
+                    { h: "近期证据提醒关注药物影响", p: "选择性血清素再摄取抑制剂（SSRI）是一类常用抗抑郁药。2026 年系统综述纳入 13 项抑郁成人随机试验，其中 6 项进入元分析。与安慰剂相比，高潮困难风险增加、性满意度降低，而欲望下降的合并差异未达显著，部分总分也未显示显著差异。[18] 这些结局不能合并成“所有人的性欲都会下降”；个体用药决策仍要与医生讨论获益、影响和替代方案。" },
+                    { h: "治疗必须对应人群与症状", p: "2026 年刊载的治疗综述纳入 36 项研究，关注没有性疼痛的女性欲望、唤起或高潮困难。部分正念认知行为干预与药物改善了相应指标，但研究之间存在测量差异，也没有直接比较心理与药物方案。[19] 因而不能推导一种方法适用于所有困难，更不能把疼痛一概解释为焦虑。" },
+                    { h: "目标围绕本人希望改善的事", p: "可以讨论减少疼痛、改善舒适度、恢复想要的功能或减轻压力。是否让伴侣参与，由本人意愿与关系安全决定；不是每个人都需要所有检查或综合治疗。持续疼痛或突然明显变化可及时就医，不必等待达到某项诊断的时间要求。" }
                 ]
             },
             sexual_anxiety: {
@@ -1322,8 +1394,9 @@
                 lv: "lv5",
                 badge: "困扰与问题",
                 sections: [
-                    { h: "自我监控的干扰", p: "性焦虑的核心是表现焦虑——'我表现得够好吗？'、'我的身体看起来怎么样？'、'对方满意吗？'。这种自我监控将注意力从当下的感官体验转移到评判性思维中，从而干扰自然的性反应。" },
-                    { h: "正念的力量", p: "正念是对抗性焦虑的有效工具。正念将注意力从评判性思维和对未来的担忧，拉回到当下的感官体验——身体的感觉、呼吸、与伴侣的连接。当我们完全沉浸在当下时，焦虑往往会自然减少。" }
+                    { h: "焦虑的对象不只表现", p: "担心身体外观或能否让伴侣满意，只是部分情形。疼痛、怀孕、感染、隐私、身份暴露和是否会被尊重，也可能引起担忧。先了解焦虑回应的是什么，才能判断应改善信息、处理真实风险，还是提供心理支持。" },
+                    { h: "注意与反应可能互相影响", p: "反复监控自己是否勃起、润滑或达到高潮，可能让注意离开体验；身体困难也可能先发生，继而增加担忧。双重控制框架关注情境中的兴奋与抑制，但不能凭焦虑就判定所有症状都是心理造成的。[7]" },
+                    { h: "正念和其他练习有适用范围", p: "近期治疗综述发现，部分包含正念的认知行为方案可改善特定女性临床样本的性功能与困扰，但研究排除了性疼痛人群，也不是对所有性焦虑的直接检验。[19] 若练习使人更不适，可以暂停并调整；处理疼痛、强迫或关系安全问题，应先于要求自己放松或专注身体。" }
                 ]
             }
         };

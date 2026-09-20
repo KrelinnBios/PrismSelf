@@ -9,13 +9,13 @@
   <meta http-equiv="Expires" content="0">
   <title>PrismSelf - 人际吸引类型全景分析表</title>
   <link rel="canonical" href="https://prismself.vip/Analyses/Interpersonal-Attraction-Comparison.html">
-  <meta name="description" content="全景比较多种人际吸引类型（性、浪漫、感官、智识等），辨析它们的定义与差异。">
+  <meta name="description" content="结合近期关系研究与社群术语，比较性、浪漫、审美、感官等八种吸引表述，辨析十二项相关体验，并说明研究依据与适用边界。">
   <meta name="theme-color" content="#2f6f73">
   <link rel="icon" href="../icon/logo.svg?v=202609095" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 人际吸引类型全景分析表">
-  <meta property="og:description" content="全景比较多种人际吸引类型（性、浪漫、感官、智识等），辨析它们的定义与差异。">
+  <meta property="og:description" content="结合近期关系研究与社群术语，比较性、浪漫、审美、感官等八种吸引表述，辨析十二项相关体验，并说明研究依据与适用边界。">
   <meta property="og:url" content="https://prismself.vip/Analyses/Interpersonal-Attraction-Comparison.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.vip/og-image/image.png?v=1788098160">
@@ -159,6 +159,48 @@
 
     .disclaimer-box strong {
       color: #c2410c;
+    }
+
+    .references h2 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .references ol {
+      margin-top: 12px;
+      padding-left: 1.6em;
+    }
+
+    .references li {
+      overflow-wrap: anywhere;
+      scroll-margin-top: 76px;
+    }
+
+    .references li + li {
+      margin-top: 12px;
+    }
+
+    #attractionTable a,
+    .spectrum-note a,
+    .extra-card a,
+    .references a {
+      color: var(--analysis-accent-dark);
+      text-underline-offset: 3px;
+    }
+
+    #attractionTable a:hover,
+    .spectrum-note a:hover,
+    .extra-card a:hover,
+    .references a:hover {
+      color: var(--analysis-ink);
+    }
+
+    #attractionTable a:focus-visible,
+    .spectrum-note a:focus-visible,
+    .extra-card a:focus-visible,
+    .references a:focus-visible {
+      outline: 2px solid var(--analysis-accent-dark);
+      outline-offset: 3px;
     }
 
     @media (max-width: 780px) {
@@ -405,13 +447,13 @@
     <div class="header">
       <div class="header-tag">心理学 · 性学 · 社群经验</div>
       <h1>人际吸引类型全景分析表</h1>
-      <p class="subtitle">借助分离吸引模型（SAM）及关系研究中的相关概念，比较身体感知、情感关系与认知意义层面的吸引体验</p>
-      <span class="spectrum-note">⚠️
-        分析框架说明：SAM 主要是无性恋与无浪漫倾向社群发展出的描述性语言，并非经验证的神经科学分类。以下类型可重叠、变化或不适用于某些人，本表用于自我描述而非测量或诊断。</span>
+      <p class="subtitle">觉得好看、想拥抱、想交朋友、想恋爱，或被对方的思考打动：这些感受可以重叠，也可以不同。用具体的愿望理解吸引，再分别讨论关系与边界。</p>
+      <span class="spectrum-note"><strong>如何理解这张表：</strong>
+        分离吸引模型（SAM）主要帮助人们分别描述性吸引与浪漫吸引，网络社群也将它扩展到其他体验。本表汇集八种常用或描述性的说法，三组仅为阅读安排，并非已验证的八类心理系统。可以选用贴切的词，也可以暂时不分类。<a href="#ref-1" aria-label="参考文献 1">[1]</a></span>
       <div class="meta-row">
-        <div class="meta-item">📚 理论基石 <span>Diamond; Sternberg; AVEN</span></div>
-        <div class="meta-item">📌 核心类型 <span>8 种主要 + 12 种补充</span></div>
-        <div class="meta-item">⚖️ 分析范畴 <span>3 大体系</span></div>
+        <div class="meta-item">📚 资料依据 <span>关系研究与社群术语</span></div>
+        <div class="meta-item">📌 内容范围 <span>8 个条目 + 12 项辨析</span></div>
+        <div class="meta-item">⚖️ 阅读分组 <span>3 类主题</span></div>
       </div>
     </div>
 
@@ -419,7 +461,7 @@
       <button class="filter-btn active" onclick="filterTable('all', this)">全览（8）</button>
       <button class="filter-btn" onclick="filterTable('body', this)">身体感知吸引（3）</button>
       <button class="filter-btn" onclick="filterTable('emotion', this)">情感关系吸引（3）</button>
-      <button class="filter-btn" onclick="filterTable('cognitive', this)">认知精神吸引（2）</button>
+      <button class="filter-btn" onclick="filterTable('cognitive', this)">认知与意义（2）</button>
     </div>
 
     <div class="table-wrapper">
@@ -427,13 +469,13 @@
         <thead>
           <tr>
             <th>概念</th>
-            <th>速览定义</th>
-            <th>核心驱动力</th>
-            <th>相关心理过程与证据边界</th>
-            <th>典型主观体验</th>
-            <th>性/浪漫成分</th>
-            <th>常见混淆</th>
-            <th>所属范畴</th>
+            <th>含义与边界</th>
+            <th>体验重点</th>
+            <th>研究依据与局限</th>
+            <th>主观体验与例子</th>
+            <th>与性／浪漫的关系</th>
+            <th>容易混淆的地方</th>
+            <th>阅读分组</th>
           </tr>
         </thead>
         <tbody>
@@ -443,14 +485,14 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('sexual')">解析 →</button>
             </td>
-            <td>指向性接触或性行为的吸引；核心是“想与对方发生性相关亲密”，不等同于觉得好看或想拥抱。</td>
-            <td>对象指向的性兴趣、欲望与情境线索</td>
-            <td>奖赏、动机、注意和性唤起过程可能共同参与；现有研究不能凭某一激素、脑区或身体反应判定一个人体验了哪类吸引</td>
-            <td>可能出现性相关的接近愿望、幻想或身体反应，也可能只有其中一部分。<span class="highlight-text">例：对某人产生性意味的亲近愿望，但仍可选择不行动。</span></td>
+            <td>对特定对象产生性意味的兴趣或接近愿望。它可伴随幻想、欲望或身体反应，但不等同于决定行动，也不保证想建立关系。</td>
+            <td>这个人对我有性意味的吸引力；与一般性欲、身体唤起分别理解。</td>
+            <td>性取向共识报告区分吸引、行为与身份；Diamond 的经典模型讨论爱与欲望的区别，但不是八类吸引的验证。<a href="#ref-2" aria-label="参考文献 2">[2]</a><a href="#ref-3" aria-label="参考文献 3">[3]</a></td>
+            <td>可能想象性相关接触，也可能只感到一种难以具体描述的兴趣。<span class="highlight-text">例：某人对一位熟人有性吸引，但不想恋爱，也决定不展开性互动。</span></td>
             <td>
-              <div class="tag-list"><span class="tag tag-sex">性：核心</span><span class="tag tag-may">浪漫：可有可无</span></div>
+              <div class="tag-list"><span class="tag tag-sex">性：所描述的体验</span><span class="tag tag-may">浪漫：可并存</span></div>
             </td>
-            <td>觉得某人好看、想拥抱对方或出现身体唤起，都不能单独证明存在性吸引</td>
+            <td>外貌欣赏、拥抱或身体反应不能单独证明性吸引，更不能证明同意。2024 年综述确认非自愿情境中也可能出现身体唤起。<a href="#ref-4" aria-label="参考文献 4">[4]</a></td>
             <td><span class="badge lv-body"><span class="badge-dot"></span>身体感知</span></td>
           </tr>
           <tr class="row-body" data-type="body">
@@ -459,15 +501,15 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('aesthetic')">解析 →</button>
             </td>
-            <td>对外貌、气质、声音或整体美感的欣赏；可以只是觉得美，不伴随恋爱、触碰或性欲望。</td>
-            <td>感知评价、美感与注意</td>
-            <td>面孔与美感加工会涉及视觉和奖赏网络，但不存在可据以排除性或浪漫吸引的单一“审美脑区”</td>
-            <td>觉得对方"美得像艺术品"，心情愉悦，但没有想靠近或发展关系的冲动。<span class="highlight-text">例：看到某位演员觉得美得令人窒息，如同欣赏艺术品，但无性幻想。</span>
+            <td>对某个人的外貌、仪态或整体美感产生欣赏与注意。社群用语多侧重外表，也有人将声音等感官美感包括在内；不必伴随触碰、恋爱或性愿望。</td>
+            <td>我欣赏对方呈现出的美感；欣赏本身就可以是完整体验。</td>
+            <td>面孔吸引力研究讨论美感评价与初始浪漫兴趣的关联，不能直接验证或否定社群所说的独立审美体验。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-5" aria-label="参考文献 5">[5]</a></td>
+            <td>被外表或表达方式吸引注意，同时可以没有进一步接近的愿望。<span class="highlight-text">例：很欣赏某位演员的仪态和穿搭，却不想与其约会或发生性接触。</span>
             </td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可无</span><span class="tag tag-may">浪漫：可无</span></div>
+              <div class="tag-list"><span class="tag tag-none">性：非必要</span><span class="tag tag-none">浪漫：非必要</span></div>
             </td>
-            <td>审美欣赏可以单独出现，也可与性、浪漫或其他吸引同时出现；仅凭“觉得好看”无法推断其余体验</td>
+            <td>同一人可以同时体验审美与其他吸引。“觉得好看”本身不说明想要哪种关系，也不授权对他人的身体作越界评价。</td>
             <td><span class="badge lv-body"><span class="badge-dot"></span>身体感知</span></td>
           </tr>
           <tr class="row-body" data-type="body">
@@ -476,14 +518,14 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('sensual')">解析 →</button>
             </td>
-            <td>渴望非性的身体亲密，如拥抱、牵手、依偎或靠近；核心是触觉带来的舒适与安全感。</td>
-            <td>触觉偏好、亲近感与安全感</td>
-            <td>愉悦触摸涉及触觉和情感加工；CT 纤维等研究解释部分触摸体验，但不能把催产素水平直接等同性或关系意义</td>
-            <td>可能想拥抱、牵手或依偎，并把这些接触本身视为满足。<span class="highlight-text">例：想和亲密朋友依偎看电影，但不期待性行为。</span></td>
+            <td>在本表采用的社群用法中，指想与特定对象发生非性的身体接近或触碰，如拥抱、牵手、依偎。英语 sensual 在其他语境中也可带有性意味。</td>
+            <td>我想与对方有某种身体接近；是否舒适、触碰如何被理解，需要本人说明。</td>
+            <td>2024 年元分析发现触摸干预对部分身心健康指标有益，但研究的是干预效果，未证明一种独立吸引类型，更不能推广到不受欢迎的触碰。<a href="#ref-6" aria-label="参考文献 6">[6]</a></td>
+            <td>希望亲近某个人，满足也可以停留在触碰本身。<span class="highlight-text">例：想与朋友牵手散步，并明确不希望因此被理解为恋爱或性邀请。</span></td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可有可无</span><span class="tag tag-may">浪漫：可有可无</span></div>
+              <div class="tag-list"><span class="tag tag-none">此处指非性接近</span><span class="tag tag-may">浪漫：可并存</span></div>
             </td>
-            <td>非性身体亲密不必“升级”为性行为；它也可能与其他吸引共存，需通过沟通而非猜测区分</td>
+            <td>动作本身没有固定的关系含义；同样的拥抱可有不同意义。想被某人触碰也不等于接受任何方式，其他吸引是否并存需分别了解。</td>
             <td><span class="badge lv-body"><span class="badge-dot"></span>身体感知</span></td>
           </tr>
 
@@ -493,14 +535,14 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('romantic')">解析 →</button>
             </td>
-            <td>想与对方建立恋爱关系，或成为彼此“特别的存在”；核心是浪漫联结，不必然包含性欲望。</td>
-            <td>浪漫脚本、亲密想象与关系期待</td>
-            <td>热恋和依恋研究涉及奖赏、注意与社会认知网络，但不能据此为所有浪漫体验规定固定生理阶段</td>
-            <td>心跳加速、脑海萦绕、幻想共度未来，想成为对方最特别的存在。<span class="highlight-text">例：不断想起某人，反复幻想和他约会、表白、共度未来。</span></td>
+            <td>对特定对象产生被本人理解为浪漫的好感，或希望有浪漫互动、建立恋爱关系。什么被理解为浪漫，受个人经验与文化影响。</td>
+            <td>我以浪漫的方式喜欢这个人；可能想约会，也可能因处境选择不建立关系。</td>
+            <td>恋爱生物机制研究的样本及报告方式限制了推广；2024 年无浪漫倾向者调查也呈现多样经验，不能预设人人都需要浪漫吸引。<a href="#ref-7" aria-label="参考文献 7">[7]</a><a href="#ref-8" aria-label="参考文献 8">[8]</a></td>
+            <td>可能期待约会、回应或共同生活，也可能体验温和而持续的好感。<span class="highlight-text">例：某人希望与朋友开始恋爱，但没有对这位朋友的性吸引。</span></td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可有可无</span><span class="tag tag-rom">浪漫：核心</span></div>
+              <div class="tag-list"><span class="tag tag-may">性：可并存</span><span class="tag tag-rom">浪漫：所描述的体验</span></div>
             </td>
-            <td>深厚联结或照料愿望不必然是浪漫吸引；浪漫关系也不必以排他性为定义</td>
+            <td>心跳、嫉妒、想念、照料或希望成为重要的人，都不是浪漫吸引的专属指标。浪漫吸引、长期的爱与关系承诺也不是同一概念。</td>
             <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
           </tr>
           <tr class="row-emotion" data-type="emotion">
@@ -509,15 +551,15 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('emotional')">解析 →</button>
             </td>
-            <td>被对方内心世界吸引，想建立信任、倾诉、理解和情绪支持；可深厚但不必然浪漫。</td>
-            <td>自我披露、共情、信任与被理解感</td>
-            <td>心智化、共情和依恋过程可能参与，但“情感吸引”本身没有公认的特异神经标记</td>
-            <td>迫不及待想倾诉，觉得"他完全懂我"，感受到从未有过的被接纳感。<span class="highlight-text">例：深谈后感到被完全理解，想把所有秘密都告诉对方。</span></td>
+            <td>用于描述想了解对方的感受、分享内心体验并建立信任的愿望。它可以出现在友谊、伴侣或其他关系中，与其他吸引的边界并不固定。</td>
+            <td>我想与这个人在情感上靠近，希望被理解，也愿意理解对方。</td>
+            <td>日记研究支持自我披露、感到对方理解和关心自己与亲密感之间的联系；它测量的是互动中的亲密，并未划定独立的“情感吸引”类别。<a href="#ref-9" aria-label="参考文献 9">[9]</a></td>
+            <td>希望与对方分享感受，遇事时想到向其倾诉，也愿意听取回应。<span class="highlight-text">例：与一位朋友谈过困难后感到被认真对待，希望继续了解彼此，同时保留不想谈的部分。</span></td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可有可无</span><span class="tag tag-may">浪漫：可有可无</span>
+              <div class="tag-list"><span class="tag tag-none">性：非必要</span><span class="tag tag-none">浪漫：非必要</span>
               </div>
             </td>
-            <td>它可出现在友谊、亲情、伴侣或其他关系中；与柏拉图式吸引的边界取决于当事人的理解</td>
+            <td>被理解感不等于已经充分了解或可以完全信任对方；亲密也不要求分享所有秘密。深度交心同样可以是友谊的重要部分。</td>
             <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
           </tr>
           <tr class="row-emotion" data-type="emotion">
@@ -526,15 +568,15 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('platonic')">解析 →</button>
             </td>
-            <td>想发展稳定、深厚、非浪漫的友谊；强调陪伴、共同兴趣、价值契合和彼此同行。</td>
-            <td>友谊愿望、陪伴与共同活动</td>
-            <td>友谊涉及依恋、奖赏与社会认知等一般过程；不能用递质清单区分“柏拉图式”与其他联结</td>
-            <td>只是一起发呆、散步、刷剧，不需要交心，纯粹觉得他的陪伴无比美好。<span class="highlight-text">例：和某人一起消磨时光，完全不需要深聊，纯粹觉得他的存在让你安心。</span>
+            <td>社群语境中常指想与特定对象成为朋友，或建立被本人理解为非浪漫的亲密关系。它可以包含陪伴、交心、照顾和重要承诺，不限于轻松相处。</td>
+            <td>我想与这个人建立或加深友谊；希望的亲密程度与相处方式因人而异。</td>
+            <td>2023 年成人友谊综述显示，友谊质量和支持等与福祉相关；这不是“柏拉图式吸引”的诊断或独立机制证据。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-10" aria-label="参考文献 10">[10]</a></td>
+            <td>可以期待共同活动，也可以重视深入交流、长期陪伴或相互照料。<span class="highlight-text">例：很想与某人成为亲密朋友，愿意认真倾听、安排见面，但不把这份愿望理解为恋爱。</span>
             </td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可无</span><span class="tag tag-may">浪漫：可无</span></div>
+              <div class="tag-list"><span class="tag tag-none">此处强调友谊愿望</span><span class="tag tag-may">其他吸引可并存</span></div>
             </td>
-            <td>与情感吸引的边界最模糊——柏拉图式更关注陪伴与共同活动，情感吸引更关注深层互通</td>
+            <td>不能用是否交心区分它与情感吸引，也不能从关系有多亲密推断“其实在恋爱”。酷儿柏拉图关系（QPR）是关系称谓，不是这份吸引自动带来的安排。<a href="#ref-1" aria-label="参考文献 1">[1]</a></td>
             <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
           </tr>
 
@@ -544,17 +586,17 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('intellectual')">解析 →</button>
             </td>
-            <td>被对方的思维方式、知识深度或观点刺激吸引；核心是深度交流与认知共鸣。</td>
-            <td>求知欲、思维被激活、观点被挑战</td>
-            <td>涉及注意、语言、学习与奖赏等一般认知过程；“智识吸引”没有独立、特异的脑网络证据</td>
-            <td>和他聊天三小时大脑高度兴奋，迫不及待想下次继续深入讨论。<span class="highlight-text">例：和某人聊了三小时哲学与物理，大脑高度兴奋，下次见面时迫不及待想继续。</span>
+            <td>描述被某人的思考方式、问题意识、见解或交流方式吸引，希望继续与其讨论。它可以是合作或友谊兴趣，也可与性或浪漫吸引并存。</td>
+            <td>与这个人交流让我好奇、获得启发，或愿意重新思考原有观点。</td>
+            <td>SAM 的社群扩展中包含这一说法；相似性研究考察相似程度与吸引的关联，并未验证“智识吸引”是独立机制。相似也不是交流有吸引力的必要条件。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-12" aria-label="参考文献 12">[12]</a></td>
+            <td>期待继续讨论、共同学习或创作，而未必想发展其他关系。<span class="highlight-text">例：对方分析一部电影的方式很有启发，你想继续交流，即使你们对结论有分歧。</span>
             </td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可有可无</span><span class="tag tag-may">浪漫：可有可无</span>
+              <div class="tag-list"><span class="tag tag-none">性：非必要</span><span class="tag tag-none">浪漫：非必要</span>
               </div>
             </td>
-            <td>聊得来不必然意味着浪漫兴趣，也可能与情感、浪漫或性吸引共同出现</td>
-            <td><span class="badge lv-cognitive"><span class="badge-dot"></span>认知精神</span></td>
+            <td>学历、知识量或流利表达不能直接代表思考能力；“智性恋”有时强调智力相关的性吸引，不能与一般的智识欣赏互换。</td>
+            <td><span class="badge lv-cognitive"><span class="badge-dot"></span>认知与意义</span></td>
           </tr>
           <tr class="row-cognitive" data-type="cognitive">
             <td class="concept-cell" onclick="showDetail('spiritual')">
@@ -562,16 +604,16 @@
                   Attraction</span></div>
               <button class="detail-btn" onclick="event.stopPropagation(); showDetail('spiritual')">解析 →</button>
             </td>
-            <td>被对方的生命信念、价值深度或意义框架吸引；像遇见能照见自我的精神共鸣。</td>
-            <td>意义感、价值体系共鸣、自我投射契合、超越性连结体验</td>
-            <td>可联系价值认同、意义建构与敬畏体验研究；尚无证据支持一种独立的“精神吸引神经回路”</td>
-            <td>第一次深谈就感觉遇到了"灵魂镜子"，仿佛早已认识千年。<span class="highlight-text">例：他说出的每一句话都像是你一直想说却找不到的词。</span></td>
+            <td>本表用来描述因生命信念、价值取向或对意义的理解而产生的亲近感。有人赋予它宗教或灵性含义，也有人只是指价值共鸣；用词需结合语境。</td>
+            <td>对方理解或重视的某些事，对我也很重要；希望继续了解这种共鸣。</td>
+            <td>相似性研究区分实际相似与感觉相似；2026 年质性研究也呈现多种亲密经验。这些资料都不能验证灵魂契合或独立的“精神吸引”系统。<a href="#ref-11" aria-label="参考文献 11">[11]</a><a href="#ref-12" aria-label="参考文献 12">[12]</a></td>
+            <td>感到对方能理解自己重视的问题，但仍可能在其他方面有差异。<span class="highlight-text">例：听到对方谈论照顾他人与生活意义，你感到共鸣，希望进一步了解其实际做法。</span></td>
             <td>
-              <div class="tag-list"><span class="tag tag-may">性：可有可无</span><span class="tag tag-may">浪漫：可有可无</span>
+              <div class="tag-list"><span class="tag tag-none">性：非必要</span><span class="tag tag-none">浪漫：非必要</span>
               </div>
             </td>
-            <td>这是描述性社群用语，可能与宗教体验、价值认同、理想化或着迷重叠，不宜据此自行诊断</td>
-            <td><span class="badge lv-cognitive"><span class="badge-dot"></span>认知精神</span></td>
+            <td>强烈的熟悉感不等于已经了解对方，也不保证价值一致或关系合适。感受可以认真对待，信任仍需观察实际互动与边界。</td>
+            <td><span class="badge lv-cognitive"><span class="badge-dot"></span>认知与意义</span></td>
           </tr>
         </tbody>
       </table>
@@ -581,71 +623,71 @@
       <div class="panel">
         <span class="panel-icon">🫀</span>
         <h3>身体感知吸引</h3>
-        <p>性吸引、审美吸引与感官吸引分别强调性意味的接近愿望、美感欣赏和非性身体亲密。它们可单独出现，也可重叠；身体反应本身不能替当事人界定体验。</p>
+        <p>性吸引、审美吸引和感官吸引分别强调性意味、美感欣赏与非性接近。把它们放在一组便于比较，并不表示性吸引只来自外貌，或这些体验有专属的身体信号。</p>
       </div>
       <div class="panel">
         <span class="panel-icon">💙</span>
         <h3>情感关系吸引</h3>
-        <p>浪漫吸引、情感吸引与柏拉图式吸引分别强调浪漫关系想象、情绪互通和非浪漫友谊愿望；这些边界由文化、关系形式和个人用语共同塑造。</p>
+        <p>想恋爱、想交心和想成为朋友可以重叠。友谊也能包含深度理解与长期承诺；想要某种关系、对特定人受吸引，以及双方已经作出的约定，需要分别说明。</p>
       </div>
       <div class="panel">
         <span class="panel-icon">🧠</span>
-        <h3>认知精神吸引</h3>
-        <p>智识吸引与精神吸引是对思维刺激、价值或意义共鸣的描述。它们在社群叙述中有用，但尚不是具有统一测量标准或独立神经标记的学术分类。</p>
+        <h3>认知与意义</h3>
+        <p>智识和精神吸引帮助描述“我被什么打动”。有启发的交流、共同信念或强烈共鸣，都不等于已经充分了解对方；适不适合长期相处，还要看实际互动、需要与边界。</p>
       </div>
     </div>
 
     <div class="extra-section">
-      <h3>📌 更多值得关注的吸引类型（补充说明）</h3>
-      <p>以下名称多为日常或社群中的描述性概括，并非彼此排斥的正式心理学分类。它们可帮助表达体验，但不应当作稳定人格类型或诊断标签。</p>
+      <h3>📌 十二项相关体验与辨析</h3>
+      <p>下面沿用一些日常说法，分别说明吸引人的线索、希望怎样相处，以及需要另行理解的依附现象。它们不是十二种经验证的吸引类型，也不构成互斥的人格分类。</p>
       <div class="extra-grid">
         <div class="extra-card">
           <h4>🏠 安全感吸引</h4>
-          <p>被对方带来的稳定感与安全感所吸引；渴望的不是激情而是"跟他在一起我不怕任何事"的底气。与依恋理论中的"安全基地"现象密切相关。</p>
+          <p>有时打动人的是对方回应稳定、愿意倾听，让自己更安心。回应性研究关注被理解和关心的感受，但“感到安全”不等于已确认所有方面都安全，也不是一种固定的吸引类型。<a href="#ref-9" aria-label="参考文献 9">[9]</a></p>
         </div>
         <div class="extra-card">
           <h4>🌀 共鸣吸引</h4>
-          <p>被对方与自己在审美趣味（音乐、文学、艺术）上的高度契合所吸引，介于审美吸引与智识吸引之间。"被同一首歌打动的两个人"的相遇感。</p>
+          <p>相近的音乐、阅读或其他兴趣可能让交流更容易。共同爱好、感觉被理解和想建立关系是不同体验；喜欢同一首歌，不保证对生活方式或边界有相同期待。<a href="#ref-12" aria-label="参考文献 12">[12]</a></p>
         </div>
         <div class="extra-card">
           <h4>🎭 身份认同吸引</h4>
-          <p>被对方的文化背景、群体归属或身份认同所吸引，渴望与"同类人"建立联结。在 LGBTQ+ 社群、海外华人群体、亚文化圈子中尤为显著。</p>
+          <p>共同语言、文化或身份经验，可能让人预期更容易被理解。共享标签并不意味着拥有相同经历或观点，也不能仅凭社群归属推定双方的安全感、吸引或关系意愿。</p>
         </div>
         <div class="extra-card">
           <h4>🔋 能量/气场吸引</h4>
-          <p>被某人难以言说的存在感、气场或整体"能量"所吸引，超越外貌、才华与地位的综合感知。常见描述："他走进房间，整个空气都变了。"</p>
+          <p>“气场”可以概括声音、表情、动作、表达方式和场合共同形成的印象。它有助于表达尚难拆分的感受，但不表示测到了某种能量、频率或不可见的吸引力场。</p>
         </div>
         <div class="extra-card">
           <h4>🌱 潜力吸引</h4>
-          <p>被某人尚未完全显现的潜力与成长空间所吸引，而非当下实际状态。进化心理学将其与"配偶投资价值评估"相关联；也可能成为理想化投射的来源。</p>
+          <p>有人会被对方的目标、学习意愿或自己想象中的未来打动。应分开已观察到的行动与尚未兑现的期待；偏好研究不能保证某个人按预想成长，也不能将“潜力吸引”归于单一进化机制。<a href="#ref-13" aria-label="参考文献 13">[13]</a></p>
         </div>
         <div class="extra-card">
           <h4>🌊 创伤性依附（非吸引类型）</h4>
-          <p>在存在权力不对等、伤害与间歇性安抚的关系中，受害者可能对施害者形成强烈依附。它不等于两个人因共同经历逆境而变亲近；若涉及控制或暴力，应优先考虑安全与专业支持。</p>
+          <p>通常指受害者对施害者仍有强烈依附，可用于理解部分伤害关系。2025 年跨文化研究仍指出测量与推广的局限。它不是共同经历逆境后的亲近，也不能由“舍不得离开”单独判定；需同时了解现实威胁、资源和支持。<a href="#ref-14" aria-label="参考文献 14">[14]</a></p>
         </div>
         <div class="extra-card">
           <h4>⚡ 魅力吸引</h4>
-          <p>被对方展现出的个人魅力、气场、感染力或存在感吸引。这种描述可能与审美、社会认同、浪漫或其他吸引重叠，粉丝文化只是可能场景之一。</p>
+          <p>“有魅力”是对感染力、表达或整体印象的评价，可能与审美、智识或浪漫兴趣重叠。觉得某人令人着迷，与希望认识其本人、相信其观点或愿意服从其决定，是不同的事。</p>
         </div>
         <div class="extra-card">
           <h4>👑 社会/地位吸引</h4>
-          <p>被对方的社会地位、成就、能力、资源或影响力所吸引，常伴随仰慕感与学习渴望。对能力与成就的仰慕是普遍且正常的社会吸引偏好。</p>
+          <p>成就、资源或影响力可能影响评价，但口头择偶偏好与现实互动中的喜欢并不总一致。研究中的平均关联，也不能用来概括某个性别或替个人断定动机。<a href="#ref-13" aria-label="参考文献 13">[13]</a></p>
         </div>
         <div class="extra-card">
           <h4>🎭 创造力吸引</h4>
-          <p>被对方的创造力、艺术才华、想象力或独特创作所吸引，以创造性表达本身而非知识或外貌为核心。常见于艺术创作圈与"推し文化"中。</p>
+          <p>可能被对方的创意、作品或解决问题的方式打动。这更适合作为吸引线索来描述：欣赏作品、希望合作、想与创作者成为朋友或恋人，不能彼此代替。</p>
         </div>
         <div class="extra-card">
           <h4>🌱 照料吸引</h4>
-          <p>渴望照顾、保护或支持特定对象，或希望得到对方照顾。这可能是关怀、依恋、角色期待或多种吸引的组合，不宜从单一动机推断关系性质。</p>
+          <p>想照顾某个人与希望被其照顾，是相关但不同的愿望；还可能涉及关怀、责任、依恋或现实需要。它们不单独证明浪漫吸引，接受照顾也不意味着欠下亲密关系的义务。</p>
         </div>
         <div class="extra-card">
           <h4>🪞 镜像吸引</h4>
-          <p>被与自己高度相似的人所吸引——相同的创伤底色、成长背景或人格结构。容易产生强烈的"被理解感"，但也可能强化彼此的盲区与防御模式。</p>
+          <p>“像看见另一个自己”可能来自经历或观点相似，也可能是初识时的推测。元分析区分实际相似与感知相似，二者的关联随情境而变；不能由熟悉感推断相同创伤、人格结构或共同命运。<a href="#ref-12" aria-label="参考文献 12">[12]</a></p>
         </div>
         <div class="extra-card">
           <h4>🌒 禁忌吸引</h4>
-          <p>因关系本身的"不被允许性"而被强化的吸引。心理学将其与"罗密欧与朱丽叶效应"（阻力强化渴望）相关联。移除禁忌条件后吸引可能随之消解。</p>
+          <p>禁忌或阻力可能改变注意与感受，却没有“越反对越爱”的普遍定律。2014 年对“罗密欧与朱丽叶效应”的重复研究未复现原结果，较多干预反而与较差关系质量相关；这同样不能证明外界反对总是正确。<a href="#ref-15" aria-label="参考文献 15">[15]</a></p>
         </div>
       </div>
     </div>
@@ -655,37 +697,45 @@
       <div class="legend-grid">
         <div class="legend-item">
           <div class="legend-bar" style="background:#ea580c"></div>
-          <div class="legend-text"><strong>身体感知吸引</strong>以身体感知为核心：性行为指向、视觉欣赏、非性触觉亲密</div>
+          <div class="legend-text"><strong>身体感知吸引</strong>比较性意味、美感欣赏与非性身体接近的不同侧重</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#1d4ed8"></div>
-          <div class="legend-text"><strong>情感关系吸引</strong>以亲密关系与情感联结为核心：浪漫、深层情绪互通、纯粹陪伴</div>
+          <div class="legend-text"><strong>情感关系吸引</strong>比较浪漫好感、交心愿望与友谊期待，允许它们重叠</div>
         </div>
         <div class="legend-item">
           <div class="legend-bar" style="background:#0891b2"></div>
-          <div class="legend-text"><strong>认知精神吸引</strong>以思维共鸣与意义契合为核心：智识刺激、生命信念深度一致</div>
+          <div class="legend-text"><strong>认知与意义</strong>描述交流带来的启发，以及对价值和生命意义的共鸣</div>
         </div>
       </div>
     </div>
 
-    <div class="references">
-      <strong>📖 核心学术参考</strong>：Diamond, L. M. (2003). What does sexual orientation orient? <em>Psychological
-        Review</em>, 110(1), 173–192. ｜
-      Sternberg, R. J. (1986). A triangular theory of love. <em>Psychological Review</em>, 93(2), 119–135. ｜
-      Fisher, H. E. (1998). Lust, attraction, and attachment in mammalian reproduction. <em>Human Nature</em>, 9(1),
-      23–52. ｜
-      Bogaert, A. F. (2015). Asexuality: What it is and why it matters. <em>Journal of Sex Research</em>, 52(4),
-      362–379. ｜
-      AVEN. <em>Split Attraction Model</em>. www.asexuality.org ｜
-      Bowlby, J. (1969). <em>Attachment and Loss, Vol. 1: Attachment</em>. Basic Books. ｜
-      Fromm, E. (1956). <em>The Art of Loving</em>. Harper &amp; Row. ｜
-      Shih, H.-C., et al. (2022). <a href="https://pubmed.ncbi.nlm.nih.gov/35884637/" target="_blank" rel="noopener noreferrer"><em>The Neurobiological Basis of Love: A Meta-Analysis of Human Functional Neuroimaging Studies of Maternal and Passionate Love.</em></a> <em>Brain Sciences, 12</em>(7), 830. ｜
-      Ueda, R. (2022). <a href="https://pubmed.ncbi.nlm.nih.gov/35774950/" target="_blank" rel="noopener noreferrer"><em>Neural Processing of Facial Attractiveness and Romantic Love: An Overview and Suggestions for Future Empirical Studies.</em></a> <em>Frontiers in Psychology, 13</em>, 896514.
+    <div class="references" aria-labelledby="references-title">
+      <h2 id="references-title">参考资料与证据说明</h2>
+      <p>资料核对日期：2026-09-18。社群资料用于核对词语的用法；理论、质性研究、调查和元分析分别回答不同问题。以下包含核实到的 2024—2026 年研究及相关早期文献，不代表已经验证本表的分类。吸引、亲密、依恋、关系质量与行为也不能互作替代指标。表内例子用于解释概念，并非研究个案；许多研究的样本、文化和测量范围有限，推广到个人或中文语境时需保留这些限制。</p>
+      <ol>
+        <li id="ref-1">AUREA. <a href="https://www.aromanticism.org/en/basic-terms" target="_blank" rel="noopener noreferrer"><em>Basic Terms.</em></a> 与 <a href="https://www.aromanticism.org/en/attraction-relationship-terms" target="_blank" rel="noopener noreferrer"><em>Attraction and Relationship Terms.</em></a> 社群术语记录，说明 SAM、性／浪漫／感官／审美／柏拉图式吸引与 QPR 等用法；页面标注术语最后更新于 2021 年。它记录语言实践，不是分类效度研究，也不代表所有使用者的定义完全相同。</li>
+        <li id="ref-2">National Academies of Sciences, Engineering, and Medicine. (2022). <a href="https://www.nationalacademies.org/read/26424/chapter/1" target="_blank" rel="noopener noreferrer"><em>Measuring Sex, Gender Identity, and Sexual Orientation.</em></a> DOI: 10.17226/26424。共识报告；区分吸引、行为与身份，具体测量建议主要面向美国情境。</li>
+        <li id="ref-3">Diamond, L. M. (2003). <a href="https://doi.org/10.1037/0033-295X.110.1.173" target="_blank" rel="noopener noreferrer"><em>What does sexual orientation orient? A biobehavioral model distinguishing romantic love and sexual desire.</em></a> <em>Psychological Review, 110</em>(1), 173–192。理论模型，讨论浪漫爱与性欲望的联系和区别；不能视为本表八个类别的实证验证。</li>
+        <li id="ref-4">Vandervoort, M., et al. (2024). <a href="https://doi.org/10.1007/s10508-024-02852-2" target="_blank" rel="noopener noreferrer"><em>Victim Sexual Arousal During Nonconsensual Sex: A Scoping Review.</em></a> <em>Archives of Sexual Behavior, 53</em>, 2305–2318。确认非自愿情境中可能出现身体性反应；资料不足以确定发生率，身体反应不能用作同意或性吸引的证据。</li>
+        <li id="ref-5">Ueda, R. (2022). <a href="https://doi.org/10.3389/fpsyg.2022.896514" target="_blank" rel="noopener noreferrer"><em>Neural Processing of Facial Attractiveness and Romantic Love: An Overview and Suggestions for Future Empirical Studies.</em></a> <em>Frontiers in Psychology, 13</em>, 896514。研究概览；面孔吸引力评价、初始浪漫兴趣和长期吸引之间仍有未解决的问题。</li>
+        <li id="ref-6">Packheiser, J., et al. (2024). <a href="https://doi.org/10.1038/s41562-024-01841-8" target="_blank" rel="noopener noreferrer"><em>A systematic review and multivariate meta-analysis of the physical and mental health benefits of touch interventions.</em></a> <em>Nature Human Behaviour.</em> 137 项研究进入元分析，另有 75 项进入系统综述。研究比较触摸与无触摸干预，存在盲法限制与小样本偏倚；它没有测量“想被哪个人触碰”或验证感官吸引分类。</li>
+        <li id="ref-7">Bode, A., &amp; Kowal, M. (2023). <a href="https://doi.org/10.3389/fpsyg.2023.983419" target="_blank" rel="noopener noreferrer"><em>Toward consistent reporting of sample characteristics in studies investigating the biological mechanisms of romantic love.</em></a> <em>Frontiers in Psychology, 14</em>, 983419。非系统综述，审视 42 项研究的样本报告，指出可比性和代表性不足；不能给所有人设定统一的恋爱生理进程。</li>
+        <li id="ref-8">Fowler, J. A., et al. (2024). <a href="https://doi.org/10.1080/19317611.2024.2311158" target="_blank" rel="noopener noreferrer"><em>Exploring Aromanticism Through an Online Qualitative Investigation With the Aromantic Community: “Freeing, Alienating, and Utterly Fantastic”.</em></a> <em>International Journal of Sexual Health, 36</em>(1), 126–143。分析 1,642 名便利样本参与者的在线开放回答，呈现身份与浪漫经验的多样性；不能用于估计人群比例或给个人确定身份。</li>
+        <li id="ref-9">Laurenceau, J.-P., Barrett, L. F., &amp; Pietromonaco, P. R. (1998). <a href="https://doi.org/10.1037/0022-3514.74.5.1238" target="_blank" rel="noopener noreferrer"><em>Intimacy as an interpersonal process: The importance of self-disclosure, partner disclosure, and perceived partner responsiveness in interpersonal exchanges.</em></a> <em>Journal of Personality and Social Psychology, 74</em>(5), 1238–1251。两项事件日记研究，讨论披露、回应性与亲密感的关联；不证明越多披露越好，也不等于验证一种吸引类别。</li>
+        <li id="ref-10">Pezirkianidis, C., et al. (2023). <a href="https://doi.org/10.3389/fpsyg.2023.1059057" target="_blank" rel="noopener noreferrer"><em>Adult friendship and wellbeing: A systematic review with practical implications.</em></a> <em>Frontiers in Psychology, 14</em>, 1059057。综合 38 篇发表于 2000—2019 年的研究，讨论友谊质量、支持与福祉；不同结局的证据并不均衡，关联不能保证某段友谊的效果。</li>
+        <li id="ref-11">Mollet, A. L., Valley, S. N., &amp; Fitzsimmons, B. (2026，在线发表). <a href="https://doi.org/10.1080/00224499.2026.2658111" target="_blank" rel="noopener noreferrer"><em>Expansive Intimacies: Celebrating the Intimacy of Asexual and Aromantic People.</em></a> <em>The Journal of Sex Research.</em> 2026 年 4 月在线发表，基于 69 名无性恋大学生与研究生的访谈和调查资料，提出多样亲密经验的概念框架。它研究亲密，不是八类吸引的量表验证或人群普查。</li>
+        <li id="ref-12">Montoya, R. M., Horton, R. S., &amp; Kirchner, J. (2008). <a href="https://doi.org/10.1177/0265407508096700" target="_blank" rel="noopener noreferrer"><em>Is actual similarity necessary for attraction? A meta-analysis of actual and perceived similarity.</em></a> <em>Journal of Social and Personal Relationships.</em> 综合 313 项研究的 460 个效应量；实际相似与感知相似的关联随互动情境不同，不能把共鸣当作客观契合的证明。</li>
+        <li id="ref-13">Eastwick, P. W., et al. (2014). <a href="https://doi.org/10.1037/a0032432" target="_blank" rel="noopener noreferrer"><em>The predictive validity of ideal partner preferences: A review and meta-analysis.</em></a> <em>Psychological Bulletin.</em> 讨论理想偏好何时能预测实际评价，并比较假想对象与现实互动；相关结果不是个人择偶公式，也不是对“潜力吸引”的直接检验。</li>
+        <li id="ref-14">Chenneville, T., et al. (2025). <a href="https://doi.org/10.1002/bsl.2723" target="_blank" rel="noopener noreferrer"><em>Similarities and Differences in Trauma Bonding Among Young Adults in the U.S. and Kenya: Implications for Forensic Assessment.</em></a> <em>Behavioral Sciences &amp; the Law, 43</em>(4), 374–384。比较美国与肯尼亚年轻成人自报资料，指出测量与文化差异问题；统计关联不能解释每个人为何仍留在伤害关系中。</li>
+        <li id="ref-15">Sinclair, H. C., Hood, K. B., &amp; Wright, B. L. (2014). <a href="https://doi.org/10.1027/1864-9335/a000181" target="_blank" rel="noopener noreferrer"><em>Revisiting the Romeo and Juliet Effect.</em></a> <em>Social Psychology.</em> 对 396 名参与者进行 3—4 个月追踪，未复现原有“干预增强爱情”的结果；外界干预、认可以及关系质量的关联，仍不能直接判断某次反对是否合理。</li>
+        <li id="ref-16">Yang, Y., et al. (2024). <a href="https://doi.org/10.1016/j.neuropsychologia.2024.109003" target="_blank" rel="noopener noreferrer"><em>Joyful growth vs. compulsive hedonism: A meta-analysis of brain activation on romantic love and addictive disorders.</em></a> <em>Neuropsychologia.</em> 比较 21 项浪漫爱与 28 项成瘾障碍研究，观察到脑活动的重叠与差异。脑区重叠不等于恋爱属于成瘾，标题中的心理解释也不构成个体判断标准。</li>
+      </ol>
     </div>
 
     <div class="disclaimer-box">
-      <strong>⚠️
-        重要说明：</strong>本表借用 SAM 及相关社群语言帮助区分体验，<strong>不代表这些类别具有统一学术定义、固定神经基础或清晰边界</strong>。各类吸引没有优劣，可独立出现、组合出现，也可能难以区分。不要凭图表替他人定义关系或身份；若持续困扰生活，可按需要寻求合格专业支持。
+      <strong>把感受与关系决定分别说清：</strong>可以先描述“我希望和这个人做什么、哪些事不想做”，再决定某个标签是否有帮助。不确定、很少体验某类吸引，或同时有多种感受，都不需要靠这张表获得认证。<br><br>
+      <strong>关系需要双方参与：</strong>一方的吸引不保证互相喜欢，也不决定关系名称、排他安排或身体边界。双方可以按自己的理解协商，并随时表达拒绝与变化。本表用于学习和自我理解，不作诊断；若存在持续困扰、控制或暴力，可以根据实际需要寻求支持。
     </div>
   </div>
 
@@ -704,9 +754,10 @@
         lv: "lv-body",
         badge: "身体感知吸引",
         sections: [
-          { h: "不是单一脑区的开关", p: "性吸引可能调动奖赏、动机、注意、记忆和唤起等多种过程；现有神经影像研究多比较特定任务下的群体平均，不能凭一次身体反应或某个脑区替个人命名体验。" },
-          { h: "区分体验，也允许重叠", p: "觉得某人好看、想拥抱对方和产生性意味的接近愿望，可以分别描述为审美、感官和性吸引，但三者并非互斥，也没有生物检测可以替代当事人的自我理解。" },
-          { h: "文化如何塑造我们的欲望", p: "社会文化对性吸引的表达有强烈的塑造作用——男性的性吸引被鼓励表达，女性的性吸引表达历史上受到惩罚；异性恋本位/规范把性吸引定义为「默认方向」；媒体性化扭曲了性吸引的自然表达。理解这些文化滤镜，能帮你更清晰地看见自己真实的欲望。" }
+          { h: "吸引强调这个人对我的性意味", p: "性吸引常指对特定对象产生性相关的兴趣或接近愿望；一般性欲描述兴趣或动机，身体唤起则涉及主观兴奋及生理反应。它们可能一起出现，也可能不同步。研究中这些词的定义并不完全一致，需要看具体测量了什么。[2]" },
+          { h: "有吸引与愿意行动是两件事", p: "一个人可能受吸引却不愿接触，也可能出于其他自愿理由参与性活动而没有对对象的性吸引。因此，实际行为不能单独认证身份或感受。涉及他人的互动仍需其当下、具体且可撤回的同意；2024 年综述确认，非自愿情境中也可能出现身体唤起，不能把身体反应当作意愿。[4]" },
+          { h: "性与浪漫可以分别描述", p: "Diamond 的经典模型讨论浪漫爱与性欲望的联系和区别，为理解不完全重合的经验提供了理论视角。[3] 社群中的 SAM 进一步提供了分别描述性吸引与浪漫吸引的语言，但并不要求人人使用两套标签，也不意味着所有人的体验都能清楚拆分。[1]" },
+          { h: "不由单个信号决定标签", p: "外貌、声音、熟悉程度、交流或其他线索都可能与某个人的体验有关；性吸引并非只能由外表即时触发。身体反应、幻想或一次相处也不能单独决定取向。可以先记录具体感受、意愿和边界，再考虑是否需要命名。" }
         ]
       },
       aesthetic: {
@@ -715,9 +766,10 @@
         lv: "lv-body",
         badge: "身体感知吸引",
         sections: [
-          { h: "美感不等于性或浪漫", p: "美感加工会涉及视觉、注意和奖赏等广泛网络，这些过程也会参与其他体验；因此不能用所谓“审美脑区”证明某种吸引存在或不存在。" },
-          { h: "谁定义了美？", p: "「何为美」从来不是中立的——它是种族、阶级、性别权力的映射。男性凝视把女性身体系统性地性化，导致对女性的「审美吸引」极易被误解、滑向性吸引表述。解构「觉得某人美=对某人有意思」的文化默认，是需要批判性反思的开始。" },
-          { h: "允许只表达欣赏", p: "“我觉得你很美”可以只是审美评价，也可能与其他感受并存。把欣赏和关系邀请区分开，有助于减少误读，但仍应尊重具体语境与对方边界。" }
+          { h: "欣赏可以停留在美感本身", p: "在社群用语中，审美吸引常用来描述对某个人外貌或美感的欣赏，无需伴随性或浪漫愿望。[1] 有人也用它描述声音、仪态或整体呈现。使用时可以具体说明自己被什么打动；它可以单独出现，也可以与其他吸引一起出现。" },
+          { h: "实验中的吸引力评分不是全部体验", p: "研究常让参与者评价面孔吸引力，或测量观看面孔时的脑活动。Ueda 的综述指出，美感评价如何转化为初始浪漫兴趣、互动如何形成持续吸引，仍有未解决的问题。[5] 对照片打高分，与想认识照片中的人、想触碰或想恋爱，不是同一项测量。" },
+          { h: "对美的判断有共同点，也有差异", p: "个人经历、文化环境与具体情境，都值得在解释审美偏好时考虑。不能把某一种主流外貌当成所有人的标准，也不宜把所有美感简单归结为单一生物特征或某种权力机制。判断一位具体的人怎样感受，仍需要其本人描述。" },
+          { h: "表达欣赏也需要边界", p: "“我欣赏你的穿搭”可以只是欣赏；对方是否欢迎这样的评价、希望怎样回应，要看关系和场合。审美感受不要求进一步建立关系，也不意味着可以拍摄、触碰或持续评论他人的身体。" }
         ]
       },
       sensual: {
@@ -726,9 +778,10 @@
         lv: "lv-body",
         badge: "身体感知吸引",
         sections: [
-          { h: "拥抱本身就是目的", p: "在亲密关系中，拥抱、依偎、牵手——这些感官接触的满足本身就是目的，不需要「升级」为性行为。无性恋者可以有强烈的感官吸引却没有任何性吸引，这清晰地告诉我们：感官吸引完全可以独立存在。" },
-          { h: "接触的权力", p: "谁可以碰谁、怎么碰、在什么场合碰——这些「身体接触的许可结构」高度不对称。男性对女性的感官接触在历史上被默许，女性的接触主动权长期受限。不同文化对身体接触的规范差异极大——这是文化建构，不是自然本性。" },
-          { h: "别让误解伤害关系", p: "最常见的误解是把感官吸引当成性吸引的前奏——「他想抱我，那他一定想和我发生关系」。这种误解会伤害很多真诚的情感联结。学会区分「我想抱你」和「我想和你发生关系」，是成熟关系的重要一课。" }
+          { h: "这里采用的是特定社群用法", p: "AUREA 将 sensual attraction 用来描述对某个人的非性触碰或身体接近愿望，例如拥抱或依偎。[1] 英语 sensual 在其他语境中可能包含性意味，因此看到同一个词时仍需核对含义。本表强调的是接近本身，不把它预设为性活动的前奏。" },
+          { h: "触摸研究能够说明什么", p: "2024 年系统综述中，137 项研究进入元分析，另有 75 项进入综述，发现触摸干预对部分疼痛、焦虑等指标有益。[6] 这些研究比较的是干预与对照条件，涉及不同人群和触摸方式；它们并未验证“感官吸引”的分类，也不能证明某人需要接受不喜欢的触碰。" },
+          { h: "同一个动作可以有不同意义", p: "牵手可以被理解为友谊、浪漫、安抚或其他互动。想与某个人依偎，也不说明对其没有其他吸引；只是这些体验需要分别了解。愿意被某个人拥抱，还不等于愿意接受其所有触碰或任何时候的接近。" },
+          { h: "不喜欢触碰也不代表缺少亲密", p: "有人喜欢身体接近，有人只在特定条件下喜欢，也有人更偏好保持距离。可以直接谈希望的动作、时长与停止方式；不需要用接受触碰证明信任。亲密还可以通过交谈、共同活动或其他双方认可的方式表达。" }
         ]
       },
       romantic: {
@@ -737,9 +790,10 @@
         lv: "lv-emotion",
         badge: "情感关系吸引",
         sections: [
-          { h: "热恋没有统一时钟", p: "激情、依恋和关系满意度会随时间变化，但不存在适用于所有人的固定“6—18 个月”期限，也不能简化为某种递质接替另一种递质。变化需要结合关系情境理解。" },
-          { h: "浪漫不是唯一的爱", p: "部分文化规范会把浪漫伴侣关系置于友谊、亲情或其他照料关系之上，也可能让无浪漫倾向者感到被忽视。不同关系可以具有各自价值，不必用浪漫关系作为唯一成熟或幸福标准。" },
-          { h: "区分依赖、照料与浪漫愿望", p: "“我想照顾对方”“我离不开对方”或“对方理解我”都不必然是浪漫吸引。浪漫的含义受个人与文化影响，也不要求排他；应由当事人结合自己的关系期待描述。" }
+          { h: "浪漫感受没有一套通用动作", p: "有人用期待约会、表白或成为恋人来描述浪漫吸引，也有人先有难以具体化的浪漫好感。想念、心跳、照料和共同生活并非浪漫独有；同样的活动，在不同关系中可能有不同意义。判断重点是本人如何理解这份感受，而不是完成了多少项恋爱行为。[1]" },
+          { h: "吸引、爱与关系安排分别了解", p: "对某人有浪漫吸引，不保证双方互相喜欢，也不意味着一定希望或适合建立关系。长期的爱、依恋、承诺与排他安排需要另外讨论；它们没有统一的组合，也不能按某种激素接替顺序为所有人设定热恋期限。[3][7]" },
+          { h: "脑活动重叠不等于恋爱成瘾", p: "2024 年元分析比较了 21 项浪漫爱与 28 项成瘾障碍的脑影像研究，观察到部分重叠与差异。[16] 这些是特定任务下的群体结果，不能用来诊断“爱上了谁”或认定恋爱本身属于成瘾；相关研究的样本代表性与报告一致性也有限。[7]" },
+          { h: "很少或没有浪漫吸引也有表达空间", p: "2024 年针对 1,642 名无浪漫倾向便利样本参与者的质性调查，呈现了多样的浪漫经验、自我理解与污名经历。[8] 这不构成身份检测，但提醒我们不能把浪漫兴趣当作人人必有的成长阶段。是否建立伴侣关系、重视哪些关系，仍由本人决定。" }
         ]
       },
       emotional: {
@@ -748,9 +802,10 @@
         lv: "lv-emotion",
         badge: "情感关系吸引",
         sections: [
-          { h: "情感劳动的性别", p: "社会期待女性承担更多情感支持功能，导致情感吸引在不同性别身上的表达、负担与边界认知存在系统性差异。女性常被默认为情感吸引的「供给方」——这一角色期待需要被批判性审视。" },
-          { h: "情感吸引与浪漫吸引", p: "情感吸引强调想了解和分享内心世界，浪漫吸引强调被当事人理解为浪漫的关系愿望；二者可共存，也可分别出现，但边界没有统一检测标准。" },
-          { h: "关系会变化", p: "情感联结可能随互动加深，也可能因边界、冲突或生活变化减弱。它并不天然比其他吸引更持久，也不要求发展成某种特定关系。" }
+          { h: "交心的愿望与已经建立的亲密不同", p: "情感吸引可以描述想了解某个人、分享感受和建立信任的愿望。已经感到亲密则涉及过去与现在的互动；一方很想靠近，也不保证另一方有同样愿望。这个词与友谊、浪漫和其他联结有较大重叠，不是彼此互斥的类别。" },
+          { h: "研究关注披露后得到怎样的回应", p: "两项经典事件日记研究发现，自我披露、对方披露及感知到的回应性与互动中的亲密感相关。[9] 回应性指感到对方理解、重视并关心自己。它是一种主观感知，不能直接当作对方完全可信的证明，也不能把统计关联理解为“多透露秘密就会更亲密”。" },
+          { h: "亲密不要求没有隐私", p: "可以愿意谈感受，同时保留暂时不想谈的经历。倾听和支持也不是无限责任，需要考虑双方的精力、时间与边界。某次被理解的感受很珍贵，但了解对方是否可靠，仍要看其长期行动和如何回应拒绝。" },
+          { h: "不按关系名称限制深度", p: "朋友之间可以深入交心，伴侣之间也可能主要通过共同活动建立连接。不能把交心全部归为情感吸引、再把友谊限定为轻松陪伴。关系可以变化，也不需要因为越来越亲密就被命名为恋爱。[10]" }
         ]
       },
       platonic: {
@@ -759,33 +814,34 @@
         lv: "lv-emotion",
         badge: "情感关系吸引",
         sections: [
-          { h: "友谊的持续与变化", p: "友谊可以长期稳定，也可能随生活处境变化。依恋、奖赏与共同经历都可能参与，但不能用催产素或内啡肽为一段关系贴上“柏拉图式”标签。" },
-          { h: "友谊的能见度", p: "同性之间的柏拉图式亲密在不同文化的「可见度」差异显著——异性友谊受异性恋本位/规范凝视，同性友谊在恐同文化中常遭病理化解读。「直男不应有亲密友谊」的规范是典型权力建构产物，限制了男性之间的柏拉图式亲密表达。" },
-          { h: "别误解深厚友谊", p: "柏拉图关系被误解为「暗恋伪装」是社会对深厚友谊的普遍不信任。承认「我和他关系很好，但我对他没有浪漫或性的想法」，是对友谊本身的尊重。柏拉图式吸引更关注「一起做某事」，情感吸引更关注「彼此敞开心扉」。" }
+          { h: "这里强调想与某个人成为朋友", p: "在相关社群用法中，柏拉图式吸引通常指向友谊或其他非浪漫亲近愿望；个别人对这个词的范围有不同理解。[1] 中文“柏拉图式爱情”又可能指没有性活动的恋爱，两种说法不能直接互换。使用时说明自己希望怎样相处，会更清楚。" },
+          { h: "友谊可以有很深的情感内容", p: "2023 年系统综述综合 38 篇研究，讨论友谊质量、支持、共同活动及福祉之间的关系。[10] 因此，“是否交心”不适合作为友谊与情感吸引的分界。朋友可以一起消磨时间，也可以分享困难、共同承担重要事务；深度本身不使关系变成浪漫。" },
+          { h: "亲密经验比单一关系脚本更丰富", p: "2026 年在线发表的质性研究分析了 69 名无性恋大学生与研究生的资料，提出容纳多种连接方式的亲密框架。[11] 它有助于理解以性或恋爱为中心的描述可能遗漏什么，但不是人群比例研究，也没有验证固定的吸引清单。" },
+          { h: "吸引与关系称谓不要混在一起", p: "酷儿柏拉图关系（QPR）通常用于描述超出当地一般友谊预期、并被当事人理解为非浪漫的承诺关系；各方对接触、性与共同生活的安排可能不同。[1] 不是所有深厚友谊都需要这个名字，也不能凭某人的柏拉图式吸引就替双方决定关系。" }
         ]
       },
       intellectual: {
         title: "智识吸引",
         en: "Intellectual Attraction",
         lv: "lv-cognitive",
-        badge: "认知精神吸引",
+        badge: "认知与意义",
         sections: [
-          { h: "大脑的兴奋", p: "智识吸引就像给大脑充电——和某人聊天三小时，大脑高度兴奋，迫不及待想下次继续。古希腊的「爱智慧（Philosophia）」、启蒙运动的「理性伴侣」理想、现代的「智识伴侣」概念，都与此相关。" },
-          { h: "谁有资格对话？", p: "「谁被认定为智识对话值得者」本身是权力问题——历史上女性、少数族裔在智识场域长期被排斥，导致智识吸引的发生条件并不中立。精英智识圈的「门槛吸引」也是阶级区隔机制的一部分。" },
-          { h: "聊得来≠喜欢", p: "「聊得来」常被误读为浪漫或情感吸引——智识吸引可以完全停留在认知层面而不向关系方向发展。一个人可以同时与多人保持纯粹智识层面的深度吸引，这不需要排他性，也不必然意味着情感或浪漫的卷入。" },
-          { h: "强度并不固定", p: "智识兴趣可能随交流深化，也可能在新鲜感消退、观点变化或互动中止后减弱。它不天然比性或浪漫吸引更持久。" }
+          { h: "具体说清被怎样的思考打动", p: "智识吸引可以描述对某人的提问、解释、想象或推理方式感兴趣，期待继续交流。启发可能来自相似观点，也可能来自有根据的不同意见。它是帮助描述体验的用语，不要求某个智商门槛，也不等于只愿与高学历者相处。[1]" },
+          { h: "观点相似只是可能线索", p: "Montoya 等的元分析区分实际相似与感知相似，发现它们与吸引的关联随互动情境变化。[12] 喜欢一个人可能伴随“我们很像”的印象，但这不能证明实际观点完全一致。相似性研究也不直接验证智识吸引有一套独立心理机制。" },
+          { h: "欣赏思考与性或浪漫兴趣分开", p: "可以想与对方讨论、合作或成为朋友，同时没有恋爱或性愿望。有些人用“智性恋”描述智力相关的性吸引，这与一般智识欣赏的侧重点不同。是否采用某个自称由本人决定；不能从聊得投入或欣赏才华替对方推断取向。" },
+          { h: "交流质量也包括如何对待彼此", p: "熟悉术语、表达流畅或掌握很多知识，不足以说明愿意倾听或尊重不同意见。是否让人有空间提问、承认不知道、保留分歧，同样影响相处体验。智识兴趣可以变化，也不天然比身体或情感吸引更高级、更持久。" }
         ]
       },
       spiritual: {
         title: "精神吸引",
         en: "Spiritual Attraction",
         lv: "lv-cognitive",
-        badge: "认知精神吸引",
+        badge: "认知与意义",
         sections: [
-          { h: "灵魂镜子", p: "精神吸引的核心是「意义建构一致性」——你像我+你理解我+你说出了我说不出的东西。各宗教与灵性传统均有对应概念：佛教的「法侣」、基督教的「灵魂伴侣」、苏菲主义的「灵性之爱」。" },
-          { h: "小心操控", p: "精神吸引是操控性关系的高风险地带——以「灵魂契合」为名实施的精神操控（如精神虐待、邪教动力学）正是利用了此类吸引的深层性与难以言说性。需区分真实的意义共鸣与投射性理想化。" },
-          { h: "描述性语言而非独立诊断", p: "精神吸引可能与宗教体验、价值认同、浪漫想象或理想化重叠。它可以帮助表达共鸣，但目前没有统一标准证明它是一种完全独立的吸引类型。" },
-          { h: "观察体验与功能", p: "平静或焦虑不能单独区分“精神吸引”和着迷。更实用的判断是：这种关注是否尊重现实边界，是否造成持续失控、明显痛苦或生活功能受损。" }
+          { h: "同一个词可能有几种含义", p: "有人用精神吸引描述共同信仰或灵性体验，有人指对生活意义、责任或价值的共鸣。中文“精神”也常被用来泛指非身体层面的亲近，因此与英语 spiritual 并非处处对应。先说明实际体验，比假定所有人说的是同一件事更准确。" },
+          { h: "共鸣感与客观了解之间有距离", p: "听到对方说出自己重视的想法，可能让人感到熟悉或被理解。相似性研究提醒我们，“觉得相似”和根据双方资料比较出的相似并非同一指标。[12] 强烈共鸣值得表达，但还需要在具体分歧、承诺和日常行动中了解彼此。" },
+          { h: "相关研究不能证明灵魂契合", p: "多样亲密的质性研究帮助呈现个人怎样建立连接，却不是对命定关系或灵魂共振的验证。[11] 本表将精神吸引作为描述性词语，不将其设为独立机制或更高层次的吸引，也不把不同宗教中的关系概念直接视作同义词。" },
+          { h: "按具体互动判断关系", p: "平静、兴奋或焦虑都不能单独证明关系健康或危险。更有用的是看能否自由表达不同意见、保留隐私、拒绝请求和维持其他重要关系。若出现威胁、控制或持续越界，应处理这些行为；不必先判断共鸣是真是假，也不能仅凭“精神吸引”这个标签断定存在操控。" }
         ]
       }
     };
