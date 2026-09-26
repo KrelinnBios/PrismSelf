@@ -693,6 +693,14 @@ body.scale-page .global-progress {
 	margin-top: 0 !important;
 }
 
+/* 分区或卡片内作为首个元素的标题不再叠加自身上边距，避免与外层容器上边距累积出过大空隙 */
+.result-section-slot :is(h3, .result-section-heading):first-child,
+.insight-card :is(h3, .result-section-heading):first-child,
+.action-box :is(h3, .result-section-heading):first-child,
+.analysis-card :is(h3, .result-section-heading):first-child {
+	margin-top: 0 !important;
+}
+
 .result-profile-tags {
 	display: flex;
 	flex-wrap: wrap;

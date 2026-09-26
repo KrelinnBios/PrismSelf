@@ -179,8 +179,8 @@ const sections = [
     { title: "第三部分：自我、命运与存在 (21-30 题)", desc: "探讨自我是否固定、自由如何成立，以及人在限制处境中如何承担。" },
     { title: "第四部分：社会、权力与价值 (31-40 题)", desc: "关注制度设计、权力运作、公共政策、惩罚逻辑和政治正当性。" },
     { title: "第五部分：面对逆境与无常 (41-50 题)", desc: "考察您如何理解挫折、痛苦、偶然、死亡意识与可行动空间。" },
-    { title: "第六部分：具体生活情境抉择（一）(51-60 题)", desc: "将抽象理论投射到科技伦理、文本解释、教育、关系和生命伦理场景中。" },
-    { title: "第七部分：具体生活情境抉择（二）(61-70 题)", desc: "进一步考察重大选择、疾病限制、效率标准、资源分配和历史理解。" }
+    { title: "第六部分：具体生活情境抉择（一）（51-60 题)", desc: "将抽象理论投射到科技伦理、文本解释、教育、关系和生命伦理场景中。" },
+    { title: "第七部分：具体生活情境抉择（二）（61-70 题)", desc: "进一步考察重大选择、疾病限制、效率标准、资源分配和历史理解。" }
 ];
 
 // 理论最大最小值计算（用于包含负权重的归一化映射）
@@ -275,7 +275,7 @@ function initForm() {
                     <span class="q-number">${q.id}.</span> ${q.text}
                 </div>
                 <select name="q${q.id}" data-id="${q.id}">
-                    <option value="" disabled selected>请选择...</option>
+                    <option value="" disabled selected>请选择……</option>
                     <option value="0">0 - 完全不认同</option>
                     <option value="1">1 - 比较不认同</option>
                     <option value="2">2 - 略微不认同</option>
@@ -466,19 +466,19 @@ function generateDeepInsight(normalized, answersMap) {
     </div>`).join('');
 
     let html = `${dimensionCards}<h3 class="result-section-heading">综合深度分析</h3><div class="insight-card">
-    <h3>一、 认识论与价值基底</h3>
-    <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的底层认知框架中，您主要将世界的运作与人生的意义理解为：${getDetailedEpistemology(top.key)}</p>`;
+    <h3>一、认识论与价值基底</h3>
+    <p>您在“<strong>${top.name}</strong>”上得分最高（${top.score}%）。在您的底层认知框架中，您主要将世界的运作与人生的意义理解为：${getDetailedEpistemology(top.key)}</p>`;
 
     if (second && second.score > 50) {
-        html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明您同样高度认同该流派的核心洞见——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的判断中同时存在。</p>`;
+        html += `<p>与此同时，您在“<strong>${second.name}</strong>”上的得分达到 ${second.score}%，表明您同样高度认同该流派的核心洞见。${getDetailedEpistemology(second.key)}两种视角在您的判断中同时存在。</p>`;
     }
     if (third && third.score > 45) {
-        html += `<p>「<strong>${third.name}</strong>」（${third.score}%）位列第三倾向，进一步展示了您思想体系的多元维度：${getDetailedEpistemology(third.key).substring(0, 80)}这一维度在您处理复杂现实时往往也会发挥关键作用。</p>`;
+        html += `<p>“<strong>${third.name}</strong>”（${third.score}%）位列第三倾向，进一步展示了您思想体系的多元维度：${getDetailedEpistemology(third.key)}这一维度在您处理复杂现实时往往也会发挥关键作用。</p>`;
     }
     html += `</div>`;
 
     html += `<div class="insight-card">
-    <h3>二、 核心命题确认</h3>
+    <h3>二、核心命题确认</h3>
     <p>根据您的作答模式，以下命题最能代表您当前的核心哲学立场：</p>
     <ul style="margin:0; padding-left:20px; line-height:2;">
       ${coreClaimsMap[top.key].map(c => `<li>${c}</li>`).join('')}
@@ -486,10 +486,10 @@ function generateDeepInsight(normalized, answersMap) {
     </ul></div>`;
 
     html += `<div class="insight-card">
-    <h3>三、 潜在理论盲区与内在张力</h3>
+    <h3>三、潜在理论盲区与内在张力</h3>
     <p>${getDetailedBlindSpot(top.key)}</p>
-    <p><strong>与其他流派的张力：</strong>您的立场与「${tension.tenseName}」之间存在明显的理论张力。这并不是谁对谁错的问题，而是底层预设的差异：他们所珍视的（如${lowest.name}的核心价值），恰恰是您的主导流派在建立理论体系时所必须排斥或悬置的。</p>
-    <p><strong>潜在的思想盟友：</strong>「${tension.allyName}」与您的立场在部分核心假设上较为兼容。它们可以作为补充视角，帮助您看到主导框架之外的分析层次。</p>
+    <p><strong>与其他流派的张力：</strong>您的立场与“${tension.tenseName}”之间存在明显的理论张力。这并不是谁对谁错的问题，而是底层预设的差异：“${tension.tenseName}”所珍视的核心价值，恰恰是您的主导流派在建立理论体系时所必须排斥或悬置的。</p>
+    <p><strong>潜在的思想盟友：</strong>“${tension.allyName}”与您的立场在部分核心假设上较为兼容。它们可以作为补充视角，帮助您看到主导框架之外的分析层次。</p>
     </div>`;
 
     let contradictions = [];
@@ -504,19 +504,19 @@ function generateDeepInsight(normalized, answersMap) {
             }
         }
     }
-    html += `<div class="insight-card"><h3>四、 个体思想画像及溢出分析</h3>`;
+    html += `<div class="insight-card"><h3>四、个体思想画像及溢出分析</h3>`;
     if (contradictions.length > 0) {
-        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留（甚至抵触），这说明您并未教条化地全盘接受，而是保持着高度独立的思辨：</p>
+        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向“${top.name}”，您在该流派的以下议题上表现出明确的保留（甚至抵触），这说明您并未教条化地全盘接受，而是保持着高度独立的思辨：</p>
         <ul style="margin:0; padding-left:20px; line-height:2; color:#164e63;">
-          ${contradictions.slice(0, 4).map(c => `<li>「${c.text}」（您的打分：${c.score} / 6）</li>`).join('')}
+          ${contradictions.slice(0, 4).map(c => `<li>“${c.text}”（您的打分：${c.score} / 6）</li>`).join('')}
         </ul>`;
     } else {
-        html += `<p><strong>对主导流派的高度一致：</strong>您在「${top.name}」的全部核心议题上保持了高度一致的给分，说明您在该框架内部的回答较一致。</p>`;
+        html += `<p><strong>对主导流派的高度一致：</strong>您对“${top.name}”的全部核心议题都给出了高度一致的判断，说明您在该框架内部的回答较为稳定。</p>`;
     }
     if (strongAgrees.length > 0) {
-        html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>值得注意的是，您在整体得分最低的「${lowest.name}」中，仍对以下议题表示较高认同。这些题目可能提示您对该流派并非完全排斥：</p>
+        html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>值得注意的是，您在整体得分最低的“${lowest.name}”中，仍对以下议题表示较高认同。这些题目可能提示您对该流派并非完全排斥：</p>
         <ul style="margin:0; padding-left:20px; line-height:2; color:#164e63;">
-          ${strongAgrees.slice(0, 3).map(c => `<li>「${c.text}」（您的打分：${c.score} / 6）</li>`).join('')}
+          ${strongAgrees.slice(0, 3).map(c => `<li>“${c.text}”（您的打分：${c.score} / 6）</li>`).join('')}
         </ul>`;
     }
     html += `</div>`;
@@ -524,11 +524,11 @@ function generateDeepInsight(normalized, answersMap) {
     // 五、认知对照：最低匹配流派分析 + 推荐阅读
     let lowestRec = "";
     switch (lowest.key) {
-        case "existentialism": lowestRec = "《存在与虚无》（萨特）或《西西弗神话》（加缪）——重新理解「自由」与「荒诞」的积极意义。"; break;
+        case "existentialism": lowestRec = "《存在与虚无》（萨特）或《西西弗神话》（加缪）——重新理解“自由”与“荒诞”的积极意义。"; break;
         case "stoicism": lowestRec = "《沉思录》（马可·奥勒留）或《像哲学家一样生活》（威廉·B·埃尔文）——体验理性平静的力量。"; break;
         case "empiricism": lowestRec = "《人类理解研究》（休谟）或《猜想与反驳》（波普尔）——感受经验证据的坚实魅力。"; break;
         case "rationalism": lowestRec = "《第一哲学沉思集》（笛卡尔）或《伦理学》（斯宾诺莎）——体验纯粹理性推演的秩序之美。"; break;
-        case "pragmatism": lowestRec = "《实用主义》（威廉·詹姆斯）或《民主与教育》（杜威）——理解「有用即真理」的深层逻辑。"; break;
+        case "pragmatism": lowestRec = "《实用主义》（威廉·詹姆斯）或《民主与教育》（杜威）——理解“有用即真理”的深层逻辑。"; break;
         case "kantianism": lowestRec = "《道德形而上学奠基》（康德）或《正义论》（罗尔斯）——重新评估绝对义务的尊严。"; break;
         case "utilitarianism": lowestRec = "《功利主义》（密尔）或《实践伦理学》（彼得·辛格）——审视结果导向的道德计算。"; break;
         case "postmodernism": lowestRec = "《规训与惩罚》（福柯）或《后现代状况》（利奥塔）——理解解构的批判力量。"; break;
@@ -536,8 +536,8 @@ function generateDeepInsight(normalized, answersMap) {
     }
 
     html += `<div class="insight-card">
-        <h3>五、 认知对照：最低匹配流派分析</h3>
-        <p>您得分最低的流派是「<strong>${lowest.name}</strong>」（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
+        <h3>五、认知对照：最低匹配流派分析</h3>
+        <p>您得分最低的流派是“<strong>${lowest.name}</strong>”（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
         <strong>为何权重较低？</strong>您对该流派的低认同，不一定源于不了解，也可能反映了更深层的前提分歧——${lowest.key === 'existentialism' ? "您可能更相信世界存在某种客观意义或秩序，而非完全由个体自由创造。" :
             lowest.key === 'stoicism' ? "您可能更倾向于通过改变外部世界或激情投入来解决问题，而非通过内在情绪抽离。" :
                 lowest.key === 'empiricism' ? "您可能更相信先验理性、直觉或形而上学真理的存在，而非仅依赖感官经验。" :
@@ -639,8 +639,8 @@ window.calculateResult = function () {
     let judgmentHtml = `<h3>理论谱系定性解读</h3>`;
     judgmentHtml += `<p>您的思想坐标系以<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '为核心基底'}</strong>构建，`;
     if (normalized[0].score >= 80) judgmentHtml += `且认同度极高（${normalized[0].score}%）。这表示该取向在您的作答中非常稳定，可能是您处理道德、知识和生活问题时经常调用的框架。`;
-    else if (normalized[0].score >= 65) judgmentHtml += `立场相对清晰（${normalized[0].score}%）。您拥有一个稳固的价值观大本营，但在遭遇极其复杂的边界问题时，也愿意走出本阵，向其他流派借取智慧。`;
-    else if (normalized[0].score >= 50) judgmentHtml += `认同度属于温和范畴（${normalized[0].score}%）。您似乎不会把自己完全交给某一种单一框架，而是会根据具体情境、问题类型和人生阶段在不同工具间切换。`;
+    else if (normalized[0].score >= 65) judgmentHtml += `立场相对清晰（${normalized[0].score}%）。您的价值观已有稳定的核心，但遇到极其复杂的边界问题时，也愿意暂时放下成见，参考其他流派的角度。`;
+    else if (normalized[0].score >= 50) judgmentHtml += `认同度属于温和范畴（${normalized[0].score}%）。您似乎不会完全依赖某一种单一框架，而是会根据具体情境、问题类型和人生阶段在不同视角之间切换。`;
     else judgmentHtml += `最高得分也没有突破半数界限。这并不代表结果无效，更可能说明您对单一理论归属保持距离，或当前回答更偏向问题导向而非阵营导向。`;
 
     judgmentHtml += `从雷达分布形态看，极差跨度为 ${spread.toFixed(1)} 分。${spread > 50 ? '这种较大的差距表示您的理论偏好相对集中，不同流派之间的认同区分较清楚。' : spread > 30 ? '分布有主有次，说明您既有较明显的重心，也保留了一定的跨流派弹性。' : '较平缓的分布说明您对多个框架都保留开放态度，或尚未在本量表覆盖的问题上形成强烈分化。'}</p>`;
@@ -651,7 +651,7 @@ window.calculateResult = function () {
     const books = booksMap[normalized[0].key];
     let mainHtml = `<h3>核心特征与经典书目</h3>
     <p>${categoriesMap[normalized[0].key].desc}</p>
-    <p><strong>生活实践应用：</strong>认同「${normalized[0].name}」的人，在日常生活中通常会表现出这类特征：${practiceMap[normalized[0].key]}。</p>
+    <p><strong>生活实践应用：</strong>认同“${normalized[0].name}”的人，在日常生活中通常会表现出这类特征：${practiceMap[normalized[0].key]}。</p>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
       <div style="background:#fcffff; padding:20px; border-radius:12px; border-top:4px solid #06b6d4; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
         <strong style="color:#0e7490; font-size:1.05em;">奠基性经典读物</strong>
@@ -667,7 +667,7 @@ window.calculateResult = function () {
       </div>
     </div>
     <div style="background:#f0fdfa; padding:18px 24px; border-radius:12px; margin-top:20px; border-left:4px solid #0d9488; font-size:0.95em; color:#115e59;">
-      <strong style="font-size:1.05em;">最强有力的挑战性读物：</strong><br>${books.challenge[0]}<br>${books.challenge[1]}
+      <strong style="font-size:1.05em;">最具挑战性的读物：</strong><br>${books.challenge[0]}<br>${books.challenge[1]}
     </div>`;
     document.getElementById('mainInterpretation').innerHTML = mainHtml;
 
@@ -690,20 +690,20 @@ window.calculateResult = function () {
     window.PrismScale.renderReflectionActions('personalizedSuggestions', [
       {
         title: '回到主导流派的原典',
-        text: `选择「${normalized[0].name}」的一本代表作，观察概念和论证如何逐步展开，再检验自己是否认同其基本前提。`
+        text: `选择“${normalized[0].name}”的一本代表作，观察概念和论证如何逐步展开，再检验自己是否认同其基本前提。`
       },
       {
         title: '理解差异最大的视角',
-        text: `阅读「${lowest.name}」的一篇入门文章或代表作，先理解它要解决什么问题、为何形成这些前提，再决定自己是否赞同。`
+        text: `阅读“${lowest.name}”的一篇入门文章或代表作，先理解它要解决什么问题、为何形成这些前提，再决定自己是否赞同。`
       },
       {
         title: '把理论带入日常判断',
-        text: `遇到一次工作、人际或生活选择时，停下来问：“如果从「${normalized[0].name}」出发，我会怎样理解和处理这件事？”再记录这个框架帮到了什么、遗漏了什么。`
+        text: `遇到一次工作、人际或生活选择时，停下来问：“如果从“${normalized[0].name}”出发，我会怎样理解和处理这件事？”再记录这个框架帮到了什么、遗漏了什么。`
       },
       {
         title: '观察个人思想边界',
         text: reflectQ
-          ? `以「${reflectQ.text}」（本次得分：${answers[reflectQ.id]}/6）为起点，写下你赞同、保留和仍不确定的部分，辨认自己的细分立场。`
+          ? `以“${reflectQ.text}”（本次得分：${answers[reflectQ.id]}/6）为起点，写下您赞同、保留和仍不确定的部分，辨认自己的细分立场。`
           : '从主导流派中挑选一个最犹豫的命题，分别写下赞同、保留和仍需了解的部分，不必让个人立场完全服从某个流派。'
       },
       {
@@ -763,7 +763,7 @@ window.saveResultImage = async function () {
     element.style.overflow = 'visible';
     const btn = event.target;
     const originalText = btn.innerText;
-    btn.innerText = '生成中，请稍候...';
+    btn.innerText = '生成中，请稍候……';
     btn.disabled = true;
     try {
         const canvas = await window.PrismScale.captureDesktopResult(element);

@@ -268,7 +268,7 @@ function initForm() {
                 <span class="q-number">${q.id}.</span> ${q.text}
             </div>
             <select name="q${q.id}" data-id="${q.id}">
-                <option value="" disabled selected>请选择...</option>
+                <option value="" disabled selected>请选择……</option>
                 <option value="0">0 - 完全不认同</option>
                 <option value="1">1 - 比较不认同</option>
                 <option value="2">2 - 中立偏不认同</option>
@@ -473,19 +473,19 @@ function generateDeepInsight(normalized, answersMap) {
     </div>`).join('');
 
     let html = `${dimensionCards}<h3 class="result-section-heading">综合深度分析</h3><div class="insight-card">
-    <h3>一、 认识论基础</h3>
-    <p>您在「<strong>${top.name}</strong>」上得分最高（${top.score}%）。在您的认知框架中，您主要将性别不平等的根源理解为：${getDetailedEpistemology(top.key)}</p>`;
+    <h3>一、认识论基础</h3>
+    <p>您在“<strong>${top.name}</strong>”上得分最高（${top.score}%）。在您的认知框架中，您主要将性别不平等的根源理解为：${getDetailedEpistemology(top.key)}</p>`;
 
     if (second && second.score > 50) {
-        html += `<p>与此同时，您在「<strong>${second.name}</strong>」上的得分达到 ${second.score}%，表明该流派的分析框架在您的回答中也占有较高权重——尤其在${getDetailedEpistemology(second.key).substring(0, 100)}这一层面，两种视角在您的思考中并存，也可能在具体议题上形成张力。</p>`;
+        html += `<p>与此同时，您在“<strong>${second.name}</strong>”上的得分达到 ${second.score}%，表明该流派的分析框架在您的回答中也占有较高权重。${getDetailedEpistemology(second.key)}两种视角在您的思考中并存，也可能在具体议题上形成张力。</p>`;
     }
     if (third && third.score > 45) {
-        html += `<p>「<strong>${third.name}</strong>」（${third.score}%）位列第三倾向，进一步印证了您思想体系的多元层次：${getDetailedEpistemology(third.key).substring(0, 80)}这一维度在您面对具体议题时往往也会浮现。</p>`;
+        html += `<p>“<strong>${third.name}</strong>”（${third.score}%）位列第三倾向，进一步印证了您思想体系的多元层次：${getDetailedEpistemology(third.key)}这一维度在您面对具体议题时往往也会浮现。</p>`;
     }
     html += `</div>`;
 
     html += `<div class="insight-card">
-    <h3>二、 核心命题确认</h3>
+    <h3>二、核心命题确认</h3>
     <p>根据您的作答模式，以下命题最能代表您当前的理论立场：</p>
     <ul style="margin:0; padding-left:20px; line-height:2;">
       ${coreClaimsMap[top.key].map(c => `<li>${c}</li>`).join('')}
@@ -493,9 +493,9 @@ function generateDeepInsight(normalized, answersMap) {
     </ul></div>`;
 
     html += `<div class="insight-card">
-    <h3>三、 潜在理论盲区与内在张力</h3>
+    <h3>三、潜在理论盲区与内在张力</h3>
     <p>${getDetailedBlindSpot(top.key)}</p>
-    <p><strong>与其他流派的张力：</strong>您的立场与「${tension.tenseName}」之间存在较明显的理论分歧——${top.key === 'liberal' ? '后者认为您所依赖的法律与市场框架本身就是父权资本主义的产物，形式平等不等于实质解放。' :
+    <p><strong>与其他流派的张力：</strong>您的立场与“${tension.tenseName}”之间存在较明显的理论分歧——${top.key === 'liberal' ? '这一流派认为您所依赖的法律与市场框架本身就是父权资本主义的产物，形式平等不等于实质解放。' :
             top.key === 'radical' ? '酷儿女权批评您可能将女性本质化，忽略性别流动性；自由女权则认为您对家庭和性的批判走得过远，忽略了个体能动性。' :
                 top.key === 'socialist' ? '自由女权担忧您对个体选择的轻视；文化女权则认为您的阶级分析框架未能充分重视女性特质本身的伦理价值。' :
                     top.key === 'intersectional' ? '自由女权认为交叉分析过于碎片化，难以形成有效政治联盟；激进女权则担心性别分析被稀释。' :
@@ -504,7 +504,7 @@ function generateDeepInsight(normalized, answersMap) {
                                 top.key === 'eco' ? '自由女权认为生态女权对技术的警惕妨碍了女性进入科技领域；社会主义女权认为单纯的生态叙事可能回避了阶级剥削的核心矛盾。' :
                                     '自由女权认为文化相对主义有时成为庇护本土父权的借口；激进女权则担心后殖民视角使针对特定文化中性别暴力的批判丧失了立足点。'
         }</p>
-    <p><strong>潜在的思想盟友：</strong>「${tension.allyName}」与您的立场在多个核心前提上高度兼容，理论对话空间较大，可深入参照比较。</p>
+    <p><strong>潜在的思想盟友：</strong>“${tension.allyName}”与您的立场在多个核心前提上高度兼容，理论对话空间较大，可深入参照比较。</p>
     </div>`;
 
     let contradictions = [];
@@ -519,19 +519,19 @@ function generateDeepInsight(normalized, answersMap) {
             }
         }
     }
-    html += `<div class="insight-card"><h3>四、 个体思想画像及溢出分析</h3>`;
+    html += `<div class="insight-card"><h3>四、个体思想画像及溢出分析</h3>`;
     if (contradictions.length > 0) {
-        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向「${top.name}」，您在该流派的以下议题上表现出明确的保留或抵触，说明您的立场并非全盘接受，而是带有独立的思辨：</p>
+        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向“${top.name}”，您在该流派的以下议题上表现出明确的保留或抵触，说明您的立场并非全盘接受，而是带有独立的思辨：</p>
         <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
-          ${contradictions.slice(0, 4).map(c => `<li>「${c.text}」（得分：${c.score}）</li>`).join('')}
+          ${contradictions.slice(0, 4).map(c => `<li>“${c.text}”（得分：${c.score}）</li>`).join('')}
         </ul>`;
     } else {
-        html += `<p><strong>对主导流派的高度一致：</strong>您在「${top.name}」的全部核心议题上保持了高度一致，说明您在该框架内部的回答较一致。</p>`;
+        html += `<p><strong>对主导流派的高度一致：</strong>您对“${top.name}”的全部核心议题都给出了高度一致的判断，说明您在该框架内部的回答较为稳定。</p>`;
     }
     if (strongAgrees.length > 0) {
-        html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>您在整体得分最低的「${lowest.name}」中，仍对以下议题表示较强认同。这些溢出点可能提示您对该流派并非完全排斥：</p>
+        html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>您在整体得分最低的“${lowest.name}”中，仍对以下议题表示较强认同。这些溢出点可能提示您对该流派并非完全排斥：</p>
         <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
-          ${strongAgrees.slice(0, 3).map(c => `<li>「${c.text}」（得分：${c.score}）</li>`).join('')}
+          ${strongAgrees.slice(0, 3).map(c => `<li>“${c.text}”（得分：${c.score}）</li>`).join('')}
         </ul>`;
     }
     html += `</div>`;
@@ -546,8 +546,8 @@ function generateDeepInsight(normalized, answersMap) {
     else if (lowest.key === 'eco') lowRec = '《自然之死》（麦茜特）——追溯机械自然观的兴起与对女性及自然支配的深层关联。';
     else lowRec = '《在西方的目光下》（莫汉蒂）——正面挑战女权运动中的殖民主义认知模式。';
 
-    html += `<div class="insight-card"><h3>五、 认知对照：最低匹配流派分析</h3>
-    <p>您得分最低的流派是「<strong>${lowest.name}</strong>」（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
+    html += `<div class="insight-card"><h3>五、认知对照：最低匹配流派分析</h3>
+    <p>您得分最低的流派是“<strong>${lowest.name}</strong>”（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
     <p><strong>为何权重较低？</strong>您对该流派的低认同，不一定源于不了解，也可能反映了更深层的前提分歧——${lowest.key === 'liberal' ? '您可能认为，仅仅修补规则而不触动结构，无法实现真正的解放。' :
             lowest.key === 'radical' ? '您可能对父权制高于一切的单一轴线分析感到不足，或不认同其对异性恋制度的系统批判。' :
                 lowest.key === 'socialist' ? '您可能不认为经济结构是压迫的决定性根源，或者认为文化、身体层面的变革同样不可化约。' :
@@ -653,7 +653,7 @@ window.calculateResult = function () {
     else if (normalized[0].score >= 50) judgmentHtml += `对该流派表现出温和偏向（${normalized[0].score}%），但同时吸纳了多个流派的解释力。说明您可能更倾向于根据议题情境切换分析框架，而不是固定归入单一流派。`;
     else judgmentHtml += `各流派得分相对接近，尚未形成单一的主导倾向（最高仅 ${normalized[0].score}%）。这可能意味着您更重视具体议题判断，或尚未在本量表覆盖的问题上形成强烈分化。`;
 
-    judgmentHtml += ` 从雷达图的分布形态来看，您的思想谱系${spread > 50 ? `极差达 ${spread.toFixed(1)} 分，呈现出<strong>高度清晰的倾向性轮廓</strong>` : spread > 30 ? `极差为 ${spread.toFixed(1)} 分，呈现出<strong>有重心的梯度分布</strong>` : `极差仅 ${spread.toFixed(1)} 分，各轴向分布<strong>相当均衡</strong>`}。</p>`;
+    judgmentHtml += ` 从雷达图的分布形态来看，您的思想谱系在各轴向的分值${spread > 50 ? `极差达 ${spread.toFixed(1)} 分，呈现出<strong>高度清晰的倾向性轮廓</strong>` : spread > 30 ? `极差为 ${spread.toFixed(1)} 分，呈现出<strong>有重心的梯度分布</strong>` : `极差仅 ${spread.toFixed(1)} 分，各轴向分布<strong>相当均衡</strong>`}。</p>`;
 
     judgmentHtml += `<p><strong>历史谱系定位：</strong>${normalized[0].key === 'liberal' ? '自由女权主义根植于启蒙理性、法律平等和个人权利传统。您的立场通常较重视政策可操作性和制度可见性，同时也需要回应结构批判对形式平等局限的提醒。' :
         normalized[0].key === 'radical' ? '激进女权主义在 20 世纪 60-70 年代第二波女权运动中影响显著，强调私人领域和身体政治中的权力关系。您的立场通常能揭示日常关系中的结构性问题，同时也需要处理差异经验和政策实践中的复杂边界。' :
@@ -671,7 +671,7 @@ window.calculateResult = function () {
     const books = booksMap[normalized[0].key];
     let mainHtml = `<h3>核心特征与学术脉络</h3>
     <p>${categoriesMap[normalized[0].key].desc}</p>
-    <p><strong>行动主义实践路径：</strong>认同「${normalized[0].name}」的人通常在以下领域中将理论转化为实践：${activismMap[normalized[0].key]}。</p>
+    <p><strong>行动主义实践路径：</strong>认同“${normalized[0].name}”的人通常在以下领域中将理论转化为实践：${activismMap[normalized[0].key]}。</p>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
       <div style="background:#fffcf8; padding:20px; border-radius:12px; border-top:4px solid #f97316; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
         <strong style="color:#c2410c; font-size:1.05em;">奠基性经典</strong>
@@ -718,11 +718,11 @@ window.calculateResult = function () {
     window.PrismScale.renderReflectionActions('personalizedSuggestions', [
       {
         title: '深化主导立场',
-        text: `系统阅读「${normalized[0].name}」的奠基文本，不只接受结论，也追溯其核心论证：${primaryReading}`
+        text: `系统阅读“${normalized[0].name}”的奠基文本，不只接受结论，也追溯其核心论证：${primaryReading}`
       },
       {
         title: '主动接触挑战性视角',
-        text: `阅读「${lowest.name}」的一本入门文本，暂缓反驳，先追问这个框架看见了哪些自己容易遗漏的问题。`
+        text: `阅读“${lowest.name}”的一本入门文本，暂缓反驳，先追问这个框架看见了哪些自己容易遗漏的问题。`
       },
       {
         title: '进行具体议题的交叉演练',
@@ -735,7 +735,7 @@ window.calculateResult = function () {
       {
         title: '观察个人思想边界',
         text: reflectQ
-          ? `以「${reflectQ.text}」（本次得分：${answers[reflectQ.id]}）为起点，写下产生保留或抵触的具体原因，看看它反映了怎样的个人边界和细分立场。`
+          ? `以“${reflectQ.text}”（本次得分：${answers[reflectQ.id]}）为起点，写下产生保留或抵触的具体原因，看看它反映了怎样的个人边界和细分立场。`
           : '从主导流派中挑选一个最犹豫的议题，写下赞同、保留和仍需了解的部分，允许立场保持细致而不必完全一致。'
       }
     ]);
@@ -790,7 +790,7 @@ window.saveResultImage = async function () {
     element.style.overflow = 'visible';
     const btn = event.target;
     const originalText = btn.innerText;
-    btn.innerText = '生成中，请稍候...';
+    btn.innerText = '生成中，请稍候……';
     btn.disabled = true;
     try {
         const canvas = await window.PrismScale.captureDesktopResult(element);

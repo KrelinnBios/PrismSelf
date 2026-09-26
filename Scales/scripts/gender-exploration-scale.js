@@ -8,7 +8,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">1.</span>
             您是否感觉自己的内在性别与出生时被指派的性别不一致？</div>
         <select name="q1">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全一致，从无怀疑</option>
             <option value="1">1 - 极少感觉不一致</option>
             <option value="2">2 - 偶尔感觉不一致</option>
@@ -34,7 +34,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">2.</span>
             您是否曾经渴望醒来时变成另一种性别（或没有性别、其他性别）？</div>
         <select name="q2">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未有过</option>
             <option value="1">1 - 极少有过</option>
             <option value="2">2 - 偶尔幻想</option>
@@ -43,7 +43,7 @@ const questionMarkup = `
             <option value="5">5 - 每天或非常强烈地渴望</option>
         </select>
         <div class="explanation">
-            <p><strong>本题用意：</strong>评估改变性别的内在愿望强度。“神奇按钮测试”：如果有一个按钮按下去就能永久改变性别且没人觉得奇怪，你会按吗？选 5 分通常意味着你会毫不犹豫地按。该题帮助识别潜在的性别愉悦需求，与焦虑相对立，探索积极的内在驱动力。
+            <p><strong>本题用意：</strong>评估改变性别的内在愿望强度。“神奇按钮测试”：如果有一个按钮按下去就能永久改变性别且没人觉得奇怪，您会按吗？选 5 分通常意味着您会毫不犹豫地按。该题帮助识别潜在的性别愉悦需求，与焦虑相对立，探索积极的内在驱动力。
             </p>
             <p><strong>具体案例：</strong>例一：若您每天睡前都希望醒来变成女性，并为此感到兴奋，则可选择 5 分；相反，若您从未有过这种想法，甚至觉得当前性别完美，则可选择 0 分。例二：若您偶尔在看电影时幻想自己是异性角色，但不持久，则可选择 2 分。例三：若您在压力大时反复幻想改变性别作为逃避，则为高分。
             </p>
@@ -61,7 +61,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">3.</span>
             当他人按您的指派性别称呼或归类您时，您是否会感到排斥、别扭或“不对劲”？</div>
         <select name="q3">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全舒适/无感</option>
             <option value="1">1 - 极少不适</option>
             <option value="2">2 - 轻微不适</option>
@@ -87,7 +87,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">4.</span>
             如果您能以另一种性别身份生活，且完全被社会接纳，您会觉得更快乐或更符合内心吗？</div>
         <select name="q4">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不会，现在的身份最好</option>
             <option value="1">1 - 也许差不多</option>
             <option value="2">2 - 可能稍微好点</option>
@@ -113,7 +113,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">5.</span>
             您是否觉得传统的“男性”或“女性”这两个标签都无法准确描述您的内心感受？</div>
         <select name="q5">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不符，我很确定属于二元之一</option>
             <option value="1">1 - 很少觉得</option>
             <option value="2">2 - 偶尔怀疑</option>
@@ -140,7 +140,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">6.</span>
             回想童年，您是否曾坚持或隐秘地认为自己属于另一种性别？</div>
         <select name="q6">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全没有</option>
             <option value="1">1 - 记忆模糊/极少</option>
             <option value="2">2 - 偶尔有过想法</option>
@@ -166,7 +166,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">7.</span>
             您是否感觉自己没有明显的性别感，或觉得“性别”与自己的内在体验关系不大？</div>
         <select name="q7">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不符，我有明确性别感</option>
             <option value="1">1 - 很少不符</option>
             <option value="2">2 - 偶尔觉得性别不重要</option>
@@ -191,7 +191,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">8.</span>
             您对自己性别的感觉是否会随时间、环境或心情发生变化？</div>
         <select name="q8">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全稳定，从不变化</option>
             <option value="1">1 - 极其稳定</option>
             <option value="2">2 - 偶尔有微小波动</option>
@@ -216,7 +216,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">9.</span>
             当您看到某种向往的性别形象时，“想成为对方”的感觉是否比“想与对方建立关系”更强？</div>
         <select name="q9">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全是吸引，不想成为对方</option>
             <option value="1">1 - 大多是吸引</option>
             <option value="2">2 - 主要是吸引，偶尔羡慕</option>
@@ -241,7 +241,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">10.</span>
             您是否通过幻想自己是另一种性别来获得安慰或逃避现实压力？</div>
         <select name="q10">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -255,7 +255,7 @@ const questionMarkup = `
             </p>
             <p><strong>心理防御机制：</strong>性别转换幻想可以作为一种应对机制，帮助个体暂时逃离与指派性别相关的压力。这在心理学上类似于“幻想性逃避”。长期依赖这种机制可能导致现实适应问题，但也可能是性别认同的重要线索。
             </p>
-            <p><strong>文化视角：</strong>在文学、影视作品中，性别转换幻想常被浪漫化（如《你的名字。》），这为个体提供了文化脚本。但如果现实缺乏支持，幻想可能成为孤独的避难所。</p>
+            <p><strong>文化视角：</strong>在文学、影视作品中，性别转换幻想常被浪漫化（如《您的名字。》），这为个体提供了文化脚本。但如果现实缺乏支持，幻想可能成为孤独的避难所。</p>
             <div class="reflection-hint">
                 <strong>深度反思提示：</strong>这种幻想是主动选择的愉快体验，还是被迫的逃避行为？幻想后回到现实时，您的感受如何？如果现实生活更符合您的幻想，您还会需要这种逃避吗？
             </div>
@@ -266,7 +266,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">11.</span>
             您是否觉得自己的性别认同像一个“谱系”，而不是固定的点？</div>
         <select name="q11">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不符，固定不变</option>
             <option value="1">1 - 很少觉得</option>
             <option value="2">2 - 偶尔觉得</option>
@@ -291,7 +291,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">12.</span>
             回想青春期，您是否对身体变化感到惊喜还是背叛？</div>
         <select name="q12">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 惊喜/自然</option>
             <option value="1">1 - 极少背叛感</option>
             <option value="2">2 - 偶尔不适</option>
@@ -322,7 +322,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">13.</span>
             您对自己的第一或第二性征（如胸部、生殖器、声音、体毛）感到痛苦或厌恶吗？</div>
         <select name="q13">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全喜爱/接受</option>
             <option value="1">1 - 偶尔不满意（像普通人一样）</option>
             <option value="2">2 - 轻微不适</option>
@@ -349,7 +349,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">14.</span>
             您是否会通过束胸、宽松衣物、处理体毛或调整身体轮廓等方式，弱化某些性征或改变性别表达？</div>
         <select name="q14">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -374,7 +374,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">15.</span>
             当陌生人误认您的性别（错判为异性）时，您的第一反应是？</div>
         <select name="q15">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 纠正，感到不悦或好笑</option>
             <option value="1">1 - 略感尴尬</option>
             <option value="2">2 - 无所谓</option>
@@ -398,7 +398,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">16.</span>
             在洗澡、更衣或照镜子时，您是否会避免看自己的性征部位，或者看的时候感到与身体“分离”？</div>
         <select name="q16">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不，我很欣赏自己的身体</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -422,7 +422,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">17.</span>
             您是否嫉妒异性能够自然地拥有某些身体特征（如声音、骨架、器官）？</div>
         <select name="q17">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -446,7 +446,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">18.</span>
             设想您必须以指派性别度过余生（结婚、工作、衰老），这会让您感到绝望或空虚吗？</div>
         <select name="q18">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不，这是我期待的</option>
             <option value="1">1 - 有点担心其他事，但不是性别</option>
             <option value="2">2 - 偶尔觉得乏味</option>
@@ -471,7 +471,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">19.</span>
             您是否更喜欢在网络游戏或社交媒体上使用与指派性别不同的性别身份？</div>
         <select name="q19">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔（为了好玩）</option>
@@ -496,7 +496,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">20.</span>
             您是否希望自己的身体特征完全中性化（既无男性特征也无女性特征）？</div>
         <select name="q20">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不希望，我喜欢当前特征</option>
             <option value="1">1 - 极少希望</option>
             <option value="2">2 - 偶尔希望</option>
@@ -520,7 +520,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">21.</span>
             您是否在社交场合（如聚会、工作）感到被指派性别角色限制或不适？</div>
         <select name="q21">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -545,7 +545,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">22.</span>
             看到某些性别群体自然地以您向往的方式互动时，您是否会羡慕他们的归属感或被看待的方式？</div>
         <select name="q22">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -569,7 +569,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">23.</span>
             您是否在医疗或体检时，对指派性别的身体描述感到不适或否认？</div>
         <select name="q23">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -593,7 +593,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">24.</span>
             您是否因为自己的性别认同或表达而经历过他人的误解、嘲笑或排斥？</div>
         <select name="q24">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未经历</option>
             <option value="1">1 - 极少经历</option>
             <option value="2">2 - 偶尔经历</option>
@@ -623,7 +623,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">25.</span>
             您是否更喜欢穿戴与指派性别不同的服装或饰品，并因此感到更自信？</div>
         <select name="q25">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -647,7 +647,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">26.</span>
             您是否在选择职业或兴趣时，受指派性别刻板印象的影响而感到不适？</div>
         <select name="q26">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -671,7 +671,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">27.</span>
             您是否觉得在同性群体中格格不入？</div>
         <select name="q27">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不，我有归属感</option>
             <option value="1">1 - 偶尔别扭</option>
             <option value="2">2 - 有点别扭</option>
@@ -695,7 +695,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">28.</span>
             您是否在探索诸如 X 性别、其他性别标记的法律身份认同？</div>
         <select name="q28">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不感兴趣</option>
             <option value="1">1 - 听说过</option>
             <option value="2">2 - 有点好奇</option>
@@ -719,7 +719,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">29.</span>
             您是否尝试过在安全的环境（如网络、私人空间）中以另一种性别身份生活（例如使用不同的名字、代词），并感到更真实？</div>
         <select name="q29">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未尝试过</option>
             <option value="1">1 - 极少尝试</option>
             <option value="2">2 - 偶尔尝试但无特殊感觉</option>
@@ -743,7 +743,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">30.</span>
             您是否觉得自己是在“扮演”现在的性别角色，而不是“是”这个性别？</div>
         <select name="q30">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不，我很自然</option>
             <option value="1">1 - 偶尔像表演</option>
             <option value="2">2 - 有时需要努力维持</option>
@@ -767,7 +767,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">31.</span>
             如果世界上没有性别之分，您会觉得更自由吗？</div>
         <select name="q31">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不会/没区别</option>
             <option value="1">1 - 可能有点</option>
             <option value="2">2 - 偶尔想想</option>
@@ -791,7 +791,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">32.</span>
             您是否在电影、书籍或社交媒体上看到性别多元的角色或人物时，感到强烈的情感共鸣或认同？</div>
         <select name="q32">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未有过</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -814,7 +814,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">33.</span>
             您是否觉得性别表达应该随心情变化，而不是固定？</div>
         <select name="q33">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -844,7 +844,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">34.</span>
             您是否主动搜索过关于性别过渡（医疗、法律、社会）的具体信息？</div>
         <select name="q34">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未搜索过</option>
             <option value="1">1 - 极少搜索</option>
             <option value="2">2 - 偶尔看看</option>
@@ -866,7 +866,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">35.</span>
             您是否曾经向亲密的朋友或网友尝试透露过对自己性别的困惑？</div>
         <select name="q35">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未</option>
             <option value="1">1 - 开玩笑提过</option>
             <option value="2">2 - 隐晦提过</option>
@@ -890,7 +890,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">36.</span>
             您是否感觉顺性别（Cisgender）这个标签对您来说像一件“不合身的衣服”？</div>
         <select name="q36">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 很合身</option>
             <option value="1">1 - 有点松/紧，但还行</option>
             <option value="2">2 - 偶尔不舒服</option>
@@ -914,7 +914,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">37.</span>
             您是否曾经因为无法表达真实性别而感到压抑、焦虑或抑郁？</div>
         <select name="q37">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从未</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -938,7 +938,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">38.</span>
             您是否担心如果探索性别，会失去家人、朋友或社会地位？</div>
         <select name="q38">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不担心/不相关</option>
             <option value="1">1 - 有点担心</option>
             <option value="2">2 - 偶尔担心</option>
@@ -962,7 +962,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">39.</span>
             您是否经常因为自己的性别认同或表达而感到内心矛盾或挣扎？</div>
         <select name="q39">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -986,9 +986,9 @@ const questionMarkup = `
     <!-- 40 -->
     <div class="question">
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">40.</span>
-            您现在做这个测试，是希望能得到一个确认，告诉您“你不是顺性别”吗？</div>
+            您现在做这个测试，是希望能得到一个确认，告诉您“您不是顺性别”吗？</div>
         <select name="q40">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不，我只是随便测测</option>
             <option value="1">1 - 有点好奇</option>
             <option value="2">2 - 不确定</option>
@@ -1012,7 +1012,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">41.</span>
             您是否加入过 LGBTQ+ 社区或支持群，以探索性别？</div>
         <select name="q41">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 听说过</option>
             <option value="2">2 - 偶尔浏览</option>
@@ -1035,7 +1035,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">42.</span>
             您是否担心探索性别会影响职业或教育？</div>
         <select name="q42">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 不担心</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -1059,7 +1059,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">43.</span>
             您是否想象过未来以真实性别生活，并感到希望？</div>
         <select name="q43">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 从不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -1083,7 +1083,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">44.</span>
             您是否觉得性别探索是自我成长的一部分？</div>
         <select name="q44">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全不</option>
             <option value="1">1 - 极少</option>
             <option value="2">2 - 偶尔</option>
@@ -1107,7 +1107,7 @@ const questionMarkup = `
         <div class="question-title" onclick="toggleExplanation(this)"><span class="q-number">45.</span>
             您是否对激素治疗或手术有好奇或向往？</div>
         <select name="q45">
-            <option value="" disabled selected>请选择...</option>
+            <option value="" disabled selected>请选择……</option>
             <option value="0">0 - 完全没有</option>
             <option value="1">1 - 听说过</option>
             <option value="2">2 - 有点好奇</option>
@@ -1292,39 +1292,39 @@ function calculateResult() {
     // 1. 顺性别
     if (incongruenceScore < 1.5 && nbScore < 1.5 && fluidScore < 1.5) {
         mainType = "顺性别 (Cisgender)";
-        mainInterpretation = `<h3>顺性别特征解读</h3><p><strong>什么是"顺性别"？</strong></p><p>顺性别是指个人的内在性别认同与出生时被指派的性别完全一致。这是社会中最常见的性别认同模式。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>内在一致性：</strong>您的得分表明，您对自己的身体性征和社会赋予的性别角色基本感到舒适，没有经历过显著的"错位感"。</li><li><strong>低焦虑水平：</strong>您在身体焦虑和社会焦虑维度得分较低，这意味着您不需要通过改变性别表达或身体特征来缓解不适。</li><li><strong>探索动机：</strong>您完成此量表可能更多是出于对多元性别议题的好奇、学术兴趣，或是为了更好地理解和支持您身边的 LGBTQ+ 亲友。</li></ul><p><strong>重要澄清：</strong></p><p>顺性别并不意味着您必须严格遵守传统的性别刻板印象（如"男生必须阳刚"，"女生必须温柔"）。一个完全认同自己是男性的顺性别者，依然可以喜欢化妆或表现出阴柔特质；这属于性别表达的多样性，而非认同的冲突。</p>`;
+        mainInterpretation = `<h3>顺性别特征解读</h3><p><strong>什么是“顺性别”？</strong></p><p>顺性别是指个人的内在性别认同与出生时被指派的性别完全一致。这是社会中最常见的性别认同模式。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>内在一致性：</strong>您的得分表明，您对自己的身体性征和社会赋予的性别角色基本感到舒适，没有经历过显著的“错位感”。</li><li><strong>低焦虑水平：</strong>您在身体焦虑和社会焦虑维度得分较低，这意味着您不需要通过改变性别表达或身体特征来缓解不适。</li><li><strong>探索动机：</strong>您完成此量表可能更多是出于对多元性别议题的好奇、学术兴趣，或是为了更好地理解和支持您身边的 LGBTQ+ 亲友。</li></ul><p><strong>重要澄清：</strong></p><p>顺性别并不意味着您必须严格遵守传统的性别刻板印象（如“男生必须阳刚”，“女生必须温柔”）。一个完全认同自己是男性的顺性别者，依然可以喜欢化妆或表现出阴柔特质；这属于性别表达的多样性，而非认同的冲突。</p>`;
     }
     // 2. 强烈的二元跨性别
     else if (incongruenceScore >= 3.5 && nbScore < 2.5 && fluidScore < 2.5) {
         mainType = "二元跨性别 (Binary Transgender)";
-        mainInterpretation = `<h3>二元跨性别特征解读</h3><p><strong>什么是"二元跨性别"？</strong></p><p>指内在认同为强烈的男性或女性，但与出生时被指派的性别相反。这种认同通常是稳定且持久的。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>核心不一致感强：</strong>您对指派性别有显著的不适感（性别焦虑），并强烈渴望被社会接纳为另一种二元性别。</li><li><strong>身体与社会焦虑：</strong>您可能对现有的第一或第二性征感到痛苦，并希望通过掩盖、甚至未来的医疗手段来使其与内在自我一致。被以错误的代词称呼会引发明显的排斥感。</li><li><strong>强烈的性别愉悦：</strong>当您在虚拟世界或现实中被当成您认同的性别对待时，会产生极大的舒适感和"正确感"。</li></ul><p><strong>重要澄清：</strong></p><p>并非所有二元跨性别者都会选择进行全套的医疗过渡（如激素治疗或手术）。过渡（社会、法律、医疗）的程度完全由您个人的舒适度和现实条件决定。</p>`;
+        mainInterpretation = `<h3>二元跨性别特征解读</h3><p><strong>什么是“二元跨性别”？</strong></p><p>指内在认同为强烈的男性或女性，但与出生时被指派的性别相反。这种认同通常是稳定且持久的。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>核心不一致感强：</strong>您对指派性别有显著的不适感（性别焦虑），并强烈渴望被社会接纳为另一种二元性别。</li><li><strong>身体与社会焦虑：</strong>您可能对现有的第一或第二性征感到痛苦，并希望通过掩盖、甚至未来的医疗手段来使其与内在自我一致。被以错误的代词称呼会引发明显的排斥感。</li><li><strong>强烈的性别愉悦：</strong>当您在虚拟世界或现实中被当成您认同的性别对待时，会产生极大的舒适感和“正确感”。</li></ul><p><strong>重要澄清：</strong></p><p>并非所有二元跨性别者都会选择进行全套的医疗过渡（如激素治疗或手术）。过渡（社会、法律、医疗）的程度完全由您个人的舒适度和现实条件决定。</p>`;
     }
     // 3. 进入非二元谱系的精细判断
     else {
         // 3.1 无性别 (Agender) - 高 agenderScore 优先
         if (agenderScore >= 4.0) {
             mainType = "无性别 (Agender)";
-            mainInterpretation = `<h3>无性别特征解读</h3><p><strong>什么是"无性别"？</strong></p><p>无性别者内心没有性别感，或者觉得性别是与自己无关的标签。您可能既不认同男性也不认同女性，也不属于两者之间，而是完全处于性别框架之外。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>核心疏离感：</strong>您对"拥有性别"这件事感到困惑或不相关，性别讨论常让您觉得事不关己。</li><li><strong>中性化理想：</strong>您可能希望身体特征中性化，避免被二元性别归类。您对无性别世界的想象带来解放感。</li><li><strong>社会互动的挑战：</strong>您可能在日常生活中不断被提醒"别人有性别而我没有"，这可能导致孤独感或沟通上的障碍。</li></ul><p><strong>重要澄清：</strong></p><p>无性别不等同于"不打扮"或"性格中性"，它是一种深层的自我认知——性别不是您自我定义的一部分。您可能依然会为了社会便利而顺应二元性别，但这只是一种表演。</p>`;
+            mainInterpretation = `<h3>无性别特征解读</h3><p><strong>什么是“无性别”？</strong></p><p>无性别者内心没有性别感，或者觉得性别是与自己无关的标签。您可能既不认同男性也不认同女性，也不属于两者之间，而是完全处于性别框架之外。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>核心疏离感：</strong>您对“拥有性别”这件事感到困惑或不相关，性别讨论常让您觉得事不关己。</li><li><strong>中性化理想：</strong>您可能希望身体特征中性化，避免被二元性别归类。您对无性别世界的想象带来解放感。</li><li><strong>社会互动的挑战：</strong>您可能在日常生活中不断被提醒“别人有性别而我没有”，这可能导致孤独感或沟通上的障碍。</li></ul><p><strong>重要澄清：</strong></p><p>无性别不等同于“不打扮”或“性格中性”，它是一种深层的自我认知——性别不是您自我定义的一部分。您可能依然会为了社会便利而顺应二元性别，但这只是一种表演。</p>`;
         }
         // 3.2 流动性别 (Genderfluid) - 高 fluidScore 优先于其他非二元
         else if (fluidScore >= 3.5) {
             mainType = "流动性别 (Genderfluid)";
-            mainInterpretation = `<h3>流动性别特征解读</h3><p><strong>什么是"流动性别"？</strong></p><p>流动性别者的认同不是固定的，而是在男、女、中性、无性别等状态之间动态切换。这种变化可能每天、每周或随环境而变。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>动态的认同感：</strong>您的得分最突出的特征是"变化"。二元框架对您来说过于僵化，因为您有时觉得符合男性特征，有时觉得符合女性特征，有时两者皆非。</li><li><strong>波动的表达需求：</strong>您的穿衣风格、行为举止或对代词的偏好可能会随着内心状态的变化而发生显著改变。</li><li><strong>间歇性焦虑：</strong>您的身体或社会焦虑可能不是持续存在的，而是当您的外部状态与当天的内部性别感不匹配时才会爆发。</li></ul><p><strong>重要澄清：</strong></p><p>流动性并不是"还没想清楚"，流动本身就是一种稳定存在的性别模式。允许自己拥抱这种变化，不需要强迫自己固定在一个点上。</p>`;
+            mainInterpretation = `<h3>流动性别特征解读</h3><p><strong>什么是“流动性别”？</strong></p><p>流动性别者的认同不是固定的，而是在男、女、中性、无性别等状态之间动态切换。这种变化可能每天、每周或随环境而变。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>动态的认同感：</strong>您的得分最突出的特征是“变化”。二元框架对您来说过于僵化，因为您有时觉得符合男性特征，有时觉得符合女性特征，有时两者皆非。</li><li><strong>波动的表达需求：</strong>您的穿衣风格、行为举止或对代词的偏好可能会随着内心状态的变化而发生显著改变。</li><li><strong>间歇性焦虑：</strong>您的身体或社会焦虑可能不是持续存在的，而是当您的外部状态与当天的内部性别感不匹配时才会爆发。</li></ul><p><strong>重要澄清：</strong></p><p>流动性并不是“还没想清楚”，流动本身就是一种稳定存在的性别模式。允许自己拥抱这种变化，不需要强迫自己固定在一个点上。</p>`;
         }
         // 3.3 多元性别 / 性别酷儿 (Genderqueer/Multigender) - 高 multigenderScore
         else if (multigenderScore >= 3.5) {
             mainType = "多元性别 / 性别酷儿 (Genderqueer / Multigender)";
-            mainInterpretation = `<h3>多元性别/性别酷儿特征解读</h3><p><strong>什么是"多元性别/性别酷儿"？</strong></p><p>您可能同时感受到自己拥有男性和女性的部分，或者是一种完全不同于二元性别的独特性别。这不同于流动（交替），而更像是一种"混合"或"其他"的状态。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>标签的束缚感：</strong>无论是顺性别还是二元跨性别的标签，穿在您身上都觉得"不合身"。您可能创造出自己的身份词汇。</li><li><strong>复杂的身体关系：</strong>您可能只对身体的某些性征感到焦虑，而对另一些性征可以接受，这反映了您独特的性别构成。</li><li><strong>超越二元：</strong>您对"男性"和"女性"的刻板印象都有共鸣或都有排斥，您更愿意将自己定义为"酷儿"——挑战一切性别规范。</li></ul><p><strong>重要澄清：</strong></p><p>性别酷儿是一个极具包容性的伞式术语，您可以在此框架下自由探索最贴合自己的子身份（如双性别、泛性别等）。</p>`;
+            mainInterpretation = `<h3>多元性别/性别酷儿特征解读</h3><p><strong>什么是“多元性别/性别酷儿”？</strong></p><p>您可能同时感受到自己拥有男性和女性的部分，或者是一种完全不同于二元性别的独特性别。这不同于流动（交替），而更像是一种“混合”或“其他”的状态。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>标签的束缚感：</strong>无论是顺性别还是二元跨性别的标签，穿在您身上都觉得“不合身”。您可能创造出自己的身份词汇。</li><li><strong>复杂的身体关系：</strong>您可能只对身体的某些性征感到焦虑，而对另一些性征可以接受，这反映了您独特的性别构成。</li><li><strong>超越二元：</strong>您对“男性”和“女性”的刻板印象都有共鸣或都有排斥，您更愿意将自己定义为“酷儿”——挑战一切性别规范。</li></ul><p><strong>重要澄清：</strong></p><p>性别酷儿是一个极具包容性的伞式术语，您可以在此框架下自由探索最贴合自己的子身份（如双性别、泛性别等）。</p>`;
         }
         // 3.4 其他非二元 (Non-binary) - 满足 nbScore 较高但未达上述条件
         else if (nbScore >= 3.0) {
             mainType = "非二元 (Non-binary)";
-            mainInterpretation = `<h3>非二元特征解读</h3><p><strong>什么是"非二元"？</strong></p><p>指您的性别认同不单纯属于"男性"或"女性"。它可能位于传统定义之间的谱系上，或是完全超出。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>二元与非二元特质并存：</strong>您可能体验到明显的性别不一致感，但并没有完全向另一个二元性别靠拢。您的体验可能更接近于"部分"、"混合"或"超出"。</li><li><strong>对传统二元标记的排斥：</strong>您可能排斥二元代词，更偏好中性称呼，或者在法律文件中追求"X"标记。</li><li><strong>复杂的身体焦虑：</strong>您可能只对身体的某些性征感到焦虑，而对另一些性征可以接受。这反映了您独特的性别构成。</li></ul><p><strong>重要澄清：</strong></p><p>非二元本身是一个非常广的伞式术语（包括 Demi-boy/girl, Bigender 等），您可以根据自己的实际感受寻找或创造最适合的词汇。</p>`;
+            mainInterpretation = `<h3>非二元特征解读</h3><p><strong>什么是“非二元”？</strong></p><p>指您的性别认同不单纯属于“男性”或“女性”。它可能位于传统定义之间的谱系上，或是完全超出。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>二元与非二元特质并存：</strong>您可能体验到明显的性别不一致感，但并没有完全向另一个二元性别靠拢。您的体验可能更接近于“部分”、“混合”或“超出”。</li><li><strong>对传统二元标记的排斥：</strong>您可能排斥二元代词，更偏好中性称呼，或者在法律文件中追求“X”标记。</li><li><strong>复杂的身体焦虑：</strong>您可能只对身体的某些性征感到焦虑，而对另一些性征可以接受。这反映了您独特的性别构成。</li></ul><p><strong>重要澄清：</strong></p><p>非二元本身是一个非常广的伞式术语（包括 Demi-boy/girl, Bigender 等），您可以根据自己的实际感受寻找或创造最适合的词汇。</p>`;
         }
         // 3.5 剩余情况：性别存疑/探索中
         else {
             mainType = "性别存疑 / 探索中 (Questioning)";
-            mainInterpretation = `<h3>存疑/探索中特征解读</h3><p><strong>什么是"性别存疑"？</strong></p><p>这并非一个固定标签，而是描述一个正在积极反思自己出生指派性别、性取向或性别表达的过程。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>低强度或条件性焦虑：</strong>您的结果显示出一些非顺性别的迹象，但模式尚未完全清晰或稳定。您可能正处于性别探索的早期阶段。</li><li><strong>高探索分数：</strong>您可能在网上大量搜索相关信息，在现实中小心试探不同的表达方式，或者在填写本量表时急需一个"确认"的答案。</li><li><strong>混合或轻度不适：</strong>您可能只对某些社会角色或特定的称呼感到轻微不适，但这尚未达到重度性别焦虑的程度（Gender Non-Conforming）。</li></ul><p><strong>重要澄清：</strong></p><p>不确定是完全正常的。不要急于用一个标签来框住自己。即使最终探索的结果是"我是一个不拘一格的顺性别者"，这个反思的过程本身也极具成长价值。</p>`;
+            mainInterpretation = `<h3>存疑/探索中特征解读</h3><p><strong>什么是“性别存疑”？</strong></p><p>这并非一个固定标签，而是描述一个正在积极反思自己出生指派性别、性取向或性别表达的过程。</p><p><strong>您的具体表现：</strong></p><ul><li><strong>低强度或条件性焦虑：</strong>您的结果显示出一些非顺性别的迹象，但模式尚未完全清晰或稳定。您可能正处于性别探索的早期阶段。</li><li><strong>高探索分数：</strong>您可能在网上大量搜索相关信息，在现实中小心试探不同的表达方式，或者在填写本量表时急需一个“确认”的答案。</li><li><strong>混合或轻度不适：</strong>您可能只对某些社会角色或特定的称呼感到轻微不适，但这尚未达到重度性别焦虑的程度（Gender Non-Conforming）。</li></ul><p><strong>重要澄清：</strong></p><p>不确定是完全正常的。不要急于用一个标签来框住自己。即使最终探索的结果是“我是一个不拘一格的顺性别者”，这个反思的过程本身也极具成长价值。</p>`;
         }
     }
 
@@ -1368,61 +1368,61 @@ function calculateResult() {
     // Helper: produce a score-aware interpretation string for incongruence
     function getIncongruenceDetail(score) {
         if (score < 1.0) return `您的核心不一致感得分极低（${score}/5.0），这表明您对自己的指派性别有相当稳固的认同。您很少或从未感到内心的性别感与外在标签之间存在明显裂缝。这并不意味着性别探索对您没有价值——顺性别者同样可以打破性别角色的束缚——但从量化指标来看，跨性别体验并不是您当前的显著特征。`;
-        if (score < 2.0) return `您的核心不一致感处于偏低区间（${score}/5.0）。您偶尔可能会对自己的指派性别产生轻微的疑问或不适，但这种感受尚不稳定、不强烈，也可能与特定的情境或人生阶段有关。这一阶段常被描述为"不确定的低语"——并非震耳欲聋，却也真实存在。建议您继续观察这种感受是否随时间增强、减弱或保持稳定，这将是判断方向的重要线索。`;
-        if (score < 3.0) return `您的核心不一致感处于中等区间（${score}/5.0）。这意味着您对指派性别的不适感是真实存在且具有一定规律性的，但尚未到达极度痛苦的程度。您可能在特定情境下（如被异性化的场合、照镜子时、填写性别栏时）感受到明显的内心阻力，但日常生活中也有相当一部分时候能与自己的身份和平共处。中等不一致感往往出现在探索早期，或出现在非二元认同者身上——因为他们的冲突不是"我是另一个二元性别"，而是"我不完全属于任何一个"。`;
-        if (score < 4.0) return `您的核心不一致感处于较高区间（${score}/5.0）。这表明您对指派性别有持续、稳定且较为强烈的不适感。您可能经常感到自己被困在一个不属于自己的框架中，被错误的代词称呼时有明显的内心抵触，或者在镜子中看不到"真实的自己"。这种程度的不一致感在心理学文献中被认为是性别认同探索的强烈信号，值得认真对待。如果您尚未与心理咨询师讨论这些感受，这可能是一个很好的起点。`;
-        return `您的核心不一致感处于非常高的区间（${score}/5.0）。这反映出一种深入骨髓的"穿错了衣服"或"被错误定义"的体验。这种强烈的内在冲突在临床上被认为是性别焦虑的核心特征之一。高度的不一致感往往伴随着长期的情感压抑和对真实自我的强烈渴望。请记住：这种痛苦是真实的，您的感受是有效的，并且目前有越来越多的专业支持资源可以帮助您。强烈建议您寻求接受过"性别肯定疗法"训练的专业人士的支持。`;
+        if (score < 2.0) return `您的核心不一致感处于偏低区间（${score}/5.0）。您偶尔可能会对自己的指派性别产生轻微的疑问或不适，但这种感受尚不稳定、不强烈，也可能与特定的情境或人生阶段有关。这一阶段常被描述为“不确定的低语”——并非震耳欲聋，却也真实存在。建议您继续观察这种感受是否随时间增强、减弱或保持稳定，这将是判断方向的重要线索。`;
+        if (score < 3.0) return `您的核心不一致感处于中等区间（${score}/5.0）。这意味着您对指派性别的不适感是真实存在且具有一定规律性的，但尚未到达极度痛苦的程度。您可能在特定情境下（如被异性化的场合、照镜子时、填写性别栏时）感受到明显的内心阻力，但日常生活中也有相当一部分时候能与自己的身份和平共处。中等不一致感往往出现在探索早期，或出现在非二元认同者身上——因为他们的冲突不是“我是另一个二元性别”，而是“我不完全属于任何一个”。`;
+        if (score < 4.0) return `您的核心不一致感处于较高区间（${score}/5.0）。这表明您对指派性别有持续、稳定且较为强烈的不适感。您可能经常感到自己被困在一个不属于自己的框架中，被错误的代词称呼时有明显的内心抵触，或者在镜子中看不到“真实的自己”。这种程度的不一致感在心理学文献中被认为是性别认同探索的强烈信号，值得认真对待。如果您尚未与心理咨询师讨论这些感受，这可能是一个很好的起点。`;
+        return `您的核心不一致感处于非常高的区间（${score}/5.0）。这反映出一种深入骨髓的“穿错了衣服”或“被错误定义”的体验。这种强烈的内在冲突在临床上被认为是性别焦虑的核心特征之一。高度的不一致感往往伴随着长期的情感压抑和对真实自我的强烈渴望。请记住：这种痛苦是真实的，您的感受是有效的，并且目前有越来越多的专业支持资源可以帮助您。强烈建议您寻求接受过“性别肯定疗法”训练的专业人士的支持。`;
     }
 
     function getNBDetail(score) {
         if (score < 1.5) return `您的非二元倾向得分偏低（${score}/5.0），说明您对传统的男/女二元框架有较高的认同感和舒适度。二元分类系统对您来说可能是一个自然贴合的坐标，而非限制。这完全正常且合理。`;
         if (score < 2.5) return `您的非二元倾向得分处于低至中等区间（${score}/5.0）。您偶尔可能觉得男/女标签过于简化，无法完整捕捉您的某些特质，但这种感受尚不强烈或持续。这可能反映出您对性别多样性的认知兴趣，或是某些特质跨越传统二元边界的体验。`;
-        if (score < 3.5) return `您的非二元倾向得分处于中等区间（${score}/5.0）。这表明二元标签对您来说既不完全错误，也不完全准确——您站在框架的边缘，时而感到舒适，时而感到局促。许多探索中的人在找到更精确的身份词汇之前，会长期处于这个区间。"性别不一致"（Gender Non-Conforming）可能是一个暂时有用的描述性词汇。`;
-        if (score < 4.5) return `您的非二元倾向得分较高（${score}/5.0）。传统的男/女框架对您来说明显具有束缚感。您可能感到现有的二元标签无法容纳您的内心体验，或者觉得自己的性别感位于谱系上的某个"中间地带"乃至完全在框架之外。这一得分强烈指向非二元或性别酷儿认同的可能性。探索"半性别"、"双性别"、"泛性别"等具体子概念可能会带来更精确的自我定位感。`;
+        if (score < 3.5) return `您的非二元倾向得分处于中等区间（${score}/5.0）。这表明二元标签对您来说既不完全错误，也不完全准确——您站在框架的边缘，时而感到舒适，时而感到局促。许多探索中的人在找到更精确的身份词汇之前，会长期处于这个区间。“性别不一致”（Gender Non-Conforming）可能是一个暂时有用的描述性词汇。`;
+        if (score < 4.5) return `您的非二元倾向得分较高（${score}/5.0）。传统的男/女框架对您来说明显具有束缚感。您可能感到现有的二元标签无法容纳您的内心体验，或者觉得自己的性别感位于谱系上的某个“中间地带”乃至完全在框架之外。这一得分强烈指向非二元或性别酷儿认同的可能性。探索“半性别”、“双性别”、“泛性别”等具体子概念可能会带来更精确的自我定位感。`;
         return `您的非二元倾向得分非常高（${score}/5.0）。这意味着二元性别框架对您来说几乎完全不适用——您的性别体验从根本上超越或拒绝了这套分类系统。这是强烈的非二元认同信号。您可能早已知道某个具体的非二元标签最适合您，或者您仍在探索——无论哪种情况，您都值得一个能够被看见、被正确称呼的生活空间。`;
     }
 
     function getFluidDetail(score) {
         if (score < 1.5) return `您的流动性倾向得分偏低（${score}/5.0）。您的性别感相当稳定，不随时间、情境或情绪发生显著变化。这种稳定性是一种特征，无论您的认同落在谱系的哪个位置，稳定本身都是一个有价值的信息——它表明您不太可能是流动性别者。`;
         if (score < 2.5) return `您的流动性倾向处于低至中等区间（${score}/5.0）。您可能偶尔注意到自己的性别感会随情绪或环境有些微变化，但整体上相对稳定。这种轻微的波动可能只是正常情绪对自我感知的影响，也可能是流动性的早期信号——需要更长时间的自我观察才能判断。`;
-        if (score < 3.5) return `您的流动性倾向处于中等区间（${score}/5.0）。您的性别感存在明显的波动，但尚不到"每天都不同"的程度。您可能在某些特定触发条件下（情绪低落时、与不同人相处时、不同环境中）感到自己的性别感发生切换或消退。尝试记录这些波动发生的时机与触发因素，将有助于您判断这是流动性别认同的一部分，还是对压力的适应性反应。`;
-        if (score < 4.5) return `您的流动性倾向得分较高（${score}/5.0）。您的性别感经常在不同状态之间移动——也许有时更贴近男性，有时更贴近女性，有时两者皆非，有时甚至完全感受不到性别。这种频繁、有规律的流动是流动性别认同的显著特征。流动不是"没想清楚"，它本身就是一种稳定的性别存在方式——稳定的是流动本身。`;
-        return `您的流动性倾向得分非常高（${score}/5.0）。您的性别感处于极度动态的状态，可能每天、每周甚至在同一天内就会发生显著的切换或变化。这种高度的流动性需要相当的心理弹性来应对，因为社会往往期待一个固定的、可预测的性别呈现。建议您为自己准备一套灵活的"工具箱"——包括不同性别倾向的穿搭、代词偏好、以及与信任的人沟通自己当下状态的方式，以减少流动带来的认知摩擦。`;
+        if (score < 3.5) return `您的流动性倾向处于中等区间（${score}/5.0）。您的性别感存在明显的波动，但尚不到“每天都不同”的程度。您可能在某些特定触发条件下（情绪低落时、与不同人相处时、不同环境中）感到自己的性别感发生切换或消退。尝试记录这些波动发生的时机与触发因素，将有助于您判断这是流动性别认同的一部分，还是对压力的适应性反应。`;
+        if (score < 4.5) return `您的流动性倾向得分较高（${score}/5.0）。您的性别感经常在不同状态之间移动——也许有时更贴近男性，有时更贴近女性，有时两者皆非，有时甚至完全感受不到性别。这种频繁、有规律的流动是流动性别认同的显著特征。流动不是“没想清楚”，它本身就是一种稳定的性别存在方式——稳定的是流动本身。`;
+        return `您的流动性倾向得分非常高（${score}/5.0）。您的性别感处于极度动态的状态，可能每天、每周甚至在同一天内就会发生显著的切换或变化。这种高度的流动性需要相当的心理弹性来应对，因为社会往往期待一个固定的、可预测的性别呈现。建议您为自己准备一套灵活的“工具箱”——包括不同性别倾向的穿搭、代词偏好、以及与信任的人沟通自己当下状态的方式，以减少流动带来的认知摩擦。`;
     }
 
     function getSocialDetail(score) {
         if (score < 1.5) return `您的社会焦虑得分偏低（${score}/5.0）。在日常社会互动中，您的性别相关压力较小。您可能能够相对自如地在各种社交场合呈现自己，被他人以当前性别对待时没有明显的不适感。`;
         if (score < 2.5) return `您的社会焦虑处于低至中等区间（${score}/5.0）。您在某些特定的社交情境下（比如被以错误性别称呼、进入性别隔离的空间、参加有明显性别分工的场合）可能会感到一定程度的不自在，但这种感受尚未对日常生活造成显著影响。`;
-        if (score < 3.5) return `您的社会焦虑处于中等区间（${score}/5.0）。性别相关的社会压力已经对您的日常生活产生了可以察觉的影响。您可能会主动回避某些场合，或者在被错误性别化时感到明显的痛苦。家庭期待、社会规范或文化压力可能是主要的焦虑来源之一。处理这种社会焦虑需要一定的策略和支持系统，光是"硬撑"往往难以持续。`;
+        if (score < 3.5) return `您的社会焦虑处于中等区间（${score}/5.0）。性别相关的社会压力已经对您的日常生活产生了可以察觉的影响。您可能会主动回避某些场合，或者在被错误性别化时感到明显的痛苦。家庭期待、社会规范或文化压力可能是主要的焦虑来源之一。处理这种社会焦虑需要一定的策略和支持系统，光是“硬撑”往往难以持续。`;
         if (score < 4.5) return `您的社会焦虑得分较高（${score}/5.0）。社会性别规范对您造成了相当大的心理压力。您可能在家庭关系、社会角色、人际互动中积累了大量与性别相关的痛苦——无论是因为不被理解、被强迫扮演不适合自己的角色，还是必须长期压抑真实的自己。这种程度的社会焦虑可能会显著影响您的心理健康和生活质量，寻求社群支持和专业心理援助是值得优先考虑的选项。`;
         return `您的社会焦虑得分非常高（${score}/5.0）。来自社会环境（家庭、学校、职场、文化）的性别相关压力已经对您的心理健康构成了严重威胁。您可能长期处于一种双重生活的状态——在外压抑，在内煎熬。这种程度的压力不应该独自承受。请优先寻找安全的支持资源，包括但不限于：对 LGBTQ+ 友善的心理咨询师、匿名在线社群、以及在可能的情况下建立至少一个能够安全表达自己的人际关系。`;
     }
 
     function getPhysicalDetail(score) {
         if (score < 1.5) return `您的身体焦虑得分偏低（${score}/5.0）。您与自己的身体之间目前维持着较为平和的关系，对自身性征没有明显的厌恶感或解离感。这可能意味着您不需要医疗干预，或者目前的探索更多集中在社会和心理层面。`;
-        if (score < 2.5) return `您的身体焦虑处于低至中等区间（${score}/5.0）。您偶尔可能对某些身体特征感到轻微的不适或疏离，但这种感受尚不强烈，也不会持续干扰您的日常生活。许多非二元者的身体焦虑也表现为"局部"的——只对某些特定性征有感受，而对其他部分相对坦然。`;
-        if (score < 3.5) return `您的身体焦虑处于中等区间（${score}/5.0）。您对自己的某些身体特征存在较为明显的不适感，这种感受可能在洗澡、照镜子、亲密关系或穿特定服装时变得尤为强烈。中等程度的身体焦虑值得认真对待——它不一定意味着需要手术，但可能意味着需要找到让身体感觉"更像自己"的可逆方式（如束胸、塑形内衣、特定服装、发型改变等）来缓解日常不适。`;
+        if (score < 2.5) return `您的身体焦虑处于低至中等区间（${score}/5.0）。您偶尔可能对某些身体特征感到轻微的不适或疏离，但这种感受尚不强烈，也不会持续干扰您的日常生活。许多非二元者的身体焦虑也表现为“局部”的——只对某些特定性征有感受，而对其他部分相对坦然。`;
+        if (score < 3.5) return `您的身体焦虑处于中等区间（${score}/5.0）。您对自己的某些身体特征存在较为明显的不适感，这种感受可能在洗澡、照镜子、亲密关系或穿特定服装时变得尤为强烈。中等程度的身体焦虑值得认真对待——它不一定意味着需要手术，但可能意味着需要找到让身体感觉“更像自己”的可逆方式（如束胸、塑形内衣、特定服装、发型改变等）来缓解日常不适。`;
         if (score < 4.5) return `您的身体焦虑得分较高（${score}/5.0）。您对自身的身体特征有持续、强烈的痛苦感受。这可能包括对第一性征（生殖器官）和/或第二性征（胸部、声音、体毛等）的明显厌恶或解离感。这种程度的身体焦虑在临床上是性别不安（Gender Dysphoria）的重要描述指标之一。强烈建议您与对跨性别友好的医生或心理咨询师进行评估性的谈话，了解可能适合您的支持选项。`;
         return `您的身体焦虑得分非常高（${score}/5.0）。您对自己身体的痛苦感受是深刻且持续性的，这可能对您的心理健康、自我形象和日常功能产生了严重影响。极高的身体焦虑与抑郁、焦虑障碍和自伤风险密切相关，请务必将自身的心理健康安全放在首位。如果您正在经历强烈的绝望感，请立即联系心理危机热线。同时，积极寻找受过性别肯定训练的专业支持，是改善这种状况最重要的一步。`;
     }
 
     function getExploreDetail(score) {
         if (score < 1.5) return `您的探索强度得分偏低（${score}/5.0）。目前您对性别相关信息或社群的主动探索较为有限。这可能反映了不同的情况：也许您目前感到满足，不需要探索；也许探索的门槛（安全顾虑、信息渠道等）让您望而却步；或者您的探索更多以内在思考的形式进行，而非外在行动。探索的深浅并不影响认同的真实性。`;
-        if (score < 2.5) return `您的探索强度处于低至中等区间（${score}/5.0）。您偶尔会主动了解性别多元相关的信息，可能浏览过一些科普文章、社区帖子或视频，但尚未深度参与。这种"试探性"的信息接触是探索旅程的自然起点，不必操之过急。`;
+        if (score < 2.5) return `您的探索强度处于低至中等区间（${score}/5.0）。您偶尔会主动了解性别多元相关的信息，可能浏览过一些科普文章、社区帖子或视频，但尚未深度参与。这种“试探性”的信息接触是探索旅程的自然起点，不必操之过急。`;
         if (score < 3.5) return `您的探索强度处于中等区间（${score}/5.0）。您已经在积极地寻求理解自己，通过阅读、搜索信息、或与他人讨论来丰富自己的认知。这种投入感表明您对自己的性别认同是认真对待的，并且已经超越了单纯的好奇，进入了更深入的自我审视阶段。`;
         if (score < 4.5) return `您的探索强度得分较高（${score}/5.0）。您在探索自己的性别认同方面投入了大量的时间和情感资源——阅读研究、寻找社群、尝试不同的表达方式，或者已经向他人敞开心扉。高探索强度往往反映出强烈的内在驱动力，说明这个问题对您来说不是可以轻描淡写的。这种认真对待自己的态度，本身就是一种勇气。`;
         return `您的探索强度得分非常高（${score}/5.0）。您对性别认同的探索已经相当深入——可能研究过医疗资源、法律流程、参与过社群讨论，或已经开始以真实的性别感受面对他人。这种程度的投入表明您的探索不再是抽象的思考实验，而是一个正在进行中的、有方向感的旅程。请确保在探索的同时照顾好自己的心理安全和日常生活节奏。`;
     }
 
     function getAgenderDetail(score) {
-        if (score < 1.5) return `您的无性别倾向偏低（${score}/5.0）。性别对您来说似乎是一个有内在意义和共鸣的概念，而非外来或无关的标签。这与无性别体验（将性别视为"不相关"或"不存在"）有明显区别。`;
+        if (score < 1.5) return `您的无性别倾向偏低（${score}/5.0）。性别对您来说似乎是一个有内在意义和共鸣的概念，而非外来或无关的标签。这与无性别体验（将性别视为“不相关”或“不存在”）有明显区别。`;
         if (score < 3.0) return `您的无性别倾向处于中等偏低区间（${score}/5.0）。您可能偶尔感到性别标签不够贴切，或觉得性别概念对您的重要性低于社会平均水平，但这还不足以判断您有明显的无性别认同。`;
-        if (score < 4.0) return `您的无性别倾向处于中高区间（${score}/5.0）。性别概念对您来说可能有明显的疏离感——您可能觉得"性别"是别人的事，与自己关系不大，或者感到内心没有一个稳定的性别罗盘在指引。这与无性别（Agender）的核心体验高度吻合。`;
-        return `您的无性别倾向非常高（${score}/5.0）。性别概念对您来说几乎是完全外来或无意义的——您可能根本不觉得自己"有"一个性别，或者觉得性别这个概念本身就不适用于您。这与无性别认同的核心描述高度一致：不是"中性"，不是"两者皆有"，而是"完全没有"。`;
+        if (score < 4.0) return `您的无性别倾向处于中高区间（${score}/5.0）。性别概念对您来说可能有明显的疏离感——您可能觉得“性别”是别人的事，与自己关系不大，或者感到内心没有一个稳定的性别罗盘在指引。这与无性别（Agender）的核心体验高度吻合。`;
+        return `您的无性别倾向非常高（${score}/5.0）。性别概念对您来说几乎是完全外来或无意义的——您可能根本不觉得自己“有”一个性别，或者觉得性别这个概念本身就不适用于您。这与无性别认同的核心描述高度一致：不是“中性”，不是“两者皆有”，而是“完全没有”。`;
     }
 
     function getMultigenderDetail(score) {
-        if (score < 1.5) return `您的多元/混合性别倾向偏低（${score}/5.0）。您的性别体验目前不太呈现出"同时包含多种性别"或"超越单一性别"的特征。`;
+        if (score < 1.5) return `您的多元/混合性别倾向偏低（${score}/5.0）。您的性别体验目前不太呈现出“同时包含多种性别”或“超越单一性别”的特征。`;
         if (score < 3.0) return `您的多元/混合性别倾向处于低至中等区间（${score}/5.0）。您可能偶尔感到自己同时具有不同性别特质的多个侧面，但这种感受尚不稳定或强烈。`;
         if (score < 4.0) return `您的多元/混合性别倾向处于中高区间（${score}/5.0）。您可能感到自己同时拥有男性、女性及/或其他性别的多个元素，这些元素并非交替出现（如流动性别），而是同时共存。这与双性别（Bigender）或泛性别（Pangender）的描述有一定吻合。`;
         return `您的多元/混合性别倾向非常高（${score}/5.0）。您的性别体验是真正多维的——多种性别元素在您身上同时存在，构成一个复杂而完整的整体。这与双性别、泛性别或多元性别认同高度一致。您可能需要不止一个词汇才能准确描述自己，而这完全没有问题。`;
@@ -1433,14 +1433,14 @@ function calculateResult() {
     // Dimension 1
     analysisHTML += `<div class="insight-card result-dimension-card">
       ${window.PrismScale.createResultDimensionHeader({ index: 1, title: '核心不一致感', score: incongruenceScore, level: inconIntensity.text })}
-      <p style="color: #444; margin-bottom: 10px;"><strong>这个维度衡量什么？</strong><br>核心不一致感，也称"性别焦虑的认知层面"，测量的是您内在自我认知与出生时被指派性别之间的本能冲突程度。这不是一种心理疾病，而是一种主观体验——有些人形容它为"穿着不合身的衣服"，有些人形容为"在错误的剧本里扮演错误的角色"。</p>
+      <p style="color: #444; margin-bottom: 10px;"><strong>这个维度衡量什么？</strong><br>核心不一致感，也称“性别焦虑的认知层面”，测量的是您内在自我认知与出生时被指派性别之间的本能冲突程度。这不是一种心理疾病，而是一种主观体验——有些人形容它为“穿着不合身的衣服”，有些人形容为“在错误的剧本里扮演错误的角色”。</p>
       <p style="color: #444; margin-bottom: 0;"><strong>您的具体解读：</strong><br>${getIncongruenceDetail(incongruenceScore)}</p>
     </div>`;
 
     // Dimension 2
     analysisHTML += `<div class="insight-card result-dimension-card">
       ${window.PrismScale.createResultDimensionHeader({ index: 2, title: '非二元/无性别倾向', score: nbScore, level: nbIntensity.text })}
-      <p style="color: #444; margin-bottom: 10px;"><strong>这个维度衡量什么？</strong><br>此维度评估您对"男/女"二元分类系统的接纳或抵触程度。它捕捉的不仅是"我是否认同指派性别"，而是更深层的"二元性别框架本身是否足以描述我"。高分提示传统标签可能对您造成了一种认知上的压迫感。</p>
+      <p style="color: #444; margin-bottom: 10px;"><strong>这个维度衡量什么？</strong><br>此维度评估您对“男/女”二元分类系统的接纳或抵触程度。它捕捉的不仅是“我是否认同指派性别”，而是更深层的“二元性别框架本身是否足以描述我”。高分提示传统标签可能对您造成了一种认知上的压迫感。</p>
       <p style="color: #444; margin-bottom: 0;"><strong>您的具体解读：</strong><br>${getNBDetail(nbScore)}</p>
     </div>`;
 
@@ -1448,7 +1448,7 @@ function calculateResult() {
     analysisHTML += `<div class="insight-card result-dimension-card">
       ${window.PrismScale.createResultDimensionHeader({ index: 3, title: '流动性倾向', score: fluidScore, level: fluidIntensity.text })}
       <p style="color: #444; margin-bottom: 10px;"><strong>这个维度衡量什么？</strong><br>流动性测量的是您性别认同和表达随时间、情境或情绪变化的频率与幅度。流动性别（Genderfluid）是其中最具代表性的认同，但流动性本身也可以是其他非二元认同的一个特征，或者只是人格的一个维度，而不构成独立的性别认同。</p>
-      <p style="color: #444; margin-bottom: 10px;"><strong>流动性 vs. 不稳定性：</strong>需要区分"我的性别感本身在流动"（认同层面）和"外部压力让我无法维持稳定的自我表达"（社会层面）。前者是流动性，后者是压抑导致的弹性应对，两者都值得被认真对待，但处理方式不同。</p>
+      <p style="color: #444; margin-bottom: 10px;"><strong>流动性 vs. 不稳定性：</strong>需要区分“我的性别感本身在流动”（认同层面）和“外部压力让我无法维持稳定的自我表达”（社会层面）。前者是流动性，后者是压抑导致的弹性应对，两者都值得被认真对待，但处理方式不同。</p>
       <p style="color: #444; margin-bottom: 0;"><strong>您的具体解读：</strong><br>${getFluidDetail(fluidScore)}</p>
     </div>`;
 
@@ -1478,7 +1478,7 @@ function calculateResult() {
     analysisHTML += `<div class="insight-card result-dimension-card">
       ${window.PrismScale.createResultDimensionHeader({ index: 5, title: '探索强度与接纳态度', score: exploreScore, level: exploreIntensity.text })}
       <p style="color: #444; margin-bottom: 10px;"><strong>这个维度衡量什么？</strong><br>探索强度反映了您为了解自己的性别认同所投入的主动行为：搜索信息、加入社群、尝试不同表达、与他人讨论、阅读相关内容……同时也包含您对这一探索过程的接纳态度——是好奇而开放，还是充满矛盾和恐惧？</p>
-      <p style="color: #444; margin-bottom: 10px;"><strong>探索强度与认同强度的关系：</strong>高探索分数不一定代表非顺性别，低探索分数也不一定代表顺性别。有些顺性别者好奇心旺盛，有些跨性别者在获得清晰认知后反而减少了"探索行为"。将这个维度与其他维度综合来看，才能得到更完整的图像。</p>
+      <p style="color: #444; margin-bottom: 10px;"><strong>探索强度与认同强度的关系：</strong>高探索分数不一定代表非顺性别，低探索分数也不一定代表顺性别。有些顺性别者好奇心旺盛，有些跨性别者在获得清晰认知后反而减少了“探索行为”。将这个维度与其他维度综合来看，才能得到更完整的图像。</p>
       <p style="color: #444; margin-bottom: 0;"><strong>您的具体解读：</strong><br>${getExploreDetail(exploreScore)}</p>
     </div>`;
 
@@ -1492,7 +1492,7 @@ function calculateResult() {
             { label: '多元/混合', score: multigenderScore, level: multigenderIntensity.text }
         ]
     })}
-      <p style="color: #444; margin-bottom: 12px;">这两个细化维度将"非二元"这个宽泛的伞式概念拆解为两种不同的体验方向：<strong style="color: #6a1b9a;">无性别</strong>（"我没有性别"）和<strong style="color: #6a1b9a;">多元/混合性别</strong>（"我有多种性别"）。两者都属于非二元谱系，但体验感和身份诉求截然不同。</p>
+      <p style="color: #444; margin-bottom: 12px;">这两个细化维度将“非二元”这个宽泛的伞式概念拆解为两种不同的体验方向：<strong style="color: #6a1b9a;">无性别</strong>（“我没有性别”）和<strong style="color: #6a1b9a;">多元/混合性别</strong>（“我有多种性别”）。两者都属于非二元谱系，但体验感和身份诉求截然不同。</p>
       <div style="background-color: #f3e5f5; border-radius: 6px; padding: 14px; margin-bottom: 12px;">
         <strong style="color: #6a1b9a;">无性别倾向 (Agender) — ${agenderIntensity.text}（${agenderScore}/5.0）：</strong><br>
         <p style="margin: 8px 0 0 0; color: #444;">${getAgenderDetail(agenderScore)}</p>
@@ -1527,24 +1527,24 @@ function calculateResult() {
 
     // 根据细分类型插入专属建议
     if (mainType.includes("无性别")) {
-        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">无性别者的自我安放</strong><ul style="margin-top: 10px; color: #444;"><li><strong>创造中性空间：</strong>在日常生活中寻找或创造无需被性别化的角落，例如使用中性化网名、选择无性别符号的用品。</li><li><strong>表达你的"无"：</strong>可以尝试用"无性别"或"不适用"来回应表格中的性别选项，与亲近的人分享你不需要性别标签的感受。</li><li><strong>连接同类：</strong>寻找无性别社群，了解他人如何在没有性别罗盘的情况下导航世界，这能减少孤立感。</li></ul></li>`;
+        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">无性别者的自我安放</strong><ul style="margin-top: 10px; color: #444;"><li><strong>创造中性空间：</strong>在日常生活中寻找或创造无需被性别化的角落，例如使用中性化网名、选择无性别符号的用品。</li><li><strong>表达您的“无”：</strong>可以尝试用“无性别”或“不适用”来回应表格中的性别选项，与亲近的人分享您不需要性别标签的感受。</li><li><strong>连接同类：</strong>寻找无性别社群，了解他人如何在没有性别罗盘的情况下导航世界，这能减少孤立感。</li></ul></li>`;
     } else if (mainType.includes("流动性别")) {
-        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">与流动性共舞</strong><ul style="margin-top: 10px; color: #444;"><li><strong>追踪流动模式：</strong>记录引发认同变化的时间或触发因素，准备适应不同状态的衣物或配饰，允许自己随性切换。</li><li><strong>沟通你的流动：</strong>向信任的人解释你的性别可能今天这样明天那样，避免 TA 们用固定眼光看你。</li><li><strong>灵活应对社会：</strong>在必须二选一的场合，选择当下最舒适的表达；如果可能，使用中性代词或交替使用代词。</li></ul></li>`;
+        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">与流动性共舞</strong><ul style="margin-top: 10px; color: #444;"><li><strong>追踪流动模式：</strong>记录引发认同变化的时间或触发因素，准备适应不同状态的衣物或配饰，允许自己随性切换。</li><li><strong>沟通您的流动：</strong>向信任的人解释您的性别可能今天这样明天那样，避免 TA 们用固定眼光看您。</li><li><strong>灵活应对社会：</strong>在必须二选一的场合，选择当下最舒适的表达；如果可能，使用中性代词或交替使用代词。</li></ul></li>`;
     } else if (mainType.includes("多元性别") || mainType.includes("性别酷儿")) {
-        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">拥抱你的多元谱系</strong><ul style="margin-top: 10px; color: #444;"><li><strong>创造专属词汇：</strong>如果现有标签不够贴切，可以自己组合词汇（如"偏女性非二元"）或干脆不贴标签。</li><li><strong>整合多重身份：</strong>探索如何将你不同面向的性别特质和谐地融入生活，例如在不同场合展现不同侧面。</li><li><strong>挑战二元规范：</strong>你的存在本身就是对性别二元论的解构，可以大胆地在安全范围内表达你的独特。</li></ul></li>`;
+        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">拥抱您的多元谱系</strong><ul style="margin-top: 10px; color: #444;"><li><strong>创造专属词汇：</strong>如果现有标签不够贴切，可以自己组合词汇（如“偏女性非二元”）或干脆不贴标签。</li><li><strong>整合多重身份：</strong>探索如何将您不同面向的性别特质和谐地融入生活，例如在不同场合展现不同侧面。</li><li><strong>挑战二元规范：</strong>您的存在本身就是对性别二元论的解构，可以大胆地在安全范围内表达您的独特。</li></ul></li>`;
     } else if (mainType.includes("非二元") && !mainType.includes("无性别") && !mainType.includes("流体") && !mainType.includes("多元")) {
-        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">探索你的非二元坐标</strong><ul style="margin-top: 10px; color: #444;"><li><strong>细化你的位置：</strong>尝试用"部分男性"、"部分女性"、"两者之间"等描述来定位自己，参考半性别、双性别等概念。</li><li><strong>实验表达：</strong>通过服装、发型、代词的小范围尝试，找到让你感到"对"的外在呈现。</li><li><strong>寻找社群支持：</strong>关注非二元话题，阅读相似体验者的故事，这能提供宝贵的参照和安慰。</li></ul></li>`;
+        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">探索您的非二元坐标</strong><ul style="margin-top: 10px; color: #444;"><li><strong>细化您的位置：</strong>尝试用“部分男性”、“部分女性”、“两者之间”等描述来定位自己，参考半性别、双性别等概念。</li><li><strong>实验表达：</strong>通过服装、发型、代词的小范围尝试，找到让您感到“对”的外在呈现。</li><li><strong>寻找社群支持：</strong>关注非二元话题，阅读相似体验者的故事，这能提供宝贵的参照和安慰。</li></ul></li>`;
     } else if (mainType.includes("二元跨性别")) {
         personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">过渡规划与支持系统</strong><ul style="margin-top: 10px; color: #444;"><li><strong>信息收集：</strong>研究医疗、法律、社会过渡的具体流程，咨询对跨性别友好的专业医生和治疗师。</li><li><strong>社群融入：</strong>阅读跨性别前辈的生命故事，加入本地或线上互助群组，建立安全网。</li><li><strong>社会过渡试验：</strong>在安全环境中开始以真实性别身份生活，评估带来的改变和愉悦感。</li></ul></li>`;
     } else if (mainType.includes("顺性别")) {
         personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">深化多元认知，成为更好盟友</strong><ul style="margin-top: 10px; color: #444;"><li><strong>持续学习：</strong>了解多元性别概念，帮助您为朋友创造一个更包容的环境。</li><li><strong>挑战刻板印象：</strong>顺性别者同样可以打破性别角色束缚，自由表达。</li></ul></li>`;
     } else { // 存疑/探索中
-        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">安全环境下进行微型实验</strong><ul style="margin-top: 10px; color: #444;"><li><strong>记录感受：</strong>写性别日记，记录每天引发您性别焦虑或愉悦的具体事件和情绪。</li><li><strong>虚拟过渡：</strong>在网络游戏或信任的朋友面前尝试使用不同的代词或名字，观察内心反应。</li><li><strong>缓解探索焦虑：</strong>告诉自己"不确定是可以的"，探索本身就是有价值的成长。</li></ul></li>`;
+        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">安全环境下进行微型实验</strong><ul style="margin-top: 10px; color: #444;"><li><strong>记录感受：</strong>写性别日记，记录每天引发您性别焦虑或愉悦的具体事件和情绪。</li><li><strong>虚拟过渡：</strong>在网络游戏或信任的朋友面前尝试使用不同的代词或名字，观察内心反应。</li><li><strong>缓解探索焦虑：</strong>告诉自己“不确定是可以的”，探索本身就是有价值的成长。</li></ul></li>`;
     }
 
     // 通用的焦虑处理建议
     if (socialScore >= 3.0 || physicalScore >= 3.0 || scores['q38'] >= 4) {
-        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">焦虑缓解与心理健康干预</strong><ul style="margin-top: 10px; color: #444;"><li><strong>应对社会压力：</strong>您的得分表明您可能正承受来自家庭或社会的巨大压力。请优先保证个人的生存安全和经济独立。</li><li><strong>身体代偿手段：</strong>在安全的前提下，可尝试可逆的物理手段缓解身体焦虑（如正确使用安全束胸、假发等），注意身体健康。</li><li><strong>专业心理支持：</strong>强烈的身体解离感、绝望感或社会压抑极易引发抑郁。强烈建议您寻找受过"性别肯定疗法"训练的心理咨询师。</li></ul></li>`;
+        personalizedSuggestions += `<li style="margin-bottom: 25px; list-style: none; counter-increment: item; position: relative; padding-left: 35px;"><span style="position: absolute; left: 0; font-weight: bold; color: #8e24aa; font-size: 1.2em;">${stepCount++}</span><strong style="color: #4a148c; font-size: 1.1em;">焦虑缓解与心理健康干预</strong><ul style="margin-top: 10px; color: #444;"><li><strong>应对社会压力：</strong>您的得分表明您可能正承受来自家庭或社会的巨大压力。请优先保证个人的生存安全和经济独立。</li><li><strong>身体代偿手段：</strong>在安全的前提下，可尝试可逆的物理手段缓解身体焦虑（如正确使用安全束胸、假发等），注意身体健康。</li><li><strong>专业心理支持：</strong>强烈的身体解离感、绝望感或社会压抑极易引发抑郁。强烈建议您寻找受过“性别肯定疗法”训练的心理咨询师。</li></ul></li>`;
     }
 
     // 通用资源推荐
@@ -1572,7 +1572,7 @@ function calculateResult() {
 
     const reflectionActions = [
         {
-            title: '记录让你更舒适或不适的情境',
+            title: '记录让您更舒适或不适的情境',
             text: `本次相对突出的压力维度是“${pressurePeak.name}”。记录一次明显不适和一次更舒适的场景，比较当时的称呼、身体感受、表达方式、在场的人和安全程度。`
         },
         {

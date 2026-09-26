@@ -10,7 +10,7 @@
   ];
 
   const optionMarkup = [
-    '<option value="" disabled selected>请选择...</option>',
+    '<option value="" disabled selected>请选择……</option>',
     ...scoreOptions.map(option => `<option value=${option.value}>${option.value} - ${option.label}</option>`)
   ].join('');
 
@@ -178,7 +178,7 @@
     function pairText(first, second) {
       const key = stablePairKey(first.key, second.key);
       return (config.pairInterpretations && config.pairInterpretations[key]) ||
-        `这两个维度同时较突出时，你可能会一边运用“${first.name}”相关倾向，一边用“${second.name}”相关倾向校准行动。它们如何配合，仍要结合具体子面向与场景理解。`;
+        `这两个维度同时较突出时，您可能会一边运用“${first.name}”相关倾向，一边用“${second.name}”相关倾向校准行动。它们如何配合，仍要结合具体子面向与场景理解。`;
     }
 
     function renderRadar(dimensionScores) {
@@ -229,7 +229,7 @@
         </div>`;
 
       document.getElementById('typeJudgment').innerHTML = `
-        <p class="result-lead">你的总体轮廓以<strong>${top.name}</strong>为相对突出方向，<strong>${second.name}</strong>次之；${lowest.name}相对收敛。各维度的高低仅描述本次作答中的倾向强弱，不代表人格优劣、能力高低或固定类型。${independentFacetNote}</p>`;
+        <p class="result-lead">您的总体轮廓以<strong>${top.name}</strong>为相对突出方向，<strong>${second.name}</strong>次之；${lowest.name}相对收敛。各维度的高低仅描述本次作答中的倾向强弱，不代表人格优劣、能力高低或固定类型。${independentFacetNote}</p>`;
       document.getElementById('currentProfileAnalysis').innerHTML = `
         <div class="insight-card"><h3>当前画像与阅读边界</h3>
           <p><strong>建议顺序：</strong>先看总体维度，再看各子面向，最后用生活情境检查这些倾向何时稳定、何时变化。</p>
@@ -315,7 +315,7 @@
       window.PrismScale.renderReflectionActions('personalizedSuggestions', [
         {
           title: '回看相对突出的子面向',
-          text: `记录“${highFacet.name}”最近一次帮助你的场景，也记录一次它使用过度、反而增加成本的场景。`
+          text: `记录“${highFacet.name}”最近一次帮助您的场景，也记录一次它使用过度、反而增加成本的场景。`
         },
         {
           title: '重新理解相对收敛的子面向',
@@ -323,7 +323,7 @@
         },
         {
           title: '观察情境波动',
-          text: `“${mostVariable.name}”在各组情境中的差距相对更明显（约 ${contextRanges[mostVariable.key].toFixed(1)} 分）。比较高低场景中谁在场、你承担什么角色、身体状态如何。`
+          text: `“${mostVariable.name}”在各组情境中的差距相对更明显（约 ${contextRanges[mostVariable.key].toFixed(1)} 分）。比较高低场景中谁在场、您承担什么角色、身体状态如何。`
         },
         {
           title: '区分偏好与困扰',

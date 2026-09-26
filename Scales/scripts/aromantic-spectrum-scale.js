@@ -200,7 +200,7 @@ function renderQuestionSelect(questionNumber) {
 	const options = labels.map((label, value) => `<option value="${value}">${value} - ${label}</option>`).join('\n\t\t');
 
 	return `<select name="q${questionNumber}">
-		<option value="" disabled selected>请选择...</option>
+		<option value="" disabled selected>请选择……</option>
 		${options}
 	</select>`;
 }
@@ -217,7 +217,7 @@ const questionMarkup = `
 		<div class="explanation">
 			<p><strong>本题用意：</strong>本题旨在探究浪漫吸引最核心的元素：对他人产生的、以浪漫为导向的内在渴望。这用于将其与单纯的欣赏或喜欢区分开来。如果您的体验中包含具体的浪漫关系渴望，则更偏向有浪漫；反之，如果从未有过这种具体、强烈的浪漫导向渴望，则可能位于无浪漫谱系。
 			</p>
-			<p><strong>具体案例：</strong>例一：若您对某位同学产生强烈渴望，希望与其约会、共度浪漫时光，并伴随心跳加速的悸动感，则可选择 5 分。例二：若您从未对他人产生过明确的浪漫渴望，仅停留在"好感"的情感层面，则可选择 0 分。
+			<p><strong>具体案例：</strong>例一：若您对某位同学产生强烈渴望，希望与其约会、共度浪漫时光，并伴随心跳加速的悸动感，则可选择 5 分。例二：若您从未对他人产生过明确的浪漫渴望，仅停留在“好感”的情感层面，则可选择 0 分。
 			</p>
 		</div>
 	</div>
@@ -251,7 +251,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(4)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>通过评估浪漫吸引的发生频率，本题帮助定位您在"无浪漫-灰浪漫-有浪漫"连续谱上的大致位置。频率极低（如一生中很少）是灰浪漫的典型特征，而高频率（如日常常见）则指向有浪漫。即使是对虚构角色或名人的浪漫吸引也算数。
+			<p><strong>本题用意：</strong>通过评估浪漫吸引的发生频率，本题帮助定位您在“无浪漫-灰浪漫-有浪漫”连续谱上的大致位置。频率极低（如一生中很少）是灰浪漫的典型特征，而高频率（如日常常见）则指向有浪漫。即使是对虚构角色或名人的浪漫吸引也算数。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您一生中仅偶尔（约 2–3 次）对虚构角色产生过浪漫吸引，可选择 1 分。例二：若您几乎每天在社交媒体上看到名人时都会自发产生浪漫幻想，则可选择 4 分。
 			</p>
@@ -263,7 +263,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(5)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题是判断半浪漫（Demiromantic）的关键问题。它探讨的是您的浪漫吸引是否以"深厚情感联结"为前提。如果答案是肯定的，即您只对知己或亲密朋友产生浪漫吸引，这便是半浪漫的典型特征。这在无浪漫谱系中很常见，表明您的浪漫吸引需要时间培养。
+			<p><strong>本题用意：</strong>本题是判断半浪漫（Demiromantic）的关键问题。它探讨的是您的浪漫吸引是否以“深厚情感联结”为前提。如果答案是肯定的，即您只对知己或亲密朋友产生浪漫吸引，这便是半浪漫的典型特征。这在无浪漫谱系中很常见，表明您的浪漫吸引需要时间培养。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您在与一位相识并相处五年的朋友之间，首次出现浪漫吸引，而此前从未产生过类似感觉，则可选择 5 分。例二：若您在初次见面时就对陌生人产生浪漫冲动，则可选择 1 分。
 			</p>
@@ -275,7 +275,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(6)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此问题探讨浪漫吸引的"条件性"，这是灰浪漫谱系的另一个常见维度。如果您的浪漫吸引高度依赖于外部或内部的"开关"，说明它并非一种持续存在的状态，这与灰浪漫的定义相符。比如只在特定情绪下、特定环境中或对特定性格类型的人才会产生浪漫吸引。
+			<p><strong>本题用意：</strong>此问题探讨浪漫吸引的“条件性”，这是灰浪漫谱系的另一个常见维度。如果您的浪漫吸引高度依赖于外部或内部的“开关”，说明它并非一种持续存在的状态，这与灰浪漫的定义相符。比如只在特定情绪下、特定环境中或对特定性格类型的人才会产生浪漫吸引。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您仅在假期放松、情绪轻松的状态下对朋友产生浪漫吸引，而在日常工作或紧张环境中无明显感觉，则可选择 5 分。例二：若您在任何场合都能轻易产生浪漫吸引，则可选择 1 分。
 			</p>
@@ -287,7 +287,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(7)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题旨在评估您所体验到的浪漫吸引的"质感"——它的强度和持久性。灰浪漫的常见特征便是，即使感受到浪漫吸引，这种感觉也可能是微弱、模糊或转瞬即逝的。这与典型的强烈、持久的浪漫吸引形成对比。
+			<p><strong>本题用意：</strong>本题旨在评估您所体验到的浪漫吸引的“质感”——它的强度和持久性。灰浪漫的常见特征便是，即使感受到浪漫吸引，这种感觉也可能是微弱、模糊或转瞬即逝的。这与典型的强烈、持久的浪漫吸引形成对比。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您对某人产生的吸引仅持续约 10 分钟便迅速消退，可选择 5 分。例二：若该吸引持续一周以上且多次反复出现，则可选择 1 分。</p>
 		</div>
@@ -298,7 +298,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(8)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>浪漫吸引通常伴随着行动的欲望，此题旨在衡量这种驱动力的强弱。强烈的内在驱动力是有浪漫的标志。而在无浪漫谱系中，即使偶尔感受到吸引，也可能缺乏将其付诸实践的迫切感。这种感觉更像是"欣赏"而非"渴望行动"。
+			<p><strong>本题用意：</strong>浪漫吸引通常伴随着行动的欲望，此题旨在衡量这种驱动力的强弱。强烈的内在驱动力是有浪漫的标志。而在无浪漫谱系中，即使偶尔感受到吸引，也可能缺乏将其付诸实践的迫切感。这种感觉更像是“欣赏”而非“渴望行动”。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您在产生吸引后会立即采取行动，例如主动发送消息并约对方见面，则可选择 5 分。例二：若您在产生幻想后无进一步计划或行动意图，则可选择 1 分。</p>
 		</div>
@@ -309,7 +309,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(9)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题从"是否需要思考"的角度，探讨浪漫吸引的本能性。对于有浪漫者，浪漫吸引常是一种"突如其来"的直觉。而对于半浪漫或灰浪漫，这种感觉可能需要情感或情境的"酝酿"，并非纯粹的本能反应。您可能需要理性分析才能确定自己是否有浪漫吸引。
+			<p><strong>本题用意：</strong>本题从“是否需要思考”的角度，探讨浪漫吸引的本能性。对于有浪漫者，浪漫吸引常是一种“突如其来”的直觉。而对于半浪漫或灰浪漫，这种感觉可能需要情感或情境的“酝酿”，并非纯粹的本能反应。您可能需要理性分析才能确定自己是否有浪漫吸引。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您在派对上第一眼看到某人便立即产生浪漫吸引，无需任何思考或判断，则可选择 5 分。例二：若您需要经过数天的观察或分析后才确认对其存在吸引，则可选择 1 分。
 			</p>
@@ -332,7 +332,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(11)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题衡量浪漫吸引在您生活中的"存在感"或影响力。强烈的浪漫吸引往往会占据思绪，影响注意力和行为决策。如果浪漫吸引对您来说，即便存在，也几乎不影响您的正常生活，这表明它在您的心智活动中优先级较低，更符合谱系特征。
+			<p><strong>本题用意：</strong>本题衡量浪漫吸引在您生活中的“存在感”或影响力。强烈的浪漫吸引往往会占据思绪，影响注意力和行为决策。如果浪漫吸引对您来说，即便存在，也几乎不影响您的正常生活，这表明它在您的心智活动中优先级较低，更符合谱系特征。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您因对某人产生浪漫吸引而明显影响工作效率或注意力集中，则可选择 5 分。例二：若该吸引对您的日常工作或生活无明显影响，则可选择 0 分。</p>
 		</div>
@@ -343,9 +343,9 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(12)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此题旨在识别无参与浪漫(aegoromantic)特征。Aegoromantic 者可能对浪漫内容、情节或虚构角色间的互动感兴趣,但这种兴趣是"旁观式"的——当涉及到自己实际参与时,这种吸引会消失或明显减弱。这反映了浪漫幻想与个人参与欲望之间的分离。
+			<p><strong>本题用意：</strong>此题旨在识别无参与浪漫（aegoromantic）特征。Aegoromantic 者可能对浪漫内容、情节或虚构角色间的互动感兴趣，但这种兴趣是“旁观式”的——当涉及到自己实际参与时，这种吸引会消失或明显减弱。这反映了浪漫幻想与个人参与欲望之间的分离。
 			</p>
-			<p><strong>具体案例：</strong>例一：若您喜欢阅读浪漫小说,但完全不希望自己经历类似情境,则可选择 5 分。例二：若您对他人之间的浪漫互动感兴趣,但想象自己参与时感到疏离或不适,则可选择 4 分。
+			<p><strong>具体案例：</strong>例一：若您喜欢阅读浪漫小说，但完全不希望自己经历类似情境，则可选择 5 分。例二：若您对他人之间的浪漫互动感兴趣，但想象自己参与时感到疏离或不适，则可选择 4 分。
 			</p>
 		</div>
 	</div>
@@ -355,7 +355,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(13)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>此问题探讨浪漫吸引的"本能"与"可控"属性。随机、不受控的体验更接近有浪漫的本能驱动。如果浪漫吸引的出现对您来说是可预测、可管理的，甚至是可以"开启"或"关闭"的，这暗示了其条件性，与灰浪漫等谱系身份更相关。
+			<p><strong>本题用意：</strong>此问题探讨浪漫吸引的“本能”与“可控”属性。随机、不受控的体验更接近有浪漫的本能驱动。如果浪漫吸引的出现对您来说是可预测、可管理的，甚至是可以“开启”或“关闭”的，这暗示了其条件性，与灰浪漫等谱系身份更相关。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您在日常散步等非特定情境中，会突然对路人产生强烈且难以抑制的浪漫吸引，则可选择 5 分。例二：若您的浪漫吸引仅在可预期或特定情境下出现，则可选择 0 分。
 			</p>
@@ -393,7 +393,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(16)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题用于判断您的浪漫关系态度，它与是否存在浪漫吸引是两个独立维度。一个无浪漫者，可能因为厌恶浪漫关系而从不参与，也可能因为对伴侣的爱或享受浪漫互动而持友好态度。了解这一点有助于区分"无浪漫吸引"和"对浪漫关系的态度"。
+			<p><strong>本题用意：</strong>本题用于判断您的浪漫关系态度，它与是否存在浪漫吸引是两个独立维度。一个无浪漫者，可能因为厌恶浪漫关系而从不参与，也可能因为对伴侣的爱或享受浪漫互动而持友好态度。了解这一点有助于区分“无浪漫吸引”和“对浪漫关系的态度”。
 			</p>
 			<p><strong>具体案例：</strong>例一：若您在想到浪漫关系时会产生明显的心理不适，如反感、紧张或排斥感，则可选择 0 分。例二：若您将浪漫关系视为一种可选择但非必要的活动，则可选择 3 分。
 			</p>
@@ -534,7 +534,7 @@ const questionMarkup = `
 		<div class="explanation">
 			<p><strong>本题用意：</strong>本题评估您对自身浪漫吸引模式的接纳程度。自我接纳是心理健康和身份认同的重要部分。无论您的浪漫吸引模式如何，接受它是您独特体验的一部分，有助于减少内化羞耻和社会压力带来的困扰。
 			</p>
-			<p><strong>具体案例：</strong>例一：如果您完全接纳自己的无浪漫或灰浪漫身份，不觉得需要改变或隐藏，则可选择 5 分。例二：如果您对自己的体验感到羞耻，希望自己能够像"正常人"一样体验浪漫吸引，可选择 0 分。
+			<p><strong>具体案例：</strong>例一：如果您完全接纳自己的无浪漫或灰浪漫身份，不觉得需要改变或隐藏，则可选择 5 分。例二：如果您对自己的体验感到羞耻，希望自己能够像“正常人”一样体验浪漫吸引，可选择 0 分。
 			</p>
 		</div>
 	</div>
@@ -557,7 +557,7 @@ const questionMarkup = `
 		<div class="explanation">
 			<p><strong>本题用意：</strong>本题评估现有身份标签与您个人体验的匹配度。标签是理解和沟通的工具，但不是所有人都会找到完美匹配的标签。您的体验可能是独特的，或介于多个标签之间。
 			</p>
-			<p><strong>具体案例：</strong>例一：如果您觉得"灰浪漫"或"半浪漫"完全准确地描述了您的体验，则可选择 5 分。例二：如果您觉得所有现有标签都无法准确描述您的复杂体验，可选择 0 分。</p>
+			<p><strong>具体案例：</strong>例一：如果您觉得“灰浪漫”或“半浪漫”完全准确地描述了您的体验，则可选择 5 分。例二：如果您觉得所有现有标签都无法准确描述您的复杂体验，可选择 0 分。</p>
 		</div>
 	</div>
 	<div class="question">
@@ -594,7 +594,7 @@ const questionMarkup = `
 		<div class="explanation">
 			<p><strong>本题用意：</strong>本题针对突发无浪漫（Arospike）的特征：间歇性、短暂而强烈的浪漫吸引体验。突发无浪漫者平时可能对浪漫完全无感；但偶尔，会突然经历一种强烈的浪漫吸引，但很快就会消退。这种体验通常很短暂，可能只有几分钟到几小时。
 			</p>
-			<p><strong>具体案例：</strong>例一：您平时对浪漫毫无兴趣，却曾在咖啡店突然对陌生人产生强烈浪漫冲动，心跳加速、脑海闪现共同生活的画面，但数小时后便完全消失，仿佛从未发生，可选择 5 分。例二：浪漫吸引多为缓慢积累或持久存在，无"爆燃即灭"模式，可选择 0 分。
+			<p><strong>具体案例：</strong>例一：您平时对浪漫毫无兴趣，却曾在咖啡店突然对陌生人产生强烈浪漫冲动，心跳加速、脑海闪现共同生活的画面，但数小时后便完全消失，仿佛从未发生，可选择 5 分。例二：浪漫吸引多为缓慢积累或持久存在，无“爆燃即灭”模式，可选择 0 分。
 			</p>
 		</div>
 	</div>
@@ -682,11 +682,11 @@ const questionMarkup = `
 	</div>
 	<div class="question">
 		<div class="question-title" onclick="toggleExplanation(this)">
-			<span class="q-number">40.</span> 您是否对"浪漫吸引"概念感到困惑，无法确定自己是否体验过它？
+			<span class="q-number">40.</span> 您是否对“浪漫吸引”概念感到困惑，无法确定自己是否体验过它？
 		</div>
 		${renderQuestionSelect(40)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题针对疑浪漫（Quoiromantic）：概念理解困难。疑浪漫者对"浪漫吸引"这一概念本身存在深刻的理解困难，因为这个定义似乎无法贴合您的内在感受。您可能不确定自己的体验是否算"浪漫吸引"，或者觉得这个概念对您来说毫无意义。
+			<p><strong>本题用意：</strong>本题针对疑浪漫（Quoiromantic）：概念理解困难。疑浪漫者对“浪漫吸引”这一概念本身存在深刻的理解困难，因为这个定义似乎无法贴合您的内在感受。您可能不确定自己的体验是否算“浪漫吸引”，或者觉得这个概念对您来说毫无意义。
 			</p>
 			<p><strong>具体案例：</strong>例一：即使反复阅读浪漫吸引的定义，您仍不确定自己的感觉是否匹配，或者觉得这个词对您来说毫无意义，这非常符合 5 分。例二：如果您能清晰识别和描述自己的浪漫吸引，这则符合 0 分。
 			</p>
@@ -710,9 +710,9 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(42)}
 		<div class="explanation">
-			<p><strong>本题用意：</strong>本题针对感受模糊浪漫（Desinoromantic）：体验不明确的情感悸动但无法归类。感受模糊浪漫者可能会体验到某种模糊的情感波动或悸动，但这些感受不够清晰、不够典型，无法确定它们是否属于"浪漫吸引"。这种体验既不是明确的浪漫吸引，也不是完全的没有吸引，而是一种模棱两可的状态。
+			<p><strong>本题用意：</strong>本题针对感受模糊浪漫（Desinoromantic）：体验不明确的情感悸动但无法归类。感受模糊浪漫者可能会体验到某种模糊的情感波动或悸动，但这些感受不够清晰、不够典型，无法确定它们是否属于“浪漫吸引”。这种体验既不是明确的浪漫吸引，也不是完全的没有吸引，而是一种模棱两可的状态。
 			</p>
-			<p><strong>具体案例：</strong>例一：您偶尔会对某人产生一种模糊的"特殊感觉"，既不是单纯的好感，也不是明确的浪漫吸引，只是一种说不清道不明的悸动，这非常符合 5 分。例二：如果您的情感体验总是清晰明确的，这则符合 0 分。
+			<p><strong>具体案例：</strong>例一：您偶尔会对某人产生一种模糊的“特殊感觉”，既不是单纯的好感，也不是明确的浪漫吸引，只是一种说不清道不明的悸动，这非常符合 5 分。例二：如果您的情感体验总是清晰明确的，这则符合 0 分。
 			</p>
 		</div>
 	</div>
@@ -1069,8 +1069,8 @@ function calculateResult() {
 		judgmentText = `您的核心浪漫吸引加权均分为 **${romanticCore.toFixed(1)}**。根据评分标准，您**符合有浪漫 (Alloromantic) 的特征**。这意味着浪漫吸引是您体验世界和建立连接的常规维度之一，您能够规律地、自发地体验到以浪漫情感为基础的渴望，并可能伴随相应的情感反应和行为驱动力。`;
 
 		mainInterpretation = `<h3>有浪漫特征解读</h3>
-       <p><strong>什么是"有浪漫"？</strong></p>
-       <p>有浪漫 (Alloromantic) 指的是那些能够规律、自发地体验浪漫吸引的人群。这是人类浪漫吸引谱系中占比最大的一类，也是社会主流认知中的"常态"模式。这个词本身是中性的，仅仅描述了一种吸引模式的存在，不带有任何价值判断。</p>
+       <p><strong>什么是“有浪漫”？</strong></p>
+       <p>有浪漫 (Alloromantic) 指的是那些能够规律、自发地体验浪漫吸引的人群。这是人类浪漫吸引谱系中占比最大的一类，也是社会主流认知中的“常态”模式。这个词本身是中性的，仅仅描述了一种吸引模式的存在，不带有任何价值判断。</p>
 
        <p><strong>您的具体表现：</strong></p>
        <ul>
@@ -1141,7 +1141,7 @@ function calculateResult() {
 			judgmentText = `您的核心浪漫吸引加权均分为 **${romanticCore.toFixed(1)}**。这是一个非常低的分数，强烈表明您**位于无浪漫谱系的核心区域**，即您几乎或完全不体验浪漫吸引，很有可能是无浪漫 (Aromantic) 。`;
 
 			mainInterpretation = `<h3>无浪漫特征解读</h3>
-           <p><strong>什么是"无浪漫"？</strong></p>
+           <p><strong>什么是“无浪漫”？</strong></p>
            <p>无浪漫 (Aromantic) 指的是那些完全或几乎不体验浪漫吸引的人群。这<strong>不是一种疾病、缺陷或选择</strong>，而是一种自然的、与生俱来的浪漫取向，就像异性浪漫、同性浪漫或双性浪漫一样，是人类多元浪漫取向谱系中的一种。</p>
 
            <p><strong>您的具体表现：</strong></p>
@@ -1187,7 +1187,7 @@ function calculateResult() {
 
 			mainInterpretation = `<h3>多重无浪漫特征解读</h3>
            <p><strong>谱系定位：</strong></p>
-           <p>您的得分表明，您位于"有浪漫"与"完全无浪漫"之间的广阔谱系上。您的浪漫吸引体验可能是：</p>
+           <p>您的得分表明，您位于“有浪漫”与“完全无浪漫”之间的广阔谱系上。您的浪漫吸引体验可能是：</p>
            <ul>
                <li><strong>频率极低</strong>（如一年仅几次，甚至更少）</li>
                <li><strong>强度非常微弱</strong>（模糊、易被忽略、转瞬即逝）</li>
@@ -1204,7 +1204,7 @@ function calculateResult() {
 
            <p><strong>这种多重性意味着：</strong></p>
            <p>1. 您的体验是<strong>动态且情境依赖的</strong>，可能在不同时间、不同关系中表现出不同特征。</p>
-           <p>2. 单一的"灰浪漫"或"半浪漫"标签可能<strong>无法完整捕捉您的复杂性</strong>，您需要更灵活的身份框架。</p>
+           <p>2. 单一的“灰浪漫”或“半浪漫”标签可能<strong>无法完整捕捉您的复杂性</strong>，您需要更灵活的身份框架。</p>
            <p>3. 您可能需要<strong>多维度的关系策略</strong>来应对不同的吸引模式，以及与不同伴侣的互动方式。</p>
            <p>4. 您的自我认知可能经历<strong>更多探索和调整</strong>，因为您的模式可能随时间演变。</p>
 
@@ -1231,7 +1231,7 @@ function calculateResult() {
 			).join('；');
 
 			mainInterpretation = `<h3>${primaryType.name}特征解读</h3>
-           <p><strong>什么是"${primaryType.name.split(' ')[0]}"？</strong></p>
+           <p><strong>什么是“${primaryType.name.split(' ')[0]}”？</strong></p>
            <p>${primaryType.desc}</p>
 
            <p><strong>您的具体表现：</strong></p>
@@ -1254,7 +1254,7 @@ function calculateResult() {
            <p><strong>谱系定位：</strong></p>
            <p>您的得分提示，您可能位于无浪漫谱系中，浪漫吸引对您来说不是一种常规、稳定的体验。您的核心浪漫吸引分数${romanticCore.toFixed(1)}分（满分 5 分）支持这一参考判断。</p>
 
-           <p><strong>什么是"${subType.name.split(' ')[0]}"？</strong></p>
+           <p><strong>什么是“${subType.name.split(' ')[0]}”？</strong></p>
            <p>${subType.desc}</p>
 
            <p><strong>您的回答表明：</strong></p>
@@ -1283,7 +1283,7 @@ function calculateResult() {
 
 			mainInterpretation = `<h3>谱系特征解读</h3>
            <p><strong>您的谱系位置：</strong></p>
-           <p>您位于"有浪漫"与"完全无浪漫"之间的灰色地带。这个区域在学术上被称为"灰色区域"或"灰区"，它包含了许多细微的、个体差异显著的体验模式，是多元浪漫吸引谱系中丰富而重要的一部分。</p>
+           <p>您位于“有浪漫”与“完全无浪漫”之间的灰色地带。这个区域在学术上被称为“灰色区域”或“灰区”，它包含了许多细微的、个体差异显著的体验模式，是多元浪漫吸引谱系中丰富而重要的一部分。</p>
 
            <p><strong>可能的情况：</strong></p>
            <ul>
@@ -1294,19 +1294,19 @@ function calculateResult() {
                <li><strong>探索早期阶段：</strong>您可能还在理解自己的体验，模式尚未完全清晰或稳定。</li>
            </ul>
 
-           <p><strong>这不是"匹配失败"：</strong></p>
+           <p><strong>这不是“匹配失败”：</strong></p>
            <p>未能匹配到特定类型<strong>不意味着您的体验无效或有问题</strong>，而是反映了：</p>
            <ul>
                <li>人类体验的丰富性超出了我们当前分类系统的捕捉能力</li>
                <li>您的模式可能是流动的、情境依赖的或高度独特的</li>
                <li>吸引相关认同是一个过程，而非一次性的分类</li>
-               <li>有时候，"在谱系上但未确定具体位置"本身就是一个有意义的定位</li>
+               <li>有时候，“在谱系上但未确定具体位置”本身就是一个有意义的定位</li>
            </ul>
 
            <p><strong>建议：</strong></p>
            <p>1. <strong>不必急于给自己贴上特定标签</strong>，可以先观察自己的长期模式，记录什么情境下有什么感受。</p>
            <p>2. <strong>关注您的具体体验而非分类</strong>，什么让您舒适，什么让您不适，什么让您感到连接，什么让您感到疏离。</p>
-           <p>3. <strong>探索"无浪漫谱系"这个更宽泛的身份</strong>，它本身就是一个完整、有效的身份认同。</p>
+           <p>3. <strong>探索“无浪漫谱系”这个更宽泛的身份</strong>，它本身就是一个完整、有效的身份认同。</p>
            <p>4. <strong>如果未来模式变得更清晰</strong>，可以重新评估或尝试更具体的标签。</p>
            <p>5. <strong>记住身份是工具而非监狱</strong>，它应该服务于您的自我理解和生活优化，而不是限制您的可能性。</p>`;
 		}
@@ -1327,7 +1327,7 @@ function calculateResult() {
 		},
 		{
 			title: '保留不用固定标签的空间',
-			text: `“${baseType}”只是对本次作答模式的概括。${primaryTypes.length + subTypes.length > 0 ? '细分维度可用来描述条件差异，' : ''}你可以采用、暂缓或放弃任何标签。`
+			text: `“${baseType}”只是对本次作答模式的概括。${primaryTypes.length + subTypes.length > 0 ? '细分维度可用来描述条件差异，' : ''}您可以采用、暂缓或放弃任何标签。`
 		},
 		{
 			title: '沟通关系期待与边界',
@@ -1411,11 +1411,11 @@ function calculateResult() {
            </ul>`,
 			'灰浪漫 (Greyromantic)': `<p><strong>生活适应：</strong></p>
            <ul>
-               <li><strong>模式接纳：</strong>接受您的浪漫吸引是偶尔的、条件性的，不必强迫自己符合主流频率。您的"灰色"体验本身就是完整的、有效的。</li>
-               <li><strong>关系设计：</strong>建立对浪漫吸引低频次有理解的关系框架。与伴侣沟通您的模式可能是"偶尔有，大多无"。</li>
-               <li><strong>自我定义：</strong>您不需要在"有浪漫"和"无浪漫"之间二选一，灰区本身就是完整身份。您可以认同为"灰浪漫"而不需要进一步归类。</li>
+               <li><strong>模式接纳：</strong>接受您的浪漫吸引是偶尔的、条件性的，不必强迫自己符合主流频率。您的“灰色”体验本身就是完整的、有效的。</li>
+               <li><strong>关系设计：</strong>建立对浪漫吸引低频次有理解的关系框架。与伴侣沟通您的模式可能是“偶尔有，大多无”。</li>
+               <li><strong>自我定义：</strong>您不需要在“有浪漫”和“无浪漫”之间二选一，灰区本身就是完整身份。您可以认同为“灰浪漫”而不需要进一步归类。</li>
                <li><strong>情境优化：</strong>识别触发您浪漫吸引的情境（如特定情绪、环境、互动方式），但不强求它的规律性。可以创造这些情境，但接受它不一定每次都有效。</li>
-               <li><strong>沟通策略：</strong>向伴侣解释您的浪漫吸引是"稀有事件"而非"日常体验"，设定合理的期望值。</li>
+               <li><strong>沟通策略：</strong>向伴侣解释您的浪漫吸引是“稀有事件”而非“日常体验”，设定合理的期望值。</li>
            </ul>`
 		};
 		return implications[typeName] || '<p>请根据您的具体体验调整关系策略和期望。</p>';
@@ -1802,7 +1802,7 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
            <ul style="margin-top: 10px; color: #444;">
                <li><strong>社区连接：</strong>加入 AUREA 国际论坛（www.aromanticism.org）或中文无浪漫社群（如豆瓣小组、QQ 群、Discord 社群），与有相似体验的人交流，验证自身经历，减轻孤立感。</li>
                <li><strong>教育资源：</strong>系统学习无浪漫谱系相关专业书籍和资料，建立科学认知框架。</li>
-               <li><strong>身份整合：</strong>将"无浪漫谱系"视为情感多样性的一部分，而非缺陷或障碍。练习用积极语言描述自己的体验，如"我以不同的方式体验情感联结"而非"我缺少什么"。</li>
+               <li><strong>身份整合：</strong>将“无浪漫谱系”视为情感多样性的一部分，而非缺陷或障碍。练习用积极语言描述自己的体验，如“我以不同的方式体验情感联结”而非“我缺少什么”。</li>
                <li><strong>自我叙事：</strong>撰写个人吸引体验故事，记录关键经历、感受变化和自我发现过程，这有助于整合自我认知。</li>
            </ul>
        </li>`;
@@ -1825,9 +1825,9 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
            <span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">2</span>
            <strong style="color: #1a3c66; font-size: 1.1em;">构建非浪漫亲密关系框架</strong>
            <ul style="margin-top: 10px; color: #444;">
-               <li><strong>明确沟通：</strong>关系初期清晰说明"高情感需求+低浪漫需求"的特征。准备简明的解释材料，如"对我来说，亲密更多是关于情感深度和共同成长，而不是浪漫互动"。</li>
+               <li><strong>明确沟通：</strong>关系初期清晰说明“高情感需求+低浪漫需求”的特征。准备简明的解释材料，如“对我来说，亲密更多是关于情感深度和共同成长，而不是浪漫互动”。</li>
                <li><strong>关系模式创新：</strong>探索酷儿柏拉图式关系（QPR）、无浪漫伴侣关系、生活伴侣等非传统关系形式。这些关系强调情感承诺和共同生活，而不预设浪漫互动。</li>
-               <li><strong>亲密感替代：</strong>开发情感交流、智力共鸣、共同兴趣、生活照顾、仪式创造等非浪漫亲密渠道。建立您们专属的"亲密感工具箱"。</li>
+               <li><strong>亲密感替代：</strong>开发情感交流、智力共鸣、共同兴趣、生活照顾、仪式创造等非浪漫亲密渠道。建立您们专属的“亲密感工具箱”。</li>
                <li><strong>伴侣寻找策略：</strong>在无浪漫友好平台或社群活动寻找伴侣，或在传统平台明确标注您的需求和身份。</li>
            </ul>
        </li>`;
@@ -1839,9 +1839,9 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
            <span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">${romanticCore <= 2.5 ? '3' : '2'}</span>
            <strong style="color: #1a3c66; font-size: 1.1em;">强化个人边界与沟通技巧</strong>
            <ul style="margin-top: 10px; color: #444;">
-               <li><strong>坚定拒绝：</strong>练习清晰表达"不"，无需为拒绝浪漫接触提供冗长理由。使用"我陈述句"，如"我不喜欢这样"、"这让我不舒服"。</li>
+               <li><strong>坚定拒绝：</strong>练习清晰表达“不”，无需为拒绝浪漫接触提供冗长理由。使用“我陈述句”，如“我不喜欢这样”、“这让我不舒服”。</li>
                <li><strong>替代方案：</strong>准备非浪漫亲密活动清单（深度对话、共同创作、感官体验、共同学习、冒险旅行等），在拒绝浪漫接触时提供其他连接选项。</li>
-               <li><strong>支持系统：</strong>建立理解并尊重您边界的朋友圈和伴侣关系。远离那些不尊重您"不"的人。</li>
+               <li><strong>支持系统：</strong>建立理解并尊重您边界的朋友圈和伴侣关系。远离那些不尊重您“不”的人。</li>
                <li><strong>情境管理：</strong>识别可能面临压力或期望的情境（如约会、聚会、特定文化环境），提前准备应对策略和退出方案。</li>
            </ul>
        </li>`;
@@ -1858,10 +1858,10 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
 			})()}</span>
            <strong style="color: #1a3c66; font-size: 1.1em;">半浪漫特质优化</strong>
            <ul style="margin-top: 10px; color: #444;">
-               <li><strong>关系节奏：</strong>选择接受"慢热"模式的伴侣，避免速食关系压力。明确告知潜在伴侣您需要时间发展情感联结才可能产生浪漫吸引。</li>
+               <li><strong>关系节奏：</strong>选择接受“慢热”模式的伴侣，避免速食关系压力。明确告知潜在伴侣您需要时间发展情感联结才可能产生浪漫吸引。</li>
                <li><strong>信任建设：</strong>优先投资情感安全感和长期信任积累。将关系初期的重点放在深度对话、脆弱性分享和共同经历上。</li>
                <li><strong>自我接纳：</strong>认可情感深度作为吸引前提的合理性，不比较他人节奏。您的关系可能开始得慢，但往往更深、更稳。</li>
-               <li><strong>沟通策略：</strong>用比喻解释您的体验，如"我的吸引体验就像种子，需要深厚的情感土壤才能发芽"。</li>
+               <li><strong>沟通策略：</strong>用比喻解释您的体验，如“我的吸引体验就像种子，需要深厚的情感土壤才能发芽”。</li>
            </ul>
        </li>`;
 	}
@@ -1879,9 +1879,9 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
            <span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">${index}</span>
            <strong style="color: #1a3c66; font-size: 1.1em;">灰浪漫模式管理</strong>
            <ul style="margin-top: 10px; color: #444;">
-               <li><strong>不确定性接纳：</strong>接受"有时有，有时无"的灰色状态，不强迫自己明确归类。灰色本身就是完整身份，不需要变成黑色或白色。</li>
+               <li><strong>不确定性接纳：</strong>接受“有时有，有时无”的灰色状态，不强迫自己明确归类。灰色本身就是完整身份，不需要变成黑色或白色。</li>
                <li><strong>模式观察：</strong>记录浪漫吸引出现的模式，注意触发因素（特定情绪、环境、互动方式）、持续时间和强度变化。</li>
-               <li><strong>关系期望管理：</strong>向伴侣解释您的浪漫吸引是"稀有事件"而非"日常体验"，设定合理的期望值，避免失望和压力。</li>
+               <li><strong>关系期望管理：</strong>向伴侣解释您的浪漫吸引是“稀有事件”而非“日常体验”，设定合理的期望值，避免失望和压力。</li>
                <li><strong>自我定义自由：</strong>允许自己在不同时期使用不同标签，或不使用具体标签。您的体验是流动的，身份也可以有流动性。</li>
            </ul>
        </li>`;
@@ -1901,7 +1901,7 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
            <span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">${index}</span>
            <strong style="color: #1a3c66; font-size: 1.1em;">磨损浪漫模式适应</strong>
            <ul style="margin-top: 10px; color: #444;">
-               <li><strong>关系预期：</strong>接受吸引的自然衰减，不视为关系失败。理解您的吸引模式是"初遇最强，随熟悉减弱"，这无关关系质量或个人价值。</li>
+               <li><strong>关系预期：</strong>接受吸引的自然衰减，不视为关系失败。理解您的吸引模式是“初遇最强，随熟悉减弱”，这无关关系质量或个人价值。</li>
                <li><strong>连接转型：</strong>在浪漫吸引减弱后，有意识培养情感、智力或精神连接。设计关系发展的第二阶段重点。</li>
                <li><strong>关系形式：</strong>考虑短期关系、开放式关系或保持适当神秘感的长期关系。找到适合您吸引曲线的关系结构。</li>
                <li><strong>沟通策略：</strong>向伴侣解释您的模式，强调这并非对方的问题，而是您吸引模式的自然运作方式。</li>
@@ -1925,7 +1925,7 @@ function generatePersonalizedSuggestions(scores, romanticCore, baseType, primary
            <span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">${index}</span>
            <strong style="color: #1a3c66; font-size: 1.1em;">澄清浪漫关系渴望与行为意愿的矛盾</strong>
            <ul style="margin-top: 10px; color: #444;">
-               <li><strong>区分渴望与行动：</strong>仔细思考您对"浪漫关系"的渴望是抽象概念还是具体行为。有时我们渴望的是亲密感、连接感或关系形式，而非浪漫行为本身。</li>
+               <li><strong>区分渴望与行动：</strong>仔细思考您对“浪漫关系”的渴望是抽象概念还是具体行为。有时我们渴望的是亲密感、连接感或关系形式，而非浪漫行为本身。</li>
                <li><strong>探索替代形式：</strong>考虑非传统浪漫表达、深度情感联结或其他亲密方式，这些可能更符合您的实际意愿。</li>
                <li><strong>沟通期望：</strong>如果进入关系，明确沟通您对浪漫行为的实际意愿和边界，避免期望错位。</li>
                <li><strong>重新评估：</strong>回顾第 19 题和第 39 题，确认是否准确理解了问题含义。渴望关系浪漫不一定意味着渴望传统浪漫行为。</li>
@@ -2018,9 +2018,9 @@ function generateSectionScoresTable(scores) {
 			const label = getGenderRomanticLabel(scores.q21, scores.q22, scores.q23, scores.q24, scores.q25);
 			return `${label}；这一栏只描述浪漫吸引出现时可能指向谁，需要与“浪漫吸引核心”一起阅读。`;
 		}
-		if (avg >= 3.5) return '你较能识别、接纳并描述自己的浪漫吸引模式，也更有条件把边界与关系需求说清楚。';
-		if (avg >= 2.5) return '你已形成部分自我理解，但标签匹配、接纳程度或沟通方式仍在探索中。';
-		return '你可能仍难以识别或描述浪漫吸引经验；当前结果更适合作为后续观察问题，而不是身份结论。';
+		if (avg >= 3.5) return '您较能识别、接纳并描述自己的浪漫吸引模式，也更有条件把边界与关系需求说清楚。';
+		if (avg >= 2.5) return '您已形成部分自我理解，但标签匹配、接纳程度或沟通方式仍在探索中。';
+		return '您可能仍难以识别或描述浪漫吸引经验；当前结果更适合作为后续观察问题，而不是身份结论。';
 	};
 
 	let tableHTML = `<div class="result-table-shell"><table class="result-score-table">
