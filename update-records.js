@@ -1,6 +1,17 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-09-27',
+    pages: [
+      './Scales/Gender-Exploration-Scale.html',
+      './Glossaries/SOGIESC-Glossary.html',
+      './Glossaries/Sexology-Glossary.html',
+      './Glossaries/Psychology-Glossary.html',
+      './Glossaries/Sociology-Glossary.html',
+      './Glossaries/Philosophy-Glossary.html'
+    ]
+  },
+  {
     date: '2026-09-20',
     pages: [
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
@@ -30,7 +41,6 @@ window.PrismSelfUpdateGroups = [
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',
       './Scales/Feminist-Leanings-Scale.html',
-      './Scales/Gender-Exploration-Scale.html',
       './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Orientation-Scale.html',
@@ -43,11 +53,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',
-      './Glossaries/Sexology-Glossary.html',
-      './Glossaries/Psychology-Glossary.html',
-      './Glossaries/Sociology-Glossary.html',
-      './Glossaries/Philosophy-Glossary.html',
-      './Glossaries/SOGIESC-Glossary.html',
       './Tools/Relationship-Needs-Menu.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
