@@ -79,12 +79,11 @@
     }
 
     .explanation {
-      display: none;
       margin-top: 12px;
     }
 
-    .explanation.show {
-      display: block;
+    .explanation[hidden] {
+      display: none;
     }
 
     .result {
@@ -289,7 +288,7 @@
     }
   </style>
   <link rel="stylesheet" href="./scale-common.css?v=202609271">
-  <script>window.PRISM_SCALE_CONFIG = { id: 'gender-exploration', title: '多元性别认同与探索自评量表', formId: 'genderQuiz', storageKey: 'genderQuizAnswers', totalQuestions: 45, resultId: 'result' };</script>
+  <script>window.PRISM_SCALE_CONFIG = { id: 'gender-exploration', title: '多元性别认同与探索自评量表', formId: 'genderQuiz', storageKey: 'genderQuizAnswersV2', totalQuestions: 45, resultId: 'result' };</script>
   <script src="./scale-common.js?v=dd9a2a8dac1a" defer></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap">
   <link rel="stylesheet" href="../assets/theme.css?v=202609095">
@@ -313,53 +312,24 @@
   <h1>多元性别认同与探索自评量表</h1>
   <div class="intro">
     <h2>关键概念与使用指南</h2>
-    <p><strong>性别认同（Gender Identity）</strong>：指一个人内心深处对自我性别的认知和体验。它可能与出生时被指派的性别（Assigned Sex at
-      Birth）一致，也可能不一致。这是一种深刻的内在知觉，回答了“我是谁”这一核心问题。性别认同不是选择，而是内在本能，与性取向（Sexual
-      Orientation）独立。例如，您可能认同为女性，但对女性有浪漫吸引（女同性恋），或对男性有吸引（异性恋）。请回想：从小到大，您对“男生/女生”的内在归属感如何？它是否像“本该如此”般自然，还是总给人“不对劲”的违和感？
-    </p>
+    <p><strong>性别认同（Gender Identity）</strong>：指一个人对自身性别的内在理解与体验。它与性别表达、性别角色、身体性别特征、出生时指派性别和性取向是不同维度，不能彼此直接推断。一个人可以使用某个身份标签，也可以暂时不使用标签；认同是否清晰、是否变化，以及是否愿意公开，都由当事人自己决定。</p>
     <p><strong>为了更好地理解本量表涉及的概念，我们简要介绍以下术语：</strong></p>
     <details class="scale-concept-details">
       <summary>点击展开（附解释说明）</summary>
       <div class="scale-concept-content">
-    <ul>
-      <li>
-        <strong>顺性别（Cisgender）</strong>：性别认同与出生指派性别完全一致。例如：出生指派为女性，内心也完全认同自己是女性，并对此感到舒适。这种一致性通常从童年就很稳定，不会引发内在冲突。值得注意的是，许多顺性别者也可能不严格遵守性别角色，但 TA 们依然认同自己的指派性别。
-      </li>
-      <li>
-        <strong>跨性别（Transgender）</strong>：性别认同与出生指派性别不一致的统称。这包括二元跨性别（跨性别男性/女性）和非二元跨性别。跨性别者可能体验到强烈的“错身”感，但也可能只是温和的不适。跨性别不等同于想要进行医疗过渡，每个人的过渡需求不同。
-      </li>
-      <li>
-        <strong>非二元（Non-binary）</strong>：性别认同不单纯属于“男性”或“女性”的二元框架。可能感到是两者的混合、介于两者之间、或者是完全不同的性别。例如：您可能觉得有时偏男性，有时偏女性，或完全中性。非二元是一个伞式术语，涵盖多种具体身份。
-      </li>
-      <li>
-        <strong>无性别（Agender）</strong>：感觉自己没有性别，或者对“性别”这一概念缺乏内在共鸣。例如：您可能觉得“性别”像一个不相关的标签，对它无感或困惑。无性别者可能希望被以中性方式对待，或完全不在意性别分类。
-      </li>
-      <li>
-        <strong>流动性别（Genderfluid）</strong>：性别认同不是固定的，而是随时间、环境或情绪在不同性别之间流动和变化。例如：今天觉得是女性，明天可能是男性，或两者皆非。流动频率因人而异，可能是每日、每周、每月或更长时间尺度。
-      </li>
-      <li><strong>多元性别 / 性别酷儿（Genderqueer）</strong>：常被用作非二元的同义词，但更强调对性别规范的挑战和超越。有时特指那些同时拥有多种性别特质或拒绝任何分类的人。
-      </li>
-      <li><strong>性别焦虑（Gender
-          Dysphoria）</strong>：因指派性别与心理认同不一致而产生的显著痛苦、不安或不适（分为身体焦虑和社会焦虑）。这可能表现为对身体部位的厌恶，或被称呼为指派性别时的不适感。但请注意，并非所有跨性别者都有严重焦虑，有些人主要是通过性别愉悦来确认自己。
-      </li>
-      <li><strong>性别愉悦（Gender
-          Euphoria）</strong>：当个人的性别表达或被对待的方式符合其真实的内在认同感时，所产生的强烈的舒适感、正确感或喜悦感。例如：被叫对代词时的开心，或穿对衣服时的“终于对了”的感觉。愉悦感常是比焦虑更积极的指导信号。
-      </li>
-      <li><strong>性别表达（Gender
-          Expression）</strong>：通过外在方式（如服装、发型、行为）展示性别的方式。它可能与性别认同一致或不一致。例如：一个跨性别女性可能通过穿裙子来表达女性气质。表达是文化性的，可以自由选择。
-      </li>
-      <li><strong>性别角色（Gender
-          Role）</strong>：社会期望的“男性/女性”行为规范，如男性强壮、女性温柔。这些是文化构建的，与内在认同无关。许多人不完全遵守这些角色，这本身并不决定性别认同。</li>
-    </ul>
+        <ul>
+          <li><strong>性别认同</strong>：对自身性别的内在理解。它可以清晰、模糊、变化或暂时难以命名，不能由外貌、出生证明、身体特征或他人判断替代。</li>
+          <li><strong>出生时指派性别</strong>：出生时根据当时可观察的信息，由他人或制度作出的分类记录；它不是性别认同的同义词，也不能单独决定一个人的身份。</li>
+          <li><strong>跨性别与顺性别</strong>：跨性别通常指性别认同与出生时指派性别不一致的伞状概念；顺性别通常指两者大体一致。两者都不要求特定外表、痛苦程度或医疗经历。</li>
+          <li><strong>非二元</strong>：不完全属于“仅男性”或“仅女性”的身份和体验范围。非二元不是未决定、过渡阶段或必须追求中性表达。</li>
+          <li><strong>性别表达与性别角色</strong>：衣着、发型、声音、行为、兴趣和社会期待属于表达或角色维度，不能用来推断性别认同。</li>
+          <li><strong>性别愉悦与性别相关不适</strong>：符合自身体验时的舒适、确认或喜悦，以及与性别相关的不适，都是可能出现的线索；不适不是任何身份的必要条件，也不是本工具的诊断。</li>
+        </ul>
       </div>
     </details>
-    <p>
-      <strong>性别探索的深层意义：</strong>探索性别认同不仅仅是寻找一个标签，而是理解“我是谁”的核心旅程。这个过程可能带来困惑，也可能带来解放。无论最终发现自己是顺性别、跨性别还是非二元，自我认知的提升本身就是一种成长。性别不是二元的开关，而是多维的、流动的、个人化的体验谱系。在当代心理学中，性别认同被视为一种内在的、稳定的自我意识，通常在童年早期形成，但可能到青春期或成年后才被充分意识到。文化、家庭和社会环境会影响我们表达和探索性别的方式，但核心认同通常是内在的。
-    </p>
-    <p>
-      <strong>文化背景与安全边界：</strong>社会对性别角色的期待可能影响感受和表达，请结合您所在环境的接受度理解结果。若身份证或出生登记上的性别为女性，题目中的“指派性别”指女性，“异性”指男性；反之亦然。若相关焦虑持续影响生活，可以考虑寻求性别友好的专业支持。
-    </p>
-    <p><strong>使用指南：</strong>本量表共包含 45 道题目，分为五个部分。请根据过去几年中较稳定、较自然的真实体验选择 0–5 分（0 分＝完全不符合，5 分＝完全符合）。点击题目可展开详细解释，按“本题用意”和“具体案例”两部分呈现。完成所有题目后，点击“计算结果”即可查看整体倾向、分维度分析、类型参考和个性化建议。本工具用于学习和自我探索，不是标准化心理测验，也不用于诊断、筛查或证明任何身份。</p>
+    <p><strong>使用边界：</strong>本页面是自编、未经过信度和效度验证的自我反思工具，没有常模、诊断界值或身份判定能力。性别认同、性别表达、身体感受、社会待遇、角色压力和探索行为彼此不能替代；不适用选项不会计为零分，结果仅反映你在本次作答和当前情境下的回答。</p>
+    <p><strong>使用指南：</strong>共 45 题，分为九个观察维度。按题目描述选择 0–5 分（0＝完全不符合，5＝完全符合）；如没有相关经历、不适用或难以判断，请选择“不适用 / 难以判断”。点击题目可查看本题观察对象和解释边界。全部题目均需选择一个选项后才能计算，但不适用项不会进入平均值。回答自动保存在当前浏览器本地；不要在不安全或共用设备上填写敏感内容。</p>
+    <p><strong>概念依据与边界：</strong>本页面的概念区分参考站内<a href="../Guides/Gender-Concepts-Comprehensive-Guide.html">性别概念全景指南</a>及相关专业指导文件（包括 APA 跨性别与性别多样人群心理实践指南、WPATH SOC8、NASEM 关于性别与性取向测量的报告和 WHO ICD-11）。这些材料用于支持概念区分和非病理化表述，不验证本自编问卷的信度、效度或解释阈值。</p>
     <p><strong>温馨提示：</strong>您的答案会自动保存在浏览器中，刷新页面不会丢失进度。建议使用电脑端浏览，并优先选择谷歌 Chrome 浏览器或微软 Edge 浏览器。</p>
   </div>
   <form id="genderQuiz">
@@ -373,10 +343,10 @@
   </form>
 
   <div class="result" id="result">
-    <h2 class="result-report-title">多元性别认同与探索自评结果</h2>
+    <h2 class="result-report-title">性别认同与相关体验：描述性自评结果</h2>
     <div class="result-top-grid">
       <div class="result-summary-panel">
-        <p class="result-eyebrow">您的当前性别探索画像</p>
+        <p class="result-eyebrow">本次回答中的性别体验维度</p>
         <div id="scoreSummary"></div>
         <div id="typeJudgment"></div>
       </div>
@@ -389,8 +359,7 @@
     <div id="sectionScores"></div>
     <div id="personalizedSuggestions"></div>
     <div class="disclaimer">
-      <strong>免责声明：</strong>本测试仅用于自我探索和教育目的，不能替代专业的心理咨询或医疗诊断（如性别不安（Gender
-      Dysphoria）的诊断）。性别认同是高度个人化且流动的，只有您自己能定义您是谁。如果您感到严重痛苦或自杀念头，请立即联系心理危机干预热线或寻求专业帮助。
+      <strong>免责声明：</strong>本工具仅用于学习和自我反思，不是标准化心理测验，不提供筛查、诊断、身份认证、身份排除或风险预测，也不能替代心理、医疗或法律专业意见。性别认同、性别表达、身体感受和社会压力可能彼此相关，但不能由本结果相互推断。若相关困扰持续影响睡眠、情绪、社交或日常功能，可以寻找尊重性别多样性的专业支持；如出现即时人身安全危险，请联系当地急救或危机支持服务。
     </div>
   </div>
 
@@ -400,7 +369,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
     integrity="sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H"
     crossorigin="anonymous"></script>
-  <script src="./scripts/gender-exploration-scale.js?v=964406802c5d" defer></script>
+  <script src="./scripts/gender-exploration-scale.js?v=202609272" defer></script>
 </body>
 
 </html>
