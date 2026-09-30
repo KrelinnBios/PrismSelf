@@ -9,13 +9,13 @@
   <meta http-equiv="Expires" content="0">
   <title>PrismSelf - BDSM 全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/BDSM-Comprehensive-Guide.html">
-  <meta name="description" content="BDSM 全景指南，系统介绍核心概念、角色与关系、偏好探索、知情同意、风险管理和求助边界。">
+  <meta name="description" content="BDSM 全景指南，介绍核心概念、角色与社群词汇、偏好探索、同意协商、事后照顾及风险与隐私边界。">
   <meta name="theme-color" content="#2f6f73">
   <link rel="icon" href="../icon/favicon.svg?v=202609104" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - BDSM 全景指南">
-  <meta property="og:description" content="BDSM 全景指南，系统介绍核心概念、角色与关系、偏好探索、知情同意、风险管理和求助边界。">
+  <meta property="og:description" content="BDSM 全景指南，介绍核心概念、角色与社群词汇、偏好探索、同意协商、事后照顾及风险与隐私边界。">
   <meta property="og:url" content="https://prismself.vip/Guides/BDSM-Comprehensive-Guide.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.vip/og-image/image.png?v=1788098160">
@@ -177,6 +177,23 @@
       color: rgba(245, 240, 232, 0.6);
     }
 
+    @media (min-width: 780px) {
+      .principle-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      .principle-card {
+        min-width: 0;
+        padding-inline: 0.35rem;
+      }
+
+      .principle-card .p-zh {
+        letter-spacing: 0;
+        white-space: nowrap;
+      }
+    }
+
     .divider {
       width: 100%;
       height: 1px;
@@ -299,6 +316,19 @@
       color: var(--rust);
       font-weight: 500;
       text-underline-offset: 0.18em;
+    }
+
+    .term-card[id] {
+      scroll-margin-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+    }
+
+    .term-card.highlight .term-desc a {
+      color: var(--gold);
+    }
+
+    .term-card.highlight .term-desc a:hover,
+    .term-card.highlight .term-desc a:focus-visible {
+      color: rgba(245, 240, 232, 0.95);
     }
 
     .term-desc a:hover,
@@ -570,6 +600,11 @@
 
     .toc-close-icon:hover {
       color: var(--rust);
+    }
+
+    .toc-close-icon:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
     }
 
     /* 目录列表容器 */
@@ -876,10 +911,10 @@
 
 <section class="intro-section">
     <p>
-      这是一份面向公众的 BDSM 科普与安全指南，目标是用<strong>中立、严谨、可操作</strong>的方式解释核心概念、风险与沟通方法，帮助你在尊重他人和尊重自我的前提下做出明智选择。
+      这是一份面向公众的 BDSM 科普与沟通指南，围绕<strong>概念、角色、偏好、同意与照顾</strong>整理常见问题。你可以用它理解术语、梳理兴趣和讨论边界；是否实践、如何定义自己，都由你决定。
     </p>
     <p>
-      本指南以“同意—风险—照顾”为主线。BDSM 不能简单等同于“暴力”或“失控”；如果打算实践，应把<strong>清醒、可撤回的同意、明确边界、应急准备、事后照顾与复盘</strong>视为最低标准。任何让你感到不安或被逼迫的互动都应当停止，一次同意也不能用来抵消伤害或忽视风险。
+      本指南以“理解兴趣 → 说清边界 → 协商与照顾 → 识别风险”为阅读主线。角色与词汇用于表达经验，不能替别人作决定；同意框架用于讨论风险，不能保证没有伤害。具体互动始终需要<strong>清醒、知情、明确、自愿且可撤回的同意</strong>。
     </p>
 
 <div class="principle-grid">
@@ -891,864 +926,925 @@
     </div>
 
 <p style="font-size:0.82rem; color: var(--muted); font-style: italic;">
-      适用范围说明：本指南仅讨论成年人在私密、合法、双方充分知情同意前提下的实践与风险管理，不构成医疗或法律意见；任何涉及未成年人或非自愿的内容都不属于 BDSM 的范畴。
+      适用范围说明：本指南仅讨论具备同意能力的成年人，在合法、相关参与者充分知情同意前提下的互动与风险管理，不构成医疗或法律意见；任何涉及未成年人或非自愿的内容都不属于 BDSM 的范畴。
     </p>
 
 <div class="divider"></div>
 
+    <p>首次阅读可按目录顺序理解概念与关系，再进入协商、照顾和风险章节。只想查词时可直接使用词汇速查；正文解释具体用法，速查表保留简短释义与跳转。</p>
 <div class="category-title" style="margin-bottom: 1rem;">快速目录 · Quick Navigation</div>
     <div class="terms-grid">
       <a class="term-card toc-card" href="#core-definition">
-        <div class="term-corner"></div><span class="term-en">Definition</span><span class="term-zh">核心定义与历史</span>
-        <div class="term-desc">BDSM 的含义、范围边界、常见误区与简要历史脉络。</div>
-        <div class="term-tags"><span class="term-tag">概念</span><span class="term-tag">历史</span></div>
-      </a>
-      <a class="term-card toc-card highlight" href="#safety-frameworks">
-        <div class="term-corner"></div><span class="term-en">Safety</span><span class="term-zh">SSC / RACK /
-          PRICK</span>
-        <div class="term-desc">三种安全框架的侧重点、适用边界与如何落地到沟通和场景中。</div>
-        <div class="term-tags"><span class="term-tag">原则</span><span class="term-tag">风险管理</span></div>
+        <div class="term-corner"></div><span class="term-en">Definition</span><span class="term-zh">核心定义与历史语境</span>
+        <div class="term-desc">理解 BDSM、Kink、Fetish，区分兴趣、性接触与身份。</div>
       </a>
       <a class="term-card toc-card" href="#roles-boundaries">
-        <div class="term-corner"></div><span class="term-en">Roles</span><span class="term-zh">角色分类与权责</span>
-        <div class="term-desc">D/s、Top/Bottom、绳艺与服务型等角色边界与责任分配。</div>
-        <div class="term-tags"><span class="term-tag">权责</span><span class="term-tag">边界</span></div>
+        <div class="term-corner"></div><span class="term-en">Roles &amp; Dynamics</span><span class="term-zh">角色、互动风格与关系边界</span>
+        <div class="term-desc">比较 D/s、Top/Bottom、Princess、Pillow Princess 等用法及持续关系范围。</div>
       </a>
       <a class="term-card toc-card" href="#self-exploration">
-        <div class="term-corner"></div><span class="term-en">Explore</span><span class="term-zh">偏好探索与沟通</span>
-        <div class="term-desc">区分好奇、幻想、实践意愿与经验，把兴趣转化为可讨论、可撤回的边界清单。</div>
-        <div class="term-tags"><span class="term-tag">自我探索</span><span class="term-tag">边界沟通</span></div>
+        <div class="term-corner"></div><span class="term-en">Explore</span><span class="term-zh">偏好探索与边界表达</span>
+        <div class="term-desc">把幻想、兴趣与实践意愿转成具体条件和 Yes / No / Maybe 清单。</div>
+      </a>
+      <a class="term-card toc-card" href="#safety-frameworks">
+        <div class="term-corner"></div><span class="term-en">Frameworks</span><span class="term-zh">SSC / RACK / PRICK</span>
+        <div class="term-desc">比较风险与同意框架的侧重点，以及它们不能保证什么。</div>
+      </a>
+      <a class="term-card toc-card highlight" href="#consent-process">
+        <div class="term-corner"></div><span class="term-en">Consent &amp; Care</span><span class="term-zh">协商、过程确认与事后照顾</span>
+        <div class="term-desc">集中阅读安全词、CNC、过程确认、照顾、复盘与延迟反应。</div>
       </a>
       <a class="term-card toc-card" href="#scene-setup">
-        <div class="term-corner"></div><span class="term-en">Scene</span><span class="term-zh">场景搭建与器具安全</span>
-        <div class="term-desc">环境准备、器具检查与高风险项的避坑原则。</div>
-        <div class="term-tags"><span class="term-tag">器具</span><span class="term-tag">安全</span></div>
-      </a>
-      <a class="term-card toc-card" href="#consent-process">
-        <div class="term-corner"></div><span class="term-en">Consent</span><span class="term-zh">沟通与同意流程</span>
-        <div class="term-desc">从“事前协商”到“事后复盘”的可执行流程与话术框架。</div>
-        <div class="term-tags"><span class="term-tag">沟通</span><span class="term-tag">流程</span></div>
+        <div class="term-corner"></div><span class="term-en">Preparation</span><span class="term-zh">场景准备与器具风险</span>
+        <div class="term-desc">检查环境、解除条件、器具、材料与收尾安排。</div>
       </a>
       <a class="term-card toc-card" href="#risk-emergency">
-        <div class="term-corner"></div><span class="term-en">Risk</span><span class="term-zh">风险识别与应急</span>
-        <div class="term-desc">常见风险信号、紧急停止与就医判断的底线清单。</div>
-        <div class="term-tags"><span class="term-tag">预警</span><span class="term-tag">应急</span></div>
+        <div class="term-corner"></div><span class="term-en">Risk &amp; Response</span><span class="term-zh">异常信号、应急与越界应对</span>
+        <div class="term-desc">区分调整、立即停止和紧急求助，了解越界后的支持边界。</div>
       </a>
       <a class="term-card toc-card" href="#law">
-        <div class="term-corner"></div><span class="term-en">Law</span><span class="term-zh">法律法规科普</span>
-        <div class="term-desc">同意与法律、隐私与影像、公共场所与本地差异的常识。</div>
-        <div class="term-tags"><span class="term-tag">合规</span><span class="term-tag">隐私</span></div>
+        <div class="term-corner"></div><span class="term-en">Law &amp; Privacy</span><span class="term-zh">法律与隐私边界</span>
+        <div class="term-desc">区分伦理同意、法律问题、记录许可与分享许可。</div>
       </a>
       <a class="term-card toc-card" href="#glossary">
-        <div class="term-corner"></div><span class="term-en">Glossary</span><span class="term-zh">词汇速查表</span>
-        <div class="term-desc">角色、同意、玩法、心理状态与社群术语的中英文对照速查。</div>
-        <div class="term-tags"><span class="term-tag">词典</span><span class="term-tag">速查</span></div>
+        <div class="term-corner"></div><span class="term-en">Glossary &amp; Index</span><span class="term-zh">词汇速查与正文索引</span>
+        <div class="term-desc">按概念、角色、活动、同意、状态及社群语境快速查词。</div>
       </a>
       <a class="term-card toc-card" href="#resources">
-        <div class="term-corner"></div><span class="term-en">Resources</span><span class="term-zh">资源推荐</span>
-        <div class="term-desc">书籍、课程、社区与支持资源的选择建议。</div>
-        <div class="term-tags"><span class="term-tag">学习</span><span class="term-tag">支持</span></div>
+        <div class="term-corner"></div><span class="term-en">Sources &amp; Resources</span><span class="term-zh">参考资料、学习与支持</span>
+        <div class="term-desc">查阅研究、社群用语、医学资料与延伸书目，辨认各自适用范围。</div>
       </a>
     </div>
   </section>
 
 <div class="main-content">
     <section id="core-definition" class="category-section">
-      <div class="category-title">核心定义与历史溯源 · Core Definition &amp; Context</div>
+      <div class="category-title">核心定义与历史语境 · Core Definition &amp; Context</div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">BDSM</span><span class="term-zh">B — Bondage &amp;
-            Discipline &nbsp;·&nbsp; D — Domination &amp; Submission &nbsp;·&nbsp; SM — Sadism &amp; Masochism</span>
-          <div class="term-desc">
+          <div class="term-corner"></div><span class="term-en">BDSM</span><span class="term-zh">B/D · D/s · S/M：三个相互交叠的维度</span>
+          <div class="term-desc"><p>BDSM 是一组相互交叠的缩写，涵盖束缚与纪律、支配与服从、施虐与受虐。一个人可以只对其中一部分感兴趣，无需同时认同所有角色或活动。</p>
             <ul>
-              <li><strong>B/D</strong>：束缚与纪律（规则、限制、仪式感与结构）。</li>
-              <li><strong>D/s</strong>：支配与服从（自愿的权力交换与关系动态）。</li>
-              <li><strong>S/M</strong>：施虐与受虐（以知情同意为前提的强烈感官刺激与情绪体验）。</li>
-            </ul>重要边界：BDSM 的“可行性”来自同意、沟通、风险管理与照顾；任何胁迫、欺骗、越界或不顾安全的行为都不被这些术语所正当化。
-          </div>
-          <div class="term-tags"><span class="term-tag">定义</span><span class="term-tag">边界</span><span
-              class="term-tag">同意</span></div>
+              <li><strong>B/D — Bondage &amp; Discipline</strong>：束缚与纪律，关注经协商的行动限制、规则与仪式。</li>
+              <li><strong>D/s — Dominance &amp; Submission</strong>：支配与服从，关注在特定范围内自愿交托和承担决定权。</li>
+              <li><strong>S/M — Sadism &amp; Masochism</strong>：施虐与受虐，关注经协商的疼痛、强烈感官或心理体验；具体含义与偏好因人而异。</li>
+            </ul>
+          <p>这些维度描述兴趣与互动方式。称某种行为为 BDSM，并不能使胁迫、欺骗、越界或伤害自动获得正当性。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Kink / Fetish</span><span class="term-zh">KINK ·
-            偏好；FETISH · 强偏好</span>
+          <div class="term-corner"></div><span class="term-en">Kink / Fetish / BDSM</span><span class="term-zh">宽泛兴趣、特定偏好与互动体系</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Kink</strong>：非主流但合法且自愿的偏好与玩法倾向，是一个很宽的集合。</li>
-              <li><strong>Fetish</strong>：对某类元素有更强的偏好，甚至可能影响“是否能进入状态”。不同人差异很大。</li>
-              <li>两者都不等于“病态”；关键在于是否自愿、是否安全、是否尊重边界。</li>
+              <li><strong>Kink</strong>：通常指相对于某种社会或社群常规而言较不传统的亲密兴趣、幻想或互动；什么被视为“不传统”会随文化与时代改变。</li>
+              <li><strong>Fetish</strong>：在社群用语中，常指对特定物件、材质、身体部位等的性兴趣或兴奋。它不只是“比 Kink 更强”，也不是人人都必须依赖该元素才能产生兴奋。</li>
+              <li><strong>BDSM</strong>：与 Kink、Fetish 有交集，但不能互换。有特定材质偏好不一定涉及权力交换；喜欢规则或服务也不一定涉及疼痛。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">术语</span><span class="term-tag">去污名</span></div>
+          <p>此处解释的是社群用语，不能据一个标签作临床判断。术语参考 <a href="https://ncsfreedom.org/wp-content/uploads/2022/07/BDSM-Glossary-and-Resources.pdf" target="_blank" rel="noopener noreferrer">NCSF 词汇资料</a>。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Why People Like It</span><span
-            class="term-zh">人们为何参与</span>
+          <div class="term-corner"></div><span class="term-en">Interest / Sex / Identity</span><span class="term-zh">兴趣、性接触与身份分别讨论</span>
           <div class="term-desc">
             <ul>
-              <li>情绪调节：压力释放、被照顾感、掌控与被掌控的心理满足。</li>
-              <li>关系结构：规则、仪式与角色分工带来的安全感与稳定感。</li>
-              <li>感官体验：强烈刺激、专注状态（flow）与更清晰的身体/情绪反馈。</li>
+              <li>BDSM 可以与性接触结合，也可以以绳艺、角色、服务或仪式体验为主；同意一项互动，不会自动包含性接触。</li>
+              <li>角色不能用来判断性别、性取向、浪漫取向或人格。Dom、Sub、Top、Bottom 也不限定某种身体条件或性别表达。</li>
+              <li>参与 BDSM 不等于选择非单偶关系。单偶、开放或其他关系约定需要另行沟通。</li>
+              <li>有人把 BDSM 视为稳定身份，有人只把它当作偶尔的兴趣；只阅读、只幻想或不使用标签，同样是可行的选择。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">动机</span><span class="term-tag">心理</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">History (Brief)</span><span
-            class="term-zh">历史溯源（简要）</span>
+          <div class="term-corner"></div><span class="term-en">Why People Participate</span><span class="term-zh">可能的吸引力与个人差异</span>
           <div class="term-desc">
             <ul>
-              <li>现代 BDSM 社群与安全框架主要在 20 世纪后半叶逐步形成，围绕“同意”“风险”“社区规范”不断发展。</li>
-              <li>绳艺、皮革文化、角色扮演与权力交换等元素在不同地区与亚文化中有各自的历史脉络。</li>
-              <li>当代讨论更强调去污名化，并以知情同意、风险降低和照顾区分合意实践与虐待。</li>
+              <li><strong>结构与仪式</strong>：喜欢明确规则、角色切换、称呼或有开始与结束的互动。</li>
+              <li><strong>权力与信任</strong>：享受引导、交托、被关注或为对方提供服务的体验。</li>
+              <li><strong>感官与审美</strong>：对质感、束缚感、强烈感觉、服饰或绳艺造型感兴趣。</li>
+              <li><strong>表达与连接</strong>：借情境扮演表达某些平时较少表达的需要。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">历史</span><span class="term-tag">社群</span></div>
+          <p>这些是可能的动机，不是每个人的解释。不要从偏好倒推出创伤经历，也不要把一次放松或情绪释放视为治疗效果。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">CNC</span><span class="term-zh">协商不同意（Consensual
-            Non-Consent）</span>
+          <div class="term-corner"></div><span class="term-en">History &amp; Evidence</span><span class="term-zh">简要历史与资料阅读边界</span>
           <div class="term-desc">
             <ul>
-              <li>指双方事前明确同意的"假装抵抗/不同意"的角色扮演场景，核心仍是<strong>真实的双方知情同意</strong>。</li>
-              <li>极高风险领域：需要充分的事前协商、具体边界（何种行为、何种强度、何时停止）、可靠的停止信号与事后照顾。</li>
-              <li>CNC 场景中，普通"说不"可能是角色台词而非真实意愿；因此<strong>必须约定独立的安全词</strong>，且双方对信号含义无歧义。</li>
-              <li>重要区分：CNC 不为任何真实的强迫、胁迫或越界行为提供正当性。</li>
+              <li>现代 BDSM 社群、角色语言与同意框架在 20 世纪后半叶逐步发展；皮革文化、绳艺、角色扮演等有不同的历史脉络，不能归结为单一来源。</li>
+              <li>“社群里常用”“研究中出现”和“定义已经统一”是不同的事。线上平台会传播新标签，也会重新解释已有词汇。</li>
+              <li>研究的样本、地区与 BDSM 定义各不相同，不宜把某个调查的比例套用到所有人，或据此推断一个人的身份。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">高风险</span><span class="term-tag">角色扮演</span><span
-              class="term-tag">安全词</span></div>
+          <p>研究语境可参考 <a href="https://www.tandfonline.com/doi/full/10.1080/00224499.2019.1665619" target="_blank" rel="noopener noreferrer">Brown、Barker 与 Rahman 的范围综述（2020）</a>。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Common Myths</span><span
-            class="term-zh">常见误区（快速澄清）</span>
+          <div class="term-corner"></div><span class="term-en">Common Myths</span><span class="term-zh">常见误解与更准确的理解</span>
           <div class="term-desc">
             <ul>
-              <li>“有支配/服从就等于现实不平等”——健康的 D/s 反而要求更强的沟通、尊重与可撤回。</li>
-              <li>“能忍痛才算厉害”——忍耐不是目标；安全与体验质量比强度更重要。</li>
-              <li>“签了协议就必须执行”——任何协议都不能取消随时停止的权利。</li>
-              <li>“不问就是默契”——默契应建立在清晰对齐与反复复盘之上。</li>
+              <li><strong>“Sub 就不主动，Dom 就必须强硬”</strong>：权力位置、行为分工与表达风格是不同维度，详见<a href="#roles-boundaries">角色章节</a>。</li>
+              <li><strong>“强度越大越资深”</strong>：强度不是资格证明；不喜欢疼痛或不愿升级，不需要通过忍耐来证明身份。</li>
+              <li><strong>“有兴趣就应该尝试”</strong>：幻想可以停留在幻想，经验也不会产生下一次的义务。</li>
+              <li><strong>“这些规则能保证没有问题”</strong>：同意框架、协议、经验与照顾都不能保证零风险，也不能抵消实际越界。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">误区</span><span class="term-tag">澄清</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="roles-boundaries" class="category-section">
+      <div class="category-title">角色、互动风格与关系边界 · Roles &amp; Dynamics</div>
+      <div class="pair-card">
+        <div class="pair-half">
+          <div class="pair-label">权力动态</div><span class="term-en">Dominant / Submissive</span><span class="term-zh">D/s：支配方与服从方</span>
+          <div class="term-desc"><p>D/s 讨论的是谁在约定范围内承担决定权、谁愿意交托这部分决定权。</p>
+            <ul>
+              <li>Dom / Dominant（也见 Domme）是主导方；Sub / Submissive 是服从方。权限来自具体协商，角色不改变双方作为人的平等与退出权。</li>
+              <li>称呼、规则、持续时间、适用场合与例外需要说清；现实中的工作、就医、财务或社交权限不能从一个角色标签推定。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pair-half">
+          <div class="pair-label">行为分工</div><span class="term-en">Top / Bottom</span><span class="term-zh">操作方与接受方</span>
+          <div class="term-desc"><p>Top / Bottom 讨论的是谁实施、谁接受某项活动。接受方也可以主动表达、安排体验或保有主导位置。</p>
+            <ul>
+              <li>Top 不必是 Dom，Bottom 不必是 Sub。比如，一人按另一人的要求提供感官体验，操作位置与决定权就可以分开。</li>
+              <li>在不同性社群中，Top / Bottom 还有其他用法；先说明是在谈 BDSM 操作分工、性接触位置，还是权力关系。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="terms-grid">
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Switch / Flexible Roles</span><span class="term-zh">切换偏好不等于随时愿意切换</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Switch</strong>：在不同对象、关系或场景中可能喜欢不同位置，也有人只在某个维度切换。</li>
+              <li>能切换 D/s 位置，不一定意味着也愿意切换 Top/Bottom 或施加、接受疼痛的位置。</li>
+              <li>可以说明“我对熟悉的搭档愿意主导，但今天只想接受照顾”；角色转换仍需得到相关参与者的同意。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card" id="service-roles">
+          <div class="term-corner"></div><span class="term-en">Service Top / Power Bottom</span><span class="term-zh">服务与主动表达：拆开操作位置和决定权</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Service Top</strong>：以满足接受方的偏好为主要取向的操作方；有人同时保有主导位置，也有人将它理解为服务性角色。</li>
+              <li><strong>Power Bottom / Dominant Bottom</strong>：用法不完全一致，可能指接受活动时仍积极引导，或同时承担主导位置。不能仅据 Power 一词推断具体权限。</li>
+              <li><strong>Service Sub / Service-oriented Submission</strong>：通过经协商的服务表达服从，可能涉及日常事务，也可能仅限某次互动。</li>
+            </ul>
+          <p>这些词很好地说明“做动作”和“有决定权”可以分开。相关自述见 <a href="https://www.autostraddle.com/service-tops-bratty-bottoms-and-pillow-princesses-other-words-you-use-to-describe-how-you-have-sex-426800/" target="_blank" rel="noopener noreferrer">Autostraddle 的社群问卷整理</a>，不代表所有社群的统一定义。</p></div>
+        </div>
+        <div class="term-card" id="gentle-dynamics">
+          <div class="term-corner"></div><span class="term-en">Soft Dom / Gentle Dom / Pleasure Dom</span><span class="term-zh">表达风格与体验重点</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Soft Dom / Gentle Dom</strong>：常用来描述偏温和、关怀或肯定式的主导风格；“温和”不等于没有权力动态，也不是安全认证。</li>
+              <li><strong>Pleasure Dom</strong>：强调以对方的愉悦为主导体验的重点；与 Soft Dom 可以重叠，但不完全等同。</li>
+              <li>这些词都不能说明是否包含疼痛、纪律、性接触或长期规则。可以问：“你说的温和，是语气、活动内容，还是处理分歧的方式？”</li>
+            </ul>
+          <p>参考 <a href="https://feeld.co/ask-feeld/how-to/what-is-a-pleasure-dom-and-how-to-be-one" target="_blank" rel="noopener noreferrer">Feeld 对教育者 Lola Jean 的采访</a>与 <a href="https://resources.sfaf.org/collections/beta/whats-a-pleasure-dom-or-soft-dom-nsfw/" target="_blank" rel="noopener noreferrer">San Francisco AIDS Foundation 的社群文章</a>；这里保留的是常见描述，并非正式分类。</p></div>
+        </div>
+        <div class="term-card" id="brat-dynamics">
+          <div class="term-corner"></div><span class="term-en">Brat / Brat Tamer</span><span class="term-zh">经协商的挑战与回应</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Brat</strong>：通过调皮、逗弄或挑战约定的规则获得互动张力；不一定始终处于 Bottom 或 Sub 位置。</li>
+              <li><strong>Brat Tamer</strong>：愿意回应这种挑战的搭档；回应方式和可挑战的范围需要事先约定。</li>
+              <li>“扮演不听话”与真实拒绝需要能被区分。不能把安全词、当下不适或要求结束解释为“你在闹”。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Master / Mistress / Slave / M/s</span><span class="term-zh">称谓、承诺与实际权限</span>
+          <div class="term-desc">
+            <ul>
+              <li>这些称谓在部分社群中指较持续或较深入的权力交换，也可能只是场景内称呼；没有通用的“等级表”。</li>
+              <li>M/s、D/s、角色称呼与是否恋爱、同住或单偶是不同约定。喜欢某个称呼不意味着同意被全面管理。</li>
+              <li>“主人”“奴隶”等语言在这里是经成年人协商的关系语言，不产生现实所有权，不取消身体自主或撤回同意的权利。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card" id="care-dynamics">
+          <div class="term-corner"></div><span class="term-en">Caregiver / Little / Daddy / Mommy</span><span class="term-zh">照顾型动态与成年人情境扮演</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Caregiver / Little（CG/l）</strong>：可能围绕照顾、依赖、规则或年龄化角色语言建立情境；Little 在这里指成年人使用的角色称呼。</li>
+              <li><strong>Daddy / Mommy</strong>：有人用来表达照顾者或主导者位置，不一定涉及年龄扮演，也不能据称呼推断参与者性别。</li>
+              <li><strong>Age Play</strong>：成年人之间的年龄角色扮演；与单纯希望被照顾并不完全相同。无论称呼如何，参与者都需要在当下具备同意能力。</li>
+              <li>称呼是否可用、是否包含性内容、哪些情境适用，需要分别协商；不能拿照顾关系要求对方失去现实自主权。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card highlight" id="princess-dynamics">
+          <div class="term-corner"></div><span class="term-en">Princess / Prince</span><span class="term-zh">被宠爱、被服务的称呼与互动期待</span>
+          <div class="term-desc"><p>Princess 不是具有统一定义的标准 BDSM 角色。部分人用它表达想被宠爱、被关注或被服务的期待；也有人把它与 Brat、服从或主导风格结合使用。Prince 等称呼同样要由使用者解释。</p>
+            <ul>
+              <li><strong>不自动等于 Sub</strong>：被服务的人也可以主导，喜欢被宠爱也不意味着喜欢挑战规则、年龄扮演或疼痛。</li>
+              <li><strong>说明“宠爱”是什么</strong>：是称呼、陪伴、仪式、主动照顾，还是某种服务？是否涉及礼物、花费或日常义务，都应另行讨论。</li>
+              <li><strong>两边都有边界</strong>：表达期待不产生对方必须提供服务、消费或持续在线的义务。</li>
+            </ul>
+          <p><a href="https://www.brycewestlake.com/wp-content/uploads/2023/12/An-International-Survey-of-BDSM-Practitioner-Demographics-Westlake-Mahan-2023.pdf" target="_blank" rel="noopener noreferrer">Westlake 与 Mahan（2023）</a>记录过 Prince/Princess 自我称谓；这证明有使用记录，并不能确立一个统一定义。</p></div>
+        </div>
+        <div class="term-card" id="pillow-princess">
+          <div class="term-corner"></div><span class="term-en">Pillow Princess / Stone</span><span class="term-zh">亲密互动中的接受偏好与身体接触边界</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Pillow Princess</strong>：在酷儿、尤其女同性恋相关语境中常指偏好接受性关注或刺激的人；有些用法强调较少提供相应活动。它与 BDSM 中的 Princess 不能直接画等号。</li>
+              <li><strong>Stone</strong>：在部分酷儿亲密语境中，与自己不希望接受某些性接触的边界有关；具体不愿接受什么，需要由本人说明。</li>
+              <li>两者可能在某些搭档间形成相容的互动，但不能据标签要求别人提供或接受接触，也不能将其解释为“懒惰”、缺乏关心或自动服从。</li>
+              <li>这些词不是所有 BDSM 参与者都使用的标签。讨论时把“愿意提供什么”“愿意接受什么”和“谁作决定”分开问。</li>
+            </ul>
+          <p>用法参考 <a href="https://www.autostraddle.com/how-to-please-a-pillow-princess-by-a-pillow-princess/" target="_blank" rel="noopener noreferrer">Autostraddle 的本人经验文章</a>。<a href="https://www.dictionary.com/culture/slang/pillow-princess" target="_blank" rel="noopener noreferrer">Dictionary.com 的用语记录</a>指出 Pillow Princess 至少在 1990 年代已有使用，因此不宜称作刚出现的新词。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Sadist / Masochist / Experimentalist</span><span class="term-zh">感官倾向与探索兴趣</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Sadist / Masochist</strong>：在合意 BDSM 语境中，分别描述对施加、接受疼痛或强烈体验的兴趣；活动、强度与心理意义因人而异。</li>
+              <li>喜欢接受某种强烈感觉，不等于愿意接受所有疼痛或所有人的操作；施加感官刺激也不意味着拥有主导权。</li>
+              <li><strong>Experimentalist</strong>：某些网络分类用来描述对多种新体验开放的人。它是兴趣描述，不能证明能力或替代逐项评估。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Rigger / Rope Bottom / Bunny</span><span class="term-zh">绳艺中的操作与接受角色</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Rigger</strong>：负责绑缚的操作方；<strong>Rope Bottom</strong> 是接受绑缚的人，部分社群也使用 Bunny / Rope Bunny。称呼是否合适应询问本人。</li>
+              <li>操作方需要了解相关风险、持续观察并具备解除与应急能力；接受方可以主动反馈身体感受与限制。</li>
+              <li>接受方未及时说出异常，不会使操作方的安全责任消失。标签、照片或测试分数都不能证明绳艺能力。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Owner / Pet / Primal</span><span class="term-zh">身份扮演与互动风格</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Owner / Pet</strong>：围绕照料、宠物化身份、规则或扮演建立动态；Pet Play 不等于必然涉及性接触，也不产生现实上的所有权。</li>
+              <li><strong>Primal / Hunter / Prey</strong>：部分人用来描述偏本能、追逐或身体互动的风格；各人理解差异较大。</li>
+              <li>先说明喜欢的是身份语言、审美、情境还是具体活动。“本能”“被拥有”之类的表述不能代替范围、环境与退出条件的协商。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card" id="expression-preferences">
+          <div class="term-corner"></div><span class="term-en">Praise / Degradation / Visibility</span><span class="term-zh">语言、羞耻与观看：属于活动偏好</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Praise Kink</strong>：在亲密或情境互动中，给予或接受肯定与赞赏带来特别的愉悦或兴奋；不只是日常喜欢被夸。可以与不同权力位置结合。</li>
+              <li><strong>Degrader / Degradee</strong>：某些社群对施加、接受经协商的贬低或羞耻主题的称呼。禁词、身份敏感点与场景结束后的称呼需要说清。</li>
+              <li><strong>Exhibitionist / Voyeur</strong>：在此指对经相关参与者同意的被观看、观看体验感兴趣。观察者、隐私与影像传播各有独立边界。</li>
+            </ul>
+          <p>Praise Kink 的用法见 <a href="https://feeld.co/ask-feeld/how-to/what-is-a-praise-kink-tips-phrases-and-how-it-works" target="_blank" rel="noopener noreferrer">Feeld 对教育者 Gabrielle Kassel 的采访</a>。喜欢赞赏不代表同意任何称呼；普通尊重与关怀也不应以服从为交换条件。</p></div>
+        </div>
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Boundaries &amp; Responsibility</span><span class="term-zh">角色分工中的共同权利与不同责任</span>
+          <div class="term-desc">
+            <ul>
+              <li>任何参与者都可以拒绝、减少范围、停止或退出。一个人改变自己的边界，并不会替其他人同意新的规则。</li>
+              <li>承担操作或主导位置的人，应如实说明能力范围、已知风险和实际准备；经验不足不能靠“相信我”代替。</li>
+              <li>每个人可以表达与当前互动有关的健康限制、触发点和需要；不必提交完整病史、诊断或创伤经过来证明自己有权拒绝。</li>
+              <li>不能用“你没说安全词”“你本来就是 Sub”或“这是你的个人责任”来转移对越界行为的责任。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card" id="ongoing-dynamics">
+          <div class="term-corner"></div><span class="term-en">Protocol / 24/7 / TPE</span><span class="term-zh">把持续关系写成有范围的约定</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Protocol</strong>：称呼、礼仪、服务等互动规则。写清适用时间、场合、例外及复盘方式，比仅写“听话”更有用。</li>
+              <li><strong>24/7</strong>：常指权力动态持续存在于日常，而不是每分每秒都处于场景中；<strong>TPE</strong>（Total Power Exchange）强调较广的交托范围。两者都不意味着无法退出。</li>
+              <li>示例：“工作或就医期间不使用角色命令；想暂停动态时直接说暂停，我们在双方状态适合时重新讨论。”这只是表达方式，不是所有关系必须采用的脚本。</li>
+              <li>现实生活中的工作、学习、社交、就医、财务与支持网络应保有可讨论的边界。关系不能依靠隔离、威胁或让人失去求助条件来维持。</li>
+            </ul>
+          <p>伦理与法律语境参考 <a href="https://ncsfreedom.org/wp-content/uploads/2019/12/Power-Exchange-Statement.pdf" target="_blank" rel="noopener noreferrer">NCSF 的权力交换声明</a>；其中法律说明主要针对美国，不可直接套用到其他地区。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Group / Observer</span><span class="term-zh">多人互动需要逐人确认</span>
+          <div class="term-desc">
+            <ul>
+              <li>分别确认参与者与观察者名单、身体接触范围、谁实施什么活动；新增一个人不属于已有同意的自动延伸。</li>
+              <li>观看、评论、拍摄与分享各自需要许可；观察者也有权选择不观看某项活动。</li>
+              <li>明确谁关注整体状态、谁负责解除与应急，以及有人退出后如何收尾。指定责任人不取消其他人的喊停权。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="self-exploration" class="category-section">
+      <div class="category-title">偏好探索与边界表达 · Preference Exploration</div>
+      <div class="terms-grid">
+        <div class="term-card highlight">
+          <div class="term-corner"></div><span class="term-en">Fantasy / Interest / Consent</span><span class="term-zh">幻想、兴趣、实践意愿与经验分别记录</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>幻想</strong>：想象某种情境令人感兴趣，不一定希望在现实发生。</li>
+              <li><strong>兴趣</strong>：想了解某个元素，不代表愿意亲自接受或实施它。</li>
+              <li><strong>实践意愿</strong>：在特定对象、时间、条件下可能愿意尝试；当下仍需要具体同意。</li>
+              <li><strong>经验</strong>：做过不等于喜欢，喜欢过不等于今天想做；没有经验也不妨碍清楚表达拒绝。</li>
+            </ul>
+          <p>探索没有自动升级路线，可以停留、改变方向或完全不实践。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Map Your Preferences</span><span class="term-zh">用维度描述自己，减少标签误读</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>体验元素</strong>：吸引你的是权力、仪式、感官、语言、照顾、服务、审美，还是幻想中的故事？</li>
+              <li><strong>互动位置</strong>：想主导、接受引导、实施活动、接受活动，或在某些条件下切换？</li>
+              <li><strong>条件与强度</strong>：对象、熟悉程度、环境、时间、持续时长、是否有痕迹、是否有观察者。</li>
+              <li><strong>关系范围</strong>：仅限一次场景、日常某些规则、持续 D/s，或只是亲密关系中的偶尔元素？</li>
+            </ul>
+          <p>例如：“我喜欢被宠爱和肯定，但不喜欢被贬低；我想尝试场景内的规则，不希望它延伸到工作和社交。”这比单说“我是 Princess/Sub”提供更多信息。</p></div>
+        </div>
+        <div class="term-card" id="preference-limits">
+          <div class="term-corner"></div><span class="term-en">Yes / No / Maybe</span><span class="term-zh">意愿清单与硬限制、软限制</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>Yes</strong>：有兴趣且在已写明条件下愿意考虑。清单里的 Yes 不是任何时间、任何对象都可使用的授权。</li>
+              <li><strong>No / Hard Limit</strong>：当下明确不做的行为、语言、身体部位或记录方式。不需要说服别人接受理由。</li>
+              <li><strong>Maybe / Soft Limit</strong>：尚不确定，或只愿在特定条件下讨论。它不是待攻克的 No，也不表示对方应继续劝说。</li>
+              <li>把条件与尚缺的信息写出来：“只愿讨论，不实践”“知道具体风险后再决定”“不允许留下可见痕迹”。边界可以由本人更新。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Tests &amp; Self-Description</span><span class="term-zh">网络测试与分类能帮助什么</span>
+          <div class="term-desc">
+            <ul>
+              <li>可用来发现词汇、生成反思问题，或为自己的经验找一种暂时的表达。</li>
+              <li>题目、翻译、分类方式与当下心情会影响自陈结果；不同测试的百分比不适合直接比较。</li>
+              <li>结果不能证明技术水平、同意能力、诊断、关系匹配或永久身份；伴侣不能用“你测出来喜欢”来替你决定。</li>
+              <li>拿不准一个词时，先读<a href="#roles-boundaries">具体用法</a>，再说明自己认同其中哪一部分。可以使用多个标签，也可以不用。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Partner Selection &amp; Red Flags</span><span class="term-zh">看对方如何回应边界与不确定</span>
+          <div class="term-desc">
+            <ul>
+              <li>先看是否愿意回答具体问题、承认不会的内容、接受拒绝；资历、粉丝数、装备或社群身份都不能代替这些行为。</li>
+              <li>需要警惕：用“真正的 Dom/Sub 应该……”要求证明身份；把 Maybe 当作同意；催促危险活动；把不适或问题归咎于你。</li>
+              <li>需要警惕：索要私密影像或财务信息来证明信任；要求保密到无法求助；阻止你联系朋友、支持网络或专业人士。</li>
+              <li>不合拍不一定意味着谁有问题。双方都尊重边界，却希望不同互动时，也可以选择不建立这段动态。</li>
+            </ul>
+          <p>相关行为提示见 <a href="https://ncsfreedom.org/2023/12/04/red-flags/" target="_blank" rel="noopener noreferrer">NCSF Red Flags</a>；若已经发生越界，见<a href="#boundary-violations">应对与支持</a>。</p></div>
         </div>
       </div>
     </section>
     <section id="safety-frameworks" class="category-section">
       <div class="category-title">风险与同意框架 · SSC / RACK / PRICK</div>
-      <div class="spectrum-bar">
-        <div class="spectrum-ends"><span class="spectrum-end">Low Risk</span>
-          <div class="spectrum-line"></div><span class="spectrum-end">High Risk</span>
-        </div>
-        <p class="spectrum-desc">实践里不存在“完全安全”。更专业的目标是：识别风险 → 降低风险 → 可中断 → 可救援 → 可复盘。</p>
-      </div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">SSC</span><span class="term-zh">SAFE · SANE · CONSENSUAL
-            &nbsp;|&nbsp; 安全 · 理智 · 自愿同意</span>
+          <div class="term-corner"></div><span class="term-en">SSC</span><span class="term-zh">Safe · Sane · Consensual：共同底线</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Safe</strong>：采取可控的风险降低措施（不是“绝对零风险”）。</li>
-              <li><strong>Sane</strong>：这是历史用语，含义较模糊且可能带有污名；实践中应具体落实为具备同意能力、能够理解风险，并不受酒精、药物、胁迫或失控状态影响。</li>
-              <li><strong>Consensual</strong>：所有参与者都作出知情、明确、自愿且可撤回的同意。</li>
-            </ul>它是一种沟通框架，不是“安全认证”；即使自称遵循 SSC，也仍需逐项评估具体行为。
-          </div>
-          <div class="term-tags"><span class="term-tag">入门框架</span><span class="term-tag">清醒</span><span
-              class="term-tag">可撤回</span></div>
+              <li><strong>Safe</strong>：重视风险降低；“安全”是需要核对的目标，不是可作保证的标签。</li>
+              <li><strong>Sane</strong>：历史用语，定义模糊且可能带有污名。实际应关注参与者当下能否理解风险、自由决定并表达意愿，不能只凭有没有诊断判断。</li>
+              <li><strong>Consensual</strong>：有关参与者作出明确、具体、知情、自愿且可撤回的同意。</li>
+            </ul>
+          <p>适合提醒“有哪些基本条件需要满足”。自称遵循 SSC 不能替代对具体活动的核对。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">RACK</span><span class="term-zh">RISK-AWARE CONSENSUAL
-            KINK &nbsp;|&nbsp; 风险知情 · 自愿同意的 Kink 实践</span>
+          <div class="term-corner"></div><span class="term-en">RACK</span><span class="term-zh">Risk-Aware Consensual Kink：把风险说出来</span>
           <div class="term-desc">
             <ul>
-              <li>强调：很多玩法都存在风险，关键在于参与者是否<strong>理解风险</strong>并主动同意。</li>
-              <li>要求：事前沟通更细（风险点、缓解措施、终止条件、应急方案）。</li>
-              <li>提醒：知情同意不是“免责条款”；能力、经验与边界决定可行范围。</li>
+              <li>强调承认活动存在风险，并让参与者知道风险是什么、有什么降低措施、还有哪些不确定。</li>
+              <li>“我知道有风险”过于笼统；需要说明可能的身体、心理、隐私与现实后果，以及自己的能力边界。</li>
+              <li>知情不等于有能力承担，也不意味着必须接受风险。无法充分了解或无法准备应对时，可以不进行。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">风险知情</span><span class="term-tag">协商</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">PRICK</span><span class="term-zh">PERSONAL RESPONSIBILITY
-            · INFORMED · CONSENSUAL · KINK &nbsp;|&nbsp; 个人责任 · 知情同意的 Kink 实践</span>
+          <div class="term-corner"></div><span class="term-en">PRICK</span><span class="term-zh">Personal Responsibility · Informed · Consensual Kink</span>
           <div class="term-desc">
             <ul>
-              <li>强调个人责任：对自己的身体、心理、边界与后果负责。</li>
-              <li>适合用来提醒：即便是“同意了”，也仍要持续评估风险与状态，及时停下。</li>
-              <li>实践重点：透明、复盘、可追溯的沟通记录（尤其是新搭档/高风险场景）。</li>
+              <li>强调个人责任与知情同意，提醒每个人关注自己的条件、限制与选择。</li>
+              <li>责任包括如实说明自己知道和不知道什么，不作超出能力的承诺，并在条件改变时重新评估。</li>
+              <li>“个人责任”不能转化为受伤者有错，也不能免除操作方、主导方或组织者对自己行为的责任。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">责任</span><span class="term-tag">复盘</span></div>
-        </div>
-        <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Hard Lines</span><span class="term-zh">底线清单（通用）</span>
-          <div class="term-desc">
-            <ul>
-              <li>任何一方不清醒或不具备判断力（醉酒、药物影响、强烈情绪失控）时不进行。</li>
-              <li>不做“不可中断/不可撤回”的承诺；安全词/停止信号必须有效。</li>
-              <li>不以嫉妒、控制、经济依赖、威胁或羞辱作为“同意”的条件。</li>
-              <li>高风险主题宁可不做：训练只能降低部分风险，不能把所有行为变得安全；优先选择不压迫呼吸、血流和颈部的替代方案。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">红线</span><span class="term-tag">合意</span><span
-              class="term-tag">替代方案</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Safeword Systems</span><span
-            class="term-zh">安全词体系与常见变体</span>
+          <div class="term-corner"></div><span class="term-en">Frameworks into Decisions</span><span class="term-zh">框架是侧重点，不是风险等级或资格</span>
           <div class="term-desc">
             <ul>
-              <li><strong>红/黄/绿（交通灯系统）</strong>：一种常见约定。红=完全停止；黄=暂停、降速或确认；绿=当前可以继续，但不代表放弃之后撤回。</li>
-              <li><strong>单词型</strong>：选一个日常对话中不会自然出现的词（如"菠萝""Alaska"），说出即停止一切。</li>
-              <li><strong>非语言信号</strong>：手握物品（掉落即停）、连续三次敲击、握力减弱等；适用于口塞或无法开口的场景。</li>
-              <li><strong>全词 vs 降级词</strong>：区分"完全终止"与"调整节奏"两种信号，有助于更细粒度的沟通。</li>
-              <li><strong>CNC 场景特殊性</strong>：角色扮演中"说不"可能是台词，因此必须单独约定与角色无关的真实安全词。</li>
-            </ul>无论使用哪种体系，事前必须双方确认含义；场景中定期 check-in 不能以"有安全词"为由省略。
-          </div>
-          <div class="term-tags"><span class="term-tag">信号体系</span><span class="term-tag">非语言</span><span
-              class="term-tag">CNC</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Risk Planning</span><span
-            class="term-zh">把原则落地成“计划”</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>风险点</strong>：可能伤到哪里？可能触发什么情绪？可能造成什么社会/法律后果？</li>
-              <li><strong>缓解措施</strong>：如何降低概率与伤害强度（工具、环境、技能、节奏）？</li>
-              <li><strong>停止条件</strong>：出现哪些信号就必须停止/降级？谁来判断？</li>
-              <li><strong>救援路径</strong>：工具在哪里？谁负责解除？什么时候呼叫急救？</li>
+              <li>SSC、RACK、PRICK 不是从初级到高级的升级路线，也不能用来说明某项活动必然更安全。</li>
+              <li>共同需要回答：这次具体做什么？已知与未知风险是什么？有什么能力和准备？出现什么情况停止？怎样求助？</li>
+              <li>清醒、能沟通、能退出是实际条件。酒精或其他物质影响判断、受到胁迫、无法可靠回应时，应暂停。不要自行据此调整处方药。</li>
+              <li>安全词和协议不能使压迫颈部、限制呼吸或其他高风险行为变得安全。风险无法接受时，选择更低风险的体验或取消。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">计划</span><span class="term-tag">执行</span></div>
-        </div>
-      </div>
-    </section>
-    <section id="roles-boundaries" class="category-section">
-      <div class="category-title">角色分类与权责边界 · Roles &amp; Responsibility</div>
-      <div class="pair-card">
-        <div class="pair-half">
-          <div class="pair-label">权力动态</div><span class="term-en">Dominant / Submissive</span><span class="term-zh"
-            style="display:block; margin-bottom:0.8rem; font-size:0.7rem; font-family:'Space Mono',monospace; letter-spacing:0.15em;">D/s：支配
-            · 服从</span>
-          <div class="term-desc">重点是“<strong>权力交换</strong>”。规则、称呼、权限与义务需要明确写出来，并能随时重新协商。<ul>
-              <li>支配方的权力来自被交托，因此同时承担安全与照顾责任。</li>
-              <li>服从方的“交托”必须可撤回，且保留关键否决权。</li>
-            </ul>
-          </div>
-        </div>
-        <div class="pair-half">
-          <div class="pair-label">行为分工</div><span class="term-en">Top / Bottom</span><span class="term-zh"
-            style="display:block; margin-bottom:0.8rem; font-size:0.7rem; font-family:'Space Mono',monospace; letter-spacing:0.15em; color:var(--muted);">主动方（Top）·
-            被动方（Bottom）</span>
-          <div class="term-desc">重点是“谁在做、谁在承受”。它不必包含权力等级。<ul>
-              <li>很多情境中：Top ≠ Dom，Bottom ≠ Sub。</li>
-              <li>把“技术/操作责任”和“权力/心理责任”分开讨论更清晰。</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="terms-grid">
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Switch</span><span class="term-zh">切换型</span>
-          <div class="term-desc">可以在不同关系或不同场景中切换位置。Switch 的关键不是“摇摆”，而是更清楚自己在什么条件下更舒适。<ul>
-              <li>建议：把“可做/想做/不做”写成清单，避免用标签代替沟通。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">灵活</span><span class="term-tag">清单</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Rigger / Rope Bottom</span><span
-            class="term-zh">绳手（Rigger）与绳模（Rope Bottom）的权责</span>
-          <div class="term-desc">绳艺里常把“绑的人”和“被绑的人”作为独立角色讨论，双方都需要具备安全意识。<ul>
-              <li>绑方：对技术、解剖与应急负责；必须能快速释放。</li>
-              <li>被绑方：对自身感受与预警信号负责；及时表达麻木、刺痛、眩晕等异常。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">绳艺安全</span><span class="term-tag">应急</span></div>
-        </div>
-        <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Boundaries</span><span class="term-zh">边界与权利（必须明确）</span>
-          <div class="term-desc">
-            <ul>
-              <li>任何人都有：随时停止、随时改规则、随时离开的权利。</li>
-              <li>任何人都没有：以“角色”名义要求你沉默或忍受痛苦的权利。</li>
-              <li>同意的前提是信息完整：重要健康信息、禁忌项、影像/隐私处理必须提前说清。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">权利</span><span class="term-tag">信息完整</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Protocol / Service</span><span
-            class="term-zh">协议与服务型动态</span>
-          <div class="term-desc">
-            <ul>
-              <li>把“规则”写得可验证：具体行为、频率、例外情况与复盘机制。</li>
-              <li>把“惩罚”写得可中断：不以羞辱、恐惧和不可逆后果作为控制手段。</li>
-              <li>任何日常结构都不应妨碍现实生活安全（工作、学习、社交、身心健康）。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">协议</span><span class="term-tag">结构</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Group / Observer</span><span
-            class="term-zh">多人场景与观察者</span>
-          <div class="term-desc">
-            <ul>
-              <li>每个参与者都要对齐：可做/不可做、身体接触范围、称呼与权力层级。</li>
-              <li>观察者同样需要“被允许”的边界：是否可看、可评议、可拍摄。</li>
-              <li>确定责任人：谁有权喊停、谁负责应急、谁负责复盘记录。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">多人</span><span class="term-tag">隐私</span></div>
-        </div>
-      </div>
-    </section>
-    <section id="self-exploration" class="category-section">
-      <div class="category-title">偏好探索与边界沟通 · Preference Exploration</div>
-      <div class="spectrum-bar">
-        <div class="spectrum-ends"><span class="spectrum-end">Curiosity</span>
-          <div class="spectrum-line"></div><span class="spectrum-end">Practice</span>
-        </div>
-        <p class="spectrum-desc">从“有点好奇”到“愿意实践”之间没有自动升级路线。幻想、兴趣、当下同意、技术能力与长期身份是不同层次，任何一项都不能替另一项作决定。</p>
-      </div>
-      <div class="terms-grid">
-        <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Start with Experience</span><span
-            class="term-zh">先描述经验，再决定是否使用标签</span>
-          <div class="term-desc">
-            <ul>
-              <li>可以先写下吸引你的具体元素：权力、仪式、感官、角色、照顾、技术，还是审美与幻想。</li>
-              <li>分别标记“只想了解”“只限幻想”“愿意讨论”“可能低强度尝试”和“已有经验”。</li>
-              <li>标签可以暂用、并用或不用；它不代表技术能力，也不构成对任何行为的默认同意。</li>
-              <li>若使用网络测试，只把结果当作生成问题的自陈工具，不当作诊断、认证、匹配证明或永久身份。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">非诊断</span><span class="term-tag">可变化</span><span
-              class="term-tag">多维度</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Role / Activity / Relationship</span><span
-            class="term-zh">把“标签”拆成三个维度</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>角色位置</strong>：Dominant、Submissive、Switch，描述权力动态中的偏好位置。</li>
-              <li><strong>活动偏好</strong>：如绳艺、冲击、感官、羞耻主题或观看/展示，描述对具体体验的兴趣。</li>
-              <li><strong>关系结构</strong>：如服务型、照顾型、Owner/Pet、长期 D/s 或非单偶，描述互动如何延伸到场景之外。</li>
-            </ul>
-            同一个标签在不同人那里可能指向完全不同的行为。先问“它对你具体意味着什么”，再讨论是否匹配。
-          </div>
-          <div class="term-tags"><span class="term-tag">角色</span><span class="term-tag">活动</span><span
-              class="term-tag">关系</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Power &amp; Challenge</span><span
-            class="term-zh">权力、服从与挑战型互动</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>Dominant / Submissive</strong>：关注自愿的权力交托、引导与服从。</li>
-              <li><strong>Brat / Brat Tamer</strong>：通过调皮、挑战规则与回应挑战获得互动张力；“挑战”仍必须在预先同意的范围内。</li>
-              <li><strong>Master/Mistress / Slave</strong>：常指更强、更持续的权力交换想象或关系语言；称谓不产生现实上的无限权利。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">权力交换</span><span class="term-tag">规则</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Sensation &amp; Technique</span><span
-            class="term-zh">感官、强度与技术型倾向</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>Sadist / Masochist</strong>：对施加或接受经协商的强烈感官刺激感兴趣，不等同于现实中的伤害欲或受害需求。</li>
-              <li><strong>Rigger / Rope Bottom</strong>：偏好绑缚技术中的操作方或接受方；倾向分数不能证明技术能力。</li>
-              <li><strong>Experimentalist</strong>：对多种新体验保持开放；开放不等于无边界，更需要逐项评估风险。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">感官</span><span class="term-tag">技术</span><span
-              class="term-tag">能力边界</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Care &amp; Persona</span><span
-            class="term-zh">照顾、身份与情境扮演</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>Caregiver / Little</strong>：以照顾、依赖、规则或年龄化角色语言营造情境；仅讨论具备同意能力的成年人之间的扮演。</li>
-              <li><strong>Owner / Pet</strong>：以照料、训练、宠物化行为或身份表达建立动态，具体边界因人而异。</li>
-              <li><strong>Primal Hunter / Prey</strong>：强调追逐、本能与身体互动；不能以“本能”为由跳过协商或停止信号。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">照顾型</span><span class="term-tag">角色扮演</span><span
-              class="term-tag">成年人</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Expression &amp; Visibility</span><span
-            class="term-zh">表达、观看与关系开放度</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>Exhibitionist / Voyeur</strong>：对被观看或观看感兴趣；第三方是否知情、场所是否合法、影像是否传播都必须单独获得同意。</li>
-              <li><strong>Degrader / Degradee</strong>：对经协商的贬低或羞耻主题感兴趣；需要明确禁词、身份敏感点与事后修复方式。</li>
-              <li><strong>Non-monogamist</strong>：倾向于协商式非单偶关系；它是关系结构偏好，不等于默认允许隐瞒或越界。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">隐私</span><span class="term-tag">情绪安全</span><span
-              class="term-tag">关系结构</span></div>
-        </div>
-        <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Fantasy ≠ Consent</span><span
-            class="term-zh">幻想、兴趣与同意不是一回事</span>
-          <div class="term-desc">
-            <ul>
-              <li>“喜欢想象”不等于“愿意现实尝试”；“愿意尝试”也不等于同意所有强度、对象和场景。</li>
-              <li>可以把每项兴趣分别标成：只限幻想、愿意讨论、低强度尝试、有经验且喜欢、目前不想碰。</li>
-              <li>测试结果只能由本人解释。伴侣不能用分数推定同意，更不能以“你明明测出来喜欢”为由施压。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">幻想</span><span class="term-tag">意愿</span><span
-              class="term-tag">反施压</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Yes / No / Maybe</span><span
-            class="term-zh">把结果转成可协商清单</span>
-          <div class="term-desc">
-            <ul>
-              <li><strong>Yes</strong>：愿意做什么？和谁、在哪里、什么强度、持续多久？</li>
-              <li><strong>No</strong>：哪些行为、语言、身体部位、身份主题或记录方式是硬限制？</li>
-              <li><strong>Maybe</strong>：需要哪些条件才考虑，例如更多信任、知识、训练、低强度试验或第三方支持？</li>
-              <li><strong>Aftercare</strong>：结束后需要陪伴、确认、独处、补给，还是次日联系？</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">清单</span><span class="term-tag">具体条件</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Matching Red Flags</span><span
-            class="term-zh">寻找搭档时的警示信号</span>
-          <div class="term-desc">
-            <ul>
-              <li>用“真正的 Dom/Sub 应该……”否定你的边界，或要求你用服从证明身份。</li>
-              <li>把某个标签、兴趣或测试结果解释成默认授权，拒绝逐项协商、安全词、过程确认或事后照顾。</li>
-              <li>把危险行为包装成“新手必修”，贬低循序渐进、学习技术或寻求帮助。</li>
-              <li>要求立刻提供真实身份、私密影像、住址或经济信息，或阻止你联系朋友与支持网络。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">红旗</span><span class="term-tag">防操控</span></div>
-        </div>
-      </div>
-    </section>
-    <section id="scene-setup" class="category-section">
-      <div class="category-title">场景搭建与器具安全使用规范 · Scene &amp; Safety</div>
-      <div class="terms-grid">
-        <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Pre-Check</span><span class="term-zh">开场前检查（通用）</span>
-          <div class="term-desc">
-            <ul>
-              <li>清醒程度：无酒精/药物影响；情绪稳定，能正常判断与表达。</li>
-              <li>环境：私密、温度适宜、地面无绊倒物；手机可用且知道地址。</li>
-              <li>应急：安全剪/解绳工具、基础急救包、饮水与保暖物品可触达。</li>
-              <li>规则：安全词/停止手势明确；终止条件与复盘方式达成一致。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">准备</span><span class="term-tag">应急</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Restraints</span><span class="term-zh">约束与束缚（原则）</span>
-          <div class="term-desc">
-            <ul>
-              <li>原则：可快速解除、可持续沟通、可检查循环与感觉。</li>
-              <li>避免高风险区域：颈部/气道、脊柱与关节、神经与血管密集处。</li>
-              <li>出现麻木、持续刺痛、皮肤发紫/发白、手脚冰冷等信号应立即停止并解除。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">循环</span><span class="term-tag">神经</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Impact</span><span class="term-zh">冲击类刺激（原则）</span>
-          <div class="term-desc">
-            <ul>
-              <li>从低强度开始，逐步加量；过程中持续确认反应与承受度。</li>
-              <li>避开高风险部位（尤其是头颈、脊柱、关节与肾区等）。</li>
-              <li>器具：边缘无毛刺、无裂纹；使用前后清洁消毒，避免交叉污染。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">递进</span><span class="term-tag">部位</span><span
-              class="term-tag">清洁</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Sensation</span><span
-            class="term-zh">感官类与温度/电刺激（谨慎）</span>
-          <div class="term-desc">
-            <ul>
-              <li>遮蔽视听会显著提高不确定性：更需要清晰的停止信号与频繁的 check-in。</li>
-              <li>温度与电刺激对皮肤/神经有潜在伤害风险；缺乏训练时不要尝试升级玩法。</li>
-              <li>不要通过压迫颈部、遮堵口鼻或压迫胸部来限制呼吸或血流；不存在可保证安全的“掐颈”力度或时长，严重损伤可能没有外伤并延迟出现。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">高风险</span><span class="term-tag">谨慎</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Hygiene</span><span class="term-zh">卫生与材料（通用）</span>
-          <div class="term-desc">
-            <ul>
-              <li>优先选择可清洁、无明显异味与破损的材料；与皮肤接触物品要定期消毒。</li>
-              <li>共享器具需更严格的清洁与隔离策略；不要在皮肤破损处继续刺激。</li>
-              <li>如涉及体液或黏膜接触，遵循基础防护与性健康原则，降低感染风险。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">材料</span><span class="term-tag">防护</span></div>
-        </div>
-        <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Minimal Kit</span><span
-            class="term-zh">最小安全套装（建议常备）</span>
-          <div class="term-desc">
-            <ul>
-              <li>安全剪/解绳工具（随手可拿到，而不是放在房间另一头）。</li>
-              <li>一次性手套、基础消毒用品、创可贴/纱布等简易急救物资。</li>
-              <li>饮水、糖分补给、保暖毯/外套。</li>
-              <li>可用手机与共享地址（含楼层/门牌/进出路线）。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">常备</span><span class="term-tag">应急</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Scene Design</span><span
-            class="term-zh">场景脚本与节奏（更容易“可控”）</span>
-          <div class="term-desc">
-            <ul>
-              <li>先定“目标体验”：放松、仪式感、轻刺激、角色互动等，再选匹配动作。</li>
-              <li>使用“渐进结构”：热身 → 主要内容 → 收尾 → 事后照顾，避免突然升级。</li>
-              <li>在关键节点主动 check-in：换道具、换姿势、换规则、加大强度前。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">节奏</span><span class="term-tag">可控</span></div>
+          <p>执行细节集中在<a href="#consent-process">协商与照顾流程</a>；工具与环境见<a href="#scene-setup">场景准备</a>，异常信号见<a href="#risk-emergency">风险与应急</a>。</p></div>
         </div>
       </div>
     </section>
     <section id="consent-process" class="category-section">
-      <div class="category-title">沟通与 Consent 实操流程 · Practical Consent</div>
+      <div class="category-title">协商、过程确认与事后照顾 · Consent &amp; Care</div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">6-Step Flow</span><span class="term-zh">从协商到复盘（六步）</span>
+          <div class="term-corner"></div><span class="term-en">From Negotiation to Debrief</span><span class="term-zh">把一次互动分成五个阶段</span>
           <div class="term-desc">
             <ol>
-              <li><strong>事前协商</strong>：目标、边界、风险点、终止条件、影像与隐私。</li>
-              <li><strong>清单对齐</strong>：Yes / No / Maybe；触发点、禁忌、健康信息。</li>
-              <li><strong>信号系统</strong>：安全词（如红/黄/绿）+ 非语言信号（手势/敲击）。</li>
-              <li><strong>过程 check-in</strong>：按节奏确认，特别是在升级强度或切换玩法时。</li>
-              <li><strong>事后照顾</strong>：补水保暖、情绪安抚、边界确认；不给“必须立刻解释”的压力。</li>
-              <li><strong>复盘迭代</strong>：哪些有效、哪些不适、下次如何调整与避免复发。</li>
+              <li><strong>讨论</strong>：表达想要的体验与不想要的内容，确认参与者和各自经验。</li>
+              <li><strong>约定</strong>：明确活动范围、条件、停止信号、风险准备、隐私和照顾安排。未说清的内容先不加入。</li>
+              <li><strong>开始与确认</strong>：开场前确认今天仍愿意、状态合适；过程中观察并主动询问。</li>
+              <li><strong>停止与照顾</strong>：按约定结束或提前停止，退出角色并确认当下需要；异常情况优先应急。</li>
+              <li><strong>稍后复盘</strong>：在双方能自由表达时谈体验和调整。任何一次约定都不会自动覆盖下一次。</li>
             </ol>
           </div>
-          <div class="term-tags"><span class="term-tag">流程</span><span class="term-tag">可执行</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Negotiation Prompts</span><span
-            class="term-zh">协商提纲（可直接照抄）</span>
+          <div class="term-corner"></div><span class="term-en">Negotiation Prompts</span><span class="term-zh">把协商从“都可以”变成具体信息</span>
           <div class="term-desc">
             <ul>
-              <li>“今天我们想要的体验是什么？更偏情绪、结构，还是感官？”</li>
-              <li>“哪些是绝对不做？哪些可以试但需要慢慢来？”</li>
-              <li>“有没有健康相关注意事项？（循环/呼吸/过敏/既往创伤/药物等）”</li>
-              <li>“如果你说‘黄’，我应该怎么做才是对你最有帮助的？”</li>
-              <li>“是否允许影像记录？如何存储、删除、分享？”</li>
+              <li><strong>体验与范围</strong>：“今天你最期待什么？谁参与？哪些行为和称呼可以，哪些不可以？是否包含性接触？”</li>
+              <li><strong>条件与上限</strong>：“计划多久？哪些强度或情境不接受？能否留下痕迹？哪些活动是第一次，哪些工具你并不熟悉？”</li>
+              <li><strong>身体与心理限制</strong>：“有没有会影响这次互动的过敏、伤处、健康限制、设备或触发点？不需要解释完整病史或创伤经历。”</li>
+              <li><strong>停止与应急</strong>：“说黄或红时，我们分别做什么？无法说话时如何停？出现异常由谁解除、联系帮助？”</li>
+              <li><strong>隐私与收尾</strong>：“是否拍摄？谁能看？怎样保存或删除？结束后希望陪伴还是空间，是否需要稍后联系？”</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">话术</span><span class="term-tag">隐私</span></div>
+          <p>可参考 <a href="https://ncsfreedom.org/wp-content/uploads/2023/06/Negotiation-Guide.pdf" target="_blank" rel="noopener noreferrer">NCSF 协商提纲</a>。它是帮助提问的资料，不是勾选后即可保证安全的认证表。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Consent Rules</span><span class="term-zh">同意的基本规则</span>
+          <div class="term-corner"></div><span class="term-en">Consent in Practice</span><span class="term-zh">同意要具体，也要能自由改变</span>
           <div class="term-desc">
             <ul>
-              <li>同意必须是：明确、知情、自愿、可撤回、具体到行为与边界。</li>
-              <li>沉默、僵住、迎合、害怕、经济/情感压力下的“答应”都不是可靠同意。</li>
-              <li>同意不是对未来的永久授权：任何阶段都需要重新确认。</li>
+              <li><strong>明确而具体</strong>：同意某个称呼、一次触碰或一项活动，不代表同意其他行为、其他参与者或更大的强度。</li>
+              <li><strong>知情而自愿</strong>：重要风险和能力限制不能隐瞒；害怕失去关系、经济支持或社群资格而被迫答应，不是可靠的自愿同意。</li>
+              <li><strong>可撤回</strong>：任何一方都可减少或终止已同意的内容，不需要先给出一个令别人满意的理由。</li>
+              <li><strong>当下可判断</strong>：沉默、僵住、迎合、身体兴奋或过去的经历，都不能替代确认。无法可靠理解或回应时先停下。</li>
+              <li><strong>不在状态改变时扩张</strong>：过程中可以拒绝或缩小范围；新活动与新的授权留到双方恢复能判断的状态后再讨论。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">规则</span><span class="term-tag">可撤回</span></div>
+          <p>最后一点参考 <a href="https://ncsfreedom.org/wp-content/uploads/2022/01/Best-Practices-for-Consent-to-Kink.pdf" target="_blank" rel="noopener noreferrer">NCSF 同意最佳实践</a>，不能把场景中的兴奋当作扩大权限的机会。</p></div>
+        </div>
+        <div class="term-card highlight" id="safe-signals">
+          <div class="term-corner"></div><span class="term-en">Safewords &amp; Safe Signals</span><span class="term-zh">口头与非口头信号：含义、可用性、回应</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>红</strong>：停止当前活动，进入解除、状态确认与照顾；不争论、不要求证明“不舒服”。</li>
+              <li><strong>黄</strong>：不同人用法不同。事前说明是暂停、降低刺激还是调整姿势；本次约定若是“先暂停确认”，就按该动作执行。不要留给对方猜。</li>
+              <li><strong>绿</strong>：只表示目前状态下仍愿意继续已约定的内容，不授权升级，也不取消之后说黄或红的权利。</li>
+              <li><strong>其他词与动作</strong>：可以直接使用“停止”“不”，或约定其他口头、手势、敲击信号。开始前确认在计划姿势、声音环境和限制条件下能做出、能被发现。</li>
+              <li><strong>回应不可靠就停止</strong>：信号无法被使用、识别或响应时，不继续依赖这套安排。非语言信号不是风险消失的证明。</li>
+            </ul>
+          <p>安全词是多一条沟通渠道，不是唯一停下的理由。没有喊出安全词、僵住或不能说话，不能被当作继续的许可。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Signals</span><span
-            class="term-zh">安全词与信号系统（建议双通道）</span>
+          <div class="term-corner"></div><span class="term-en">Check-in &amp; Changing Conditions</span><span class="term-zh">过程确认：询问具体感受，及时缩小范围</span>
           <div class="term-desc">
             <ul>
-              <li>口头：红/黄/绿（或停止/慢一点/可以继续）。</li>
-              <li>非口头：手势、敲击节奏、握手压力等（适用于口塞〔gag〕、高噪音或无法开口的场景）。</li>
-              <li>约定“失联处理”：如果对方无法回应，应默认停止并解除限制。</li>
+              <li>换姿势、道具、节奏或环境前，核对是否仍在约定范围内；需要新授权的内容先不加入。</li>
+              <li>问题尽量具体：“这个位置有没有麻木？”“你需要暂停，还是结束？”比只问“还好吧”更容易表达不同答案。</li>
+              <li>不要只等对方报告异常。关注回应、动作和情绪是否改变；哭泣或兴奋不具有统一含义，无法确认时先停。</li>
+              <li>有人把高度专注或恍惚的体验称作 Subspace、Topspace 或 Domspace；这些不是必须达到的目标，也不证明能继续判断或同意。主导方同样要留意自己的觉察与能力是否改变。</li>
+              <li>给出拒绝空间，不用“再坚持一下”“你刚才明明喜欢”或带着期待的追问逼出一个 Yes。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">信号</span><span class="term-tag">双通道</span></div>
         </div>
+        <div class="term-card" id="cnc-boundaries">
+          <div class="term-corner"></div><span class="term-en">CNC — Consensual Non-Consent</span><span class="term-zh">真实同意与扮演的“不愿意”必须区分</span>
+          <div class="term-desc"><p>CNC 通常指在真实的事前同意下扮演抵抗或不愿意的情境。部分中文资料译作“协商不同意”；它不是在不确定是否同意时继续的理由。</p>
+            <ul>
+              <li>需要格外明确活动范围、角色台词、停止机制与照顾安排。CNC 不是新手必修，也不意味着不需要过程观察。</li>
+              <li>若某些拒绝语言被约定为台词，仍需有独立、可靠的撤回方式。真实撤回、明显异常或无法区分台词与真实意愿时，应立即停止。</li>
+              <li>不能把未约定的行为、真实恐惧、无法回应或搭档的临时拒绝补解释为剧情。事后说“原本是 CNC”也不能追认事前未获得的同意。</li>
+              <li>无法保障可靠区分与及时中断时，应取消这种安排。安全词、关系或协议都不构成无限授权。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card highlight" id="aftercare-plan">
+          <div class="term-corner"></div><span class="term-en">Aftercare</span><span class="term-zh">事后照顾：先确认需要，再选择方式</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong>提前留出时间</strong>：约定收尾是否陪伴、需要什么物品、如何回家，以及主导方或操作方自己的照顾需求。</li>
+              <li><strong>明确退出角色</strong>：确认互动已经结束，恢复双方都舒适的称呼和交流方式；不要把场景中的贬低语言延续到未约定的日常。</li>
+              <li><strong>询问当下需要</strong>：在能安全饮食的状态下提供饮水、保暖或补给；拥抱、触碰、聊天、安静或独处都应按本人意愿，不强行安抚。</li>
+              <li><strong>分开照顾与追问</strong>：可以先处理当下的不适，稍后再解释体验。不把“现在说不清”理解为没问题。</li>
+              <li><strong>安排后续联系</strong>：需要的话，约定数小时后或次日的联系渠道与大致时间；也允许不想联系或需要额外空间。</li>
+            </ul>
+          <p>照顾方式因人而异，可参考 <a href="https://feeld.co/ask-feeld/how-to/what-is-aftercare" target="_blank" rel="noopener noreferrer">Feeld 对心理性治疗师 Jordan Dixon 的采访</a>。照顾不能代替就医、抵消越界或要求对方原谅。</p></div>
+        </div>
+        <div class="term-card" id="debrief-records">
+          <div class="term-corner"></div><span class="term-en">Debrief &amp; Records</span><span class="term-zh">复盘与记录：描述事实，更新下一次的条件</span>
+          <div class="term-desc">
+            <ul>
+              <li>在双方愿意且能自由表达时讨论：“哪一部分喜欢？”“哪里不适？”“有没有以为能说、实际却说不出的时刻？”</li>
+              <li>先听体验，再核对具体行为与约定；不用“你应该喜欢”纠正对方感受，也不把提出问题变成新的角色考验。</li>
+              <li>把调整落到具体条件：删去某项活动、改变措辞或姿势、缩短时间、增加确认节点，或暂停合作。</li>
+              <li>书面记录可以帮助记忆，但只记录双方愿意保存且与互动有关的信息；约定访问、保留和删除方式，不把记录当永久授权。</li>
+              <li>若发生了真实越界，进入<a href="#boundary-violations">安全与支持流程</a>。复盘不要求受影响者继续联系、和解或再给一次机会。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card" id="drop-reactions">
+          <div class="term-corner"></div><span class="term-en">Drop &amp; Delayed Reactions</span><span class="term-zh">场景后的低落、疲惫与延迟反应</span>
+          <div class="term-desc"><p>社群常用 Drop、Sub Drop 或 Top Drop 描述场景后出现的低落、空虚、疲惫等体验，有时在数小时或数天后被觉察。它们是社群描述，不是正式诊断，也没有人人相同的成因。</p>
+            <ul>
+              <li>主导、操作、服从或接受活动的人都可能需要支持；积极的体验和之后的不适可以同时存在。</li>
+              <li>预留休息和恢复日常的空间，按事前约定联系可信的人；不必用单一激素解释自己的反应。</li>
+              <li>不要把伤害、持续恐惧、闪回、明显解离或生活功能受影响统称为“正常 Drop”。暂停相关实践并寻求适当支持。</li>
+              <li>身体异常按<a href="#medical-help">就医判断</a>处理，不用场景后的情绪说法解释掉呼吸困难、无力等症状。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="scene-setup" class="category-section">
+      <div class="category-title">场景准备与器具风险 · Scene Preparation</div>
+      <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Documentation</span><span
-            class="term-zh">把协商写下来（尤其是新搭档）</span>
+          <div class="term-corner"></div><span class="term-en">Pre-Check &amp; Supplies</span><span class="term-zh">开场前把条件与应急物品落实</span>
           <div class="term-desc">
             <ul>
-              <li>写“边界”而不是写“标签”：可做/不可做/可尝试但需条件。</li>
-              <li>写“条件”而不是写“口号”：强度上限、频率、触发点、就医/停止标准。</li>
-              <li>写“隐私处理”：是否允许拍摄、谁可看、如何存储、何时删除。</li>
+              <li><strong>状态</strong>：今天仍愿意，能理解、决定和表达；疲劳、健康限制或情绪状态与协商时不同，就重新评估或取消。</li>
+              <li><strong>环境</strong>：私密、温度适宜、照明足以观察，地面无绊倒物；知道具体地址、出口和联系帮助的办法。</li>
+              <li><strong>解除与联络</strong>：相应的钥匙、解绳工具或安全剪可及时拿到，手机可用；不能靠“到时候再找”解决。</li>
+              <li><strong>照顾物品</strong>：按需要准备饮水、保暖物、适合自己的补给与基础急救物资。物品清单不能代替识别与处理异常的能力。</li>
+              <li><strong>开始前确认</strong>：复述活动范围、停止信号和收尾计划。缺一项关键条件时，可以先补齐，也可以不开始。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">记录</span><span class="term-tag">清晰</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Restraints &amp; Rope</span><span class="term-zh">限制行动会同时改变沟通与救援条件</span>
+          <div class="term-desc">
+            <ul>
+              <li>确认器具状态、接触材料、尺寸、开启和解除方式；“能绑上”不等于能在异常情况下及时解除。</li>
+              <li>不要把行动受限者单独留下。实际限制不能同时使停止信号、观察和解除都失去可用性。</li>
+              <li>颈部、气道、神经与血管等存在严重风险；几句部位提醒不能代替相关知识与现场训练。悬吊或复杂绳艺也不能靠文字模仿掌握。</li>
+              <li>麻木、刺痛、无力、冰冷或皮肤变色等都需要立即停止并处理限制，不能以“还能忍”判断是否安全。异常持续时寻求医疗帮助。</li>
+            </ul>
+          <p>本节帮助识别准备缺口，不提供结法、悬吊或压迫身体的操作教程。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Impact &amp; Intensity</span><span class="term-zh">强度是上限，不是必须达到的目标</span>
+          <div class="term-desc">
+            <ul>
+              <li>先说明工具、目标体验、强度限制与痕迹接受范围；获准进行某类活动，不等于可任意换器具或增加力度。</li>
+              <li>头颈、脊柱、关节与肾区等可能发生严重伤害。没有“不碰某几处就一定安全”的通用规则。</li>
+              <li>器具损坏、接触面不适合、观察不足或不了解相关风险时不进行。经验与同意都不能代替具体能力。</li>
+              <li>反馈、动作或身体状态改变时先暂停确认；痕迹不明显、没有喊痛或愿意忍耐，都不能证明没有受伤。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Sensation &amp; High-Risk Activities</span><span class="term-zh">感官限制、温度、电与呼吸相关风险</span>
+          <div class="term-desc">
+            <ul>
+              <li>遮蔽视听或其他感官限制会改变不确定性与信号条件。不要叠加到无法可靠沟通、观察或中断的程度。</li>
+              <li>温度、电刺激等可能伤及皮肤、神经或其他组织；阅读术语不等于具备操作能力，普通物品也不一定适合身体接触。</li>
+              <li>不要通过压迫颈部、遮堵口鼻或压迫胸部来限制呼吸或血流。不存在可保证安全的掐颈力度、位置或时长。</li>
+              <li>“有训练”“有安全词”“双方愿意”都不能保证高风险活动安全。可以选择不限制呼吸、血流与行动的方式表达相近的角色或仪式兴趣。</li>
+            </ul>
+          <p>颈部受压的医学风险及求助信号见 <a href="https://www.gloshospitals.nhs.uk/about-us/news-media/press-releases-statements/non-fatal-strangulation-there-is-no-safe-way-to-strangle/" target="_blank" rel="noopener noreferrer">Gloucestershire Hospitals NHS 的说明</a>。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Materials &amp; Hygiene</span><span class="term-zh">材料、清洁与接触方式分别核对</span>
+          <div class="term-desc">
+            <ul>
+              <li>检查破损、毛刺、过敏与材料适用性；按生产者针对该材料的说明清洁。可清洁不等于可消毒，不同材料不能套用同一种处理方法。</li>
+              <li>共享器具前先考虑接触皮肤、黏膜或体液的方式，使用合适的隔离与清洁安排；有破损或无法合适处理时不继续使用。</li>
+              <li>不要在皮肤破损处继续刺激。涉及性接触时，把防护、性健康与相关限制独立纳入协商。</li>
+              <li>器具与材料方面拿不准的内容，查实际产品说明或向合适的专业人士询问，不从“看起来干净”推断可用。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Pacing &amp; Closing</span><span class="term-zh">给收尾留出位置，不在兴奋中改计划</span>
+          <div class="term-desc">
+            <ul>
+              <li>场景可以有开始、主要内容与收尾，但不需要每次都增加强度或完成某个目标；提前结束也是完整的决定。</li>
+              <li>到达约定时间、有人疲劳或状态变化时，按需要收尾。过程中希望减少内容，不需要等“做完”。</li>
+              <li>照顾所需时间与返程安排要计入计划；不把所有时间用完后才发现无人能够提供已约定的支持。</li>
+            </ul>
+          <p>流程与语言信号统一参考<a href="#consent-process">协商与照顾章节</a>，不在每类器具下重复另一套规则。</p></div>
         </div>
       </div>
     </section>
     <section id="risk-emergency" class="category-section">
-      <div class="category-title">风险识别与应急处理 · Risk &amp; Emergency</div>
+      <div class="category-title">异常信号、应急与越界应对 · Risk &amp; Response</div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Stop Protocol</span><span
-            class="term-zh">紧急停止协议（任何人可触发）</span>
+          <div class="term-corner"></div><span class="term-en">Stop Protocol</span><span class="term-zh">任何人都可以触发停止</span>
           <div class="term-desc">
             <ol>
-              <li>立刻停止当前动作与升级行为，回到安全距离与可沟通状态。</li>
-              <li>解除限制（尤其是影响循环、呼吸或行动能力的部分）。</li>
-              <li>评估：意识是否清醒、呼吸是否正常、是否有持续疼痛/麻木/出血。</li>
-              <li>必要时寻求医疗帮助；若发生过颈部受压或呼吸受限，即使暂时没有外伤，也应尽快获得当地医疗建议。</li>
+              <li><strong>停止当前行为</strong>，停止升级；不要把异常解释为扮演或要求对方继续证明。</li>
+              <li><strong>处理限制并保障现场安全</strong>，尤其是影响呼吸、循环或行动的部分；解除时留意跌落等附加危险。</li>
+              <li><strong>确认意识、呼吸与主要异常</strong>。出现严重或持续症状时，优先联系当地急救或医疗服务，按专业指引处理。</li>
+              <li><strong>之后再谈原因</strong>。不因等解释、道歉或复盘延迟求助，也不因尴尬隐瞒发生过的行为。</li>
             </ol>
           </div>
-          <div class="term-tags"><span class="term-tag">应急</span><span class="term-tag">止损</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Warning Signs</span><span
-            class="term-zh">常见风险信号（出现即降级或停止）</span>
+          <div class="term-corner"></div><span class="term-en">Adjust / Stop / Seek Help</span><span class="term-zh">区分调整请求、异常与紧急情况</span>
           <div class="term-desc">
             <ul>
-              <li>身体：麻木、刺痛、手脚冰冷、皮肤变色、头晕、恶心、呼吸异常。</li>
-              <li>情绪：突然恐惧、失语、强烈解离感、无法交流或持续哭泣/惊恐。</li>
-              <li>沟通：对方无法按约定回应“绿/黄/红”，或出现明显迎合与僵住。</li>
+              <li><strong>需要调整</strong>：仍能清楚沟通，表示不喜欢某个姿势、节奏或称呼。按已约定的黄灯动作暂停或调整，确认后再决定是否继续。</li>
+              <li><strong>立即停止</strong>：麻木、刺痛、无力、手脚冰冷、皮肤变色、头晕、恶心，或明显恐惧、僵住、无法可靠回应等。不要仅仅把强度调低后继续。</li>
+              <li><strong>紧急求助</strong>：失去意识、呼吸困难、胸痛、抽搐、严重过敏或无法止住的出血等，立即联系当地急救服务。</li>
+              <li>这些不是穷尽清单。出现不明异常、症状持续或你无法判断时，应寻求专业帮助，不能只凭本页排除风险。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">预警</span><span class="term-tag">降级</span></div>
         </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">When to Seek Help</span><span
-            class="term-zh">何时必须就医（建议优先安全）</span>
+        <div class="term-card" id="medical-help">
+          <div class="term-corner"></div><span class="term-en">When to Seek Medical Help</span><span class="term-zh">严重、持续或延迟出现的症状</span>
           <div class="term-desc">
             <ul>
-              <li>意识丧失、呼吸困难、胸痛、抽搐、严重过敏反应。</li>
-              <li>持续性麻木/无力/剧痛，或疑似关节、骨骼、神经损伤。</li>
-              <li>无法止血的出血、明显感染迹象（红肿热痛加重、发热）。</li>
-            </ul>如不确定，宁可寻求专业帮助，也不要硬扛。
-          </div>
-          <div class="term-tags"><span class="term-tag">就医</span><span class="term-tag">底线</span></div>
+              <li>持续麻木、无力、明显或加重的疼痛，疑似关节、骨骼或神经损伤，以及感染迹象，都需要及时得到医疗评估。</li>
+              <li>发生过颈部受压，即使没有外伤或暂时没有症状，也应尽快寻求医疗意见。损伤可能隐蔽，症状可能延迟出现。</li>
+              <li>颈部受压后出现呼吸或吞咽困难、声音改变、意识或记忆异常、晕厥、持续头痛或眩晕等，需要紧急就医；不要等待出现淤青。</li>
+              <li>向医护说明发生时间、部位、行为与症状；无需为社群标签辩护，但真实经过有助于评估。不要以休息、补给或事后照顾代替评估。</li>
+            </ul>
+          <p>关于颈部受压的判断，参考 <a href="https://www.gloshospitals.nhs.uk/about-us/news-media/press-releases-statements/non-fatal-strangulation-there-is-no-safe-way-to-strangle/" target="_blank" rel="noopener noreferrer">NHS 原文</a>。其中服务号码适用于英国；请使用所在地的急救与医疗渠道。</p></div>
         </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Aftercare</span><span
-            class="term-zh">事后照顾与复盘（减少后遗影响）</span>
+        <div class="term-card" id="boundary-violations">
+          <div class="term-corner"></div><span class="term-en">Boundary Violations &amp; Support</span><span class="term-zh">越界不能被角色或事后照顾抵消</span>
           <div class="term-desc">
             <ul>
-              <li>身体：补水、保暖、轻食；必要时处理淤青、擦伤与皮肤护理。</li>
-              <li>情绪：给予安抚、确认与空间；避免指责与追问。</li>
-              <li>复盘：用“我感受到/我需要”表达，记录下次要调整的强度、节奏与禁区。</li>
+              <li>拒绝或停止被忽视、未经同意增加行为或参与者、隐瞒重要信息、以威胁维持服从等，都不能仅用“玩法”“训练”或“默契”来解释。</li>
+              <li>先保护自己能离开、联系帮助和获得医疗支持的条件；必要时向可信的人、适当的专业机构或当地执法与法律支持渠道求助。</li>
+              <li>在安全可行时保存有关沟通、时间经过或伤情信息，并注意记录的隐私。不要为取得证据让自己暴露在进一步危险中。</li>
+              <li>是否继续联系、参加调解、原谅或再次互动由受影响者决定。接受了照顾、没有立即投诉或曾喜欢过对方，都不等于认可越界。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">照顾</span><span class="term-tag">复盘</span></div>
-        </div>
-        <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Sub Drop / Top Drop</span><span
-            class="term-zh">"Drop"与延迟反应（常见但可管理）</span>
-          <div class="term-desc">一些人在场景后数小时到数天出现情绪低落、空虚或疲惫感（俗称 sub-drop / top-drop），并不罕见。<ul>
-              <li><strong>Sub Drop</strong>：服从方可能出现空虚、哭泣或焦虑；成因因人而异，不宜简单归因于“内啡肽退潮”。可提前约定第二天是否需要关怀消息或独处空间。</li>
-              <li><strong>Top Drop</strong>：主导方同样可能出现情绪低落或自我怀疑，常被忽视；双方互相照顾同等重要。</li>
-              <li>用睡眠、饮食、补水与稳定的日常恢复；必要时寻求专业支持。</li>
-              <li>若出现持续的恐惧、闪回或强烈解离，应暂停相关实践并寻求帮助。</li>
-            </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">延迟</span><span class="term-tag">恢复</span></div>
+          <p>选择支持资源时，关注是否尊重你的决定和保密需要；社群声望不能代替独立支持。</p></div>
         </div>
       </div>
     </section>
     <section id="law" class="category-section">
-      <div class="category-title">法律法规科普 · Legal Basics (General)</div>
+      <div class="category-title">法律与隐私边界 · Legal &amp; Privacy Basics</div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Consent ≠ Legal Immunity</span><span
-            class="term-zh">同意不等于“法律免责”</span>
+          <div class="term-corner"></div><span class="term-en">Consent &amp; Local Law</span><span class="term-zh">伦理上的同意不等于法律免责</span>
           <div class="term-desc">
             <ul>
-              <li>不同地区对伤害、胁迫、影像与隐私的法律标准不同；“双方同意”不一定足以作为法律抗辩。</li>
-              <li>任何涉及威胁、勒索、强迫、限制人身自由等行为，都可能触及刑事或治安风险。</li>
-              <li>本页仅为常识科普；如涉及纠纷或风险场景，请咨询当地专业人士。</li>
+              <li>不同地区对伤害、限制自由、胁迫、影像和隐私的法律处理不同；不能仅凭“双方同意”判断行为合法。</li>
+              <li>协议、社群惯例或外国的法律资料不能替代所在地适用规则。跨地区互动还可能涉及不同的法律与平台要求。</li>
+              <li>本文只提供一般风险提醒，不作具体司法辖区的合法性结论。涉及纠纷、伤害或公开活动时，应向当地合适的专业人士咨询。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">法律</span><span class="term-tag">合规</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Age &amp; Capacity</span><span
-            class="term-zh">年龄与行为能力</span>
+          <div class="term-corner"></div><span class="term-en">Adults &amp; Capacity</span><span class="term-zh">年龄与当下同意能力</span>
           <div class="term-desc">
             <ul>
-              <li>本指南只讨论具备同意能力的成年人。法定同意年龄、年龄差、影像与特定行为的规则因地而异，不要自行类推或规避当地法律。</li>
-              <li>成年人也需要在当下理解具体行为与风险并能自由决定；醉酒、药物影响、失去意识或受到胁迫时，不能据此取得可靠同意。</li>
+              <li>本指南仅讨论具备同意能力的成年人。法定年龄、特定行为、影像和公开传播的规则因地而异，不要自行类推或规避。</li>
+              <li>成年人也可能在当下无法理解风险或自由决定；失去意识、受到胁迫，或酒精及其他物质影响判断时，不能据此获得可靠同意。</li>
+              <li>某个身份、诊断、角色或既往经历不能单独证明有无同意能力；需要关注具体行为与当下情况。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">年龄</span><span class="term-tag">能力</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Privacy &amp; Media</span><span
-            class="term-zh">隐私、影像与传播</span>
+          <div class="term-corner"></div><span class="term-en">Recording / Storage / Sharing</span><span class="term-zh">把拍摄、保存与传播分成三次讨论</span>
           <div class="term-desc">
             <ul>
-              <li>拍摄/录音必须明确同意，且要说明存储方式、加密、保留时长与删除机制。</li>
-              <li>未经同意传播可能触及严重法律风险，并造成不可逆的现实伤害。</li>
-              <li>公共平台与社交媒体另有平台规则与合规风险。</li>
+              <li><strong>拍摄与录音</strong>：谁记录、记录哪些内容、是否包含面部或其他身份信息？不同意记录不影响拒绝其他内容的权利。</li>
+              <li><strong>存储与访问</strong>：保存在哪里，谁能访问，是否会自动云端备份，保留多久，怎样删除？不知道实际设置时，不保证“只有我能看到”。</li>
+              <li><strong>传播与发布</strong>：同意拍摄不等于同意向朋友、群聊或平台分享；遮脸也不必然匿名，声音、环境或身体特征可能暴露身份。</li>
+              <li>预先讨论撤回分享意愿和删除请求如何处理。已传播的副本不一定能收回；未经许可传播可能造成严重现实伤害与法律风险。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">隐私</span><span class="term-tag">影像</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Contracts &amp; Records</span><span
-            class="term-zh">协议、证据与现实风险</span>
+          <div class="term-corner"></div><span class="term-en">Contracts &amp; Communication Records</span><span class="term-zh">记录是沟通辅助，不能强制继续</span>
           <div class="term-desc">
             <ul>
-              <li>“协议/合同”更多是沟通工具，不等于法律上可强制执行的授权。</li>
-              <li>如出现纠纷：优先人身安全与求助；必要时保留沟通记录与伤情信息。</li>
-              <li>在不同国家/地区，关于伤害、限制自由、影像传播等的法律后果差异很大。</li>
+              <li>写下活动、边界与责任可以减少记忆差异；“合同”“同意书”或签字不能取消撤回权，也不意味着具备法律上的强制执行效力。</li>
+              <li>记录可能有助于说明经过，但不能单独证明每一时刻都自愿，也不能保证免责。具体效力与证据规则需由当地专业人士判断。</li>
+              <li>发生纠纷时，先保障人身安全、医疗与支持需要。记录的收集、保存与分享也应考虑个人信息与所在地规则。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">现实</span><span class="term-tag">风险</span></div>
         </div>
       </div>
     </section>
     <section id="glossary" class="category-section">
-      <div class="category-title">常用词汇速查 · Quick Glossary</div>
+      <div class="category-title">词汇速查与正文索引 · Glossary &amp; Index</div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Core Role Terms</span><span class="term-zh">角色核心词</span>
+          <div class="term-corner"></div><span class="term-en">Core Concepts</span><span class="term-zh">核心概念</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Dom / Dominant</strong>：主导方；在权力交换中承担引导、控制的角色，同时承担安全与照顾责任。</li>
-              <li><strong>Sub / Submissive</strong>：服从方；主动将部分自主权交托给 Dom，始终保留随时撤回的权利。</li>
-              <li><strong>Top</strong>：场景中的主动/操作方，不一定包含权力层级（不等于 Dom）。</li>
-              <li><strong>Bottom</strong>：场景中的接受/被动方，不一定包含权力层级（不等于 Sub）。</li>
-              <li><strong>Switch</strong>：可以在不同关系或场景中灵活切换 Top/Bottom 或 Dom/Sub 角色。</li>
-              <li><strong>Rigger</strong>：绳艺中负责绑缚的人；需具备解剖知识与快速解除能力。</li>
-              <li><strong>Rope Bottom / Bunny</strong>：绳艺中被绑缚的人；需主动表达身体感受与预警信号。</li>
+              <li><strong><a href="#core-definition">BDSM</a></strong>：束缚与纪律、支配与服从、施虐与受虐的交叠集合。</li>
+              <li><strong><a href="#core-definition">B/D — Bondage &amp; Discipline</a></strong>：束缚与纪律。</li>
+              <li><strong><a href="#core-definition">D/s — Dominance &amp; Submission</a></strong>：支配与服从的权力动态。</li>
+              <li><strong><a href="#core-definition">S/M — Sadism &amp; Masochism</a></strong>：施加、接受疼痛或强烈体验的兴趣维度。</li>
+              <li><strong><a href="#core-definition">Kink</a></strong>：相对于某种常规而言较不传统的亲密兴趣。</li>
+              <li><strong><a href="#core-definition">Fetish</a></strong>：对特定物件、材质或身体部位等的性兴趣。</li>
+              <li><strong><a href="#core-definition">Kinkster</a></strong>：部分人对有 Kink 兴趣或参与相关社群者的自称。</li>
+              <li><strong><a href="#core-definition">Vanilla</a></strong>：常用于描述不以 Kink/BDSM 为重点的互动；不表示高低优劣。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">角色</span><span class="term-tag">权力动态</span></div>
+          <p>用法与边界见<a href="#core-definition">相关正文</a>。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Consent &amp; Safety Terms</span><span
-            class="term-zh">同意与安全核心词</span>
+          <div class="term-corner"></div><span class="term-en">Positions &amp; Service</span><span class="term-zh">权力位置、操作位置与服务</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Safeword</strong>：安全词；任何一方说出即立刻停止或降速，不受角色扮演影响。</li>
-              <li><strong>Hard Limit</strong>：硬限制；绝对不做的边界，不可被谈判或压力改变。</li>
-              <li><strong>Soft Limit</strong>：软限制；尚未准备好但可在充分沟通后考虑尝试的边界。</li>
-              <li><strong>Negotiation</strong>：协商；场景前对目标、边界、风险与应急方案的细致沟通。</li>
-              <li><strong>Check-in</strong>：过程中主动确认对方状态与意愿的行为。</li>
-              <li><strong>Aftercare</strong>：事后照顾；场景结束后对身体与情绪的安抚与恢复支持。</li>
-              <li><strong>Debrief / 复盘</strong>：场景后回顾哪些有效、哪些需调整，为下次实践提供依据。</li>
+              <li><strong><a href="#roles-boundaries">Dom / Dominant / Domme</a></strong>：经协商承担主导位置的人；称呼由本人选择。</li>
+              <li><strong><a href="#roles-boundaries">Sub / Submissive</a></strong>：在约定范围内自愿交托部分决定权的人。</li>
+              <li><strong><a href="#roles-boundaries">Top</a></strong>：实施某项活动的人，不一定是 Dom。</li>
+              <li><strong><a href="#roles-boundaries">Bottom</a></strong>：接受某项活动的人，不一定是 Sub。</li>
+              <li><strong><a href="#roles-boundaries">Switch</a></strong>：在某些关系、场景或维度中偏好切换位置。</li>
+              <li><strong><a href="#service-roles">Service Top</a></strong>：以接受方偏好为重点的操作方。</li>
+              <li><strong><a href="#service-roles">Power Bottom / Dominant Bottom</a></strong>：强调接受活动时主动引导或主导；用法有差异。</li>
+              <li><strong><a href="#service-roles">Service Sub</a></strong>：以经协商的服务表达服从。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">同意</span><span class="term-tag">边界</span></div>
+          <p>用法与边界见<a href="#service-roles">相关正文</a>。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Scene &amp; Play Terms</span><span
-            class="term-zh">场景与玩法词</span>
+          <div class="term-corner"></div><span class="term-en">Styles &amp; Titles</span><span class="term-zh">互动风格与称谓</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Scene</strong>：一段有开始与结束的 BDSM 互动，通常有约定的规则与角色。</li>
-              <li><strong>Play</strong>：泛指 BDSM 实践活动，强调自愿与实验性。</li>
-              <li><strong>Bondage</strong>：束缚；用绳、布带、手铐等限制行动自由。</li>
-              <li><strong>Impact Play</strong>：冲击类刺激；包括用手、鞭子、桨等施加力道的玩法。</li>
-              <li><strong>Sensation Play</strong>：感官类玩法；使用温度、质感、振动等刺激感官。</li>
-              <li><strong>Role Play</strong>：角色扮演；双方扮演约定角色，可与权力动态结合。</li>
-              <li><strong>CNC</strong>：协商不同意（Consensual Non-Consent）；在真实同意前提下扮演"假装抵抗"的高风险场景。</li>
+              <li><strong><a href="#gentle-dynamics">Soft Dom / Gentle Dom</a></strong>：偏温和、关怀或肯定式的主导风格描述。</li>
+              <li><strong><a href="#gentle-dynamics">Pleasure Dom</a></strong>：以对方愉悦为体验重点的主导风格描述。</li>
+              <li><strong><a href="#brat-dynamics">Brat</a></strong>：通过经协商的调皮或挑战获得互动张力。</li>
+              <li><strong><a href="#brat-dynamics">Brat Tamer</a></strong>：愿意回应 Brat 挑战的搭档。</li>
+              <li><strong><a href="#princess-dynamics">Princess / Prince</a></strong>：可表达被宠爱或被服务的期待；没有统一角色定义。</li>
+              <li><strong><a href="#roles-boundaries">Master / Mistress / Slave</a></strong>：部分社群的关系或场景称谓，不产生现实所有权。</li>
+              <li><strong><a href="#care-dynamics">Caregiver / Little（CG/l）</a></strong>：成年人间的照顾型动态或情境角色。</li>
+              <li><strong><a href="#care-dynamics">Daddy / Mommy</a></strong>：照顾者或主导者称呼，不一定涉及年龄扮演。</li>
+              <li><strong><a href="#care-dynamics">Age Play</a></strong>：成年人之间的年龄角色扮演。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">场景</span><span class="term-tag">玩法</span></div>
+          <p>用法与边界见<a href="#roles-boundaries">相关正文</a>。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Psychological Terms</span><span
-            class="term-zh">心理与状态词</span>
+          <div class="term-corner"></div><span class="term-en">Sensation &amp; Persona</span><span class="term-zh">感官兴趣与情境角色</span>
           <div class="term-desc">
             <ul>
-              <li><strong>Subspace</strong>：部分接受方在场景中报告的高度专注、恍惚或飘离体验；其反应和判断可能改变，不能据此推定持续同意。</li>
-              <li><strong>Topspace / Domspace</strong>：部分操作方或主导方报告的高度专注状态，也可能降低对外部信号的觉察，需要主动 check-in。</li>
-              <li><strong>Sub Drop</strong>：场景后服从方出现的情绪低落、空虚或疲惫感，可能延迟数小时到数天出现。</li>
-              <li><strong>Top Drop</strong>：场景后主导方出现的类似情绪低落，常被忽视但同样需要照顾。</li>
-              <li><strong>Trigger</strong>：触发点；特定行为、语言或情境可能激活的情绪或创伤反应，需提前说明。</li>
-              <li><strong>Afterdrop</strong>：社群中对场景后低落、疲惫、颤抖或空虚等反应的概括性称呼；成因因人而异，不应自行归结为单一激素机制。</li>
+              <li><strong><a href="#roles-boundaries">Sadist</a></strong>：对施加经协商的疼痛或强烈体验感兴趣。</li>
+              <li><strong><a href="#roles-boundaries">Masochist</a></strong>：对接受经协商的疼痛或强烈体验感兴趣。</li>
+              <li><strong><a href="#roles-boundaries">Sadomasochist / Pain Switch</a></strong>：有些人用来描述同时喜欢施加与接受疼痛；不等于在所有维度都切换。</li>
+              <li><strong><a href="#roles-boundaries">Rigger</a></strong>：绳艺中的绑缚操作方。</li>
+              <li><strong><a href="#roles-boundaries">Rope Bottom / Rope Bunny</a></strong>：绳艺中的接受方；称呼是否合适应询问本人。</li>
+              <li><strong><a href="#roles-boundaries">Experimentalist</a></strong>：某些网络分类中对新体验持开放兴趣的描述。</li>
+              <li><strong><a href="#roles-boundaries">Owner / Pet</a></strong>：围绕照料、宠物化身份或扮演建立的动态。</li>
+              <li><strong><a href="#roles-boundaries">Primal / Hunter / Prey</a></strong>：偏本能、追逐或身体互动的风格标签，具体用法有差异。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">心理</span><span class="term-tag">状态</span><span
-              class="term-tag">照顾</span></div>
+          <p>用法与边界见<a href="#roles-boundaries">相关正文</a>。</p></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Relationship &amp; Community Terms</span><span
-            class="term-zh">关系与社群词</span>
+          <div class="term-corner"></div><span class="term-en">Activity Terms</span><span class="term-zh">活动与表达偏好</span>
           <div class="term-desc">
             <ul>
-              <li><strong>D/s Relationship</strong>：将权力动态延伸到日常关系结构中的持续关系形式。</li>
-              <li><strong>TPE（Total Power Exchange）</strong>：全面权力交换；高度结构化、高承诺的关系形式，需极高信任与透明度。</li>
-              <li><strong>Collar</strong>：项圈；在部分社群中有象征承诺关系的意义，类似于戒指，含义因人而异。</li>
-              <li><strong>Munch</strong>：非场景的社群聚会，通常在普通公共场所，以交流和认识新朋友为目的。</li>
-              <li><strong>Kink-Aware Professional</strong>：了解并尊重 BDSM 文化的心理咨询师或医疗专业人士。</li>
-              <li><strong>Vanilla</strong>：非 BDSM 的主流性关系或互动方式；无贬义。</li>
+              <li><strong><a href="#scene-setup">Scene</a></strong>：有约定范围、开始与结束的一段互动。</li>
+              <li><strong><a href="#scene-setup">Play</a></strong>：泛指相关实践或情境互动。</li>
+              <li><strong><a href="#scene-setup">Bondage</a></strong>：经协商的行动限制或束缚。</li>
+              <li><strong><a href="#scene-setup">Impact Play</a></strong>：冲击类感官活动。</li>
+              <li><strong><a href="#scene-setup">Sensation Play</a></strong>：围绕质感、温度等感官元素的活动。</li>
+              <li><strong><a href="#scene-setup">Role Play</a></strong>：扮演约定的角色或情境。</li>
+              <li><strong><a href="#scene-setup">Pet Play</a></strong>：宠物化角色或身份扮演。</li>
+              <li><strong><a href="#expression-preferences">Praise Kink</a></strong>：肯定与赞赏在亲密情境中带来特别的愉悦或兴奋。</li>
+              <li><strong><a href="#expression-preferences">Degradation / Humiliation</a></strong>：经协商的贬低或羞耻主题；两词用法与侧重点可能不同。</li>
+              <li><strong><a href="#expression-preferences">Degrader / Degradee</a></strong>：施加、接受贬低主题的社群称呼。</li>
+              <li><strong><a href="#expression-preferences">Exhibitionist / Voyeur</a></strong>：在本文语境中，对合意的被观看、观看感兴趣。</li>
+              <li><strong><a href="#cnc-boundaries">CNC — Consensual Non-Consent</a></strong>：真实同意下扮演抵抗或不愿意的高风险情境。</li>
+              <li><strong><a href="#scene-setup">Edge Play</a></strong>：对较高风险活动的社群称呼；没有人人相同的边界。</li>
             </ul>
-          </div>
-          <div class="term-tags"><span class="term-tag">关系</span><span class="term-tag">社群</span></div>
+          <p>用法与边界见<a href="#scene-setup">相关正文</a>。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Consent &amp; Limits</span><span class="term-zh">同意、协商与边界</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong><a href="#consent-process">Consent</a></strong>：具体、知情、自愿、明确且可撤回的同意。</li>
+              <li><strong><a href="#consent-process">Negotiation</a></strong>：对体验、活动、风险、限制与照顾等的协商。</li>
+              <li><strong><a href="#preference-limits">Hard Limit</a></strong>：当下明确不接受的边界。</li>
+              <li><strong><a href="#preference-limits">Soft Limit</a></strong>：不确定或仅在特定条件下愿意讨论的边界。</li>
+              <li><strong><a href="#preference-limits">Yes / No / Maybe</a></strong>：整理意愿的清单方法，不是永久授权。</li>
+              <li><strong><a href="#safe-signals">Safeword / Safe Signal</a></strong>：表达停止或调整的口头、非口头约定信号。</li>
+              <li><strong><a href="#safe-signals">Traffic-light System</a></strong>：红、黄、绿的信号约定；各自动作需事先明确。</li>
+              <li><strong><a href="#consent-process">Check-in</a></strong>：主动确认当前感受、意愿与沟通是否可靠。</li>
+            </ul>
+          <p>用法与边界见<a href="#preference-limits">相关正文</a>。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Frameworks &amp; Care</span><span class="term-zh">风险框架与照顾流程</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong><a href="#safety-frameworks">SSC — Safe, Sane, Consensual</a></strong>：强调安全、同意能力与自愿同意的历史框架。</li>
+              <li><strong><a href="#safety-frameworks">RACK — Risk-Aware Consensual Kink</a></strong>：强调承认风险并知情同意的框架。</li>
+              <li><strong><a href="#safety-frameworks">PRICK — Personal Responsibility, Informed, Consensual Kink</a></strong>：强调个人责任与知情同意的框架。</li>
+              <li><strong><a href="#aftercare-plan">Aftercare</a></strong>：按需求安排的身体与情绪照顾。</li>
+              <li><strong><a href="#debrief-records">Debrief</a></strong>：稍后回顾体验、约定与调整的复盘。</li>
+              <li><strong><a href="#risk-emergency">Safety Plan</a></strong>：明确异常、停止、解除与求助安排的计划。</li>
+            </ul>
+          <p>用法与边界见<a href="#consent-process">相关正文</a>。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">States &amp; Reactions</span><span class="term-zh">状态与延迟反应</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong><a href="#consent-process">Subspace</a></strong>：部分接受方报告的专注、恍惚等体验；不能据此推定持续同意。</li>
+              <li><strong><a href="#consent-process">Topspace / Domspace</a></strong>：部分操作方或主导方报告的高度专注体验；仍需观察与确认。</li>
+              <li><strong><a href="#drop-reactions">Sub Drop</a></strong>：场景后服从方或接受方报告的低落、疲惫等体验。</li>
+              <li><strong><a href="#drop-reactions">Top Drop</a></strong>：场景后主导方或操作方报告的类似体验。</li>
+              <li><strong><a href="#drop-reactions">Afterdrop / Drop</a></strong>：对场景后低落或疲惫等反应的概括性社群称呼。</li>
+              <li><strong><a href="#drop-reactions">Trigger</a></strong>：可能引起强烈情绪或创伤相关反应的情境、语言等触发点。</li>
+            </ul>
+          <p>用法与边界见<a href="#drop-reactions">相关正文</a>。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Relationships &amp; Queer Contexts</span><span class="term-zh">持续关系与相邻社群用语</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong><a href="#ongoing-dynamics">D/s Relationship</a></strong>：在关系中持续存在某种协商过的权力动态。</li>
+              <li><strong><a href="#ongoing-dynamics">M/s Relationship</a></strong>：使用 Master/Mistress 与 Slave 等关系语言的动态。</li>
+              <li><strong><a href="#ongoing-dynamics">Protocol</a></strong>：约定的称呼、礼仪或服务规则。</li>
+              <li><strong><a href="#ongoing-dynamics">24/7</a></strong>：权力动态延伸到日常的描述，不等于持续处在场景中。</li>
+              <li><strong><a href="#ongoing-dynamics">TPE — Total Power Exchange</a></strong>：强调较广交托范围的关系语言，不取消撤回权。</li>
+              <li><strong><a href="#ongoing-dynamics">Collar / Collaring</a></strong>：项圈及其相关仪式，可能象征承诺，也可能只作装饰；含义需确认。</li>
+              <li><strong><a href="#ongoing-dynamics">Consensual Non-monogamy / Non-monogamist</a></strong>：协商式非单偶及相关自我描述，不由 BDSM 角色决定。</li>
+              <li><strong><a href="#pillow-princess">Pillow Princess</a></strong>：酷儿亲密语境中的接受偏好，与 Princess 的角色期待不同。</li>
+              <li><strong><a href="#pillow-princess">Pillow Prince</a></strong>：与 Pillow Princess 相近的部分用法，具体含义由本人解释。</li>
+              <li><strong><a href="#pillow-princess">Stone</a></strong>：部分酷儿语境中关于自身性接触边界的用语。</li>
+            </ul>
+          <p>用法与边界见<a href="#ongoing-dynamics">相关正文</a>。</p></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Community &amp; Support</span><span class="term-zh">社群空间、角色与支持</span>
+          <div class="term-desc">
+            <ul>
+              <li><strong><a href="#resources">Munch</a></strong>：通常以普通公共场所交流为主、不进行场景活动的聚会。</li>
+              <li><strong><a href="#resources">Play Party</a></strong>：进行场景活动的聚会；入场不等于参与或观看许可。</li>
+              <li><strong><a href="#resources">Dungeon</a></strong>：相关活动空间的社群称呼，不必指地下室。</li>
+              <li><strong><a href="#resources">DM — Dungeon Monitor</a></strong>：在某些活动中负责监督规则与安全的人员；实际职责应看活动规定。</li>
+              <li><strong><a href="#resources">Kink-Aware Professional</a></strong>：理解相关社群语境的专业人士；仍应核对专业资格与服务范围。</li>
+            </ul>
+          <p>用法与边界见<a href="#resources">相关正文</a>。</p></div>
         </div>
       </div>
     </section>
     <section id="resources" class="category-section">
-      <div class="category-title">资源推荐 · Further Resources</div>
+      <div class="category-title">参考资料、学习与支持 · Sources &amp; Resources</div>
       <div class="terms-grid">
         <div class="term-card highlight">
-          <div class="term-corner"></div><span class="term-en">Books</span><span class="term-zh">入门书目（英文为主）</span>
+          <div class="term-corner"></div><span class="term-en">How to Read These Sources</span><span class="term-zh">先区分研究、社群用语与专业服务</span>
           <div class="term-desc">
             <ul>
-              <li>SM 101（Jay Wiseman）</li>
-              <li>The New Topping Book / The New Bottoming Book（Dossie Easton &amp; Janet Hardy）</li>
-              <li>Playing Well with Others（Lee Harrington &amp; Mollena Williams）</li>
-              <li>The Ethical Slut（非单偶/开放关系沟通经典）</li>
+              <li><strong>研究资料</strong>：可帮助理解样本中的经验与差异；不能用研究中的自称词表决定一个人的身份。</li>
+              <li><strong>社群资料</strong>：提供使用记录与沟通建议；不同社群、平台与本人可能有不同定义。</li>
+              <li><strong>医学资料</strong>：用于识别风险与求助边界；具体状况仍需实际评估。</li>
+              <li><strong>法律资料</strong>：始终核对所在地与适用时间；美国或英国的材料不能直接当作其他地区的法律结论。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">书籍</span><span class="term-tag">入门</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Skills</span><span class="term-zh">学习与训练建议</span>
+          <div class="term-corner"></div><span class="term-en">Consent &amp; Relationships</span><span class="term-zh">协商、持续关系与越界识别</span>
           <div class="term-desc">
             <ul>
-              <li>优先学习风险管理：基础急救、沟通协商、心理照顾与应急流程。</li>
-              <li>器具/绳艺等技术类内容建议从可信渠道、线下课程或有口碑的教学体系开始。</li>
-              <li>把“能停下”和“会复盘”视为核心技能，而不仅是动作技能。</li>
+              <li><a href="https://ncsfreedom.org/key-programs-2/consent-counts/" target="_blank" rel="noopener noreferrer">NCSF Consent Counts</a>：同意、社群应对与美国法律资料的总入口。</li>
+              <li><a href="https://ncsfreedom.org/wp-content/uploads/2023/06/Negotiation-Guide.pdf" target="_blank" rel="noopener noreferrer">NCSF Negotiation Guide</a>：帮助把意图、参与者、活动、风险与照顾转成协商问题。</li>
+              <li><a href="https://ncsfreedom.org/wp-content/uploads/2022/01/Best-Practices-for-Consent-to-Kink.pdf" target="_blank" rel="noopener noreferrer">NCSF Best Practices for Consent to Kink</a>：事前明确许可、可撤回与状态改变时的同意限制。</li>
+              <li><a href="https://ncsfreedom.org/wp-content/uploads/2019/12/Power-Exchange-Statement.pdf" target="_blank" rel="noopener noreferrer">NCSF Power Exchange Statement</a>：持续权力动态的伦理与美国法律语境。</li>
+              <li><a href="https://ncsfreedom.org/2023/12/04/red-flags/" target="_blank" rel="noopener noreferrer">NCSF Red Flags</a>：关注边界被否定、施压与控制等行为。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">训练</span><span class="term-tag">技能</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Support</span><span class="term-zh">支持与求助</span>
+          <div class="term-corner"></div><span class="term-en">Vocabulary &amp; Usage</span><span class="term-zh">基础词汇与含义多变的标签</span>
           <div class="term-desc">
             <ul>
-              <li>寻找尊重多元与知情同意的咨询/治疗资源（如具备 kink-aware 经验的专业人士）。</li>
-              <li>如遭遇越界、胁迫或伤害：优先保证人身安全，保留证据并寻求可信支持。</li>
+              <li><a href="https://ncsfreedom.org/wp-content/uploads/2022/07/BDSM-Glossary-and-Resources.pdf" target="_blank" rel="noopener noreferrer">NCSF BDSM Glossary</a>：基础词汇与资源入口。其历史或法律表述需要结合语境阅读。</li>
+              <li><a href="https://www.autostraddle.com/service-tops-bratty-bottoms-and-pillow-princesses-other-words-you-use-to-describe-how-you-have-sex-426800/" target="_blank" rel="noopener noreferrer">Autostraddle：Service Tops、Bratty Bottoms 与 Pillow Princesses</a>：问卷参与者的自述与用语整理；不代表人口比例或统一定义。</li>
+              <li><a href="https://www.autostraddle.com/how-to-please-a-pillow-princess-by-a-pillow-princess/" target="_blank" rel="noopener noreferrer">Autostraddle：Pillow Princess 的本人经验</a>与 <a href="https://www.dictionary.com/culture/slang/pillow-princess" target="_blank" rel="noopener noreferrer">Dictionary.com 用语记录</a>：理解接受偏好及该词的酷儿语境。</li>
+              <li><a href="https://feeld.co/ask-feeld/how-to/what-is-a-pleasure-dom-and-how-to-be-one" target="_blank" rel="noopener noreferrer">Feeld：Pleasure Dom 采访</a>与 <a href="https://resources.sfaf.org/collections/beta/whats-a-pleasure-dom-or-soft-dom-nsfw/" target="_blank" rel="noopener noreferrer">SFAF：Pleasure Dom / Soft Dom</a>：不同作者的互动风格描述。</li>
+              <li><a href="https://feeld.co/ask-feeld/how-to/what-is-a-praise-kink-tips-phrases-and-how-it-works" target="_blank" rel="noopener noreferrer">Feeld：Praise Kink 采访</a>：肯定与赞赏的亲密用语语境。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">支持</span><span class="term-tag">安全</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Community Norms</span><span
-            class="term-zh">如何筛选更安全的资源与社群</span>
+          <div class="term-corner"></div><span class="term-en">Research Context</span><span class="term-zh">概念研究与角色自我称谓记录</span>
           <div class="term-desc">
             <ul>
-              <li>看是否强调同意与安全：是否公开反对胁迫、是否鼓励复盘与学习。</li>
-              <li>看是否尊重边界：是否允许拒绝、是否反对“新人必须服从”的文化。</li>
-              <li>看是否重视隐私：是否禁止偷拍视频/强制曝光，是否有处理纠纷的机制。</li>
+              <li><a href="https://www.tandfonline.com/doi/full/10.1080/00224499.2019.1665619" target="_blank" rel="noopener noreferrer">Brown、Barker 与 Rahman（2020）：BDSM 研究范围综述</a>：梳理概念、动机和研究限制。</li>
+              <li><a href="https://www.brycewestlake.com/wp-content/uploads/2023/12/An-International-Survey-of-BDSM-Practitioner-Demographics-Westlake-Mahan-2023.pdf" target="_blank" rel="noopener noreferrer">Westlake 与 Mahan（2023）：BDSM 参与者国际调查</a>：记录多种自我称谓，包括 Prince/Princess。词汇出现于调查，不等于其含义已有共识。</li>
+              <li>使用调查时需考虑招募渠道、样本和问题设计。本页不把其中比例用于身份判断，也不为所有词指定未经核实的起源日期。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">筛选</span><span class="term-tag">社群</span></div>
         </div>
         <div class="term-card">
-          <div class="term-corner"></div><span class="term-en">Online Exploration</span><span
-            class="term-zh">本次内容参考入口与使用边界</span>
+          <div class="term-corner"></div><span class="term-en">Health, Care &amp; Support</span><span class="term-zh">医学风险、照顾与求助入口</span>
           <div class="term-desc">
             <ul>
-              <li><a href="https://ncsfreedom.org/key-programs-2/consent-counts/" target="_blank" rel="noopener noreferrer">NCSF Consent Counts</a>：提供事前明确许可、协商、同意事件应对与法律资料；其中法律内容以美国为主，不能替代当地法律意见。</li>
-              <li><a href="https://www.gloshospitals.nhs.uk/about-us/news-media/press-releases-statements/non-fatal-strangulation-there-is-no-safe-way-to-strangle/" target="_blank" rel="noopener noreferrer"><em>Non-fatal strangulation: there is no safe way to strangle</em></a>（Gloucestershire Hospitals NHS Foundation Trust）：说明颈部受压可能没有可见外伤、症状可能延迟，以及何时寻求医疗帮助。</li>
-              <li><a href="https://www.bdsmtest.org/" target="_blank" rel="noopener noreferrer">BDSM Test</a>：仅可用于浏览社群词汇和生成反思问题；它不是经过临床验证的诊断、能力认证或关系匹配工具。</li>
-              <li>阅读任何角色分类时，都应回到具体行为、风险、边界与照顾需求，而不是只比较标签或百分比。</li>
+              <li><a href="https://www.gloshospitals.nhs.uk/about-us/news-media/press-releases-statements/non-fatal-strangulation-there-is-no-safe-way-to-strangle/" target="_blank" rel="noopener noreferrer">Gloucestershire Hospitals NHS：Non-fatal strangulation</a>：颈部受压的隐蔽损伤、延迟症状与求医提醒。</li>
+              <li><a href="https://feeld.co/ask-feeld/how-to/what-is-aftercare" target="_blank" rel="noopener noreferrer">Feeld：Aftercare 采访</a>：不同照顾方式与事前安排。本文不把 Drop 归因于单一激素机制。</li>
+              <li>寻找理解 Kink 的医疗、心理或法律支持时，仍核对资格、保密规则与服务范围。理解社群语言不能代替专业能力。</li>
+              <li>遭遇伤害或越界时，优先使用所在地医疗、可信支持和合适的法律渠道，不必先获得社群认可才求助。</li>
             </ul>
           </div>
-          <div class="term-tags"><span class="term-tag">来源</span><span class="term-tag">阅读边界</span></div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Books</span><span class="term-zh">入门书目与延伸阅读</span>
+          <div class="term-desc">
+            <ul>
+              <li><a href="https://jaywiseman.com/wordpress/index.php/store/SM-101-A-Realistic-Introduction-Second-Edition-p273660502" target="_blank" rel="noopener noreferrer">SM 101: A Realistic Introduction</a>（Jay Wiseman）：入门概念、同意、协商与安全主题；出版较早，医学与法律部分需结合当前资料。</li>
+              <li><em>The New Topping Book / The New Bottoming Book</em>（Dossie Easton &amp; Janet W. Hardy）：可结合操作方与接受方两个位置阅读。</li>
+              <li><a href="https://www.mollena.com/books/" target="_blank" rel="noopener noreferrer"><em>Playing Well with Others</em></a>（Lee Harrington &amp; Mollena Williams）：了解 Kink、皮革与 BDSM 社群，以及参与活动和沟通的语境。</li>
+              <li><a href="https://www.penguinrandomhouse.com/books/553912/the-ethical-slut-third-edition-by-janet-w-hardy-and-dossie-easton/" target="_blank" rel="noopener noreferrer">The Ethical Slut, Third Edition</a>（Janet W. Hardy &amp; Dossie Easton）：非单偶关系与沟通的延伸阅读；参与 BDSM 不必选择非单偶。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="term-card">
+          <div class="term-corner"></div><span class="term-en">Learning &amp; Communities</span><span class="term-zh">筛选课程、社群与网络探索工具</span>
+          <div class="term-desc">
+            <ul>
+              <li>关注课程是否说明能力范围、风险、不适用情况和应急安排；器具技术与基础急救需要可信教学，不能靠短视频或本文替代。</li>
+              <li>看组织是否允许拒绝、保护隐私、公开活动规则和处理问题的渠道；名气、收费或头衔都不保证能妥善处理越界。</li>
+              <li>参加聚会不代表愿意触碰、观看、被观看或被拍摄。提前核对具体活动内容与退出安排。</li>
+              <li><a href="https://www.bdsmtest.org/" target="_blank" rel="noopener noreferrer">BDSM Test</a>：可作词汇探索与反思问题的入口。本指南不把测试结果用作诊断、技能认证、匹配证明或同意依据。</li>
+              <li>阅读角色分类后，仍回到本人解释、具体行为、风险、边界与照顾需求。</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -1759,7 +1855,7 @@
     <button type="button" class="toc-toggle-btn" aria-label="打开目录导航" aria-controls="tocPanel" aria-expanded="false" title="点击展开/收起目录">≡</button>
     <div class="toc-panel" id="tocPanel">
       <div class="toc-panel-header">
-        <span>目录</span><span class="toc-close-icon" id="closeTocBtn" aria-label="关闭目录">✕</span>
+        <span>目录</span><span class="toc-close-icon" id="closeTocBtn" role="button" tabindex="0" aria-label="关闭目录">✕</span>
       </div>
       <ul class="toc-list" id="dynamicTocList">
         <!-- 动态生成章节链接列表 -->
@@ -1794,7 +1890,7 @@
             // 如果悬浮面板开着，关闭面板 (提升体验)
             const panel = document.getElementById('tocPanel');
             if (panel && panel.classList.contains('open')) {
-              panel.classList.remove('open');
+              closePanel();
             }
           }
         });
@@ -1860,12 +1956,12 @@
         link.addEventListener('click', (e) => {
           // 关闭悬浮面板
           if (panelForClose) {
-            panelForClose.classList.remove('open');
+            closePanel();
           }
         });
       });
 
-      // ========= 新增：滚动高亮当前章节 =========
+      // ---------- 滚动高亮当前章节 ----------
       // 获取所有需要监听的章节（与生成目录时使用的 sections 一致）
       const sectionsForHighlight = Array.from(document.querySelectorAll('.main-content .category-section[id]'));
       // 获取所有目录链接（与生成目录的 a 标签对应）
@@ -1882,63 +1978,29 @@
         }
       }
 
-      // 使用 IntersectionObserver 检测哪个章节进入视口
-      const observer = new IntersectionObserver(
-        (entries) => {
-          // 找出所有可见比例大于 0 的条目，按可见比例排序，取最大的一个
-          let bestEntry = null;
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
-                bestEntry = entry;
-              }
-            }
-          }
-          if (bestEntry && bestEntry.target.id) {
-            highlightCurrentSection(bestEntry.target.id);
-          }
-        },
-        {
-          // 根为视口，threshold 设置多个阈值确保平滑触发
-          threshold: [0.1, 0.3, 0.5, 0.7],
-          rootMargin: '-10% 0px -30% 0px'  // 让章节顶部靠近视口顶部时即触发高亮
-        }
-      );
-
-      // 监听所有章节
-      sectionsForHighlight.forEach(section => observer.observe(section));
-
-      // 初始化：若 URL 有 hash，优先高亮对应章节；否则高亮第一个可见章节或第一个章节
+      // 以视口上部的阅读位置判断当前章节，避免长章节被下一章抢占高亮
       function initHighlight() {
-        const hash = window.location.hash.substring(1);
-        if (hash && sectionsForHighlight.some(s => s.id === hash)) {
-          highlightCurrentSection(hash);
-        } else {
-          // 查找当前视口中最靠上的章节
-          let best = null;
-          for (const section of sectionsForHighlight) {
-            const rect = section.getBoundingClientRect();
-            if (rect.top > 0 && (best === null || rect.top < best.top)) {
-              best = section;
-            }
-          }
-          if (best) {
-            highlightCurrentSection(best.id);
-          } else if (sectionsForHighlight.length > 0) {
-            highlightCurrentSection(sectionsForHighlight[0].id);
+        const readingLine = window.innerHeight * 0.2;
+        let currentSection = sectionsForHighlight[0];
+        for (const section of sectionsForHighlight) {
+          if (section.getBoundingClientRect().top <= readingLine) {
+            currentSection = section;
+          } else {
+            break;
           }
         }
+        if (currentSection) highlightCurrentSection(currentSection.id);
       }
       initHighlight();
 
-      // 当用户点击目录链接进行平滑滚动时，手动更新高亮（避免 Observer 延迟）
+      // 当用户点击目录链接进行平滑滚动时，手动更新高亮（在滚动开始前提供反馈）
       tocLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           const href = link.getAttribute('href');
           if (href && href.startsWith('#')) {
             const targetId = href.substring(1);
             highlightCurrentSection(targetId);
-            // 原有平滑滚动逻辑已经存在，不需要额外处理，但为了确保高亮，这里立即设置
+            // 滚动过程中继续按阅读位置更新高亮
           }
         });
       });
@@ -1974,8 +2036,22 @@
         closeBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           closePanel();
+          if (toggleBtn) toggleBtn.focus();
+        });
+        closeBtn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            closePanel();
+            if (toggleBtn) toggleBtn.focus();
+          }
         });
       }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel && panel.classList.contains('open')) {
+          closePanel();
+          if (toggleBtn) toggleBtn.focus();
+        }
+      });
       // 点击面板外部关闭（点击文档其他区域时关闭面板，但不影响链接内部）
       document.addEventListener('click', function (event) {
         if (!panel || !panel.classList.contains('open')) return;
@@ -1992,6 +2068,7 @@
       // 可选: 滚动时自动关闭面板（减少遮挡感）
       let scrollTimer;
       window.addEventListener('scroll', function () {
+        initHighlight();
         if (panel && panel.classList.contains('open')) {
           if (scrollTimer) clearTimeout(scrollTimer);
           scrollTimer = setTimeout(() => {
