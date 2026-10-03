@@ -1097,6 +1097,18 @@
       width: min(88vw, 360px);
     }
 
+    /* The subscription dialog carries six entries; two columns keep it
+       from running off the bottom of the viewport on desktop. */
+    @media (min-width: 720px) {
+      #resourceDialog {
+        width: min(88vw, 620px);
+      }
+
+      #resourceDialog .resource-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     .qr-dialog::backdrop {
       background: rgba(15, 20, 26, 0.56);
       backdrop-filter: blur(4px);
@@ -1245,6 +1257,23 @@
     }
 
     .resource-link.subscribe {
+      --resource-link-rgb: 21, 21, 21;
+      --resource-link-accent: #151515;
+    }
+
+    /* Each relay service keeps its own brand colour so the three entries
+       stay distinguishable at a glance. */
+    .resource-link.dasein {
+      --resource-link-rgb: 24, 90, 157;
+      --resource-link-accent: var(--blue);
+    }
+
+    .resource-link.proaiapi {
+      --resource-link-rgb: 217, 119, 6;
+      --resource-link-accent: var(--orange);
+    }
+
+    .resource-link.dragon3 {
       --resource-link-rgb: 91, 33, 182;
       --resource-link-accent: var(--purple);
     }
@@ -2108,6 +2137,19 @@
     }
 
     :root[data-theme="dark"] .resource-link.subscribe {
+      --resource-link-rgb: 231, 237, 243;
+      --resource-link-accent: #e7edf3;
+    }
+
+    :root[data-theme="dark"] .resource-link.dasein {
+      --resource-link-rgb: 108, 179, 236;
+    }
+
+    :root[data-theme="dark"] .resource-link.proaiapi {
+      --resource-link-rgb: 240, 200, 121;
+    }
+
+    :root[data-theme="dark"] .resource-link.dragon3 {
       --resource-link-rgb: 196, 181, 253;
     }
 
@@ -2795,7 +2837,7 @@
             <span class="support-copy">
               <span class="support-kicker">代理服务</span>
               <span class="support-title">常用订阅入口</span>
-              <span class="support-desc">合规使用网络代理服务</span>
+              <span class="support-desc">网络代理与 AI 模型 API 中转</span>
             </span>
             <span class="support-arrow" aria-hidden="true">→</span>
           </button>
@@ -2862,15 +2904,15 @@
           <div class="qr-dialog-header">
             <div class="qr-dialog-copy">
               <h3 class="qr-dialog-title" id="resourceDialogTitle">常用订阅入口</h3>
-              <p class="qr-dialog-desc">请遵守当地法律法规，合规使用网络代理服务。</p>
+              <p class="qr-dialog-desc">请遵守当地法律法规，合规使用网络代理与 AI 模型 API 中转服务。</p>
             </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭代理与 AI 订阅弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭代理、AI 中转与订阅弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
           </div>
           <div class="resource-list">
             <a class="resource-link elephant" href="https://sakuracat-1.com/register?code=Kuc1kZi6" target="_blank"
               rel="noopener noreferrer sponsored">
               <span class="resource-link-copy">
-                <span class="resource-link-tag">代理服务</span>
+                <span class="resource-link-tag">网络代理</span>
                 <span class="resource-link-title">性价比高的机场</span>
                 <span class="resource-link-desc">GPT/Claude：不推荐</span>
               </span>
@@ -2879,8 +2921,35 @@
             <a class="resource-link noww" href="https://dx.elphantroute.com/app#/register?code=n5KEb6em" target="_blank"
               rel="noopener noreferrer sponsored">
               <span class="resource-link-copy">
-                <span class="resource-link-tag">代理服务</span>
+                <span class="resource-link-tag">网络代理</span>
                 <span class="resource-link-title">性价比高的机场</span>
+                <span class="resource-link-desc">GPT/Claude：推荐</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="resource-link dasein" href="https://www.daseinai.xyz/register?aff=VWHM8SMXYMLH" target="_blank"
+              rel="noopener noreferrer sponsored">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">AI 中转</span>
+                <span class="resource-link-title">性价比高的中转站</span>
+                <span class="resource-link-desc">GPT：推荐</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="resource-link proaiapi" href="https://proaiapi.vip/register?aff=WsJ0" target="_blank"
+              rel="noopener noreferrer sponsored">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">AI 中转</span>
+                <span class="resource-link-title">性价比高的中转站</span>
+                <span class="resource-link-desc">Claude：推荐</span>
+              </span>
+              <span class="resource-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="resource-link dragon3" href="https://newapi.dragon3api.com/sign-up?aff=aEBR" target="_blank"
+              rel="noopener noreferrer sponsored">
+              <span class="resource-link-copy">
+                <span class="resource-link-tag">AI 中转</span>
+                <span class="resource-link-title">性价比高的中转站</span>
                 <span class="resource-link-desc">GPT/Claude：推荐</span>
               </span>
               <span class="resource-link-arrow" aria-hidden="true">→</span>
