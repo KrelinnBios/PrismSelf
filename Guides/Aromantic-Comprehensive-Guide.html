@@ -285,15 +285,17 @@
         intro.appendChild(el('div', 'divider'));
         intro.appendChild(el('div', 'category-title', '快速目录 · Quick Navigation'));
 
+        const tocLabels = ['Introduction', 'Concepts & Definitions', 'Research & Evidence', 'Development', 'Social Context', 'Relationships', 'Mental Health & Identity', 'Rights & Inclusion', 'Practice Guide', 'Future Research', 'Conclusion', 'Appendix'];
+        const tocDescriptions = ['介绍无浪漫的基本含义，以及浪漫吸引与亲密关系的多元谱系。', '区分无浪漫、浪漫吸引、性吸引与关系选择，梳理相关概念。', '结合研究资料说明现有证据、研究限制与概念使用边界。', '回顾从困惑、寻找词汇到形成自我命名的常见过程。', '讨论恋爱规范、不可见性、误解与无浪漫者面对的社会压力。', '呈现友谊、伴侣关系、酷儿柏拉图关系等多种相处方式。', '关注自我理解、心理健康与在社会期待中建立支持网络。', '概览无浪漫相关的权益议题、社会包容与制度环境。', '提供沟通需求、表达边界、理解他人与建立关系的实用建议。', '整理研究前沿与未来可能拓展的理论和实践议题。', '总结不以浪漫为人生中心的多种生活与关系可能。', '汇总术语、参考资料与适合继续探索的资源。'];
         const tocCards = el('div', 'terms-grid toc-grid');
         sections.forEach((s, idx) => {
           const a = document.createElement('a');
           a.className = (idx === 0 || idx === 6) ? 'term-card toc-card highlight' : 'term-card toc-card';
           a.href = s.id ? `#${s.id}` : '#';
           a.appendChild(el('div', 'term-corner'));
-          a.appendChild(el('span', 'term-en', String(idx + 1)));
+          a.appendChild(el('span', 'term-en', String(idx + 1).padStart(2, '0') + ' · ' + tocLabels[idx]));
           a.appendChild(el('span', 'term-zh', s.title));
-          a.appendChild(el('div', 'term-desc'));
+          a.appendChild(el('div', 'term-desc', tocDescriptions[idx]));
           tocCards.appendChild(a);
         });
         intro.appendChild(tocCards);

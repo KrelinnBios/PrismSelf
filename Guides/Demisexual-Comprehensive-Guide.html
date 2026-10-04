@@ -155,15 +155,17 @@
         intro.appendChild(el('div', 'divider'));
 
         intro.appendChild(el('div', 'category-title', '快速目录 · Quick Navigation'));
+        const tocLabels = ['Introduction', 'Concepts & Definitions', 'Research & Evidence', 'Development', 'Social Context', 'Relationships & Sex', 'Mental Health & Identity', 'Rights & Inclusion', 'Practice Guide', 'Future Research', 'Conclusion', 'Appendix'];
+        const tocDescriptions = ['从性取向的多样性出发，说明半性恋在性吸引谱系中的位置。', '解释半性恋的核心定义，并区分性吸引、性欲、性行为与亲密感。', '介绍现有研究、证据来源与样本和定义带来的限制。', '回顾从困惑、寻找描述到逐步形成认同的可能历程。', '讨论社会规范、误读与半性恋在公共语境中的可见性。', '分析亲密关系、性行为与性吸引之间并不固定的关系。', '关注自我认知、心理健康和建立支持性环境的重要性。', '概览法律权益、反歧视与社会包容相关议题。', '提供自我理解、沟通需求与处理关系期待的实践思路。', '整理研究进展、尚未解决的问题与未来探索方向。', '总结半性恋经验的多样性，以及避免替他人下结论的原则。', '汇总专业资料、社群资源与延伸阅读入口。'];
         const tocCards = el('div', 'terms-grid toc-grid');
         sections.forEach((s, idx) => {
           const a = document.createElement('a');
           a.className = (idx === 0 || idx === 7) ? 'term-card toc-card highlight' : 'term-card toc-card';
           a.href = s.id ? `#${s.id}` : '#';
           a.appendChild(el('div', 'term-corner'));
-          a.appendChild(el('span', 'term-en', String(idx + 1)));
+          a.appendChild(el('span', 'term-en', String(idx + 1).padStart(2, '0') + ' · ' + tocLabels[idx]));
           a.appendChild(el('span', 'term-zh', s.title));
-          a.appendChild(el('div', 'term-desc'));
+          a.appendChild(el('div', 'term-desc', tocDescriptions[idx]));
           tocCards.appendChild(a);
         });
         intro.appendChild(tocCards);

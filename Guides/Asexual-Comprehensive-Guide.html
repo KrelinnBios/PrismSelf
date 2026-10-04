@@ -199,15 +199,17 @@
         intro.appendChild(el('div', 'divider'));
 
         intro.appendChild(el('div', 'category-title', '快速目录 · Quick Navigation'));
+        const tocLabels = ['Introduction', 'Concepts & Definitions', 'Research & Evidence', 'Development', 'Social Context', 'Relationships & Sex', 'Mental Health & Identity', 'Rights & Inclusion', 'Practice Guide', 'Future Research', 'Conclusion', 'Appendix'];
+        const tocDescriptions = ['从性吸引框架出发，介绍无性恋的基本概念与谱系位置。', '区分无性恋、性欲、性行为与浪漫吸引，梳理常见术语。', '结合研究结果说明证据范围、样本限制与解释边界。', '回顾无性恋概念从困惑、命名到身份认同的发展过程。', '讨论异性恋规范、误解、污名与无性恋的社会可见性。', '说明无性恋者在亲密关系、伴侣关系与性议题中的多种可能。', '关注心理健康、自我接纳与身份认同形成中的支持因素。', '概览无性恋相关的法律权益、公共理解与社会包容。', '提供沟通、理解自己和支持他人的具体思路与实践建议。', '整理当前研究问题、理论发展与未来值得关注的方向。', '回到多元性与个体经验，概括理解无性恋时的重要原则。', '汇总参考资料、组织资源与适合继续阅读的延伸内容。'];
         const tocCards = el('div', 'terms-grid toc-grid');
         sections.forEach((s, idx) => {
           const a = document.createElement('a');
           a.className = (idx === 0 || idx === 7) ? 'term-card toc-card highlight' : 'term-card toc-card';
           a.href = s.id ? `#${s.id}` : '#';
           a.appendChild(el('div', 'term-corner'));
-          a.appendChild(el('span', 'term-en', String(idx + 1)));
+          a.appendChild(el('span', 'term-en', String(idx + 1).padStart(2, '0') + ' · ' + tocLabels[idx]));
           a.appendChild(el('span', 'term-zh', s.title));
-          a.appendChild(el('div', 'term-desc'));
+          a.appendChild(el('div', 'term-desc', tocDescriptions[idx]));
           tocCards.appendChild(a);
         });
         intro.appendChild(tocCards);
