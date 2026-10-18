@@ -375,6 +375,62 @@
       z-index: 1;
     }
 
+    .whichme-card {
+      position: absolute;
+      z-index: 3;
+      top: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-top, 0px));
+      left: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-left, 0px));
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      max-width: calc(100% - 88px);
+      padding: 12px 16px;
+      border: 1px solid var(--search-border);
+      border-radius: 16px;
+      background: linear-gradient(120deg, rgba(63, 168, 130, 0.10), rgba(46, 125, 206, 0.04)), var(--bg-card);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .whichme-card:hover {
+      border-color: var(--teal);
+      box-shadow: var(--shadow-md);
+    }
+
+    .whichme-card:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: 4px;
+    }
+
+    .whichme-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .whichme-title {
+      color: var(--teal);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .whichme-desc {
+      color: var(--ink-mid);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .whichme-card,
+      .whichme-card .card-arrow {
+        transition: none;
+      }
+    }
+
     .section {
       margin-bottom: 64px;
     }
@@ -770,7 +826,9 @@
     }
 
     .card:hover .card-arrow,
-    .card:focus-visible .card-arrow {
+    .card:focus-visible .card-arrow,
+    .whichme-card:hover .card-arrow,
+    .whichme-card:focus-visible .card-arrow {
       background: var(--ink);
       color: var(--bg);
       border-color: var(--ink);
@@ -1531,7 +1589,7 @@
     @media (max-width: 640px) {
       header {
         padding: 40px 16px 0;
-        padding-top: calc(48px + env(safe-area-inset-top, 0px));
+        padding-top: calc(100px + env(safe-area-inset-top, 0px));
       }
 
       .site-badge {
@@ -2356,6 +2414,15 @@
 </head>
 
 <body class="home-page">
+  <a class="whichme-card" href="https://whichme.xyz/" target="_blank" rel="noopener noreferrer"
+    aria-label="Which Me · 换个角度认识自己（外部站点，新标签页打开）"
+    title="前往 whichme.xyz（新标签页打开）">
+    <span class="whichme-copy">
+      <span class="whichme-title">Which Me</span>
+      <span class="whichme-desc">换个角度认识自己</span>
+    </span>
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  </a>
   <header>
     <div class="site-badge">
       <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">
@@ -3006,7 +3073,7 @@
 
   </footer>
 
-  <script src="./update-records.js?v=202609183"></script>
+  <script src="./update-records.js?v=202610191"></script>
   <script>
 
     // Live keyword filter over the content cards.
