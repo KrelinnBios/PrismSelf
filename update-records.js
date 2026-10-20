@@ -1,9 +1,15 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-10-19',
+    date: '2026-10-21',
     pages: [
-      'home'
+      'home',
+      './Analyses/LGBTQ-Comprehensive-Analysis.html',
+      './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Analyses/Interpersonal-Attraction-Comparison.html',
+      './Analyses/Interpersonal-Conflict-Analysis.html',
+      './Analyses/Neutrality-Type-Analysis.html'
     ]
   },
   {
@@ -26,12 +32,6 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-20',
     pages: [
-      './Analyses/LGBTQ-Comprehensive-Analysis.html',
-      './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html',
-      './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html',
       './Guides/Aromantic-Comprehensive-Guide.html',
       './Guides/Asexual-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',

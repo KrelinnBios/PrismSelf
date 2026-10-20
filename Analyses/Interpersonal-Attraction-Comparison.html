@@ -9,13 +9,13 @@
   <meta http-equiv="Expires" content="0">
   <title>PrismSelf - 人际吸引类型全景分析表</title>
   <link rel="canonical" href="https://prismself.vip/Analyses/Interpersonal-Attraction-Comparison.html">
-  <meta name="description" content="结合近期关系研究与社群术语，比较性、浪漫、审美、感官等八种吸引表述，辨析十二项相关体验，并说明研究依据与适用边界。">
+  <meta name="description" content="结合近期关系研究与社群术语，比较性、浪漫、审美、感官等九种吸引表述，辨析十二项相关体验，并说明研究依据与适用边界。">
   <meta name="theme-color" content="#2f6f73">
   <link rel="icon" href="../icon/favicon.svg?v=202610211" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 人际吸引类型全景分析表">
-  <meta property="og:description" content="结合近期关系研究与社群术语，比较性、浪漫、审美、感官等八种吸引表述，辨析十二项相关体验，并说明研究依据与适用边界。">
+  <meta property="og:description" content="结合近期关系研究与社群术语，比较性、浪漫、审美、感官等九种吸引表述，辨析十二项相关体验，并说明研究依据与适用边界。">
   <meta property="og:url" content="https://prismself.vip/Analyses/Interpersonal-Attraction-Comparison.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://prismself.vip/og-image/image.png?v=1788098160">
@@ -53,8 +53,8 @@
     }
 
     .row-cognitive {
-      background: linear-gradient(135deg, #ecfeff, #e0f7fa);
-      border-left: 3px solid #0891b2;
+      background: linear-gradient(135deg, #f0fdf4, #eafaf1);
+      border-left: 3px solid #15803d;
     }
 
     .tag-sex {
@@ -102,7 +102,7 @@
     }
 
     .lv-cognitive .badge-dot {
-      background: #0891b2;
+      background: #15803d;
     }
 
     .extra-section {
@@ -210,8 +210,8 @@
       }
 
       .row-cognitive {
-        background: #ecfeff;
-        border-left-color: #0891b2;
+        background: #f0fdf4;
+        border-left-color: #15803d;
       }
 
       td {
@@ -285,10 +285,6 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .legend-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
     }
 
     @media (max-width: 480px) {
@@ -297,10 +293,6 @@
       }
 
       .extra-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .legend-grid {
         grid-template-columns: 1fr;
       }
 
@@ -343,7 +335,7 @@
     }
 
     :root[data-theme="dark"] .row-cognitive {
-      background: linear-gradient(135deg, #0e2329, #0c1d22);
+      background: linear-gradient(135deg, #0f2417, #0d2014);
     }
 
     :root[data-theme="dark"] .tag-sex {
@@ -430,15 +422,15 @@
         分离吸引模型（SAM）主要帮助人们分别描述性吸引与浪漫吸引，网络社群也将它扩展到其他体验。本表汇集八种常用或描述性的说法，三组仅为阅读安排，并非已验证的八类心理系统。可以选用贴切的词，也可以暂时不分类。<a href="#ref-1" aria-label="参考文献 1">[1]</a></span>
       <div class="meta-row">
         <div class="meta-item">📚 资料依据 <span>关系研究与社群术语</span></div>
-        <div class="meta-item">📌 内容范围 <span>8 个条目 + 12 项辨析</span></div>
+        <div class="meta-item">📌 内容范围 <span>9 个条目 + 12 项辨析</span></div>
         <div class="meta-item">⚖️ 阅读分组 <span>3 类主题</span></div>
       </div>
     </div>
 
     <div class="controls">
-      <button class="filter-btn active" onclick="filterTable('all', this)">全览（8）</button>
+      <button class="filter-btn active" onclick="filterTable('all', this)">全览（9）</button>
       <button class="filter-btn" onclick="filterTable('body', this)">身体感知吸引（3）</button>
-      <button class="filter-btn" onclick="filterTable('emotion', this)">情感关系吸引（3）</button>
+      <button class="filter-btn" onclick="filterTable('emotion', this)">情感关系吸引（4）</button>
       <button class="filter-btn" onclick="filterTable('cognitive', this)">认知与意义（2）</button>
     </div>
 
@@ -557,6 +549,23 @@
             <td>不能用是否交心区分它与情感吸引，也不能从关系有多亲密推断“其实在恋爱”。酷儿柏拉图关系（QPR）是关系称谓，不是这份吸引自动带来的安排。<a href="#ref-1" aria-label="参考文献 1">[1]</a></td>
             <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
           </tr>
+          <tr class="row-emotion" data-type="emotion">
+            <td class="concept-cell" onclick="showDetail('alterous')">
+              <div class="concept-pill"><span class="concept-name">它向吸引</span><span class="concept-en">Alterous
+                  Attraction</span></div>
+              <button class="detail-btn" onclick="event.stopPropagation(); showDetail('alterous')">解析 →</button>
+            </td>
+            <td>社群用语，指想与特定对象在情感上亲近，但这份愿望<strong>不一定被本人归为浪漫或柏拉图式</strong>。它常用来描述难以放进“恋爱／友谊”二分的感受。</td>
+            <td>我想和这个人很亲近，却说不清这算友情还是恋爱，也不想被迫二选一。</td>
+            <td>术语来自无浪漫倾向社群的整理，尚无专门的实证研究；亲密过程研究与无性恋、无浪漫倾向者的质性研究，只说明亲密经验可以超出常见的关系脚本。<a href="#ref-1" aria-label="参考文献 1">[1]</a><a href="#ref-11" aria-label="参考文献 11">[11]</a></td>
+            <td>可能希望长期分享生活、彼此依靠，同时不觉得这是恋爱。<span class="highlight-text">例：某人很想与一位朋友每天交流近况、遇事先想到对方，却觉得“恋爱”和“普通朋友”都不足以形容这份感受。</span>
+            </td>
+            <td>
+              <div class="tag-list"><span class="tag tag-none">不必归入浪漫</span><span class="tag tag-may">其他吸引可并存</span></div>
+            </td>
+            <td>它不是浪漫吸引的“弱化版”，也不是尚未想清楚的过渡状态，但本人以后改用其他词同样正常。它与情感吸引有重叠，使用者看重的是不必先作关系归类。<a href="#ref-1" aria-label="参考文献 1">[1]</a></td>
+            <td><span class="badge lv-emotion"><span class="badge-dot"></span>情感关系</span></td>
+          </tr>
 
           <tr class="row-cognitive" data-type="cognitive">
             <td class="concept-cell" onclick="showDetail('intellectual')">
@@ -606,7 +615,7 @@
       <div class="panel">
         <span class="panel-icon">💙</span>
         <h3>情感关系吸引</h3>
-        <p>想恋爱、想交心和想成为朋友可以重叠。友谊也能包含深度理解与长期承诺；想要某种关系、对特定人受吸引，以及双方已经作出的约定，需要分别说明。</p>
+        <p>想恋爱、想交心和想成为朋友可以重叠，也有人的亲近愿望不归入其中任何一种。友谊也能包含深度理解与长期承诺；想要某种关系、对特定人受吸引，以及双方已经作出的约定，需要分别说明。</p>
       </div>
       <div class="panel">
         <span class="panel-icon">🧠</span>
@@ -652,11 +661,11 @@
           <p>成就、资源或影响力可能影响评价，但口头择偶偏好与现实互动中的喜欢并不总一致。研究中的平均关联，也不能用来概括某个性别或替个人断定动机。<a href="#ref-13" aria-label="参考文献 13">[13]</a></p>
         </div>
         <div class="extra-card">
-          <h4>🎭 创造力吸引</h4>
+          <h4>🎨 创造力吸引</h4>
           <p>可能被对方的创意、作品或解决问题的方式打动。这更适合作为吸引线索来描述：欣赏作品、希望合作、想与创作者成为朋友或恋人，不能彼此代替。</p>
         </div>
         <div class="extra-card">
-          <h4>🌱 照料吸引</h4>
+          <h4>🤝 照料吸引</h4>
           <p>想照顾某个人与希望被其照顾，是相关但不同的愿望；还可能涉及关怀、责任、依恋或现实需要。它们不单独证明浪漫吸引，接受照顾也不意味着欠下亲密关系的义务。</p>
         </div>
         <div class="extra-card">
@@ -666,24 +675,6 @@
         <div class="extra-card">
           <h4>🌒 禁忌吸引</h4>
           <p>禁忌或阻力可能改变注意与感受，却没有“越反对越爱”的普遍定律。2014 年对“罗密欧与朱丽叶效应”的重复研究未复现原结果，较多干预反而与较差关系质量相关；这同样不能证明外界反对总是正确。<a href="#ref-15" aria-label="参考文献 15">[15]</a></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="legend-section">
-      <h3>分析范畴标签指引</h3>
-      <div class="legend-grid">
-        <div class="legend-item">
-          <div class="legend-bar" style="background:#ea580c"></div>
-          <div class="legend-text"><strong>身体感知吸引</strong>比较性意味、美感欣赏与非性身体接近的不同侧重</div>
-        </div>
-        <div class="legend-item">
-          <div class="legend-bar" style="background:#1d4ed8"></div>
-          <div class="legend-text"><strong>情感关系吸引</strong>比较浪漫好感、交心愿望与友谊期待，允许它们重叠</div>
-        </div>
-        <div class="legend-item">
-          <div class="legend-bar" style="background:#0891b2"></div>
-          <div class="legend-text"><strong>认知与意义</strong>描述交流带来的启发，以及对价值和生命意义的共鸣</div>
         </div>
       </div>
     </div>
@@ -799,6 +790,18 @@
           { h: "友谊可以有很深的情感内容", p: "2023 年系统综述综合 38 篇研究，讨论友谊质量、支持、共同活动及福祉之间的关系。[10] 因此，“是否交心”不适合作为友谊与情感吸引的分界。朋友可以一起消磨时间，也可以分享困难、共同承担重要事务；深度本身不使关系变成浪漫。" },
           { h: "亲密经验比单一关系脚本更丰富", p: "2026 年在线发表的质性研究分析了 69 名无性恋大学生与研究生的资料，提出容纳多种连接方式的亲密框架。[11] 它有助于理解以性或恋爱为中心的描述可能遗漏什么，但不是人群比例研究，也没有验证固定的吸引清单。" },
           { h: "吸引与关系称谓不要混在一起", p: "酷儿柏拉图关系（QPR）通常用于描述超出当地一般友谊预期、并被当事人理解为非浪漫的承诺关系；各方对接触、性与共同生活的安排可能不同。[1] 不是所有深厚友谊都需要这个名字，也不能凭某人的柏拉图式吸引就替双方决定关系。" }
+        ]
+      },
+      alterous: {
+        title: "它向吸引",
+        en: "Alterous Attraction",
+        lv: "lv-emotion",
+        badge: "情感关系吸引",
+        sections: [
+          { h: "为什么需要这个词", p: "AUREA 的术语表把它描述为对情感亲近的兴趣或愿望，不一定是柏拉图式的，也不一定是浪漫的；也有人用它替代“-浪漫”“-性”之类的后缀来描述自己。[1] 它的作用在于，让人不必先给感受贴上“恋爱”或“友谊”的标签。" },
+          { h: "与情感吸引、柏拉图式吸引的关系", p: "三者都可能包含交心与依靠。情感吸引强调想了解对方、也被对方了解；柏拉图式吸引强调友谊方向；它向吸引则强调这份亲近不必归入任何既定的关系类别。同一段感受用哪个词，由本人决定。" },
+          { h: "研究能说明什么", p: "亲密过程研究发现，自我披露以及感到被理解、被关心，与亲密感相关。[9] 2026 年一项针对无性恋者的质性研究，也记录了多种超出常见脚本的亲密经验。[11] 这些研究都没有直接检验“它向吸引”这一类别，它目前主要是一个帮助表达的社群词汇。" },
+          { h: "关系安排要另外商量", p: "有它向吸引，不代表对方必须回应，也不会自动决定双方要建立什么关系。是否形成酷儿柏拉图关系或其他约定，需要双方说明各自的期待与边界。" }
         ]
       },
       intellectual: {
