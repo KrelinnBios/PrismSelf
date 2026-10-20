@@ -10,7 +10,7 @@
   <title>PrismSelf - 性别·心理·人际</title>
   <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，提供概念分析、专题指南、术语索引、社群观察、共鸣刻度、自评量表与关系工具。">
   <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="icon/favicon.svg?v=202609104" type="image/svg+xml">
+  <link rel="icon" href="icon/favicon.svg?v=202610211" type="image/svg+xml">
   <link rel="canonical" href="https://prismself.vip/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
@@ -339,9 +339,7 @@
     }
 
     .section.is-hidden,
-    .support-section.is-hidden,
-    .card.is-hidden,
-    .support-card.is-hidden {
+    .card.is-hidden {
       display: none;
     }
 
@@ -375,32 +373,134 @@
       z-index: 1;
     }
 
-    .whichme-card {
+    /* Top-left carousel: Which Me and the two friend links share one slot.
+       All cards sit in the same grid cell so the slot keeps the widest size. */
+    .corner-cards {
       position: absolute;
       z-index: 3;
       top: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-top, 0px));
       left: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-left, 0px));
+      display: grid;
+    }
+
+    .corner-cards > .whichme-card {
+      grid-area: 1 / 1;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.45s ease, visibility 0s linear 0.45s, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .corner-cards > .whichme-card.is-active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.45s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .corner-dots {
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .corner-dot {
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 18px;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    .corner-dot::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--search-border);
+      transition: width 0.25s ease, background 0.25s ease;
+    }
+
+    .corner-dot[aria-current="true"]::before {
+      width: 14px;
+      background: var(--ink-soft);
+    }
+
+    .corner-dot:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: -2px;
+      border-radius: 999px;
+    }
+
+    .whichme-card {
+      --corner-card-accent: var(--teal);
       display: flex;
       align-items: center;
       gap: 18px;
-      max-width: calc(100% - 88px);
       padding: 12px 16px;
       border: 1px solid var(--search-border);
       border-radius: 16px;
       background: linear-gradient(120deg, rgba(63, 168, 130, 0.10), rgba(46, 125, 206, 0.04)), var(--bg-card);
       color: var(--ink);
+      font: inherit;
+      text-align: left;
       text-decoration: none;
+      cursor: pointer;
       box-shadow: var(--shadow-sm);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
+    .whichme-card.friend {
+      --corner-card-accent: #6d5bb0;
+      background: linear-gradient(120deg, rgba(139, 92, 246, 0.07), rgba(99, 102, 241, 0.03)), var(--bg-card);
+    }
+
+    .whichme-card.creator {
+      --corner-card-accent: #b26a10;
+      background: linear-gradient(120deg, rgba(245, 158, 11, 0.08), rgba(234, 88, 12, 0.03)), var(--bg-card);
+    }
+
+    .whichme-card.resource {
+      --corner-card-accent: var(--blue);
+      background: linear-gradient(120deg, rgba(37, 99, 235, 0.10), rgba(56, 189, 248, 0.04)), var(--bg-card);
+    }
+
+    /* Dark mode needs stronger tints for the four cards to read as coloured. */
+    :root[data-theme="dark"] .whichme-card {
+      background: linear-gradient(120deg, rgba(67, 184, 140, 0.18), rgba(74, 155, 219, 0.06)), var(--bg-card);
+    }
+
+    :root[data-theme="dark"] .whichme-card.friend {
+      background: linear-gradient(120deg, rgba(167, 139, 250, 0.18), rgba(214, 206, 233, 0.06)), var(--bg-card);
+    }
+
+    :root[data-theme="dark"] .whichme-card.creator {
+      background: linear-gradient(120deg, rgba(240, 200, 121, 0.18), rgba(214, 150, 52, 0.06)), var(--bg-card);
+    }
+
+    :root[data-theme="dark"] .whichme-card.resource {
+      background: linear-gradient(120deg, rgba(74, 155, 219, 0.18), rgba(56, 189, 248, 0.06)), var(--bg-card);
+    }
+
+    :root[data-theme="dark"] .whichme-card.friend {
+      --corner-card-accent: #d6cee9;
+    }
+
+    :root[data-theme="dark"] .whichme-card.creator {
+      --corner-card-accent: #f0c879;
+    }
+
     .whichme-card:hover {
-      border-color: var(--teal);
+      border-color: var(--corner-card-accent);
       box-shadow: var(--shadow-md);
     }
 
     .whichme-card:focus-visible {
-      outline: 3px solid var(--teal);
+      outline: 3px solid var(--corner-card-accent);
       outline-offset: 4px;
     }
 
@@ -412,7 +512,7 @@
     }
 
     .whichme-title {
-      color: var(--teal);
+      color: var(--corner-card-accent);
       font-size: 15px;
       font-weight: 600;
       line-height: 1.3;
@@ -426,7 +526,98 @@
 
     @media (prefers-reduced-motion: reduce) {
       .whichme-card,
-      .whichme-card .card-arrow {
+      .whichme-card .card-arrow,
+      .corner-cards > .whichme-card,
+      .corner-dot::before {
+        transition: none;
+      }
+    }
+
+    /* Top-right counterpart of the card carousel, aligned to its top edge. */
+    .header-links {
+      position: absolute;
+      z-index: 3;
+      top: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-top, 0px));
+      right: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-right, 0px));
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .header-links-divider {
+      width: 1px;
+      height: 14px;
+      margin: 0 6px;
+      background: var(--search-border);
+    }
+
+    .header-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: none;
+      color: var(--ink-mid);
+      font: inherit;
+      font-size: 13px;
+      line-height: 1.4;
+      cursor: pointer;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .header-link:hover {
+      color: var(--ink);
+      background: var(--search-bg);
+      border-color: var(--search-border);
+    }
+
+    .header-link:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: 2px;
+    }
+
+    .header-link-mark {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .header-link.support .header-link-mark {
+      color: #006d77;
+    }
+
+    .header-link.contact .header-link-mark {
+      color: var(--green);
+    }
+
+    :root[data-theme="dark"] .header-link.support .header-link-mark {
+      color: #9ff3e7;
+    }
+
+    .header-link.theme .header-link-mark {
+      color: #b45309;
+    }
+
+    :root[data-theme="dark"] .header-link.theme .header-link-mark {
+      color: #f0c879;
+    }
+
+    /* Phones keep both corners; the links stack into a right-aligned column. */
+    @media (max-width: 599px) {
+      .header-links {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0;
+      }
+
+      .header-links-divider {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .header-link {
         transition: none;
       }
     }
@@ -481,10 +672,6 @@
 
     .section-icon.tool {
       background: linear-gradient(135deg, #e2f4f0, #f7e9ee);
-    }
-
-    .section-icon.support {
-      background: linear-gradient(135deg, #fdf8e8, #e8f4fd);
     }
 
     h2.section-title {
@@ -837,295 +1024,6 @@
     .card-type {
       font-size: 11px;
       color: var(--ink-soft);
-    }
-
-    .support-section {
-      margin: 8px 0 0;
-      animation: fadeUp 0.6s 0.65s ease both;
-    }
-
-    .support-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .support-card {
-      position: relative;
-      display: grid;
-      grid-template-columns: 44px minmax(0, 1fr) 28px;
-      align-items: center;
-      gap: 14px;
-      min-height: 118px;
-      width: 100%;
-      padding: 22px 20px;
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      background: var(--bg-card);
-      color: inherit;
-      box-shadow: var(--shadow-sm);
-      font: inherit;
-      text-align: left;
-      cursor: pointer;
-      overflow: hidden;
-      appearance: none;
-      -webkit-appearance: none;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .support-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 4px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .support-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .support-card:hover::before,
-    .support-card:focus-visible::before {
-      opacity: 1;
-    }
-
-    .support-card:focus-visible {
-      outline: 3px solid rgba(43, 122, 98, 0.35);
-      outline-offset: 3px;
-    }
-
-    .support-card.support::before {
-      background: linear-gradient(90deg, #006d77 0%, #14b8a6 52%, #60a5fa 100%);
-    }
-
-    .support-card.support:hover,
-    .support-card.support:focus-visible {
-      border-color: rgba(0, 109, 119, 0.28);
-    }
-
-    .support-card.friend::before {
-      background: linear-gradient(90deg, #151515 0%, #5b5f7a 52%, #a78bfa 100%);
-    }
-
-    .support-card.friend:hover,
-    .support-card.friend:focus-visible {
-      border-color: rgba(21, 21, 21, 0.28);
-    }
-
-    .support-card.creator::before {
-      background: linear-gradient(90deg, #4b2f12 0%, #c2410c 52%, #f59e0b 100%);
-    }
-
-    .support-card.creator:hover,
-    .support-card.creator:focus-visible {
-      border-color: rgba(75, 47, 18, 0.3);
-    }
-
-    .support-card.resource {
-      --resource-rgb: 24, 90, 157;
-      --resource-accent: var(--blue);
-      --resource-gradient: linear-gradient(90deg, #185a9d 0%, #2563eb 52%, #38bdf8 100%);
-    }
-
-    .support-card.contact {
-      --contact-rgb: 21, 128, 61;
-      --contact-accent: var(--green);
-      --contact-gradient: linear-gradient(90deg, #166534 0%, #16a34a 52%, #a3e635 100%);
-    }
-
-    .support-card.resource::before {
-      background: var(--resource-gradient);
-    }
-
-    .support-card.contact::before {
-      background: var(--contact-gradient);
-    }
-
-    .support-card.resource:hover,
-    .support-card.resource:focus-visible {
-      border-color: rgba(var(--resource-rgb), 0.28);
-    }
-
-    .support-card.contact:hover,
-    .support-card.contact:focus-visible {
-      border-color: rgba(var(--contact-rgb), 0.28);
-    }
-
-    .support-mark {
-      display: grid;
-      width: 44px;
-      height: 44px;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--bg);
-      color: var(--ink-soft);
-      font-size: 20px;
-      line-height: 1;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-
-    /* Each mark carries its card's theme colour at rest — no hover required —
-       so the ♥ ♠ ♦ suits read like a hand of playing cards. */
-    .support-card.support .support-mark {
-      color: #006d77;
-    }
-
-    .support-card.friend .support-mark {
-      color: #2a2634;
-    }
-
-    .support-card.creator .support-mark {
-      color: #5f3a12;
-    }
-
-    .support-card.resource .support-mark {
-      color: var(--resource-accent);
-    }
-
-    .support-card.contact .support-mark {
-      color: var(--contact-accent);
-    }
-
-    .support-card.support:hover .support-mark,
-    .support-card.support:focus-visible .support-mark {
-      border-color: rgba(0, 109, 119, 0.22);
-      background: linear-gradient(135deg, rgba(0, 109, 119, 0.12), rgba(47, 155, 216, 0.12));
-      color: #006d77;
-    }
-
-    .support-card.friend:hover .support-mark,
-    .support-card.friend:focus-visible .support-mark {
-      border-color: rgba(21, 21, 21, 0.18);
-      background: linear-gradient(135deg, rgba(21, 21, 21, 0.08), rgba(138, 126, 168, 0.12));
-      color: #2a2634;
-    }
-
-    .support-card.creator:hover .support-mark,
-    .support-card.creator:focus-visible .support-mark {
-      border-color: rgba(75, 47, 18, 0.22);
-      background: linear-gradient(135deg, rgba(75, 47, 18, 0.14), rgba(169, 106, 24, 0.14));
-      color: #5f3a12;
-    }
-
-    .support-card.resource:hover .support-mark,
-    .support-card.resource:focus-visible .support-mark {
-      border-color: rgba(var(--resource-rgb), 0.24);
-      background: linear-gradient(135deg, rgba(var(--resource-rgb), 0.1), rgba(var(--resource-rgb), 0.16));
-      color: var(--resource-accent);
-    }
-
-    .support-card.contact:hover .support-mark,
-    .support-card.contact:focus-visible .support-mark {
-      border-color: rgba(var(--contact-rgb), 0.24);
-      background: linear-gradient(135deg, rgba(var(--contact-rgb), 0.1), rgba(var(--contact-rgb), 0.16));
-      color: var(--contact-accent);
-    }
-
-    .support-copy {
-      min-width: 0;
-    }
-
-    .support-kicker {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 6px;
-      color: var(--ink-soft);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      transition: color 0.2s ease;
-    }
-
-    /* Kickers wear their card's theme colour by default, like the tags above. */
-    .support-card.support .support-kicker {
-      color: #006d77;
-    }
-
-    .support-card.friend .support-kicker {
-      color: #2a2634;
-    }
-
-    .support-card.creator .support-kicker {
-      color: #5f3a12;
-    }
-
-    .support-card.resource .support-kicker {
-      color: var(--resource-accent);
-    }
-
-    .support-card.contact .support-kicker {
-      color: var(--contact-accent);
-    }
-
-    .support-card.support:hover .support-kicker,
-    .support-card.support:focus-visible .support-kicker {
-      color: #006d77;
-    }
-
-    .support-card.friend:hover .support-kicker,
-    .support-card.friend:focus-visible .support-kicker {
-      color: #2a2634;
-    }
-
-    .support-card.creator:hover .support-kicker,
-    .support-card.creator:focus-visible .support-kicker {
-      color: #5f3a12;
-    }
-
-    .support-card.resource:hover .support-kicker,
-    .support-card.resource:focus-visible .support-kicker {
-      color: var(--resource-accent);
-    }
-
-    .support-card.contact:hover .support-kicker,
-    .support-card.contact:focus-visible .support-kicker {
-      color: var(--contact-accent);
-    }
-
-    .support-title {
-      display: block;
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.45;
-    }
-
-    .support-desc {
-      display: block;
-      margin-top: 4px;
-      color: var(--ink-mid);
-      font-size: 12.5px;
-      line-height: 1.6;
-    }
-
-    .support-arrow {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-soft);
-      font-size: 13px;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-      flex-shrink: 0;
-      align-self: end;
-    }
-
-    .support-card:hover .support-arrow {
-      background: var(--ink);
-      color: var(--bg);
-      border-color: var(--ink);
     }
 
     .qr-dialog-close:focus-visible,
@@ -1589,7 +1487,7 @@
     @media (max-width: 640px) {
       header {
         padding: 40px 16px 0;
-        padding-top: calc(100px + env(safe-area-inset-top, 0px));
+        padding-top: calc(112px + env(safe-area-inset-top, 0px));
       }
 
       .site-badge {
@@ -1627,6 +1525,10 @@
         max-width: none;
         margin: 0 auto 10px;
         padding: 0 2px;
+      }
+
+      .header-link {
+        padding: 6px 8px;
       }
 
       .search-input {
@@ -1846,51 +1748,15 @@
         font-size: 11px;
       }
 
-      .card-arrow,
-      .support-arrow {
+      .card-arrow {
         width: 30px;
         height: 30px;
         font-size: 13px;
       }
 
-      .support-section {
-        margin: 2px 0 0;
-      }
-
-      .support-grid,
       .qr-dialog-grid {
         grid-template-columns: 1fr;
         gap: 12px;
-      }
-
-      .support-card {
-        grid-template-columns: 42px minmax(0, 1fr) 30px;
-        align-items: center;
-        min-height: 0;
-        padding: 16px 14px;
-        gap: 12px;
-        border-radius: 18px;
-      }
-
-      .support-mark {
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-        font-size: 18px;
-      }
-
-      .support-title {
-        font-size: 0.96rem;
-      }
-
-      .support-desc {
-        font-size: 12px;
-        line-height: 1.55;
-      }
-
-      .support-kicker {
-        font-size: 10px;
-        margin-bottom: 4px;
       }
 
       footer {
@@ -2091,94 +1957,6 @@
       color: #fce7f3;
     }
 
-    :root[data-theme="dark"] .support-kicker {
-      color: #aab6c6;
-    }
-
-    :root[data-theme="dark"] .support-card.support .support-mark {
-      color: #9ff3e7;
-    }
-
-    :root[data-theme="dark"] .support-card.friend .support-mark {
-      color: #d6cee9;
-    }
-
-    :root[data-theme="dark"] .support-card.creator .support-mark {
-      color: #f0c879;
-    }
-
-    :root[data-theme="dark"] .support-card.support .support-kicker {
-      color: #9ff3e7;
-    }
-
-    :root[data-theme="dark"] .support-card.friend .support-kicker {
-      color: #d6cee9;
-    }
-
-    :root[data-theme="dark"] .support-card.creator .support-kicker {
-      color: #f0c879;
-    }
-
-    :root[data-theme="dark"] .support-card.resource {
-      --resource-rgb: 108, 179, 236;
-      --resource-gradient: linear-gradient(90deg, #185a9d 0%, #2563eb 52%, #38bdf8 100%);
-    }
-
-    :root[data-theme="dark"] .support-card.resource .support-kicker {
-      color: #6cb3ec;
-    }
-
-    :root[data-theme="dark"] .support-card.contact {
-      --contact-rgb: 134, 239, 172;
-      --contact-gradient: linear-gradient(90deg, #166534 0%, #16a34a 52%, #a3e635 100%);
-    }
-
-    :root[data-theme="dark"] .support-card.contact .support-kicker {
-      color: #86efac;
-    }
-
-    :root[data-theme="dark"] .support-card.support::before {
-      background: linear-gradient(90deg, #5eead4 0%, #2dd4bf 52%, #60a5fa 100%);
-    }
-
-    :root[data-theme="dark"] .support-card.support:hover,
-    :root[data-theme="dark"] .support-card.support:focus-visible {
-      border-color: rgba(114, 238, 229, 0.34);
-    }
-
-    :root[data-theme="dark"] .support-card.support:hover .support-mark,
-    :root[data-theme="dark"] .support-card.support:focus-visible .support-mark {
-      border-color: rgba(114, 238, 229, 0.28);
-      background: linear-gradient(135deg, rgba(114, 238, 229, 0.14), rgba(95, 208, 164, 0.18));
-      color: #9ff3e7;
-    }
-
-    :root[data-theme="dark"] .support-card.support:hover .support-kicker,
-    :root[data-theme="dark"] .support-card.support:focus-visible .support-kicker {
-      color: #9ff3e7;
-    }
-
-    :root[data-theme="dark"] .support-card.creator::before {
-      background: linear-gradient(90deg, #f59e0b 0%, #fb923c 52%, #fde68a 100%);
-    }
-
-    :root[data-theme="dark"] .support-card.creator:hover,
-    :root[data-theme="dark"] .support-card.creator:focus-visible {
-      border-color: rgba(224, 173, 86, 0.34);
-    }
-
-    :root[data-theme="dark"] .support-card.creator:hover .support-mark,
-    :root[data-theme="dark"] .support-card.creator:focus-visible .support-mark {
-      border-color: rgba(224, 173, 86, 0.28);
-      background: linear-gradient(135deg, rgba(143, 90, 27, 0.2), rgba(224, 173, 86, 0.18));
-      color: #f0c879;
-    }
-
-    :root[data-theme="dark"] .support-card.creator:hover .support-kicker,
-    :root[data-theme="dark"] .support-card.creator:focus-visible .support-kicker {
-      color: #f0c879;
-    }
-
     :root[data-theme="dark"] .resource-link.noww {
       --resource-link-rgb: 95, 208, 164;
     }
@@ -2207,27 +1985,6 @@
 
     :root[data-theme="dark"] .resource-link.github {
       --resource-link-rgb: 108, 179, 236;
-    }
-
-    :root[data-theme="dark"] .support-card.friend::before {
-      background: linear-gradient(90deg, #cbd5e1 0%, #a78bfa 52%, #f0abfc 100%);
-    }
-
-    :root[data-theme="dark"] .support-card.friend:hover,
-    :root[data-theme="dark"] .support-card.friend:focus-visible {
-      border-color: rgba(203, 196, 224, 0.32);
-    }
-
-    :root[data-theme="dark"] .support-card.friend:hover .support-mark,
-    :root[data-theme="dark"] .support-card.friend:focus-visible .support-mark {
-      border-color: rgba(203, 196, 224, 0.28);
-      background: linear-gradient(135deg, rgba(231, 237, 243, 0.1), rgba(185, 178, 207, 0.18));
-      color: #e7edf3;
-    }
-
-    :root[data-theme="dark"] .support-card.friend:hover .support-kicker,
-    :root[data-theme="dark"] .support-card.friend:focus-visible .support-kicker {
-      color: #d6cee9;
     }
 
     :root[data-theme="dark"] .sidebar .stat {
@@ -2403,8 +2160,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=202609103">
-  <script src="assets/theme.js?v=202609103"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=202610211">
+  <script src="assets/theme.js?v=202610211"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"
@@ -2414,14 +2171,52 @@
 </head>
 
 <body class="home-page">
-  <a class="whichme-card" href="https://whichme.xyz/" target="_blank" rel="noopener noreferrer"
-    aria-label="Which Me · 换个角度认识自己（外部站点，新标签页打开）">
-    <span class="whichme-copy">
-      <span class="whichme-title">Which Me</span>
-      <span class="whichme-desc">换个角度认识自己</span>
-    </span>
-    <span class="card-arrow" aria-hidden="true">↗</span>
-  </a>
+  <div class="corner-cards" role="region" aria-roledescription="轮播" aria-label="推荐链接">
+    <a class="whichme-card is-active" href="https://whichme.xyz/" target="_blank" rel="noopener noreferrer"
+      aria-label="Which Me · 换个角度认识自己（外部站点，新标签页打开）">
+      <span class="whichme-copy">
+        <span class="whichme-title">Which Me</span>
+        <span class="whichme-desc">换个角度认识自己</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </a>
+    <button class="whichme-card friend" type="button" data-dialog-target="friendDialog" aria-controls="friendDialog">
+      <span class="whichme-copy">
+        <span class="whichme-title">黑桃 Spade A</span>
+        <span class="whichme-desc">无性恋相关专题内容</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </button>
+    <button class="whichme-card creator" type="button" data-dialog-target="guyuliangDialog" aria-controls="guyuliangDialog">
+      <span class="whichme-copy">
+        <span class="whichme-title">谷语粱</span>
+        <span class="whichme-desc">福瑞与美国兽展相关内容</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </button>
+    <button class="whichme-card resource" type="button" data-dialog-target="resourceDialog" aria-controls="resourceDialog">
+      <span class="whichme-copy">
+        <span class="whichme-title">常用订阅</span>
+        <span class="whichme-desc">网络代理与 AI 模型 API 中转</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </button>
+    <div class="corner-dots">
+      <button class="corner-dot" type="button" aria-label="显示 Which Me" aria-current="true"></button>
+      <button class="corner-dot" type="button" aria-label="显示黑桃 Spade A" aria-current="false"></button>
+      <button class="corner-dot" type="button" aria-label="显示谷语粱" aria-current="false"></button>
+      <button class="corner-dot" type="button" aria-label="显示常用订阅" aria-current="false"></button>
+    </div>
+  </div>
+  <nav class="header-links" aria-label="站点链接与主题">
+    <button class="header-link support" type="button" data-prism-support-open
+      aria-controls="prismSupportDialog"><span class="header-link-mark" aria-hidden="true">♥</span>支持本站</button>
+    <button class="header-link contact" type="button" data-dialog-target="contactDialog"
+      aria-controls="contactDialog"><span class="header-link-mark" aria-hidden="true">@</span>联系方式</button>
+    <span class="header-links-divider" aria-hidden="true"></span>
+    <button class="header-link theme" id="themeToggle" type="button" aria-label="浅色模式，点击切换到深色"><span
+        class="header-link-mark" aria-hidden="true">☀</span>浅色</button>
+  </nav>
   <header>
     <div class="site-badge">
       <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">
@@ -2475,10 +2270,6 @@
         <button class="stat" data-filter="tool">
           <div class="stat-num">1</div>
           <div class="stat-label">对话工具</div>
-        </button>
-        <button class="stat" data-filter="support">
-          <div class="stat-num">5</div>
-          <div class="stat-label">内容支持</div>
         </button>
       </div>
     </nav>
@@ -2847,70 +2638,6 @@
         </div>
       </section>
 
-      <section class="support-section" data-category="support" aria-labelledby="support-title">
-        <div class="section-header">
-          <div class="section-icon support">🤝</div>
-          <h2 class="section-title" id="support-title">支持 · 相关链接</h2>
-          <span class="section-count">05 项</span>
-        </div>
-        <div class="support-grid">
-          <button class="support-card support" type="button" data-prism-support-open
-            aria-controls="prismSupportDialog">
-            <span class="support-mark" aria-hidden="true">♥</span>
-            <span class="support-copy">
-              <span class="support-kicker">项目维护</span>
-              <span class="support-title">支持 PrismSelf</span>
-              <span class="support-desc">分担域名与服务开支</span>
-            </span>
-            <span class="support-arrow" aria-hidden="true">→</span>
-          </button>
-
-          <button class="support-card friend" type="button" data-dialog-target="friendDialog"
-            aria-controls="friendDialog">
-            <span class="support-mark" aria-hidden="true">♠</span>
-            <span class="support-copy">
-              <span class="support-kicker">友情链接</span>
-              <span class="support-title">黑桃 Spade A</span>
-              <span class="support-desc">无性恋相关专题内容</span>
-            </span>
-            <span class="support-arrow" aria-hidden="true">→</span>
-          </button>
-
-          <button class="support-card creator" type="button" data-dialog-target="guyuliangDialog"
-            aria-controls="guyuliangDialog">
-            <span class="support-mark" aria-hidden="true">♦</span>
-            <span class="support-copy">
-              <span class="support-kicker">友情链接</span>
-              <span class="support-title">谷语粱</span>
-              <span class="support-desc">福瑞与美国兽展相关内容</span>
-            </span>
-            <span class="support-arrow" aria-hidden="true">→</span>
-          </button>
-
-          <button class="support-card resource" type="button" data-dialog-target="resourceDialog"
-            aria-controls="resourceDialog">
-            <span class="support-mark" aria-hidden="true">↗</span>
-            <span class="support-copy">
-              <span class="support-kicker">代理服务</span>
-              <span class="support-title">常用订阅入口</span>
-              <span class="support-desc">网络代理与 AI 模型 API 中转</span>
-            </span>
-            <span class="support-arrow" aria-hidden="true">→</span>
-          </button>
-
-          <button class="support-card contact" type="button" data-dialog-target="contactDialog"
-            aria-controls="contactDialog">
-            <span class="support-mark" aria-hidden="true">@</span>
-            <span class="support-copy">
-              <span class="support-kicker">联系我们</span>
-              <span class="support-title">邮箱与仓库</span>
-              <span class="support-desc">内容反馈与项目源码</span>
-            </span>
-            <span class="support-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-      </section>
-
       <dialog class="qr-dialog" id="friendDialog" aria-labelledby="friendDialogTitle">
         <div class="qr-dialog-inner">
           <div class="qr-dialog-header">
@@ -3022,7 +2749,7 @@
               <h3 class="qr-dialog-title" id="contactDialogTitle">邮箱与仓库</h3>
               <p class="qr-dialog-desc">欢迎反馈错漏、排版兼容、引用纠错与内容建议。</p>
             </div>
-            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭联系我们弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭联系方式弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
           </div>
           <div class="resource-list">
             <button class="resource-link mail" type="button" id="copyEmailButton">
@@ -3082,16 +2809,10 @@
       const emptyMsg = document.getElementById('searchEmpty');
       if (!search) return;
       const cards = [...document.querySelectorAll('main a.card')];
-      const commCards = [...document.querySelectorAll('main .support-card')];
-      const allCards = [...cards, ...commCards];
-      const sections = [...document.querySelectorAll('main .section, main .support-section')];
+      const sections = [...document.querySelectorAll('main .section')];
       const haystack = new Map();
       cards.forEach((card) => {
         haystack.set(card, [...card.querySelectorAll('.card-title, .card-tag, .card-type')]
-          .map((el) => el.textContent).join(' ').toLowerCase());
-      });
-      commCards.forEach((card) => {
-        haystack.set(card, [...card.querySelectorAll('.support-kicker, .support-title, .support-desc')]
           .map((el) => el.textContent).join(' ').toLowerCase());
       });
 
@@ -3099,13 +2820,13 @@
         const q = raw.trim().toLowerCase();
         clearBtn.classList.toggle('is-visible', q.length > 0);
         let anyVisible = false;
-        allCards.forEach((card) => {
+        cards.forEach((card) => {
           const match = q === '' || haystack.get(card).includes(q);
           card.classList.toggle('is-hidden', !match);
           if (match) anyVisible = true;
         });
         sections.forEach((section) => {
-          const hasVisible = section.querySelector('a.card:not(.is-hidden), .support-card:not(.is-hidden)') !== null;
+          const hasVisible = section.querySelector('a.card:not(.is-hidden)') !== null;
           section.classList.toggle('is-hidden', !hasVisible);
         });
         emptyMsg.parentElement.classList.toggle('is-visible', !anyVisible && q !== '');
@@ -3125,10 +2846,52 @@
       });
     })();
 
+    // Top-left card carousel — rotates every 5s; pauses while hovered, focused,
+    // a dialog is open or the tab is hidden; never auto-rotates under reduced motion.
+    (() => {
+      const root = document.querySelector('.corner-cards');
+      if (!root) return;
+      const slides = [...root.querySelectorAll('.whichme-card')];
+      const dots = [...root.querySelectorAll('.corner-dot')];
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let index = 0;
+      let timer = null;
+
+      const show = (next) => {
+        index = (next + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('is-active', active);
+          slide.inert = !active;
+        });
+        dots.forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      };
+
+      const paused = () => document.hidden
+        || root.matches(':hover, :focus-within')
+        || document.querySelector('dialog[open]') !== null;
+
+      const restart = () => {
+        clearInterval(timer);
+        timer = reduceMotion.matches ? null : setInterval(() => {
+          if (!paused()) show(index + 1);
+        }, 5000);
+      };
+
+      dots.forEach((dot, i) => dot.addEventListener('click', () => {
+        show(i);
+        restart();
+      }));
+      reduceMotion.addEventListener('change', restart);
+
+      show(0);
+      restart();
+    })();
+
     // Category scroll via sidebar buttons — click scrolls to section, click again cancels.
     (() => {
       const buttons = [...document.querySelectorAll('.sidebar .stat')];
-      const sections = [...document.querySelectorAll('main .section, main .support-section')];
+      const sections = [...document.querySelectorAll('main .section')];
       const search = document.getElementById('cardSearch');
       const searchClear = document.getElementById('searchClear');
 

@@ -499,7 +499,7 @@
   padding: 0;
   overflow: auto;
   box-sizing: border-box;
-  border: 1px solid color-mix(in srgb, var(--prism-support-page-primary) 60%, transparent);
+  border: 1px solid var(--prism-support-dialog-note-border);
   border-radius: 20px;
   background: #ffffff;
   color: #1a2332;
@@ -712,7 +712,7 @@
     top: 0 !important;
     z-index: 9998 !important;
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 44px !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     grid-template-rows: 44px !important;
     column-gap: 7px !important;
     row-gap: 0 !important;

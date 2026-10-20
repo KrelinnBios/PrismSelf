@@ -1,7 +1,8 @@
 /* Site-wide theme controller.
  * - Sets data-theme before paint (stored choice wins over the OS preference).
- * - Injects a fixed sun/moon toggle button and persists the choice in
+ * - Binds the home page text toggle (#themeToggle) and persists the choice in
  *   localStorage, so a manual choice carries across every page (same origin).
+ *   Other pages show no toggle; they simply follow the stored choice.
  * - While no manual choice exists, follows live OS theme changes.
  * Load this in <head> (blocking) so the theme is applied before first paint. */
 (function () {
@@ -17,7 +18,13 @@
   function current() {
     return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
   }
-  function label(t) { return t === 'dark' ? '切换到浅色模式' : '切换到深色模式'; }
+  // The toggle shows the current mode; its accessible name adds what a click does.
+  function renderToggle(b, t) {
+    b.setAttribute('aria-label', t === 'dark' ? '深色模式，点击切换到浅色' : '浅色模式，点击切换到深色');
+    b.innerHTML = t === 'dark'
+      ? '<span class="header-link-mark" aria-hidden="true">☾</span>深色'
+      : '<span class="header-link-mark" aria-hidden="true">☀</span>浅色';
+  }
   function syncThemeColor(theme) {
     var meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) return;
@@ -74,14 +81,11 @@
   root.setAttribute('data-theme', initialTheme);
   try { syncThemeColor(initialTheme); } catch (e) {}
 
-  var SUN = '<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>';
-  var MOON = '<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 9 0 0 0 21 12.79z"></path></svg>';
-
   function apply(theme, persist) {
     root.setAttribute('data-theme', theme);
     syncThemeColor(theme);
     var b = document.getElementById('themeToggle');
-    if (b) b.setAttribute('aria-label', label(theme));
+    if (b) renderToggle(b, theme);
     if (persist) { try { localStorage.setItem(KEY, theme); } catch (e) { } }
   }
 
@@ -89,37 +93,13 @@
     if (!document.body) return;
     installFloatingLayout();
     try { syncThemeColor(current()); } catch (e) {}
-    if (document.getElementById('themeToggle')) return;
-    var btn = document.createElement('button');
-    btn.id = 'themeToggle';
-    btn.className = 'theme-toggle';
-    btn.type = 'button';
-    btn.setAttribute('aria-label', label(current()));
-    btn.innerHTML = SUN + MOON;
+    var btn = document.getElementById('themeToggle');
+    if (!btn || btn.hasAttribute('data-theme-bound')) return;
+    btn.setAttribute('data-theme-bound', '');
+    renderToggle(btn, current());
     btn.addEventListener('click', function () {
       apply(current() === 'dark' ? 'light' : 'dark', true);
-      btn.classList.add('is-hover-suppressed');
     });
-    btn.addEventListener('pointerenter', function () {
-      btn.classList.remove('is-hover-suppressed');
-    });
-    btn.addEventListener('pointerleave', function () {
-      btn.classList.remove('is-hover-suppressed');
-    });
-    if (document.body.classList.contains('home-page')) {
-      // Keep the home-page control independent from the horizontally scrolling
-      // category bar; the shared floating layout owns the viewport offsets.
-      btn.style.setProperty('position', 'fixed', 'important');
-      btn.style.setProperty('left', 'auto', 'important');
-      btn.style.setProperty('bottom', 'auto', 'important');
-      btn.style.setProperty('z-index', '1000', 'important');
-    }
-    var scaleToolbar = document.querySelector('.global-progress');
-    if (scaleToolbar) {
-      scaleToolbar.appendChild(btn);
-    } else {
-      document.body.appendChild(btn);
-    }
   }
 
   function forcedColors() {
@@ -403,7 +383,7 @@
       '<div class="prism-support-dialog-inner">',
       '  <div class="prism-support-dialog-header">',
       '    <div>',
-      '      <h2 id="prismSupportDialogTitle">支持 PrismSelf</h2>',
+      '      <h2 id="prismSupportDialogTitle">支持本站</h2>',
       '      <p>PrismSelf 免费开放，由个人维护。你的支持将用于分担域名、服务与持续维护成本。</p>',
       '    </div>',
       '    <button class="prism-support-close" type="button" aria-label="关闭支持项目弹窗">' + CLOSE + '</button>',

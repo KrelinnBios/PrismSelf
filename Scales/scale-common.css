@@ -1408,13 +1408,13 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 	}
 
 	/* App bar grid (shared with theme.css mobile layout, but with 2 rows):
-	   col1 = progress label + bar stacked, col2 = theme.
+	   progress label + bar stacked in a single column (no theme toggle).
 	   1180 is close to the theme.css 1200 breakpoint so we
 	   deliberately repeat its panel chrome (surface bg + bottom radius)
 	   and then build the 2-row grid on top. */
 	.global-progress {
 		display: grid !important;
-		grid-template-columns: minmax(0, 1fr) 44px !important;
+		grid-template-columns: minmax(0, 1fr) !important;
 		grid-template-rows: auto minmax(0, auto) !important;
 		align-items: start !important;
 		justify-items: stretch !important;
@@ -1677,11 +1677,10 @@ html.scale-export-desktop .result-table-shell tbody tr:last-child td {
 		max-width: 100% !important;
 	}
 
-	/* 移动端沿用平板工具栏顺序：[进度文字与进度条][主题]。
-	   图标使用固定触控尺寸，让中间进度区在窄屏上仍有稳定间距。 */
+	/* 移动端沿用平板工具栏：进度文字与进度条占满整行。 */
 	.global-progress {
 		display: grid !important;
-		grid-template-columns: minmax(0, 1fr) 40px !important;
+		grid-template-columns: minmax(0, 1fr) !important;
 		grid-template-rows: auto minmax(0, auto) !important;
 		align-items: start !important;
 		justify-items: stretch !important;
