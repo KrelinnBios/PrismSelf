@@ -7,7 +7,11 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',
       './Tools/Relationship-Needs-Menu.html',
-      './Guides/BDSM-Comprehensive-Guide.html'
+      './Guides/BDSM-Comprehensive-Guide.html',
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   },
   {
@@ -36,11 +40,7 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-20',
     pages: [
-      './Guides/Aromantic-Comprehensive-Guide.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
-      './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html'
+      './Guides/Aromantic-Comprehensive-Guide.html'
     ]
   },
   {
