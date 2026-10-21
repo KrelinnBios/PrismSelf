@@ -25,7 +25,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./bingo-common.css?v=eef02f60c1a7">
+  <link rel="stylesheet" href="./bingo-common.css?v=202610221">
   <style>
     /* 页面配色：青绿系（覆盖 bingo-common.css 默认值） */
     :root {
@@ -109,6 +109,7 @@
   </style>
   <link rel="stylesheet" href="../assets/theme.css?v=202610211">
   <script src="../assets/theme.js?v=202610211"></script>
+  <script src="./bingo-common.js?v=202610221"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -126,8 +127,9 @@
     </div>
 
     <div class="tip">
-      🧠 <strong>刻度指南</strong> ：点击任意格子，依次切换 25% → 50% → 75% → 100% → 归零。<br>
-      每个板块右上角会实时显示该板块的“共鸣强度”（平均契合百分比）。
+      🧠 <strong>刻度指南</strong> ：点击任意格子，依次切换 25% → 50% → 75% → 100% → 归零；按住 Shift 点击可退回上一档。<br>
+      键盘用户可用 Tab 移动、Enter 或空格切换、Delete 归零。每个板块右上角实时显示该板块的“共鸣强度”（平均契合百分比）。<br>
+      刻度只保存在本机浏览器中，仅用于自我觉察，不构成诊断或身份判定。
     </div>
 
     <!-- 简化图例 -->
@@ -195,7 +197,7 @@
         "❌ 拒绝敏感（RSD）：轻微的批评也会带来毁灭性的情绪打击",
         "💡 脑子里永远有无数个绝妙的创意，但常常挖了坑填不完",
         "🎢 情绪调节困难，容易瞬间“上头”兴奋或迅速跌入沮丧",
-        "📺 极易陷入报复性熬夜或多巴胺成瘾行为，即使知道会有后果",
+        "📺 很容易陷入报复性熬夜或停不下来地刷手机，即使知道会有后果",
         "🌪️ 必须有最后期限（DDL）的压力和肾上腺素才能激发行动力",
         "🙈 视线之外即不存在：东西一旦收进柜子，就好像从世界上消失了",
         "🗣️ 脑子转得比嘴快，常常在别人说话时忍不住插嘴或接话",
@@ -219,7 +221,7 @@
         "🎭 为了同时掩饰两套谱系的特质，长期处于精疲力竭的状态中"
       ],
       D: [
-        "🏳️‍🌈 了解神经多样性概念后，我终于停止了对自己的长期厌恶",
+        "♾️ 了解神经多样性概念后，我终于停止了对自己的长期厌恶",
         "🛡️ 我学会了提出合理便利（Accommodation），不再觉得这是在添麻烦",
         "🛠️ 开始以自己的舒适度为基准规划生活，而不是硬套“正常标准”",
         "💪 在特定的环境和任务中，我截然不同的脑回路就是一种超能力",
@@ -245,221 +247,11 @@
       { id: 'D', title: '拥抱神经多样性', subtitle: '自我叙事 · 神经骄傲', colorClass: 'sec-D' }
     ];
 
-    // 存储所有cell的弱引用（用于更新统计）
-    let sectionCells = { A: [], B: [], C: [], D: [] };
-    let statsElements = {}; // 存储每个板块的百分比显示元素
-
-    // 等级 -> 分数 (0,25,50,75,100)
-    function levelToScore(level) {
-      const l = parseInt(level);
-      if (l === 25) return 25;
-      if (l === 50) return 50;
-      if (l === 75) return 75;
-      if (l === 100) return 100;
-      return 0;
-    }
-
-    // 下一等级 (0→25→50→75→100→0)
-    function nextLevel(current) {
-      const order = [0, 25, 50, 75, 100];
-      let idx = order.indexOf(current);
-      if (idx === -1) return 25;
-      const nextIdx = (idx + 1) % order.length;
-      return order[nextIdx];
-    }
-
-    // 更新指定板块的统计 (共鸣百分比)
-    function updateSectionStats(sectionId) {
-      const cells = sectionCells[sectionId];
-      if (!cells || cells.length === 0) return;
-      let totalScore = 0;
-      cells.forEach(cell => {
-        const levelVal = parseInt(cell.getAttribute('data-level') || '0');
-        totalScore += levelToScore(levelVal);
-      });
-      const maxPossible = cells.length * 100;
-      let percent = maxPossible === 0 ? 0 : (totalScore / maxPossible) * 100;
-      percent = Math.round(percent);
-      const statsSpan = statsElements[sectionId];
-      if (statsSpan) {
-        statsSpan.innerText = percent;
-      }
-    }
-
-    // 更新所有板块统计
-    function updateAllSectionsStats() {
-      for (let sec of ['A', 'B', 'C', 'D']) {
-        updateSectionStats(sec);
-      }
-    }
-
-    // 更新单个cell的ring显示
-    function updateRingLabel(cell) {
-      const level = parseInt(cell.getAttribute('data-level')) || 0;
-      const ringDiv = cell.querySelector('.ring');
-      if (!ringDiv) return;
-      let showTxt = '';
-      if (level === 0) showTxt = '0';
-      else if (level === 25) showTxt = '25%';
-      else if (level === 50) showTxt = '50%';
-      else if (level === 75) showTxt = '75%';
-      else if (level === 100) showTxt = '100%';
-      ringDiv.setAttribute('data-label', showTxt);
-    }
-
-    // 处理点击格子
-    function handleCellClick(e) {
-      const cell = e.target.closest('.cell');
-      if (!cell) return;
-      const curLevel = parseInt(cell.getAttribute('data-level')) || 0;
-      const newLevel = nextLevel(curLevel);
-      cell.setAttribute('data-level', newLevel);
-      updateRingLabel(cell);
-
-      // 找出该格子所属板块并更新统计
-      const sectionDiv = cell.closest('.section');
-      if (sectionDiv) {
-        const secClass = Array.from(sectionDiv.classList).find(c => c.startsWith('sec-'));
-        let secId = null;
-        if (secClass === 'sec-A') secId = 'A';
-        else if (secClass === 'sec-B') secId = 'B';
-        else if (secClass === 'sec-C') secId = 'C';
-        else if (secClass === 'sec-D') secId = 'D';
-        if (secId) updateSectionStats(secId);
-      }
-      // 微动效
-      cell.style.transform = 'scale(0.97)';
-      setTimeout(() => { if (cell) cell.style.transform = ''; }, 120);
-    }
-
-    // 重置所有格子
-    function resetAll() {
-      for (let sec of ['A', 'B', 'C', 'D']) {
-        const cells = sectionCells[sec];
-        if (cells) {
-          cells.forEach(cell => {
-            cell.setAttribute('data-level', '0');
-            updateRingLabel(cell);
-          });
-          updateSectionStats(sec);
-        }
-      }
-    }
-
-    // 渲染整个页面 (动态构建四个板块)
-    function buildFullPage() {
-      const container = document.getElementById('sections-container');
-      if (!container) return;
-      container.innerHTML = '';
-      // 清空存储
-      sectionCells = { A: [], B: [], C: [], D: [] };
-      statsElements = {};
-
-      sectionsMeta.forEach(meta => {
-        const { id, title, subtitle, colorClass } = meta;
-        const itemsList = items[id];
-        if (!itemsList) return;
-
-        // 创建section元素
-        const section = document.createElement('div');
-        section.className = `section ${colorClass}`;
-
-        // head部分（包含右上角统计占位）
-        const secHead = document.createElement('div');
-        secHead.className = 'sec-head';
-        secHead.innerHTML = `
-        <div class="sec-badge">${id}</div>
-        <div class="sec-info">
-          <h2>${title}</h2>
-          <p>${subtitle}</p>
-        </div>
-        <div class="sec-stats">
-          <span>板块共鸣</span>
-          <span class="sec-ratio" id="stats-${id}">0</span><small>%</small>
-        </div>
-      `;
-        section.appendChild(secHead);
-
-        // grid容器
-        const grid = document.createElement('div');
-        grid.className = 'grid';
-
-        // 生成格子
-        itemsList.forEach(rawText => {
-          // 以第一个空格为界，分离 Emoji 和纯文本
-          const spaceIndex = rawText.indexOf(' ');
-          let emoji = '';
-          let pureText = '';
-
-          if (spaceIndex !== -1) {
-            emoji = rawText.slice(0, spaceIndex).trim();
-            pureText = rawText.slice(spaceIndex + 1).trim();
-          } else {
-            // 兼容万一没有空格的情况
-            emoji = rawText.slice(0, 2);
-            pureText = rawText.slice(2);
-          }
-
-          const cell = document.createElement('div');
-          cell.className = 'cell';
-          cell.setAttribute('data-level', '0');
-
-          // 将分离后的 emoji 和 pureText 分别填入对应容器
-          cell.innerHTML = `
-          <div class="ring" data-label="0"></div>
-          <div class="cell-icon">${emoji}</div>
-          <div class="cell-text">${pureText}</div>
-        `;
-          grid.appendChild(cell);
-          sectionCells[id].push(cell);
-        });
-
-        section.appendChild(grid);
-        container.appendChild(section);
-
-        // 保存统计显示元素引用
-        const statsSpan = document.getElementById(`stats-${id}`);
-        if (statsSpan) statsElements[id] = statsSpan;
-      });
-
-      // 添加全局点击委托 (因为grid是动态生成的，直接监听父容器)
-      const sectionsContainer = document.getElementById('sections-container');
-      if (sectionsContainer) {
-        sectionsContainer.addEventListener('click', (e) => {
-          const cell = e.target.closest('.cell');
-          if (cell) handleCellClick(e);
-        });
-      }
-
-      // 重置按钮
-      const resetBtn = document.getElementById('resetBtn');
-      if (resetBtn) {
-        // 避免重复绑定
-        const newBtn = resetBtn.cloneNode(true);
-        resetBtn.parentNode.replaceChild(newBtn, resetBtn);
-        newBtn.addEventListener('click', () => {
-          resetAll();
-        });
-      } else {
-        const btn = document.getElementById('resetBtn');
-        if (btn) btn.addEventListener('click', resetAll);
-      }
-
-      // 初始化所有环 & 统计归零
-      for (let sec of ['A', 'B', 'C', 'D']) {
-        const cells = sectionCells[sec];
-        if (cells) {
-          cells.forEach(cell => {
-            cell.setAttribute('data-level', '0');
-            updateRingLabel(cell);
-          });
-          updateSectionStats(sec);
-        }
-      }
-    }
-
-    // 页面启动
-    buildFullPage();
+    PrismBingo.init({
+      storageKey: 'prismself.bingo.neurodiversity.v1',
+      sections: sectionsMeta,
+      items
+    });
   </script>
 </body>
 

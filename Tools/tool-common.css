@@ -467,6 +467,45 @@ h1 em {
   opacity: 0.94;
 }
 
+/* 敏感模块默认收起，标题行即展开开关 */
+summary.topic-head {
+  cursor: pointer;
+  list-style: none;
+}
+
+summary.topic-head::-webkit-details-marker {
+  display: none;
+}
+
+summary.topic-head:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.92);
+  outline-offset: -3px;
+}
+
+details.topic-card:not([open]) summary.topic-head {
+  border-bottom: 0;
+}
+
+.collapse-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.collapse-count {
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0.94;
+}
+
+.collapse-label {
+  font-size: 12px;
+  opacity: 0.86;
+}
+
 .topic-list {
   padding: 6px 18px 10px;
 }
@@ -905,6 +944,10 @@ h1 em {
   --amber-soft: #241f10;
   --slate: #8597a0;
   --slate-soft: #1b232a;
+}
+
+:root[data-theme="dark"] .sensitive-note {
+  color: #e3b9c4;
 }
 
 :root[data-theme="dark"] .hero,

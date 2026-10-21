@@ -372,6 +372,12 @@ body {
   background: white;
 }
 
+.cell:focus-visible {
+  z-index: 1;
+  outline: 3px solid var(--bingo-accent);
+  outline-offset: -3px;
+}
+
 .cell:active {
   transform: scale(0.96);
 }
@@ -821,6 +827,10 @@ body {
 :root[data-theme="dark"] .cell {
   background: #15171f;
   border-color: #22252f;
+}
+
+:root[data-theme="dark"] .cell:focus-visible {
+  outline-color: var(--bingo-dk-accent);
 }
 
 :root[data-theme="dark"] .cell-text {

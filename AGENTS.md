@@ -119,7 +119,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 | 分析分类 | `Analyses/analysis-common.css` | `Analyses/*.html` |
 | 指南分类 | `Guides/guide-common.css` | `Guides/*.html` |
 | 话题分类 | `Topics/topic-common.css` | `Topics/*.html` |
-| 共鸣分类 | `Bingos/bingo-common.css` | `Bingos/*.html` |
+| 共鸣分类 | `Bingos/bingo-common.css`、`Bingos/bingo-common.js` | `Bingos/*.html` |
 | 量表分类 | `Scales/scale-common.css`、`Scales/scale-common.js` | `Scales/*.html` |
 | 工具分类 | `Tools/tool-common.css` | `Tools/*.html` |
 | 术语分类 | `Glossaries/glossary-common.css` | `Glossaries/*.html` |

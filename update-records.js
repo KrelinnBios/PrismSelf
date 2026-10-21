@@ -3,6 +3,10 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-10-22',
     pages: [
+      './Bingos/Aro-Ace-Spectrum-Resonance.html',
+      './Bingos/Gender-Spectrum-Resonance.html',
+      './Bingos/Neurodiversity-Resonance.html',
+      './Tools/Relationship-Needs-Menu.html',
       './Guides/BDSM-Comprehensive-Guide.html'
     ]
   },
@@ -61,10 +65,6 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-03',
     pages: [
-      './Bingos/Aro-Ace-Spectrum-Resonance.html',
-      './Bingos/Gender-Spectrum-Resonance.html',
-      './Bingos/Neurodiversity-Resonance.html',
-      './Tools/Relationship-Needs-Menu.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
   }
