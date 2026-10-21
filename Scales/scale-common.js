@@ -419,6 +419,63 @@
 			paragraph.replaceChildren(label, document.createTextNode(formatted));
 		});
 	}
+	// 部分量表的题目说明只响应鼠标点击：补齐按钮语义、键盘展开，以及下拉框对应的题目标签
+	function enhanceQuestionAccessibility(config = getConfig()) {
+		const form = getForm(config);
+		if (!form) return;
+
+		const syncExpanded = title => {
+			const explanation = title.parentElement.querySelector('.explanation');
+			title.setAttribute('aria-expanded', explanation && explanation.classList.contains('show') ? 'true' : 'false');
+		};
+
+		const enhance = () => {
+			form.querySelectorAll('.question').forEach((question, index) => {
+				const title = question.querySelector('.question-title');
+				if (!title) return;
+				const number = String(title.querySelector('.q-number')?.textContent || index + 1).replace(/[.、\s]/g, '');
+				const select = question.querySelector('select');
+				if (select && !select.hasAttribute('aria-label') && !select.hasAttribute('aria-labelledby') && !(select.labels && select.labels.length)) {
+					const text = title.textContent.replace(/^\s*\d+[.、]\s*/, '').trim();
+					select.setAttribute('aria-label', `第 ${number} 题：${text}`);
+				}
+
+				const explanation = question.querySelector('.explanation');
+				if (!explanation || title.hasAttribute('role')) return;
+				if (!explanation.id) explanation.id = `${form.id || 'scale'}-q${number}-explanation`;
+				title.dataset.keyboardToggle = 'true';
+				title.setAttribute('role', 'button');
+				title.setAttribute('tabindex', '0');
+				title.setAttribute('aria-controls', explanation.id);
+				syncExpanded(title);
+			});
+		};
+
+		form.addEventListener('keydown', event => {
+			const title = event.target.closest && event.target.closest('.question-title[data-keyboard-toggle]');
+			if (!title || (event.key !== 'Enter' && event.key !== ' ')) return;
+			event.preventDefault();
+			title.click();
+		});
+
+		let pending = false;
+		new MutationObserver(mutations => {
+			mutations.forEach(mutation => {
+				if (mutation.type !== 'attributes' || !mutation.target.classList.contains('explanation')) return;
+				const title = mutation.target.parentElement?.querySelector('.question-title[data-keyboard-toggle]');
+				if (title) syncExpanded(title);
+			});
+			if (pending || !mutations.some(mutation => mutation.type === 'childList')) return;
+			pending = true;
+			queueMicrotask(() => {
+				pending = false;
+				enhance();
+			});
+		}).observe(form, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+
+		enhance();
+	}
+
 	function bindCommonEvents(config = getConfig()) {
 		const form = getForm(config);
 		if (form) {
@@ -474,6 +531,7 @@
 
 	function init(config = getConfig()) {
 		markStructure(config);
+		enhanceQuestionAccessibility(config);
 		bindCommonEvents(config);
 		updateProgress(config);
 	}
