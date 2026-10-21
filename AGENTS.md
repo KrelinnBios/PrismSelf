@@ -103,6 +103,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 - `Scales/scale-common.css`、`Scales/scale-common.js`：量表结构、进度和结果区域。
 - `Tools/tool-common.css`：工具页共享样式。
 - `Glossaries/glossary-common.css`：术语页共享样式。
+- `Glossaries/glossary-common.js`：哲学、心理学、性学、社会学术语页的搜索、筛选与渲染逻辑；SOGIESC 页使用自带的分类重排逻辑。
 - 首页目前使用内联样式与脚本；修改首页时要特别留意卡片筛选、最近更新和导航逻辑。
 
 修改共享文件后，提交前至少抽查该分类中结构差异较大的两个页面。
@@ -125,6 +126,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 | 量表分类 | `Scales/scale-common.css`、`Scales/scale-common.js` | `Scales/*.html` |
 | 工具分类 | `Tools/tool-common.css` | `Tools/*.html` |
 | 术语分类 | `Glossaries/glossary-common.css` | `Glossaries/*.html` |
+| 术语分类 | `Glossaries/glossary-common.js` | 除 SOGIESC 外的 `Glossaries/*.html` |
 
 操作规则：
 
