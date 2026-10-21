@@ -213,7 +213,8 @@
 
     .sidebar {
       position: sticky;
-      top: 32px;
+      /* 7 个 82px 按钮 + 6 个 6px 间距 = 610px，在视口中垂直居中，矮屏时回落到 32px */
+      top: max(32px, calc((100vh - 610px) / 2));
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
@@ -553,7 +554,7 @@
 
     .header-link {
       display: inline-flex;
-      align-items: center;
+      align-items: baseline;
       gap: 6px;
       padding: 6px 12px;
       border: 1px solid transparent;
@@ -589,6 +590,9 @@
 
     .header-link.contact .header-link-mark {
       color: var(--green);
+      /* @ 字形墨迹偏低，上移使其中心与中文对齐 */
+      position: relative;
+      top: -0.14em;
     }
 
     :root[data-theme="dark"] .header-link.support .header-link-mark {
