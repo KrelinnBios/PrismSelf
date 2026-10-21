@@ -9,7 +9,12 @@ window.PrismSelfUpdateGroups = [
       './Analyses/Psychosexual-Concepts-Panorama.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
       './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html'
+      './Analyses/Neutrality-Type-Analysis.html',
+      './Glossaries/SOGIESC-Glossary.html',
+      './Glossaries/Sexology-Glossary.html',
+      './Glossaries/Psychology-Glossary.html',
+      './Glossaries/Sociology-Glossary.html',
+      './Glossaries/Philosophy-Glossary.html'
     ]
   },
   {
@@ -21,12 +26,7 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-09-27',
     pages: [
-      './Scales/Gender-Exploration-Scale.html',
-      './Glossaries/SOGIESC-Glossary.html',
-      './Glossaries/Sexology-Glossary.html',
-      './Glossaries/Psychology-Glossary.html',
-      './Glossaries/Sociology-Glossary.html',
-      './Glossaries/Philosophy-Glossary.html'
+      './Scales/Gender-Exploration-Scale.html'
     ]
   },
   {
