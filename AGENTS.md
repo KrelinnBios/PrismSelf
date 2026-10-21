@@ -95,7 +95,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 
 主要共享资源：
 
-- `Analyses/analysis-common.css`：分析页布局、控件、卡片和主题表现。
+- `Analyses/analysis-common.css`、`Analyses/analysis-common.js`：分析页布局、控件、卡片和主题表现；脚本统一处理筛选栏、参考文献跳转、详情弹窗焦点与筛选按钮状态。
 - `Guides/guide-common.css`：长篇指南正文、标题、表格、导航和响应式表现。
 - `Guides/guide-common.js`：除 BDSM 外的指南页把 Typora 正文重排为卡片版式并生成目录，各页只传入目录文案等配置。
 - `Topics/topic-common.css`：话题页共享样式。
@@ -117,7 +117,7 @@ PrismSelf 是一个中文静态网页知识库，聚焦性别理论、心理概�
 | 全局主题 | `assets/theme.js` | 全部 HTML 页面 |
 | 全局图标 | `icon/logo.svg` | 全部 favicon 引用 |
 | 社交分享 | `og-image/image.png` | 全部 OG 图片引用 |
-| 分析分类 | `Analyses/analysis-common.css` | `Analyses/*.html` |
+| 分析分类 | `Analyses/analysis-common.css`、`Analyses/analysis-common.js` | `Analyses/*.html` |
 | 指南分类 | `Guides/guide-common.css` | `Guides/*.html` |
 | 指南分类 | `Guides/guide-common.js` | 除 BDSM 外的 `Guides/*.html` |
 | 话题分类 | `Topics/topic-common.css` | `Topics/*.html` |

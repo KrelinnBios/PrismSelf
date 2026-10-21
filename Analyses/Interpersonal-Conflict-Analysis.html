@@ -214,7 +214,7 @@
   <link rel="stylesheet" href="./analysis-common.css?v=202609214">
   <link rel="stylesheet" href="../assets/theme.css?v=202610211">
   <script src="../assets/theme.js?v=202610211"></script>
-  <script defer src="./analysis-common.js?v=202609211"></script>
+  <script defer src="./analysis-common.js?v=202610221"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -609,22 +609,15 @@
       }
     };
 
-    let previousModalFocus = null;
-
     function showDetail(key) {
       const d = details[key];
       if (!d) return;
-      previousModalFocus = document.activeElement;
       let html = `<div class="modal-title" id="modalTitle">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
       d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
       document.getElementById('modalContent').innerHTML = html;
       document.getElementById('modal').classList.add('open');
-      document.getElementById('modalBox').focus();
     }
-    function closeModal() {
-      document.getElementById('modal').classList.remove('open');
-      if (previousModalFocus && typeof previousModalFocus.focus === 'function') previousModalFocus.focus();
-    }
+    function closeModal() { document.getElementById('modal').classList.remove('open'); }
     function handleModalClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     function filterTable(type, btn) {
