@@ -43,292 +43,43 @@
       color: #a99bff;
     }
   </style>
+<script src="./guide-common.js?v=202610221"></script>
 <script>
-    (() => {
-      const labelMap = new Map([
-        ['核心定义', 'Definition'],
-        ['核心术语', 'Key Terms'],
-        ['学术观点', 'Research'],
-        ['核心观点', 'Key Points'],
-        ['常见误解', 'Misconceptions'],
-        ['常见问题', 'FAQ'],
-        ['总结', 'Summary'],
-        ['参考文献', 'References'],
-        ['附录', 'Appendix'],
-        ['资源', 'Resources']
-      ]);
-
-      const normalizeSuffix = (value) => (value || '').replace(/-\\d+$/, '');
-      const textOf = (node) => (node && node.textContent ? node.textContent.trim() : '');
-      const el = (tag, className, text) => {
-        const node = document.createElement(tag);
-        if (className) node.className = className;
-        if (text != null) node.textContent = text;
-        return node;
-      };
-
-      const createCard = ({ title, label, nodes, highlight }) => {
-        const card = el('div', highlight ? 'term-card highlight' : 'term-card');
-        card.appendChild(el('div', 'term-corner'));
-        card.appendChild(el('span', 'term-en', title));
-
-        const desc = el('div', 'term-desc');
-        for (const n of nodes) desc.appendChild(n);
-        card.appendChild(desc);
-
-        const headingEls = Array.from(desc.querySelectorAll('h2, h3, h4, h5, h6'));
-        if (headingEls.length) {
-          const levels = headingEls
-            .map((h) => Number(String(h.tagName || '').slice(1)))
-            .filter((n) => Number.isFinite(n))
-            .sort((a, b) => a - b);
-          const distinct = Array.from(new Set(levels));
-          for (const h of headingEls) {
-            const level = Number(String(h.tagName || '').slice(1));
-            const index = distinct.indexOf(level);
-            if (index >= 0) h.dataset.level = String(index + 1);
-          }
-
-          const counts = [0, 0, 0, 0, 0];
-          for (const h of headingEls) {
-            const level = Number(h.dataset.level);
-            if (!Number.isFinite(level) || level < 1 || level > counts.length) continue;
-
-            counts[level - 1] += 1;
-            for (let i = level; i < counts.length; i += 1) counts[i] = 0; const num = counts.slice(0, level).join('.'); const firstEl = h.firstElementChild; if (firstEl && firstEl.classList && firstEl.classList.contains('card-num')) firstEl.remove(); h.insertBefore(el('span', 'card-num', `${num} `), h.firstChild);
-          }
-        } return card;
-      }; const normalizeH2Label = (title) => {
-        const t = (title || '').trim();
-        if (!t) return '';
-        const withoutPrefix = t.replace(/^([一二三四五六七八九十]+、|\\d+\\.|\\d+、)\\s*/, '');
-        return withoutPrefix.split('：')[0].split(':')[0].trim();
-      };
-
-      const buildHeaderSub = (sections) => {
-        const parts = sections.map((s) => normalizeH2Label(s.title)).filter(Boolean);
-        const unique = [];
-        for (const p of parts) {
-          if (!unique.includes(p)) unique.push(p);
-          if (unique.length >= 6) break;
-        }
-        return unique.join(' · ');
-      };
-
-      const applyAccentTitle = (h, rawTitle) => {
-        const suffix = '全景指南';
-        const index = rawTitle.lastIndexOf(suffix);
-        if (index < 0) {
-          h.appendChild(document.createTextNode(rawTitle));
-          return;
-        }
-        const before = rawTitle.slice(0, index);
-        if (before) h.appendChild(document.createTextNode(before));
-        const span = document.createElement('span');
-        span.className = 'title-guide-suffix';
-        span.textContent = suffix;
-        h.appendChild(span);
-      };
-
-      const build = () => {
-        const write = document.getElementById('write');
-        if (!write) return;
-
-        const originalElements = Array.from(write.children);
-        const h1 = originalElements.find((n) => n.tagName === 'H1');
-        const title = textOf(h1) || '半性恋全景指南';
-        document.title = 'PrismSelf - ' + title;
-
-        const children = Array.from(originalElements).filter((n) => n !== h1);
-        const sections = [];
-        let manualToc = null;
-
-        for (let i = 0; i < children.length; i += 1) { const node = children[i]; if (!node || node.tagName !== 'H2') continue; const start = i + 1; let end = children.length; for (let j = start; j < children.length; j += 1) { if (children[j].tagName === 'H2') { end = j; break; } } const titleText = textOf(node); const contentNodes = children.slice(start, end); if (!sections.length && !manualToc && /目录/.test(titleText)) { manualToc = { id: node.id, title: titleText, nodes: contentNodes }; i = end - 1; continue; } sections.push({ id: node.id, title: titleText, nodes: contentNodes }); i = end - 1; } if (!sections.length) return; const header = document.createElement('header'); const h = document.createElement('h1'); const rawTitle = title.replace(/\\s*\\(.+?\\)\\s*$/, '').trim(); header.appendChild(el('div', 'header-label', 'Demisexual Comprehensive Guide')); applyAccentTitle(h, rawTitle); header.appendChild(h); header.appendChild(el('div', 'header-sub', buildHeaderSub(sections))); header.appendChild(el('div', 'header-ornament')); const intro = el('section', 'intro-section'); const firstSectionNodes = sections[0].nodes.slice(); const introParas = []; for (const n of firstSectionNodes) {
-          if (n && n.tagName === 'P') {
-            introParas.push(n); if (introParas.length >= 2) break;
-          }
-        }
-        if (introParas.length) {
-          sections[0].nodes = sections[0].nodes.filter((n) => !introParas.includes(n));
-          for (const p of introParas) intro.appendChild(p);
-        }
-        intro.appendChild(el('div', 'divider'));
-
-        intro.appendChild(el('div', 'category-title', '快速目录 · Quick Navigation'));
-        const tocLabels = ['Introduction', 'Concepts & Definitions', 'Research & Evidence', 'Development', 'Social Context', 'Relationships & Sex', 'Mental Health & Identity', 'Rights & Inclusion', 'Practice Guide', 'Future Research', 'Conclusion', 'Appendix'];
-        const tocDescriptions = ['从性取向的多样性出发，说明半性恋在性吸引谱系中的位置。', '解释半性恋的核心定义，并区分性吸引、性欲、性行为与亲密感。', '介绍现有研究、证据来源与样本和定义带来的限制。', '回顾从困惑、寻找描述到逐步形成认同的可能历程。', '讨论社会规范、误读与半性恋在公共语境中的可见性。', '分析亲密关系、性行为与性吸引之间并不固定的关系。', '关注自我认知、心理健康和建立支持性环境的重要性。', '概览法律权益、反歧视与社会包容相关议题。', '提供自我理解、沟通需求与处理关系期待的实践思路。', '整理研究进展、尚未解决的问题与未来探索方向。', '总结半性恋经验的多样性，以及避免替他人下结论的原则。', '汇总专业资料、社群资源与延伸阅读入口。'];
-        const tocCards = el('div', 'terms-grid toc-grid');
-        sections.forEach((s, idx) => {
-          const a = document.createElement('a');
-          a.className = (idx === 0 || idx === 7) ? 'term-card toc-card highlight' : 'term-card toc-card';
-          a.href = s.id ? `#${s.id}` : '#';
-          a.appendChild(el('div', 'term-corner'));
-          a.appendChild(el('span', 'term-en', String(idx + 1).padStart(2, '0') + ' · ' + tocLabels[idx]));
-          a.appendChild(el('span', 'term-zh', s.title));
-          a.appendChild(el('div', 'term-desc', tocDescriptions[idx]));
-          tocCards.appendChild(a);
-        });
-        intro.appendChild(tocCards);
-
-        if (manualToc) {
-          const manualNodes = manualToc.nodes.filter((n) => n && n.tagName !== 'HR');
-          const manualWrap = el('div', 'terms-grid');
-          manualWrap.appendChild(
-            createCard({
-              title: manualToc.title,
-              label: 'TOC',
-              nodes: manualNodes,
-              highlight: false
-            })
-          );
-          intro.appendChild(manualWrap);
-        }
-
-        const main = el('div', 'main-content');
-        sections.forEach((s, sectionIndex) => {
-          const sec = el('section', 'category-section');
-          if (s.id) sec.id = s.id;
-          sec.appendChild(el('div', 'category-title', s.title));
-
-          const grid = el('div', 'terms-grid');
-          const nodes = s.nodes.filter((n) => !(n && n.tagName === 'HR'));
-          const blocks = [];
-          let buffer = [];
-          let currentH3 = null;
-
-          const flush = () => {
-            if (!currentH3 && buffer.length === 0) return;
-            blocks.push({ h3: currentH3, nodes: buffer });
-            buffer = [];
-            currentH3 = null;
-          };
-
-          for (const n of nodes) {
-            if (n && n.tagName === 'H3') {
-              flush();
-              currentH3 = n;
-              continue;
-            }
-            buffer.push(n);
-          }
-          flush();
-
-          blocks.forEach((b, blockIndex) => {
-            const rawTitle = b.h3 ? textOf(b.h3) : '概述';
-            const labelKey = normalizeSuffix(b.h3 ? b.h3.id : '');
-            const label =
-              labelMap.get(rawTitle) || labelMap.get(labelKey) || (labelKey ? labelKey.toUpperCase() : 'OVERVIEW');
-            const highlight =
-              rawTitle === '概述' ||
-              /定义/.test(rawTitle) ||
-              (sectionIndex === 0 && blockIndex === 0) ||
-              (/结语|总结/.test(rawTitle) && b.nodes.length < 6); grid.appendChild(createCard({ title: rawTitle, label, nodes: b.nodes, highlight }));
-          }); sec.appendChild(grid); main.appendChild(sec);
-        }); const floating = el('div', 'floating-toc'); const btn = el('button', 'toc-toggle-btn', '≡'); btn.type = 'button'; btn.setAttribute('aria-label', '打开目录'); btn.setAttribute('aria-expanded', 'false'); const panel = el('div', 'toc-panel'); panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', '章节目录'); panel.setAttribute('aria-hidden', 'true'); const panelHeader = el('div', 'toc-panel-header'); panelHeader.appendChild(el('span', '', '目录')); const closeIcon = el('span', 'toc-close-icon', '×'); closeIcon.setAttribute('role', 'button'); closeIcon.setAttribute('tabindex', '0'); closeIcon.setAttribute('aria-label', '关闭目录'); panelHeader.appendChild(closeIcon); panel.appendChild(panelHeader); const list = el('ul', 'toc-list'); sections.forEach((s, idx) => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = s.id ? `#${s.id}` : '#';
-          a.appendChild(el('span', 'toc-index', String(idx + 1)));
-          a.appendChild(el('span', 'toc-title', s.title));
-          li.appendChild(a);
-          list.appendChild(li);
-        });
-        panel.appendChild(list);
-
-        const open = () => {
-          panel.classList.add('open');
-          panel.setAttribute('aria-hidden', 'false');
-          btn.setAttribute('aria-expanded', 'true');
-        };
-        const close = () => {
-          panel.classList.remove('open');
-          panel.setAttribute('aria-hidden', 'true');
-          btn.setAttribute('aria-expanded', 'false');
-        };
-        const toggle = () => (panel.classList.contains('open') ? close() : open());
-
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggle();
-        });
-        closeIcon.addEventListener('click', (e) => {
-          e.preventDefault();
-          close();
-          btn.focus();
-        });
-        closeIcon.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            close();
-            btn.focus();
-          }
-        });
-
-        list.addEventListener('click', (e) => {
-          const a = e.target && e.target.closest ? e.target.closest('a') : null;
-          if (!a) return;
-          close();
-        });
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') close();
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!panel.classList.contains('open')) return;
-          const target = e.target;
-          if (target === btn || panel.contains(target)) return;
-          close();
-        });
-
-        floating.appendChild(btn);
-        floating.appendChild(panel);
-
-        write.innerHTML = '';
-        write.appendChild(header);
-        write.appendChild(intro);
-        write.appendChild(main);
-        write.appendChild(floating);
-
-        const tocLinks = Array.from(panel.querySelectorAll('a'));
-        const sectionEls = Array.from(write.querySelectorAll('.category-section'));
-        const byId = new Map(sectionEls.map((s) => [s.id, s]));
-
-        const setCurrent = (id) => {
-          tocLinks.forEach((a) => a.setAttribute('aria-current', 'false'));
-          const found = tocLinks.find((a) => a.getAttribute('href') === `#${id}`);
-          if (found) found.setAttribute('aria-current', 'true');
-        };
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const visible = entries
-              .filter((e) => e.isIntersecting)
-              .sort((a, b) => (a.boundingClientRect.top > b.boundingClientRect.top ? 1 : -1))[0];
-            if (visible && visible.target && visible.target.id) setCurrent(visible.target.id);
-          },
-          { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0.01 }
-        );
-
-        for (const s of sectionEls) {
-          if (s.id) observer.observe(s);
-        }
-
-        const initialId = location.hash ? location.hash.slice(1) : sections[0] && sections[0].id;
-        if (initialId && byId.has(initialId)) setCurrent(initialId);
-
-        document.body.classList.remove('guide-building');
-        document.body.classList.add('guide-ready');
-      };
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', build, { once: true });
-      } else {
-        build();
-      }
-    })();
-  </script>
+  PrismSelfGuide.init({
+    headerLabel: 'Demisexual Comprehensive Guide',
+    fallbackTitle: '半性恋全景指南',
+    headerSub: 'auto',
+    tocHighlights: [0, 7],
+    tocLabels: [
+      'Introduction',
+      'Concepts & Definitions',
+      'Research & Evidence',
+      'Development',
+      'Social Context',
+      'Relationships & Sex',
+      'Mental Health & Identity',
+      'Rights & Inclusion',
+      'Practice Guide',
+      'Future Research',
+      'Conclusion',
+      'Appendix'
+    ],
+    tocDescriptions: [
+      '从性取向的多样性出发，说明半性恋在性吸引谱系中的位置。',
+      '解释半性恋的核心定义，并区分性吸引、性欲、性行为与亲密感。',
+      '介绍现有研究、证据来源与样本和定义带来的限制。',
+      '回顾从困惑、寻找描述到逐步形成认同的可能历程。',
+      '讨论社会规范、误读与半性恋在公共语境中的可见性。',
+      '分析亲密关系、性行为与性吸引之间并不固定的关系。',
+      '关注自我认知、心理健康和建立支持性环境的重要性。',
+      '概览法律权益、反歧视与社会包容相关议题。',
+      '提供自我理解、沟通需求与处理关系期待的实践思路。',
+      '整理研究进展、尚未解决的问题与未来探索方向。',
+      '总结半性恋经验的多样性，以及避免替他人下结论的原则。',
+      '汇总专业资料、社群资源与延伸阅读入口。'
+    ]
+  });
+</script>
   <title>PrismSelf - 半性恋全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/Demisexual-Comprehensive-Guide.html">
   <meta name="description" content="半性恋全景指南，系统介绍半性恋的定义、谱系定位、常见误解与自我认同。">
