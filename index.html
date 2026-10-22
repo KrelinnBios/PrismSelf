@@ -1640,10 +1640,6 @@
         box-shadow: inset 0 0 0 1px rgba(26, 35, 50, 0.10);
       }
 
-      .sidebar .stat:last-child {
-        margin-right: 8px;
-      }
-
       .sidebar .stat:first-child,
       .sidebar .stat:nth-child(3),
       .sidebar .stat:nth-child(7),
@@ -2024,7 +2020,7 @@
     @media (max-width: 640px) {
       :root[data-theme="dark"] .sidebar {
         align-self: stretch;
-        width: calc(100% + 32px);
+        width: calc(100% + 28px);
         min-width: 0;
         background: var(--bg);
         border-bottom-color: rgba(255, 255, 255, 0.18);
@@ -2062,7 +2058,7 @@
       }
     }
 
-    /* 移动端把筛选与主题按钮整合为同一工具栏，内容卡片改为紧凑列表行。 */
+    /* 移动端横向筛选条保持两侧等距，内容卡片改为紧凑列表行。 */
     @media (max-width: 640px) {
       .layout {
         gap: 16px;
@@ -2072,9 +2068,9 @@
       .sidebar {
         width: calc(100% + 28px);
         margin-inline: -14px;
-        padding: calc(8px + env(safe-area-inset-top, 0px)) 76px 8px 12px;
+        padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 8px;
         scroll-padding-left: 12px;
-        scroll-padding-right: 76px;
+        scroll-padding-right: 12px;
       }
 
       .sidebar-scroll {
