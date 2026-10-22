@@ -2799,7 +2799,7 @@
 
   </footer>
 
-  <script src="./update-records.js?v=202610191"></script>
+  <script src="./update-records.js?v=202610231"></script>
   <script>
 
     // Live keyword filter over the content cards.
@@ -2950,14 +2950,23 @@
         if (clickLock) return;
         const kwActive = search && search.value.trim().length > 0;
         if (kwActive) return;
-        const triggerY = window.innerHeight * 2 / 5;
+        const isMobileBar = window.matchMedia('(max-width: 640px)').matches;
+        const stickyH = isMobileBar && sidebarEl ? sidebarEl.offsetHeight : 0;
+        const triggerY = Math.min(window.innerHeight * 2 / 5, 220) + stickyH + 12;
 
         let best = null;
         for (const s of sections) {
           const top = s.getBoundingClientRect().top;
-          if (top > 0 && top <= triggerY) {
+          if (top <= triggerY + 1) {
             best = s;
           }
+        }
+
+        // 最后一栏较短时，标题可能无法滚到触发线；到底后仍应选中它。
+        const scrollEl = document.scrollingElement || document.documentElement;
+        const maxScroll = scrollEl.scrollHeight - scrollEl.clientHeight;
+        if (maxScroll > 0 && scrollEl.scrollTop >= maxScroll - 1) {
+          best = sections[sections.length - 1];
         }
 
         if (best) {
@@ -2967,7 +2976,6 @@
         } else if (sections[0].getBoundingClientRect().top > triggerY) {
           setActive(null);
         }
-        // Otherwise keep current active
       };
 
       let ticking = false;
