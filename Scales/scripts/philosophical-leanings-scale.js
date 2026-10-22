@@ -467,19 +467,19 @@ function generateDeepInsight(normalized, answersMap) {
 
     let html = `${dimensionCards}<h3 class="result-section-heading">综合深度分析</h3><div class="insight-card">
     <h3>一、认识论与价值基底</h3>
-    <p>您在“<strong>${top.name}</strong>”上得分最高（${top.score}%）。在您的底层认知框架中，您主要将世界的运作与人生的意义理解为：${getDetailedEpistemology(top.key)}</p>`;
+    <p>您在“<strong>${top.name}</strong>”上得分最高（${top.score}%）。以下介绍题组关联的部分理论主张，不代表您已全部认同：${getDetailedEpistemology(top.key)}</p>`;
 
     if (second && second.score > 50) {
-        html += `<p>与此同时，您在“<strong>${second.name}</strong>”上的得分达到 ${second.score}%，表明您同样高度认同该流派的核心洞见。${getDetailedEpistemology(second.key)}两种视角在您的判断中同时存在。</p>`;
+        html += `<p>与此同时，您在“<strong>${second.name}</strong>”上的得分达到 ${second.score}%，它在本站规则下也处于较高位置。${getDetailedEpistemology(second.key)}可自行比较两种视角，不必同时接受。</p>`;
     }
     if (third && third.score > 45) {
-        html += `<p>“<strong>${third.name}</strong>”（${third.score}%）位列第三倾向，进一步展示了您思想体系的多元维度：${getDetailedEpistemology(third.key)}这一维度在您处理复杂现实时往往也会发挥关键作用。</p>`;
+        html += `<p>“<strong>${third.name}</strong>”（${third.score}%）位列第三倾向，可继续了解的视角为：${getDetailedEpistemology(third.key)}分数不证明您在实际讨论中使用该视角。</p>`;
     }
     html += `</div>`;
 
     html += `<div class="insight-card">
     <h3>二、核心命题确认</h3>
-    <p>根据您的作答模式，以下命题最能代表您当前的核心哲学立场：</p>
+    <p>以下是本站关联题目中您较认同的表述，不能代表完整立场：</p>
     <ul style="margin:0; padding-left:20px; line-height:2;">
       ${coreClaimsMap[top.key].map(c => `<li>${c}</li>`).join('')}
       ${second && second.score > 50 ? coreClaimsMap[second.key].slice(0, 1).map(c => `<li style="color:#666; font-style:italic;">（兼容思考）${c}</li>`).join('') : ''}
@@ -488,8 +488,8 @@ function generateDeepInsight(normalized, answersMap) {
     html += `<div class="insight-card">
     <h3>三、潜在理论盲区与内在张力</h3>
     <p>${getDetailedBlindSpot(top.key)}</p>
-    <p><strong>与其他流派的张力：</strong>您的立场与“${tension.tenseName}”之间存在明显的理论张力。这并不是谁对谁错的问题，而是底层预设的差异：“${tension.tenseName}”所珍视的核心价值，恰恰是您的主导流派在建立理论体系时所必须排斥或悬置的。</p>
-    <p><strong>潜在的思想盟友：</strong>“${tension.allyName}”与您的立场在部分核心假设上较为兼容。它们可以作为补充视角，帮助您看到主导框架之外的分析层次。</p>
+    <p><strong>与其他流派的张力：</strong>可将“${tension.tenseName}”作为对照阅读。这些传统可能在部分问题上有分歧，也可能重叠；本站固定配对不证明它们必须相互排斥。</p>
+    <p><strong>潜在的思想盟友：</strong>“${tension.allyName}”是本站预设的对照阅读方向；是否兼容要看具体主张，不能由分数确定。</p>
     </div>`;
 
     let contradictions = [];
@@ -506,12 +506,12 @@ function generateDeepInsight(normalized, answersMap) {
     }
     html += `<div class="insight-card"><h3>四、个体思想画像及溢出分析</h3>`;
     if (contradictions.length > 0) {
-        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向“${top.name}”，您在该流派的以下议题上表现出明确的保留（甚至抵触），这说明您并未教条化地全盘接受，而是保持着高度独立的思辨：</p>
+        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向“${top.name}”，您在该流派的以下议题上表现出明确的保留（甚至抵触），这只能说明对这些表述的回答不同，不能评价思辨能力：</p>
         <ul style="margin:0; padding-left:20px; line-height:2; color:#164e63;">
           ${contradictions.slice(0, 4).map(c => `<li>“${c.text}”（您的打分：${c.score} / 6）</li>`).join('')}
         </ul>`;
     } else {
-        html += `<p><strong>对主导流派的高度一致：</strong>您对“${top.name}”的全部核心议题都给出了高度一致的判断，说明您在该框架内部的回答较为稳定。</p>`;
+        html += `<p><strong>对主导流派的高度一致：</strong>您对“${top.name}”的本页所列题目没有触发“内部异见”提示；这不证明完全认同或长期稳定。</p>`;
     }
     if (strongAgrees.length > 0) {
         html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>值得注意的是，您在整体得分最低的“${lowest.name}”中，仍对以下议题表示较高认同。这些题目可能提示您对该流派并非完全排斥：</p>
@@ -538,7 +538,7 @@ function generateDeepInsight(normalized, answersMap) {
     html += `<div class="insight-card">
         <h3>五、认知对照：最低匹配流派分析</h3>
         <p>您得分最低的流派是“<strong>${lowest.name}</strong>”（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
-        <strong>为何权重较低？</strong>您对该流派的低认同，不一定源于不了解，也可能反映了更深层的前提分歧——${lowest.key === 'existentialism' ? "您可能更相信世界存在某种客观意义或秩序，而非完全由个体自由创造。" :
+        <strong>为何权重较低？</strong>低分原因不能由本页确定。以下是供您核对的可能问题，并非对您的判断——${lowest.key === 'existentialism' ? "您可能更相信世界存在某种客观意义或秩序，而非完全由个体自由创造。" :
             lowest.key === 'stoicism' ? "您可能更倾向于通过改变外部世界或激情投入来解决问题，而非通过内在情绪抽离。" :
                 lowest.key === 'empiricism' ? "您可能更相信先验理性、直觉或形而上学真理的存在，而非仅依赖感官经验。" :
                     lowest.key === 'rationalism' ? "您可能更看重观察、实验和具体数据，而非纯粹的思辨与演绎。" :
@@ -546,7 +546,7 @@ function generateDeepInsight(normalized, answersMap) {
                             lowest.key === 'kantianism' ? "您可能更倾向于结果导向的伦理判断，或认为绝对义务在复杂现实中过于僵化。" :
                                 lowest.key === 'utilitarianism' ? "您可能更重视个体权利、动机纯洁性或非功利的价值，而非单纯的整体效益计算。" :
                                     "您可能更相信存在某种可被理性把握的客观真理或宏大叙事，而非彻底解构与视角主义。"}
-        <p><strong>扩展建议：</strong>阅读该流派的一手文本往往会发现，它所批判的恰恰是您当前框架中最容易忽视的那部分现实。建议可从以下切入点开始阅读：${lowestRec}</p>
+        <p><strong>扩展建议：</strong>阅读该流派的一手文本往往会发现，其内部主张比本页题目呈现的更丰富。建议可从以下切入点开始阅读：${lowestRec}</p>
     </div>`;
 
     return html;
@@ -607,16 +607,16 @@ window.calculateResult = function () {
 
     if (above60 >= 5) {
         typeLabel = "融会贯通型";
-        typeDesc = "您在多个哲学流派上都表现出较高接受度，可能更习惯根据问题类型切换分析框架，而不是固定依附单一理论。";
+        typeDesc = "多个题组达到本站自设的较高分段；“融会贯通”仅为原有分类名称，不证明知识水平或运用理论的能力。";
     } else if (above60 >= 3) {
         typeLabel = "多维兼容型";
-        typeDesc = "您以一两个思想内核为主轴，同时吸纳了其他流派的解释资源。您的作答呈现出清晰重心和一定的跨框架兼容性。";
+        typeDesc = "多个题组达到本站自设的较高分段；这些分数不能证明不同理论在您的判断中彼此兼容。";
     } else if (above40 >= 5) {
         typeLabel = "温和探索型";
-        typeDesc = "您对多类哲学思想都保持审慎而开放的态度，较少在本量表中表现出强烈排斥或单一归属。";
+        typeDesc = "多个题组处于本站中间或更高分段；分数本身不能说明审慎、开放或对某个流派的完整态度。";
     } else {
         typeLabel = "立场鲜明型";
-        typeDesc = "您的回答集中在少数理论方向上，显示出相对清晰的判断偏好和较稳定的原则重心。";
+        typeDesc = "本次回答触发了本站这一分类提示；它不能证明立场鲜明、长期稳定或具有单一归属。";
     }
 
     const summaryLowest = normalized[normalized.length - 1];
@@ -636,14 +636,14 @@ window.calculateResult = function () {
         lead: typeDesc
     });
 
-    let judgmentHtml = `<h3>理论谱系定性解读</h3>`;
-    judgmentHtml += `<p>您的思想坐标系以<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '为核心基底'}</strong>构建，`;
-    if (normalized[0].score >= 80) judgmentHtml += `且认同度极高（${normalized[0].score}%）。这表示该取向在您的作答中非常稳定，可能是您处理道德、知识和生活问题时经常调用的框架。`;
-    else if (normalized[0].score >= 65) judgmentHtml += `立场相对清晰（${normalized[0].score}%）。您的价值观已有稳定的核心，但遇到极其复杂的边界问题时，也愿意暂时放下成见，参考其他流派的角度。`;
-    else if (normalized[0].score >= 50) judgmentHtml += `认同度属于温和范畴（${normalized[0].score}%）。您似乎不会完全依赖某一种单一框架，而是会根据具体情境、问题类型和人生阶段在不同视角之间切换。`;
-    else judgmentHtml += `最高得分也没有突破半数界限。这并不代表结果无效，更可能说明您对单一理论归属保持距离，或当前回答更偏向问题导向而非阵营导向。`;
+    let judgmentHtml = `<h3>理论题组作答解读</h3><p>“匹配度”为本站正负权重换算值，不是认同题目比例、身份概率或人群百分位；分类名称和分档未经验证，不能评价知识、成熟度或长期立场。</p>`;
+    judgmentHtml += `<p>本次加权分数中，<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '得分最高'}</strong>。`;
+    if (normalized[0].score >= 80) judgmentHtml += `本站换算分数较高（${normalized[0].score}%）。它只反映这次回答与本站权重的计算结果，不能证明长期稳定或实际使用频率。`;
+    else if (normalized[0].score >= 65) judgmentHtml += `本站换算分数达到较高分段（${normalized[0].score}%）。它不能证明价值观稳定，也不能推断您在复杂问题中的判断方式。`;
+    else if (normalized[0].score >= 50) judgmentHtml += `本站换算分数处于中间分段（${normalized[0].score}%）。它不能说明您如何选择或运用理论，也不代表对该流派完整主张的认同程度。`;
+    else judgmentHtml += `最高换算分数低于 50%。这一结果受题目和正负权重影响，不能据此推断您是否认同某个流派，或是否倾向以问题为导向。`;
 
-    judgmentHtml += `从雷达分布形态看，极差跨度为 ${spread.toFixed(1)} 分。${spread > 50 ? '这种较大的差距表示您的理论偏好相对集中，不同流派之间的认同区分较清楚。' : spread > 30 ? '分布有主有次，说明您既有较明显的重心，也保留了一定的跨流派弹性。' : '较平缓的分布说明您对多个框架都保留开放态度，或尚未在本量表覆盖的问题上形成强烈分化。'}</p>`;
+    judgmentHtml += `从雷达分布形态看，极差跨度为 ${spread.toFixed(1)} 分。${spread > 50 ? '本站题组换算分数的最高值与最低值相差较大，不等于实际理论立场之间的距离。' : spread > 30 ? '本站题组换算分数存在一定差异，不能据此评价思维弹性。' : '本站题组换算分数较为接近，不能据此评价开放程度或是否形成明确立场。'}</p>`;
     judgmentHtml += `<div class="result-profile-tags">${normalized.map(item => `<span class="result-profile-tag">${item.name} ${item.score}%</span>`).join('')}</div>
         <p class="result-data-note">极差跨度只用于概括本次作答中最高与最低匹配流派的相对分差，不代表思想立场的优劣、深浅或成熟度。</p>`;
     document.getElementById('currentProfileAnalysis').innerHTML = `<div class="insight-card">${judgmentHtml}</div>`;
@@ -651,7 +651,7 @@ window.calculateResult = function () {
     const books = booksMap[normalized[0].key];
     let mainHtml = `<h3>核心特征与经典书目</h3>
     <p>${categoriesMap[normalized[0].key].desc}</p>
-    <p><strong>生活实践应用：</strong>认同“${normalized[0].name}”的人，在日常生活中通常会表现出这类特征：${practiceMap[normalized[0].key]}。</p>
+    <p><strong>生活实践应用：</strong>以下是本站用于讨论“${normalized[0].name}”的应用示例，不代表所有认同者或您的实际行为：${practiceMap[normalized[0].key]}。</p>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
       <div style="background:#fcffff; padding:20px; border-radius:12px; border-top:4px solid #06b6d4; box-shadow:0 2px 6px rgba(0,0,0,0.02);">
         <strong style="color:#0e7490; font-size:1.05em;">奠基性经典读物</strong>

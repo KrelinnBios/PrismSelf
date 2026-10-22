@@ -234,14 +234,14 @@
         <div class="insight-card"><h3>当前画像与阅读边界</h3>
           <p><strong>建议顺序：</strong>先看总体维度，再看各子面向，最后用生活情境检查这些倾向何时稳定、何时变化。</p>
           <p><strong>结果边界：</strong>“${profileType}”只是本次作答的阅读提示，不是固定人格类型；近期压力、角色要求、安全感和精力都可能改变具体表现。</p>
-          <p><strong>分数边界：</strong>本页只计算原始平均分，没有常模、百分位或诊断阈值，不适合用于招聘筛选或临床判断。</p>
+          <p><strong>分数边界：</strong>本页计算本站自编题目的平均分，没有针对本页的信效度验证、常模、百分位或诊断阈值。“突出／收敛”等分档为本站阅读提示，不能用于招聘或临床判断；同分时的显示顺序没有心理意义。</p>
           <div class="result-profile-tags">${dimensions.map(dimension => `<span class="result-profile-tag">${dimension.name} ${dimensionScores[dimension.key].toFixed(1)}</span>`).join('')}</div>
         </div>`;
       document.getElementById('mainInterpretation').innerHTML = `
-        <h3>两个相对突出维度如何相互作用</h3>
+        <h3>两个相对高分维度的观察提示</h3>
         <div class="insight-card personality-combination-card ${classPrefix}-combination-card">
           <p><strong>${top.name} × ${second.name}：</strong>${pairText(top, second)}</p>
-          <p><strong>组合不等于类型：</strong>具体表现仍取决于各子面向、角色与处境。可以回想一次两种倾向彼此支持的场景，也回想一次它们发生拉扯的场景。</p>
+          <p><strong>组合解释的限制：</strong>以下组合文字是预设的观察提示；均分不能证明两个维度存在相互作用。具体表现仍需结合各子面向、角色与处境。可以回想一次两种倾向彼此支持的场景，也回想一次它们发生拉扯的场景。</p>
         </div>`;
 
       const detailCards = dimensions.map((dimension, index) => {
@@ -323,11 +323,11 @@
         },
         {
           title: '观察情境波动',
-          text: `“${mostVariable.name}”在各组情境中的差距相对更明显（约 ${contextRanges[mostVariable.key].toFixed(1)} 分）。比较高低场景中谁在场、您承担什么角色、身体状态如何。`
+          text: `“${mostVariable.name}”在各题组中的分差约为 ${contextRanges[mostVariable.key].toFixed(1)} 分。各组题目不同，这不能证明情境波动；可结合实际经历自行核对。`
         },
         {
           title: '区分偏好与困扰',
-          text: '只有当某种模式持续缩小选择、损害关系或造成明显痛苦时，才值得进一步寻找专业或社会支持。'
+          text: '如果某种模式带来困扰，或您希望获得帮助，都可以按需要寻找专业或社会支持，不必等到影响严重。'
         },
         {
           title: '在合适时机重测',

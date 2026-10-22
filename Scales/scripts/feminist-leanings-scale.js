@@ -474,19 +474,19 @@ function generateDeepInsight(normalized, answersMap) {
 
     let html = `${dimensionCards}<h3 class="result-section-heading">综合深度分析</h3><div class="insight-card">
     <h3>一、认识论基础</h3>
-    <p>您在“<strong>${top.name}</strong>”上得分最高（${top.score}%）。在您的认知框架中，您主要将性别不平等的根源理解为：${getDetailedEpistemology(top.key)}</p>`;
+    <p>您在“<strong>${top.name}</strong>”上得分最高（${top.score}%）。以下介绍题组关联的部分分析视角，不代表您已全部认同：${getDetailedEpistemology(top.key)}</p>`;
 
     if (second && second.score > 50) {
-        html += `<p>与此同时，您在“<strong>${second.name}</strong>”上的得分达到 ${second.score}%，表明该流派的分析框架在您的回答中也占有较高权重。${getDetailedEpistemology(second.key)}两种视角在您的思考中并存，也可能在具体议题上形成张力。</p>`;
+        html += `<p>与此同时，您在“<strong>${second.name}</strong>”上的得分达到 ${second.score}%，它在本站规则下也处于较高位置。${getDetailedEpistemology(second.key)}可自行比较两种视角，不必同时接受。</p>`;
     }
     if (third && third.score > 45) {
-        html += `<p>“<strong>${third.name}</strong>”（${third.score}%）位列第三倾向，进一步印证了您思想体系的多元层次：${getDetailedEpistemology(third.key)}这一维度在您面对具体议题时往往也会浮现。</p>`;
+        html += `<p>“<strong>${third.name}</strong>”（${third.score}%）位列第三倾向，可继续了解的视角为：${getDetailedEpistemology(third.key)}分数不证明您在实际讨论中使用该视角。</p>`;
     }
     html += `</div>`;
 
     html += `<div class="insight-card">
     <h3>二、核心命题确认</h3>
-    <p>根据您的作答模式，以下命题最能代表您当前的理论立场：</p>
+    <p>以下是本站关联题目中您较认同的表述，不能代表完整立场：</p>
     <ul style="margin:0; padding-left:20px; line-height:2;">
       ${coreClaimsMap[top.key].map(c => `<li>${c}</li>`).join('')}
       ${second && second.score > 50 ? coreClaimsMap[second.key].slice(0, 1).map(c => `<li style="color:#666; font-style:italic;">（兼容思考）${c}</li>`).join('') : ''}
@@ -495,7 +495,7 @@ function generateDeepInsight(normalized, answersMap) {
     html += `<div class="insight-card">
     <h3>三、潜在理论盲区与内在张力</h3>
     <p>${getDetailedBlindSpot(top.key)}</p>
-    <p><strong>与其他流派的张力：</strong>您的立场与“${tension.tenseName}”之间存在较明显的理论分歧——${top.key === 'liberal' ? '这一流派认为您所依赖的法律与市场框架本身就是父权资本主义的产物，形式平等不等于实质解放。' :
+    <p><strong>与其他流派的张力：</strong>可对照阅读“${tension.tenseName}”。以下是部分争论的简化提示，不代表所有作者，也不是对您的指认——${top.key === 'liberal' ? '这一流派认为您所依赖的法律与市场框架本身就是父权资本主义的产物，形式平等不等于实质解放。' :
             top.key === 'radical' ? '酷儿女权批评您可能将女性本质化，忽略性别流动性；自由女权则认为您对家庭和性的批判走得过远，忽略了个体能动性。' :
                 top.key === 'socialist' ? '自由女权担忧您对个体选择的轻视；文化女权则认为您的阶级分析框架未能充分重视女性特质本身的伦理价值。' :
                     top.key === 'intersectional' ? '自由女权认为交叉分析过于碎片化，难以形成有效政治联盟；激进女权则担心性别分析被稀释。' :
@@ -504,7 +504,7 @@ function generateDeepInsight(normalized, answersMap) {
                                 top.key === 'eco' ? '自由女权认为生态女权对技术的警惕妨碍了女性进入科技领域；社会主义女权认为单纯的生态叙事可能回避了阶级剥削的核心矛盾。' :
                                     '自由女权认为文化相对主义有时成为庇护本土父权的借口；激进女权则担心后殖民视角使针对特定文化中性别暴力的批判丧失了立足点。'
         }</p>
-    <p><strong>潜在的思想盟友：</strong>“${tension.allyName}”与您的立场在多个核心前提上高度兼容，理论对话空间较大，可深入参照比较。</p>
+    <p><strong>潜在的思想盟友：</strong>“${tension.allyName}”是本站预设的对照阅读方向；是否兼容要看具体主张，不能由分数确定。</p>
     </div>`;
 
     let contradictions = [];
@@ -521,12 +521,12 @@ function generateDeepInsight(normalized, answersMap) {
     }
     html += `<div class="insight-card"><h3>四、个体思想画像及溢出分析</h3>`;
     if (contradictions.length > 0) {
-        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向“${top.name}”，您在该流派的以下议题上表现出明确的保留或抵触，说明您的立场并非全盘接受，而是带有独立的思辨：</p>
+        html += `<p><strong>对主导流派的内部异见：</strong>尽管整体倾向“${top.name}”，您在该流派的以下议题上表现出明确的保留或抵触，只能说明对这些表述的回答不同，不能评价思辨能力：</p>
         <ul style="margin:0; padding-left:20px; line-height:2; color:#9a3412;">
           ${contradictions.slice(0, 4).map(c => `<li>“${c.text}”（得分：${c.score}）</li>`).join('')}
         </ul>`;
     } else {
-        html += `<p><strong>对主导流派的高度一致：</strong>您对“${top.name}”的全部核心议题都给出了高度一致的判断，说明您在该框架内部的回答较为稳定。</p>`;
+        html += `<p><strong>对主导流派的高度一致：</strong>您对“${top.name}”的本页所列题目没有触发“内部异见”提示；这不证明完全认同或长期稳定。</p>`;
     }
     if (strongAgrees.length > 0) {
         html += `<p style="margin-top:16px;"><strong>对偏离流派的意外认同：</strong>您在整体得分最低的“${lowest.name}”中，仍对以下议题表示较强认同。这些溢出点可能提示您对该流派并非完全排斥：</p>
@@ -548,7 +548,7 @@ function generateDeepInsight(normalized, answersMap) {
 
     html += `<div class="insight-card"><h3>五、认知对照：最低匹配流派分析</h3>
     <p>您得分最低的流派是“<strong>${lowest.name}</strong>”（${lowest.score}%）。该流派的核心认识论主张是：${getDetailedEpistemology(lowest.key)}</p>
-    <p><strong>为何权重较低？</strong>您对该流派的低认同，不一定源于不了解，也可能反映了更深层的前提分歧——${lowest.key === 'liberal' ? '您可能认为，仅仅修补规则而不触动结构，无法实现真正的解放。' :
+    <p><strong>为何权重较低？</strong>低分原因不能由本页确定。以下是供您核对的可能问题，并非对您的判断——${lowest.key === 'liberal' ? '您可能认为，仅仅修补规则而不触动结构，无法实现真正的解放。' :
             lowest.key === 'radical' ? '您可能对父权制高于一切的单一轴线分析感到不足，或不认同其对异性恋制度的系统批判。' :
                 lowest.key === 'socialist' ? '您可能不认为经济结构是压迫的决定性根源，或者认为文化、身体层面的变革同样不可化约。' :
                     lowest.key === 'intersectional' ? '您可能倾向于寻找更统一的压迫叙事，或认为过度细分会消解政治行动的集聚力。' :
@@ -557,7 +557,7 @@ function generateDeepInsight(normalized, answersMap) {
                                 lowest.key === 'eco' ? '您可能对将女性与自然本质化联系的论述持审慎态度，或认为技术有潜力成为解放工具而非压迫装置。' :
                                     '您可能认为文化相对主义有时为地方性的父权实践提供了庇护，或更偏向于普世性的人权框架。'
         }</p>
-    <p><strong>扩展建议：</strong>阅读该流派的一手文本往往会发现，它所批判的恰恰是您当前框架中最容易忽视的那部分现实。建议可从以下切入点开始阅读：${lowRec}</p></div>`;
+    <p><strong>扩展建议：</strong>阅读该流派的一手文本往往会发现，其内部主张比本页题目呈现的更丰富。建议可从以下切入点开始阅读：${lowRec}</p></div>`;
 
     return html;
 }
@@ -617,16 +617,16 @@ window.calculateResult = function () {
     let typeLabel, typeDesc;
     if (above60 >= 5) {
         typeLabel = "高度交叉融合型";
-        typeDesc = "您在五个或以上流派中均达到明显偏好水平，拒绝被任何单一理论框定，能灵活切换分析视角。";
+        typeDesc = "五个或以上题组达到本站自设的较高分段；这不证明您拒绝单一理论，也不测量运用理论的能力。";
     } else if (above60 >= 3) {
         typeLabel = "多维兼容型";
-        typeDesc = "您吸收了多个流派的核心洞见，形成综合的个人视角，既有明确重心，又不排斥其他框架。";
+        typeDesc = "多个题组达到本站自设的较高分段；是否理解或采纳这些理论，需要结合您自己的阅读与判断。";
     } else if (above40 >= 5) {
         typeLabel = "温和折衷型";
-        typeDesc = "您对大多数流派保持开放性，尚未形成特别鲜明的核心倾向，处于主动探索或刻意规避教条的阶段。";
+        typeDesc = "多个题组处于本站中间或更高分段；这不能说明思想发展阶段，也不能推断作答动机。";
     } else {
         typeLabel = "立场鲜明型";
-        typeDesc = "您的理论认同高度集中于少数流派，思想重心清晰、内聚力强，能快速形成一致的政治表达。";
+        typeDesc = "本次回答触发了本站这一分类提示；它不能证明立场集中、思想一致或政治表达能力。";
     }
 
     const summaryLowest = normalized[normalized.length - 1];
@@ -646,23 +646,23 @@ window.calculateResult = function () {
         lead: typeDesc
     });
 
-    let judgmentHtml = `<h3>理论谱系定性解读</h3>`;
-    judgmentHtml += `<p>您的性别观念坐标系以<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '为核心主轴'}</strong>构建，`;
-    if (normalized[0].score >= 80) judgmentHtml += `对该流派的基础预设与分析框架展现出高度一致的认同（${normalized[0].score}%），说明该框架在您的回答中非常稳定，可能是您理解性别议题时经常调用的分析工具。`;
-    else if (normalized[0].score >= 65) judgmentHtml += `在该流派核心命题上已形成清晰的价值坐标（${normalized[0].score}%），说明您已有相对清晰的判断重心，同时仍保留吸收其他视角的空间。`;
-    else if (normalized[0].score >= 50) judgmentHtml += `对该流派表现出温和偏向（${normalized[0].score}%），但同时吸纳了多个流派的解释力。说明您可能更倾向于根据议题情境切换分析框架，而不是固定归入单一流派。`;
-    else judgmentHtml += `各流派得分相对接近，尚未形成单一的主导倾向（最高仅 ${normalized[0].score}%）。这可能意味着您更重视具体议题判断，或尚未在本量表覆盖的问题上形成强烈分化。`;
+    let judgmentHtml = `<h3>理论题组作答解读</h3><p>“匹配度”为本站正负权重换算值，不是认同题目比例、身份概率或人群百分位；分类名称和分档未经验证，不能评价知识、成熟度或长期立场。</p>`;
+    judgmentHtml += `<p>本次加权分数中，<strong>${tieOthers.length > 0 ? normalized[0].name + '与' + tieOthers.map(t => t.name).join('、') + '并列' : normalized[0].name + '得分最高'}</strong>。`;
+    if (normalized[0].score >= 80) judgmentHtml += `对该流派的基础预设与分析框架展现出高度一致的认同（${normalized[0].score}%），不能据此证明长期稳定或实际运用情况。`;
+    else if (normalized[0].score >= 65) judgmentHtml += `在该流派核心命题上已形成清晰的价值坐标（${normalized[0].score}%），不能据此判断您对整个理论传统的认识。`;
+    else if (normalized[0].score >= 50) judgmentHtml += `对该流派表现出温和偏向（${normalized[0].score}%），但同时吸纳了多个流派的解释力。不能据此推断是否切换框架或属于某个流派。`;
+    else judgmentHtml += `最高得分未达到本站较高分段（最高仅 ${normalized[0].score}%）。这可能意味着您更重视具体议题判断，或尚未在本量表覆盖的问题上形成强烈分化。`;
 
     judgmentHtml += ` 从雷达图的分布形态来看，您的思想谱系在各轴向的分值${spread > 50 ? `极差达 ${spread.toFixed(1)} 分，呈现出<strong>高度清晰的倾向性轮廓</strong>` : spread > 30 ? `极差为 ${spread.toFixed(1)} 分，呈现出<strong>有重心的梯度分布</strong>` : `极差仅 ${spread.toFixed(1)} 分，各轴向分布<strong>相当均衡</strong>`}。</p>`;
 
-    judgmentHtml += `<p><strong>历史谱系定位：</strong>${normalized[0].key === 'liberal' ? '自由女权主义根植于启蒙理性、法律平等和个人权利传统。您的立场通常较重视政策可操作性和制度可见性，同时也需要回应结构批判对形式平等局限的提醒。' :
-        normalized[0].key === 'radical' ? '激进女权主义在 20 世纪 60-70 年代第二波女权运动中影响显著，强调私人领域和身体政治中的权力关系。您的立场通常能揭示日常关系中的结构性问题，同时也需要处理差异经验和政策实践中的复杂边界。' :
+    judgmentHtml += `<p><strong>历史谱系定位：</strong>${normalized[0].key === 'liberal' ? '自由女权主义根植于启蒙理性、法律平等和个人权利传统。该视角通常较重视政策可操作性和制度可见性，同时也需要回应结构批判对形式平等局限的提醒。' :
+        normalized[0].key === 'radical' ? '激进女权主义在 20 世纪 60-70 年代第二波女权运动中影响显著，强调私人领域和身体政治中的权力关系。该视角通常能揭示日常关系中的结构性问题，同时也需要处理差异经验和政策实践中的复杂边界。' :
             normalized[0].key === 'socialist' ? '社会主义女权主义强调性别政治与阶级政治、再生产劳动之间的关联。您的立场在照护危机、平台劳动和公共服务讨论中具有较强解释力，同时也需要避免把文化和身体议题完全化约为经济结构。' :
-                normalized[0].key === 'intersectional' ? '交叉性框架由金伯利·克伦肖在 1989 年正式命名，是第三波和第四波女权运动的核心理论贡献。您的立场接近当代女权研究中重要的分析框架，但也需要回应实践中如何形成共同议程和行动优先级的问题。' :
-                    normalized[0].key === 'cultural' ? '文化/差异女权主义强调平等不应等同于同化，重视照护和关系价值。您的立场能补充主流竞争性价值的不足，同时也需要持续区分价值重估与性别本质化。' :
+                normalized[0].key === 'intersectional' ? '克伦肖在 1989 年以黑人女性在反歧视法中的处境阐述交叉性；其背景也包括更早的黑人女性主义实践，不能归结为单一浪潮的贡献。您的立场接近当代女权研究中重要的分析框架，但也需要回应实践中如何形成共同议程和行动优先级的问题。' :
+                    normalized[0].key === 'cultural' ? '文化/差异女权主义强调平等不应等同于同化，重视照护和关系价值。该视角可补充主流竞争性价值的不足，同时也需要持续区分价值重估与性别本质化。' :
                         normalized[0].key === 'queer' ? '酷儿理论在 90 年代后结构主义思潮中兴起，以巴特勒的《性别麻烦》为标志性文本。您的立场接近女权主义与性别理论中的后结构方向，适合分析分类、规范和身份承认问题，同时也需要回应资源分配、统计和安全政策中的操作难题。' :
-                            normalized[0].key === 'eco' ? '生态女权主义在环保运动和反支配伦理中发展起来。您的立场适合把气候、照护、身体和资源议题联系起来，同时也需要避免把女性与自然作简单绑定。' :
-                                '后殖民女权主义在去殖民化运动和全球南方女权思想中发展起来。您的立场能提醒人们审查西方中心和跨国权力关系，同时也需要保留对在地父权和性别暴力的批判能力。'
+                            normalized[0].key === 'eco' ? '生态女权主义在环保运动和反支配伦理中发展起来。该视角可用于把气候、照护、身体和资源议题联系起来，同时也需要避免把女性与自然作简单绑定。' :
+                                '后殖民女权主义在去殖民化运动和全球南方女权思想中发展起来。该视角可提醒人们审查西方中心和跨国权力关系，同时也需要保留对在地父权和性别暴力的批判能力。'
         }</p>`;
     judgmentHtml += `<div class="result-profile-tags">${normalized.map(item => `<span class="result-profile-tag">${item.name} ${item.score}%</span>`).join('')}</div>
         <p class="result-data-note">极差跨度只用于概括本次作答中最高与最低匹配流派的相对分差，不代表理论立场的优劣或成熟度。</p>`;

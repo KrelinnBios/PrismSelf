@@ -904,7 +904,7 @@ const questionMarkup = `
 		</div>
 		${renderQuestionSelect(60)}
 		<div class="explanation">
-									<p><strong>本题用意：</strong>本题区分对性话题的知识兴趣与个人性吸引，也就是性学兴趣性恋线索。研究性文化、心理或健康议题可以纯粹源于学术兴趣，不必转化为自身性欲。相关术语只是描述线索，单题高分不能证明某种身份。</p>
+									<p><strong>本题用意：</strong>本题仅记录对相关话题或内容的兴趣。学术兴趣、作品欣赏、现实互动意愿与吸引不同；这道题不能识别 Bellussexual，结果中的关联只应作为待核对的阅读提示。</p>
 			<p><strong>具体案例：</strong>例一：对性学和性文化有持续浓厚兴趣，却几乎没有个人性吸引，可选 4–5 分；例二：有一定知识兴趣，也偶尔与自身欲望相关，可选 2–3 分；例三：对相关话题兴趣很少，或兴趣主要来自个人性欲，可选 0–1 分。</p>
 		</div>
 	</div>
@@ -1068,7 +1068,7 @@ function calculateResult() {
 			baseLabel = '性厌恶/排斥 (Sex-Averse/Repulsed)';
 			baseDesc = '对性行为本身存在强烈的反感、厌恶或回避情绪，明确拒绝参与任何形式的性活动。';
 		} else if (q16 >= 4 && q54 <= 1) {
-			baseLabel = '性积极/友好 (Sex-Positive/Favorable)';
+			baseLabel = '性行为友好 (Sex-Favorable)';
 			baseDesc = '对性行为持积极或开放态度，甚至可能享受生理过程，尽管缺乏强烈的性吸引。';
 		} else {
 			baseLabel = '性无感 (Sex-Indifferent)';
@@ -1294,9 +1294,9 @@ function calculateResult() {
 			{ q: 55, name: '不渴望关系性恋 (Orchidsexual)', desc: '能够体验到性吸引，但不希望将这种吸引转化为实际的性行为或性关系。' },
 			{ q: 56, name: '渴望关系性恋 (Cupiosexual)', desc: '尽管缺乏典型的性吸引体验，但基于寻求亲密感、情感连接、好奇心或其他非性吸引动机，仍然渴望建立性关系。' },
 			{ q: 57, name: '疑性恋 (Quoisexual)', desc: '对"性吸引"这一概念本身存在理解困难，无法确定自己是否曾经体验过性吸引，也不确定该概念是否适用于描述自己的体验。' },
-			{ q: 58, name: '吸引模糊性恋 (Idemsexual)', desc: '难以区分自己所体验的是性吸引还是其他类型的吸引（如柏拉图式吸引、审美吸引、情感吸引等），存在吸引类型识别的困难。' },
+			{ q: 58, name: '吸引模糊性恋 (Idemsexual)', desc: '难以区分自己所体验的是性吸引还是其他类型的吸引（如柏拉图式吸引、审美吸引、情感吸引等），存在吸引术语提示的困难。' },
 			{ q: 59, name: '感受模糊性恋 (Desinosexual)', desc: '无法体验典型、明确的性吸引，只能感受到模糊、难以定义的吸引感受，难以判断这种体验是否属于性吸引范畴。' },
-			{ q: 60, name: '性学兴趣性恋 (Bellussexual)', desc: '虽然不体验性吸引，但对性相关话题、性文化、性研究等领域保持浓厚的学术兴趣或好奇心。' }
+			{ q: 60, name: '性互动兴趣 (Bellussexual)', desc: 'Bellussexual 的部分社群用法涉及对性相关互动或关系元素的兴趣，并非性学研究兴趣。第 60 题不能据此识别这一标签。' }
 		];
 
 		subtypeConfigs.forEach(config => {
@@ -1351,18 +1351,18 @@ function calculateResult() {
 	if (sexualCore > 2.5) {
 		// 有性恋
 		baseType = '有性恋 (Allosexual)';
-		judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**。根据评分标准，您**符合有性恋 (Allosexual) 的特征**。这意味着性吸引是您体验世界和建立连接的常规维度之一，您能够规律地、自发地体验到以性欲为基础的冲动，并可能伴随相应的生理反应和行为驱动力。`;
+		judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**。按本站自设分界，结果显示**有性恋 (Allosexual)**的阅读提示。这个综合分数不能证明吸引的频率、强度或发生条件，也不能排除谱系身份。`;
 
 		mainInterpretation = `<h3>有性恋特征解读</h3>
 					<p><strong>什么是“有性恋”？</strong></p>
 					<p>有性恋 (Allosexual) 指的是那些能够规律、自发地体验性吸引的人群。这是人类性吸引谱系中占比最大的一类，也是社会主流认知中的“常态”模式。这个词本身是中性的，仅仅描述了一种吸引模式的存在，不带有任何价值判断。</p>
 
-					<p><strong>您的具体表现：</strong></p>
+					<p><strong>可自行核对的描述：</strong></p>
 					<ul>
-						<li><strong>性吸引强度：</strong>您的得分表明，您对他人产生以性欲为基础的内在冲动的体验相对频繁且明确。这种吸引往往是本能的、难以忽略的。</li>
-						<li><strong>自发幻想：</strong>您可能经常自然地想象与某人发生性相关的场景，这种幻想往往是自发的而非刻意的，可能伴随生理或心理兴奋。</li>
+						<li><strong>性吸引强度：</strong>核心题组达到本站较高分段。由于题目混合吸引、幻想和行为愿望，这不直接等于吸引频繁、强烈或明确。</li>
+						<li><strong>自发幻想：</strong>如有性幻想，可以分别记录幻想内容及是否希望自己参与；幻想或身体反应本身不能证明对某人的性吸引。</li>
 						<li><strong>生理反应：</strong>您可能体验过因某人而产生的生理性兴奋，如心跳加速、性器官反应等，这些反应通常是无法靠意志控制的。</li>
-						<li><strong>行为驱动力：</strong>性吸引可能会影响您的行为决策，让您有接近对方或发起互动的内在驱动力，这种驱动力往往是迫切的。</li>
+						<li><strong>行为意愿：</strong>性吸引与是否愿意发生性行为是不同问题；吸引不等于同意，也不必伴随迫切的行动愿望。</li>
 						<li><strong>对象广度：</strong>您的性吸引可能对较广泛类型的人产生，而不是仅限于极少数特定条件的个体。</li>
 					</ul>
 
@@ -1386,7 +1386,7 @@ function calculateResult() {
 		if (multipleAsexual) {
 			// 多重无性恋（无性恋 + 亚型）
 			baseType = '多重无性恋 (Myrsexual)';
-			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，表明您几乎或完全不体验性吸引，很有可能是无性恋 (Asexual) 。同时，您表现出 **${subTypes.length}个** 明显的类型特征，这符合**多重无性恋 (Myrsexual)** 的定义。`;
+			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，触发了本站的“无性恋”阅读提示。同时，相关回答触发了 **${subTypes.length}个** 术语提示；多条提示不等于拥有多种身份，是否使用**多重无性恋 (Myrsexual)** 应由您自行决定。`;
 
 			const subtypeList = subTypes.map(st =>
 				`<li><strong>${st.name}</strong>（第${st.keyQuestions[0].q}题得分${st.score}/5）：${st.desc}</li>`
@@ -1394,25 +1394,25 @@ function calculateResult() {
 
 			mainInterpretation = `<h3>多重无性恋特征解读</h3>
 						<p><strong>无性恋的核心特征：</strong></p>
-						<p>您的得分表明，您几乎或完全不体验性吸引——即那种指向特定他人的、以性欲为基础的内在冲动和渴望。这并不意味着您缺乏情感、浪漫或审美感受，只是您的吸引里并不包含性欲。</p>
+						<p>本页根据综合分数显示以下术语介绍。综合分数混合多种题意，不能直接证明您是否体验吸引；以下内容需要您自行对照，不能当作已确认的个人画像。</p>
 
 						<p><strong>什么是多重无性恋？</strong></p>
-						<p>多重无性恋 (Myrsexual) 描述的是那些同时符合无性恋谱系中两种或多种身份认同特征的情况。在无性恋社区中，这被认为是一种常见且正常的表现，反映了人类吸引体验的复杂性。</p>
+						<p>多重无性恋 (Myrsexual) 描述的是那些同时符合无性恋谱系中两种或多种身份认同特征的情况。这一标签由个人自主使用；本页没有提供其在人群中的出现比例。</p>
 
 						<p><strong>您的具体组合：</strong></p>
 						<ul>
-							<li><strong>核心身份：无性恋 (Asexual)</strong> - 几乎或完全不体验性吸引，这是您吸引体验的基础底色。</li>
+							<li><strong>可自行了解的术语：无性恋 (Asexual)</strong> - 几乎或完全不体验性吸引，这是术语的常见描述，不是本次作答已证明的事实。</li>
 							${subtypeList}
 						</ul>
 
 						<p><strong>这意味着：</strong></p>
-						<p>1. 您的体验是<strong>复杂且多维的</strong>，单一标签可能无法完整描述您丰富的内在世界。</p>
+						<p>1. 多个题目得分较高只表示本次回答涉及不同描述，不证明某种固定身份组合。</p>
 						<p>2. 这些特征可能<strong>同时存在</strong>，也可能在不同情境下<strong>交替显现</strong>，形成动态的吸引图谱。</p>
-						<p>3. 您的吸引模式形成了一个<strong>独特的组合</strong>，反映了人类性吸引的惊人多样性。</p>
+						<p>3. 这些阅读提示是否贴合您的体验，需要由您结合实际情况判断。</p>
 						<p>4. 您可能需要<strong>灵活的关系策略</strong>来应对不同特征的显现，比如在某些时期完全无性，在某些情境下有特定模式的微弱吸引。</p>
 
 						<p><strong>生活启示：</strong></p>
-						<p>作为多重无性恋者，您可能会发现：</p>
+						<p>如果您认同多个标签，可按实际需要考虑：</p>
 						<ul>
 							<li>您的体验可能需要更细致的解释才能被他人理解</li>
 							<li>建立关系时需要沟通您的复杂性，而不是简化成单一标签</li>
@@ -1423,13 +1423,13 @@ function calculateResult() {
 		} else {
 			// 单纯无性恋
 			baseType = '无性恋 (Asexual)';
-			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**。这是一个非常低的分数，强烈表明您**位于无性恋谱系的核心区域**，即您几乎或完全不体验性吸引，很有可能是无性恋 (Asexual) 。`;
+			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**。这是一个非常低的分数，仅触发了本站的“无性恋”阅读提示；它不能证明您几乎或完全没有性吸引，也不能确认或排除身份。`;
 
 			mainInterpretation = `<h3>无性恋特征解读</h3>
 						<p><strong>什么是“无性恋”？</strong></p>
-						<p>无性恋 (Asexual) 指的是那些完全或几乎不体验性吸引的人群。这<strong>不是一种疾病、缺陷或选择</strong>，而是一种自然的、与生俱来的性取向，就像异性恋、同性恋或双性恋一样，是人类多元性取向谱系中的一种。</p>
+						<p>无性恋 (Asexual) 指的是那些完全或几乎不体验性吸引的人群。这<strong>不是一种疾病、缺陷或选择</strong>，而是一种自然的、性取向，就像异性恋、同性恋或双性恋一样，是人类多元性取向谱系中的一种。</p>
 
-						<p><strong>您的具体表现：</strong></p>
+						<p><strong>可自行核对的描述：</strong></p>
 						<ul>
 							<li><strong>性吸引较少：</strong>您可能从未或极少产生过想与特定对象发生性行为的冲动。当别人谈论性感或性吸引时，您可能较难共鸣。</li>
 							<li><strong>幻想模式：</strong>如果有关性方面的幻想，它们可能是抽象的、不涉及具体人物的，或者完全没有。任何性相关的想法都可能是理性的、分析性的，而非感性的、冲动的。</li>
@@ -1445,7 +1445,7 @@ function calculateResult() {
 						<p>4. <strong>无性恋 ≠ 反对性：</strong>您可能对性持积极、中立或消极态度，这与是否体验性吸引是两个独立维度。</p>
 
 						<p><strong>生活启示：</strong></p>
-						<p>作为无性恋者，您可能会发现：</p>
+						<p>如果您认同这一标签，可按实际需要考虑：</p>
 						<ul>
 							<li>需要花时间向他人解释您的体验，因为这是少数派体验</li>
 							<li>寻找理解并尊重您无性恋身份的伴侣或朋友很重要</li>
@@ -1468,11 +1468,11 @@ function calculateResult() {
 				`<li><strong>${t.name}</strong>（得分${t.score}/5）：${t.desc}</li>`
 			).join('');
 
-			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，位于无性恋谱系范围内。同时，您表现出 **${totalIdentifiedTypes}个** 明显的类型特征，这符合**多重无性恋 (Myrsexual)** 的定义。`;
+			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，处于本站显示谱系术语提示的分数范围（未经验证）。同时，您表现出 **${totalIdentifiedTypes}个** 术语提示；多条提示不等于拥有多种身份，是否使用**多重无性恋 (Myrsexual)** 应由您自行决定。`;
 
 			mainInterpretation = `<h3>多重无性恋特征解读</h3>
 						<p><strong>谱系定位：</strong></p>
-						<p>您的得分表明，您位于“有性恋”与“完全无性恋”之间的广阔谱系上。您的性吸引体验可能是：</p>
+						<p>本次综合分数触发了本站的谱系术语提示，不能确定您在谱系中的位置。以下只是可自行核对的经验描述：</p>
 						<ul>
 							<li><strong>频率极低</strong>（如一年仅几次，甚至更少）</li>
 							<li><strong>强度非常微弱</strong>（模糊、易被忽略、转瞬即逝）</li>
@@ -1494,7 +1494,7 @@ function calculateResult() {
 						<p>4. 您的自我认知可能经历<strong>更多探索和调整</strong>，因为您的模式可能随时间演变。</p>
 
 						<p><strong>生活启示：</strong></p>
-						<p>作为多重无性恋者，您可能会发现：</p>
+						<p>如果您认同多个标签，可按实际需要考虑：</p>
 						<ul>
 							<li>您的吸引模式可能需要用一段描述而非单一词汇来解释</li>
 							<li>建立关系时，沟通您的复杂模式比简单出柜更重要</li>
@@ -1507,7 +1507,7 @@ function calculateResult() {
 			// 单一主型
 			const primaryType = primaryTypes[0];
 			baseType = primaryType.name;
-			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，位于无性恋谱系范围内。根据您的回答模式，您最符合**${primaryType.name}**的特征。`;
+			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，处于本站显示谱系术语提示的分数范围（未经验证）。根据您的回答模式，本站规则优先显示**${primaryType.name}**的阅读提示，是否适用需您自行判断。`;
 
 			const keyQuestionsDesc = primaryType.keyQuestions.map(kq =>
 				kq.q === 'core' ?
@@ -1519,9 +1519,9 @@ function calculateResult() {
 						<p><strong>什么是“${primaryType.name.split(' ')[0]}”？</strong></p>
 						<p>${primaryType.desc}</p>
 
-						<p><strong>您的具体表现：</strong></p>
+						<p><strong>可自行核对的描述：</strong></p>
 						<ul>
-							<li><strong>核心分数：</strong>您的核心性吸引加权均分为${sexualCore.toFixed(1)}分（满分 5 分），这表明您的性吸引体验总体偏弱或条件严格。</li>
+							<li><strong>核心分数：</strong>您的核心题组加权均分为${sexualCore.toFixed(1)}分（满分 5 分）。这是本站混合题组的计算结果，不能单独说明吸引强度、频率或出现条件。</li>
 							<li><strong>关键特征：</strong>${keyQuestionsDesc}</li>
 							<li><strong>体验特点：</strong>${getPrimaryTypeDescription(primaryType.name)}</li>
 						</ul>
@@ -1533,20 +1533,20 @@ function calculateResult() {
 			// 单一亚型
 			const subType = subTypes[0];
 			baseType = `无性恋谱系 / ${subType.name}`;
-			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，位于无性恋谱系范围内。您表现出明显的**${subType.name}**特征。`;
+			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，处于本站显示谱系术语提示的分数范围（未经验证）。本站规则显示**${subType.name}**阅读提示，不能据此确认身份。`;
 
 			mainInterpretation = `<h3>${subType.name}特征解读</h3>
 						<p><strong>谱系定位：</strong></p>
-						<p>您的得分提示，您可能位于无性恋谱系中，性吸引对您来说不是一种常规、稳定的体验。您的核心性吸引分数${sexualCore.toFixed(1)}分（满分 5 分）支持这一参考判断。</p>
+						<p>本站规则选出了以下术语供了解，不能据此判断您的吸引是否频繁或稳定。您的核心性吸引分数${sexualCore.toFixed(1)}分（满分 5 分）仅解释为什么出现本站提示，不能作为身份依据。</p>
 
 						<p><strong>什么是“${subType.name.split(' ')[0]}”？</strong></p>
 						<p>${subType.desc}</p>
 
 						<p><strong>您的回答表明：</strong></p>
 						<ul>
-							<li><strong>关键题目：</strong>第${subType.keyQuestions[0].q}题得分${subType.score}/5 分，明显高于该类型识别的阈值（≥4 分）。</li>
+							<li><strong>关键题目：</strong>第${subType.keyQuestions[0].q}题得分${subType.score}/5 分，达到本站显示该术语提示的自设分界（≥4 分）；此分界未经验证，不是身份识别标准。</li>
 							<li><strong>分数依据：</strong>这结合您${sexualCore.toFixed(1)}分的核心性吸引均分，形成了这一参考。</li>
-							<li><strong>模式参考：</strong>您的体验模式与该类型的社区定义高度吻合。</li>
+							<li><strong>模式参考：</strong>相关回答触发了本站预设提示；请自行对照术语定义，单题高分不能证明身份。</li>
 						</ul>
 
 						<p><strong>与其他维度的关系：</strong></p>
@@ -1564,15 +1564,15 @@ function calculateResult() {
 		} else {
 			// 无明确类型或复杂情况
 			baseType = '无性恋谱系 (具体位置待定)';
-			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，表明您位于无性恋谱系上，但未表现出明显的特定类型特征。`;
+			judgmentText = `您的核心性吸引加权均分为 **${sexualCore.toFixed(1)}**，未触发本站特定术语提示；这个分数不能定位谱系身份。`;
 
 			mainInterpretation = `<h3>谱系特征解读</h3>
 						<p><strong>您的谱系位置：</strong></p>
-						<p>您位于“有性恋”与“完全无性恋”之间的灰色地带。这个区域在学术上被称为“灰色区域”或“灰区”，它包含了许多细微的、个体差异显著的体验模式，是多元性吸引谱系中丰富而重要的一部分。</p>
+						<p>本次分数未触发更具体的术语提示。灰性恋是社群中用于描述多种经验的标签，没有由本站分数确定的学术分界；是否适合您，需自行结合体验判断。</p>
 
 						<p><strong>可能的情况：</strong></p>
 						<ul>
-							<li><strong>微弱灰性恋倾向：</strong>性吸引极其微弱、罕见，但尚未达到特定类型的明确阈值。您的体验可能像远处传来的微弱信号，时有时无，难以捕捉。</li>
+							<li><strong>微弱灰性恋倾向：</strong>性吸引极其微弱、罕见，但未触发本站为特定术语设置的提示条件。您的体验可能像远处传来的微弱信号，时有时无，难以捕捉。</li>
 							<li><strong>混合特征：</strong>同时具有多种模式的元素，但没有一种占主导地位。就像调色板上的颜色混合，产生了独特的中间色调。</li>
 							<li><strong>流动特征：</strong>您的体验可能随时间变化，难以用单一时间点的测量固定。今天是 A，明天是 B，后天又是 C，这种流动性本身就是一种模式。</li>
 							<li><strong>独特个体模式：</strong>您的吸引模式可能是独特的，不完全符合现有分类体系。人类体验的多样性总是超过我们的分类能力。</li>
@@ -1599,8 +1599,8 @@ function calculateResult() {
 
 	// 9. 通用结果准确性提示
 	const generalTip = `<div style="background-color: #fff; border-radius: 10px; padding: 20px; margin: 25px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-left: 6px solid #ff9800;">
-					<h3 style="color: #ff9800; margin-top: 0;">确保结果准确性</h3>
-					<p>本量表旨在帮助您探索自己的吸引模式。请基于过去几年的真实经历作答，而非社会期望或理想状态。</p>
+					<h3 style="color: #ff9800; margin-top: 0;">理解结果的局限</h3>
+					<p>这是本站自编问卷，题目、权重和类型分界未经验证；结果不能确认或排除身份。下列术语与建议供自主对照，不代表已经确认的个人特征。不适用按 0 分计入，也可能影响结果。</p>
 
 					<h4 style="color: #ff9800; margin-top: 20px;">如果您发现结果中有任何逻辑矛盾或不一致：</h4>
 					<ul style="background-color: #fff3e0; padding: 15px; border-radius: 6px;">
@@ -1657,21 +1657,21 @@ function calculateResult() {
 
 	// 13. 渲染结果
 	const asexualPattern = sexualCore > 2.5
-		? '性吸引通常较规律、自发，是您与他人建立连接时可能出现的常规维度。'
+		? '核心题组加权均分高于本站的 2.5 分界；题组混合吸引、幻想和行为愿望，不能据此判断吸引的频率或自发性。'
 		: sexualCore <= 0.5
-			? '性吸引很少或几乎不出现，其他亲密、情感与审美需要仍可独立存在。'
-			: '性吸引整体较少、较弱或更依赖特定条件，频率与触发方式比单次经历更值得观察。';
+			? '核心题组加权均分不高于本站的 0.5 分界；低分不能确认没有性吸引，也不能排除不适用选项的影响。'
+			: '核心题组加权均分处于本站两个分界之间，不能据此确定吸引较弱、较少或需要特定条件。';
 	const asexualTypeNote = primaryTypes.length + subTypes.length > 0
-		? '细分类型还提示了一些条件性或情境差异，具体组合可在下方分析中查看。'
-		: '当前没有明显的细分类型高点，核心性吸引位置是主要线索。';
-	const asexualOverview = '本次作答更接近“' + baseType + '”的群体画像。' + asexualPattern + asexualTypeNote + '请结合长期频率与实际舒适度阅读，结果不能替您决定身份标签。';
+		? '部分题目触发了细分术语的阅读提示，具体对应题目可在下方查看。'
+		: '当前回答未触发细分术语提示，这不排除相关体验。';
+	const asexualOverview = '本站预设规则显示“' + baseType + '”的阅读提示；没有群体常模或身份识别效度。' + asexualPattern + asexualTypeNote + '请结合长期频率与实际舒适度阅读，结果不能替您决定身份标签。';
 	const isAllosexual = baseType.startsWith('有性恋');
 	window.PrismScale.renderResultSummary({
 		title: baseType,
 		metrics: [
 			{ label: '核心性吸引', value: `${sexualCore.toFixed(1)} / 5.0` },
-			{ label: '明显主类型', value: primaryTypes.length },
-			...(isAllosexual ? [] : [{ label: '明显亚型', value: subTypes.length }])
+			{ label: '主类型提示数', value: primaryTypes.length },
+			...(isAllosexual ? [] : [{ label: '亚型提示数', value: subTypes.length }])
 		],
 		lead: asexualOverview
 	});
@@ -1706,10 +1706,10 @@ function calculateResult() {
 	// 辅助函数定义
 	function getPrimaryTypeDescription(typeName) {
 		const descriptions = {
-			'半性恋 (Demisexual)': '您的性吸引必须以深厚的、长期的情感联结为前提。在没有建立情感基础之前，即使对方外貌出众或条件优秀，您也不会产生性吸引。这种吸引是"从内而外"的——先有心灵的交汇，才可能有身体的渴望。您的关系发展往往是缓慢的、深度优先的，速食关系或一见钟情对您来说可能难以理解或实现。',
-			'灰性恋 (Greysexual)': '您的性吸引体验是稀少、微弱或不稳定的。可能一年中只有几次短暂的感受，或者强度非常低，以至于您时常怀疑"这算不算性吸引"。您的性吸引可能只在特定情境、情绪状态或与特定类型的人互动时才会出现。您可能处于"几乎无但又不完全无"的模糊地带，这是无性恋谱系中非常常见的体验。'
+			'半性恋 (Demisexual)': '半性恋通常指仅在建立情感联结后才可能出现性吸引。联结是前提，不保证吸引会出现，也没有统一的等待时长。它不能预测关系发展速度、深度或稳定性。是否用这一词描述自己，应由您结合实际体验决定。',
+			'灰性恋 (Greysexual)': '灰性恋可用于描述性吸引较少、较弱、模糊或仅在某些条件下出现等体验；不同人的用法可能不同。它没有统一的次数或强度界值，不能用本站分数确认，也不必理解成必须位于某条连续刻度上的固定位置。'
 		};
-		return descriptions[typeName] || '符合该类型的典型特征模式。';
+		return descriptions[typeName] || '这是可供自主了解的社群术语，本站得分不能证明其适用。';
 	}
 
 	function getPrimaryTypeImplications(typeName) {
@@ -1718,7 +1718,7 @@ function calculateResult() {
 						<ul>
 							<li><strong>节奏耐心：</strong>您需要时间培养情感联结，速食关系或一见钟情模式可能不适合您。给自己和伴侣足够的时间，不必与他人比较进度。</li>
 							<li><strong>沟通重点：</strong>在关系中，情感深度和信任比外表或性技巧更重要。明确告诉伴侣您需要情感基础才能发展性吸引。</li>
-							<li><strong>自我接纳：</strong>您的情感优先模式是正常的、有效的，不必与他人比较速度或强度。您的关系可能开始得慢，但可能更深、更稳。</li>
+							<li><strong>自我接纳：</strong>如果这一描述适合您，不必与他人比较吸引出现的速度或强度；吸引模式不能预测关系的深度或稳定性。</li>
 							<li><strong>伴侣选择：</strong>寻找愿意投资时间建立情感基础的伴侣，避免那些急于推进性关系的人。明确沟通您的模式，筛选理解的人。</li>
 							<li><strong>关系框架：</strong>考虑从深度友谊发展而来的关系，或者明确寻找也重视情感深度的伴侣。</li>
 						</ul>`,
@@ -1797,7 +1797,7 @@ function calculateResult() {
 						<li><strong>条件特征：</strong>第 5 题得分${scores['q5']}/5，第 6 题得分${scores['q6']}/5 - ${scores['q5'] === 0 && scores['q6'] === 0 ? '无任何条件依赖体验，无法评估条件特征' : scores['q5'] >= 4 ? '强烈依赖情感联结' : scores['q6'] >= 4 ? '高度依赖特定情境' : '条件限制较少'}</li>
 						<li><strong>强度特征：</strong>第 7 题得分${scores['q7']}/5 - ${scores['q7'] === 0 ? '无强度体验，无法评估强度特征' : scores['q7'] >= 4 ? '微弱短暂，快速消退' : scores['q7'] <= 2 ? '强烈持久，影响显著' : '中等强度，变化多样'}</li>
 					</ul>
-					<p><strong>专业解读：</strong>${sexualCore > 2.5 ? '您的性吸引模式符合主流有性恋特征，性吸引是您关系体验中的常规维度。' : sexualCore <= 0.5 ? '您的性吸引体验几乎缺失，这提示您可能位于无性恋谱系的核心区域。' : '您的性吸引体验处于灰色地带，频率低、强度弱或条件严格，这是无性恋谱系的典型特征。'}</p>
+					<p><strong>作答解读：</strong>${sexualCore > 2.5 ? '综合分数处于本站较高范围；这不证明吸引频繁，也不能排除谱系身份。' : sexualCore <= 0.5 ? '综合分数处于本站较低范围；不适用回答也可能拉低得分，不能据此认定缺少吸引。' : '综合分数处于本站中间范围，不能将频率、强度和发生条件混为一种程度；请分别回看相关题目。'}</p>
 				</div>`;
 
 		// 2. 性行为态度维度（使用多维度判断）
@@ -1819,7 +1819,7 @@ function calculateResult() {
 						<li><strong>事后体验质量（第 20 题）：</strong>${scores['q20']}/5 - ${scores['q20'] === 0 ? '无性活动参与经验' : scores['q20'] >= 4 ? '经常后悔或不适' : scores['q20'] <= 2 ? '通常感到满足' : '体验复杂，时好时坏'}</li>
 					</ul>
 
-					<p><strong>专业解读：</strong>${sectionAverages.behavior < 2.5 ?
+					<p><strong>作答解读：</strong>${sectionAverages.behavior < 2.5 ?
 				'您的负面体验可能影响亲密关系质量，建议优先考虑个人舒适边界，学习坚定表达拒绝。特别注意您的吸引-行为分离特征（如存在）可能需要在关系中额外沟通。' :
 				sectionAverages.behavior > 3.5 ?
 					'您的开放态度有助于灵活性关系构建，但仍需确保行为与真实意愿一致，避免为迎合他人而参与。注意您的角色偏好和事后体验质量，这有助于设计更符合您需求的关系模式。' :
@@ -1837,7 +1837,7 @@ function calculateResult() {
 						<li><strong>区分能力：</strong>第 23 题得分${scores['q23']}/5 - ${scores['q23'] >= 4 ? '能清晰区分浪漫与性吸引' : scores['q23'] <= 2 ? '难以区分不同类型吸引' : '有一定区分能力但不稳定'}</li>
 						<li><strong>独立性：</strong>第 25 题得分${scores['q25']}/5 - ${scores['q25'] === 0 ? '无相关体验，无法评估独立性' : scores['q25'] >= 4 ? '浪漫吸引独立于性吸引发生' : scores['q25'] <= 2 ? '浪漫吸引常伴随性吸引' : '两者有时独立有时相关'}</li>
 					</ul>
-					<p><strong>专业解读：</strong>${sectionAverages.romantic > 3.0 && sexualCore <= 2.5 ? '您的"高浪漫-低性吸引"模式在无性恋社区很常见，适合探索无性浪漫关系、酷儿柏拉图式关系等创新关系形式。' : sectionAverages.romantic <= 2.0 ? '您可能位于无浪漫谱系(Aromantic Spectrum)，深度友谊、亲情或自我实现可能比传统恋爱更能满足您的亲密需求。' : '您的浪漫-性吸引模式相对匹配，传统关系框架可能适用，但仍可根据您的独特比例调整关系期待。'}</p>
+					<p><strong>作答解读：</strong>${sectionAverages.romantic > 3.0 && sexualCore <= 2.5 ? '本次浪漫题组与性吸引综合分数不同，但两组题意和计分不同，不能据此推荐特定关系形式。' : sectionAverages.romantic <= 2.0 ? '本组浪漫相关题目评分较低，不能确认无浪漫身份，也不能推断哪种关系更能满足您。' : '本次分数不能判断哪种关系框架适合您；请分别讨论吸引、互动意愿与关系期待。'}</p>
 				</div>`;
 
 		// 4. 情感吸引维度
@@ -1851,7 +1851,7 @@ function calculateResult() {
 						<li><strong>关系弹性：</strong>第 29 题得分${scores['q29']}/5 - ${scores['q29'] >= 4 ? '情感投资高度选择性，深度关系稀少' : scores['q29'] <= 2 ? '情感深度在不同关系中相对均匀' : '中等选择性投资模式'}</li>
 						<li><strong>主动寻求：</strong>第 30 题得分${scores['q30']}/5 - ${scores['q30'] >= 4 ? '主动寻求深度情感连接' : scores['q30'] <= 2 ? '被动等待情感连接发生' : '偶尔主动寻求'}</li>
 					</ul>
-					<p><strong>专业解读：</strong>${sectionAverages.emotional > 3.5 ? '情感吸引可能是您的主要亲密感来源，建议优先投资高质量友谊和情感支持网络，将深度对话、共同成长作为关系核心。' : sectionAverages.emotional < 2.5 ? '您可能更注重个人独立空间，少量深度关系或充足独处时间对您很重要。不需要强迫自己建立过多情感联结。' : '您的情感联结需求适中，平衡了深度与广度，可以在维持少数深度关系的同时享受更广泛的社会联系。'}</p>
+					<p><strong>作答解读：</strong>${sectionAverages.emotional > 3.5 ? '情感吸引可能是您的主要亲密感来源，建议优先投资高质量友谊和情感支持网络，将深度对话、共同成长作为关系核心。' : sectionAverages.emotional < 2.5 ? '您可能更注重个人独立空间，少量深度关系或充足独处时间对您很重要。不需要强迫自己建立过多情感联结。' : '您的情感联结需求适中，平衡了深度与广度，可以在维持少数深度关系的同时享受更广泛的社会联系。'}</p>
 				</div>`;
 
 		// 5. 审美吸引维度
@@ -1865,7 +1865,7 @@ function calculateResult() {
 						<li><strong>性别中立性：</strong>第 34 题得分${scores['q34']}/5 - ${scores['q34'] >= 4 ? '审美不受性取向限制' : scores['q34'] <= 2 ? '审美高度择偶化' : '审美有一定性别偏好'}</li>
 						<li><strong>即时反应：</strong>第 35 题得分${scores['q35']}/5 - ${scores['q35'] >= 4 ? '第一反应是纯审美欣赏' : scores['q35'] <= 2 ? '第一反应是接近或占有欲' : '两者混合'}</li>
 					</ul>
-					<p><strong>专业解读：</strong>${sectionAverages.aesthetic > 3.5 ? '您的纯审美能力发达，视觉艺术和美学体验可能为您带来深层满足。您可以充分利用这一优势，通过艺术欣赏、设计创作、美学讨论等丰富生活质量。' : sectionAverages.aesthetic < 2.5 ? '您的审美可能更功能化或与其他吸引融合，美感体验可能不是您的主要愉悦来源。但这不影响您享受其他形式的丰富体验。' : '您的审美体验适中，能在欣赏美与实际行动之间保持平衡。美感是您生活调色板中的一部分，但非全部。'}</p>
+					<p><strong>作答解读：</strong>${sectionAverages.aesthetic > 3.5 ? '您对本组审美吸引描述的评分较高；这不测量艺术能力、审美水平或创造力。可记录哪些外貌、声音或风格令您欣赏。' : sectionAverages.aesthetic < 2.5 ? '本组评分较低，不能据此判断您的审美能力、艺术兴趣或愉悦来源。' : '本组评分处于本站中间范围；这不证明您在审美与行动之间存在某种平衡。'}</p>
 				</div>`;
 
 		// 6. 感官吸引维度
@@ -1879,7 +1879,7 @@ function calculateResult() {
 						<li><strong>关系普适性：</strong>第 39 题得分${scores['q39']}/5 - ${scores['q39'] >= 4 ? '触觉需求广泛适用于多种关系' : scores['q39'] <= 2 ? '触觉需求高度伴侣绑定' : '触觉需求有选择性'}</li>
 						<li><strong>表达主动性：</strong>第 40 题得分${scores['q40']}/5 - ${scores['q40'] >= 4 ? '主动表达触觉需求' : scores['q40'] <= 2 ? '很少表达触觉需求' : '偶尔表达触觉需求'}</li>
 					</ul>
-					<p><strong>专业解读：</strong>${sectionAverages.sensual > 3.0 ? '非性身体接触可能是您表达和接收关爱的重要方式，建议在关系中明确沟通您的触觉偏好，建立清晰的触碰边界和共识。考虑将拥抱、握手、依偎等作为重要的关系仪式。' : sectionAverages.sensual < 2.0 ? '您可能更偏好语言交流、共同活动或礼物赠送等亲密表达方式，触觉不是您的主要连接渠道。明确告知他人您的偏好，避免不必要的触碰压力。' : '您的触觉需求适中，能在需要时享受身体接触，也能在独处时感到满足。这种灵活性有助于适应不同关系和情境。'}</p>
+					<p><strong>作答解读：</strong>${sectionAverages.sensual > 3.0 ? '非性身体接触可能是您表达和接收关爱的重要方式，建议在关系中明确沟通您的触觉偏好，建立清晰的触碰边界和共识。考虑将拥抱、握手、依偎等作为重要的关系仪式。' : sectionAverages.sensual < 2.0 ? '您可能更偏好语言交流、共同活动或礼物赠送等亲密表达方式，触觉不是您的主要连接渠道。明确告知他人您的偏好，避免不必要的触碰压力。' : '您的触觉需求适中，能在需要时享受身体接触，也能在独处时感到满足。这种灵活性有助于适应不同关系和情境。'}</p>
 				</div>`;
 
 		// 7. 自我认知维度
@@ -1893,7 +1893,7 @@ function calculateResult() {
 						<li><strong>知识获取：</strong>第 43 题得分${scores['q43']}/5 - ${scores['q43'] >= 4 ? '主动深入学习谱系知识' : scores['q43'] <= 2 ? '信息接触有限' : '中等探索兴趣'}</li>
 						<li><strong>沟通实践：</strong>第 44 题得分${scores['q44']}/5 - ${scores['q44'] >= 4 ? '主动在关系中沟通吸引模式' : scores['q44'] <= 2 ? '很少沟通吸引模式' : '偶尔或选择性沟通'}</li>
 					</ul>
-					<p><strong>专业解读：</strong>${sectionAverages.self > 3.5 ? '您的自我认知成熟度高，能有效利用身份知识优化生活质量。您可以进一步将这种自我认知转化为关系沟通技巧和生活方式设计，成为自己生活的专家。' : sectionAverages.self < 2.5 ? '您正处于有价值的自我发现过程中，建议保持好奇和耐心，允许认知随时间发展。参与社区讨论、阅读相关书籍、记录自我观察可能有助于加速这一过程。' : '您的自我认知处于发展中期，已有一定理解但仍在探索中。继续观察、反思和对话，您的自我认知可能会进一步清晰和巩固。'}</p>
+					<p><strong>作答解读：</strong>${sectionAverages.self > 3.5 ? '您在这些自我理解与表达题目上的评分较高。它不能证明成熟度，也不要求您采用标签或向他人公开。' : sectionAverages.self < 2.5 ? '这些题目的较低评分不代表缺乏自我认识，也可能与标签不适用或不便公开有关。是否阅读资料、交流或记录由您决定。' : '这些题目得分处于本站中间范围，不能据此划分自我认识的发展阶段；可以继续观察，也可以暂不使用标签。'}</p>
 				</div>`;
 
 		analysisHTML += `</div>`;
@@ -1912,8 +1912,8 @@ function calculateResult() {
 						<span style="position: absolute; left: 0; font-weight: bold; color: #0078d4; font-size: 1.2em;">1</span>
 						<strong style="color: #1a3c66; font-size: 1.1em;">深化谱系认同与社区连接</strong>
 						<ul style="margin-top: 10px; color: #444;">
-							<li><strong>社区连接：</strong>加入 AVEN 国际论坛（www.asexuality.org）或中文无性恋社群（如豆瓣小组、QQ 群、Discord 社群），与有相似体验的人交流，验证自身经历，减轻孤立感。</li>
-							<li><strong>教育资源：</strong>系统学习《The Invisible Orientation》、《Ace: What Asexuality Reveals About Desire, Society, and the Meaning of Sex》等专业书籍，建立科学认知框架。</li>
+							<li><strong>社区连接：</strong>加入 AVEN 国际论坛（www.asexuality.org）或中文无性恋社群（如豆瓣小组、QQ 群、Discord 社群），与有相似体验的人交流，交流经历；社群反馈不能替您确定身份。</li>
+							<li><strong>教育资源：</strong>系统学习《The Invisible Orientation》、《Ace: What Asexuality Reveals About Desire, Society, and the Meaning of Sex》等科普读物，比较作者观点与自身经验。</li>
 							<li><strong>身份整合：</strong>将“无性恋谱系”视为神经多样性的一部分，而非缺陷或障碍。练习用积极语言描述自己的体验，如“我以不同的方式体验吸引”而非“我缺少什么”。</li>
 							<li><strong>自我叙事：</strong>撰写个人吸引体验故事，记录关键经历、感受变化和自我发现过程，这有助于整合自我认知。</li>
 						</ul>
@@ -1972,7 +1972,7 @@ function calculateResult() {
 						<ul style="margin-top: 10px; color: #444;">
 							<li><strong>关系节奏：</strong>选择接受“慢热”模式的伴侣，避免速食关系压力。明确告知潜在伴侣您需要时间发展情感联结才可能产生性吸引。</li>
 							<li><strong>信任建设：</strong>优先投资情感安全感和长期信任积累。将关系初期的重点放在深度对话、脆弱性分享和共同经历上。</li>
-							<li><strong>自我接纳：</strong>认可情感深度作为吸引前提的合理性，不比较他人节奏。您的关系可能开始得慢，但往往更深、更稳。</li>
+							<li><strong>自我接纳：</strong>如果您需要情感联结才可能体验吸引，可以尊重自己的节奏；这并不保证吸引出现，也不能预测关系质量。</li>
 							<li><strong>沟通策略：</strong>用比喻解释您的体验，如“我的吸引体验就像种子，需要深厚的情感土壤才能发芽”。</li>
 						</ul>
 					</li>`;
@@ -2072,7 +2072,7 @@ function calculateResult() {
 					<div style="background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 15px; margin-top: 25px; border-radius: 6px;">
 						<strong style="color: #2e7d32;">专业声明：</strong>
 						<p style="margin: 8px 0 0 0; color: #555; font-size: 0.95em;">
-							本评估基于现有性学研究和无性恋社区共识开发，旨在提供自我探索的参考框架，<strong>不能替代临床诊断或专业心理咨询</strong>。人类性吸引具有高度个体差异和流动性，请将此结果视为自我理解的起点而非终点。无论您的得分和类型如何，您的体验都是有效且有价值的。如果您对自己的性吸引模式感到困扰或困惑，建议寻求专业支持。
+							本页题目、权重和分界为本站自编，未提供信度、效度或常模验证；引用的社群资料仅用于解释概念。<strong>类型名称只是预设规则生成的阅读提示，不是身份判定或专业评估。</strong>吸引、欲望、行为与关系意愿需要分别理解。是否使用标签由您决定；需要支持时可按实际困扰寻找尊重您意愿的资源。
 						</p>
 					</div>
 				</div>`;

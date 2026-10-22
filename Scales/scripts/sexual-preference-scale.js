@@ -397,7 +397,7 @@
     const core = ranked.filter(item => item.score >= 3.75);
     const overall = ranked.reduce((sum, item) => sum + item.score, 0) / ranked.length;
     const spread = ranked[0].score - ranked[ranked.length - 1].score;
-    if (overall < 1.25) return { label: '整体兴趣较低画像', text: '十五个维度目前大多兴趣较低。这是一种完整有效的画像，可能与无性恋谱系体验、低兴趣阶段、较少幻想或本量表未覆盖您的兴趣有关；结果不表示功能问题。' };
+    if (overall < 1.25) return { label: '整体兴趣较低画像', text: '十五个维度目前大多兴趣较低。这是一种完整有效的画像，可能反映不感兴趣、缺少相关经验或本量表未覆盖您的兴趣，不能据此推断性取向；结果不表示功能问题。' };
     if (core.length >= 5 || clear.length >= 10) return { label: '多维开放画像', text: '多个维度都有较明确兴趣，说明您的偏好可能具有较高广度。广度不等于愿意实践更多项目，逐项边界仍比总体开放度重要。' };
     if (clear.length >= 4) return { label: '多维组合画像', text: '数个维度共同突出，偏好更适合用组合和条件描述，而不是只选一个角色或活动标签。' };
     if (clear.length >= 1 && spread >= 1.5) return { label: '重点清晰画像', text: '兴趣主要集中在少数方向，高低层次较清楚。相对低分维度不需要被补足，可以直接作为当前边界或非重点。' };
@@ -449,7 +449,7 @@
   function renderTypeJudgment(ranked) {
     const target = document.getElementById('typeJudgment');
     if (ranked[0].score < 1.25) {
-      target.innerHTML = '<p class="result-lead">您目前没有明显突出的量表内偏好。多项低分可以自然对应无性恋谱系、低兴趣阶段、较少幻想，或单纯不喜欢本量表所列主题；它不构成缺失或异常。</p>';
+      target.innerHTML = '<p class="result-lead">您目前没有明显突出的量表内偏好。多项低分可能来自不感兴趣、不了解、难以想象或题目不适用；这些情况不能用来推断性取向；它不构成缺失或异常。</p>';
       return;
     }
     target.innerHTML = `<p class="result-lead">当前相对突出的方向是<strong>${ranked[0].title}</strong>与<strong>${ranked[1].title}</strong>。这里的“突出”只表示十五维内部的相对位置，不推断性取向、性经验、现实意愿或身份标签。</p>`;
@@ -464,7 +464,7 @@
         <h3 class="result-section-heading">当前偏好画像</h3>
         <p><strong>${pattern.label}：</strong>${pattern.text}</p>
         <p><strong>相对突出：</strong>${focus.map(item => `${item.title}（${item.score.toFixed(1)}，${item.level.label}）`).join('、')}。</p>
-        <p><strong>相对收敛：</strong>${low.map(item => `${item.title}（${item.score.toFixed(1)}，${item.level.label}）`).join('、')}。低分不代表排斥，也不要求补足；它可以直接成为“目前不感兴趣”的有效信息。</p>
+        <p><strong>相对收敛：</strong>${low.map(item => `${item.title}（${item.score.toFixed(1)}，${item.level.label}）`).join('、')}。本站分档未经验证；低分不能区分没兴趣、不了解或不适用，也不等于排斥。</p>
       </section>`;
   }
 
@@ -475,8 +475,8 @@
         <h3 class="result-section-heading">核心偏好组合</h3>
         <h4>${first.title} × ${second.title}</h4>
         <p>${getPairInterpretation(first, second)}</p>
-        ${first.score - third.score <= .5 ? `<p><strong>${third.title}</strong>与前两项也很接近，实际画像更可能由三个维度共同构成。</p>` : ''}
-        <p>组合解读只是把结果改写成更便于沟通的线索。它不能替您决定是否实践，也不能被任何人当作同意证明。</p>
+        ${first.score - third.score <= .5 ? `<p><strong>${third.title}</strong>与前两项也很接近，但接近的分数不证明这些偏好会共同出现。</p>` : ''}
+        <p>组合解读是本站预设的沟通提示，未经验证，不能证明偏好之间存在相互增强关系。它不能替您决定是否实践，也不能被任何人当作同意证明。</p>
       </section>`;
   }
 
