@@ -301,7 +301,7 @@
     function withNote(text, noteId) {
       const note = value(noteId);
       if (!note) return text;
-      return text ? `${text}（${note}）` : note;
+      return text ? `${text}\nPS：${note}` : `PS：${note}`;
     }
     function selectedWithNote(name, noteId) { return withNote(selected(name), noteId); }
     function cardRows() {
