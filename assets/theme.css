@@ -79,11 +79,11 @@
   display: block !important;
 }
 
-/* Shared round back button. Glossary pages do not use this control. */
+/* Shared round homepage navigation on all content pages. */
 .prism-back-home {
   position: fixed !important;
-  top: 18px !important;
-  left: 18px !important;
+  top: calc(18px + env(safe-area-inset-top, 0px)) !important;
+  left: calc(18px + env(safe-area-inset-left, 0px)) !important;
   right: auto !important;
   bottom: auto !important;
   z-index: 9999 !important;
@@ -287,7 +287,8 @@
   }
 
   .prism-back-home {
-    left: 12px !important;
+    top: calc(12px + env(safe-area-inset-top, 0px)) !important;
+    left: calc(12px + env(safe-area-inset-left, 0px)) !important;
     padding: 0 !important;
   }
 
