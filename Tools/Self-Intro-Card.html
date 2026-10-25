@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="theme-color" content="#2f6f73">
+  <title>PrismSelf - 自我介绍卡</title>
+  <meta name="description" content="填写性别认同、代词与称呼偏好，选择配色和字体，添加文字与本地图片，生成自己的自我介绍卡。">
+  <link rel="canonical" href="https://prismself.vip/Tools/Self-Intro-Card.html">
+  <link rel="icon" href="../icon/favicon.svg?v=202610251" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PrismSelf · prismself.vip">
+  <meta property="og:title" content="PrismSelf - 自我介绍卡">
+  <meta property="og:description" content="填写性别认同、代词与称呼偏好，选择配色和字体，添加文字与本地图片，生成自己的自我介绍卡。">
+  <meta property="og:url" content="https://prismself.vip/Tools/Self-Intro-Card.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://prismself.vip/og-image/image.png?v=1788098160">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="./tool-common.css?v=202610221">
+  <link rel="stylesheet" href="../assets/theme.css?v=202610251">
+  <script src="../assets/theme.js?v=202610251"></script>
+  <style>
+    .intro-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 24px; align-items: start; margin-top: 24px; }
+    .intro-editor, .intro-preview { min-width: 0; }
+    .intro-panel { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: var(--paper); }
+    .intro-panel + .intro-panel { margin-top: 16px; }
+    .intro-panel h2 { margin: 0 0 16px; font-size: 19px; }
+    .intro-step { color: var(--teal); margin-right: 8px; font-size: 13px; }
+    .intro-hint { margin: 8px 0 16px; color: var(--ink-mid); font-size: 13px; }
+    .intro-field { display: block; margin-top: 18px; }
+    .intro-field > span, .intro-editor legend { display: block; margin-bottom: 7px; font-weight: 600; font-size: 14px; }
+    .intro-editor input[type="text"], .intro-editor textarea, .intro-editor select {
+      width: 100%; min-width: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px;
+      background: var(--bg); color: var(--ink); font: inherit; font-size: 16px;
+    }
+    .intro-editor textarea { resize: vertical; min-height: 90px; }
+    .intro-editor fieldset { min-width: 0; margin: 20px 0 0; padding: 0; border: 0; }
+    .intro-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .intro-option { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; font-size: 13px; cursor: pointer; }
+    .intro-option:has(input:checked) { border-color: var(--teal); background: var(--teal-soft); }
+    .intro-option input { accent-color: var(--teal); flex-shrink: 0; }
+    .intro-option-input { flex: 1 1 140px; min-width: 0; min-height: 44px; padding: 7px 12px; background: var(--bg); cursor: text; }
+    .intro-editor .intro-option-input input[type="text"] { flex: 1; width: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
+    .intro-option-input:focus-within { border-color: var(--teal); outline: 2px solid var(--teal); outline-offset: 2px; }
+    .intro-editor :is(input, select, textarea, button):focus-visible {
+      outline: 3px solid var(--teal); outline-offset: 3px;
+    }
+    .intro-editor .intro-option-input input[type="text"]:focus { outline: none; box-shadow: none; }
+    .intro-styles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .intro-styles .intro-option { position: relative; gap: 8px; }
+    .intro-swatch { width: 18px; height: 18px; border: 1px solid currentColor; border-radius: 50%; flex-shrink: 0; }
+    .intro-custom-colors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+    .intro-custom-colors[hidden] { display: none; }
+    .intro-custom-colors .intro-field { margin-top: 0; }
+    .intro-custom-colors input[type="color"] { width: 100%; height: 44px; padding: 4px; border: 1px solid var(--line); border-radius: 9px; background: var(--bg); cursor: pointer; }
+    .intro-custom-colors .intro-hint { grid-column: 1 / -1; margin: 0; }
+    .intro-preview { position: sticky; top: 24px; }
+    #cardCanvas { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+    .intro-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .intro-actions .button { min-height: 44px; }
+    .intro-upload { max-width: 100%; font-size: 14px; color: var(--ink); }
+    .intro-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+    .intro-image { position: relative; min-width: 0; padding: 8px; border: 1px solid var(--line); border-radius: 10px; }
+    .intro-image img { display: block; width: 100%; height: 100px; object-fit: contain; background: var(--bg); }
+    .intro-image span { display: block; overflow-wrap: anywhere; font-size: 12px; margin: 6px 0; }
+    .intro-image-remove {
+      position: absolute; top: 12px; right: 12px; display: grid; place-items: center;
+      width: 30px; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 50%;
+      background: var(--paper); color: var(--ink); font: inherit; font-size: 20px; line-height: 1;
+      cursor: pointer; box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+    }
+    .intro-image-remove:hover { border-color: var(--teal); color: var(--teal); }
+    #status { min-height: 1.7em; color: var(--ink-mid); font-size: 13px; overflow-wrap: anywhere; }
+    @media (max-width: 800px) {
+      .intro-workspace { grid-template-columns: 1fr; gap: 20px; margin-top: 16px; }
+      .intro-preview { position: static; scroll-margin-top: 20px; }
+      .intro-panel { padding: 18px 15px; border-radius: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">关系对话工具</div>
+      <h1>自我<em>介绍卡</em></h1>
+      <p class="hero-lead">把希望别人如何认识你、称呼你写成一张卡。可以自由填写，也可以留白；这里没有标准答案，更不会替你判定身份。</p>
+      <div class="hero-notes">
+        <div class="hero-note">
+          <strong>只在本地处理</strong>
+          <span>内容与图片仅在本页本地处理，不上传。</span>
+        </div>
+        <div class="hero-note">
+          <strong>关闭后不保留</strong>
+          <span>刷新或关闭页面后，填写内容不会保存。</span>
+        </div>
+        <div class="hero-note">
+          <strong>先预览再分享</strong>
+          <span>导出前可在预览中确认想分享的内容。</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="intro-workspace">
+      <form class="intro-editor" id="introForm" autocomplete="off">
+        <section class="intro-panel" aria-labelledby="styleTitle">
+          <h2 id="styleTitle"><span class="intro-step">01</span>选择样式</h2>
+          <fieldset style="margin-top: 0">
+            <legend>配色模板</legend>
+            <div class="intro-styles">
+              <label class="intro-option"><input type="radio" name="palette" value="prism" checked><span class="intro-swatch" style="background:#f3f7f6;color:#2f6f73"></span>棱镜青绿</label>
+              <label class="intro-option"><input type="radio" name="palette" value="lilac"><span class="intro-swatch" style="background:#f3edfa;color:#79528d"></span>柔雾紫粉</label>
+              <label class="intro-option"><input type="radio" name="palette" value="night"><span class="intro-swatch" style="background:#171717;color:#ff935e"></span>夜幕暖橙</label>
+              <label class="intro-option"><input type="radio" name="palette" value="custom"><span class="intro-swatch" id="customSwatch" style="background:conic-gradient(#f8f5ee 0 33%,#2c3935 0 66%,#346c66 0)"></span>自定义配色</label>
+            </div>
+            <div class="intro-custom-colors" id="customColors" hidden>
+              <label class="intro-field"><span>背景色</span><input id="customBackground" type="color" value="#f8f5ee"></label>
+              <label class="intro-field"><span>文字色</span><input id="customInk" type="color" value="#2c3935"></label>
+              <label class="intro-field"><span>强调色</span><input id="customAccent" type="color" value="#346c66"></label>
+              <p class="intro-hint">建议背景色与文字色保持足够对比，预览会实时更新。</p>
+            </div>
+          </fieldset>
+          <label class="intro-field"><span>卡片字体</span><select id="cardFont" name="cardFont">
+            <option value="sans">微软雅黑（苹方）</option>
+            <option value="serif">宋体（宋体-简）</option>
+            <option value="kai">楷体（华文楷体）</option>
+            <option value="round">幼圆（圆体-简）</option>
+            <option value="fangsong">仿宋（华文仿宋）</option>
+            <option value="mono">Cascadia Mono（Consolas / Menlo）</option>
+            <option value="dengxian">等线（苹方）</option>
+            <option value="sourcesans">思源黑体（苹方 / 微软雅黑）</option>
+            <option value="xihei">华文细黑（苹方 / 微软雅黑）</option>
+            <option value="zhongsong">华文中宋（宋体）</option>
+            <option value="wenkai">霞鹜文楷（楷体）</option>
+          </select></label>
+          <p class="intro-hint">使用设备本地字体；缺少对应字体时由系统替代，实际效果以预览为准。</p>
+        </section>
+
+        <section class="intro-panel" aria-labelledby="contentTitle">
+          <h2 id="contentTitle"><span class="intro-step">02</span>关于我</h2>
+          <label class="intro-field"><span>填表 ID / 昵称</span><input id="nickname" type="text" maxlength="80" placeholder="希望别人如何称呼你"></label>
+          <label class="intro-field"><span>昵称补充</span><input id="nicknameNote" type="text" maxlength="160" placeholder="例如：昵称的读音或由来"></label>
+          <label class="intro-field"><span>我的性别认同</span><input id="identity" type="text" maxlength="160" placeholder="用你自己的语言描述，也可以留白"></label>
+          <label class="intro-field"><span>性别认同补充</span><input id="identityNote" type="text" maxlength="160" placeholder="例如：认同的变化或想补充的说明"></label>
+          <fieldset>
+            <legend>代词使用（可多选）</legend>
+            <div class="intro-options">
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="他">他</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="她">她</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="TA">TA</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="祂">祂</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="它">它</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="he / him">he / him</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="she / her">she / her</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="they / them（单数）">they / them（单数）</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="xe / xem">xe / xem</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="ze / zir">ze / zir</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="it / its">it / its</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="任意代词">任意代词</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="不使用代词">不使用代词</label>
+              <label class="intro-option"><input type="checkbox" name="pronouns" value="用名字代替代词">用名字代替代词</label>
+              <label class="intro-option intro-option-input"><input id="pronounNote" type="text" maxlength="160" placeholder="输入其他代词" aria-label="其他代词"></label>
+            </div>
+            <label class="intro-field"><span>代词使用补充</span><input id="pronounUsageNote" type="text" maxlength="160" placeholder="例如：不同场合希望使用不同代词"></label>
+          </fieldset>
+          <label class="intro-field"><span>禁用代词 / 称呼</span><input id="avoid" type="text" maxlength="160" placeholder="不希望被使用的称呼"></label>
+          <label class="intro-field"><span>禁用称呼补充</span><input id="avoidNote" type="text" maxlength="160" placeholder="例如：可以接受的替代称呼"></label>
+          <label class="intro-field"><span>我的取向 / 吸引认同</span><input id="orientation" type="text" maxlength="160" placeholder="按自己的理解填写"></label>
+          <label class="intro-field"><span>取向认同补充</span><input id="orientationNote" type="text" maxlength="160" placeholder="例如：浪漫取向与性取向可以分开描述"></label>
+          <fieldset>
+            <legend>我倾向这样的气质表达（可多选）</legend>
+            <div class="intro-options">
+              <label class="intro-option"><input type="checkbox" name="expression" value="男性化">男性化</label>
+              <label class="intro-option"><input type="checkbox" name="expression" value="女性化">女性化</label>
+              <label class="intro-option"><input type="checkbox" name="expression" value="中性化">中性化</label>
+              <label class="intro-option"><input type="checkbox" name="expression" value="不喜欢性别气质论">不喜欢性别气质论</label>
+            </div>
+            <label class="intro-field"><span>气质表达补充</span><input id="expressionNote" type="text" maxlength="160" placeholder="也可以直接用自己的语言描述"></label>
+          </fieldset>
+          <fieldset>
+            <legend>对于表明身份 / 认同的倾向（可多选）</legend>
+            <div class="intro-options">
+              <label class="intro-option"><input type="checkbox" name="disclosure" value="现实公开表明">现实公开表明</label>
+              <label class="intro-option"><input type="checkbox" name="disclosure" value="网络公开表明">网络公开表明</label>
+              <label class="intro-option"><input type="checkbox" name="disclosure" value="私下熟络表明">私下熟络表明</label>
+              <label class="intro-option"><input type="checkbox" name="disclosure" value="不倾向公开表明">不倾向公开表明</label>
+              <label class="intro-option"><input type="checkbox" name="disclosure" value="看具体情况">看具体情况</label>
+            </div>
+            <label class="intro-field"><span>公开倾向补充</span><input id="disclosureNote" type="text" maxlength="160" placeholder="例如：希望只在什么场合使用这些信息"></label>
+          </fieldset>
+          <fieldset>
+            <legend>对目前认同的探索状态（可多选）</legend>
+            <div class="intro-options">
+              <label class="intro-option"><input type="checkbox" name="exploration" value="萌芽中">萌芽中</label>
+              <label class="intro-option"><input type="checkbox" name="exploration" value="探索中">探索中</label>
+              <label class="intro-option"><input type="checkbox" name="exploration" value="基本确定">基本确定</label>
+              <label class="intro-option"><input type="checkbox" name="exploration" value="已稳定">已稳定</label>
+            </div>
+            <label class="intro-field"><span>探索状态补充</span><input id="explorationNote" type="text" maxlength="160" placeholder="不同方面可以有不同状态"></label>
+          </fieldset>
+        </section>
+
+        <section class="intro-panel" aria-labelledby="freeTitle">
+          <h2 id="freeTitle"><span class="intro-step">03</span>我的小角落</h2>
+          <label class="intro-field"><span>补充文字</span><textarea id="notes" maxlength="600" rows="4" placeholder="写下任何你愿意分享的补充内容"></textarea></label>
+          <label class="intro-field" for="imageInput"><span>添加本地图片</span></label>
+          <p class="intro-hint" id="imageHint">最多 6 张，每张不超过 20 MB，可直接从手机相册选择。按添加顺序排版，保留完整画面。</p>
+          <input class="intro-upload" id="imageInput" type="file" accept="image/*" multiple aria-describedby="imageHint">
+          <div class="intro-images" id="imageList"></div>
+          <div class="intro-actions"><button class="button" id="resetButton" type="button">清空填写内容</button><button class="button primary" id="exportButton" type="button">下载 PNG 图片</button></div>
+          <p id="status" role="status" aria-live="polite"></p>
+        </section>
+      </form>
+
+      <section class="intro-preview" id="preview" aria-label="卡片预览">
+        <canvas id="cardCanvas" width="1080" height="1400" role="img" aria-label="关于我，卡片预览">请使用支持 Canvas 的浏览器查看卡片。</canvas>
+        <p class="intro-hint">预览即导出效果。页面深浅主题不会改变所选卡片配色。</p>
+      </section>
+    </div>
+  </main>
+  <noscript><p>请启用 JavaScript，以使用卡片预览与图片导出。</p></noscript>
+  <script>
+    const form = document.getElementById("introForm");
+    const canvas = document.getElementById("cardCanvas");
+    const context = canvas.getContext("2d");
+    const status = document.getElementById("status");
+    const imageInput = document.getElementById("imageInput");
+    const exportButton = document.getElementById("exportButton");
+    const resetButton = document.getElementById("resetButton");
+    const customColors = document.getElementById("customColors");
+    const customSwatch = document.getElementById("customSwatch");
+    const customBackground = document.getElementById("customBackground");
+    const customInk = document.getElementById("customInk");
+    const customAccent = document.getElementById("customAccent");
+    const palettes = {
+      night: { background: "#171717", ink: "#f6f0e7", accent: "#ff935e", line: "#44403c", soft: "#282421" },
+      lilac: { background: "#f3edfa", ink: "#463b55", accent: "#79528d", line: "#d8cbe4", soft: "#eadff3" },
+      prism: { background: "#f3f7f6", ink: "#20303d", accent: "#2f6f73", line: "#dfe9e8", soft: "#e8f4f1" }
+    };
+    function mixColor(foreground, background, ratio) {
+      const toRgb = (hex) => [1, 3, 5].map((index) => parseInt(hex.slice(index, index + 2), 16));
+      const fg = toRgb(foreground);
+      const bg = toRgb(background);
+      const mix = (index) => Math.round(fg[index] * ratio + bg[index] * (1 - ratio));
+      return `rgb(${mix(0)}, ${mix(1)}, ${mix(2)})`;
+    }
+    function customPalette() {
+      const background = customBackground.value;
+      const ink = customInk.value;
+      const accent = customAccent.value;
+      return {
+        background,
+        ink,
+        accent,
+        line: mixColor(ink, background, 0.16),
+        soft: mixColor(accent, background, 0.08)
+      };
+    }
+    function activePalette() {
+      return form.elements.palette.value === "custom" ? customPalette() : palettes[form.elements.palette.value];
+    }
+    function syncCustomPalette() {
+      const isCustom = form.elements.palette.value === "custom";
+      customColors.hidden = !isCustom;
+      const palette = customPalette();
+      customSwatch.style.background = `conic-gradient(${palette.background} 0 33%, ${palette.ink} 0 66%, ${palette.accent} 0)`;
+    }
+    const fonts = {
+      sans: '"Microsoft YaHei", "PingFang SC", sans-serif',
+      serif: '"Songti SC", "SimSun", serif',
+      kai: '"KaiTi", "STKaiti", "Kaiti SC", serif',
+      round: '"YouYuan", "Yuanti SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif',
+      fangsong: '"FangSong", "STFangsong", "FangSong_GB2312", "Songti SC", serif',
+      mono: '"Cascadia Mono", "Consolas", "SFMono-Regular", "Menlo", "Microsoft YaHei", monospace',
+      dengxian: '"DengXian", "等线", "PingFang SC", "Microsoft YaHei", sans-serif',
+      sourcesans: '"Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif',
+      xihei: '"STXihei", "华文细黑", "PingFang SC", "Microsoft YaHei", sans-serif',
+      zhongsong: '"STZhongsong", "华文中宋", "Songti SC", "SimSun", serif',
+      wenkai: '"LXGW WenKai", "霞鹜文楷", "KaiTi", "STKaiti", "Kaiti SC", serif'
+    };
+    let images = [];
+    let renderFrame = 0;
+
+    function value(id) { return document.getElementById(id).value.trim(); }
+    function selected(name, extraId) {
+      const choices = Array.from(form.querySelectorAll(`input[name="${name}"]:checked`), (input) => input.value);
+      if (extraId && value(extraId)) choices.push(value(extraId));
+      return choices.join(" / ");
+    }
+    function withNote(text, noteId) {
+      const note = value(noteId);
+      if (!note) return text;
+      return text ? `${text}（${note}）` : note;
+    }
+    function selectedWithNote(name, noteId) { return withNote(selected(name), noteId); }
+    function cardRows() {
+      return [
+        ["填表 ID / 昵称", withNote(value("nickname"), "nicknameNote")],
+        ["我的性别认同", withNote(value("identity"), "identityNote")],
+        ["代词使用", withNote(selected("pronouns", "pronounNote"), "pronounUsageNote")],
+        ["禁用代词 / 称呼", withNote(value("avoid"), "avoidNote")],
+        ["我的取向 / 吸引认同", withNote(value("orientation"), "orientationNote")],
+        ["我倾向这样的气质表达", selectedWithNote("expression", "expressionNote")],
+        ["对于表明身份 / 认同的倾向", selectedWithNote("disclosure", "disclosureNote")],
+        ["对目前认同的探索状态", selectedWithNote("exploration", "explorationNote")]
+      ];
+    }
+
+    // 沿用关系需求菜单的 Canvas 文本测量方式，并保留用户输入的换行。
+    function wrapCanvasText(text, maxWidth) {
+      const lines = [];
+      for (const paragraph of text.split("\n")) {
+        let current = "";
+        for (const char of Array.from(paragraph)) {
+          const test = current + char;
+          if (current && context.measureText(test).width > maxWidth) {
+            lines.push(current);
+            current = char;
+          } else current = test;
+        }
+        lines.push(current);
+      }
+      return lines;
+    }
+
+    function renderCard() {
+      const palette = activePalette();
+      const family = fonts[value("cardFont")];
+      const side = 64;
+      const width = 1080 - side * 2;
+      const rows = cardRows();
+      context.font = `34px ${family}`;
+      const layout = rows.map(([label, answer]) => ({ label, lines: wrapCanvasText(answer || "—", width) }));
+      const noteLines = value("notes") ? wrapCanvasText(value("notes"), width) : [];
+      const cellWidth = (width - 24) / 2;
+      const cellHeight = 300;
+      const freeHeight = noteLines.length || images.length ? 88 + noteLines.length * 48 + (noteLines.length ? 20 : 0) + Math.ceil(images.length / 2) * (cellHeight + 24) : 0;
+      const logicalHeight = 220 + layout.reduce((sum, row) => sum + 65 + row.lines.length * 48, 0) + freeHeight + 100;
+      // 极多换行时限制位图尺寸，避免超过移动浏览器的 Canvas 上限。
+      const scale = Math.min(1, 8192 / logicalHeight);
+      canvas.width = Math.round(1080 * scale);
+      canvas.height = Math.round(logicalHeight * scale);
+      context.scale(scale, scale);
+      context.fillStyle = palette.background;
+      context.fillRect(0, 0, 1080, logicalHeight);
+      context.fillStyle = palette.accent;
+      context.fillRect(side, 86, 6, 54);
+      context.font = `600 60px ${family}`;
+      context.fillStyle = palette.ink;
+      context.fillText("关于我", side + 24, 137);
+      context.font = `24px ${family}`;
+      context.fillStyle = palette.accent;
+      context.fillText("我的认同 · 我的称呼 · 我的表达", side + 24, 185);
+      let y = 240;
+      context.textBaseline = "top";
+      for (const row of layout) {
+        context.font = `26px ${family}`;
+        context.fillStyle = palette.ink;
+        context.fillText(row.label, side, y);
+        y += 42;
+        context.font = `34px ${family}`;
+        context.fillStyle = palette.accent;
+        for (const line of row.lines) {
+          context.fillText(line, side, y);
+          y += 48;
+        }
+        context.fillStyle = palette.line;
+        context.fillRect(side, y + 6, width, 1);
+        y += 23;
+      }
+      if (noteLines.length || images.length) {
+        y += 22;
+        context.font = `26px ${family}`;
+        context.fillStyle = palette.ink;
+        context.fillText("我的小角落", side, y);
+        y += 48;
+        context.font = `34px ${family}`;
+        context.fillStyle = palette.accent;
+        for (const line of noteLines) {
+          context.fillText(line, side, y);
+          y += 48;
+        }
+        if (noteLines.length) y += 20;
+        images.forEach((item, index) => {
+          const x = side + (index % 2) * (cellWidth + 24);
+          const top = y + Math.floor(index / 2) * (cellHeight + 24);
+          context.fillStyle = palette.soft;
+          context.fillRect(x, top, cellWidth, cellHeight);
+          const scale = Math.min((cellWidth - 24) / item.image.width, (cellHeight - 24) / item.image.height);
+          const w = item.image.width * scale;
+          const h = item.image.height * scale;
+          context.drawImage(item.image, x + (cellWidth - w) / 2, top + (cellHeight - h) / 2, w, h);
+        });
+      }
+      context.font = `22px ${family}`;
+      context.fillStyle = palette.ink;
+      context.fillText("PrismSelf · 自我介绍卡", side, logicalHeight - 55);
+      canvas.setAttribute("aria-label", "关于我。" + rows.map(([label, answer]) => `${label}：${answer || "未填写"}`).join("。")
+        + (value("notes") ? `\n\n我的小角落：\n${value("notes")}` : "")
+        + (images.length ? `\n\n附图（${images.length} 张）：${images.map((item) => item.name).join("、")}` : ""));
+    }
+
+    function scheduleRender() {
+      cancelAnimationFrame(renderFrame);
+      renderFrame = requestAnimationFrame(renderCard);
+    }
+
+    function renderImages() {
+      const list = document.getElementById("imageList");
+      list.replaceChildren();
+      images.forEach((item) => {
+        const tile = document.createElement("div");
+        tile.className = "intro-image";
+        const thumbnail = document.createElement("img");
+        thumbnail.src = item.url;
+        thumbnail.alt = item.name;
+        const name = document.createElement("span");
+        name.textContent = item.name;
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "intro-image-remove";
+        remove.textContent = "×";
+        remove.setAttribute("aria-label", `移除图片：${item.name}`);
+        remove.addEventListener("click", () => {
+          images = images.filter((image) => image !== item);
+          URL.revokeObjectURL(item.url);
+          renderImages();
+          renderCard();
+          imageInput.focus();
+          status.textContent = "图片已移除。";
+        });
+        tile.append(thumbnail, name, remove);
+        list.append(tile);
+      });
+    }
+
+    // 手机原图可能有数千万像素，读取后缩到卡片所需尺寸，避免移动端内存不足。
+    async function loadLocalImage(file) {
+      const source = URL.createObjectURL(file);
+      try {
+        const original = new Image();
+        await new Promise((resolve, reject) => { original.onload = resolve; original.onerror = reject; original.src = source; });
+        const ratio = Math.min(1, 1200 / Math.max(original.naturalWidth, original.naturalHeight));
+        const image = document.createElement("canvas");
+        image.width = Math.max(1, Math.round(original.naturalWidth * ratio));
+        image.height = Math.max(1, Math.round(original.naturalHeight * ratio));
+        image.getContext("2d").drawImage(original, 0, 0, image.width, image.height);
+        const blob = await new Promise((resolve, reject) => {
+          image.toBlob((result) => result ? resolve(result) : reject(new Error("图片无法读取")), "image/png");
+        });
+        return { image, url: URL.createObjectURL(blob) };
+      } finally {
+        URL.revokeObjectURL(source);
+      }
+    }
+
+    imageInput.addEventListener("change", async () => {
+      const files = Array.from(imageInput.files);
+      if (!files.length) return;
+      imageInput.disabled = true;
+      resetButton.disabled = true;
+      exportButton.disabled = true;
+      status.textContent = "正在读取本地图片…";
+      const errors = [];
+      let added = 0;
+      try {
+        for (const file of files) {
+          if (images.length >= 6) { errors.push("最多添加 6 张图片，其余图片未添加"); break; }
+          // 部分手机浏览器不提供文件类型，留给解码结果判断。
+          if ((file.type && !file.type.startsWith("image/")) || file.size > 20 * 1024 * 1024) {
+            errors.push(`${file.name}：请选择不超过 20 MB 的图片`);
+            continue;
+          }
+          try {
+            const { image, url } = await loadLocalImage(file);
+            images.push({ image, url, name: file.name });
+            added += 1;
+          } catch (error) {
+            errors.push(`${file.name}：图片无法读取，可换用 JPEG 或 PNG`);
+          }
+        }
+        renderImages();
+        renderCard();
+        status.textContent = [`已添加 ${added} 张图片。`, ...errors].join(" ");
+      } finally {
+        imageInput.value = "";
+        imageInput.disabled = false;
+        resetButton.disabled = false;
+        exportButton.disabled = false;
+      }
+    });
+
+    exportButton.addEventListener("click", async () => {
+      exportButton.disabled = true;
+      exportButton.textContent = "正在生成…";
+      try {
+        if (document.fonts) await document.fonts.ready;
+        renderCard();
+        const blob = await new Promise((resolve, reject) => {
+          canvas.toBlob((result) => result ? resolve(result) : reject(new Error("图片生成失败")), "image/png");
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "PrismSelf-自我介绍卡.png";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+        status.textContent = "图片已生成并发起下载。";
+      } catch (error) {
+        status.textContent = "图片生成失败，请重试；也可截取右侧预览保存。";
+      } finally {
+        exportButton.disabled = false;
+        exportButton.textContent = "下载 PNG 图片";
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      if (!window.confirm("确定清空填写的文字、选项和图片吗？配色与字体会保留。")) return;
+      for (const input of form.querySelectorAll('input[type="text"], textarea')) input.value = "";
+      for (const input of form.querySelectorAll('input[type="checkbox"]')) input.checked = false;
+      images.forEach((item) => URL.revokeObjectURL(item.url));
+      images = [];
+      imageInput.value = "";
+      renderImages();
+      renderCard();
+      status.textContent = "填写内容已清空，配色与字体已保留。";
+    });
+    form.addEventListener("submit", (event) => event.preventDefault());
+    form.addEventListener("input", () => { syncCustomPalette(); scheduleRender(); });
+    form.addEventListener("change", () => { syncCustomPalette(); scheduleRender(); });
+    syncCustomPalette();
+    renderCard();
+  </script>
+</body>
+</html>

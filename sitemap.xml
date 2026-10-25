@@ -157,12 +157,17 @@
   </url>
   <url>
     <loc>https://prismself.vip/Tools/Relationship-Needs-Menu.html</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prismself.vip/Tools/Self-Intro-Card.html</loc>
+    <lastmod>2026-10-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://prismself.vip/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <priority>1.0</priority>
   </url>
 </urlset>
