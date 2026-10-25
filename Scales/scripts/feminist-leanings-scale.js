@@ -768,21 +768,6 @@ window.resetForm = function () {
     }
 };
 
-window.saveResultText = function () {
-    if (document.getElementById('result').style.display !== 'block') { alert("请先完成评估并生成报告。"); return; }
-    let content = "女权主义流派倾向深度评估报告\n\n";
-    ["scoreSummary", "typeJudgment", "currentProfileAnalysis", "mainInterpretation", "deepPersonalAnalysis", "sectionScores", "personalizedSuggestions"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) content += el.innerText + "\n\n====\n\n";
-    });
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = window.PrismScale.getExportFilename('txt');
-    a.click();
-    URL.revokeObjectURL(a.href);
-};
-
 window.saveResultImage = async function () {
     if (document.getElementById('result').style.display !== 'block') { alert("请先完成评估并生成报告。"); return; }
     const element = document.getElementById('result');

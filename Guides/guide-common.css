@@ -520,7 +520,8 @@ header h1 {
 
 .toc-panel-header {
   font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--accent);
   text-transform: uppercase;
@@ -528,14 +529,7 @@ header h1 {
   padding-bottom: 0.5rem;
   margin-bottom: 0.8rem;
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
-}
-
-.toc-close-icon {
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--muted);
 }
 
 .toc-list {

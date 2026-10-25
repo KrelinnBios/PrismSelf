@@ -180,6 +180,15 @@
   transform: none !important;
 }
 
+/* 内页公共按钮只变色，固定阴影以避免悬停时产生浮起感。 */
+body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:hover, :active):not(:focus-visible) {
+  box-shadow: 0 6px 18px rgba(11, 18, 32, 0.14) !important;
+}
+
+:root[data-theme="dark"] body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:hover, :active):not(:focus-visible) {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.34) !important;
+}
+
 .theme-toggle:focus-visible,
 .prism-back-home:focus-visible,
 .toc-toggle-btn:focus-visible {
@@ -373,6 +382,7 @@
     )
   );
   --prism-support-surface: color-mix(in srgb, var(--prism-support-primary) 8%, var(--prism-support-page-surface));
+  --prism-support-border: color-mix(in srgb, var(--prism-support-primary) 52%, transparent);
   width: min(100% - 48px, 932px);
   margin: 0 auto 48px;
   padding: 22px 24px;
@@ -381,7 +391,7 @@
   align-items: center;
   gap: 18px;
   box-sizing: border-box;
-  border: 1px solid color-mix(in srgb, var(--prism-support-primary) 52%, transparent);
+  border: 1px solid var(--prism-support-border);
   border-radius: 18px;
   background: var(--prism-support-surface);
   color: inherit;
@@ -433,9 +443,9 @@
 }
 
 .prism-support-heart {
-  color: var(--prism-support-secondary-ink);
+  color: var(--prism-support-border);
   font: 400 30px/1 Georgia, serif;
-  opacity: 0.82;
+  opacity: 1;
 }
 
 .prism-support-content {
@@ -632,7 +642,8 @@
       )
     )
   );
-  border-color: color-mix(in srgb, var(--prism-support-primary) 58%, transparent);
+  --prism-support-border: color-mix(in srgb, var(--prism-support-primary) 58%, transparent);
+  border-color: var(--prism-support-border);
   color: #d9e2ee;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
 }

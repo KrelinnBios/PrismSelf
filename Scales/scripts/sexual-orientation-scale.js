@@ -652,28 +652,6 @@ function resetQuiz() {
 	updateProgress();
 }
 
-function saveResultText() {
-	const resultDiv = document.getElementById('result');
-	if (resultDiv.style.display !== 'block') {
-		alert('请先计算结果再保存！');
-		return;
-	}
-	let resultText = '性吸引结构深度探索报告\n========================\n\n';
-	['scoreSummary', 'typeJudgment', 'currentProfileAnalysis', 'mainInterpretation', 'deepPersonalAnalysis', 'sectionScores', 'personalizedSuggestions'].forEach(id => {
-		const element = document.getElementById(id);
-		if (element) resultText += `${element.innerText}\n\n====\n\n`;
-	});
-	const blob = new Blob([resultText.trim()], { type: 'text/plain;charset=utf-8' });
-	const url = URL.createObjectURL(blob);
-	const a = document.createElement('a');
-	a.href = url;
-	a.download = window.PrismScale.getExportFilename('txt');
-	document.body.appendChild(a);
-	a.click();
-	document.body.removeChild(a);
-	URL.revokeObjectURL(url);
-}
-
 async function saveResultImage(clickEvent) {
 	const resultDiv = document.getElementById('result');
 	if (resultDiv.style.display !== 'block') {

@@ -1,24 +1,10 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-10-25',
+    date: '2026-10-26',
     pages: [
-      'home',
       './Tools/Self-Intro-Card.html',
-      './Tools/Relationship-Needs-Menu.html'
-    ]
-  },
-  {
-    date: '2026-10-22',
-    pages: [
-      './Bingos/Aro-Ace-Spectrum-Resonance.html',
-      './Bingos/Gender-Spectrum-Resonance.html',
-      './Bingos/Neurodiversity-Resonance.html',
-      './Guides/BDSM-Comprehensive-Guide.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
-      './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
+      './Tools/Relationship-Needs-Menu.html',
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',
@@ -27,12 +13,15 @@ window.PrismSelfUpdateGroups = [
       './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Orientation-Scale.html',
-      './Scales/Sexual-Preference-Scale.html'
-    ]
-  },
-  {
-    date: '2026-10-21',
-    pages: [
+      './Scales/Sexual-Preference-Scale.html',
+      './Bingos/Aro-Ace-Spectrum-Resonance.html',
+      './Bingos/Gender-Spectrum-Resonance.html',
+      './Bingos/Neurodiversity-Resonance.html',
+      './Guides/BDSM-Comprehensive-Guide.html',
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/Psychosexual-Concepts-Panorama.html',
@@ -43,25 +32,16 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/Sexology-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
-      './Glossaries/Philosophy-Glossary.html'
-    ]
-  },
-  {
-    date: '2026-09-20',
-    pages: [
-      './Guides/Aromantic-Comprehensive-Guide.html'
-    ]
-  },
-  {
-    date: '2026-09-10',
-    pages: [
-      './Topics/Asexual-Community-Survey.html'
-    ]
-  },
-  {
-    date: '2026-09-03',
-    pages: [
+      './Glossaries/Philosophy-Glossary.html',
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Topics/Asexual-Community-Survey.html',
       './Topics/A-Conversation-on-Asexuality.html'
+    ]
+  },
+  {
+    date: '2026-10-25',
+    pages: [
+      'home'
     ]
   }
 ];

@@ -707,64 +707,6 @@
     window.PrismScale.renderReflectionActions('personalizedSuggestions', buildReflectionActions(ranked));
   }
 
-  function buildTextResult() {
-    const answers = collectAnswers();
-    if (Object.keys(answers).length !== flatQuestions.length) return '';
-    const scores = calculateScores(answers);
-    const ranked = dimensions
-      .map(dimension => ({ ...dimension, score: scores[dimension.id], level: scoreLevel(scores[dimension.id]) }))
-      .sort((a, b) => b.score - a.score);
-    const first = ranked[0];
-    const second = ranked[1];
-    const lowest = ranked[ranked.length - 1];
-    const actions = buildReflectionActions(ranked);
-    const lines = [
-      '神经多样性体验深度自评报告',
-      `生成日期：${new Date().toLocaleDateString('zh-CN')}`,
-      '',
-      `【${getSummaryTitle(ranked)}】`,
-      `最高维度：${first.title} ${first.score.toFixed(1)} / 5.0`,
-      `次高维度：${second.title} ${second.score.toFixed(1)} / 5.0`,
-      `最低维度：${lowest.title} ${lowest.score.toFixed(1)} / 5.0`,
-      `维度极差：${(first.score - lowest.score).toFixed(1)} 分`,
-      '',
-      '【当前体验画像】',
-      getProfilePattern(ranked).text,
-      '',
-      '【核心体验组合】',
-      `${first.title} × ${second.title}：${getPairInterpretation(first, second)}`,
-      '',
-      '【八维体验深度分析】'
-    ];
-
-    ranked.forEach((item, index) => {
-      const meta = dimensionReportMeta[item.id];
-      lines.push(
-        '',
-        `${index + 1}. ${item.title}：${item.score.toFixed(1)} / 5（${item.level.label}）`,
-        `观察范围：${item.description}`,
-        `当前倾向：${item.level.text}`,
-        `可能表现：${meta.visible}`,
-        `需要留意：${meta.cost}`,
-        `支持方向：${meta.support}`,
-        `可以继续观察：${meta.reflection}`
-      );
-    });
-
-    lines.push('', '【分项得分一览】');
-    dimensions.forEach(dimension => {
-      const score = scores[dimension.id];
-      lines.push(`${dimension.title}：${score.toFixed(1)} / 5（${scoreLevel(score).label}）`);
-    });
-
-    lines.push('', '【深度反思与行动建议】');
-    actions.forEach((item, index) => {
-      const plain = item.text.replace(/<strong>/g, '').replace(/<\/strong>/g, '');
-      lines.push(`${index + 1}. ${item.title}`, plain);
-    });
-    return lines.join('\n');
-  }
-
   function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -774,15 +716,6 @@
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
-  }
-
-  function saveResultText() {
-    const text = buildTextResult();
-    if (!text) {
-      window.alert('请先完成量表并计算结果。');
-      return;
-    }
-    downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), window.PrismScale.getExportFilename('txt'));
   }
 
   async function saveResultImage() {
@@ -831,6 +764,5 @@
   form.addEventListener('change', saveAnswers);
   document.getElementById('calculateButton').addEventListener('click', calculateResult);
   document.getElementById('resetButton').addEventListener('click', resetForm);
-  document.getElementById('saveTextButton').addEventListener('click', saveResultText);
   document.getElementById('saveImageButton').addEventListener('click', saveResultImage);
 })();

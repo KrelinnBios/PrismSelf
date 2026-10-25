@@ -8,13 +8,132 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./guide-common.css?v=202610252">
+  <link rel="stylesheet" href="./guide-common.css?v=202610264">
   <style>
+    /* 跨性别旗帜主题：#5bcefa 浅蓝、#f5a9b8 浅粉、#ffffff 白色。
+       浅色模式用同色系深色保证正文可读性，旗帜原色用于边框、装饰和深色卡片。 */
+    :root {
+      --flag-blue: #5bcefa;
+      --flag-pink: #f5a9b8;
+      --paper: #fbfdff;
+      --cream: #f1f8fc;
+      --border: #d4e6f0;
+      --accent: #c95a7e;
+      --accent-2: #2384ac;
+      --accent-light: #fde8ef;
+      --focus: rgba(201, 90, 126, 0.7);
+      --guide-control-border: rgba(201, 90, 126, 0.5);
+      --guide-control-border-strong: rgba(201, 90, 126, 0.85);
+      --guide-control-ring: rgba(201, 90, 126, 0.32);
+      --guide-toc-hover-bg: rgba(245, 169, 184, 0.12);
+      --guide-toc-hover-border: rgba(201, 90, 126, 0.55);
+      --guide-toc-highlight-hover-bg: #321827;
+      --guide-toc-highlight-hover-border: rgba(91, 206, 250, 0.9);
+    }
+
+    :root[data-theme="dark"] {
+      --paper: #0d1620;
+      --cream: #152230;
+      --border: #2b4050;
+      --accent: #f5a9b8;
+      --accent-2: #7ddcf7;
+      --accent-light: #3a1d28;
+      --focus: rgba(245, 169, 184, 0.72);
+      --guide-control-border: rgba(245, 169, 184, 0.55);
+      --guide-control-border-strong: rgba(125, 220, 247, 0.85);
+      --guide-control-ring: rgba(245, 169, 184, 0.24);
+      --guide-toc-hover-bg: rgba(245, 169, 184, 0.16);
+      --guide-toc-hover-border: rgba(245, 169, 184, 0.8);
+      --guide-toc-highlight-hover-bg: #3a1f2b;
+      --guide-toc-highlight-hover-border: rgba(125, 220, 247, 0.85);
+      --guide-highlight-bg: #152633;
+      --guide-highlight-border: rgba(125, 220, 247, 0.3);
+    }
+
+    :root[data-theme] header,
+    .term-card.highlight {
+      background: #0a1c2a;
+      border-color: #0a1c2a;
+    }
+
+    #write header h1 {
+      color: var(--flag-pink) !important;
+    }
+
+    .header-label {
+      color: var(--flag-blue);
+    }
+
+    .header-ornament {
+      background: linear-gradient(to right, transparent, var(--flag-pink), var(--flag-blue), transparent);
+    }
+
+    #write .term-card.highlight .term-en {
+      color: var(--flag-pink) !important;
+    }
+
+    .term-card.highlight .term-corner {
+      border-color: transparent var(--flag-blue) transparent transparent;
+    }
+
+    #write .term-card.highlight .term-desc strong,
+    #write .term-card.highlight .term-desc .guide-note-title {
+      color: var(--flag-blue);
+    }
+
+    #write .term-desc a {
+      text-decoration-color: rgba(201, 90, 126, 0.35);
+    }
+
+    #write .term-card.highlight .term-desc a {
+      color: var(--flag-pink);
+      text-decoration-color: rgba(245, 169, 184, 0.5);
+    }
+
+    #write .term-desc .guide-note {
+      border-left-color: rgba(245, 169, 184, 0.85);
+      background: rgba(245, 169, 184, 0.1);
+    }
+
+    #write .term-card.highlight .term-desc .guide-note {
+      border-left-color: rgba(91, 206, 250, 0.9);
+    }
+
+    .toc-list a:hover {
+      background: rgba(201, 90, 126, 0.1);
+      border-left-color: rgba(201, 90, 126, 0.55);
+    }
+
+    .toc-list a[aria-current="true"] {
+      background: rgba(91, 206, 250, 0.16);
+      border-left-color: rgba(91, 206, 250, 0.9);
+      color: var(--accent);
+    }
+
+    :root[data-theme="dark"] #write .term-desc a {
+      color: #f5a9b8;
+      text-decoration-color: rgba(245, 169, 184, 0.55);
+    }
+
+    :root[data-theme="dark"] #write .term-desc a:hover {
+      color: var(--flag-blue);
+      text-decoration-color: currentColor;
+    }
+
+    :root[data-theme="dark"] #write .term-card.highlight .term-desc a {
+      color: #f5a9b8;
+      text-decoration-color: rgba(245, 169, 184, 0.58);
+    }
+
+    :root[data-theme="dark"] #write .term-desc .guide-note {
+      background: rgba(245, 169, 184, 0.1);
+    }
+
     .header-sub {
       display: none;
     }
   </style>
-<script src="./guide-common.js?v=202610221"></script>
+<script src="./guide-common.js?v=202610264"></script>
 <script>
   PrismSelfGuide.init({
     headerLabel: 'Gender Concepts Comprehensive Guide',
@@ -60,8 +179,8 @@
   <title>PrismSelf - 性别概念全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/Gender-Concepts-Comprehensive-Guide.html">
   <meta name="description" content="性别概念全景指南，系统解释性别认同、性别表达与相关核心术语。">
-  <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="../icon/favicon.svg?v=202610252" type="image/svg+xml">
+  <meta name="theme-color" content="#f5a9b8">
+  <link rel="icon" href="../icon/favicon.svg?v=202610264" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 性别概念全景指南">
@@ -72,8 +191,8 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="../assets/theme.css?v=202610252">
-<script src="../assets/theme.js?v=202610252"></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=202610264">
+<script src="../assets/theme.js?v=202610264"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"

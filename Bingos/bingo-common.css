@@ -367,7 +367,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  transition: all 0.1s ease;
+  transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease;
   min-height: 112px;
   background: white;
 }
@@ -378,18 +378,9 @@ body {
   outline-offset: -3px;
 }
 
-.cell:active {
-  transform: scale(0.96);
-}
-
 .cell-icon {
   font-size: 26px;
   line-height: 1;
-  transition: transform 0.1s;
-}
-
-.cell:hover .cell-icon {
-  transform: scale(1.05);
 }
 
 .cell-text {
@@ -834,24 +825,93 @@ body {
 }
 
 :root[data-theme="dark"] .cell-text {
-  color: #cdd2dc;
+  color: #cdd2dc !important;
 }
 
-:root[data-theme="dark"] .cell[data-level] {
-  background: #181b24;
+:root[data-theme="dark"] .sec-A {
+  --bingo-dk-cell-tint: var(--bingo-dk-accent);
 }
 
-:root[data-theme="dark"] .sec-A .cell[data-level] .cell-text,
-:root[data-theme="dark"] .sec-B .cell[data-level] .cell-text,
-:root[data-theme="dark"] .sec-C .cell[data-level] .cell-text,
-:root[data-theme="dark"] .sec-D .cell[data-level] .cell-text {
-  color: #e8ebf1;
+:root[data-theme="dark"] .sec-B {
+  --bingo-dk-cell-tint: var(--bingo-sec-b-grad2);
+}
+
+:root[data-theme="dark"] .sec-C {
+  --bingo-dk-cell-tint: var(--bingo-sec-c-grad2);
+}
+
+:root[data-theme="dark"] .sec-D {
+  --bingo-dk-cell-tint: var(--bingo-sec-d-grad2);
+}
+
+/* 暗色下仍按档位拉开背景明度，避免所有选中格看起来一样。 */
+:root[data-theme="dark"] .cell[data-level="0"] {
+  background: #15171f;
+}
+
+:root[data-theme="dark"] .cell[data-level="25"] {
+  background: color-mix(in srgb, var(--bingo-dk-cell-tint, var(--bingo-dk-accent)) 12%, #181b24);
+}
+
+:root[data-theme="dark"] .cell[data-level="50"] {
+  background: color-mix(in srgb, var(--bingo-dk-cell-tint, var(--bingo-dk-accent)) 20%, #181b24);
+}
+
+:root[data-theme="dark"] .cell[data-level="75"] {
+  background: color-mix(in srgb, var(--bingo-dk-cell-tint, var(--bingo-dk-accent)) 30%, #181b24);
+}
+
+:root[data-theme="dark"] .cell[data-level="100"] {
+  background: color-mix(in srgb, var(--bingo-dk-cell-tint, var(--bingo-dk-accent)) 42%, #181b24);
+}
+
+:root[data-theme="dark"] .cell[data-level]:not([data-level="0"]) .cell-text {
+  color: #e8ebf1 !important;
 }
 
 :root[data-theme="dark"] .ring {
   background: rgba(20, 23, 32, 0.9) !important;
-  border-color: #3a3f4c !important;
   color: #e3e7ee !important;
+}
+
+:root[data-theme="dark"] .cell[data-level="0"] .ring {
+  border-color: #3a3f4c !important;
+}
+
+:root[data-theme="dark"] .cell[data-level="25"] .ring {
+  border-color: var(--bingo-dk-lv25-border) !important;
+}
+
+:root[data-theme="dark"] .cell[data-level="50"] .ring {
+  border-color: var(--bingo-dk-lv50-border) !important;
+}
+
+:root[data-theme="dark"] .cell[data-level="75"] .ring {
+  border-color: var(--bingo-dk-lv75-border) !important;
+}
+
+:root[data-theme="dark"] .cell[data-level="100"] .ring {
+  border-color: var(--bingo-dk-accent-strong) !important;
+}
+
+:root[data-theme="dark"] .cell[data-level="0"] .ring::after {
+  color: #aab0bd;
+}
+
+:root[data-theme="dark"] .cell[data-level="25"] .ring::after {
+  color: var(--bingo-dk-lv25-text);
+}
+
+:root[data-theme="dark"] .cell[data-level="50"] .ring::after {
+  color: var(--bingo-dk-lv50-text);
+}
+
+:root[data-theme="dark"] .cell[data-level="75"] .ring::after {
+  color: var(--bingo-dk-lv75-text);
+}
+
+:root[data-theme="dark"] .cell[data-level="100"] .ring::after {
+  color: var(--bingo-dk-lv100-text);
 }
 
 :root[data-theme="dark"] .footer {

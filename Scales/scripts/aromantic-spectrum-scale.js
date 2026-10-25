@@ -2060,29 +2060,6 @@ function resetForm() {
 	updateProgress();
 }
 
-function saveResultText() {
-	const resultDiv = document.getElementById('result');
-	if (resultDiv.style.display === 'block') {
-		let resultText = "无浪漫谱系自查结果\n";
-		resultText += "====================================================================\n\n";
-		resultText += document.getElementById('scoreSummary').textContent + "\n\n";
-		resultText += document.getElementById('typeJudgment').textContent + "\n\n";
-		resultText += document.getElementById('mainInterpretation').innerText + "\n\n";
-		resultText += document.getElementById('detailedAnalysis').innerText + "\n\n";
-		resultText += document.getElementById('sectionScores').innerText + "\n\n";
-		resultText += document.getElementById('personalizedSuggestions').innerText;
-		const blob = new Blob([resultText], { type: 'text/plain;charset=utf-8' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = window.PrismScale.getExportFilename('txt');
-		a.click();
-		URL.revokeObjectURL(url);
-	} else {
-		alert('请先计算结果再保存！');
-	}
-}
-
 async function saveResultImage() {
 	const resultDiv = document.getElementById('result');
 	if (resultDiv.style.display === 'block') {

@@ -80,9 +80,6 @@
       setLevel(cell, stepLevel(normalizeLevel(cell.dataset.level), reverse));
       updateSectionStats(cell.dataset.section);
       save();
-      // 微动效
-      cell.style.transform = 'scale(0.97)';
-      setTimeout(() => { cell.style.transform = ''; }, 120);
     }
 
     const saved = loadSaved();

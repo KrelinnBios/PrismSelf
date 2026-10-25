@@ -11,7 +11,7 @@
   <title>PrismSelf - 关系需求菜单</title>
   <link rel="canonical" href="https://prismself.vip/Tools/Relationship-Needs-Menu.html">
   <meta name="description" content="关系需求菜单，一个用于梳理和沟通亲密关系需求与边界的互动对话工具。">
-  <link rel="icon" href="../icon/favicon.svg?v=202610252" type="image/svg+xml">
+  <link rel="icon" href="../icon/favicon.svg?v=202610264" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 关系需求菜单">
@@ -26,9 +26,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./tool-common.css?v=202610221">
-  <link rel="stylesheet" href="../assets/theme.css?v=202610252">
-  <script src="../assets/theme.js?v=202610252"></script>
+  <link rel="stylesheet" href="./tool-common.css?v=202610264">
+  <link rel="stylesheet" href="../assets/theme.css?v=202610264">
+  <script src="../assets/theme.js?v=202610264"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -41,7 +41,6 @@
 
   <main class="page">
     <header class="hero">
-      <div class="eyebrow">关系对话工具</div>
       <h1>关系<em>需求菜单</em></h1>
       <p class="hero-lead">
         把“你应该懂我”变成可以被看见、被讨论的具体选项。这里没有标准答案，也不预设关系一定要走向恋爱、同居、婚姻或性关系。
@@ -562,7 +561,9 @@
       const rowsStartY = headerY + headerHeight + 34;
       const badgeWidth = 136;
       const textWidth = contentWidth - badgeWidth - 42;
-      const titleFont = '600 27px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      const titleFontSize = 24;
+      const titleLineHeight = 35;
+      const titleFont = `600 ${titleFontSize}px "Noto Sans SC", "Microsoft YaHei", sans-serif`;
       const descFont = '400 19px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       const measureCanvas = document.createElement("canvas");
       const measureContext = measureCanvas.getContext("2d");
@@ -575,11 +576,32 @@
           measureContext.font = descFont;
           descLines = wrapCanvasText(measureContext, item.desc, textWidth);
         }
-        const textHeight = titleLines.length * 39 + (descLines.length ? 10 + descLines.length * 29 : 0);
+        const textHeight = titleLines.length * titleLineHeight + (descLines.length ? 10 + descLines.length * 29 : 0);
+        // 按实际字形范围居中，避免单行标题或带说明的文字块偏上。
+        measureContext.textBaseline = "alphabetic";
+        measureContext.font = titleFont;
+        const textBounds = titleLines.map((line, index) => {
+          const metrics = measureContext.measureText(line);
+          return {
+            top: index * titleLineHeight - metrics.actualBoundingBoxAscent,
+            bottom: index * titleLineHeight + metrics.actualBoundingBoxDescent
+          };
+        });
+        measureContext.font = descFont;
+        descLines.forEach((line, index) => {
+          const metrics = measureContext.measureText(line);
+          const baseline = titleLines.length * titleLineHeight + 2 + index * 29;
+          textBounds.push({
+            top: baseline - metrics.actualBoundingBoxAscent,
+            bottom: baseline + metrics.actualBoundingBoxDescent
+          });
+        });
         return {
           ...item,
           titleLines,
           descLines,
+          textTop: Math.min(...textBounds.map((bounds) => bounds.top)),
+          textBottom: Math.max(...textBounds.map((bounds) => bounds.bottom)),
           height: Math.max(92, textHeight + 34)
         };
       });
@@ -610,33 +632,60 @@
       context.fillStyle = gradient;
       context.fill();
 
-      context.fillStyle = "rgba(255,255,255,0.78)";
-      roundRect(context, side + headerPaddingX, headerY + 28, 104, 32, 16);
+      context.beginPath();
+      context.arc(side + headerPaddingX + 4, headerY + 44, 4, 0, Math.PI * 2);
+      context.fillStyle = "rgba(255,255,255,0.86)";
       context.fill();
-      context.fillStyle = colorStart;
-      context.font = '700 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
-      context.textAlign = "center";
+      context.font = '500 13px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.textAlign = "left";
       context.textBaseline = "middle";
-      context.fillText("关系需求菜单", side + headerPaddingX + 52, headerY + 44);
+      context.fillText("关系需求菜单", side + headerPaddingX + 12, headerY + 44);
 
       context.textAlign = "left";
       context.textBaseline = "top";
       context.fillStyle = "#ffffff";
-      context.font = '700 40px "Noto Serif SC", "Noto Sans SC", serif';
-      context.fillText(module.title, side + headerPaddingX, headerY + 88);
-      context.font = '400 19px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.font = '600 42px "Noto Serif SC", "Songti SC", SimSun, serif';
+      context.fillText(module.title, side + headerPaddingX, headerY + 78);
+      context.font = '400 17px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       context.fillStyle = "rgba(255,255,255,0.84)";
-      context.fillText(module.subtitle, side + headerPaddingX, headerY + 151);
+      context.fillText(module.subtitle, side + headerPaddingX, headerY + 150);
 
       const owner = state.profileName.trim() || "未命名视角";
       const date = new Date().toLocaleDateString("zh-CN");
-      context.textAlign = "right";
+      const infoWidth = 220;
+      const infoX = logicalWidth - side - headerPaddingX - infoWidth;
+      context.beginPath();
+      context.moveTo(infoX - 32, headerY + 38);
+      context.lineTo(infoX - 32, headerY + headerHeight - 38);
+      context.strokeStyle = "rgba(255,255,255,0.24)";
+      context.lineWidth = 1;
+      context.stroke();
+
+      context.textAlign = "left";
       context.textBaseline = "top";
+      context.fillStyle = "rgba(255,255,255,0.8)";
+      context.font = '400 13px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+      context.fillText("这份菜单属于", infoX, headerY + 36);
+
+      let ownerFontSize = 22;
+      let ownerLines;
+      do {
+        context.font = `600 ${ownerFontSize}px "Noto Sans SC", "Microsoft YaHei", sans-serif`;
+        ownerLines = wrapCanvasText(context, owner, infoWidth);
+        if (ownerLines.length <= 2 || ownerFontSize <= 14) break;
+        ownerFontSize -= 1;
+      } while (true);
+      context.fillStyle = "#ffffff";
+      ownerLines.forEach((line, index) => {
+        context.fillText(line, infoX, headerY + 76 + index * 28);
+      });
+
+      context.textBaseline = "middle";
+      context.font = '400 14px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       context.fillStyle = "rgba(255,255,255,0.88)";
-      context.font = '500 18px "Noto Sans SC", "Microsoft YaHei", sans-serif';
-      context.fillText(owner, logicalWidth - side - headerPaddingX, headerY + 30);
-      context.font = '400 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
-      context.fillText(`${date} · 已填写 ${module.items.length} 项`, logicalWidth - side - headerPaddingX, headerY + 66);
+      context.fillText(date, infoX, headerY + 160);
+      context.textAlign = "right";
+      context.fillText(`已填写 ${module.items.length} 项`, infoX + infoWidth, headerY + 160);
 
       let y = rowsStartY;
       context.textBaseline = "top";
@@ -649,13 +698,14 @@
         context.lineWidth = 1.5;
         context.stroke();
 
-        let textY = y + 18;
+        let textY = y + (row.height - (row.textBottom - row.textTop)) / 2 - row.textTop;
         context.textAlign = "left";
+        context.textBaseline = "alphabetic";
         context.fillStyle = pal.title;
         context.font = titleFont;
         row.titleLines.forEach((line) => {
           context.fillText(line, side + 24, textY);
-          textY += 39;
+          textY += titleLineHeight;
         });
 
         if (row.descLines.length) {

@@ -533,31 +533,6 @@
     window.PrismScale.renderReflectionActions('personalizedSuggestions', buildReflectionActions(ranked));
   }
 
-  function buildTextResult() {
-    const answers = collectAnswers();
-    if (Object.keys(answers).length !== totalQuestions) return '';
-    const scores = calculateScores(answers);
-    const ranked = dimensions.map(item => ({ ...item, score: scores[item.id], level: scoreLevel(scores[item.id]) })).sort((a, b) => b.score - a.score);
-    const pattern = getProfilePattern(ranked);
-    const lines = [
-      '亲密互动与性偏好自评报告',
-      `生成日期：${new Date().toLocaleDateString('zh-CN')}`,
-      '',
-      `【${getSummaryTitle(ranked)}】`,
-      `${pattern.label}：${pattern.text}`,
-      '',
-      `【核心组合】${ranked[0].title} × ${ranked[1].title}`,
-      getPairInterpretation(ranked[0], ranked[1]),
-      '',
-      '【十五维结果】'
-    ];
-    ranked.forEach((item, index) => lines.push('', `${index + 1}. ${item.title}：${item.score.toFixed(1)} / 5（${item.level.label}）`, item.interpretation, `继续观察：${item.reflection}`, `沟通提示：${item.suggestions.join(' ')}`));
-    lines.push('', '【深度反思与行动建议】');
-    buildReflectionActions(ranked).forEach((action, index) => lines.push(`${index + 1}. ${action.title}`, action.text.replace(/<\/?strong>/g, '')));
-    lines.push('', '本结果不是性取向、身份、诊断、风险或同意证明；多项低分是完整有效的画像。');
-    return lines.join('\n');
-  }
-
   function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -567,12 +542,6 @@
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
-  }
-
-  function saveResultText() {
-    const text = buildTextResult();
-    if (!text) return window.alert('请先完成量表并计算结果。');
-    downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), window.PrismScale.getExportFilename('txt'));
   }
 
   async function saveResultImage() {
@@ -611,6 +580,5 @@
   form.addEventListener('change', saveAnswers);
   document.getElementById('calculateButton').addEventListener('click', calculateResult);
   document.getElementById('resetButton').addEventListener('click', resetForm);
-  document.getElementById('saveTextButton').addEventListener('click', saveResultText);
   document.getElementById('saveImageButton').addEventListener('click', saveResultImage);
 })();

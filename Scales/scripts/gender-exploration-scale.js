@@ -651,32 +651,6 @@ function resetForm() {
     updateProgress();
 }
 
-function saveResultText() {
-    const resultDiv = document.getElementById('result');
-    if (resultDiv.style.display !== 'block') {
-        alert('请先计算结果！');
-        return;
-    }
-    const parts = [
-        '========== 性别认同与探索：描述性自评结果 ==========',
-        document.getElementById('scoreSummary').innerText,
-        document.getElementById('typeJudgment').innerText,
-        document.getElementById('mainInterpretation').innerText,
-        document.getElementById('detailedAnalysis').innerText,
-        document.getElementById('sectionScores').innerText,
-        document.getElementById('personalizedSuggestions').innerText,
-        document.querySelector('.disclaimer').innerText,
-        `生成时间：${new Date().toLocaleString()}`
-    ];
-    const blob = new Blob([parts.join('\n\n---\n\n')], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = window.PrismScale.getExportFilename('txt');
-    link.click();
-    URL.revokeObjectURL(url);
-}
-
 async function saveResultImage() {
     const resultDiv = document.getElementById('result');
     if (resultDiv.style.display !== 'block') {

@@ -115,20 +115,25 @@ main {
 .search {
   width: 100%;
   max-width: 420px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--prism-input-border);
   border-radius: 10px;
   padding: 12px 14px;
-  background: #ffffff;
-  color: var(--ink);
+  background: var(--prism-input-bg);
+  color: var(--prism-input-text);
   font: inherit;
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
 }
 
 .search:focus {
-  border-color: rgba(31, 95, 156, 0.55);
-  box-shadow: 0 0 0 3px rgba(31, 95, 156, 0.12);
+  border-color: var(--prism-input-focus-border);
+  box-shadow: 0 0 0 3px var(--prism-input-focus-ring);
+}
+
+.search::placeholder {
+  color: var(--prism-input-placeholder);
 }
 
 .filters {
@@ -270,6 +275,13 @@ main {
   --violet: #6b46a8;
   --slate: #475569;
   --shadow: 0 10px 30px rgba(24, 33, 47, 0.08);
+  /* 与首页搜索框一致的输入颜色 */
+  --prism-input-bg: #ffffff;
+  --prism-input-text: #1a2332;
+  --prism-input-border: rgba(61, 81, 102, 0.16);
+  --prism-input-placeholder: #64788c;
+  --prism-input-focus-border: rgba(61, 81, 102, 0.32);
+  --prism-input-focus-ring: rgba(61, 81, 102, 0.12);
 }
 
 .eyebrow {
@@ -376,6 +388,12 @@ main {
   --panel: #141b24;
   --line: rgba(255, 255, 255, 0.12);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --prism-input-bg: #161d26;
+  --prism-input-text: #e7edf3;
+  --prism-input-border: rgba(180, 193, 206, 0.22);
+  --prism-input-placeholder: #a3b1bf;
+  --prism-input-focus-border: rgba(180, 193, 206, 0.42);
+  --prism-input-focus-ring: rgba(180, 193, 206, 0.14);
 }
 
 :root[data-theme="dark"] body,
@@ -386,7 +404,6 @@ main {
 :root[data-theme="dark"] .summary-panel,
 :root[data-theme="dark"] .section-panel,
 :root[data-theme="dark"] .notice,
-:root[data-theme="dark"] .search,
 :root[data-theme="dark"] .filter,
 :root[data-theme="dark"] .empty,
 :root[data-theme="dark"] .stat {
@@ -431,7 +448,7 @@ main {
   max-width: none;
   min-height: 46px;
   border-radius: 8px;
-  background: var(--glossary-control-bg);
+  background: var(--prism-input-bg);
 }
 
 .filters {

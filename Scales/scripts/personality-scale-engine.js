@@ -359,36 +359,9 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function resultText() {
-      const data = window.__prismPersonalityResult;
-      if (!data) return '';
-      const lines = [config.reportTitle, ''];
-      dimensions.forEach(dimension => {
-        lines.push(`${dimension.name}：${data.dimensionScores[dimension.key].toFixed(2)}／5.00`);
-        facetKeysByDimension[dimension.key].forEach(key => {
-          lines.push(`  - ${facets[key].name}：${data.facetScores[key].toFixed(2)}`);
-        });
-      });
-      if (interstitialFacet) {
-        lines.push(`${interstitialFacet.name}（独立面向）：${data.facetScores[interstitialFacetKey].toFixed(2)}／5.00`);
-      }
-      lines.push('', '说明：本结果为原创自我探索工具的原始平均分，不是常模、诊断或固定人格类型。');
-      return lines.join('\n');
-    }
-
     async function exportResults(format) {
       if (!window.__prismPersonalityResult) {
         window.alert('请先完成量表并生成结果。');
-        return;
-      }
-      const textContent = resultText();
-      if (format === 'text') {
-        const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = window.PrismScale.getExportFilename('txt');
-        link.click();
-        URL.revokeObjectURL(link.href);
         return;
       }
       await exportImage();
@@ -407,7 +380,6 @@
     window.resetScale = resetScale;
     window.exportResults = exportResults;
     window.resetForm = resetScale;
-    window.saveResultText = () => exportResults('text');
     window.saveResultImage = () => exportResults('image');
     renderQuestions();
     restoreAnswers();

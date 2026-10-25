@@ -10,7 +10,7 @@
   <title>PrismSelf - 自我介绍卡</title>
   <meta name="description" content="填写性别认同、代词与称呼偏好，选择配色和字体，添加文字与本地图片，生成自己的自我介绍卡。">
   <link rel="canonical" href="https://prismself.vip/Tools/Self-Intro-Card.html">
-  <link rel="icon" href="../icon/favicon.svg?v=202610252" type="image/svg+xml">
+  <link rel="icon" href="../icon/favicon.svg?v=202610264" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 自我介绍卡">
@@ -21,79 +21,19 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610221">
-  <link rel="stylesheet" href="../assets/theme.css?v=202610252">
-  <script src="../assets/theme.js?v=202610252"></script>
+  <link rel="stylesheet" href="./tool-common.css?v=202610264">
+  <link rel="stylesheet" href="../assets/theme.css?v=202610264">
+  <script src="../assets/theme.js?v=202610264"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
     data-vc-product-id="cmsw7u1t7001t0akz1fqinepx"
     data-vc-auth-key="vc_web_b81zU9sD9WzmsRCXG8mTvVXtbrc-r8ow3_t19e98qwg"
   ></script>
-  <style>
-    .intro-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 24px; align-items: start; margin-top: 24px; }
-    .intro-editor, .intro-preview { min-width: 0; }
-    .intro-panel { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: var(--paper); }
-    .intro-panel + .intro-panel { margin-top: 16px; }
-    .intro-panel h2 { margin: 0 0 16px; font-size: 19px; }
-    .intro-step { color: var(--teal); margin-right: 8px; font-size: 13px; }
-    .intro-hint { margin: 8px 0 16px; color: var(--ink-mid); font-size: 13px; }
-    .intro-field { display: block; margin-top: 18px; }
-    .intro-field > span, .intro-editor legend { display: block; margin-bottom: 7px; font-weight: 600; font-size: 14px; }
-    .intro-editor input[type="text"], .intro-editor textarea, .intro-editor select {
-      width: 100%; min-width: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px;
-      background: var(--bg); color: var(--ink); font: inherit; font-size: 16px;
-    }
-    .intro-editor textarea { resize: vertical; min-height: 90px; }
-    .intro-editor fieldset { min-width: 0; margin: 20px 0 0; padding: 0; border: 0; }
-    .intro-options { display: flex; flex-wrap: wrap; gap: 8px; }
-    .intro-option { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; font-size: 13px; cursor: pointer; }
-    .intro-option:has(input:checked) { border-color: var(--teal); background: var(--teal-soft); }
-    .intro-option input { accent-color: var(--teal); flex-shrink: 0; }
-    .intro-option-input { flex: 1 1 140px; min-width: 0; min-height: 44px; padding: 7px 12px; background: var(--bg); cursor: text; }
-    .intro-editor .intro-option-input input[type="text"] { flex: 1; width: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
-    .intro-option-input:focus-within { border-color: var(--teal); outline: 2px solid var(--teal); outline-offset: 2px; }
-    .intro-editor :is(input, select, textarea, button):focus-visible {
-      outline: 3px solid var(--teal); outline-offset: 3px;
-    }
-    .intro-editor .intro-option-input input[type="text"]:focus { outline: none; box-shadow: none; }
-    .intro-styles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .intro-styles .intro-option { position: relative; gap: 8px; }
-    .intro-swatch { width: 18px; height: 18px; border: 1px solid currentColor; border-radius: 50%; flex-shrink: 0; }
-    .intro-custom-colors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
-    .intro-custom-colors[hidden] { display: none; }
-    .intro-custom-colors .intro-field { margin-top: 0; }
-    .intro-custom-colors input[type="color"] { width: 100%; height: 44px; padding: 4px; border: 1px solid var(--line); border-radius: 9px; background: var(--bg); cursor: pointer; }
-    .intro-custom-colors .intro-hint { grid-column: 1 / -1; margin: 0; }
-    .intro-preview { position: sticky; top: 24px; }
-    #cardCanvas { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
-    .intro-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .intro-actions .button { min-height: 44px; }
-    .intro-upload { max-width: 100%; font-size: 14px; color: var(--ink); }
-    .intro-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
-    .intro-image { position: relative; min-width: 0; padding: 8px; border: 1px solid var(--line); border-radius: 10px; }
-    .intro-image img { display: block; width: 100%; height: 100px; object-fit: contain; background: var(--bg); }
-    .intro-image span { display: block; overflow-wrap: anywhere; font-size: 12px; margin: 6px 0; }
-    .intro-image-remove {
-      position: absolute; top: 12px; right: 12px; display: grid; place-items: center;
-      width: 30px; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 50%;
-      background: var(--paper); color: var(--ink); font: inherit; font-size: 20px; line-height: 1;
-      cursor: pointer; box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
-    }
-    .intro-image-remove:hover { border-color: var(--teal); color: var(--teal); }
-    #status { min-height: 1.7em; color: var(--ink-mid); font-size: 13px; overflow-wrap: anywhere; }
-    @media (max-width: 800px) {
-      .intro-workspace { grid-template-columns: 1fr; gap: 20px; margin-top: 16px; }
-      .intro-preview { position: static; scroll-margin-top: 20px; }
-      .intro-panel { padding: 18px 15px; border-radius: 16px; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  </style>
 </head>
 <body>
   <main class="page">
     <header class="hero">
-      <div class="eyebrow">关系对话工具</div>
       <h1>自我<em>介绍卡</em></h1>
       <p class="hero-lead">把希望别人如何认识你、称呼你写成一张卡。可以自由填写，也可以留白；这里没有标准答案，更不会替你判定身份。</p>
       <div class="hero-notes">

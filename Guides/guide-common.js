@@ -196,11 +196,6 @@
 
     const panelHeader = el('div', 'toc-panel-header');
     panelHeader.appendChild(el('span', '', '目录'));
-    const closeIcon = el('span', 'toc-close-icon', '×');
-    closeIcon.setAttribute('role', 'button');
-    closeIcon.setAttribute('tabindex', '0');
-    closeIcon.setAttribute('aria-label', '关闭目录');
-    panelHeader.appendChild(closeIcon);
     panel.appendChild(panelHeader);
 
     const list = el('ul', 'toc-list');
@@ -236,16 +231,6 @@
       e.stopPropagation();
       if (isOpen()) close();
       else open();
-    });
-    closeIcon.addEventListener('click', (e) => {
-      e.preventDefault();
-      close({ restoreFocus: true });
-    });
-    closeIcon.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        close({ restoreFocus: true });
-      }
     });
     list.addEventListener('click', (e) => {
       if (e.target && e.target.closest && e.target.closest('a')) close();

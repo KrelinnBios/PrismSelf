@@ -2185,22 +2185,6 @@ function resetForm() {
 	updateProgress();
 }
 
-function saveResultText() {
-	const resultDiv = document.getElementById('result');
-	if (resultDiv.style.display === 'block') {
-		let resultText = "无性恋谱系自查表结果\n=======================\n\n总分: " + document.getElementById('scoreSummary').textContent + "\n\n类型: " + document.getElementById('typeJudgment').textContent + "\n\n解释: " + document.getElementById('mainInterpretation').textContent + "\n\n详细: " + document.getElementById('detailedAnalysis').innerText + "\n\n部分得分: " + document.getElementById('sectionScores').innerText + "\n\n建议: " + document.getElementById('personalizedSuggestions').innerText;
-		const blob = new Blob([resultText.trim()], { type: 'text/plain;charset=utf-8' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = window.PrismScale.getExportFilename('txt');
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
-	}
-}
-
 async function saveResultImage() {
 	const resultDiv = document.getElementById('result');
 	if (resultDiv.style.display === 'block') {
