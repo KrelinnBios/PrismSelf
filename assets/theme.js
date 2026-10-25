@@ -407,7 +407,7 @@
       '  <a class="prism-support-code" href="' + supportImage + '" target="_blank" rel="noopener noreferrer" aria-label="打开微信赞赏码大图">',
       '    <img src="' + supportImage + '" alt="PrismSelf 微信赞赏码" loading="lazy" decoding="async">',
       '  </a>',
-      '  <p class="prism-support-instruction">电脑访问时可使用微信扫码；手机访问时可打开大图后保存，再从微信扫一扫中选择相册识别。</p>',
+      '  <p class="prism-support-instruction">点击图片可查看大图。电脑访问时可直接用微信扫码；手机访问时可先保存大图，再在微信扫一扫中识别。</p>',
       '  <p class="prism-support-note">自愿支持，无任何内容或功能以赞赏为前提。</p>',
       '</div>'
     ].join('');
