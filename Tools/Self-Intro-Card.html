@@ -10,7 +10,7 @@
   <title>PrismSelf - 自我介绍卡</title>
   <meta name="description" content="填写性别认同、代词与称呼偏好，选择配色和字体，添加文字与本地图片，生成自己的自我介绍卡。">
   <link rel="canonical" href="https://prismself.vip/Tools/Self-Intro-Card.html">
-  <link rel="icon" href="../icon/favicon.svg?v=202610251" type="image/svg+xml">
+  <link rel="icon" href="../icon/favicon.svg?v=202610252" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 自我介绍卡">
@@ -22,8 +22,8 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="./tool-common.css?v=202610221">
-  <link rel="stylesheet" href="../assets/theme.css?v=202610251">
-  <script src="../assets/theme.js?v=202610251"></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=202610252">
+  <script src="../assets/theme.js?v=202610252"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -296,12 +296,12 @@
     function selected(name, extraId) {
       const choices = Array.from(form.querySelectorAll(`input[name="${name}"]:checked`), (input) => input.value);
       if (extraId && value(extraId)) choices.push(value(extraId));
-      return choices.join(" / ");
+      return choices.join("、");
     }
     function withNote(text, noteId) {
       const note = value(noteId);
       if (!note) return text;
-      return text ? `${text}（${note}）` : note;
+      return text ? `${text}\nPS：${note}` : `PS：${note}`;
     }
     function selectedWithNote(name, noteId) { return withNote(selected(name), noteId); }
     function cardRows() {

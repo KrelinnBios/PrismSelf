@@ -8,6 +8,10 @@
 (function () {
   var root = document.documentElement;
   var KEY = 'theme';
+  // Resolve the homepage relative to this shared script, not the current page.
+  // This works under GitHub Pages project paths and local file:// previews.
+  var scriptUrl = document.currentScript && document.currentScript.src;
+  var homepageHref = scriptUrl ? new URL('../index.html', scriptUrl).href : '../index.html';
 
   function system() {
     return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
@@ -89,9 +93,21 @@
     if (persist) { try { localStorage.setItem(KEY, theme); } catch (e) { } }
   }
 
+  function installBackHome() {
+    if (document.body.classList.contains('home-page') || document.querySelector('.prism-back-home')) return;
+    var link = document.createElement('a');
+    link.className = 'prism-back-home';
+    link.href = homepageHref;
+    link.setAttribute('aria-label', '返回主页');
+    link.title = '返回主页';
+    link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"></path></svg>';
+    document.body.insertBefore(link, document.body.firstChild);
+  }
+
   function build() {
     if (!document.body) return;
     installFloatingLayout();
+    installBackHome();
     try { syncThemeColor(current()); } catch (e) {}
     var btn = document.getElementById('themeToggle');
     if (!btn || btn.hasAttribute('data-theme-bound')) return;
