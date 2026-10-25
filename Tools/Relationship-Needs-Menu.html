@@ -11,7 +11,7 @@
   <title>PrismSelf - 关系需求菜单</title>
   <link rel="canonical" href="https://prismself.vip/Tools/Relationship-Needs-Menu.html">
   <meta name="description" content="关系需求菜单，一个用于梳理和沟通亲密关系需求与边界的互动对话工具。">
-  <link rel="icon" href="../icon/favicon.svg?v=202610211" type="image/svg+xml">
+  <link rel="icon" href="../icon/favicon.svg?v=202610251" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 关系需求菜单">
@@ -27,8 +27,8 @@
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./tool-common.css?v=202610221">
-  <link rel="stylesheet" href="../assets/theme.css?v=202610211">
-  <script src="../assets/theme.js?v=202610211"></script>
+  <link rel="stylesheet" href="../assets/theme.css?v=202610251">
+  <script src="../assets/theme.js?v=202610251"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -44,20 +44,20 @@
       <div class="eyebrow">关系对话工具</div>
       <h1>关系<em>需求菜单</em></h1>
       <p class="hero-lead">
-        把“你应该懂我”变成可以被看见、被讨论的具体选项。这里没有标准答案，也不预设关系一定要走向恋爱、同居、婚姻或性关系。本工具用于个人梳理和关系沟通，不构成心理、医疗或法律建议。
+        把“你应该懂我”变成可以被看见、被讨论的具体选项。这里没有标准答案，也不预设关系一定要走向恋爱、同居、婚姻或性关系。
       </p>
       <div class="hero-notes">
         <div class="hero-note">
-          <strong>先独立填写</strong>
-          <span>减少迎合，也更容易看见真实差异。内容仅保存在本机，使用公共设备时请在离开前清空选择。</span>
+          <strong>只在本地保存</strong>
+          <span>选择仅保存在本机浏览器，请不要使用公共设备。</span>
         </div>
         <div class="hero-note">
-          <strong>再交换摘要</strong>
-          <span>从重合项开始，再讨论分歧和边界</span>
+          <strong>先独立再交换</strong>
+          <span>各自填写后，从重合项开始讨论分歧和边界。</span>
         </div>
         <div class="hero-note">
           <strong>随时可以修改</strong>
-          <span>需求会随阶段、对象与情境发生变化</span>
+          <span>需求会随阶段、对象与情境发生变化。</span>
         </div>
       </div>
     </header>
@@ -112,19 +112,6 @@
         </form>
       </div>
       <div class="custom-list" id="customList"></div>
-    </section>
-
-    <section class="summary-card" id="summary">
-      <div class="summary-head">
-        <div>
-          <h2>我的对话摘要</h2>
-          <p>先分享结论，再解释每个选择背后的原因、条件和感受。</p>
-        </div>
-        <div class="summary-actions">
-          <button class="button primary" id="copyButton" type="button">复制文字摘要</button>
-        </div>
-      </div>
-      <div class="summary-grid" id="summaryGrid"></div>
     </section>
   </main>
 
@@ -280,7 +267,6 @@
 
     const topicsGrid = document.getElementById("topicsGrid");
     const customList = document.getElementById("customList");
-    const summaryGrid = document.getElementById("summaryGrid");
     const progressText = document.getElementById("progressText");
     const progressFill = document.getElementById("progressFill");
     const profileName = document.getElementById("profileName");
@@ -332,7 +318,6 @@
           syncStatusGroup(group);
           saveState();
           updateProgress();
-          renderSummary();
         });
         group.appendChild(button);
       });
@@ -466,7 +451,6 @@
           saveState();
           renderCustomItems();
           updateProgress();
-          renderSummary();
         });
 
         row.append(title, makeStatusGroup(item.id, `${item.title}的选择`), remove);
@@ -494,65 +478,6 @@
       const percent = allItems.length ? Math.round((selectedCount / allItems.length) * 100) : 0;
       progressText.textContent = `已选择 ${selectedCount} / ${allItems.length}`;
       progressFill.style.width = `${percent}%`;
-    }
-
-    function renderSummary() {
-      const allItems = getAllItems();
-      summaryGrid.innerHTML = "";
-
-      statuses.forEach((status) => {
-        const block = document.createElement("div");
-        block.className = "summary-block";
-
-        const heading = document.createElement("h3");
-        const dot = document.createElement("span");
-        dot.className = `summary-dot ${status.id}`;
-        const matching = allItems.filter((item) => state.answers[item.id] === status.id);
-        heading.append(dot, document.createTextNode(`${status.label} · ${matching.length}`));
-        block.appendChild(heading);
-
-        if (matching.length === 0) {
-          const empty = document.createElement("span");
-          empty.className = "summary-empty";
-          empty.textContent = "尚未选择相关议题";
-          block.appendChild(empty);
-        } else {
-          const list = document.createElement("ul");
-          list.className = "summary-list";
-          matching.forEach((item) => {
-            const li = document.createElement("li");
-            li.textContent = `${item.title}（${item.category}）`;
-            list.appendChild(li);
-          });
-          block.appendChild(list);
-        }
-
-        summaryGrid.appendChild(block);
-      });
-    }
-
-    function buildTextSummary() {
-      const allItems = getAllItems();
-      const owner = state.profileName.trim() || "未命名视角";
-      const lines = [
-        `关系需求菜单｜${owner}`,
-        `整理日期：${new Date().toLocaleDateString("zh-CN")}`,
-        ""
-      ];
-
-      statuses.forEach((status) => {
-        const matching = allItems.filter((item) => state.answers[item.id] === status.id);
-        lines.push(`【${status.label}】`);
-        if (matching.length === 0) {
-          lines.push("（暂无）");
-        } else {
-          matching.forEach((item) => lines.push(`- ${item.title}｜${item.category}`));
-        }
-        lines.push("");
-      });
-
-      lines.push("提示：这是一份对话起点，不是匹配分数。请继续讨论每个选择背后的原因、条件和边界。");
-      return lines.join("\n");
     }
 
     function getFilledModules() {
@@ -834,24 +759,6 @@
       }
     }
 
-    async function copySummary() {
-      const text = buildTextSummary();
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast("摘要已复制");
-      } catch (error) {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        textarea.style.position = "fixed";
-        textarea.style.opacity = "0";
-        document.body.appendChild(textarea);
-        textarea.select();
-        const copied = document.execCommand("copy");
-        textarea.remove();
-        showToast(copied ? "摘要已复制" : "复制失败，请使用图片导出");
-      }
-    }
-
     let toastTimer;
     function showToast(message) {
       toast.textContent = message;
@@ -876,7 +783,6 @@
       saveState();
       renderCustomItems();
       updateProgress();
-      renderSummary();
       showToast("已添加自定义议题");
     });
 
@@ -885,7 +791,6 @@
       saveState();
     });
 
-    document.getElementById("copyButton").addEventListener("click", copySummary);
     document.getElementById("exportButton").addEventListener("click", exportFilledModules);
     document.getElementById("resetButton").addEventListener("click", () => {
       const confirmed = window.confirm("确定清空所有选择、昵称和自定义议题吗？此操作无法撤销。");
@@ -896,7 +801,6 @@
       renderCategories();
       renderCustomItems();
       updateProgress();
-      renderSummary();
       showToast("已清空这份菜单");
     });
 
@@ -905,7 +809,6 @@
     renderCategories();
     renderCustomItems();
     updateProgress();
-    renderSummary();
   </script>
 </body>
 

@@ -469,13 +469,12 @@
       support = mount(document.querySelector('main'));
     } else if (path.indexOf('/topics/') !== -1) {
       support = mount(document.querySelector('#write'));
+    } else if (path.indexOf('/tools/') !== -1) {
+      support = mount(document.querySelector('main'));
     }
     if (support && path.indexOf('/guides/') === -1) {
       support.classList.add('prism-support-cta--embedded');
     }
-
-    var toolSupport = mountAfter(document.querySelector('#summary.summary-card'));
-    if (toolSupport) toolSupport.classList.add('prism-support-cta--embedded');
   }
 
   window.PrismSupport = {
