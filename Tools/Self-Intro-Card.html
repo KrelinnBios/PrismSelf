@@ -341,12 +341,25 @@
       const width = 1080 - side * 2;
       const rows = cardRows();
       context.font = `34px ${family}`;
-      const layout = rows.map(([label, answer]) => ({ label, lines: wrapCanvasText(answer || "—", width) }));
+      const layout = rows.map(([label, answer]) => {
+        const text = answer || "—";
+        const noteIndex = text.indexOf("\nPS：");
+        const noteOnly = text.startsWith("PS：");
+        const main = noteOnly ? "" : noteIndex === -1 ? text : text.slice(0, noteIndex);
+        const supplement = noteOnly ? text : noteIndex === -1 ? "" : text.slice(noteIndex + 1);
+        context.font = `34px ${family}`;
+        const lines = main ? wrapCanvasText(main, width).map((line) => ({ text: line, fontSize: 34, lineHeight: 48 })) : [];
+        if (supplement) {
+          context.font = `28px ${family}`;
+          lines.push(...wrapCanvasText(supplement, width).map((line) => ({ text: line, fontSize: 28, lineHeight: 40 })));
+        }
+        return { label, lines };
+      });
       const noteLines = value("notes") ? wrapCanvasText(value("notes"), width) : [];
       const cellWidth = (width - 24) / 2;
       const cellHeight = 300;
       const freeHeight = noteLines.length || images.length ? 88 + noteLines.length * 48 + (noteLines.length ? 20 : 0) + Math.ceil(images.length / 2) * (cellHeight + 24) : 0;
-      const logicalHeight = 220 + layout.reduce((sum, row) => sum + 65 + row.lines.length * 48, 0) + freeHeight + 100;
+      const logicalHeight = 220 + layout.reduce((sum, row) => sum + 65 + row.lines.reduce((height, line) => height + line.lineHeight, 0), 0) + freeHeight + 100;
       // 极多换行时限制位图尺寸，避免超过移动浏览器的 Canvas 上限。
       const scale = Math.min(1, 8192 / logicalHeight);
       canvas.width = Math.round(1080 * scale);
@@ -372,8 +385,9 @@
         context.font = `34px ${family}`;
         context.fillStyle = palette.accent;
         for (const line of row.lines) {
-          context.fillText(line, side, y);
-          y += 48;
+          context.font = `${line.fontSize}px ${family}`;
+          context.fillText(line.text, side, y);
+          y += line.lineHeight;
         }
         context.fillStyle = palette.line;
         context.fillRect(side, y + 6, width, 1);
