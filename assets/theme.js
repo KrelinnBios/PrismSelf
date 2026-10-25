@@ -6,513 +6,513 @@
  * - While no manual choice exists, follows live OS theme changes.
  * Load this in <head> (blocking) so the theme is applied before first paint. */
 (function () {
-   var root = document.documentElement;
-   var KEY = 'theme';
-   // Resolve the homepage relative to this shared script, not the current page.
-   // This works under GitHub Pages project paths and local file:// previews.
-   var scriptUrl = document.currentScript && document.currentScript.src;
-   var homepageHref = scriptUrl ? new URL('../index.html', scriptUrl).href : '../index.html';
- 
-   function system() {
-     return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
-   }
-   function stored() {
-     try { return localStorage.getItem(KEY); } catch (e) { return null; }
-   }
-   function current() {
-     return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-   }
-   // The toggle shows the current mode; its accessible name adds what a click does.
-   function renderToggle(b, t) {
-     b.setAttribute('aria-label', t === 'dark' ? '深色模式，点击切换到浅色' : '浅色模式，点击切换到深色');
-     b.innerHTML = t === 'dark'
-       ? '<span class="header-link-mark" aria-hidden="true">☾</span>深色'
-       : '<span class="header-link-mark" aria-hidden="true">☀</span>浅色';
-   }
-   function syncThemeColor(theme) {
-     var meta = document.querySelector('meta[name="theme-color"]');
-     if (!meta) return;
-     // Only override the home page chrome colour to match the (sticky) top bar;
-     // other pages keep their own curated theme-color (guide purple, bingo, etc.)
-     var isHome = document.body && document.body.classList.contains('home-page');
-     if (!isHome) {
-       try {
-         var p = String(window.location.pathname || '').toLowerCase();
-         if (p === '/' || p === '/index.html' || p.endsWith('/index.html')) isHome = true;
-         else isHome = /<body[^>]*\bhome-page\b/i.test(document.documentElement.outerHTML);
-       } catch (e) {}
-     }
-     if (!isHome) return;
-     meta.setAttribute('content', theme === 'dark' ? '#0f141a' : '#f7f9fb');
-   }
-   function setGuideLinkPalette() {
-     var path = String(window.location.pathname || '').toLowerCase();
-     root.classList.remove('guide-links-green', 'guide-links-purple');
- 
-     if (/(?:asexual|greysexual|graysexual|demisexual)/.test(path)) {
-       root.classList.add('guide-links-purple');
-     } else if (/aromantic/.test(path)) {
-       root.classList.add('guide-links-green');
-     }
-   }
- 
-   function installFloatingLayout() {
-     if (!document.head) return;
-     var existing = document.getElementById('prismFloatingLayout');
-     if (existing) {
-       // Move the override to the end after page-specific styles have loaded.
-       document.head.appendChild(existing);
-       return;
-     }
-     var style = document.createElement('style');
-     style.id = 'prismFloatingLayout';
-     style.textContent = [
-       ':root { --prism-corner-inset: 18px; --prism-corner-control-size: 44px; }',
-       'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max[...]
-       'body:not(.scale-page) .theme-toggle { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; right: calc(var(--prism-corner-inset) + en[...]
-       'body:not(.scale-page) .floating-toc { position: fixed !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: calc(var(--prism-corner-inset)[...]
-       'body.home-page > footer { padding-top: 32px !important; padding-bottom: 32px !important; }',
-       '@media (max-width: 640px) { body.home-page > footer { padding-top: 26px !important; padding-bottom: calc(26px + env(safe-area-inset-bottom, 0px)) !important; } }',
-       '@media (max-width: 620px) { :root { --prism-corner-inset: 12px; } }'
-     ].join('\n');
-     document.head.appendChild(style);
-   }
- 
-   // 1) Apply page-specific link palette and theme as early as possible.
-   setGuideLinkPalette();
-   installFloatingLayout();
-   var initialTheme = stored() || system();
-   root.setAttribute('data-theme', initialTheme);
-   try { syncThemeColor(initialTheme); } catch (e) {}
- 
-   function apply(theme, persist) {
-     root.setAttribute('data-theme', theme);
-     syncThemeColor(theme);
-     var b = document.getElementById('themeToggle');
-     if (b) renderToggle(b, theme);
-     if (persist) { try { localStorage.setItem(KEY, theme); } catch (e) { } }
-   }
- 
-   function installBackHome() {
-     if (document.body.classList.contains('home-page') || document.querySelector('.prism-back-home')) return;
-     var link = document.createElement('a');
-     link.className = 'prism-back-home';
-     link.href = homepageHref;
-     link.setAttribute('aria-label', '返回主页');
-     link.title = '返回主页';
-     link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7[...]
-     document.body.insertBefore(link, document.body.firstChild);
-   }
- 
-   function build() {
-     if (!document.body) return;
-     installFloatingLayout();
-     installBackHome();
-     try { syncThemeColor(current()); } catch (e) {}
-     var btn = document.getElementById('themeToggle');
-     if (!btn || btn.hasAttribute('data-theme-bound')) return;
-     btn.setAttribute('data-theme-bound', '');
-     renderToggle(btn, current());
-     btn.addEventListener('click', function () {
-       apply(current() === 'dark' ? 'light' : 'dark', true);
-     });
-   }
- 
-   function forcedColors() {
-     return !!(window.matchMedia && window.matchMedia('(forced-colors: active)').matches);
-   }
- 
-   function installOverlayScrollbar() {
-     if (!document.body || forcedColors() || document.getElementById('prismOverlayThumb')) return;
-     var thumb = document.createElement('div');
-     thumb.id = 'prismOverlayThumb';
-     thumb.className = 'prism-overlay-thumb';
-     thumb.hidden = true;
-     thumb.tabIndex = 0;
-     thumb.setAttribute('role', 'scrollbar');
-     thumb.setAttribute('aria-orientation', 'vertical');
-     thumb.setAttribute('aria-label', '页面滚动条');
-     thumb.setAttribute('aria-valuemin', '0');
-     thumb.setAttribute('aria-valuemax', '100');
-     thumb.setAttribute('aria-valuenow', '0');
-     document.body.appendChild(thumb);
-     root.classList.add('prism-overlay-scrollbar');
- 
-     var dragging = false;
-     var dragOffset = 0;
-     var pending = false;
-     var isTouchDevice = window.matchMedia && (
-       window.matchMedia('(hover: none)').matches ||
-       window.matchMedia('(pointer: coarse)').matches
-     );
-     var scrollTimer = null;
-     var thumbVisible = false;
- 
-     function metrics() {
-       var se = document.scrollingElement || document.documentElement;
-       var view = se.clientHeight;
-       var scroll = se.scrollHeight;
-       return { se: se, view: view, scroll: scroll, max: Math.max(0, scroll - view) };
-     }
- 
-     function update() {
-       var m = metrics();
-       if (m.max <= 0) {
-         thumb.hidden = true;
-         thumb.setAttribute('aria-valuenow', '0');
-         return;
-       }
-       var thumbH = Math.max(24, Math.round((m.view / m.scroll) * m.view));
-       var track = Math.max(1, m.view - thumbH);
-       var top = (m.se.scrollTop / m.max) * track;
- 
-       // 移动端：仅在滚动时显示
-       if (isTouchDevice && !dragging) {
-         thumb.hidden = !thumbVisible;
-       } else {
-         thumb.hidden = false;
-       }
- 
-       thumb.style.height = thumbH + 'px';
-       thumb.style.transform = 'translateY(' + top + 'px)';
-       thumb.setAttribute('aria-valuenow', String(Math.round((m.se.scrollTop / m.max) * 100)));
-     }
- 
-     function schedule() {
-       if (pending) return;
-       pending = true;
-       requestAnimationFrame(function () {
-         pending = false;
-         update();
-       });
-     }
- 
-     function showThumb() {
-       if (!isTouchDevice) return;
-       thumbVisible = true;
-       if (scrollTimer) clearTimeout(scrollTimer);
-       schedule();
-       scrollTimer = setTimeout(function() {
-         thumbVisible = false;
-         schedule();
-       }, 500);
-     }
- 
-     function endDrag(e) {
-       if (!dragging) return;
-       dragging = false;
-       thumb.classList.remove('is-dragging');
-       if (e && e.pointerId != null) {
-         try { thumb.releasePointerCapture(e.pointerId); } catch (err) {}
-       }
-     }
- 
-     thumb.addEventListener('pointerdown', function (e) {
-       if (e.button !== 0) return;
-       dragging = true;
-       thumb.classList.add('is-dragging');
-       dragOffset = e.clientY - thumb.getBoundingClientRect().top;
-       thumb.setPointerCapture(e.pointerId);
-       e.preventDefault();
-     });
-     thumb.addEventListener('pointermove', function (e) {
-       if (!dragging) return;
-       var m = metrics();
-       var thumbH = thumb.offsetHeight;
-       var track = m.view - thumbH;
-       if (track <= 0) return;
-       var y = Math.max(0, Math.min(track, e.clientY - dragOffset));
-       m.se.scrollTop = (y / track) * m.max;
-     });
-     thumb.addEventListener('pointerup', endDrag);
-     thumb.addEventListener('pointercancel', endDrag);
- 
-     thumb.addEventListener('keydown', function (e) {
-       var m = metrics();
-       var map = {
-         ArrowDown: m.se.scrollTop + 40,
-         ArrowUp: m.se.scrollTop - 40,
-         PageDown: m.se.scrollTop + m.view * 0.9,
-         PageUp: m.se.scrollTop - m.view * 0.9,
-         Home: 0,
-         End: m.max
-       };
-       if (!(e.key in map)) return;
-       m.se.scrollTop = map[e.key];
-       e.preventDefault();
-     });
- 
-     window.addEventListener('scroll', schedule, { passive: true });
-     window.addEventListener('scroll', showThumb, { passive: true });
-     window.addEventListener('touchmove', showThumb, { passive: true });
-     window.addEventListener('resize', schedule);
-     window.addEventListener('load', schedule);
-     if (window.visualViewport) window.visualViewport.addEventListener('resize', schedule);
-     if (window.ResizeObserver) {
-       var ro = new ResizeObserver(schedule);
-       ro.observe(root);
-       ro.observe(document.body);
-     }
-     update();
-   }
- 
-   function start() {
-     build();
-     installOverlayScrollbar();
-   }
- 
-   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-   else start();
- 
-   // 2) Follow the OS live only while the user has not made a manual choice.
-   if (window.matchMedia) {
-     var mq = window.matchMedia('(prefers-color-scheme: dark)');
-     var onChange = function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light', false); };
-     if (mq.addEventListener) mq.addEventListener('change', onChange);
-     else if (mq.addListener) mq.addListener(onChange);
-   }
+  var root = document.documentElement;
+  var KEY = 'theme';
+  // Resolve the homepage relative to this shared script, not the current page.
+  // This works under GitHub Pages project paths and local file:// previews.
+  var scriptUrl = document.currentScript && document.currentScript.src;
+  var homepageHref = scriptUrl ? new URL('../index.html', scriptUrl).href : '../index.html';
+
+  function system() {
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function stored() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function current() {
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+  // The toggle shows the current mode; its accessible name adds what a click does.
+  function renderToggle(b, t) {
+    b.setAttribute('aria-label', t === 'dark' ? '深色模式，点击切换到浅色' : '浅色模式，点击切换到深色');
+    b.innerHTML = t === 'dark'
+      ? '<span class="header-link-mark" aria-hidden="true">☾</span>深色'
+      : '<span class="header-link-mark" aria-hidden="true">☀</span>浅色';
+  }
+  function syncThemeColor(theme) {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    // Only override the home page chrome colour to match the (sticky) top bar;
+    // other pages keep their own curated theme-color (guide purple, bingo, etc.)
+    var isHome = document.body && document.body.classList.contains('home-page');
+    if (!isHome) {
+      try {
+        var p = String(window.location.pathname || '').toLowerCase();
+        if (p === '/' || p === '/index.html' || p.endsWith('/index.html')) isHome = true;
+        else isHome = /<body[^>]*\bhome-page\b/i.test(document.documentElement.outerHTML);
+      } catch (e) {}
+    }
+    if (!isHome) return;
+    meta.setAttribute('content', theme === 'dark' ? '#0f141a' : '#f7f9fb');
+  }
+  function setGuideLinkPalette() {
+    var path = String(window.location.pathname || '').toLowerCase();
+    root.classList.remove('guide-links-green', 'guide-links-purple');
+
+    if (/(?:asexual|greysexual|graysexual|demisexual)/.test(path)) {
+      root.classList.add('guide-links-purple');
+    } else if (/aromantic/.test(path)) {
+      root.classList.add('guide-links-green');
+    }
+  }
+
+  function installFloatingLayout() {
+    if (!document.head) return;
+    var existing = document.getElementById('prismFloatingLayout');
+    if (existing) {
+      // Move the override to the end after page-specific styles have loaded.
+      document.head.appendChild(existing);
+      return;
+    }
+    var style = document.createElement('style');
+    style.id = 'prismFloatingLayout';
+    style.textContent = [
+      ':root { --prism-corner-inset: 18px; --prism-corner-control-size: 44px; }',
+      'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max-width: var(--prism-corner-control-size) !important; height: var(--prism-corner-control-size) !important; min-height: var(--prism-corner-control-size) !important; max-height: var(--prism-corner-control-size) !important; }',
+      'body:not(.scale-page) .theme-toggle { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: auto !important; left: auto !important; }',
+      'body:not(.scale-page) .floating-toc { position: fixed !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: calc(var(--prism-corner-inset) + env(safe-area-inset-bottom, 0px)) !important; top: auto !important; left: auto !important; }',
+      'body.home-page > footer { padding-top: 32px !important; padding-bottom: 32px !important; }',
+      '@media (max-width: 640px) { body.home-page > footer { padding-top: 26px !important; padding-bottom: calc(26px + env(safe-area-inset-bottom, 0px)) !important; } }',
+      '@media (max-width: 620px) { :root { --prism-corner-inset: 12px; } }'
+    ].join('\n');
+    document.head.appendChild(style);
+  }
+
+  // 1) Apply page-specific link palette and theme as early as possible.
+  setGuideLinkPalette();
+  installFloatingLayout();
+  var initialTheme = stored() || system();
+  root.setAttribute('data-theme', initialTheme);
+  try { syncThemeColor(initialTheme); } catch (e) {}
+
+  function apply(theme, persist) {
+    root.setAttribute('data-theme', theme);
+    syncThemeColor(theme);
+    var b = document.getElementById('themeToggle');
+    if (b) renderToggle(b, theme);
+    if (persist) { try { localStorage.setItem(KEY, theme); } catch (e) { } }
+  }
+
+  function installBackHome() {
+    if (document.body.classList.contains('home-page') || document.querySelector('.prism-back-home')) return;
+    var link = document.createElement('a');
+    link.className = 'prism-back-home';
+    link.href = homepageHref;
+    link.setAttribute('aria-label', '返回主页');
+    link.title = '返回主页';
+    link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"></path></svg>';
+    document.body.insertBefore(link, document.body.firstChild);
+  }
+
+  function build() {
+    if (!document.body) return;
+    installFloatingLayout();
+    installBackHome();
+    try { syncThemeColor(current()); } catch (e) {}
+    var btn = document.getElementById('themeToggle');
+    if (!btn || btn.hasAttribute('data-theme-bound')) return;
+    btn.setAttribute('data-theme-bound', '');
+    renderToggle(btn, current());
+    btn.addEventListener('click', function () {
+      apply(current() === 'dark' ? 'light' : 'dark', true);
+    });
+  }
+
+  function forcedColors() {
+    return !!(window.matchMedia && window.matchMedia('(forced-colors: active)').matches);
+  }
+
+  function installOverlayScrollbar() {
+    if (!document.body || forcedColors() || document.getElementById('prismOverlayThumb')) return;
+    var thumb = document.createElement('div');
+    thumb.id = 'prismOverlayThumb';
+    thumb.className = 'prism-overlay-thumb';
+    thumb.hidden = true;
+    thumb.tabIndex = 0;
+    thumb.setAttribute('role', 'scrollbar');
+    thumb.setAttribute('aria-orientation', 'vertical');
+    thumb.setAttribute('aria-label', '页面滚动条');
+    thumb.setAttribute('aria-valuemin', '0');
+    thumb.setAttribute('aria-valuemax', '100');
+    thumb.setAttribute('aria-valuenow', '0');
+    document.body.appendChild(thumb);
+    root.classList.add('prism-overlay-scrollbar');
+
+    var dragging = false;
+    var dragOffset = 0;
+    var pending = false;
+    var isTouchDevice = window.matchMedia && (
+      window.matchMedia('(hover: none)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+    );
+    var scrollTimer = null;
+    var thumbVisible = false;
+
+    function metrics() {
+      var se = document.scrollingElement || document.documentElement;
+      var view = se.clientHeight;
+      var scroll = se.scrollHeight;
+      return { se: se, view: view, scroll: scroll, max: Math.max(0, scroll - view) };
+    }
+
+    function update() {
+      var m = metrics();
+      if (m.max <= 0) {
+        thumb.hidden = true;
+        thumb.setAttribute('aria-valuenow', '0');
+        return;
+      }
+      var thumbH = Math.max(24, Math.round((m.view / m.scroll) * m.view));
+      var track = Math.max(1, m.view - thumbH);
+      var top = (m.se.scrollTop / m.max) * track;
+
+      // 移动端：仅在滚动时显示
+      if (isTouchDevice && !dragging) {
+        thumb.hidden = !thumbVisible;
+      } else {
+        thumb.hidden = false;
+      }
+
+      thumb.style.height = thumbH + 'px';
+      thumb.style.transform = 'translateY(' + top + 'px)';
+      thumb.setAttribute('aria-valuenow', String(Math.round((m.se.scrollTop / m.max) * 100)));
+    }
+
+    function schedule() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function () {
+        pending = false;
+        update();
+      });
+    }
+
+    function showThumb() {
+      if (!isTouchDevice) return;
+      thumbVisible = true;
+      if (scrollTimer) clearTimeout(scrollTimer);
+      schedule();
+      scrollTimer = setTimeout(function() {
+        thumbVisible = false;
+        schedule();
+      }, 500);
+    }
+
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      thumb.classList.remove('is-dragging');
+      if (e && e.pointerId != null) {
+        try { thumb.releasePointerCapture(e.pointerId); } catch (err) {}
+      }
+    }
+
+    thumb.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      dragging = true;
+      thumb.classList.add('is-dragging');
+      dragOffset = e.clientY - thumb.getBoundingClientRect().top;
+      thumb.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    thumb.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var m = metrics();
+      var thumbH = thumb.offsetHeight;
+      var track = m.view - thumbH;
+      if (track <= 0) return;
+      var y = Math.max(0, Math.min(track, e.clientY - dragOffset));
+      m.se.scrollTop = (y / track) * m.max;
+    });
+    thumb.addEventListener('pointerup', endDrag);
+    thumb.addEventListener('pointercancel', endDrag);
+
+    thumb.addEventListener('keydown', function (e) {
+      var m = metrics();
+      var map = {
+        ArrowDown: m.se.scrollTop + 40,
+        ArrowUp: m.se.scrollTop - 40,
+        PageDown: m.se.scrollTop + m.view * 0.9,
+        PageUp: m.se.scrollTop - m.view * 0.9,
+        Home: 0,
+        End: m.max
+      };
+      if (!(e.key in map)) return;
+      m.se.scrollTop = map[e.key];
+      e.preventDefault();
+    });
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('scroll', showThumb, { passive: true });
+    window.addEventListener('touchmove', showThumb, { passive: true });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('load', schedule);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', schedule);
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(schedule);
+      ro.observe(root);
+      ro.observe(document.body);
+    }
+    update();
+  }
+
+  function start() {
+    build();
+    installOverlayScrollbar();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+
+  // 2) Follow the OS live only while the user has not made a manual choice.
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light', false); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
 })();
- 
+
 /* Keep dynamically rendered Chinese copy consistent with the site's spacing
  * rule without touching code, URLs, or user-entered text. */
 (function () {
-   function normalizeSpacing(value) {
-     return String(value || '')
-       .replace(/([\p{Script=Han}])(?=[A-Za-z0-9])/gu, '$1 ')
-       .replace(/([A-Za-z0-9][A-Za-z0-9+%#_]*)(?=\p{Script=Han})/gu, '$1 ');
-   }
- 
-   function isBlocked(node) {
-     var parent = node && node.parentElement;
-     return !parent || !!parent.closest('script,style,pre,code,textarea');
-   }
- 
-   function normalizeTextNode(node) {
-     if (!node || node.nodeType !== Node.TEXT_NODE || isBlocked(node)) return;
-     var next = normalizeSpacing(node.nodeValue);
-     var parent = node.parentElement;
-     if (parent && parent.classList.contains('footer-note-text')) next = next.replace(/。$/, '');
-     if (next !== node.nodeValue) node.nodeValue = next;
-   }
- 
-   function normalizeAttributes(element) {
-     if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
-     if (element.closest('script,style,pre,code,textarea')) return;
-     ['alt', 'aria-label', 'data-label', 'data-alt', 'placeholder', 'title'].forEach(function (name) {
-       if (!element.hasAttribute(name)) return;
-       var value = element.getAttribute(name);
-       var next = normalizeSpacing(value);
-       if (next !== value) element.setAttribute(name, next);
-     });
-   }
- 
-   function normalizeTextBoundaries(textNodes) {
-     for (var i = 1; i < textNodes.length; i += 1) {
-       var previous = textNodes[i - 1];
-       var current = textNodes[i];
-       if (isBlocked(previous) || isBlocked(current)) continue;
-       var previousValue = previous.nodeValue || '';
-       var currentValue = current.nodeValue || '';
-       if (/[A-Za-z0-9+%#_]$/.test(previousValue) && /^[\p{Script=Han}]/u.test(currentValue)) {
-         previous.nodeValue = previousValue + ' ';
-       }
-       if (/[\p{Script=Han}]$/u.test(previousValue) && /^[A-Za-z0-9]/.test(currentValue)) {
-         current.nodeValue = ' ' + currentValue;
-       }
-     }
-   }
- 
-   function normalizeSubtree(root) {
-     if (!root) return;
-     if (root.nodeType === Node.TEXT_NODE) {
-       normalizeTextNode(root);
-       return;
-     }
-     if (root.nodeType !== Node.ELEMENT_NODE || root.closest('script,style,pre,code,textarea')) return;
-     normalizeAttributes(root);
-     var textWalker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-     var textNodes = [];
-     var textNode;
-     while ((textNode = textWalker.nextNode())) {
-       textNodes.push(textNode);
-       normalizeTextNode(textNode);
-     }
-     normalizeTextBoundaries(textNodes);
-     var elementWalker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
-     var element;
-     while ((element = elementWalker.nextNode())) normalizeAttributes(element);
-   }
- 
-   function install() {
-     if (!document.body) return;
-     normalizeSubtree(document.body);
-     if (!window.MutationObserver) return;
-     var observer = new MutationObserver(function (records) {
-       records.forEach(function (record) {
-         if (record.type === 'characterData') normalizeTextNode(record.target);
-         if (record.type === 'attributes') normalizeAttributes(record.target);
-         if (record.type === 'childList') normalizeSubtree(record.target);
-       });
-     });
-     observer.observe(document.body, {
-       subtree: true,
-       childList: true,
-       characterData: true,
-       attributes: true,
-       attributeFilter: ['alt', 'aria-label', 'data-label', 'data-alt', 'placeholder', 'title']
-     });
-   }
- 
-   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, { once: true });
-   else install();
+  function normalizeSpacing(value) {
+    return String(value || '')
+      .replace(/([\p{Script=Han}])(?=[A-Za-z0-9])/gu, '$1 ')
+      .replace(/([A-Za-z0-9][A-Za-z0-9+%#_]*)(?=\p{Script=Han})/gu, '$1 ');
+  }
+
+  function isBlocked(node) {
+    var parent = node && node.parentElement;
+    return !parent || !!parent.closest('script,style,pre,code,textarea');
+  }
+
+  function normalizeTextNode(node) {
+    if (!node || node.nodeType !== Node.TEXT_NODE || isBlocked(node)) return;
+    var next = normalizeSpacing(node.nodeValue);
+    var parent = node.parentElement;
+    if (parent && parent.classList.contains('footer-note-text')) next = next.replace(/。$/, '');
+    if (next !== node.nodeValue) node.nodeValue = next;
+  }
+
+  function normalizeAttributes(element) {
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
+    if (element.closest('script,style,pre,code,textarea')) return;
+    ['alt', 'aria-label', 'data-label', 'data-alt', 'placeholder', 'title'].forEach(function (name) {
+      if (!element.hasAttribute(name)) return;
+      var value = element.getAttribute(name);
+      var next = normalizeSpacing(value);
+      if (next !== value) element.setAttribute(name, next);
+    });
+  }
+
+  function normalizeTextBoundaries(textNodes) {
+    for (var i = 1; i < textNodes.length; i += 1) {
+      var previous = textNodes[i - 1];
+      var current = textNodes[i];
+      if (isBlocked(previous) || isBlocked(current)) continue;
+      var previousValue = previous.nodeValue || '';
+      var currentValue = current.nodeValue || '';
+      if (/[A-Za-z0-9+%#_]$/.test(previousValue) && /^[\p{Script=Han}]/u.test(currentValue)) {
+        previous.nodeValue = previousValue + ' ';
+      }
+      if (/[\p{Script=Han}]$/u.test(previousValue) && /^[A-Za-z0-9]/.test(currentValue)) {
+        current.nodeValue = ' ' + currentValue;
+      }
+    }
+  }
+
+  function normalizeSubtree(root) {
+    if (!root) return;
+    if (root.nodeType === Node.TEXT_NODE) {
+      normalizeTextNode(root);
+      return;
+    }
+    if (root.nodeType !== Node.ELEMENT_NODE || root.closest('script,style,pre,code,textarea')) return;
+    normalizeAttributes(root);
+    var textWalker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    var textNodes = [];
+    var textNode;
+    while ((textNode = textWalker.nextNode())) {
+      textNodes.push(textNode);
+      normalizeTextNode(textNode);
+    }
+    normalizeTextBoundaries(textNodes);
+    var elementWalker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+    var element;
+    while ((element = elementWalker.nextNode())) normalizeAttributes(element);
+  }
+
+  function install() {
+    if (!document.body) return;
+    normalizeSubtree(document.body);
+    if (!window.MutationObserver) return;
+    var observer = new MutationObserver(function (records) {
+      records.forEach(function (record) {
+        if (record.type === 'characterData') normalizeTextNode(record.target);
+        if (record.type === 'attributes') normalizeAttributes(record.target);
+        if (record.type === 'childList') normalizeSubtree(record.target);
+      });
+    });
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ['alt', 'aria-label', 'data-label', 'data-alt', 'placeholder', 'title']
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, { once: true });
+  else install();
 })();
- 
+
 /* Shared, opt-in support prompt used at the point where a reader has finished
  * a guide or tool. The QR dialog is only opened after an explicit click. */
 (function () {
-   var themeScript = document.currentScript;
-   var supportImage = themeScript && themeScript.src
-     ? new URL('appreciation-code.webp', themeScript.src).href
-     : 'assets/appreciation-code.webp';
-   var CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>';
-   var lastTrigger = null;
- 
-   function closeSupport(dialog) {
-     if (!dialog) return;
-     if (typeof dialog.close === 'function') dialog.close();
-     else {
-       dialog.removeAttribute('open');
-       if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
-       lastTrigger = null;
-     }
-   }
- 
-   function createDialog() {
-     var existing = document.getElementById('prismSupportDialog');
-     if (existing) return existing;
- 
-     var dialog = document.createElement('dialog');
-     dialog.id = 'prismSupportDialog';
-     dialog.className = 'prism-support-dialog';
-     dialog.setAttribute('aria-labelledby', 'prismSupportDialogTitle');
-     dialog.innerHTML = [
-       '<div class="prism-support-dialog-inner">',
-       '  <div class="prism-support-dialog-header">',
-       '    <div>',
-       '      <h2 id="prismSupportDialogTitle">支持本站</h2>',
-       '      <p>PrismSelf 免费开放，由个人维护。你的支持将用于分担域名、服务与持续维护成本。</p>',
-       '    </div>',
-       '    <button class="prism-support-close" type="button" aria-label="关闭支持项目弹窗">' + CLOSE + '</button>',
-       '  </div>',
-       '  <a class="prism-support-code" href="' + supportImage + '" target="_blank" rel="noopener noreferrer" aria-label="打开微信赞赏码大图">',
-       '    <img src="' + supportImage + '" alt="PrismSelf 微信赞赏码" loading="lazy" decoding="async">',
-       '  </a>',
-       '  <p class="prism-support-instruction">点击图片可查看大图。电脑访问时可直接用微信扫码；手机访问时可先保存大图，再在微信扫一扫中识别。</p>',
-       '  <p class="prism-support-note">自愿支持，无任何内容或功能以赞赏为前提。</p>',
-       '</div>'
-     ].join('');
- 
-     document.body.appendChild(dialog);
-     dialog.querySelector('.prism-support-close').addEventListener('click', function () {
-       closeSupport(dialog);
-     });
-     dialog.addEventListener('click', function (event) {
-       if (event.target === dialog) closeSupport(dialog);
-     });
-     dialog.addEventListener('close', function () {
-       if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
-       lastTrigger = null;
-     });
-     return dialog;
-   }
- 
-   function openSupport(trigger) {
-     var dialog = createDialog();
-     lastTrigger = trigger || document.activeElement;
-     if (dialog.open) return;
-     if (typeof dialog.showModal === 'function') dialog.showModal();
-     else dialog.setAttribute('open', '');
-   }
- 
-   function createCTA() {
-     var section = document.createElement('aside');
-     section.className = 'prism-support-cta';
-     section.setAttribute('aria-label', '支持 PrismSelf');
-     section.innerHTML = [
-       '<span class="prism-support-heart" aria-hidden="true">♡</span>',
-       '<div class="prism-support-content">',
-       '  <strong>支持 PrismSelf</strong>',
-       '  <p>PrismSelf 免费开放，由个人持续维护。如果这里对你有帮助，可以自愿支持项目。</p>',
-       '</div>',
-       '<button class="prism-support-button" type="button" data-prism-support-open>支持项目</button>'
-     ].join('');
-     return section;
-   }
- 
-   function hasDirectCTA(target) {
-     return Array.prototype.some.call(target.children || [], function (child) {
-       return child.classList && child.classList.contains('prism-support-cta');
-     });
-   }
- 
-   function mount(target) {
-     if (!target || hasDirectCTA(target)) return null;
-     var cta = createCTA();
-     target.appendChild(cta);
-     return cta;
-   }
- 
-   function mountAfter(target) {
-     if (!target) return null;
-     var next = target.nextElementSibling;
-     if (next && next.classList.contains('prism-support-cta')) return next;
-     var cta = createCTA();
-     target.insertAdjacentElement('afterend', cta);
-     return cta;
-   }
- 
-   function autoMountSupport() {
-     var path = String(window.location.pathname || '').toLowerCase();
-     var support = null;
-     if (path.indexOf('/guides/') !== -1) {
-       support = mount(document.querySelector('#write .main-content, body > .main-content, .main-content'));
-       if (support) support.classList.add('prism-support-cta--guide');
-     } else if (path.indexOf('/analyses/') !== -1) {
-       support = mount(document.querySelector('.container'));
-     } else if (path.indexOf('/bingos/') !== -1) {
-       support = mount(document.querySelector('.page'));
-     } else if (path.indexOf('/glossaries/') !== -1) {
-       support = mount(document.querySelector('main'));
-     } else if (path.indexOf('/topics/') !== -1) {
-       support = mount(document.querySelector('#write'));
-     } else if (path.indexOf('/tools/') !== -1) {
-       support = mount(document.querySelector('main'));
-     }
-     if (support && path.indexOf('/guides/') === -1) {
-       support.classList.add('prism-support-cta--embedded');
-     }
-   }
- 
-   window.PrismSupport = {
-     open: openSupport,
-     createCTA: createCTA,
-     mount: mount,
-     mountAfter: mountAfter
-   };
- 
-   document.addEventListener('click', function (event) {
-     var trigger = event.target && event.target.closest
-       ? event.target.closest('[data-prism-support-open]')
-       : null;
-     if (trigger) openSupport(trigger);
-   });
- 
-   if (document.readyState === 'loading') {
-     document.addEventListener('DOMContentLoaded', function () {
-       setTimeout(autoMountSupport, 0);
-     }, { once: true });
-   } else {
-     setTimeout(autoMountSupport, 0);
-   }
-   window.addEventListener('load', autoMountSupport, { once: true });
+  var themeScript = document.currentScript;
+  var supportImage = themeScript && themeScript.src
+    ? new URL('appreciation-code.webp', themeScript.src).href
+    : 'assets/appreciation-code.webp';
+  var CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>';
+  var lastTrigger = null;
+
+  function closeSupport(dialog) {
+    if (!dialog) return;
+    if (typeof dialog.close === 'function') dialog.close();
+    else {
+      dialog.removeAttribute('open');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      lastTrigger = null;
+    }
+  }
+
+  function createDialog() {
+    var existing = document.getElementById('prismSupportDialog');
+    if (existing) return existing;
+
+    var dialog = document.createElement('dialog');
+    dialog.id = 'prismSupportDialog';
+    dialog.className = 'prism-support-dialog';
+    dialog.setAttribute('aria-labelledby', 'prismSupportDialogTitle');
+    dialog.innerHTML = [
+      '<div class="prism-support-dialog-inner">',
+      '  <div class="prism-support-dialog-header">',
+      '    <div>',
+      '      <h2 id="prismSupportDialogTitle">支持本站</h2>',
+      '      <p>PrismSelf 免费开放，由个人维护。你的支持将用于分担域名、服务与持续维护成本。</p>',
+      '    </div>',
+      '    <button class="prism-support-close" type="button" aria-label="关闭支持项目弹窗">' + CLOSE + '</button>',
+      '  </div>',
+      '  <a class="prism-support-code" href="' + supportImage + '" target="_blank" rel="noopener noreferrer" aria-label="打开微信赞赏码大图">',
+      '    <img src="' + supportImage + '" alt="PrismSelf 微信赞赏码" loading="lazy" decoding="async">',
+      '  </a>',
+      '  <p class="prism-support-instruction">电脑访问时可使用微信扫码；手机访问时可打开大图后保存，再从微信扫一扫中选择相册识别。</p>',
+      '  <p class="prism-support-note">自愿支持，无任何内容或功能以赞赏为前提。</p>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(dialog);
+    dialog.querySelector('.prism-support-close').addEventListener('click', function () {
+      closeSupport(dialog);
+    });
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) closeSupport(dialog);
+    });
+    dialog.addEventListener('close', function () {
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      lastTrigger = null;
+    });
+    return dialog;
+  }
+
+  function openSupport(trigger) {
+    var dialog = createDialog();
+    lastTrigger = trigger || document.activeElement;
+    if (dialog.open) return;
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+
+  function createCTA() {
+    var section = document.createElement('aside');
+    section.className = 'prism-support-cta';
+    section.setAttribute('aria-label', '支持 PrismSelf');
+    section.innerHTML = [
+      '<span class="prism-support-heart" aria-hidden="true">♡</span>',
+      '<div class="prism-support-content">',
+      '  <strong>支持 PrismSelf</strong>',
+      '  <p>PrismSelf 免费开放，由个人持续维护。如果这里对你有帮助，可以自愿支持项目。</p>',
+      '</div>',
+      '<button class="prism-support-button" type="button" data-prism-support-open>支持项目</button>'
+    ].join('');
+    return section;
+  }
+
+  function hasDirectCTA(target) {
+    return Array.prototype.some.call(target.children || [], function (child) {
+      return child.classList && child.classList.contains('prism-support-cta');
+    });
+  }
+
+  function mount(target) {
+    if (!target || hasDirectCTA(target)) return null;
+    var cta = createCTA();
+    target.appendChild(cta);
+    return cta;
+  }
+
+  function mountAfter(target) {
+    if (!target) return null;
+    var next = target.nextElementSibling;
+    if (next && next.classList.contains('prism-support-cta')) return next;
+    var cta = createCTA();
+    target.insertAdjacentElement('afterend', cta);
+    return cta;
+  }
+
+  function autoMountSupport() {
+    var path = String(window.location.pathname || '').toLowerCase();
+    var support = null;
+    if (path.indexOf('/guides/') !== -1) {
+      support = mount(document.querySelector('#write .main-content, body > .main-content, .main-content'));
+      if (support) support.classList.add('prism-support-cta--guide');
+    } else if (path.indexOf('/analyses/') !== -1) {
+      support = mount(document.querySelector('.container'));
+    } else if (path.indexOf('/bingos/') !== -1) {
+      support = mount(document.querySelector('.page'));
+    } else if (path.indexOf('/glossaries/') !== -1) {
+      support = mount(document.querySelector('main'));
+    } else if (path.indexOf('/topics/') !== -1) {
+      support = mount(document.querySelector('#write'));
+    } else if (path.indexOf('/tools/') !== -1) {
+      support = mount(document.querySelector('main'));
+    }
+    if (support && path.indexOf('/guides/') === -1) {
+      support.classList.add('prism-support-cta--embedded');
+    }
+  }
+
+  window.PrismSupport = {
+    open: openSupport,
+    createCTA: createCTA,
+    mount: mount,
+    mountAfter: mountAfter
+  };
+
+  document.addEventListener('click', function (event) {
+    var trigger = event.target && event.target.closest
+      ? event.target.closest('[data-prism-support-open]')
+      : null;
+    if (trigger) openSupport(trigger);
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(autoMountSupport, 0);
+    }, { once: true });
+  } else {
+    setTimeout(autoMountSupport, 0);
+  }
+  window.addEventListener('load', autoMountSupport, { once: true });
 })();
