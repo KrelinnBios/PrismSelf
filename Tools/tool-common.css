@@ -417,6 +417,168 @@ h1 em {
   outline: none;
 }
 
+/* 下拉框箭头与悬停效果由全站 theme.css 统一；多选下拉的触发条套用同一款箭头。 */
+.intro-editor select,
+.intro-multiselect > summary {
+  font-size: 15px;
+}
+
+.intro-multiselect > summary {
+  padding-right: 42px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, color-mix(in srgb, currentColor 62%, transparent) 50%),
+    linear-gradient(135deg, color-mix(in srgb, currentColor 62%, transparent) 50%, transparent 50%);
+  background-position: calc(100% - 22px) calc(50% + 2px), calc(100% - 16px) calc(50% + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.intro-multiselect > summary:hover {
+  border-color: color-mix(in srgb, #2f8f78 55%, transparent);
+}
+
+.intro-editor select option {
+  background: var(--prism-input-bg);
+  color: var(--prism-input-text);
+}
+
+:root[data-theme="dark"] .intro-multiselect {
+  color-scheme: dark;
+}
+
+/* 代词多选下拉：收起时像下拉框，展开后浮出面板，首项为自定义输入。 */
+.intro-multiselect {
+  position: relative;
+}
+
+.intro-multiselect > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  border: 1px solid var(--prism-input-border);
+  border-radius: 9px;
+  background-color: var(--prism-input-bg);
+  color: var(--prism-input-text);
+  list-style: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intro-multiselect > summary::-webkit-details-marker {
+  display: none;
+}
+
+.intro-multiselect > summary:focus-visible,
+.intro-multiselect[open] > summary {
+  border-color: var(--prism-input-focus-border);
+  box-shadow: 0 0 0 3px var(--prism-input-focus-ring);
+  outline: none;
+}
+
+.intro-multiselect-summary {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.intro-multiselect-summary.is-empty {
+  color: var(--prism-input-placeholder);
+}
+
+.intro-multiselect-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  gap: 8px;
+  max-height: 320px;
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid var(--prism-input-border);
+  border-radius: 12px;
+  background: var(--prism-input-bg);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.intro-multiselect-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 6px;
+}
+
+.intro-multiselect-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--prism-input-text);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.intro-multiselect-list label:hover,
+.intro-multiselect-list label:has(input:checked) {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+}
+
+.intro-multiselect-list label {
+  position: relative;
+}
+
+/* 原生复选框只保留给键盘和读屏，视觉上由序号徽标代替：勾选后显示先后顺序。 */
+.intro-multiselect-list input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-pick-badge {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid color-mix(in srgb, var(--prism-input-text) 45%, transparent);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.intro-multiselect-list input:checked + .intro-pick-badge {
+  border-color: var(--teal);
+  background: var(--teal);
+}
+
+:root[data-theme="dark"] .intro-multiselect-list input:checked + .intro-pick-badge {
+  color: #0f1a16;
+}
+
+.intro-multiselect-list input:focus-visible + .intro-pick-badge {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .intro-multiselect-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .topics-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1331,6 +1493,18 @@ details.topic-card:not([open]) summary.topic-head {
   gap: 8px;
 }
 
+/* 头像框等选项较多时改用下拉框：前缀标签在左，下拉框占满剩余宽度。 */
+.intro-select-row {
+  flex: 1 1 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.intro-select-row select {
+  flex: 1;
+}
+
 .intro-option {
   display: inline-flex;
   align-items: center;
@@ -1346,39 +1520,6 @@ details.topic-card:not([open]) summary.topic-head {
 .intro-option input {
   accent-color: var(--teal);
   flex-shrink: 0;
-}
-
-.intro-option-input {
-  flex: 1 1 140px;
-  min-width: 0;
-  min-height: 44px;
-  padding: 7px 12px;
-  border-color: var(--prism-input-border);
-  background: var(--prism-input-bg);
-  color: var(--prism-input-text);
-  cursor: text;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.intro-editor .intro-option-input input[type="text"] {
-  flex: 1;
-  width: 0;
-  min-height: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-
-.intro-option-input:focus-within {
-  border-color: var(--prism-input-focus-border);
-  box-shadow: 0 0 0 3px var(--prism-input-focus-ring);
-  outline: none;
-}
-
-.intro-editor .intro-option-input input[type="text"]:focus {
-  outline: none;
-  box-shadow: none;
 }
 
 .intro-styles {

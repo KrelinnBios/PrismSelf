@@ -615,6 +615,29 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   border-top: 1px solid var(--prism-support-dialog-note-border);
 }
 
+/* 全站下拉框统一外观：去掉系统箭头，改用随文字颜色变化的细箭头；底色与边框仍由各分类样式决定。 */
+:root body select:not([multiple]):not([size]) {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  padding-right: 42px !important;
+  background-image:
+    linear-gradient(45deg, transparent 50%, color-mix(in srgb, currentColor 62%, transparent) 50%),
+    linear-gradient(135deg, color-mix(in srgb, currentColor 62%, transparent) 50%, transparent 50%) !important;
+  background-position: calc(100% - 22px) calc(50% + 2px), calc(100% - 16px) calc(50% + 2px) !important;
+  background-size: 6px 6px, 6px 6px !important;
+  background-repeat: no-repeat !important;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+:root body select:not([multiple]):not([size]):hover:not(:disabled) {
+  border-color: color-mix(in srgb, #2f8f78 55%, transparent) !important;
+}
+
+:root[data-theme="dark"] select {
+  color-scheme: dark;
+}
+
 /* 手机端阅读提示：沿用支持弹窗外观，不设关闭按钮，只在底部放一个确认按钮。 */
 .prism-device-dialog .prism-support-dialog-header {
   margin-bottom: 24px;

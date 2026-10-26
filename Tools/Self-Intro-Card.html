@@ -21,9 +21,9 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610284">
-  <link rel="stylesheet" href="../assets/theme.css?v=202610286">
-  <script src="../assets/theme.js?v=202610286"></script>
+  <link rel="stylesheet" href="./tool-common.css?v=202610285">
+  <link rel="stylesheet" href="../assets/theme.css?v=202610287">
+  <script src="../assets/theme.js?v=202610287"></script>
   <script
     defer
     src="../scripts/vibecafe-shim.js"
@@ -91,17 +91,19 @@
         <section class="intro-panel" aria-labelledby="contentTitle">
           <h2 id="contentTitle"><span class="intro-step">02</span>关于我</h2>
           <div class="intro-image-toolbar">
-            <div role="radiogroup" aria-label="头像框" class="intro-options">
-              <span class="intro-chip-label" aria-hidden="true">头像框：</span>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="round" checked>圆形</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="square">正方形</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="rounded">圆角正方形</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="rect-l">长方形（横向）</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="rounded-l">圆角长方形（横向）</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="rect-p">长方形（纵向）</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="rounded-p">圆角长方形（纵向）</label>
-              <label class="intro-option"><input type="radio" name="avatarShape" value="diamond">菱形</label>
-            </div>
+            <label class="intro-options intro-select-row">
+              <span class="intro-chip-label">头像框：</span>
+              <select id="avatarShape" name="avatarShape">
+                <option value="round" selected>圆形</option>
+                <option value="square">正方形</option>
+                <option value="rounded">圆角正方形</option>
+                <option value="rect-l">长方形（横向）</option>
+                <option value="rounded-l">圆角长方形（横向）</option>
+                <option value="rect-p">长方形（纵向）</option>
+                <option value="rounded-p">圆角长方形（纵向）</option>
+                <option value="diamond">菱形</option>
+              </select>
+            </label>
             <div role="radiogroup" aria-label="头像大小" class="intro-options">
               <span class="intro-chip-label" aria-hidden="true">大小：</span>
               <label class="intro-option"><input type="radio" name="avatarSize" value="l">大</label>
@@ -120,23 +122,28 @@
           <label class="intro-field"><span>性别认同补充</span><input id="identityNote" type="text" maxlength="160" placeholder="例如：认同的变化或想补充的说明"></label>
           <fieldset>
             <legend>代词使用（可多选）</legend>
-            <div class="intro-options">
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="他">他</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="她">她</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="TA">TA</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="祂">祂</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="它">它</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="he / him">he / him</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="she / her">she / her</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="they / them（单数）">they / them（单数）</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="xe / xem">xe / xem</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="ze / zir">ze / zir</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="it / its">it / its</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="任意代词">任意代词</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="不使用代词">不使用代词</label>
-              <label class="intro-option"><input type="checkbox" name="pronouns" value="用名字代替代词">用名字代替代词</label>
-              <label class="intro-option intro-option-input"><input id="pronounNote" type="text" maxlength="160" placeholder="输入其他代词" aria-label="其他代词"></label>
-            </div>
+            <details class="intro-multiselect" data-placeholder="选择代词">
+              <summary><span class="intro-multiselect-summary is-empty">选择代词</span></summary>
+              <div class="intro-multiselect-panel">
+                <input id="pronounNote" type="text" maxlength="160" placeholder="输入其他代词" aria-label="其他代词">
+                <div class="intro-multiselect-list">
+                  <label><input type="checkbox" name="pronouns" value="他">他</label>
+                  <label><input type="checkbox" name="pronouns" value="她">她</label>
+                  <label><input type="checkbox" name="pronouns" value="TA">TA</label>
+                  <label><input type="checkbox" name="pronouns" value="祂">祂</label>
+                  <label><input type="checkbox" name="pronouns" value="它">它</label>
+                  <label><input type="checkbox" name="pronouns" value="he / him">he / him</label>
+                  <label><input type="checkbox" name="pronouns" value="she / her">she / her</label>
+                  <label><input type="checkbox" name="pronouns" value="they / them（单数）">they / them（单数）</label>
+                  <label><input type="checkbox" name="pronouns" value="xe / xem">xe / xem</label>
+                  <label><input type="checkbox" name="pronouns" value="ze / zir">ze / zir</label>
+                  <label><input type="checkbox" name="pronouns" value="it / its">it / its</label>
+                  <label><input type="checkbox" name="pronouns" value="任意代词">任意代词</label>
+                  <label><input type="checkbox" name="pronouns" value="不使用代词">不使用代词</label>
+                  <label><input type="checkbox" name="pronouns" value="用名字代替代词">用名字代替代词</label>
+                </div>
+              </div>
+            </details>
             <label class="intro-field"><span>代词使用补充</span><input id="pronounUsageNote" type="text" maxlength="160" placeholder="例如：不同场合希望使用不同代词"></label>
           </fieldset>
           <label class="intro-field"><span>禁用代词 / 称呼</span><input id="avoid" type="text" maxlength="160" placeholder="不希望被使用的称呼"></label>
@@ -145,33 +152,48 @@
           <label class="intro-field"><span>取向认同补充</span><input id="orientationNote" type="text" maxlength="160" placeholder="例如：浪漫取向与性取向可以分开描述"></label>
           <fieldset>
             <legend>我倾向这样的气质表达（可多选）</legend>
-            <div class="intro-options">
-              <label class="intro-option"><input type="checkbox" name="expression" value="男性化">男性化</label>
-              <label class="intro-option"><input type="checkbox" name="expression" value="女性化">女性化</label>
-              <label class="intro-option"><input type="checkbox" name="expression" value="中性化">中性化</label>
-              <label class="intro-option"><input type="checkbox" name="expression" value="不喜欢性别气质论">不喜欢性别气质论</label>
-            </div>
+            <details class="intro-multiselect" data-placeholder="选择气质表达">
+              <summary><span class="intro-multiselect-summary is-empty">选择气质表达</span></summary>
+              <div class="intro-multiselect-panel">
+                <div class="intro-multiselect-list">
+                  <label><input type="checkbox" name="expression" value="男性化">男性化</label>
+                  <label><input type="checkbox" name="expression" value="女性化">女性化</label>
+                  <label><input type="checkbox" name="expression" value="中性化">中性化</label>
+                  <label><input type="checkbox" name="expression" value="不喜欢性别气质论">不喜欢性别气质论</label>
+                </div>
+              </div>
+            </details>
             <label class="intro-field"><span>气质表达补充</span><input id="expressionNote" type="text" maxlength="160" placeholder="也可以直接用自己的语言描述"></label>
           </fieldset>
           <fieldset>
             <legend>对于表明身份 / 认同的倾向（可多选）</legend>
-            <div class="intro-options">
-              <label class="intro-option"><input type="checkbox" name="disclosure" value="现实公开表明">现实公开表明</label>
-              <label class="intro-option"><input type="checkbox" name="disclosure" value="网络公开表明">网络公开表明</label>
-              <label class="intro-option"><input type="checkbox" name="disclosure" value="私下熟络表明">私下熟络表明</label>
-              <label class="intro-option"><input type="checkbox" name="disclosure" value="不倾向公开表明">不倾向公开表明</label>
-              <label class="intro-option"><input type="checkbox" name="disclosure" value="看具体情况">看具体情况</label>
-            </div>
+            <details class="intro-multiselect" data-placeholder="选择公开倾向">
+              <summary><span class="intro-multiselect-summary is-empty">选择公开倾向</span></summary>
+              <div class="intro-multiselect-panel">
+                <div class="intro-multiselect-list">
+                  <label><input type="checkbox" name="disclosure" value="现实公开表明">现实公开表明</label>
+                  <label><input type="checkbox" name="disclosure" value="网络公开表明">网络公开表明</label>
+                  <label><input type="checkbox" name="disclosure" value="私下熟络表明">私下熟络表明</label>
+                  <label><input type="checkbox" name="disclosure" value="不倾向公开表明">不倾向公开表明</label>
+                  <label><input type="checkbox" name="disclosure" value="看具体情况">看具体情况</label>
+                </div>
+              </div>
+            </details>
             <label class="intro-field"><span>公开倾向补充</span><input id="disclosureNote" type="text" maxlength="160" placeholder="例如：希望只在什么场合使用这些信息"></label>
           </fieldset>
           <fieldset>
             <legend>对目前认同的探索状态（可多选）</legend>
-            <div class="intro-options">
-              <label class="intro-option"><input type="checkbox" name="exploration" value="萌芽中">萌芽中</label>
-              <label class="intro-option"><input type="checkbox" name="exploration" value="探索中">探索中</label>
-              <label class="intro-option"><input type="checkbox" name="exploration" value="基本确定">基本确定</label>
-              <label class="intro-option"><input type="checkbox" name="exploration" value="已稳定">已稳定</label>
-            </div>
+            <details class="intro-multiselect" data-placeholder="选择探索状态">
+              <summary><span class="intro-multiselect-summary is-empty">选择探索状态</span></summary>
+              <div class="intro-multiselect-panel">
+                <div class="intro-multiselect-list">
+                  <label><input type="checkbox" name="exploration" value="萌芽中">萌芽中</label>
+                  <label><input type="checkbox" name="exploration" value="探索中">探索中</label>
+                  <label><input type="checkbox" name="exploration" value="基本确定">基本确定</label>
+                  <label><input type="checkbox" name="exploration" value="已稳定">已稳定</label>
+                </div>
+              </div>
+            </details>
             <label class="intro-field"><span>探索状态补充</span><input id="explorationNote" type="text" maxlength="160" placeholder="不同方面可以有不同状态"></label>
           </fieldset>
         </section>
@@ -287,8 +309,16 @@
     const RATIO_OF = { s: 0.55, m: 0.75, l: 1 };
 
     function value(id) { return document.getElementById(id).value.trim(); }
+    // 多选按点击先后排序：pickOrder 记录各组勾选顺序，未记录的已勾选项按页面顺序排在后面；自定义输入固定在最后。
+    let pickOrder = {};
+    function orderedChecked(name) {
+      const checked = Array.from(form.querySelectorAll(`input[name="${name}"]:checked`), (input) => input.value);
+      const order = pickOrder[name] || [];
+      const known = order.filter((item) => checked.includes(item));
+      return known.concat(checked.filter((item) => !known.includes(item)));
+    }
     function selected(name, extraId) {
-      const choices = Array.from(form.querySelectorAll(`input[name="${name}"]:checked`), (input) => input.value);
+      const choices = orderedChecked(name);
       if (extraId && value(extraId)) choices.push(value(extraId));
       return choices.join("、");
     }
@@ -1088,6 +1118,7 @@
       if (!window.confirm("确定清空填写的文字、选项和图片吗？配色与字体会保留。")) return;
       for (const input of form.querySelectorAll('input[type="text"], textarea')) input.value = "";
       for (const input of form.querySelectorAll('input[type="checkbox"]')) input.checked = false;
+      pickOrder = {};
       images.forEach((item) => URL.revokeObjectURL(item.url));
       images = [];
       imageInput.value = "";
@@ -1099,6 +1130,7 @@
       renderImages();
       renderCard();
       saveDraft();
+      syncMultiselects();
       status.textContent = "填写内容已清空，配色与字体会保留。";
     });
 
@@ -1116,7 +1148,7 @@
           fields[el.id] = el.value;
         }
       }
-      try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ fields, checks })); } catch (error) { /* 存储不可用时仅失去刷新保留 */ }
+      try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ fields, checks, order: pickOrder })); } catch (error) { /* 存储不可用时仅失去刷新保留 */ }
     }
     function isReload() {
       const entry = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
@@ -1131,6 +1163,11 @@
       try { draft = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || "null"); } catch (error) { draft = null; }
       if (!draft || typeof draft !== "object") return;
       const checks = new Set(Array.isArray(draft.checks) ? draft.checks : []);
+      if (draft.order && typeof draft.order === "object") {
+        for (const [name, list] of Object.entries(draft.order)) {
+          if (Array.isArray(list)) pickOrder[name] = list.filter((item) => typeof item === "string");
+        }
+      }
       for (const el of draftControls()) {
         if (el.type === "file") continue;
         if (el.type === "radio" || el.type === "checkbox") {
@@ -1143,8 +1180,55 @@
       document.getElementById("cardRadiusValue").textContent = radius ? `${radius} px` : "直角";
     }
 
+    // 多选下拉：收起时在触发条上列出已选项；同一时间只展开一个，点外部或按 Esc 收起。
+    const multiselects = Array.from(form.querySelectorAll(".intro-multiselect"));
+    // 选框改为序号徽标：勾选后显示先后顺序，原生复选框保留给键盘与读屏使用。
+    for (const input of form.querySelectorAll('.intro-multiselect input[type="checkbox"]')) {
+      const badge = document.createElement("span");
+      badge.className = "intro-pick-badge";
+      badge.setAttribute("aria-hidden", "true");
+      input.after(badge);
+    }
+    function syncMultiselects() {
+      for (const box of multiselects) {
+        const first = box.querySelector('input[type="checkbox"]');
+        const picked = first ? orderedChecked(first.name) : [];
+        for (const input of box.querySelectorAll('input[type="checkbox"]')) {
+          const rank = input.checked ? picked.indexOf(input.value) + 1 : 0;
+          input.nextElementSibling.textContent = rank ? String(rank) : "";
+          input.setAttribute("aria-label", rank ? `${input.value}，第 ${rank} 位` : input.value);
+        }
+        const extra = box.querySelector('input[type="text"]');
+        const shown = extra && extra.value.trim() ? picked.concat(extra.value.trim()) : picked;
+        const label = box.querySelector(".intro-multiselect-summary");
+        label.textContent = shown.length ? shown.join("、") : box.dataset.placeholder;
+        label.classList.toggle("is-empty", !shown.length);
+      }
+    }
+    for (const box of multiselects) {
+      // 先于表单级监听更新顺序，保证随后的绘制与暂存拿到新顺序。
+      box.addEventListener("change", (event) => {
+        const input = event.target;
+        if (!input || input.type !== "checkbox") return;
+        const order = (pickOrder[input.name] || []).filter((item) => item !== input.value);
+        if (input.checked) order.push(input.value);
+        pickOrder[input.name] = order;
+      });
+      box.addEventListener("toggle", () => {
+        if (box.open) multiselects.forEach((other) => { if (other !== box) other.open = false; });
+      });
+      box.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape" || !box.open) return;
+        box.open = false;
+        box.querySelector("summary").focus();
+      });
+    }
+    document.addEventListener("click", (event) => {
+      for (const box of multiselects) if (box.open && !box.contains(event.target)) box.open = false;
+    });
+
     form.addEventListener("submit", (event) => event.preventDefault());
-    form.addEventListener("input", () => { syncCustomPalette(); scheduleRender(); saveDraft(); });
+    form.addEventListener("input", () => { syncCustomPalette(); syncMultiselects(); scheduleRender(); saveDraft(); });
     // 滑块旁显示当前圆角；0 即直角。
     document.getElementById("cardRadius").addEventListener("input", (event) => {
       const radius = Number(event.target.value);
@@ -1156,6 +1240,7 @@
         renderImages();
       }
       syncCustomPalette();
+      syncMultiselects();
       scheduleRender();
       saveDraft();
     });
@@ -1167,6 +1252,7 @@
     });
     restoreDraft();
     syncCustomPalette();
+    syncMultiselects();
     renderImages();
     renderCard();
   </script>
