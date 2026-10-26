@@ -21,7 +21,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610283">
+  <link rel="stylesheet" href="./tool-common.css?v=202610284">
   <link rel="stylesheet" href="../assets/theme.css?v=202610264">
   <script src="../assets/theme.js?v=202610264"></script>
   <script
@@ -110,8 +110,11 @@
               <label class="intro-option"><input type="radio" name="avatarSize" value="s">小</label>
             </div>
           </div>
-          <input class="intro-upload" id="avatarInput" type="file" accept="image/*" aria-label="选择头像图片">
-          <p id="avatarStatus" role="status" aria-live="polite"></p>
+          <div class="intro-upload-row">
+            <input class="intro-upload-input" id="avatarInput" type="file" accept="image/*" aria-label="选择头像图片" aria-describedby="avatarStatus">
+            <label class="intro-upload-button" for="avatarInput"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5m0 0-4.5 4.5M12 5l4.5 4.5M5 19h14"/></svg>选择头像</label>
+            <span id="avatarStatus" class="intro-upload-count" role="status" aria-live="polite">未选择头像</span>
+          </div>
           <label class="intro-field"><span>填表 ID / 昵称</span><input id="nickname" type="text" maxlength="80" placeholder="希望别人如何称呼你"></label>
           <label class="intro-field"><span>昵称补充</span><input id="nicknameNote" type="text" maxlength="160" placeholder="例如：昵称的读音或由来"></label>
           <label class="intro-field"><span>我的性别认同</span><input id="identity" type="text" maxlength="160" placeholder="用你自己的语言描述，也可以留白"></label>
@@ -186,7 +189,11 @@
             </div>
           </div>
           <p class="intro-hint" id="imageHint">最多 9 张，每张不超过 20 MB，可直接从手机相册选择。两列 / 三列错落按原图比例排布，缩略图可拖动排序；自由摆放时在画布内拖动图片调整位置，点击图片后拖动右下角手柄调整大小，右键或长按图片可调整层级或移除。</p>
-          <input class="intro-upload" id="imageInput" type="file" accept="image/*" multiple aria-describedby="imageHint">
+          <div class="intro-upload-row">
+            <input class="intro-upload-input" id="imageInput" type="file" accept="image/*" multiple aria-describedby="imageHint imageCount">
+            <label class="intro-upload-button" for="imageInput"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5m0 0-4.5 4.5M12 5l4.5 4.5M5 19h14"/></svg>选择图片</label>
+            <span id="imageCount" class="intro-upload-count">未添加图片</span>
+          </div>
           <div class="intro-canvas-board" id="imageBoard" hidden></div>
           <div class="intro-images" id="imageList"></div>
           <p id="status" role="status" aria-live="polite"></p>
@@ -205,6 +212,7 @@
     const context = canvas.getContext("2d");
     const status = document.getElementById("status");
     const avatarStatus = document.getElementById("avatarStatus");
+    const imageCount = document.getElementById("imageCount");
     const imageInput = document.getElementById("imageInput");
     const avatarInput = document.getElementById("avatarInput");
     const exportButton = document.getElementById("exportButton");
@@ -539,6 +547,7 @@
 
     function renderImages() {
       const list = document.getElementById("imageList");
+      imageCount.textContent = images.length ? `已添加 ${images.length} 张图片` : "未添加图片";
       list.replaceChildren();
       list.setAttribute("role", "list");
       if (draggingImage && !images.includes(draggingImage.item)) draggingImage = null;
@@ -1022,6 +1031,8 @@
         renderImages();
         renderCard();
         status.textContent = [`已添加 ${added} 张图片。`, ...errors].join(" ");
+        // 上传框旁的计数之后补充本次未添加的原因。
+        if (errors.length) imageCount.textContent += `。${errors.join("；")}`;
       } finally {
         imageInput.value = "";
         imageInput.disabled = false;
@@ -1050,6 +1061,7 @@
         status.textContent = "图片已生成并发起下载。";
       } catch (error) {
         status.textContent = "图片生成失败，请重试；也可截取右侧预览保存。";
+        window.alert(status.textContent);
       } finally {
         exportButton.disabled = false;
         exportButton.textContent = "下载 PNG 图片";
@@ -1064,12 +1076,12 @@
         if (avatarUrl) URL.revokeObjectURL(avatarUrl);
         avatarImage = image;
         avatarUrl = url;
-        // 读取成功后保留选择，让文件框直接显示所选文件名。
-        avatarStatus.textContent = "";
+        // 按钮旁直接显示所选文件名。
+        avatarStatus.textContent = file.name;
       } catch (error) {
-        avatarInput.value = "";
-        avatarStatus.textContent = "头像读取失败，请换一张图片。";
+        avatarStatus.textContent = "头像读取失败，请换一张图片";
       }
+      avatarInput.value = "";
       scheduleRender();
     });
 
@@ -1084,7 +1096,7 @@
       avatarImage = null;
       avatarUrl = null;
       avatarInput.value = "";
-      avatarStatus.textContent = "";
+      avatarStatus.textContent = "未选择头像";
       renderImages();
       renderCard();
       status.textContent = "填写内容已清空，配色与字体会保留。";

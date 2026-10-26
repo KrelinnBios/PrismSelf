@@ -1272,7 +1272,7 @@ details.topic-card:not([open]) summary.topic-head {
   flex: 1 1 100%;
 }
 
-.intro-image-toolbar + .intro-upload {
+.intro-image-toolbar + .intro-upload-row {
   margin-top: 10px;
 }
 
@@ -1454,10 +1454,71 @@ details.topic-card:not([open]) summary.topic-head {
   min-height: 44px;
 }
 
-.intro-upload {
-  max-width: 100%;
+/* 头像与图片上传：原生文件框隐藏，按钮旁显示文件名或已添加的数量。 */
+.intro-upload-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.intro-upload-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--teal) 10%, transparent);
+  color: var(--teal);
   font-size: 14px;
-  color: var(--ink);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.intro-upload-button svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.intro-upload-button:hover {
+  border-color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 18%, transparent);
+}
+
+.intro-upload-input:focus-visible + .intro-upload-button {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+.intro-upload-input:disabled + .intro-upload-button {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.intro-upload-count {
+  color: var(--ink-mid);
+  font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .intro-images {
@@ -1626,21 +1687,17 @@ details.topic-card:not([open]) summary.topic-head {
   -webkit-touch-callout: none;
 }
 
-#status,
-#avatarStatus {
-  color: var(--ink-mid);
-  font-size: 13px;
-  overflow-wrap: anywhere;
-  margin: 10px 0 0;
-}
-
-#status + .intro-actions {
-  margin-top: 10px;
-}
-
-#status:empty,
-#avatarStatus:empty {
-  display: none;
+/* 操作反馈只给读屏播报，可见的图片数量显示在上传按钮旁。 */
+#status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 800px) {
