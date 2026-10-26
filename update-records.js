@@ -3,13 +3,7 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-10-27',
     pages: [
-      './Tools/Self-Intro-Card.html'
-    ]
-  },
-  {
-    date: '2026-10-26',
-    pages: [
-      './Tools/Relationship-Needs-Menu.html',
+      './Tools/Self-Intro-Card.html',
       './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',
@@ -18,7 +12,13 @@ window.PrismSelfUpdateGroups = [
       './Scales/Neurodiversity-Experience-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Orientation-Scale.html',
-      './Scales/Sexual-Preference-Scale.html',
+      './Scales/Sexual-Preference-Scale.html'
+    ]
+  },
+  {
+    date: '2026-10-26',
+    pages: [
+      './Tools/Relationship-Needs-Menu.html',
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',

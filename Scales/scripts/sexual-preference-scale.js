@@ -342,7 +342,7 @@
 
   function saveAnswers() {
     try {
-      localStorage.setItem(storageKey, JSON.stringify(collectAnswers()));
+      sessionStorage.setItem(storageKey, JSON.stringify(collectAnswers()));
     } catch (error) {
       console.warn('无法保存性偏好量表进度。', error);
     }
@@ -350,7 +350,7 @@
 
   function restoreAnswers() {
     try {
-      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      const saved = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
       Object.entries(saved).forEach(([name, value]) => {
         const select = form.elements.namedItem(name);
         if (select && Number.isFinite(Number(value))) select.value = String(value);
@@ -567,7 +567,7 @@
   function resetForm() {
     if (!window.confirm('确定清空全部作答和结果吗？此操作无法撤销。')) return;
     form.reset();
-    localStorage.removeItem(storageKey);
+    sessionStorage.removeItem(storageKey);
     result.style.display = 'none';
     window.PrismScale.destroyResultRadar('radarChart');
     window.PrismScale.updateProgress();

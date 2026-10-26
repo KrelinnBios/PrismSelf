@@ -261,11 +261,11 @@ function saveAnswersToLocalStorage() {
 		const select = form.elements[`q${i}`];
 		if (select) answers[`q${i}`] = select.value;
 	}
-	localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+	sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
 }
 
 function loadAnswersFromLocalStorage() {
-	const saved = localStorage.getItem(STORAGE_KEY);
+	const saved = sessionStorage.getItem(STORAGE_KEY);
 	if (!saved) return;
 	const answers = JSON.parse(saved);
 	const form = document.getElementById('sexualOrientationQuiz');
@@ -642,7 +642,7 @@ function resetQuiz() {
 	for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
 		if (form.elements[`q${i}`]) form.elements[`q${i}`].value = '';
 	}
-	localStorage.removeItem(STORAGE_KEY);
+	sessionStorage.removeItem(STORAGE_KEY);
 	document.getElementById('result').style.display = 'none';
 	['scoreSummary', 'typeJudgment', 'currentProfileAnalysis', 'mainInterpretation', 'deepPersonalAnalysis', 'sectionScores', 'personalizedSuggestions'].forEach(id => {
 		const element = document.getElementById(id);

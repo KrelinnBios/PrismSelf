@@ -792,7 +792,7 @@ function updateProgress() {
 	document.getElementById('globalProgressBar').style.width = percentage + '%';
 }
 
-// 保存所有答案到 localStorage
+// 保存所有答案到 sessionStorage
 function saveAnswersToLocalStorage() {
 	const form = document.getElementById('aromanticQuiz');
 	const answers = {};
@@ -802,12 +802,12 @@ function saveAnswersToLocalStorage() {
 			answers[`q${i}`] = select.value;
 		}
 	}
-	localStorage.setItem('aromanticQuizAnswers', JSON.stringify(answers));
+	sessionStorage.setItem('aromanticQuizAnswers', JSON.stringify(answers));
 }
 
-// 从 localStorage 加载答案
+// 从 sessionStorage 加载答案
 function loadAnswersFromLocalStorage() {
-	const saved = localStorage.getItem('aromanticQuizAnswers');
+	const saved = sessionStorage.getItem('aromanticQuizAnswers');
 	if (!saved) return;
 
 	const answers = JSON.parse(saved);
@@ -2053,7 +2053,7 @@ function generateSectionScoresTable(scores) {
 
 function resetForm() {
 	document.getElementById('aromanticQuiz').reset();
-	localStorage.removeItem('aromanticQuizAnswers');
+	sessionStorage.removeItem('aromanticQuizAnswers');
 	document.getElementById('result').style.display = 'none';
 	document.querySelectorAll('.explanation').forEach(e => e.classList.remove('show'));
 	if (window.PrismScale) window.PrismScale.destroyResultRadar('radarChart');

@@ -51,18 +51,18 @@
       form.querySelectorAll('select').forEach(select => {
         if (select.value) answers[select.name] = select.value;
       });
-      localStorage.setItem(storageKey, JSON.stringify(answers));
+      sessionStorage.setItem(storageKey, JSON.stringify(answers));
       updateProgress();
     }
 
     function restoreAnswers() {
       try {
-        const answers = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const answers = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
         form.querySelectorAll('select').forEach(select => {
           if (answers[select.name]) select.value = answers[select.name];
         });
       } catch (_) {
-        localStorage.removeItem(storageKey);
+        sessionStorage.removeItem(storageKey);
       }
       updateProgress();
     }
@@ -352,7 +352,7 @@
     function resetScale() {
       if (!window.confirm('确定要清空本页全部答案和结果吗？')) return;
       form.reset();
-      localStorage.removeItem(storageKey);
+      sessionStorage.removeItem(storageKey);
       result.style.display = 'none';
       window.__prismPersonalityResult = null;
       updateProgress();

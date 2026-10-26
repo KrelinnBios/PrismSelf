@@ -957,7 +957,7 @@ function updateProgress() {
 	document.getElementById('globalProgressBar').style.width = percentage + '%';
 }
 
-// 保存所有答案到 localStorage
+// 保存所有答案到 sessionStorage
 function saveAnswersToLocalStorage() {
 	const form = document.getElementById('asexualQuiz');
 	const answers = {};
@@ -967,12 +967,12 @@ function saveAnswersToLocalStorage() {
 			answers[`q${i}`] = select.value;
 		}
 	}
-	localStorage.setItem('asexualQuizAnswers', JSON.stringify(answers));
+	sessionStorage.setItem('asexualQuizAnswers', JSON.stringify(answers));
 }
 
-// 从 localStorage 加载答案
+// 从 sessionStorage 加载答案
 function loadAnswersFromLocalStorage() {
-	const saved = localStorage.getItem('asexualQuizAnswers');
+	const saved = sessionStorage.getItem('asexualQuizAnswers');
 	if (!saved) return;
 
 	const answers = JSON.parse(saved);
@@ -2178,7 +2178,7 @@ function resetForm() {
 	const form = document.getElementById('asexualQuiz');
 	const resultDiv = document.getElementById('result');
 	form.reset();
-	localStorage.removeItem('asexualQuizAnswers');
+	sessionStorage.removeItem('asexualQuizAnswers');
 	resultDiv.style.display = 'none';
 	document.querySelectorAll('.explanation').forEach(exp => exp.style.display = 'none');
 	if (window.PrismScale) window.PrismScale.destroyResultRadar('radarChart');

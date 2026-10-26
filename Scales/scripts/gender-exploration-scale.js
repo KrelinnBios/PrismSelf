@@ -450,12 +450,12 @@ function saveFormData() {
         const select = form?.querySelector(`[name="q${item.id}"]`);
         if (select) answers[`q${item.id}`] = select.value;
     });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
     updateProgress();
 }
 
 function loadFormData() {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = sessionStorage.getItem(STORAGE_KEY);
     if (!saved) {
         updateProgress();
         return false;
@@ -481,8 +481,8 @@ function loadFormData() {
 }
 
 function clearSavedFormData() {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem('genderQuizAnswers');
+    sessionStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem('genderQuizAnswers');
 }
 
 form?.addEventListener('change', saveFormData);

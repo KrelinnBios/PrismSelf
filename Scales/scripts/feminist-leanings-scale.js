@@ -226,11 +226,11 @@ function saveAnswersToLocalStorage() {
             answers[q.id] = select.value;
         }
     }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
 }
 
 function loadAnswersFromLocalStorage() {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = sessionStorage.getItem(STORAGE_KEY);
     if (!saved) return;
     try {
         const answers = JSON.parse(saved);
@@ -247,7 +247,7 @@ function loadAnswersFromLocalStorage() {
 }
 
 function clearLocalStorage() {
-    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(STORAGE_KEY);
 }
 
 // 生成表单

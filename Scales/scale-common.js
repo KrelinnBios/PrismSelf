@@ -17,6 +17,15 @@
 		return Object.assign({}, defaultConfig, window.PRISM_SCALE_CONFIG || {});
 	}
 
+	// 答案改为 sessionStorage 暂存（刷新保留、关闭即清除），顺带清掉旧版留在 localStorage 中的答案。
+	try {
+		const legacyKey = getConfig().storageKey;
+		if (legacyKey) localStorage.removeItem(legacyKey);
+		if (legacyKey === 'genderQuizAnswersV2') localStorage.removeItem('genderQuizAnswers');
+	} catch (error) {
+		// 存储不可用时没有旧数据需要清理。
+	}
+
 	function getForm(config) {
 		return config.formId ? document.getElementById(config.formId) : document.querySelector('form');
 	}
