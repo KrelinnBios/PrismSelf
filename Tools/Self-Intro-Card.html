@@ -21,7 +21,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610264">
+  <link rel="stylesheet" href="./tool-common.css?v=202610281">
   <link rel="stylesheet" href="../assets/theme.css?v=202610264">
   <script src="../assets/theme.js?v=202610264"></script>
   <script
@@ -89,6 +89,28 @@
 
         <section class="intro-panel" aria-labelledby="contentTitle">
           <h2 id="contentTitle"><span class="intro-step">02</span>关于我</h2>
+          <div class="intro-image-toolbar">
+            <label class="intro-field" for="avatarInput"><span>头像</span></label>
+            <div role="radiogroup" aria-label="头像框" class="intro-options">
+              <span class="intro-chip-label" aria-hidden="true">头像框：</span>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="round" checked>圆形</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="square">正方形</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="rounded">圆角正方形</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="rect-l">长方形（横向）</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="rounded-l">圆角长方形（横向）</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="rect-p">长方形（纵向）</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="rounded-p">圆角长方形（纵向）</label>
+              <label class="intro-option"><input type="radio" name="avatarShape" value="diamond">菱形</label>
+            </div>
+            <div role="radiogroup" aria-label="头像大小" class="intro-options">
+              <span class="intro-chip-label" aria-hidden="true">大小：</span>
+              <label class="intro-option"><input type="radio" name="avatarSize" value="l">大</label>
+              <label class="intro-option"><input type="radio" name="avatarSize" value="m" checked>中</label>
+              <label class="intro-option"><input type="radio" name="avatarSize" value="s">小</label>
+            </div>
+          </div>
+          <input class="intro-upload" id="avatarInput" type="file" accept="image/*" aria-label="选择头像图片">
+          <p id="avatarStatus" role="status" aria-live="polite"></p>
           <label class="intro-field"><span>填表 ID / 昵称</span><input id="nickname" type="text" maxlength="80" placeholder="希望别人如何称呼你"></label>
           <label class="intro-field"><span>昵称补充</span><input id="nicknameNote" type="text" maxlength="160" placeholder="例如：昵称的读音或由来"></label>
           <label class="intro-field"><span>我的性别认同</span><input id="identity" type="text" maxlength="160" placeholder="用你自己的语言描述，也可以留白"></label>
@@ -154,12 +176,20 @@
         <section class="intro-panel" aria-labelledby="freeTitle">
           <h2 id="freeTitle"><span class="intro-step">03</span>我的小角落</h2>
           <label class="intro-field"><span>补充文字</span><textarea id="notes" maxlength="600" rows="4" placeholder="写下任何你愿意分享的补充内容"></textarea></label>
-          <label class="intro-field" for="imageInput"><span>添加本地图片</span></label>
-          <p class="intro-hint" id="imageHint">最多 6 张，每张不超过 20 MB，可直接从手机相册选择。按添加顺序排版，保留完整画面。</p>
+          <div class="intro-image-toolbar">
+            <label class="intro-field" for="imageInput"><span>添加本地图片</span></label>
+            <div role="radiogroup" aria-label="图片排列" class="intro-options">
+              <label class="intro-option"><input type="radio" name="imageLayout" value="2col">两列错落</label>
+              <label class="intro-option"><input type="radio" name="imageLayout" value="3col" checked>三列错落</label>
+              <label class="intro-option"><input type="radio" name="imageLayout" value="manual">自由摆放</label>
+            </div>
+          </div>
+          <p class="intro-hint" id="imageHint">最多 9 张，每张不超过 20 MB，可直接从手机相册选择。两列 / 三列错落按原图比例排布，缩略图可拖动排序；自由摆放时在画布内拖动图片调整位置，点击图片后拖动右下角手柄调整大小，右键或长按图片可调整层级或移除。</p>
           <input class="intro-upload" id="imageInput" type="file" accept="image/*" multiple aria-describedby="imageHint">
+          <div class="intro-canvas-board" id="imageBoard" hidden></div>
           <div class="intro-images" id="imageList"></div>
-          <div class="intro-actions"><button class="button" id="resetButton" type="button">清空填写内容</button><button class="button primary" id="exportButton" type="button">下载 PNG 图片</button></div>
           <p id="status" role="status" aria-live="polite"></p>
+          <div class="intro-actions"><button class="button" id="resetButton" type="button">清空填写内容</button><button class="button primary" id="exportButton" type="button">下载 PNG 图片</button></div>
         </section>
       </form>
 
@@ -175,7 +205,9 @@
     const canvas = document.getElementById("cardCanvas");
     const context = canvas.getContext("2d");
     const status = document.getElementById("status");
+    const avatarStatus = document.getElementById("avatarStatus");
     const imageInput = document.getElementById("imageInput");
+    const avatarInput = document.getElementById("avatarInput");
     const exportButton = document.getElementById("exportButton");
     const resetButton = document.getElementById("resetButton");
     const customColors = document.getElementById("customColors");
@@ -230,7 +262,23 @@
       wenkai: '"LXGW WenKai", "霞鹜文楷", "KaiTi", "STKaiti", "Kaiti SC", serif'
     };
     let images = [];
+    let avatarImage = null;
+    let avatarUrl = null;
     let renderFrame = 0;
+    let dragIndex = -1;
+    let dropMarkTile = null;
+    let boardDrag = null;
+    let boardResize = null;
+    let selectedItem = null;
+    let activePlacements = [];
+    let imageAreaTop = 0;
+    let draggingImage = null;
+    let pendingFocus = null;
+    const autoSpots = new Map();
+    const CARD_SIDE = 64;
+    const CARD_WIDTH = 1080;
+    const IMAGE_AREA_WIDTH = CARD_WIDTH - CARD_SIDE * 2;
+    const RATIO_OF = { s: 0.55, m: 0.75, l: 1 };
 
     function value(id) { return document.getElementById(id).value.trim(); }
     function selected(name, extraId) {
@@ -279,6 +327,15 @@
       const family = fonts[value("cardFont")];
       const side = 64;
       const width = 1080 - side * 2;
+      // 头像画在卡片右上角，大小从下方单选组读取；行区从头像下方开始，避免文字被盖住。
+      const avatarSizes = { s: 120, m: 170, l: 220 };
+      const avatarBox = avatarImage ? { size: avatarSizes[form.elements.avatarSize.value] || avatarSizes.m } : null;
+      if (avatarBox) {
+        // 靠近卡片顶部；右缘与内容块边缘对齐（与“关于我”标题块同样留 side 的边距）。
+        avatarBox.y = 40;
+        avatarBox.x = 1080 - side - avatarBox.size;
+      }
+      const rowsTop = avatarBox ? Math.max(240, avatarBox.y + avatarBox.size + 26) : 240;
       const rows = cardRows();
       context.font = `34px ${family}`;
       const layout = rows.map(([label, answer]) => {
@@ -296,10 +353,14 @@
         return { label, lines };
       });
       const noteLines = value("notes") ? wrapCanvasText(value("notes"), width) : [];
-      const cellWidth = (width - 24) / 2;
-      const cellHeight = 300;
-      const freeHeight = noteLines.length || images.length ? 88 + noteLines.length * 48 + (noteLines.length ? 20 : 0) + Math.ceil(images.length / 2) * (cellHeight + 24) : 0;
-      const logicalHeight = 220 + layout.reduce((sum, row) => sum + 65 + row.lines.reduce((height, line) => height + line.lineHeight, 0), 0) + freeHeight + 100;
+      const gap = 24;
+      const colCount = form.elements.imageLayout.value === "2col" ? 2 : 3;
+      const colWidth = (width - gap * (colCount - 1)) / colCount;
+      // 图片高度随原图比例与所选大小变化，按所选列数错落排布并动态撑起卡片高度。
+      const placements = layoutImages(images, width, colWidth, gap, 560);
+      const areaHeight = placements.reduce((h, p) => Math.max(h, p.y + p.h), 0);
+      const freeHeight = noteLines.length || images.length ? 88 + noteLines.length * 48 + (noteLines.length ? 20 : 0) + areaHeight + gap : 0;
+      const logicalHeight = 220 + (rowsTop - 240) + layout.reduce((sum, row) => sum + 65 + row.lines.reduce((height, line) => height + line.lineHeight, 0), 0) + freeHeight + 100;
       // 极多换行时限制位图尺寸，避免超过移动浏览器的 Canvas 上限。
       const scale = Math.min(1, 8192 / logicalHeight);
       canvas.width = Math.round(1080 * scale);
@@ -315,7 +376,53 @@
       context.font = `24px ${family}`;
       context.fillStyle = palette.accent;
       context.fillText("我的认同 · 我的称呼 · 我的表达", side + 24, 185);
-      let y = 240;
+      // 头像：按所选边框形状裁切并加细描边。
+      if (avatarBox) {
+        const { x: ax, y: ay, size } = avatarBox;
+        // 边框形状：圆形 / 正方形（小圆角）/ 横向长方形（框宽铺满、垂直居中）/
+        // 纵向长方形（框高铺满、水平居中）/ 菱形 / 圆角正方形与圆角长方形（大圆角）。
+        const shape = form.elements.avatarShape.value;
+        const rectH = size * 0.78;
+        const rectY = ay + (size - rectH) / 2;
+        const rectW = size * 0.78;
+        const rectX = ax + (size - rectW) / 2;
+        const avatarPath = () => {
+          context.beginPath();
+          if (shape === "square") {
+            if (context.roundRect) context.roundRect(ax, ay, size, size, 10); else context.rect(ax, ay, size, size);
+          } else if (shape === "rect-l") {
+            if (context.roundRect) context.roundRect(ax, rectY, size, rectH, 6); else context.rect(ax, rectY, size, rectH);
+          } else if (shape === "rect-p") {
+            if (context.roundRect) context.roundRect(rectX, ay, rectW, size, 6); else context.rect(rectX, ay, rectW, size);
+          } else if (shape === "diamond") {
+            context.moveTo(ax + size / 2, ay);
+            context.lineTo(ax + size, ay + size / 2);
+            context.lineTo(ax + size / 2, ay + size);
+            context.lineTo(ax, ay + size / 2);
+            context.closePath();
+          } else if (shape === "rounded") {
+            if (context.roundRect) context.roundRect(ax, ay, size, size, 44); else context.rect(ax, ay, size, size);
+          } else if (shape === "rounded-l") {
+            if (context.roundRect) context.roundRect(ax, rectY, size, rectH, 36); else context.rect(ax, rectY, size, rectH);
+          } else if (shape === "rounded-p") {
+            if (context.roundRect) context.roundRect(rectX, ay, rectW, size, 36); else context.rect(rectX, ay, rectW, size);
+          } else {
+            context.arc(ax + size / 2, ay + size / 2, size / 2, 0, Math.PI * 2);
+          }
+        };
+        context.save();
+        avatarPath();
+        context.clip();
+        context.drawImage(avatarImage, ax, ay, size, size);
+        context.restore();
+        context.save();
+        avatarPath();
+        context.strokeStyle = palette.line;
+        context.lineWidth = 3;
+        context.stroke();
+        context.restore();
+      }
+      let y = rowsTop;
       context.textBaseline = "top";
       for (const row of layout) {
         context.font = `26px ${family}`;
@@ -346,16 +453,15 @@
           y += 48;
         }
         if (noteLines.length) y += 20;
-        images.forEach((item, index) => {
-          const x = side + (index % 2) * (cellWidth + 24);
-          const top = y + Math.floor(index / 2) * (cellHeight + 24);
-          context.fillStyle = palette.soft;
-          context.fillRect(x, top, cellWidth, cellHeight);
-          const scale = Math.min((cellWidth - 24) / item.image.width, (cellHeight - 24) / item.image.height);
-          const w = item.image.width * scale;
-          const h = item.image.height * scale;
-          context.drawImage(item.image, x + (cellWidth - w) / 2, top + (cellHeight - h) / 2, w, h);
-        });
+        imageAreaTop = y;
+        activePlacements = placements;
+        // 自由摆放允许图片相互重叠；拖动中的图片最后绘制，保持置顶可见。
+        let topPlacement = null;
+        for (const pl of placements) {
+          if (draggingImage && pl.item === draggingImage.item) { topPlacement = pl; continue; }
+          context.drawImage(pl.item.image, side + pl.x, imageAreaTop + pl.y, pl.w, pl.h);
+        }
+        if (topPlacement) context.drawImage(topPlacement.item.image, side + topPlacement.x, imageAreaTop + topPlacement.y, topPlacement.w, topPlacement.h);
       }
       context.font = `22px ${family}`;
       context.fillStyle = palette.ink;
@@ -370,34 +476,495 @@
       renderFrame = requestAnimationFrame(renderCard);
     }
 
+    // 拖动排序时在悬停目标缩略图上描边提示落点，drop 或结束拖动后清理。
+    function markDropTarget(tile) {
+      if (dropMarkTile === tile) return;
+      if (dropMarkTile) dropMarkTile.classList.remove("is-drop-target");
+      dropMarkTile = tile;
+      tile.classList.add("is-drop-target");
+    }
+
+    function clearDropMark() {
+      if (!dropMarkTile) return;
+      dropMarkTile.classList.remove("is-drop-target");
+      dropMarkTile = null;
+    }
+
+    // 计算小角落里每张图的位置：两列 / 三列按原图比例错落排布（自由摆放下阈值沿用三列）；
+    // 自由摆放模式下若有手动坐标则使用，否则沿用自动结果。
+    function layoutImages(list, areaWidth, colWidth, gap, maxHeight) {
+      const manual = form.elements.imageLayout.value === "manual";
+      const cols = form.elements.imageLayout.value === "2col" ? [0, 0] : [0, 0, 0];
+      autoSpots.clear();
+      const colMaxW = cols.map(() => 0);
+      const sized = list.map((item) => {
+        const ar = item.image.height / item.image.width;
+        // 画布角部手柄记录的自定义缩放优先；自动模式下不超过一列宽。
+        let scale = item.scale ?? (RATIO_OF[item.size] || RATIO_OF.m);
+        if (!manual) scale = Math.min(scale, 1);
+        let w = colWidth * scale;
+        let h = w * ar;
+        if (!manual && h > maxHeight) { h = maxHeight; w = h / ar; }
+        const col = cols.indexOf(Math.min(...cols));
+        const y = cols[col];
+        cols[col] += h + gap;
+        colMaxW[col] = Math.max(colMaxW[col], w);
+        return { item, col, y, w, h };
+      });
+      // 各列按实际最宽图片收拢并紧挨排布，整组在区域内水平居中，避免图片缩小后列间留出大片空白。
+      const usedCols = colMaxW.filter((cw) => cw > 0);
+      const blockWidth = usedCols.reduce((sum, cw) => sum + cw, 0) + gap * Math.max(0, usedCols.length - 1);
+      const colX = [];
+      let cursor = Math.max(0, (areaWidth - blockWidth) / 2);
+      colMaxW.forEach((cw, i) => { colX[i] = cursor; if (cw > 0) cursor += cw + gap; });
+      return sized.map(({ item, col, y: spotY, w, h }) => {
+        const spot = { x: colX[col] + (colMaxW[col] - w) / 2, y: spotY, w, h };
+        autoSpots.set(item, spot);
+        let x = spot.x;
+        let y = spot.y;
+        if (manual && item.pos) { x = item.pos.x; y = item.pos.y; }
+        x = Math.min(Math.max(x, 0), Math.max(0, areaWidth - w));
+        y = Math.max(y, 0);
+        return { item, x, y, w, h };
+      });
+    }
+
     function renderImages() {
       const list = document.getElementById("imageList");
       list.replaceChildren();
-      images.forEach((item) => {
+      list.setAttribute("role", "list");
+      if (draggingImage && !images.includes(draggingImage.item)) draggingImage = null;
+      const manual = form.elements.imageLayout.value === "manual";
+      // 自由摆放的交互都在画布上完成，下方缩略图列表不再显示。
+      list.hidden = manual;
+      list.dataset.cols = form.elements.imageLayout.value === "2col" ? "2" : "3";
+      if (!manual) images.forEach((item, index) => {
         const tile = document.createElement("div");
         tile.className = "intro-image";
+        // 缩略图支持鼠标拖动排序；大小、顺序与删除统一在右键 / 长按菜单里完成。
+        tile.draggable = true;
+        tile.tabIndex = 0;
+        tile.setAttribute("role", "listitem");
+        tile.setAttribute("aria-label", `第 ${index + 1} 张图片：${item.name}，可拖动调整顺序，右键或 Shift+F10 打开菜单`);
         const thumbnail = document.createElement("img");
+        thumbnail.draggable = false;
         thumbnail.src = item.url;
         thumbnail.alt = item.name;
         const name = document.createElement("span");
         name.textContent = item.name;
-        const remove = document.createElement("button");
-        remove.type = "button";
-        remove.className = "intro-image-remove";
-        remove.textContent = "×";
-        remove.setAttribute("aria-label", `移除图片：${item.name}`);
-        remove.addEventListener("click", () => {
-          images = images.filter((image) => image !== item);
-          URL.revokeObjectURL(item.url);
-          renderImages();
-          renderCard();
-          imageInput.focus();
-          status.textContent = "图片已移除。";
+        let holdTimer = 0;
+        const cancelHold = () => { if (holdTimer) { clearTimeout(holdTimer); holdTimer = 0; } };
+        tile.addEventListener("pointerdown", (event) => {
+          // 触屏与笔：长按呼出图片菜单，移动即取消（鼠标用右键）。
+          if (event.pointerType !== "mouse") {
+            const px = event.clientX;
+            const py = event.clientY;
+            holdTimer = setTimeout(() => { holdTimer = 0; openImageMenu(item, px, py, () => focusTileOf(item)); }, 550);
+          }
         });
-        tile.append(thumbnail, name, remove);
+        tile.addEventListener("pointermove", cancelHold);
+        tile.addEventListener("pointerup", cancelHold);
+        tile.addEventListener("pointercancel", cancelHold);
+        tile.addEventListener("pointerleave", cancelHold);
+        tile.addEventListener("contextmenu", (event) => {
+          event.preventDefault();
+          cancelHold();
+          let mx = event.clientX;
+          let my = event.clientY;
+          if (!mx && !my) {
+            const rect = tile.getBoundingClientRect();
+            mx = rect.left + rect.width / 2;
+            my = rect.top + rect.height / 2;
+          }
+          openImageMenu(item, mx, my, () => focusTileOf(item));
+        });
+        tile.addEventListener("dragstart", (event) => {
+          dragIndex = index;
+          tile.classList.add("is-dragging");
+          if (event.dataTransfer) {
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text/plain", String(index));
+          }
+        });
+        tile.addEventListener("dragend", () => {
+          dragIndex = -1;
+          clearDropMark();
+          tile.classList.remove("is-dragging");
+        });
+        tile.addEventListener("dragover", (event) => {
+          if (dragIndex === -1 || dragIndex === index) return;
+          event.preventDefault();
+          event.dataTransfer.dropEffect = "move";
+          markDropTarget(tile);
+        });
+        tile.addEventListener("drop", (event) => {
+          event.preventDefault();
+          clearDropMark();
+          const from = dragIndex;
+          dragIndex = -1;
+          if (from === -1 || from === index) return;
+          // 落下的图片占据目标缩略图的格位，中间的图片依次前移。
+          const [moved] = images.splice(from, 1);
+          images.splice(index, 0, moved);
+          renderImages();
+          status.textContent = `图片顺序已调整：${moved.name} 现在排第 ${index + 1} 张。`;
+        });
+        tile.addEventListener("keydown", (event) => {
+          if (event.target !== tile) return;
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          const target = event.key === "ArrowLeft" ? index - 1 : index + 1;
+          if (target < 0 || target >= images.length) return;
+          event.preventDefault();
+          const [moved] = images.splice(index, 1);
+          images.splice(target, 0, moved);
+          renderImages();
+          document.getElementById("imageList").children[target].focus();
+          status.textContent = `图片顺序已调整：${moved.name} 现在排第 ${target + 1} 张。`;
+        });
+        tile.append(thumbnail, name);
         list.append(tile);
+        if (pendingFocus && pendingFocus.item === item) {
+          tile.focus();
+          pendingFocus = null;
+        }
       });
+      // 自由摆放时重建左侧拖放板，板面尺寸依据最新排版。
+      renderCard();
+      renderBoard();
     }
+
+    // 左侧拖放板：与预览的小角落区域等比，自由摆放时按住缩略图调整位置。
+    function boardPoint(event) {
+      const rect = document.getElementById("imageBoard").getBoundingClientRect();
+      const k = IMAGE_AREA_WIDTH / rect.width;
+      return { x: (event.clientX - rect.left) * k, y: (event.clientY - rect.top) * k };
+    }
+
+    function focusTileOf(item) {
+      const i = images.indexOf(item);
+      // 自由摆放下焦点还给画布内的缩略图；自动错落给下方缩略图列表。
+      const host = form.elements.imageLayout.value === "manual"
+        ? document.getElementById("imageBoard")
+        : document.getElementById("imageList");
+      const target = host.children[i];
+      if (target) target.focus(); else imageInput.focus();
+    }
+
+    function moveImageInList(item, delta) {
+      const from = images.indexOf(item);
+      const to = from + delta;
+      if (from === -1 || to < 0 || to >= images.length) return;
+      images.splice(from, 1);
+      images.splice(to, 0, item);
+      pendingFocus = { item };
+      renderImages();
+      status.textContent = `图片顺序已调整：${item.name} 现在排第 ${to + 1} 张。`;
+    }
+
+    // 自由摆放的层级调整：列表次序即绘制次序，靠后的图片盖在靠前图片之上。
+    function stackImage(item, to, label) {
+      const top = images.length - 1;
+      const target = Math.min(Math.max(to, 0), top);
+      const from = images.indexOf(item);
+      if (from === -1 || from === target) {
+        status.textContent = target === top ? `${item.name} 已在最上层。` : `${item.name} 已在最下层。`;
+        return;
+      }
+      images.splice(from, 1);
+      images.splice(target, 0, item);
+      pendingFocus = { item };
+      renderImages();
+      status.textContent = `已将 ${item.name} ${label}。`;
+    }
+
+    function renderBoard() {
+      const board = document.getElementById("imageBoard");
+      const manual = form.elements.imageLayout.value === "manual";
+      board.hidden = !manual || !images.length;
+      if (board.hidden) return;
+      board.replaceChildren();
+      board.setAttribute("role", "list");
+      board.setAttribute("aria-label", "自由摆放画布，可拖动图片调整位置，右键或长按图片打开菜单");
+      // 板面宽度对应卡片小角落的图片区（左右边距内 952 逻辑像素），坐标按比例换算。
+      const k = board.clientWidth / IMAGE_AREA_WIDTH;
+      if (!k) return;
+      // 缩放比例以列宽为基准，切换排列方式时保持一致的比例感。
+      const colCount = form.elements.imageLayout.value === "2col" ? 2 : 3;
+      const boardColWidth = (IMAGE_AREA_WIDTH - 24 * (colCount - 1)) / colCount;
+      let needHeight = 0;
+      for (const pl of activePlacements) {
+        const thumb = document.createElement("div");
+        thumb.className = "intro-board-thumb" + (manual ? " is-placeable" : "");
+        if (selectedItem === pl.item) thumb.classList.add("is-selected");
+        thumb.tabIndex = 0;
+        thumb.setAttribute("role", "listitem");
+        thumb.setAttribute("aria-label", `图片：${pl.item.name}，按方向键微调位置，回车或 Shift+F10 打开菜单`);
+        thumb.style.left = `${pl.x * k}px`;
+        thumb.style.top = `${pl.y * k}px`;
+        thumb.style.width = `${pl.w * k}px`;
+        thumb.style.height = `${pl.h * k}px`;
+        const img = document.createElement("img");
+        img.draggable = false;
+        img.src = pl.item.url;
+        img.alt = "";
+        // 选中态下才出现的缩放手柄：按住圆点沿对角拖动，等比调整大小。
+        const handle = document.createElement("div");
+        handle.className = "intro-board-resize";
+        handle.title = "按住拖动调整大小";
+        handle.addEventListener("pointerdown", (event) => {
+          event.stopPropagation();
+          cancelHold();
+          const spot = autoSpots.get(pl.item) || { x: 0, y: 0 };
+          if (!pl.item.pos) pl.item.pos = { x: spot.x, y: spot.y };
+          boardResize = {
+            item: pl.item,
+            thumb,
+            k,
+            colWidth: boardColWidth,
+            ar: pl.item.image.height / pl.item.image.width,
+            startX: event.clientX,
+            startY: event.clientY,
+            startW: pl.w,
+            startScale: pl.item.scale ?? (RATIO_OF[pl.item.size] || RATIO_OF.m),
+            moved: false
+          };
+          thumb.classList.add("is-resizing");
+          event.preventDefault();
+        });
+        thumb.append(img, handle);
+        let holdTimer = 0;
+        const cancelHold = () => { if (holdTimer) { clearTimeout(holdTimer); holdTimer = 0; } };
+        thumb.addEventListener("pointerdown", (event) => {
+          // 触屏与笔长按呼出菜单（移动取消）；鼠标用右键。
+          if (event.pointerType !== "mouse") {
+            const px = event.clientX;
+            const py = event.clientY;
+            holdTimer = setTimeout(() => { holdTimer = 0; openImageMenu(pl.item, px, py, () => focusTileOf(pl.item)); }, 550);
+          }
+          // 点击图片即选中，右下角出现缩放手柄。
+          if (selectedItem !== pl.item) {
+            const prev = document.querySelector("#imageBoard .intro-board-thumb.is-selected");
+            if (prev) prev.classList.remove("is-selected");
+            selectedItem = pl.item;
+            thumb.classList.add("is-selected");
+          }
+          if (!manual) return;
+          if (!pl.item.pos) {
+            const spot = autoSpots.get(pl.item) || { x: 0, y: 0 };
+            pl.item.pos = { x: spot.x, y: spot.y };
+          }
+          const p = boardPoint(event);
+          boardDrag = { item: pl.item, thumb, k, w: pl.w, h: pl.h, dx: p.x - pl.item.pos.x, dy: p.y - pl.item.pos.y, moved: false };
+          draggingImage = { item: pl.item, w: pl.w };
+          thumb.classList.add("is-placing");
+          event.preventDefault();
+        });
+        thumb.addEventListener("pointermove", cancelHold);
+        thumb.addEventListener("pointerup", cancelHold);
+        thumb.addEventListener("pointerleave", cancelHold);
+        thumb.addEventListener("pointercancel", cancelHold);
+        thumb.addEventListener("contextmenu", (event) => {
+          event.preventDefault();
+          cancelHold();
+          let mx = event.clientX;
+          let my = event.clientY;
+          if (!mx && !my) {
+            const rect = thumb.getBoundingClientRect();
+            mx = rect.left + rect.width / 2;
+            my = rect.top + rect.height / 2;
+          }
+          openImageMenu(pl.item, mx, my, () => focusTileOf(pl.item));
+        });
+        thumb.addEventListener("keydown", (event) => {
+          if (event.target !== thumb) return;
+          if (event.key !== "Enter" && event.key !== " " && !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+          event.preventDefault();
+          if (event.key === "Enter" || event.key === " ") {
+            const rect = thumb.getBoundingClientRect();
+            openImageMenu(pl.item, rect.left + rect.width / 2, rect.top + rect.height / 2, () => focusTileOf(pl.item));
+            return;
+          }
+          const spot = autoSpots.get(pl.item) || { x: 0, y: 0, w: 0, h: 0 };
+          if (!pl.item.pos) pl.item.pos = { x: spot.x, y: spot.y };
+          const step = 32;
+          const dx = event.key === "ArrowLeft" ? -step : event.key === "ArrowRight" ? step : 0;
+          const dy = event.key === "ArrowUp" ? -step : event.key === "ArrowDown" ? step : 0;
+          pl.item.pos.x = Math.min(Math.max(pl.item.pos.x + dx, 0), Math.max(0, IMAGE_AREA_WIDTH - spot.w));
+          pl.item.pos.y = Math.max(pl.item.pos.y + dy, 0);
+          thumb.style.left = `${pl.item.pos.x * k}px`;
+          thumb.style.top = `${pl.item.pos.y * k}px`;
+          const board = document.getElementById("imageBoard");
+          const need = (pl.item.pos.y + spot.h) * k;
+          if (need > (parseFloat(board.style.height) || 0)) board.style.height = `${need}px`;
+          scheduleRender();
+          status.textContent = `位置已微调：${pl.item.name}。`;
+        });
+        board.append(thumb);
+        needHeight = Math.max(needHeight, pl.y + pl.h);
+        if (pendingFocus && pendingFocus.item === pl.item) {
+          thumb.focus();
+          pendingFocus = null;
+        }
+      }
+      board.style.height = `${needHeight * k}px`;
+    }
+
+    function moveBoardDrag(event) {
+      const d = boardDrag;
+      const p = boardPoint(event);
+      const prevX = d.item.pos.x;
+      const prevY = d.item.pos.y;
+      d.item.pos = {
+        x: Math.min(Math.max(p.x - d.dx, 0), Math.max(0, IMAGE_AREA_WIDTH - d.w)),
+        y: Math.max(p.y - d.dy, 0)
+      };
+      if (Math.abs(d.item.pos.x - prevX) + Math.abs(d.item.pos.y - prevY) > 8) d.moved = true;
+      d.thumb.style.left = `${d.item.pos.x * d.k}px`;
+      d.thumb.style.top = `${d.item.pos.y * d.k}px`;
+      const board = document.getElementById("imageBoard");
+      const need = (d.item.pos.y + d.h) * d.k;
+      if (need > (parseFloat(board.style.height) || 0)) board.style.height = `${need}px`;
+      scheduleRender();
+    }
+
+    function endBoardDrag(cancelled) {
+      if (!boardDrag) return;
+      const d = boardDrag;
+      boardDrag = null;
+      draggingImage = null;
+      d.thumb.classList.remove("is-placing");
+      scheduleRender();
+      if (!cancelled && d.moved) status.textContent = `已移动图片：${d.item.name}。`;
+    }
+
+    // 选中图片后拖右下角手柄：等比缩放，左上角锚点不动。
+    function moveBoardResize(event) {
+      const d = boardResize;
+      const grow = Math.max(
+        (event.clientX - d.startX) / d.k,
+        (event.clientY - d.startY) / d.k / d.ar
+      );
+      const w = Math.min(Math.max(d.startW + grow, d.colWidth * 0.15), IMAGE_AREA_WIDTH);
+      d.item.scale = w / d.colWidth;
+      d.thumb.style.width = `${w * d.k}px`;
+      d.thumb.style.height = `${w * d.ar * d.k}px`;
+      const board = document.getElementById("imageBoard");
+      const need = (d.item.pos.y + w * d.ar) * d.k;
+      if (need > (parseFloat(board.style.height) || 0)) board.style.height = `${need}px`;
+      d.moved = true;
+      scheduleRender();
+    }
+
+    function endBoardResize(cancelled) {
+      if (!boardResize) return;
+      const d = boardResize;
+      boardResize = null;
+      d.thumb.classList.remove("is-resizing");
+      if (cancelled || !d.moved) {
+        d.item.scale = d.startScale;
+        d.thumb.style.width = `${d.startW * d.k}px`;
+        d.thumb.style.height = `${d.startW * d.ar * d.k}px`;
+        scheduleRender();
+        return;
+      }
+      scheduleRender();
+      status.textContent = `已调整大小：${d.item.name}。`;
+    }
+
+    // 点击画布空白处取消选中，隐藏缩放手柄。
+    document.getElementById("imageBoard").addEventListener("pointerdown", (event) => {
+      if (event.target === event.currentTarget && selectedItem) {
+        selectedItem = null;
+        document.querySelector("#imageBoard .intro-board-thumb.is-selected")?.classList.remove("is-selected");
+      }
+    });
+
+    window.addEventListener("pointermove", (event) => {
+      if (boardDrag) moveBoardDrag(event); else if (boardResize) moveBoardResize(event);
+    });
+    window.addEventListener("pointerup", () => { endBoardDrag(false); endBoardResize(false); });
+    window.addEventListener("pointercancel", () => { endBoardDrag(true); endBoardResize(true); });
+
+    // 画布图片的菜单：改大小、调顺序、移除；右键 / Shift+F10 / 长按均可呼出。
+    let openMenu = null;
+    let menuOpener = null;
+
+    function closeImageMenu() {
+      if (!openMenu) return;
+      openMenu.remove();
+      openMenu = null;
+      const opener = menuOpener;
+      menuOpener = null;
+      if (opener) opener();
+    }
+
+    function openImageMenu(item, x, y, opener) {
+      if (openMenu) { openMenu.remove(); openMenu = null; menuOpener = null; }
+      const menu = document.createElement("div");
+      menu.className = "intro-image-menu";
+      menu.setAttribute("role", "menu");
+      menu.setAttribute("aria-label", `图片菜单：${item.name}`);
+      menu.tabIndex = -1;
+      menu.addEventListener("keydown", (event) => {
+        if (event.target !== menu) return;
+        if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+        event.preventDefault();
+        const items = Array.from(menu.querySelectorAll("button"));
+        (event.key === "ArrowDown" ? items[0] : items[items.length - 1]).focus();
+      });
+      const addMenuItem = (label, action) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.setAttribute("role", "menuitem");
+        button.textContent = label;
+        button.addEventListener("click", () => {
+          closeImageMenu();
+          action();
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+          event.preventDefault();
+          const items = Array.from(menu.querySelectorAll("button"));
+          const next = items[(items.indexOf(button) + (event.key === "ArrowDown" ? 1 : items.length - 1)) % items.length];
+          next.focus();
+        });
+        menu.append(button);
+      };
+      if (form.elements.imageLayout.value === "manual") {
+        // 自由摆放没有前后顺序的概念，提供叠放层级调整（数组次序 = 绘制次序，靠后者在上）。
+        addMenuItem("置顶", () => stackImage(item, images.length - 1, "置顶"));
+        addMenuItem("上移一层", () => stackImage(item, images.indexOf(item) + 1, "上移一层"));
+        addMenuItem("下移一层", () => stackImage(item, images.indexOf(item) - 1, "下移一层"));
+        addMenuItem("置底", () => stackImage(item, 0, "置底"));
+      } else {
+        addMenuItem("前移一位", () => moveImageInList(item, -1));
+        addMenuItem("后移一位", () => moveImageInList(item, +1));
+      }
+      addMenuItem("移除图片", () => {
+        const from = images.indexOf(item);
+        if (from !== -1) {
+          images.splice(from, 1);
+          URL.revokeObjectURL(item.url);
+        }
+        pendingFocus = null;
+        renderImages();
+        imageInput.focus();
+        status.textContent = "图片已移除。";
+      });
+      document.body.append(menu);
+      menu.style.left = `${Math.min(Math.max(x, 8), Math.max(8, window.innerWidth - menu.offsetWidth - 8))}px`;
+      menu.style.top = `${Math.min(Math.max(y, 8), Math.max(8, window.innerHeight - menu.offsetHeight - 8))}px`;
+      openMenu = menu;
+      menuOpener = opener || null;
+      menu.focus();
+    }
+
+    document.addEventListener("pointerdown", (event) => {
+      if (openMenu && !openMenu.contains(event.target)) closeImageMenu();
+    }, true);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && openMenu) closeImageMenu();
+    });
 
     // 手机原图可能有数千万像素，读取后缩到卡片所需尺寸，避免移动端内存不足。
     async function loadLocalImage(file) {
@@ -430,7 +997,7 @@
       let added = 0;
       try {
         for (const file of files) {
-          if (images.length >= 6) { errors.push("最多添加 6 张图片，其余图片未添加"); break; }
+          if (images.length >= 9) { errors.push("最多添加 9 张图片，其余图片未添加"); break; }
           // 部分手机浏览器不提供文件类型，留给解码结果判断。
           if ((file.type && !file.type.startsWith("image/")) || file.size > 20 * 1024 * 1024) {
             errors.push(`${file.name}：请选择不超过 20 MB 的图片`);
@@ -438,7 +1005,7 @@
           }
           try {
             const { image, url } = await loadLocalImage(file);
-            images.push({ image, url, name: file.name });
+            images.push({ image, url, name: file.name, size: "m" });
             added += 1;
           } catch (error) {
             errors.push(`${file.name}：图片无法读取，可换用 JPEG 或 PNG`);
@@ -481,6 +1048,23 @@
       }
     });
 
+    avatarInput.addEventListener("change", async () => {
+      const file = avatarInput.files && avatarInput.files[0];
+      if (!file) return;
+      try {
+        const { image, url } = await loadLocalImage(file);
+        if (avatarUrl) URL.revokeObjectURL(avatarUrl);
+        avatarImage = image;
+        avatarUrl = url;
+        // 读取成功后保留选择，让文件框直接显示所选文件名。
+        avatarStatus.textContent = "";
+      } catch (error) {
+        avatarInput.value = "";
+        avatarStatus.textContent = "头像读取失败，请换一张图片。";
+      }
+      scheduleRender();
+    });
+
     resetButton.addEventListener("click", () => {
       if (!window.confirm("确定清空填写的文字、选项和图片吗？配色与字体会保留。")) return;
       for (const input of form.querySelectorAll('input[type="text"], textarea')) input.value = "";
@@ -488,13 +1072,25 @@
       images.forEach((item) => URL.revokeObjectURL(item.url));
       images = [];
       imageInput.value = "";
+      if (avatarUrl) URL.revokeObjectURL(avatarUrl);
+      avatarImage = null;
+      avatarUrl = null;
+      avatarInput.value = "";
+      avatarStatus.textContent = "";
       renderImages();
       renderCard();
-      status.textContent = "填写内容已清空，配色与字体已保留。";
+      status.textContent = "填写内容已清空，配色与字体会保留。";
     });
     form.addEventListener("submit", (event) => event.preventDefault());
     form.addEventListener("input", () => { syncCustomPalette(); scheduleRender(); });
-    form.addEventListener("change", () => { syncCustomPalette(); scheduleRender(); });
+    form.addEventListener("change", (event) => {
+      if (event.target && event.target.name === "imageLayout") {
+        // 切换排列方式后，缩略图提示与键盘行为随之变化。
+        renderImages();
+      }
+      syncCustomPalette();
+      scheduleRender();
+    });
     syncCustomPalette();
     renderCard();
   </script>

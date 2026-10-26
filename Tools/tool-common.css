@@ -1258,6 +1258,41 @@ details.topic-card:not([open]) summary.topic-head {
   border: 0;
 }
 
+/* 图片/头像上传区：小标题整行，排列方式按钮组并排在下方一行。 */
+.intro-image-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-top: 18px;
+}
+
+.intro-image-toolbar .intro-field {
+  margin-top: 0;
+  flex: 1 1 100%;
+}
+
+.intro-image-toolbar + .intro-upload {
+  margin-top: 10px;
+}
+
+/* 标题后第一个控件、正文块与按钮组之间收窄间距，避免区块内显得松散。 */
+.intro-panel h2 + .intro-field,
+.intro-panel h2 + .intro-image-toolbar {
+  margin-top: 8px;
+}
+
+.intro-field + .intro-image-toolbar {
+  margin-top: 12px;
+}
+
+/* 芯片组前缀标签（形状：/大小：），仅作视觉提示。 */
+.intro-chip-label {
+  align-self: center;
+  color: var(--ink-mid);
+  font-size: 13px;
+}
+
 .intro-options {
   display: flex;
   flex-wrap: wrap;
@@ -1396,9 +1431,18 @@ details.topic-card:not([open]) summary.topic-head {
 
 .intro-images {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 14px;
+}
+
+/* 自由摆放时缩略图列表隐藏，避免 grid 覆盖 hidden 后仍留下空白边距。 */
+.intro-images[hidden] {
+  display: none;
+}
+
+.intro-images[data-cols="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .intro-image {
@@ -1407,6 +1451,26 @@ details.topic-card:not([open]) summary.topic-head {
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: 10px;
+  cursor: grab;
+}
+
+.intro-image:active {
+  cursor: grabbing;
+}
+
+/* 拖动排序：拖动中的缩略图半透明，悬停目标用强调色描边提示落点。 */
+.intro-image.is-dragging {
+  opacity: 0.55;
+}
+
+.intro-image.is-drop-target {
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+.intro-image:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
 }
 
 .intro-image img {
@@ -1424,36 +1488,128 @@ details.topic-card:not([open]) summary.topic-head {
   margin: 6px 0;
 }
 
-.intro-image-remove {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  padding: 0;
+/* 画布图片的右键 / 长按菜单：贴近指针位置的浮层，含设大小、调顺序、移除。 */
+.intro-image-menu {
+  position: fixed;
+  z-index: 60;
+  min-width: 148px;
+  max-height: calc(100vh - 16px);
+  padding: 6px;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 10px;
   background: var(--paper);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 22%);
+  overflow-y: auto;
+}
+
+.intro-image-menu button {
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 20px;
-  line-height: 1;
+  font-size: 13px;
+  text-align: left;
   cursor: pointer;
+}
+
+.intro-image-menu button:hover {
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+.intro-image-menu button:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: -3px;
+}
+
+/* 自由摆放拖放板：与预览的小角落区域等比，虚线框内按住缩略图即可调整位置。 */
+.intro-canvas-board {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  touch-action: none;
+}
+
+.intro-board-thumb {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 6px;
   box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.intro-image-remove:hover {
-  border-color: var(--teal);
-  color: var(--teal);
+.intro-board-thumb.is-placing {
+  cursor: grabbing;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 35%);
 }
 
-#status {
-  min-height: 1.7em;
+.intro-board-thumb:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* 选中图片后右下角出现缩放手柄：按住圆点拖动，等比调整该图大小。 */
+.intro-board-resize {
+  display: none;
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--teal);
+  border-radius: 50%;
+  background: var(--paper);
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
+.intro-board-thumb.is-selected {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.intro-board-thumb.is-selected .intro-board-resize {
+  display: block;
+}
+
+.intro-board-thumb.is-resizing {
+  z-index: 3;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+}
+
+.intro-board-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-touch-callout: none;
+}
+
+#status,
+#avatarStatus {
   color: var(--ink-mid);
   font-size: 13px;
   overflow-wrap: anywhere;
+  margin: 10px 0 0;
+}
+
+#status + .intro-actions {
+  margin-top: 10px;
+}
+
+#status:empty,
+#avatarStatus:empty {
+  display: none;
 }
 
 @media (max-width: 800px) {
