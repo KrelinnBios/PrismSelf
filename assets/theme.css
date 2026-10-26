@@ -615,6 +615,63 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   border-top: 1px solid var(--prism-support-dialog-note-border);
 }
 
+/* 手机端阅读提示：沿用支持弹窗外观，不设关闭按钮，只在底部放一个确认按钮。 */
+.prism-device-dialog .prism-support-dialog-header {
+  margin-bottom: 24px;
+  padding-right: 0;
+}
+
+/* 打开时焦点落在弹窗本身，按钮的焦点框只在键盘切换到它时出现。 */
+.prism-device-dialog:focus {
+  outline: none;
+}
+
+.prism-device-dialog .prism-support-dialog-header p {
+  font-size: 13.5px !important;
+}
+
+.prism-device-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:root[data-theme] body .prism-device-confirm {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 112px !important;
+  height: 42px !important;
+  margin: 0 !important;
+  padding: 0 20px !important;
+  border: 1px solid var(--prism-support-primary) !important;
+  border-radius: 999px !important;
+  background: var(--prism-support-primary) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  font: 600 14px/1 'Noto Sans SC', system-ui, sans-serif !important;
+}
+
+:root[data-theme] body .prism-device-confirm:hover {
+  background: color-mix(in srgb, var(--prism-support-primary) 86%, #000) !important;
+  transform: none !important;
+}
+
+:root[data-theme] body .prism-device-confirm:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--prism-support-primary) 32%, transparent) !important;
+  outline-offset: 3px !important;
+}
+
+:root[data-theme="dark"] body .prism-device-confirm {
+  color: #0f1a16 !important;
+}
+
+@media (max-width: 620px) {
+  :root[data-theme] body .prism-device-confirm {
+    width: 100% !important;
+  }
+}
+
 :root[data-theme="dark"] .prism-support-cta {
   --prism-support-primary: var(--prism-support-page-primary);
   --prism-support-primary-ink: color-mix(in srgb, var(--prism-support-primary) 38%, #e7edf3);

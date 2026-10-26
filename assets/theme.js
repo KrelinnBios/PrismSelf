@@ -516,3 +516,71 @@
   }
   window.addEventListener('load', autoMountSupport, { once: true });
 })();
+
+/* Mobile reading tip: on phones, remind once per visit (per tab session) that
+ * desktop browsers give a better experience. Reuses the support dialog styles. */
+(function () {
+  var SHOWN_KEY = 'prismself-device-tip-shown';
+
+  // 按设备判断而非窗口宽度：触屏且无悬停、屏幕短边小于 768px 才视为手机，电脑上缩窄窗口不会误弹。
+  function isPhone() {
+    if (!window.matchMedia || !window.matchMedia('(hover: none) and (pointer: coarse)').matches) return false;
+    var screenObj = window.screen || {};
+    return Math.min(screenObj.width || Infinity, screenObj.height || Infinity) < 768;
+  }
+
+  function alreadyShown() {
+    try { return sessionStorage.getItem(SHOWN_KEY) === '1'; } catch (error) { return false; }
+  }
+
+  function markShown() {
+    try { sessionStorage.setItem(SHOWN_KEY, '1'); } catch (error) { /* 存储不可用时本页仍只弹一次 */ }
+  }
+
+  function showTip() {
+    if (alreadyShown() || !isPhone() || document.getElementById('prismDeviceDialog')) return;
+    markShown();
+    var dialog = document.createElement('dialog');
+    dialog.id = 'prismDeviceDialog';
+    dialog.className = 'prism-support-dialog prism-device-dialog';
+    dialog.setAttribute('aria-labelledby', 'prismDeviceDialogTitle');
+    dialog.setAttribute('aria-describedby', 'prismDeviceDialogText');
+    dialog.setAttribute('tabindex', '-1');
+    dialog.innerHTML = [
+      '<div class="prism-support-dialog-inner">',
+      '  <div class="prism-support-dialog-header">',
+      '    <h2 id="prismDeviceDialogTitle">建议使用电脑浏览器</h2>',
+      '    <p id="prismDeviceDialogText">PrismSelf 的长文、表格、量表和工具在电脑屏幕上阅读与操作更舒适。手机浏览器也能正常使用，但部分页面的排版和交互体验一般。</p>',
+      '  </div>',
+      '  <div class="prism-device-actions">',
+      '    <button class="prism-device-confirm" type="button">我知道了</button>',
+      '  </div>',
+      '</div>'
+    ].join('');
+    document.body.appendChild(dialog);
+
+    function close() {
+      if (typeof dialog.close === 'function') dialog.close();
+      dialog.remove();
+    }
+    dialog.querySelector('.prism-device-confirm').addEventListener('click', close);
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) close();
+    });
+    dialog.addEventListener('cancel', function (event) {
+      event.preventDefault();
+      close();
+    });
+
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+    // 焦点放在弹窗本身，避免一打开就给按钮画上焦点框；Tab 仍可切到按钮。
+    dialog.focus();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showTip, { once: true });
+  } else {
+    showTip();
+  }
+})();
