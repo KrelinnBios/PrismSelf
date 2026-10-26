@@ -42,8 +42,8 @@
           <span>请用手机或电脑浏览器，应用内置浏览器可能无法下载图片。</span>
         </div>
         <div class="hero-note">
-          <strong>关闭页面即清除</strong>
-          <span>内容与图片不上传服务器。刷新后文字和选项仍在，图片需重新选择。</span>
+          <strong>离开页面即清除</strong>
+          <span>内容与图片不上传服务器。刷新后文字和选项仍在，图片需重新选择；返回主页或关闭页面后清除。</span>
         </div>
         <div class="hero-note">
           <strong>先预览再分享</strong>
@@ -1103,7 +1103,7 @@
       status.textContent = "填写内容已清空，配色与字体会保留。";
     });
 
-    // 文字与选项暂存在 sessionStorage：刷新后恢复，关闭标签页即由浏览器清除；图片和头像不暂存。
+    // 文字与选项暂存在 sessionStorage：只有刷新时恢复；返回主页、从其他页面进入、前进后退或关闭后都清除。图片和头像不暂存。
     const DRAFT_KEY = "prismself-self-intro-card";
     const draftControls = () => Array.from(form.elements).filter((el) => /^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName));
     function saveDraft() {
@@ -1119,7 +1119,15 @@
       }
       try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ fields, checks })); } catch (error) { /* 存储不可用时仅失去刷新保留 */ }
     }
+    function isReload() {
+      const entry = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+      return entry ? entry.type === "reload" : Boolean(performance.navigation && performance.navigation.type === 1);
+    }
+    function clearDraft() {
+      try { sessionStorage.removeItem(DRAFT_KEY); } catch (error) { /* 存储不可用时无需清理 */ }
+    }
     function restoreDraft() {
+      if (!isReload()) { clearDraft(); return; }
       let draft = null;
       try { draft = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || "null"); } catch (error) { draft = null; }
       if (!draft || typeof draft !== "object") return;
@@ -1151,6 +1159,12 @@
       syncCustomPalette();
       scheduleRender();
       saveDraft();
+    });
+    // 从往返缓存恢复时页面仍带着离开前的内容和图片，清掉暂存后重新载入为空白。
+    window.addEventListener("pageshow", (event) => {
+      if (!event.persisted) return;
+      clearDraft();
+      location.reload();
     });
     restoreDraft();
     syncCustomPalette();
