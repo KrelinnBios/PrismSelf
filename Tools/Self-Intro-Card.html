@@ -21,7 +21,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610281">
+  <link rel="stylesheet" href="./tool-common.css?v=202610282">
   <link rel="stylesheet" href="../assets/theme.css?v=202610264">
   <script src="../assets/theme.js?v=202610264"></script>
   <script
@@ -85,6 +85,7 @@
             <option value="wenkai">霞鹜文楷（楷体）</option>
           </select></label>
           <p class="intro-hint">使用设备本地字体，括号内为不同系统的等效或回退字体；实际效果以预览为准。</p>
+          <label class="intro-field"><span>卡片圆角</span><span class="intro-range"><input id="cardRadius" name="cardRadius" type="range" min="0" max="120" step="4" value="0"><output id="cardRadiusValue" for="cardRadius">直角</output></span></label>
         </section>
 
         <section class="intro-panel" aria-labelledby="contentTitle">
@@ -194,9 +195,7 @@
       </form>
 
       <section class="intro-preview" id="preview" aria-label="卡片预览">
-        <canvas id="cardCanvas" width="1080" height="1400" role="img" aria-label="关于我，卡片预览">请使用支持 Canvas 的浏览器查看卡片。</canvas>
-        <p class="intro-hint">预览即导出效果。页面深浅主题不会改变所选卡片配色。</p>
-      </section>
+        <canvas id="cardCanvas" width="1080" height="1400" role="img" aria-label="关于我，卡片预览">请使用支持 Canvas 的浏览器查看卡片。</canvas>      </section>
     </div>
   </main>
   <noscript><p>请启用 JavaScript，以使用卡片预览与图片导出。</p></noscript>
@@ -352,6 +351,8 @@
         }
         return { label, lines };
       });
+      // 按绘制时的 34px 字号测量换行，避免沿用上一行的补充小字号导致溢出右边界。
+      context.font = `34px ${family}`;
       const noteLines = value("notes") ? wrapCanvasText(value("notes"), width) : [];
       const gap = 24;
       const colCount = form.elements.imageLayout.value === "2col" ? 2 : 3;
@@ -366,6 +367,13 @@
       canvas.width = Math.round(1080 * scale);
       canvas.height = Math.round(logicalHeight * scale);
       context.scale(scale, scale);
+      // 圆角大于 0 时先裁出圆角矩形，导出的 PNG 四角保持透明。
+      const cardRadius = Number(value("cardRadius")) || 0;
+      if (cardRadius > 0) {
+        context.beginPath();
+        if (context.roundRect) context.roundRect(0, 0, 1080, logicalHeight, cardRadius); else context.rect(0, 0, 1080, logicalHeight);
+        context.clip();
+      }
       context.fillStyle = palette.background;
       context.fillRect(0, 0, 1080, logicalHeight);
       context.fillStyle = palette.accent;
@@ -1083,6 +1091,11 @@
     });
     form.addEventListener("submit", (event) => event.preventDefault());
     form.addEventListener("input", () => { syncCustomPalette(); scheduleRender(); });
+    // 滑块旁显示当前圆角；0 即直角。
+    document.getElementById("cardRadius").addEventListener("input", (event) => {
+      const radius = Number(event.target.value);
+      document.getElementById("cardRadiusValue").textContent = radius ? `${radius} px` : "直角";
+    });
     form.addEventListener("change", (event) => {
       if (event.target && event.target.name === "imageLayout") {
         // 切换排列方式后，缩略图提示与键盘行为随之变化。

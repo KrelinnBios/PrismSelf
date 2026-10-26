@@ -1282,6 +1282,38 @@ details.topic-card:not([open]) summary.topic-head {
   margin-top: 8px;
 }
 
+/* 卡片圆角滑块：滑轨占满剩余宽度，右侧显示当前数值。 */
+.intro-field > .intro-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.intro-range input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+.intro-range input[type="range"]:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.intro-range output {
+  min-width: 4.5em;
+  color: var(--ink-mid);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
 .intro-field + .intro-image-toolbar {
   margin-top: 12px;
 }
