@@ -1439,9 +1439,8 @@ details.topic-card:not([open]) summary.topic-head {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  /* 预览不加 CSS 圆角和方形边框，边角完全由卡片圆角滑块决定；阴影沿透明边缘投射。 */
+  filter: drop-shadow(0 0 1px var(--line)) drop-shadow(0 10px 24px rgba(0, 0, 0, 0.18));
 }
 
 .intro-actions {
