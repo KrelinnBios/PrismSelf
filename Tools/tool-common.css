@@ -1683,8 +1683,9 @@ details.topic-card:not([open]) summary.topic-head {
   margin-top: 14px;
 }
 
-/* 自由摆放时缩略图列表隐藏，避免 grid 覆盖 hidden 后仍留下空白边距。 */
-.intro-images[hidden] {
+/* 自由摆放时或尚未添加图片时缩略图列表不占位，避免 grid 覆盖 hidden 或空列表留下空白边距。 */
+.intro-images[hidden],
+.intro-images:empty {
   display: none;
 }
 
