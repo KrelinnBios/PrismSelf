@@ -21,7 +21,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610287">
+  <link rel="stylesheet" href="./tool-common.css?v=202610288">
   <link rel="stylesheet" href="../assets/theme.css?v=202610287">
   <script src="../assets/theme.js?v=202610287"></script>
   <script
@@ -71,56 +71,31 @@
               <p class="intro-hint">建议背景色与文字色保持足够对比，预览会实时更新。</p>
             </div>
           </fieldset>
-          <label class="intro-field"><span>中文字体</span><select id="cardFont" name="cardFont" aria-describedby="fontHint">
-            <optgroup label="黑体">
-              <option value="sans">微软雅黑（苹方）</option>
-              <option value="dengxian">等线</option>
-              <option value="sourcesans">思源黑体（Noto Sans SC）</option>
-              <option value="xihei">华文细黑</option>
-              <option value="hywenhei">汉仪文黑-85W</option>
-              <option value="round">幼圆（圆体-简）</option>
-            </optgroup>
-            <optgroup label="宋体与仿宋">
-              <option value="serif">宋体（宋体-简）</option>
-              <option value="stsong">华文宋体</option>
-              <option value="zhongsong">华文中宋</option>
-              <option value="fangsong">仿宋（华文仿宋）</option>
-            </optgroup>
-            <optgroup label="楷体">
-              <option value="kai">楷体（楷体-简）</option>
-              <option value="stkaiti">华文楷体</option>
-              <option value="wenkai">霞鹜文楷</option>
-            </optgroup>
-            <optgroup label="书法与艺术">
-              <option value="xingkai">华文行楷（行楷-简）</option>
-              <option value="lishu">隶书（华文隶书）</option>
-              <option value="xinwei">华文新魏（魏碑-简）</option>
-              <option value="shuti">方正舒体</option>
-              <option value="yaoti">方正姚体</option>
-              <option value="hupo">华文琥珀</option>
-              <option value="caiyun">华文彩云</option>
-            </optgroup>
-          </select></label>
-          <label class="intro-field"><span>英文字体</span><select id="cardFontEn" name="cardFontEn" aria-describedby="fontHint">
-            <option value="follow">跟随中文字体</option>
-            <optgroup label="无衬线">
-              <option value="segoe">Segoe UI（San Francisco）</option>
-              <option value="arial">Arial（Helvetica）</option>
-              <option value="verdana">Verdana</option>
-              <option value="trebuchet">Trebuchet MS</option>
-              <option value="comic">Comic Sans MS</option>
-            </optgroup>
-            <optgroup label="衬线">
-              <option value="georgia">Georgia</option>
-              <option value="times">Times New Roman</option>
-              <option value="palatino">Palatino Linotype（Palatino）</option>
-              <option value="garamond">Garamond</option>
-            </optgroup>
-            <optgroup label="等宽">
-              <option value="mono">Cascadia Mono（Consolas / Menlo）</option>
-            </optgroup>
-          </select></label>
-          <p class="intro-hint" id="fontHint">使用本机已安装的字体，括号内为其他系统上的同款字体；标注“未安装”的会改用系统默认字体，实际效果以预览为准。</p>
+          <div class="intro-field intro-font-field">
+            <span id="cardFontLabel">中文字体</span>
+            <details class="intro-multiselect intro-fontselect" data-target="cardFont">
+              <summary aria-describedby="cardFontLabel"><span class="intro-multiselect-summary">系统默认</span></summary>
+              <div class="intro-multiselect-panel">
+                <input type="search" class="intro-font-search" placeholder="搜索字体名称（中文或英文）" aria-label="搜索中文字体">
+                <p class="intro-font-status" aria-live="polite"></p>
+                <div class="intro-font-list" role="listbox" aria-labelledby="cardFontLabel"></div>
+              </div>
+            </details>
+            <input type="hidden" id="cardFont" name="cardFont" value="">
+          </div>
+          <div class="intro-field intro-font-field">
+            <span id="cardFontEnLabel">英文字体</span>
+            <details class="intro-multiselect intro-fontselect" data-target="cardFontEn">
+              <summary aria-describedby="cardFontEnLabel"><span class="intro-multiselect-summary">系统默认</span></summary>
+              <div class="intro-multiselect-panel">
+                <input type="search" class="intro-font-search" placeholder="搜索字体名称（中文或英文）" aria-label="搜索英文字体">
+                <p class="intro-font-status" aria-live="polite"></p>
+                <div class="intro-font-list" role="listbox" aria-labelledby="cardFontEnLabel"></div>
+              </div>
+            </details>
+            <input type="hidden" id="cardFontEn" name="cardFontEn" value="">
+          </div>
+          <p class="intro-hint" id="fontHint">默认使用系统字体。展开后可搜索本机已安装的字体，首次需要浏览器授权，字体列表只在本机读取、不会上传；英文字体只作用于字母和数字。</p>
           <label class="intro-field"><span>卡片圆角</span><span class="intro-range"><input id="cardRadius" name="cardRadius" type="range" min="0" max="120" step="4" value="44"><output id="cardRadiusValue" for="cardRadius">44 px</output></span></label>
         </section>
 
@@ -312,90 +287,150 @@
       const palette = customPalette();
       customSwatch.style.background = `conic-gradient(${palette.background} 0 33%, ${palette.ink} 0 66%, ${palette.accent} 0)`;
     }
-    // 每款字体分两部分：names 是本字体及其他系统上的同款（用于检测是否安装），fallback 是都没装时的回退。
-    const SANS_FALLBACK = '"Microsoft YaHei", "PingFang SC", sans-serif';
-    const SERIF_FALLBACK = '"SimSun", "Songti SC", serif';
-    const fontFaces = {
-      sans: { names: ["Microsoft YaHei", "微软雅黑", "PingFang SC"], fallback: "sans-serif" },
-      dengxian: { names: ["DengXian", "等线"], fallback: SANS_FALLBACK },
-      sourcesans: { names: ["Source Han Sans SC", "思源黑体", "Noto Sans SC", "Noto Sans CJK SC"], fallback: SANS_FALLBACK },
-      xihei: { names: ["STXihei", "华文细黑"], fallback: SANS_FALLBACK },
-      hywenhei: { names: ["HYWenHei-85W", "汉仪文黑-85W", "HYWenHei 85W"], fallback: SANS_FALLBACK },
-      round: { names: ["YouYuan", "幼圆", "Yuanti SC"], fallback: SANS_FALLBACK },
-      serif: { names: ["SimSun", "宋体", "Songti SC"], fallback: "serif" },
-      stsong: { names: ["STSong", "华文宋体"], fallback: SERIF_FALLBACK },
-      zhongsong: { names: ["STZhongsong", "华文中宋"], fallback: SERIF_FALLBACK },
-      fangsong: { names: ["FangSong", "仿宋", "STFangsong", "华文仿宋", "FangSong_GB2312"], fallback: SERIF_FALLBACK },
-      kai: { names: ["KaiTi", "楷体", "Kaiti SC"], fallback: SERIF_FALLBACK },
-      stkaiti: { names: ["STKaiti", "华文楷体"], fallback: '"KaiTi", "Kaiti SC", ' + SERIF_FALLBACK },
-      wenkai: { names: ["LXGW WenKai", "霞鹜文楷"], fallback: '"KaiTi", "STKaiti", "Kaiti SC", ' + SERIF_FALLBACK },
-      xingkai: { names: ["STXingkai", "华文行楷", "Xingkai SC"], fallback: SERIF_FALLBACK },
-      lishu: { names: ["LiSu", "隶书", "STLiti", "华文隶书", "Libian SC"], fallback: SERIF_FALLBACK },
-      xinwei: { names: ["STXinwei", "华文新魏", "Weibei SC"], fallback: SERIF_FALLBACK },
-      shuti: { names: ["FZShuTi", "方正舒体"], fallback: SERIF_FALLBACK },
-      yaoti: { names: ["FZYaoTi", "方正姚体"], fallback: SANS_FALLBACK },
-      hupo: { names: ["STHupo", "华文琥珀"], fallback: SANS_FALLBACK },
-      caiyun: { names: ["STCaiyun", "华文彩云"], fallback: SANS_FALLBACK }
-    };
-    // 英文字体只列字体名、不带通用回退：绘制时排在中文字体前面，字母数字用英文字体，汉字自动落到中文字体。
-    const enFontFaces = {
-      segoe: { names: ["Segoe UI", "-apple-system", "SF Pro Text"] },
-      arial: { names: ["Arial", "Helvetica"] },
-      verdana: { names: ["Verdana"] },
-      trebuchet: { names: ["Trebuchet MS"] },
-      comic: { names: ["Comic Sans MS"] },
-      georgia: { names: ["Georgia"] },
-      times: { names: ["Times New Roman", "Times"] },
-      palatino: { names: ["Palatino Linotype", "Palatino", "Book Antiqua"] },
-      garamond: { names: ["Garamond", "EB Garamond"] },
-      mono: { names: ["Cascadia Mono", "Consolas", "SFMono-Regular", "Menlo"] }
-    };
-    const quoteNames = (names) => names.map((name) => (name.startsWith("-") ? name : `"${name}"`)).join(", ");
-    const fonts = Object.fromEntries(Object.entries(fontFaces).map(([key, face]) =>
-      [key, quoteNames(face.names) + ", " + face.fallback]));
+    // 常见字体的中英文别名：搜索时把中文名对应到系统登记的字体名；也作为不支持读取字体列表时的常用清单。
+    const knownFonts = [
+      ["微软雅黑", "Microsoft YaHei"], ["黑体", "SimHei"], ["等线", "DengXian"],
+      // iPhone、iPad 与 Mac 常见字体
+      ["苹方", "PingFang SC"], ["冬青黑体", "Hiragino Sans GB"], ["华文黑体", "STHeiti", "Heiti SC"], ["兰亭黑", "Lantinghei SC"],
+      ["圆体", "Yuanti SC"], ["翩翩体", "HanziPen SC"], ["手札体", "Hannotate SC"], ["隶变", "Libian SC"],
+      ["魏碑", "Weibei SC"], ["行楷", "Xingkai SC"], ["娃娃体", "Wawati SC"],
+      // 安卓手机常见字体
+      ["鸿蒙黑体", "HarmonyOS Sans SC", "HarmonyOS Sans"], ["MiSans"], ["OPPO Sans", "OPPOSans"], ["vivo Sans", "vivoSans"],
+      ["思源宋体", "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN"],
+      ["Roboto"], ["安卓回退字体", "Droid Sans Fallback"],
+      ["思源黑体", "Source Han Sans SC", "Source Han Sans CN", "Noto Sans SC", "Noto Sans CJK SC"],
+      ["华文细黑", "STXihei"], ["汉仪文黑-85W", "HYWenHei-85W", "HYWenHei 85W"], ["幼圆", "YouYuan"],
+      ["宋体", "SimSun", "Songti SC"], ["华文宋体", "STSong"], ["华文中宋", "STZhongsong"], ["仿宋", "FangSong", "STFangsong"],
+      ["楷体", "KaiTi", "Kaiti SC"], ["华文楷体", "STKaiti"], ["霞鹜文楷", "LXGW WenKai"], ["华文行楷", "STXingkai"],
+      ["隶书", "LiSu", "STLiti"], ["华文新魏", "STXinwei"], ["方正舒体", "FZShuTi"], ["方正姚体", "FZYaoTi"],
+      ["华文琥珀", "STHupo"], ["华文彩云", "STCaiyun"],
+      ["Segoe UI"], ["Arial", "Helvetica"], ["Verdana"], ["Georgia"], ["Times New Roman"],
+      ["Palatino Linotype", "Palatino"], ["Garamond"], ["Cascadia Mono"], ["Consolas"]
+    ];
+    const isAscii = (name) => /^[\x20-\x7e]+$/.test(name);
+    const aliasOf = new Map();
+    for (const names of knownFonts) for (const name of names) aliasOf.set(name.toLowerCase(), names);
+    const quoteFont = (name) => `"${name.replace(/["\\]/g, "")}"`;
+    function fontLabel(family) {
+      const chinese = (aliasOf.get(family.toLowerCase()) || []).find((name) => !isAscii(name));
+      return chinese && chinese !== family ? `${chinese} · ${family}` : family;
+    }
+    const fontSearchKey = (family) => [family, ...(aliasOf.get(family.toLowerCase()) || [])].join(" ").toLowerCase();
+    // 绘制字体链：英文字体在前（只覆盖字母和数字），中文字体其次，都未选择或缺字时回退系统默认字体。
     function cardFamily() {
-      const zh = fonts[value("cardFont")] || fonts.sans;
-      const en = enFontFaces[value("cardFontEn")];
-      return en ? `${quoteNames(en.names)}, ${zh}` : zh;
+      return [value("cardFontEn"), value("cardFont")].filter(Boolean).map(quoteFont).concat("sans-serif").join(", ");
     }
 
-    // 本地字体检测：不申请权限、不读取字体列表，只比较字形尺寸。用中英混排样本分别与无衬线、衬线、
-    // 等宽三种系统默认字体比对，任一组尺寸不同即视为已安装，避免被测字体恰好是某个默认字体时漏判。
-    let fontStatus = null;
-    function detectInstalledFonts() {
-      const probe = document.createElement("canvas").getContext("2d");
-      const sample = "永和九年岁在癸丑 AaBbWwMm 0123";
-      const bases = ["sans-serif", "serif", "monospace"];
-      const measure = (family) => {
-        probe.font = `72px ${family}`;
-        const box = probe.measureText(sample);
-        return [box.width, box.actualBoundingBoxAscent, box.actualBoundingBoxDescent].map((n) => Math.round(n * 10)).join("|");
-      };
-      const baseline = Object.fromEntries(bases.map((base) => [base, measure(base)]));
-      const installed = (name) => bases.some((base) => measure(`${quoteNames([name])}, ${base}`) !== baseline[base]);
-      const check = (faces) => Object.fromEntries(Object.entries(faces).map(([key, face]) => [key, face.names.some(installed)]));
-      return { zh: check(fontFaces), en: check(enFontFaces) };
+    // 字形尺寸比对：与无衬线、衬线、等宽三种默认字体任一组尺寸不同即视为已安装；
+    // 用于不支持读取字体列表的浏览器，以及检测手动输入的字体名。
+    const fontProbe = document.createElement("canvas").getContext("2d");
+    const PROBE_TEXT = "永和九年岁在癸丑 AaBbWwMm 0123";
+    const PROBE_BASES = ["sans-serif", "serif", "monospace"];
+    function probeMeasure(family) {
+      fontProbe.font = `72px ${family}`;
+      const box = fontProbe.measureText(PROBE_TEXT);
+      return [box.width, box.actualBoundingBoxAscent, box.actualBoundingBoxDescent].map((n) => Math.round(n * 10)).join("|");
     }
-    // 两个字体下拉框都标注安装状态；检测只做一次，切换时只刷新提示。
-    function markFontAvailability() {
-      fontStatus = fontStatus || detectInstalledFonts();
-      const lists = [[document.getElementById("cardFont"), fontStatus.zh], [document.getElementById("cardFontEn"), fontStatus.en]];
-      const counts = lists.map(([select, status]) => {
-        let total = 0;
-        let found = 0;
-        for (const option of select.options) {
-          if (!(option.value in status)) continue;
-          option.dataset.label = option.dataset.label || option.textContent;
-          total += 1;
-          if (status[option.value]) found += 1;
-          option.textContent = status[option.value] ? option.dataset.label : `${option.dataset.label} · 未安装`;
+    const probeBaseline = Object.fromEntries(PROBE_BASES.map((base) => [base, probeMeasure(base)]));
+    const isFontInstalled = (name) => PROBE_BASES.some((base) => probeMeasure(`${quoteFont(name)}, ${base}`) !== probeBaseline[base]);
+
+    // 本机字体列表：优先用浏览器的本地字体接口（首次需授权，字体信息只在本机使用、不上传）；
+    // 不支持或未授权时，退回常见字体中本机已安装的部分。
+    let localFonts = null;
+    let localFontsNote = "";
+    let localFontsTask = null;
+    function loadLocalFonts() {
+      localFontsTask = localFontsTask || (async () => {
+        if (typeof window.queryLocalFonts === "function") {
+          try {
+            const families = [...new Set((await window.queryLocalFonts()).map((font) => font.family).filter(Boolean))];
+            if (families.length) {
+              localFontsNote = `已读取本机 ${families.length} 款字体`;
+              localFonts = families.sort((a, b) => fontLabel(a).localeCompare(fontLabel(b), "zh-CN"));
+              return;
+            }
+            localFontsNote = "未获得读取字体列表的授权，以下为本机检测到的常见字体，也可直接输入字体名称";
+          } catch (error) {
+            localFontsNote = "未获得读取字体列表的授权，以下为本机检测到的常见字体，也可直接输入字体名称";
+          }
+        } else {
+          localFontsNote = "当前浏览器不支持读取字体列表，以下为本机检测到的常见字体，也可直接输入字体名称";
         }
-        return { found, total, missing: select.value in status && !status[select.value] };
+        localFonts = knownFonts
+          .map((names) => names.filter(isFontInstalled).sort((a, b) => Number(isAscii(b)) - Number(isAscii(a)))[0])
+          .filter(Boolean);
+      })();
+      return localFontsTask;
+    }
+
+    const fontPickers = Array.from(form.querySelectorAll(".intro-fontselect"));
+    function syncFontPickers() {
+      for (const box of fontPickers) {
+        const family = document.getElementById(box.dataset.target).value;
+        const label = box.querySelector(".intro-multiselect-summary");
+        label.textContent = family ? fontLabel(family) : "系统默认";
+        label.style.fontFamily = family ? `${quoteFont(family)}, sans-serif` : "";
+      }
+    }
+    function renderFontList(box) {
+      const target = document.getElementById(box.dataset.target);
+      const list = box.querySelector(".intro-font-list");
+      const status = box.querySelector(".intro-font-status");
+      if (!localFonts) {
+        status.textContent = "正在读取本机字体…";
+        list.replaceChildren();
+        return;
+      }
+      const query = box.querySelector(".intro-font-search").value.trim();
+      const key = query.toLowerCase();
+      const matches = localFonts.filter((family) => !key || fontSearchKey(family).includes(key));
+      const entries = (key ? [] : [{ family: "", label: "系统默认" }])
+        .concat(matches.map((family) => ({ family, label: fontLabel(family) })));
+      // 列表里没有、但本机能检测到的字体名，允许直接使用；完全没有匹配时才提示未检测到。
+      if (query && !matches.some((family) => family.toLowerCase() === key)) {
+        if (isFontInstalled(query)) entries.push({ family: query, label: `使用“${query}”` });
+        else if (!matches.length) entries.push({ family: null, label: `未检测到“${query}”` });
+      }
+      list.replaceChildren(...entries.map(({ family, label }) => {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "intro-font-item";
+        item.setAttribute("role", "option");
+        item.textContent = label;
+        if (family === null) {
+          item.disabled = true;
+          return item;
+        }
+        item.dataset.family = family;
+        item.setAttribute("aria-selected", String(family === target.value));
+        if (family) item.style.fontFamily = `${quoteFont(family)}, sans-serif`;
+        return item;
+      }));
+      status.textContent = `${localFontsNote}${key ? `；匹配 ${matches.length} 款` : ""}。`;
+    }
+    for (const box of fontPickers) {
+      const search = box.querySelector(".intro-font-search");
+      box.addEventListener("toggle", () => {
+        if (!box.open) return;
+        renderFontList(box);
+        loadLocalFonts().then(() => { if (box.open) renderFontList(box); });
+        search.focus();
       });
-      const [zh, en] = counts;
-      const hint = document.getElementById("fontHint");
-      hint.textContent = `本机检测到中文字体 ${zh.found} / ${zh.total} 款、英文字体 ${en.found} / ${en.total} 款。英文字体只作用于字母和数字，汉字仍用中文字体；括号内为其他系统上的同款字体，标注“未安装”的会改用系统默认字体。`;
-      if (zh.missing || en.missing) hint.textContent += " 当前所选字体未安装。";
+      // 搜索框只过滤列表，不触发卡片重绘与暂存。
+      search.addEventListener("input", (event) => {
+        event.stopPropagation();
+        renderFontList(box);
+      });
+      box.querySelector(".intro-font-list").addEventListener("click", (event) => {
+        const item = event.target.closest(".intro-font-item");
+        if (!item || item.disabled) return;
+        const target = document.getElementById(box.dataset.target);
+        target.value = item.dataset.family;
+        target.dispatchEvent(new Event("input", { bubbles: true }));
+        syncFontPickers();
+        box.open = false;
+        box.querySelector("summary").focus();
+      });
     }
     let images = [];
     let avatarImage = null;
@@ -1314,6 +1349,7 @@
     }
     function syncMultiselects() {
       for (const box of multiselects) {
+        if (box.classList.contains("intro-fontselect")) continue;
         const first = box.querySelector('input[type="checkbox"]');
         const picked = first ? orderedChecked(first.name) : [];
         for (const input of box.querySelectorAll('input[type="checkbox"]')) {
@@ -1380,9 +1416,12 @@
     syncCustomPalette();
     syncMultiselects();
     syncRangeLabels();
-    markFontAvailability();
-    document.getElementById("cardFont").addEventListener("change", markFontAvailability);
-    document.getElementById("cardFontEn").addEventListener("change", markFontAvailability);
+    // 恢复的字体若本机检测不到（如旧版暂存的选项代号），回到系统默认。
+    for (const box of fontPickers) {
+      const target = document.getElementById(box.dataset.target);
+      if (target.value && !isFontInstalled(target.value)) target.value = "";
+    }
+    syncFontPickers();
     renderImages();
     renderCard();
   </script>

@@ -371,6 +371,7 @@ h1 em {
 .profile-row input,
 .custom-composer input,
 .intro-editor input[type="text"],
+.intro-editor input[type="search"],
 .intro-editor textarea,
 .intro-editor select {
   width: 100%;
@@ -389,6 +390,7 @@ h1 em {
 .profile-row input::placeholder,
 .custom-composer input::placeholder,
 .intro-editor input[type="text"]::placeholder,
+.intro-editor input[type="search"]::placeholder,
 .intro-editor textarea::placeholder {
   color: var(--prism-input-placeholder);
 }
@@ -410,6 +412,7 @@ h1 em {
 .profile-row input:focus,
 .custom-composer input:focus,
 .intro-editor input[type="text"]:focus,
+.intro-editor input[type="search"]:focus,
 .intro-editor textarea:focus,
 .intro-editor select:focus {
   border-color: var(--prism-input-focus-border);
@@ -577,6 +580,78 @@ h1 em {
   .intro-multiselect-list {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* 字体选择器：沿用多选下拉外观，面板内为搜索框、读取状态和可滚动的字体列表，每项用自身字体预览。 */
+.intro-font-field > span {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.intro-fontselect .intro-multiselect-panel {
+  max-height: none;
+  overflow: visible;
+}
+
+/* 搜索框外观与其他输入框共用上方规则，这里只去掉浏览器自带的搜索框样式。 */
+.intro-editor .intro-font-search {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.intro-font-status {
+  margin: 0;
+  color: var(--ink-mid);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.intro-font-list {
+  display: grid;
+  gap: 2px;
+  max-height: 260px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.intro-font-item {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--prism-input-text);
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.intro-font-item:hover:not(:disabled),
+.intro-font-item[aria-selected="true"] {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+}
+
+.intro-font-item[aria-selected="true"] {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.intro-font-item:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: -2px;
+}
+
+.intro-font-item:disabled {
+  color: var(--ink-mid);
+  cursor: default;
 }
 
 .topics-grid {
