@@ -616,6 +616,21 @@ h1 em {
   overscroll-behavior: contain;
 }
 
+.intro-font-group {
+  padding: 10px 12px 4px;
+  color: var(--ink-mid);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#fontHint.is-error {
+  color: #c2410c;
+}
+
+:root[data-theme="dark"] #fontHint.is-error {
+  color: #fb923c;
+}
+
 .intro-font-item {
   display: block;
   width: 100%;

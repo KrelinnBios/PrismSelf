@@ -21,7 +21,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610288">
+  <link rel="stylesheet" href="./tool-common.css?v=202610289">
   <link rel="stylesheet" href="../assets/theme.css?v=202610287">
   <script src="../assets/theme.js?v=202610287"></script>
   <script
@@ -95,7 +95,7 @@
             </details>
             <input type="hidden" id="cardFontEn" name="cardFontEn" value="">
           </div>
-          <p class="intro-hint" id="fontHint">默认使用系统字体。展开后可搜索本机已安装的字体，首次需要浏览器授权，字体列表只在本机读取、不会上传；英文字体只作用于字母和数字。</p>
+          <p class="intro-hint" id="fontHint">默认使用系统字体。展开后可选在线字体或搜索本机字体：在线字体只在选中时从 jsDelivr 下载卡片用到的字，不安装到设备；读取本机字体首次需浏览器授权，字体列表只在本机使用。均不上传任何内容；英文字体只作用于字母和数字。</p>
           <label class="intro-field"><span>卡片圆角</span><span class="intro-range"><input id="cardRadius" name="cardRadius" type="range" min="0" max="120" step="4" value="44"><output id="cardRadiusValue" for="cardRadius">44 px</output></span></label>
         </section>
 
@@ -311,14 +311,86 @@
     const aliasOf = new Map();
     for (const names of knownFonts) for (const name of names) aliasOf.set(name.toLowerCase(), names);
     const quoteFont = (name) => `"${name.replace(/["\\]/g, "")}"`;
-    function fontLabel(family) {
-      const chinese = (aliasOf.get(family.toLowerCase()) || []).find((name) => !isAscii(name));
-      return chinese && chinese !== family ? `${chinese} · ${family}` : family;
+    // 在线字体：开源可商用的中文网页字体，按字切分，只在选中时从 jsDelivr 下载卡片用到的字；
+    // 不安装到设备，由浏览器缓存管理。选项值带 web: 前缀，与同名的本机字体区分。
+    const WEB_FONT_CDN = "https://cdn.jsdelivr.net/npm/";
+    const FONT_HINT = document.getElementById("fontHint").textContent;
+    const webFonts = [
+      { family: "Noto Sans SC", label: "思源黑体", css: "@fontsource/noto-sans-sc@5.3.1/index.css" },
+      { family: "Noto Serif SC", label: "思源宋体", css: "@fontsource/noto-serif-sc@5.3.1/index.css" },
+      { family: "LXGW WenKai", label: "霞鹜文楷", css: "lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css" },
+      { family: "Ma Shan Zheng", label: "马善政毛笔楷书", css: "@fontsource/ma-shan-zheng@5.3.1/index.css" },
+      { family: "ZCOOL KuaiLe", label: "站酷快乐体", css: "@fontsource/zcool-kuaile@5.3.0/index.css" },
+      { family: "ZCOOL XiaoWei", label: "站酷小薇", css: "@fontsource/zcool-xiaowei@5.3.0/index.css" },
+      { family: "ZCOOL QingKe HuangYou", label: "站酷庆科黄油体", css: "@fontsource/zcool-qingke-huangyou@5.3.0/index.css" },
+      { family: "Long Cang", label: "龙藏体", css: "@fontsource/long-cang@5.3.0/index.css" },
+      { family: "Zhi Mang Xing", label: "志莽行书", css: "@fontsource/zhi-mang-xing@5.3.0/index.css" },
+      { family: "Liu Jian Mao Cao", label: "刘建毛草", css: "@fontsource/liu-jian-mao-cao@5.3.0/index.css" }
+    ];
+    const WEB_PREFIX = "web:";
+    const webFontOf = (fontValue) => (fontValue.startsWith(WEB_PREFIX) ? webFonts.find((font) => font.family === fontValue.slice(WEB_PREFIX.length)) : null);
+    const familyOf = (fontValue) => (fontValue.startsWith(WEB_PREFIX) ? fontValue.slice(WEB_PREFIX.length) : fontValue);
+    const loadedWebFonts = new Set();
+    function fontLabel(fontValue) {
+      const web = webFontOf(fontValue);
+      if (web) return `${web.label} · 在线`;
+      const chinese = (aliasOf.get(fontValue.toLowerCase()) || []).find((name) => !isAscii(name));
+      return chinese && chinese !== fontValue ? `${chinese} · ${fontValue}` : fontValue;
+    }
+    // 列表与选择框的预览字体：在线字体下载前不预览，避免一打开列表就产生下载。
+    function previewFamily(fontValue) {
+      if (!fontValue || (webFontOf(fontValue) && !loadedWebFonts.has(fontValue))) return "";
+      return `${quoteFont(familyOf(fontValue))}, sans-serif`;
     }
     const fontSearchKey = (family) => [family, ...(aliasOf.get(family.toLowerCase()) || [])].join(" ").toLowerCase();
     // 绘制字体链：英文字体在前（只覆盖字母和数字），中文字体其次，都未选择或缺字时回退系统默认字体。
     function cardFamily() {
-      return [value("cardFontEn"), value("cardFont")].filter(Boolean).map(quoteFont).concat("sans-serif").join(", ");
+      return [value("cardFontEn"), value("cardFont")].filter(Boolean).map((fontValue) => quoteFont(familyOf(fontValue))).concat("sans-serif").join(", ");
+    }
+    // 下载所选在线字体的样式表，再按卡片上的文字加载需要的字块；失败时卡片沿用系统字体。
+    const webFontSheets = new Map();
+    function loadWebFontSheet(font) {
+      if (!webFontSheets.has(font.family)) {
+        webFontSheets.set(font.family, new Promise((resolve, reject) => {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = WEB_FONT_CDN + font.css;
+          link.crossOrigin = "anonymous";
+          link.onload = resolve;
+          link.onerror = () => {
+            webFontSheets.delete(font.family);
+            link.remove();
+            reject(new Error("web font failed"));
+          };
+          document.head.appendChild(link);
+        }));
+      }
+      return webFontSheets.get(font.family);
+    }
+    async function prepareWebFonts() {
+      const used = [value("cardFont"), value("cardFontEn")].filter((fontValue) => webFontOf(fontValue));
+      if (!used.length || !document.fonts) return;
+      const text = "关于我我的认同我的称呼我的表达PrismSelf自我介绍卡·" + (canvas.getAttribute("aria-label") || "")
+        + Array.from(form.querySelectorAll('input[type="text"], textarea'), (input) => input.value).join("");
+      const hint = document.getElementById("fontHint");
+      try {
+        for (const fontValue of used) {
+          await loadWebFontSheet(webFontOf(fontValue));
+          await document.fonts.load(`34px ${quoteFont(familyOf(fontValue))}`, text);
+          loadedWebFonts.add(fontValue);
+        }
+        hint.classList.remove("is-error");
+        hint.textContent = FONT_HINT;
+      } catch (error) {
+        hint.classList.add("is-error");
+        hint.textContent = "在线字体下载失败，请检查网络后重试；当前已改用系统字体。";
+      }
+      syncFontPickers();
+    }
+    let webFontTimer = 0;
+    function refreshWebFonts() {
+      clearTimeout(webFontTimer);
+      webFontTimer = setTimeout(() => prepareWebFonts().then(scheduleRender), 300);
     }
 
     // 字形尺寸比对：与无衬线、衬线、等宽三种默认字体任一组尺寸不同即视为已安装；
@@ -369,7 +441,7 @@
         const family = document.getElementById(box.dataset.target).value;
         const label = box.querySelector(".intro-multiselect-summary");
         label.textContent = family ? fontLabel(family) : "系统默认";
-        label.style.fontFamily = family ? `${quoteFont(family)}, sans-serif` : "";
+        label.style.fontFamily = previewFamily(family);
       }
     }
     function renderFontList(box) {
@@ -384,16 +456,27 @@
       const query = box.querySelector(".intro-font-search").value.trim();
       const key = query.toLowerCase();
       const matches = localFonts.filter((family) => !key || fontSearchKey(family).includes(key));
+      const webMatches = webFonts.filter((font) => !key || `${font.label} ${font.family}`.toLowerCase().includes(key));
       const entries = (key ? [] : [{ family: "", label: "系统默认" }])
+        .concat(webMatches.length ? [{ group: "在线字体（选中时下载）" }] : [])
+        .concat(webMatches.map((font) => ({ family: WEB_PREFIX + font.family, label: `${font.label} · ${font.family}` })))
+        .concat(matches.length ? [{ group: "本机字体" }] : [])
         .concat(matches.map((family) => ({ family, label: fontLabel(family) })));
       // 列表里没有、但本机能检测到的字体名，允许直接使用；完全没有匹配时才提示未检测到。
       // 输入与列表中某款字体的英文名或中文别名完全一致时，已在列表里，不再重复提供。
       const listed = matches.some((family) => [family, ...(aliasOf.get(family.toLowerCase()) || [])].some((name) => name.toLowerCase() === key));
       if (query && !listed) {
         if (isFontInstalled(query)) entries.push({ family: query, label: `使用“${query}”` });
-        else if (!matches.length) entries.push({ family: null, label: `未检测到“${query}”` });
+        else if (!matches.length && !webMatches.length) entries.push({ family: null, label: `未检测到“${query}”` });
       }
-      list.replaceChildren(...entries.map(({ family, label }) => {
+      list.replaceChildren(...entries.map(({ family, label, group }) => {
+        if (group) {
+          const heading = document.createElement("div");
+          heading.className = "intro-font-group";
+          heading.setAttribute("role", "presentation");
+          heading.textContent = group;
+          return heading;
+        }
         const item = document.createElement("button");
         item.type = "button";
         item.className = "intro-font-item";
@@ -405,10 +488,10 @@
         }
         item.dataset.family = family;
         item.setAttribute("aria-selected", String(family === target.value));
-        if (family) item.style.fontFamily = `${quoteFont(family)}, sans-serif`;
+        item.style.fontFamily = previewFamily(family);
         return item;
       }));
-      status.textContent = `${localFontsNote}${key ? `；匹配 ${matches.length} 款` : ""}。`;
+      status.textContent = `${localFontsNote}${key ? `；匹配 ${matches.length + webMatches.length} 款` : ""}。`;
     }
     for (const box of fontPickers) {
       const search = box.querySelector(".intro-font-search");
@@ -1236,6 +1319,7 @@
       exportButton.disabled = true;
       exportButton.textContent = "正在生成…";
       try {
+        await prepareWebFonts();
         if (document.fonts) await document.fonts.ready;
         renderCard();
         const blob = await new Promise((resolve, reject) => {
@@ -1397,7 +1481,7 @@
         else output.textContent = `${input.value}${output.dataset.unit || ""}`;
       }
     }
-    form.addEventListener("input", () => { syncCustomPalette(); syncMultiselects(); syncRangeLabels(); scheduleRender(); saveDraft(); });
+    form.addEventListener("input", () => { syncCustomPalette(); syncMultiselects(); syncRangeLabels(); scheduleRender(); saveDraft(); refreshWebFonts(); });
     form.addEventListener("change", (event) => {
       if (event.target && event.target.name === "imageLayout") {
         // 切换排列方式后，缩略图提示与键盘行为随之变化。
@@ -1421,9 +1505,10 @@
     // 恢复的字体若本机检测不到（如旧版暂存的选项代号），回到系统默认。
     for (const box of fontPickers) {
       const target = document.getElementById(box.dataset.target);
-      if (target.value && !isFontInstalled(target.value)) target.value = "";
+      if (target.value && !webFontOf(target.value) && !isFontInstalled(target.value)) target.value = "";
     }
     syncFontPickers();
+    refreshWebFonts();
     renderImages();
     renderCard();
   </script>
