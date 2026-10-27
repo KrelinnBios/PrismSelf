@@ -86,7 +86,7 @@
           <div class="intro-field intro-font-field">
             <span id="cardFontEnLabel">英文字体</span>
             <details class="intro-multiselect intro-fontselect" data-target="cardFontEn">
-              <summary aria-describedby="cardFontEnLabel"><span class="intro-multiselect-summary">系统默认</span></summary>
+              <summary aria-describedby="cardFontEnLabel"><span class="intro-multiselect-summary">跟随中文字体</span></summary>
               <div class="intro-multiselect-panel">
                 <input type="search" class="intro-font-search" placeholder="搜索字体名称（中文或英文）" aria-label="搜索英文字体">
                 <p class="intro-font-status" aria-live="polite"></p>
@@ -440,10 +440,12 @@
       for (const box of fontPickers) {
         const family = document.getElementById(box.dataset.target).value;
         const label = box.querySelector(".intro-multiselect-summary");
-        label.textContent = family ? fontLabel(family) : "系统默认";
+        label.textContent = family ? fontLabel(family) : defaultFontLabel(box);
         label.style.fontFamily = previewFamily(family);
       }
     }
+    // 英文字体留空时字母和数字直接用中文字体，因此默认项叫“跟随中文字体”；中文字体留空则用系统字体。
+    const defaultFontLabel = (box) => (box.dataset.target === "cardFontEn" ? "跟随中文字体" : "系统默认");
     function renderFontList(box) {
       const target = document.getElementById(box.dataset.target);
       const list = box.querySelector(".intro-font-list");
@@ -457,7 +459,7 @@
       const key = query.toLowerCase();
       const matches = localFonts.filter((family) => !key || fontSearchKey(family).includes(key));
       const webMatches = webFonts.filter((font) => !key || `${font.label} ${font.family}`.toLowerCase().includes(key));
-      const entries = (key ? [] : [{ family: "", label: "系统默认" }])
+      const entries = (key ? [] : [{ family: "", label: defaultFontLabel(box) }])
         .concat(webMatches.length ? [{ group: "在线字体（选中时下载）" }] : [])
         .concat(webMatches.map((font) => ({ family: WEB_PREFIX + font.family, label: `${font.label} · ${font.family}` })))
         .concat(matches.length ? [{ group: "本机字体" }] : [])
