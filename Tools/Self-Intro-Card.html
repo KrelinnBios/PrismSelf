@@ -387,7 +387,9 @@
       const entries = (key ? [] : [{ family: "", label: "系统默认" }])
         .concat(matches.map((family) => ({ family, label: fontLabel(family) })));
       // 列表里没有、但本机能检测到的字体名，允许直接使用；完全没有匹配时才提示未检测到。
-      if (query && !matches.some((family) => family.toLowerCase() === key)) {
+      // 输入与列表中某款字体的英文名或中文别名完全一致时，已在列表里，不再重复提供。
+      const listed = matches.some((family) => [family, ...(aliasOf.get(family.toLowerCase()) || [])].some((name) => name.toLowerCase() === key));
+      if (query && !listed) {
         if (isFontInstalled(query)) entries.push({ family: query, label: `使用“${query}”` });
         else if (!matches.length) entries.push({ family: null, label: `未检测到“${query}”` });
       }
