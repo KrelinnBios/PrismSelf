@@ -21,7 +21,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="./tool-common.css?v=202610285">
+  <link rel="stylesheet" href="./tool-common.css?v=202610286">
   <link rel="stylesheet" href="../assets/theme.css?v=202610287">
   <script src="../assets/theme.js?v=202610287"></script>
   <script
@@ -71,20 +71,56 @@
               <p class="intro-hint">建议背景色与文字色保持足够对比，预览会实时更新。</p>
             </div>
           </fieldset>
-          <label class="intro-field"><span>卡片字体</span><select id="cardFont" name="cardFont">
-            <option value="sans">微软雅黑（苹方）</option>
-            <option value="serif">宋体（宋体-简）</option>
-            <option value="kai">楷体（华文楷体）</option>
-            <option value="round">幼圆（圆体-简）</option>
-            <option value="fangsong">仿宋（华文仿宋）</option>
-            <option value="mono">Cascadia Mono（Consolas / Menlo）</option>
-            <option value="dengxian">等线（苹方）</option>
-            <option value="sourcesans">思源黑体（苹方 / 微软雅黑）</option>
-            <option value="xihei">华文细黑（苹方 / 微软雅黑）</option>
-            <option value="zhongsong">华文中宋（宋体）</option>
-            <option value="wenkai">霞鹜文楷（楷体）</option>
+          <label class="intro-field"><span>中文字体</span><select id="cardFont" name="cardFont" aria-describedby="fontHint">
+            <optgroup label="黑体">
+              <option value="sans">微软雅黑（苹方）</option>
+              <option value="dengxian">等线</option>
+              <option value="sourcesans">思源黑体（Noto Sans SC）</option>
+              <option value="xihei">华文细黑</option>
+              <option value="hywenhei">汉仪文黑-85W</option>
+              <option value="round">幼圆（圆体-简）</option>
+            </optgroup>
+            <optgroup label="宋体与仿宋">
+              <option value="serif">宋体（宋体-简）</option>
+              <option value="stsong">华文宋体</option>
+              <option value="zhongsong">华文中宋</option>
+              <option value="fangsong">仿宋（华文仿宋）</option>
+            </optgroup>
+            <optgroup label="楷体">
+              <option value="kai">楷体（楷体-简）</option>
+              <option value="stkaiti">华文楷体</option>
+              <option value="wenkai">霞鹜文楷</option>
+            </optgroup>
+            <optgroup label="书法与艺术">
+              <option value="xingkai">华文行楷（行楷-简）</option>
+              <option value="lishu">隶书（华文隶书）</option>
+              <option value="xinwei">华文新魏（魏碑-简）</option>
+              <option value="shuti">方正舒体</option>
+              <option value="yaoti">方正姚体</option>
+              <option value="hupo">华文琥珀</option>
+              <option value="caiyun">华文彩云</option>
+            </optgroup>
           </select></label>
-          <p class="intro-hint">使用设备本地字体，括号内为不同系统的等效或回退字体；实际效果以预览为准。</p>
+          <label class="intro-field"><span>英文字体</span><select id="cardFontEn" name="cardFontEn" aria-describedby="fontHint">
+            <option value="follow">跟随中文字体</option>
+            <optgroup label="无衬线">
+              <option value="segoe">Segoe UI（San Francisco）</option>
+              <option value="arial">Arial（Helvetica）</option>
+              <option value="verdana">Verdana</option>
+              <option value="trebuchet">Trebuchet MS</option>
+              <option value="comic">Comic Sans MS</option>
+            </optgroup>
+            <optgroup label="衬线">
+              <option value="georgia">Georgia</option>
+              <option value="times">Times New Roman</option>
+              <option value="palatino">Palatino Linotype（Palatino）</option>
+              <option value="garamond">Garamond</option>
+            </optgroup>
+            <optgroup label="等宽">
+              <option value="mono">Cascadia Mono（Consolas / Menlo）</option>
+            </optgroup>
+          </select></label>
+          <p class="intro-hint" id="fontHint">使用本机已安装的字体，括号内为其他系统上的同款字体；标注“未安装”的会改用系统默认字体，实际效果以预览为准。</p>
           <label class="intro-field"><span>卡片圆角</span><span class="intro-range"><input id="cardRadius" name="cardRadius" type="range" min="0" max="120" step="4" value="44"><output id="cardRadiusValue" for="cardRadius">44 px</output></span></label>
         </section>
 
@@ -92,9 +128,10 @@
           <h2 id="contentTitle"><span class="intro-step">02</span>关于我</h2>
           <div class="intro-image-toolbar">
             <label class="intro-options intro-select-row">
-              <span class="intro-chip-label">头像框：</span>
-              <select id="avatarShape" name="avatarShape">
-                <option value="round" selected>圆形</option>
+              <span class="intro-chip-label">形状：</span>
+              <select id="avatarShape" name="avatarShape" aria-label="头像形状">
+                <option value="original" selected>原图（不裁剪）</option>
+                <option value="round">圆形</option>
                 <option value="square">正方形</option>
                 <option value="rounded">圆角正方形</option>
                 <option value="rect-l">长方形（横向）</option>
@@ -102,14 +139,13 @@
                 <option value="rect-p">长方形（纵向）</option>
                 <option value="rounded-p">圆角长方形（纵向）</option>
                 <option value="diamond">菱形</option>
+                <option value="diamond-l">菱形（横向）</option>
+                <option value="diamond-p">菱形（纵向）</option>
               </select>
             </label>
-            <div role="radiogroup" aria-label="头像大小" class="intro-options">
-              <span class="intro-chip-label" aria-hidden="true">大小：</span>
-              <label class="intro-option"><input type="radio" name="avatarSize" value="l">大</label>
-              <label class="intro-option"><input type="radio" name="avatarSize" value="m" checked>中</label>
-              <label class="intro-option"><input type="radio" name="avatarSize" value="s">小</label>
-            </div>
+            <label class="intro-options intro-select-row"><span class="intro-chip-label">大小：</span><span class="intro-range"><input id="avatarSize" name="avatarSize" type="range" min="100" max="260" step="2" value="170"><output for="avatarSize" data-unit=" px">170 px</output></span></label>
+            <label class="intro-options intro-select-row"><span class="intro-chip-label">水平：</span><span class="intro-range"><input id="avatarX" name="avatarX" type="range" min="0" max="100" step="1" value="100" aria-label="头像水平位置"><output for="avatarX" data-unit="%">100%</output></span></label>
+            <label class="intro-options intro-select-row"><span class="intro-chip-label">垂直：</span><span class="intro-range"><input id="avatarY" name="avatarY" type="range" min="0" max="100" step="1" value="0" aria-label="头像垂直位置"><output for="avatarY" data-unit="%">0%</output></span></label>
           </div>
           <div class="intro-upload-row">
             <input class="intro-upload-input" id="avatarInput" type="file" accept="image/*" aria-label="选择头像图片" aria-describedby="avatarStatus">
@@ -276,19 +312,91 @@
       const palette = customPalette();
       customSwatch.style.background = `conic-gradient(${palette.background} 0 33%, ${palette.ink} 0 66%, ${palette.accent} 0)`;
     }
-    const fonts = {
-      sans: '"Microsoft YaHei", "PingFang SC", sans-serif',
-      serif: '"Songti SC", "SimSun", serif',
-      kai: '"KaiTi", "STKaiti", "Kaiti SC", serif',
-      round: '"YouYuan", "Yuanti SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif',
-      fangsong: '"FangSong", "STFangsong", "FangSong_GB2312", "Songti SC", serif',
-      mono: '"Cascadia Mono", "Consolas", "SFMono-Regular", "Menlo", "Microsoft YaHei", monospace',
-      dengxian: '"DengXian", "等线", "PingFang SC", "Microsoft YaHei", sans-serif',
-      sourcesans: '"Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif',
-      xihei: '"STXihei", "华文细黑", "PingFang SC", "Microsoft YaHei", sans-serif',
-      zhongsong: '"STZhongsong", "华文中宋", "Songti SC", "SimSun", serif',
-      wenkai: '"LXGW WenKai", "霞鹜文楷", "KaiTi", "STKaiti", "Kaiti SC", serif'
+    // 每款字体分两部分：names 是本字体及其他系统上的同款（用于检测是否安装），fallback 是都没装时的回退。
+    const SANS_FALLBACK = '"Microsoft YaHei", "PingFang SC", sans-serif';
+    const SERIF_FALLBACK = '"SimSun", "Songti SC", serif';
+    const fontFaces = {
+      sans: { names: ["Microsoft YaHei", "微软雅黑", "PingFang SC"], fallback: "sans-serif" },
+      dengxian: { names: ["DengXian", "等线"], fallback: SANS_FALLBACK },
+      sourcesans: { names: ["Source Han Sans SC", "思源黑体", "Noto Sans SC", "Noto Sans CJK SC"], fallback: SANS_FALLBACK },
+      xihei: { names: ["STXihei", "华文细黑"], fallback: SANS_FALLBACK },
+      hywenhei: { names: ["HYWenHei-85W", "汉仪文黑-85W", "HYWenHei 85W"], fallback: SANS_FALLBACK },
+      round: { names: ["YouYuan", "幼圆", "Yuanti SC"], fallback: SANS_FALLBACK },
+      serif: { names: ["SimSun", "宋体", "Songti SC"], fallback: "serif" },
+      stsong: { names: ["STSong", "华文宋体"], fallback: SERIF_FALLBACK },
+      zhongsong: { names: ["STZhongsong", "华文中宋"], fallback: SERIF_FALLBACK },
+      fangsong: { names: ["FangSong", "仿宋", "STFangsong", "华文仿宋", "FangSong_GB2312"], fallback: SERIF_FALLBACK },
+      kai: { names: ["KaiTi", "楷体", "Kaiti SC"], fallback: SERIF_FALLBACK },
+      stkaiti: { names: ["STKaiti", "华文楷体"], fallback: '"KaiTi", "Kaiti SC", ' + SERIF_FALLBACK },
+      wenkai: { names: ["LXGW WenKai", "霞鹜文楷"], fallback: '"KaiTi", "STKaiti", "Kaiti SC", ' + SERIF_FALLBACK },
+      xingkai: { names: ["STXingkai", "华文行楷", "Xingkai SC"], fallback: SERIF_FALLBACK },
+      lishu: { names: ["LiSu", "隶书", "STLiti", "华文隶书", "Libian SC"], fallback: SERIF_FALLBACK },
+      xinwei: { names: ["STXinwei", "华文新魏", "Weibei SC"], fallback: SERIF_FALLBACK },
+      shuti: { names: ["FZShuTi", "方正舒体"], fallback: SERIF_FALLBACK },
+      yaoti: { names: ["FZYaoTi", "方正姚体"], fallback: SANS_FALLBACK },
+      hupo: { names: ["STHupo", "华文琥珀"], fallback: SANS_FALLBACK },
+      caiyun: { names: ["STCaiyun", "华文彩云"], fallback: SANS_FALLBACK }
     };
+    // 英文字体只列字体名、不带通用回退：绘制时排在中文字体前面，字母数字用英文字体，汉字自动落到中文字体。
+    const enFontFaces = {
+      segoe: { names: ["Segoe UI", "-apple-system", "SF Pro Text"] },
+      arial: { names: ["Arial", "Helvetica"] },
+      verdana: { names: ["Verdana"] },
+      trebuchet: { names: ["Trebuchet MS"] },
+      comic: { names: ["Comic Sans MS"] },
+      georgia: { names: ["Georgia"] },
+      times: { names: ["Times New Roman", "Times"] },
+      palatino: { names: ["Palatino Linotype", "Palatino", "Book Antiqua"] },
+      garamond: { names: ["Garamond", "EB Garamond"] },
+      mono: { names: ["Cascadia Mono", "Consolas", "SFMono-Regular", "Menlo"] }
+    };
+    const quoteNames = (names) => names.map((name) => (name.startsWith("-") ? name : `"${name}"`)).join(", ");
+    const fonts = Object.fromEntries(Object.entries(fontFaces).map(([key, face]) =>
+      [key, quoteNames(face.names) + ", " + face.fallback]));
+    function cardFamily() {
+      const zh = fonts[value("cardFont")] || fonts.sans;
+      const en = enFontFaces[value("cardFontEn")];
+      return en ? `${quoteNames(en.names)}, ${zh}` : zh;
+    }
+
+    // 本地字体检测：不申请权限、不读取字体列表，只比较字形尺寸。用中英混排样本分别与无衬线、衬线、
+    // 等宽三种系统默认字体比对，任一组尺寸不同即视为已安装，避免被测字体恰好是某个默认字体时漏判。
+    let fontStatus = null;
+    function detectInstalledFonts() {
+      const probe = document.createElement("canvas").getContext("2d");
+      const sample = "永和九年岁在癸丑 AaBbWwMm 0123";
+      const bases = ["sans-serif", "serif", "monospace"];
+      const measure = (family) => {
+        probe.font = `72px ${family}`;
+        const box = probe.measureText(sample);
+        return [box.width, box.actualBoundingBoxAscent, box.actualBoundingBoxDescent].map((n) => Math.round(n * 10)).join("|");
+      };
+      const baseline = Object.fromEntries(bases.map((base) => [base, measure(base)]));
+      const installed = (name) => bases.some((base) => measure(`${quoteNames([name])}, ${base}`) !== baseline[base]);
+      const check = (faces) => Object.fromEntries(Object.entries(faces).map(([key, face]) => [key, face.names.some(installed)]));
+      return { zh: check(fontFaces), en: check(enFontFaces) };
+    }
+    // 两个字体下拉框都标注安装状态；检测只做一次，切换时只刷新提示。
+    function markFontAvailability() {
+      fontStatus = fontStatus || detectInstalledFonts();
+      const lists = [[document.getElementById("cardFont"), fontStatus.zh], [document.getElementById("cardFontEn"), fontStatus.en]];
+      const counts = lists.map(([select, status]) => {
+        let total = 0;
+        let found = 0;
+        for (const option of select.options) {
+          if (!(option.value in status)) continue;
+          option.dataset.label = option.dataset.label || option.textContent;
+          total += 1;
+          if (status[option.value]) found += 1;
+          option.textContent = status[option.value] ? option.dataset.label : `${option.dataset.label} · 未安装`;
+        }
+        return { found, total, missing: select.value in status && !status[select.value] };
+      });
+      const [zh, en] = counts;
+      const hint = document.getElementById("fontHint");
+      hint.textContent = `本机检测到中文字体 ${zh.found} / ${zh.total} 款、英文字体 ${en.found} / ${en.total} 款。英文字体只作用于字母和数字，汉字仍用中文字体；括号内为其他系统上的同款字体，标注“未安装”的会改用系统默认字体。`;
+      if (zh.missing || en.missing) hint.textContent += " 当前所选字体未安装。";
+    }
     let images = [];
     let avatarImage = null;
     let avatarUrl = null;
@@ -360,16 +468,18 @@
 
     function renderCard() {
       const palette = activePalette();
-      const family = fonts[value("cardFont")];
+      const family = cardFamily();
       const side = 64;
       const width = 1080 - side * 2;
-      // 头像画在卡片右上角，大小从下方单选组读取；行区从头像下方开始，避免文字被盖住。
-      const avatarSizes = { s: 120, m: 170, l: 220 };
-      const avatarBox = avatarImage ? { size: avatarSizes[form.elements.avatarSize.value] || avatarSizes.m } : null;
+      // 头像限定在标题右侧的顶部区域内：水平 0% 贴标题右侧、100% 贴右边距；垂直 0%–100% 对应框顶 32–128。
+      // 大小与位置都由滑块决定（按 1080 宽的导出尺度）；正文从头像下方开始，避免被盖住。
+      const avatarZone = { left: 520, right: 1080 - side, top: 32, bottom: 128 };
+      const avatarBox = avatarImage ? { size: Math.min(Math.max(Number(value("avatarSize")) || 170, 100), 260) } : null;
       if (avatarBox) {
-        // 靠近卡片顶部；右缘与内容块边缘对齐（与“关于我”标题块同样留 side 的边距）。
-        avatarBox.y = 40;
-        avatarBox.x = 1080 - side - avatarBox.size;
+        const px = Math.min(Math.max(Number(value("avatarX")), 0), 100) / 100;
+        const py = Math.min(Math.max(Number(value("avatarY")), 0), 100) / 100;
+        avatarBox.x = avatarZone.left + (avatarZone.right - avatarZone.left - avatarBox.size) * px;
+        avatarBox.y = avatarZone.top + (avatarZone.bottom - avatarZone.top) * py;
       }
       const rowsTop = avatarBox ? Math.max(240, avatarBox.y + avatarBox.size + 26) : 240;
       const rows = cardRows();
@@ -424,9 +534,16 @@
       // 头像：按所选边框形状裁切并加细描边。
       if (avatarBox) {
         const { x: ax, y: ay, size } = avatarBox;
-        // 边框形状：圆形 / 正方形（小圆角）/ 横向长方形（框宽铺满、垂直居中）/
-        // 纵向长方形（框高铺满、水平居中）/ 菱形 / 圆角正方形与圆角长方形（大圆角）。
+        // 裁剪形状：默认原图（保持原比例、长边等于所选大小、不加描边）；
+        // 其余为圆形 / 正方形（小圆角）/ 横向长方形（框宽铺满、垂直居中）/
+        // 纵向长方形（框高铺满、水平居中）/ 菱形及横向、纵向菱形 / 圆角正方形与圆角长方形（大圆角）。
         const shape = form.elements.avatarShape.value;
+        if (shape === "original") {
+          const fit = size / Math.max(avatarImage.width, avatarImage.height);
+          const w = avatarImage.width * fit;
+          const h = avatarImage.height * fit;
+          context.drawImage(avatarImage, ax + (size - w) / 2, ay + (size - h) / 2, w, h);
+        } else {
         const rectH = size * 0.78;
         const rectY = ay + (size - rectH) / 2;
         const rectW = size * 0.78;
@@ -439,11 +556,16 @@
             if (context.roundRect) context.roundRect(ax, rectY, size, rectH, 6); else context.rect(ax, rectY, size, rectH);
           } else if (shape === "rect-p") {
             if (context.roundRect) context.roundRect(rectX, ay, rectW, size, 6); else context.rect(rectX, ay, rectW, size);
-          } else if (shape === "diamond") {
-            context.moveTo(ax + size / 2, ay);
-            context.lineTo(ax + size, ay + size / 2);
-            context.lineTo(ax + size / 2, ay + size);
-            context.lineTo(ax, ay + size / 2);
+          } else if (shape === "diamond" || shape === "diamond-l" || shape === "diamond-p") {
+            // 横向 / 纵向菱形：长轴铺满框，短轴取 60%，比长方形更瘦长。
+            const cx = ax + size / 2;
+            const cy = ay + size / 2;
+            const halfW = shape === "diamond-p" ? size * 0.3 : size / 2;
+            const halfH = shape === "diamond-l" ? size * 0.3 : size / 2;
+            context.moveTo(cx, cy - halfH);
+            context.lineTo(cx + halfW, cy);
+            context.lineTo(cx, cy + halfH);
+            context.lineTo(cx - halfW, cy);
             context.closePath();
           } else if (shape === "rounded") {
             if (context.roundRect) context.roundRect(ax, ay, size, size, 44); else context.rect(ax, ay, size, size);
@@ -458,7 +580,9 @@
         context.save();
         avatarPath();
         context.clip();
-        context.drawImage(avatarImage, ax, ay, size, size);
+        // 非正方形照片取中间的正方形区域，避免被拉伸变形。
+        const crop = Math.min(avatarImage.width, avatarImage.height);
+        context.drawImage(avatarImage, (avatarImage.width - crop) / 2, (avatarImage.height - crop) / 2, crop, crop, ax, ay, size, size);
         context.restore();
         context.save();
         avatarPath();
@@ -466,6 +590,7 @@
         context.lineWidth = 3;
         context.stroke();
         context.restore();
+        }
       }
       let y = rowsTop;
       context.textBaseline = "top";
@@ -1176,8 +1301,6 @@
           el.value = draft.fields[el.id];
         }
       }
-      const radius = Number(document.getElementById("cardRadius").value);
-      document.getElementById("cardRadiusValue").textContent = radius ? `${radius} px` : "直角";
     }
 
     // 多选下拉：收起时在触发条上列出已选项；同一时间只展开一个，点外部或按 Esc 收起。
@@ -1228,12 +1351,15 @@
     });
 
     form.addEventListener("submit", (event) => event.preventDefault());
-    form.addEventListener("input", () => { syncCustomPalette(); syncMultiselects(); scheduleRender(); saveDraft(); });
-    // 滑块旁显示当前圆角；0 即直角。
-    document.getElementById("cardRadius").addEventListener("input", (event) => {
-      const radius = Number(event.target.value);
-      document.getElementById("cardRadiusValue").textContent = radius ? `${radius} px` : "直角";
-    });
+    // 滑块旁显示当前数值；卡片圆角为 0 时显示“直角”。
+    function syncRangeLabels() {
+      for (const input of form.querySelectorAll('.intro-range input[type="range"]')) {
+        const output = input.nextElementSibling;
+        if (input.id === "cardRadius") output.textContent = Number(input.value) ? `${input.value} px` : "直角";
+        else output.textContent = `${input.value}${output.dataset.unit || ""}`;
+      }
+    }
+    form.addEventListener("input", () => { syncCustomPalette(); syncMultiselects(); syncRangeLabels(); scheduleRender(); saveDraft(); });
     form.addEventListener("change", (event) => {
       if (event.target && event.target.name === "imageLayout") {
         // 切换排列方式后，缩略图提示与键盘行为随之变化。
@@ -1253,6 +1379,10 @@
     restoreDraft();
     syncCustomPalette();
     syncMultiselects();
+    syncRangeLabels();
+    markFontAvailability();
+    document.getElementById("cardFont").addEventListener("change", markFontAvailability);
+    document.getElementById("cardFontEn").addEventListener("change", markFontAvailability);
     renderImages();
     renderCard();
   </script>
