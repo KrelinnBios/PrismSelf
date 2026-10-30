@@ -374,67 +374,13 @@
       z-index: 1;
     }
 
-    /* Top-left carousel: Which Me and the two friend links share one slot.
-       All cards sit in the same grid cell so the slot keeps the widest size. */
+    /* Top-left subscription entry. */
     .corner-cards {
       position: absolute;
       z-index: 3;
       top: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-top, 0px));
       left: calc(var(--prism-corner-inset, 18px) + env(safe-area-inset-left, 0px));
       display: grid;
-    }
-
-    .corner-cards > .whichme-card {
-      grid-area: 1 / 1;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.45s ease, visibility 0s linear 0.45s, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .corner-cards > .whichme-card.is-active {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.45s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .corner-dots {
-      position: absolute;
-      top: calc(100% + 2px);
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-    }
-
-    .corner-dot {
-      display: grid;
-      place-items: center;
-      width: 22px;
-      height: 18px;
-      padding: 0;
-      border: 0;
-      background: none;
-      cursor: pointer;
-    }
-
-    .corner-dot::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--search-border);
-      transition: width 0.25s ease, background 0.25s ease;
-    }
-
-    .corner-dot[aria-current="true"]::before {
-      width: 14px;
-      background: var(--ink-soft);
-    }
-
-    .corner-dot:focus-visible {
-      outline: 2px solid var(--teal);
-      outline-offset: -2px;
-      border-radius: 999px;
     }
 
     .whichme-card {
@@ -455,44 +401,21 @@
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .whichme-card.friend {
-      --corner-card-accent: #6d5bb0;
-      background: linear-gradient(120deg, rgba(139, 92, 246, 0.07), rgba(99, 102, 241, 0.03)), var(--bg-card);
-    }
-
-    .whichme-card.creator {
-      --corner-card-accent: #b26a10;
-      background: linear-gradient(120deg, rgba(245, 158, 11, 0.08), rgba(234, 88, 12, 0.03)), var(--bg-card);
-    }
-
     .whichme-card.resource {
+      width: fit-content;
+      max-width: calc(100vw - 24px);
+      gap: 12px;
       --corner-card-accent: var(--blue);
       background: linear-gradient(120deg, rgba(37, 99, 235, 0.10), rgba(56, 189, 248, 0.04)), var(--bg-card);
     }
 
-    /* Dark mode needs stronger tints for the four cards to read as coloured. */
+    /* Keep the subscription entry distinct in dark mode. */
     :root[data-theme="dark"] .whichme-card {
       background: linear-gradient(120deg, rgba(67, 184, 140, 0.18), rgba(74, 155, 219, 0.06)), var(--bg-card);
     }
 
-    :root[data-theme="dark"] .whichme-card.friend {
-      background: linear-gradient(120deg, rgba(167, 139, 250, 0.18), rgba(214, 206, 233, 0.06)), var(--bg-card);
-    }
-
-    :root[data-theme="dark"] .whichme-card.creator {
-      background: linear-gradient(120deg, rgba(240, 200, 121, 0.18), rgba(214, 150, 52, 0.06)), var(--bg-card);
-    }
-
     :root[data-theme="dark"] .whichme-card.resource {
       background: linear-gradient(120deg, rgba(74, 155, 219, 0.18), rgba(56, 189, 248, 0.06)), var(--bg-card);
-    }
-
-    :root[data-theme="dark"] .whichme-card.friend {
-      --corner-card-accent: #d6cee9;
-    }
-
-    :root[data-theme="dark"] .whichme-card.creator {
-      --corner-card-accent: #f0c879;
     }
 
     .whichme-card:hover {
@@ -527,14 +450,12 @@
 
     @media (prefers-reduced-motion: reduce) {
       .whichme-card,
-      .whichme-card .card-arrow,
-      .corner-cards > .whichme-card,
-      .corner-dot::before {
+      .whichme-card .card-arrow {
         transition: none;
       }
     }
 
-    /* Top-right counterpart of the card carousel, aligned to its top edge. */
+    /* Top-right links, aligned with the subscription entry. */
     .header-links {
       position: absolute;
       z-index: 3;
@@ -712,6 +633,12 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       position: relative;
       overflow: hidden;
+    }
+
+    button.card {
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
     }
 
     .card::before {
@@ -2158,6 +2085,73 @@
       }
     }
 
+    @media (min-width: 641px) {
+      .card {
+        height: 136px;
+        padding: 12px 24px;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .card-meta {
+        position: relative;
+        display: flex;
+        margin-top: 0;
+        padding-top: 0;
+        padding-right: 32px;
+      }
+
+      .card .card-arrow {
+        position: absolute;
+        top: 50%;
+        right: -4px;
+        transform: translateY(-50%);
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 767px) {
+      .card {
+        height: 160px;
+      }
+    }
+
+    .card.spade::before {
+      background: linear-gradient(90deg, #111114 0%, #28252e 75%, #735b8c 100%);
+    }
+
+    .card.spade:hover {
+      border-color: rgba(115, 91, 140, 0.3);
+    }
+
+    .card.spade .card-tag {
+      background: rgba(45, 39, 54, 0.08);
+      color: #332d3d;
+    }
+
+    :root[data-theme="dark"] .card.spade .card-tag {
+      background: rgba(167, 139, 250, 0.12);
+      color: #d3cadf;
+    }
+
+    /* Which Me logo colours: https://whichme.xyz/ */
+    .card.whichme::before {
+      background: linear-gradient(90deg, #302b46, #7357ae);
+    }
+
+    .card.whichme:hover {
+      border-color: rgba(115, 87, 174, 0.3);
+    }
+
+    .card.whichme .card-tag {
+      background: rgba(115, 87, 174, 0.1);
+      color: #7357ae;
+    }
+
+    :root[data-theme="dark"] .card.whichme .card-tag {
+      background: rgba(115, 87, 174, 0.22);
+      color: #c5b0ee;
+    }
+
   </style>
 
   <link rel="stylesheet" href="assets/theme.css?v=202610287">
@@ -2171,42 +2165,14 @@
 </head>
 
 <body class="home-page">
-  <div class="corner-cards" role="region" aria-roledescription="轮播" aria-label="推荐链接">
-    <a class="whichme-card is-active" href="https://whichme.xyz/" target="_blank" rel="noopener noreferrer"
-      aria-label="Which Me · 换个角度认识自己（外部站点，新标签页打开）">
-      <span class="whichme-copy">
-        <span class="whichme-title">Which Me</span>
-        <span class="whichme-desc">换个角度认识自己</span>
-      </span>
-      <span class="card-arrow" aria-hidden="true">↗</span>
-    </a>
-    <button class="whichme-card friend" type="button" data-dialog-target="friendDialog" aria-controls="friendDialog">
-      <span class="whichme-copy">
-        <span class="whichme-title">黑桃 Spade A</span>
-        <span class="whichme-desc">无性恋相关专题内容</span>
-      </span>
-      <span class="card-arrow" aria-hidden="true">↗</span>
-    </button>
-    <button class="whichme-card creator" type="button" data-dialog-target="guyuliangDialog" aria-controls="guyuliangDialog">
-      <span class="whichme-copy">
-        <span class="whichme-title">谷语粱</span>
-        <span class="whichme-desc">福瑞与美国兽展相关内容</span>
-      </span>
-      <span class="card-arrow" aria-hidden="true">↗</span>
-    </button>
+  <div class="corner-cards" role="region" aria-label="常用服务">
     <button class="whichme-card resource" type="button" data-dialog-target="resourceDialog" aria-controls="resourceDialog">
       <span class="whichme-copy">
-        <span class="whichme-title">常用订阅</span>
-        <span class="whichme-desc">网络代理与 AI 模型 API 中转</span>
+        <span class="whichme-title">常用服务</span>
+        <span class="whichme-desc">网络代理与 AI 服务</span>
       </span>
       <span class="card-arrow" aria-hidden="true">↗</span>
     </button>
-    <div class="corner-dots">
-      <button class="corner-dot" type="button" aria-label="显示 Which Me" aria-current="true"></button>
-      <button class="corner-dot" type="button" aria-label="显示黑桃 Spade A" aria-current="false"></button>
-      <button class="corner-dot" type="button" aria-label="显示谷语粱" aria-current="false"></button>
-      <button class="corner-dot" type="button" aria-label="显示常用订阅" aria-current="false"></button>
-    </div>
   </div>
   <nav class="header-links" aria-label="站点链接与主题">
     <button class="header-link support" type="button" data-prism-support-open
@@ -2488,6 +2454,24 @@
             </div>
           </a>
 
+          <button class="card spade" type="button" data-dialog-target="friendDialog" aria-controls="friendDialog">
+            <span class="card-tag tag-purple">外部推荐</span>
+            <span class="card-title">黑桃 Spade A</span>
+            <span class="card-meta">
+              <span class="card-type">无性恋相关专题内容</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </span>
+          </button>
+
+          <button class="card amber" type="button" data-dialog-target="guyuliangDialog" aria-controls="guyuliangDialog">
+            <span class="card-tag tag-amber">外部推荐</span>
+            <span class="card-title">谷语粱</span>
+            <span class="card-meta">
+              <span class="card-type">福瑞与美国兽展相关内容</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </span>
+          </button>
+
         </div>
       </section>
 
@@ -2615,6 +2599,16 @@
             </div>
           </a>
 
+          <a class="card whichme" href="https://whichme.xyz/" target="_blank" rel="noopener noreferrer"
+            aria-label="Which Me · 换个角度认识自己（外部站点，新标签页打开）">
+            <span class="card-tag tag-purple">外部推荐</span>
+            <p class="card-title">Which Me</p>
+            <div class="card-meta">
+              <span class="card-type">换个角度认识自己</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
         </div>
       </section>
 
@@ -2695,7 +2689,7 @@
         <div class="qr-dialog-inner">
           <div class="qr-dialog-header">
             <div class="qr-dialog-copy">
-              <h3 class="qr-dialog-title" id="resourceDialogTitle">常用订阅入口</h3>
+              <h3 class="qr-dialog-title" id="resourceDialogTitle">常用服务入口</h3>
               <p class="qr-dialog-desc">请遵守当地法律法规，合规使用网络代理与 AI 模型 API 中转服务。</p>
             </div>
             <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭代理、AI 中转与订阅弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
@@ -2708,7 +2702,7 @@
                 <span class="resource-link-title">性价比高的机场</span>
                 <span class="resource-link-desc">GPT/Claude：不推荐</span>
               </span>
-              <span class="resource-link-arrow" aria-hidden="true">→</span>
+              <span class="resource-link-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="resource-link noww" href="https://dx.elphantroute.com/app#/register?code=n5KEb6em" target="_blank"
               rel="noopener noreferrer sponsored">
@@ -2717,7 +2711,7 @@
                 <span class="resource-link-title">性价比高的机场</span>
                 <span class="resource-link-desc">GPT/Claude：推荐</span>
               </span>
-              <span class="resource-link-arrow" aria-hidden="true">→</span>
+              <span class="resource-link-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="resource-link dasein" href="https://www.daseinai.xyz/register?aff=VWHM8SMXYMLH" target="_blank"
               rel="noopener noreferrer sponsored">
@@ -2726,7 +2720,7 @@
                 <span class="resource-link-title">性价比高的中转站</span>
                 <span class="resource-link-desc">GPT：推荐</span>
               </span>
-              <span class="resource-link-arrow" aria-hidden="true">→</span>
+              <span class="resource-link-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="resource-link boluo" href="https://mall.boluoai.shop/account.html?invite=E86Y857H" target="_blank"
               rel="noopener noreferrer sponsored">
@@ -2735,7 +2729,7 @@
                 <span class="resource-link-title">价格适中的服务商</span>
                 <span class="resource-link-desc">AI 订阅、礼品卡与数字服务</span>
               </span>
-              <span class="resource-link-arrow" aria-hidden="true">→</span>
+              <span class="resource-link-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="resource-link subscribe" href="https://bewild.ai?code=JDYR4ATU" target="_blank"
               rel="noopener noreferrer sponsored">
@@ -2744,7 +2738,7 @@
                 <span class="resource-link-title">价格适中的服务商</span>
                 <span class="resource-link-desc">订阅 GPT/Claude/Gemini/Grok</span>
               </span>
-              <span class="resource-link-arrow" aria-hidden="true">→</span>
+              <span class="resource-link-arrow" aria-hidden="true">↗</span>
             </a>
           </div>
           <p class="qr-dialog-note">站外服务以对应平台页面说明为准。</p>
@@ -2808,7 +2802,7 @@
 
   </footer>
 
-  <script src="./update-records.js?v=202610262"></script>
+  <script src="./update-records.js?v=202610311"></script>
   <script>
 
     // Live keyword filter over the content cards.
@@ -2817,7 +2811,7 @@
       const clearBtn = document.getElementById('searchClear');
       const emptyMsg = document.getElementById('searchEmpty');
       if (!search) return;
-      const cards = [...document.querySelectorAll('main a.card')];
+      const cards = [...document.querySelectorAll('main .card')];
       const sections = [...document.querySelectorAll('main .section')];
       const haystack = new Map();
       cards.forEach((card) => {
@@ -2835,7 +2829,7 @@
           if (match) anyVisible = true;
         });
         sections.forEach((section) => {
-          const hasVisible = section.querySelector('a.card:not(.is-hidden)') !== null;
+          const hasVisible = section.querySelector('.card:not(.is-hidden)') !== null;
           section.classList.toggle('is-hidden', !hasVisible);
         });
         emptyMsg.parentElement.classList.toggle('is-visible', !anyVisible && q !== '');
@@ -2853,48 +2847,6 @@
         applyFilter('');
         search.focus();
       });
-    })();
-
-    // Top-left card carousel — rotates every 5s; pauses while hovered, focused,
-    // a dialog is open or the tab is hidden; never auto-rotates under reduced motion.
-    (() => {
-      const root = document.querySelector('.corner-cards');
-      if (!root) return;
-      const slides = [...root.querySelectorAll('.whichme-card')];
-      const dots = [...root.querySelectorAll('.corner-dot')];
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let index = 0;
-      let timer = null;
-
-      const show = (next) => {
-        index = (next + slides.length) % slides.length;
-        slides.forEach((slide, i) => {
-          const active = i === index;
-          slide.classList.toggle('is-active', active);
-          slide.inert = !active;
-        });
-        dots.forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
-      };
-
-      const paused = () => document.hidden
-        || root.matches(':hover, :focus-within')
-        || document.querySelector('dialog[open]') !== null;
-
-      const restart = () => {
-        clearInterval(timer);
-        timer = reduceMotion.matches ? null : setInterval(() => {
-          if (!paused()) show(index + 1);
-        }, 5000);
-      };
-
-      dots.forEach((dot, i) => dot.addEventListener('click', () => {
-        show(i);
-        restart();
-      }));
-      reduceMotion.addEventListener('change', restart);
-
-      show(0);
-      restart();
     })();
 
     // Category scroll via sidebar buttons — click scrolls to section, click again cancels.
