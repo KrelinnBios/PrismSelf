@@ -10,7 +10,7 @@
   <title>PrismSelf - 性别·心理·人际</title>
   <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，提供概念分析、专题指南、术语索引、社群观察、共鸣刻度、自评量表与关系工具。">
   <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="icon/favicon.svg?v=202610264" type="image/svg+xml">
+  <link rel="icon" href="icon/favicon.svg?v=202611031" type="image/svg+xml">
   <link rel="canonical" href="https://prismself.vip/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
@@ -81,7 +81,6 @@
       --search-border: rgba(61, 81, 102, 0.16);
       --search-placeholder: #64788c;
       --search-icon: #7a8ca0;
-      --search-clear-bg: #f5f7f9;
       --search-focus-border: rgba(61, 81, 102, 0.32);
       --search-focus-ring: rgba(61, 81, 102, 0.12);
       --footer-text: #617589;
@@ -283,7 +282,7 @@
 
     .search-input {
       width: 100%;
-      padding: 14px 44px;
+      padding: 14px 16px 14px 44px;
       border-radius: 999px;
       border: 1px solid var(--search-border);
       background: var(--search-bg);
@@ -293,6 +292,10 @@
       color: var(--ink);
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #cardSearch {
+      padding: 14px 16px 14px 44px !important;
     }
 
     .search-input:focus {
@@ -313,30 +316,6 @@
       height: 18px;
       fill: var(--search-icon);
       pointer-events: none;
-    }
-
-    .search-clear {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      background: var(--search-clear-bg);
-      color: var(--ink-soft);
-      font-size: 13px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .search-clear.is-visible {
-      display: inline-flex;
     }
 
     .section.is-hidden,
@@ -475,7 +454,7 @@
 
     .header-link {
       display: inline-flex;
-      align-items: baseline;
+      align-items: center;
       gap: 6px;
       padding: 6px 12px;
       border: 1px solid transparent;
@@ -501,6 +480,13 @@
     }
 
     .header-link-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 1em;
+      height: 1em;
+      font-family: Arial, sans-serif;
       font-size: 14px;
       line-height: 1;
     }
@@ -511,9 +497,6 @@
 
     .header-link.contact .header-link-mark {
       color: var(--green);
-      /* @ 字形墨迹偏低，上移使其中心与中文对齐 */
-      position: relative;
-      top: -0.14em;
     }
 
     :root[data-theme="dark"] .header-link.support .header-link-mark {
@@ -1463,23 +1446,21 @@
       }
 
       .search-input {
-        padding: 15px 44px 15px 44px;
+        padding: 15px 16px 15px 44px;
         font-size: 15px;
         border-radius: 999px;
         box-shadow: 0 2px 16px rgba(26, 35, 50, 0.07);
+      }
+
+      #cardSearch {
+        padding: 15px 16px 15px 44px !important;
+        font-size: 15px !important;
       }
 
       .search-icon {
         left: 17px;
         width: 17px;
         height: 17px;
-      }
-
-      .search-clear {
-        right: 8px;
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
       }
 
       .layout {
@@ -1759,7 +1740,6 @@
       --search-border: rgba(180, 193, 206, 0.22);
       --search-placeholder: #a3b1bf;
       --search-icon: #b4c1ce;
-      --search-clear-bg: #202936;
       --search-focus-border: rgba(180, 193, 206, 0.42);
       --search-focus-ring: rgba(180, 193, 206, 0.14);
       --footer-text: #a7b4c0;
@@ -2154,8 +2134,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=202610287">
-  <script src="assets/theme.js?v=202610287"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=202611031">
+  <script src="assets/theme.js?v=202611031"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"
@@ -2197,9 +2177,8 @@
       <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M21 20.3l-5.6-5.6a7.5 7.5 0 10-1.4 1.4l5.6 5.6 1.4-1.4zM5 10.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z" />
       </svg>
-      <input id="cardSearch" class="search-input" type="text" placeholder="搜索内容（标题、标签或类型）" aria-label="搜索内容"
+      <input id="cardSearch" class="search-input" type="search" placeholder="搜索内容（标题、标签或类型）" aria-label="搜索内容"
         autocomplete="off">
-      <button id="searchClear" class="search-clear" type="button" aria-label="清除搜索">✕</button>
     </div>
   </header>
 
@@ -2802,13 +2781,12 @@
 
   </footer>
 
-  <script src="./update-records.js?v=202610311"></script>
+  <script src="./update-records.js?v=202611031"></script>
   <script>
 
     // Live keyword filter over the content cards.
     (() => {
       const search = document.getElementById('cardSearch');
-      const clearBtn = document.getElementById('searchClear');
       const emptyMsg = document.getElementById('searchEmpty');
       if (!search) return;
       const cards = [...document.querySelectorAll('main .card')];
@@ -2821,7 +2799,6 @@
 
       const applyFilter = (raw) => {
         const q = raw.trim().toLowerCase();
-        clearBtn.classList.toggle('is-visible', q.length > 0);
         let anyVisible = false;
         cards.forEach((card) => {
           const match = q === '' || haystack.get(card).includes(q);
@@ -2842,11 +2819,6 @@
           applyFilter('');
         }
       });
-      clearBtn.addEventListener('click', () => {
-        search.value = '';
-        applyFilter('');
-        search.focus();
-      });
     })();
 
     // Category scroll via sidebar buttons — click scrolls to section, click again cancels.
@@ -2854,7 +2826,6 @@
       const buttons = [...document.querySelectorAll('.sidebar .stat')];
       const sections = [...document.querySelectorAll('main .section')];
       const search = document.getElementById('cardSearch');
-      const searchClear = document.getElementById('searchClear');
 
       const sidebarEl = document.querySelector('.sidebar');
       const sidebarScrollEl = document.querySelector('.sidebar-scroll');
@@ -2873,7 +2844,6 @@
           const isActive = btn.getAttribute('aria-pressed') === 'true';
 
           if (search) { search.value = ''; }
-          if (searchClear) { searchClear.classList.remove('is-visible'); }
 
           if (isActive) {
             setActive(null);

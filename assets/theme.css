@@ -615,6 +615,83 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   border-top: 1px solid var(--prism-support-dialog-note-border);
 }
 
+/* 全站文本输入统一沿用首页搜索框外观，排除具有独立交互语义的控件。 */
+:root body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea) {
+  box-sizing: border-box !important;
+  border: 1px solid var(--search-border, rgba(61, 81, 102, 0.16)) !important;
+  border-radius: 999px !important;
+  background-color: var(--search-bg, #ffffff) !important;
+  color: var(--ink, #1a2332) !important;
+  padding: 14px 16px !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  line-height: normal !important;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+:root body textarea {
+  min-height: 7em;
+  border-radius: 18px !important;
+  resize: vertical;
+}
+
+:root body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea)::placeholder {
+  color: var(--search-placeholder, #64788c) !important;
+  opacity: 1;
+}
+
+:root body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea):focus {
+  border-color: var(--search-focus-border, rgba(61, 81, 102, 0.32)) !important;
+  box-shadow: 0 0 0 3px var(--search-focus-ring, rgba(61, 81, 102, 0.12)) !important;
+}
+
+:root[data-theme="dark"] body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea) {
+  border-color: var(--search-border, var(--prism-input-border, rgba(180, 193, 206, 0.22))) !important;
+  background-color: var(--search-bg, var(--prism-input-bg, #161d26)) !important;
+  color: var(--ink, var(--prism-input-text, #e7edf3)) !important;
+}
+
+:root[data-theme="dark"] body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea)::placeholder {
+  color: var(--search-placeholder, var(--prism-input-placeholder, #a3b1bf)) !important;
+}
+
+:root[data-theme="dark"] body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea):focus {
+  border-color: var(--search-focus-border, var(--prism-input-focus-border, rgba(180, 193, 206, 0.42))) !important;
+  box-shadow: 0 0 0 3px var(--search-focus-ring, var(--prism-input-focus-ring, rgba(180, 193, 206, 0.14))) !important;
+}
+
+:root body input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  background-color: #737373;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 4 8 8m0-8-8 8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 4 8 8m0-8-8 8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  cursor: pointer;
+}
+
+:root body input[type="search"]::-webkit-search-cancel-button:hover {
+  background-color: #525252;
+}
+
+:root[data-theme="dark"] body input[type="search"]::-webkit-search-cancel-button {
+  background-color: #a3a3a3;
+}
+
+:root[data-theme="dark"] body input[type="search"]::-webkit-search-cancel-button:hover {
+  background-color: #d4d4d4;
+}
+
+@media (max-width: 640px) {
+  :root body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea) {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+  }
+}
+
 /* 全站下拉框统一外观：去掉系统箭头，改用随文字颜色变化的细箭头；底色与边框仍由各分类样式决定。 */
 :root body select:not([multiple]):not([size]) {
   -webkit-appearance: none !important;

@@ -1,7 +1,7 @@
 // Move a page path into a new ISO-date group when its content changes.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-10-31',
+    date: '2026-11-03',
     pages: [
       'home'
     ]
