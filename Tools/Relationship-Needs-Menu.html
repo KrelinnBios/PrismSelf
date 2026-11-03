@@ -47,16 +47,16 @@
       </p>
       <div class="hero-notes">
         <div class="hero-note">
-          <strong>只在本地保存</strong>
-          <span>选择仅保存在本机浏览器，请不要使用公共设备。</span>
+          <strong>建议浏览器打开</strong>
+          <span>请用手机或电脑浏览器，应用内置浏览器可能无法下载图片。</span>
+        </div>
+        <div class="hero-note">
+          <strong>离开页面即清除</strong>
+          <span>内容不上传服务器。刷新后文字和选项仍在；返回主页或关闭页面后清除。</span>
         </div>
         <div class="hero-note">
           <strong>先独立再交换</strong>
           <span>各自填写后，从重合项开始讨论分歧和边界。</span>
-        </div>
-        <div class="hero-note">
-          <strong>随时可以修改</strong>
-          <span>需求会随阶段、对象与情境发生变化。</span>
         </div>
       </div>
     </header>
@@ -271,9 +271,27 @@
     const profileName = document.getElementById("profileName");
     const toast = document.getElementById("toast");
 
+    // 选择暂存在 sessionStorage：只有刷新时恢复；返回主页、从其他页面进入、前进后退或关闭后都清除。
+    function isReload() {
+      const entry = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+      return entry ? entry.type === "reload" : Boolean(performance.navigation && performance.navigation.type === 1);
+    }
+
+    function clearSavedState() {
+      try {
+        sessionStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (error) { /* 存储不可用时无需清理 */ }
+    }
+
     function loadState() {
       try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        localStorage.removeItem(STORAGE_KEY);
+        if (!isReload()) {
+          sessionStorage.removeItem(STORAGE_KEY);
+          return;
+        }
+        const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY));
         if (saved && typeof saved === "object") {
           state = {
             profileName: typeof saved.profileName === "string" ? saved.profileName : "",
@@ -288,7 +306,7 @@
 
     function saveState() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       } catch (error) {
         console.warn("无法保存关系需求菜单。", error);
       }
@@ -386,7 +404,7 @@
 
         const label = document.createElement("span");
         label.className = "collapse-label";
-        label.textContent = "展开 ↓";
+        label.textContent = "收起 ↑";
 
         control.append(count, label);
         head.appendChild(control);
@@ -409,15 +427,11 @@
         card.appendChild(makeTopicHead(category, category.sensitive));
 
         if (category.sensitive) {
+          card.open = true;
           card.addEventListener("toggle", () => {
             const label = card.querySelector(".collapse-label");
             if (label) label.textContent = card.open ? "收起 ↑" : "展开 ↓";
           });
-
-          const note = document.createElement("p");
-          note.className = "sensitive-note";
-          note.textContent = "这一部分默认收起。请只在安全、私密且没有压力的情境中讨论；任何时候都可以不回答。";
-          card.appendChild(note);
         }
 
         const list = document.createElement("div");
@@ -846,7 +860,7 @@
       const confirmed = window.confirm("确定清空所有选择、昵称和自定义议题吗？此操作无法撤销。");
       if (!confirmed) return;
       state = { profileName: "", answers: {}, custom: [] };
-      localStorage.removeItem(STORAGE_KEY);
+      clearSavedState();
       profileName.value = "";
       renderCategories();
       renderCustomItems();
