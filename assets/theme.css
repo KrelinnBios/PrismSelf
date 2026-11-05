@@ -615,11 +615,15 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   border-top: 1px solid var(--prism-support-dialog-note-border);
 }
 
-/* 全站文本输入统一沿用首页搜索框外观，排除具有独立交互语义的控件。 */
+:root {
+  --prism-form-control-radius: 9px;
+}
+
+/* 全站文本输入统一为圆角矩形，首页搜索框单独保留胶囊形。 */
 :root body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea) {
   box-sizing: border-box !important;
   border: 1px solid var(--search-border, rgba(61, 81, 102, 0.16)) !important;
-  border-radius: 999px !important;
+  border-radius: var(--prism-form-control-radius) !important;
   background-color: var(--search-bg, #ffffff) !important;
   color: var(--ink, #1a2332) !important;
   padding: 14px 16px !important;
@@ -632,8 +636,12 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
 
 :root body textarea {
   min-height: 7em;
-  border-radius: 18px !important;
+  border-radius: var(--prism-form-control-radius) !important;
   resize: vertical;
+}
+
+:root body #cardSearch {
+  border-radius: 999px !important;
 }
 
 :root body :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea)::placeholder {
@@ -696,6 +704,7 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
 :root body select:not([multiple]):not([size]) {
   -webkit-appearance: none !important;
   appearance: none !important;
+  border-radius: var(--prism-form-control-radius) !important;
   padding-right: 42px !important;
   background-image:
     linear-gradient(45deg, transparent 50%, color-mix(in srgb, currentColor 62%, transparent) 50%),
