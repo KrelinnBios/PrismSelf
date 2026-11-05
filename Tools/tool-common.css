@@ -1627,6 +1627,7 @@ details.topic-card:not([open]) summary.topic-head {
 }
 
 .intro-styles {
+  --intro-palette-marker-size: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
@@ -1637,12 +1638,20 @@ details.topic-card:not([open]) summary.topic-head {
   gap: 8px;
 }
 
+/* 配色单选按钮与色样使用相同的实际尺寸和垂直中心，避免浏览器默认边距造成错位。 */
+.intro-styles .intro-option input[type="radio"],
+.intro-styles .intro-swatch {
+  box-sizing: border-box;
+  width: var(--intro-palette-marker-size);
+  height: var(--intro-palette-marker-size);
+  flex: 0 0 var(--intro-palette-marker-size);
+  align-self: center;
+  margin: 0;
+}
+
 .intro-swatch {
-  width: 18px;
-  height: 18px;
   border: 1px solid currentColor;
   border-radius: 50%;
-  flex-shrink: 0;
 }
 
 .intro-custom-colors {
