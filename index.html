@@ -10,7 +10,7 @@
   <title>PrismSelf - 性别·心理·人际</title>
   <meta name="description" content="面向性别理论、心理概念与人际关系议题的自我探索与科普知识库，提供概念分析、专题指南、术语索引、社群观察、共鸣刻度、自评量表与关系工具。">
   <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="icon/favicon.svg?v=202611061" type="image/svg+xml">
+  <link rel="icon" href="icon/favicon.svg?v=202611062" type="image/svg+xml">
   <link rel="canonical" href="https://prismself.vip/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
@@ -108,7 +108,6 @@
       --border: rgba(0, 0, 0, 0.07);
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
       --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.09);
-      --r: 20px;
     }
 
     *,
@@ -162,7 +161,7 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       padding: 9px 20px;
-      border-radius: 40px;
+      border-radius: var(--prism-radius-pill);
       border: 1px solid rgba(43, 122, 98, 0.2);
       margin-bottom: 28px;
     }
@@ -237,7 +236,7 @@
       color: inherit;
       background: none;
       border: none;
-      border-radius: 12px;
+      border-radius: var(--prism-radius-action);
       padding: 6px;
       cursor: pointer;
       transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
@@ -369,7 +368,7 @@
       gap: 18px;
       padding: 12px 16px;
       border: 1px solid var(--search-border);
-      border-radius: 16px;
+      border-radius: var(--prism-radius-card);
       background: linear-gradient(120deg, rgba(63, 168, 130, 0.10), rgba(46, 125, 206, 0.04)), var(--bg-card);
       color: var(--ink);
       font: inherit;
@@ -458,7 +457,7 @@
       gap: 6px;
       padding: 6px 12px;
       border: 1px solid transparent;
-      border-radius: 999px;
+      border-radius: var(--prism-radius-pill);
       background: none;
       color: var(--ink-mid);
       font: inherit;
@@ -624,7 +623,7 @@
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--r);
+      border-radius: var(--prism-radius-card);
       padding: 24px;
       text-decoration: none;
       color: inherit;
@@ -822,7 +821,7 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 3px 10px;
-      border-radius: 40px;
+      border-radius: var(--prism-radius-pill);
       width: fit-content;
     }
 
@@ -1111,7 +1110,7 @@
       gap: 12px;
       padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: var(--prism-radius-card);
       width: 100%;
       background: var(--bg);
       color: inherit;
@@ -1552,7 +1551,7 @@
         align-items: center;
         gap: 7px;
         padding: 0 14px;
-        border-radius: 999px;
+        border-radius: var(--prism-radius-pill);
         border: none;
         background: none;
         box-shadow: none;
@@ -1571,7 +1570,7 @@
       .sidebar .stat:nth-child(3),
       .sidebar .stat:nth-child(7),
       .sidebar .stat:last-child {
-        border-radius: 999px;
+        border-radius: var(--prism-radius-pill);
       }
 
       .sidebar .stat[aria-pressed="true"] {
@@ -1645,10 +1644,9 @@
       }
 
       .card {
-        border-radius: 18px;
+        border-radius: var(--prism-radius-card);
         padding: 18px 16px 16px;
         gap: 10px;
-        --r: 18px;
         box-shadow: 0 2px 14px rgba(26, 35, 50, 0.06);
       }
 
@@ -2047,8 +2045,7 @@
         padding: 13px 13px 12px 15px;
         column-gap: 12px;
         row-gap: 5px;
-        border-radius: 15px;
-        --r: 15px;
+        border-radius: var(--prism-radius-card);
         box-shadow: 0 2px 10px rgba(26, 35, 50, 0.045);
       }
 
@@ -2153,8 +2150,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="assets/theme.css?v=202611061">
-  <script src="assets/theme.js?v=202611061"></script>
+  <link rel="stylesheet" href="assets/theme.css?v=202611062">
+  <script src="assets/theme.js?v=202611062"></script>
   <script
     defer
     src="./scripts/vibecafe-shim.js"

@@ -146,7 +146,7 @@ body {
 .tip {
   background: #fff;
   border-left: 4px solid var(--bingo-accent);
-  border-radius: 10px;
+  border-radius: var(--prism-radius-disclosure);
   padding: 12px 18px;
   font-size: 13px;
   color: #444;
@@ -171,13 +171,13 @@ body {
   font-size: 12px;
   background: rgba(var(--bingo-accent-rgb), 0.08);
   padding: 4px 12px;
-  border-radius: 40px;
+  border-radius: var(--prism-radius-pill);
 }
 
 .ldot {
   width: 26px;
   height: 26px;
-  border-radius: 40px;
+  border-radius: 50%;
   background: #f0f0f0;
   display: inline-flex;
   align-items: center;
@@ -241,7 +241,7 @@ body {
   margin: 0 auto 24px;
   padding: 8px 28px;
   border: 1.5px solid var(--bingo-btn-border);
-  border-radius: 40px;
+  border-radius: var(--prism-radius-pill);
   background: white;
   font-family: inherit;
   font-size: 13px;
@@ -259,7 +259,7 @@ body {
 /* 区域卡片 */
 .section {
   margin-bottom: 28px;
-  border-radius: 20px;
+  border-radius: var(--prism-radius-card);
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
   background: #fff;
@@ -305,7 +305,7 @@ body {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
   padding: 5px 12px;
-  border-radius: 40px;
+  border-radius: var(--prism-radius-pill);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
@@ -398,7 +398,7 @@ body {
   right: 6px;
   width: 28px;
   height: 28px;
-  border-radius: 30px;
+  border-radius: 50%;
   background: #ffffffcc;
   backdrop-filter: blur(2px);
   border: 1.5px solid #ccc;
@@ -631,7 +631,7 @@ body {
 /* 底部简版提醒卡片 */
 .footer {
   background: #fff;
-  border-radius: 24px;
+  border-radius: var(--prism-radius-card);
   padding: 20px 24px;
   margin-top: 28px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
@@ -712,7 +712,7 @@ body {
   gap: 7px;
   padding: 8px 12px;
   border: 1px solid rgba(24, 33, 47, 0.14);
-  border-radius: 8px;
+  border-radius: var(--prism-radius-pill);
   background: rgba(255, 255, 255, 0.92);
   color: #6a7b8f;
   font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
@@ -967,7 +967,7 @@ body {
   .tip {
     margin-bottom: 14px;
     padding: 11px 13px;
-    border-radius: 0 11px 11px 0;
+    border-radius: 0 var(--prism-radius-disclosure) var(--prism-radius-disclosure) 0;
     font-size: 0.82rem;
     line-height: 1.7;
     box-shadow: none;
@@ -1000,7 +1000,7 @@ body {
 
   .section {
     margin-bottom: 16px;
-    border-radius: 15px;
+    border-radius: var(--prism-radius-card);
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.055);
   }
 
@@ -1052,7 +1052,7 @@ body {
   .footer {
     margin-top: 18px;
     padding: 16px;
-    border-radius: 15px;
+    border-radius: var(--prism-radius-card);
     box-shadow: none;
   }
 

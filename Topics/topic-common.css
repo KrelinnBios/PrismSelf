@@ -627,7 +627,7 @@ p>.md-image:only-child {
   min-height: 3.58rem;
   position: relative;
   font-size: 0.9rem;
-  border-radius: 10px;
+  border-radius: var(--prism-radius-card);
 }
 
 .md-toc-content {
@@ -1157,7 +1157,7 @@ mjx-container {
   gap: 7px;
   padding: 8px 12px;
   border: 1px solid rgba(24, 33, 47, 0.14);
-  border-radius: 8px;
+  border-radius: var(--prism-radius-pill);
   background: rgba(255, 255, 255, 0.92);
   color: #6a7b8f;
   font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;

@@ -471,7 +471,7 @@ header h1 {
   border: 1px solid var(--guide-control-border);
   width: 54px;
   height: 54px;
-  border-radius: 999px;
+  border-radius: var(--prism-radius-pill);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -605,7 +605,7 @@ body.guide-ready #write {
   gap: 7px;
   padding: 8px 12px;
   border: 1px solid rgba(24, 33, 47, 0.14);
-  border-radius: 8px;
+  border-radius: var(--prism-radius-pill);
   background: rgba(255, 255, 255, 0.92);
   color: #6a7b8f;
   font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
@@ -658,7 +658,7 @@ body.guide-ready #write {
 
   .term-card {
     padding: 1.35rem 1.3rem;
-    border-radius: 16px;
+    border-radius: var(--prism-radius-card);
     box-shadow: 0 4px 18px rgba(24, 33, 47, 0.06);
   }
 
@@ -888,7 +888,7 @@ header {
 
   .term-card {
     padding: 1.15rem 1.05rem;
-    border-radius: 14px;
+    border-radius: var(--prism-radius-card);
     box-shadow: none;
   }
 
@@ -914,7 +914,7 @@ header {
   #write .term-desc .guide-note {
     margin: 0.85rem 0;
     padding: 0.8rem 0.85rem;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 var(--prism-radius-disclosure) var(--prism-radius-disclosure) 0;
   }
 
   .toc-panel {
@@ -922,6 +922,6 @@ header {
     bottom: 62px;
     width: min(calc(100vw - 24px), 390px);
     max-height: min(68dvh, 620px);
-    border-radius: 16px;
+    border-radius: var(--prism-radius-card);
   }
 }

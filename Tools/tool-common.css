@@ -69,7 +69,7 @@ button {
   align-items: center;
   padding: 8px 12px;
   border: 1px solid rgba(32, 48, 61, 0.13);
-  border-radius: 9px;
+  border-radius: var(--prism-radius-pill);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow-sm);
   color: #6a7b8f;
@@ -123,7 +123,7 @@ button {
   gap: 8px;
   margin-bottom: 18px;
   padding: 5px 12px;
-  border-radius: 999px;
+  border-radius: var(--prism-radius-pill);
   background: var(--teal-soft);
   color: var(--teal-dark);
   font-size: 12px;
@@ -169,7 +169,7 @@ h1 em {
 .hero-note {
   padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--prism-radius-action);
   background: rgba(243, 247, 246, 0.74);
 }
 
@@ -198,7 +198,7 @@ h1 em {
 .intro-panel {
   padding: 22px;
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: var(--prism-radius-card);
   background: var(--paper);
   box-shadow: var(--shadow-sm);
 }
@@ -270,7 +270,7 @@ h1 em {
   margin: 0 0 22px;
   padding: 12px 14px;
   border: 1px solid rgba(47, 111, 115, 0.16);
-  border-radius: 16px;
+  border-radius: var(--prism-radius-card);
   background: rgba(255, 255, 255, 0.91);
   box-shadow: 0 10px 30px rgba(32, 48, 61, 0.1);
   backdrop-filter: blur(16px);
@@ -295,7 +295,7 @@ h1 em {
   flex: 1;
   height: 8px;
   overflow: hidden;
-  border-radius: 999px;
+  border-radius: var(--prism-radius-pill);
   background: #e7eeec;
 }
 
@@ -319,7 +319,7 @@ h1 em {
   min-height: 44px;
   padding: 8px 14px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--prism-radius-action);
   background: var(--paper);
   color: var(--ink-mid);
   font-size: 13px;
@@ -357,7 +357,7 @@ h1 em {
   margin-bottom: 22px;
   padding: 14px 18px;
   border: 1px dashed rgba(47, 111, 115, 0.28);
-  border-radius: 16px;
+  border-radius: var(--prism-radius-card);
   background: #e4f2ee;
 }
 
@@ -379,7 +379,7 @@ h1 em {
   min-height: 44px;
   padding: 10px 12px;
   border: 1px solid var(--prism-input-border);
-  border-radius: 9px;
+  border-radius: var(--prism-form-control-radius);
   background: var(--prism-input-bg);
   color: var(--prism-input-text);
   font-size: 16px;
@@ -463,7 +463,7 @@ h1 em {
   padding-bottom: 10px;
   padding-left: 12px;
   border: 1px solid var(--prism-input-border);
-  border-radius: 9px;
+  border-radius: var(--prism-form-control-radius);
   background-color: var(--prism-input-bg);
   color: var(--prism-input-text);
   list-style: none;
@@ -504,7 +504,7 @@ h1 em {
   padding: 10px;
   overflow-y: auto;
   border: 1px solid var(--prism-input-border);
-  border-radius: 12px;
+  border-radius: var(--prism-radius-disclosure);
   background: var(--prism-input-bg);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
 }
@@ -521,7 +521,7 @@ h1 em {
   gap: 10px;
   min-height: 40px;
   padding: 6px 10px;
-  border-radius: 8px;
+  border-radius: var(--prism-form-control-radius);
   color: var(--prism-input-text);
   font-size: 14px;
   cursor: pointer;
@@ -637,7 +637,7 @@ h1 em {
   min-height: 40px;
   padding: 8px 12px;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--prism-form-control-radius);
   background: transparent;
   color: var(--prism-input-text);
   font-size: 16px;
@@ -680,7 +680,7 @@ h1 em {
   overflow: hidden;
   margin: 0;
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: var(--prism-radius-card);
   background: var(--paper);
   box-shadow: var(--shadow-sm);
 }
@@ -847,7 +847,7 @@ details.topic-card:not([open]) summary.topic-head {
 .intro-option {
   min-height: 42px;
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: var(--prism-form-control-radius);
   background: var(--bg);
   color: var(--ink-mid);
   font-size: 13px;
@@ -977,7 +977,7 @@ details.topic-card:not([open]) summary.topic-head {
   margin-top: 28px;
   padding: clamp(22px, 4vw, 36px);
   border: 1px solid rgba(47, 111, 115, 0.18);
-  border-radius: 26px;
+  border-radius: var(--prism-radius-card);
   background: linear-gradient(145deg, #ffffff, #f0f7f5);
   box-shadow: var(--shadow);
 }
@@ -1011,7 +1011,7 @@ details.topic-card:not([open]) summary.topic-head {
 .summary-block {
   min-height: 132px;
   padding: 17px;
-  border-radius: 16px;
+  border-radius: var(--prism-radius-card);
   background: #fff;
   border: 1px solid var(--line);
 }
@@ -1073,7 +1073,7 @@ details.topic-card:not([open]) summary.topic-head {
   bottom: 24px;
   z-index: 100;
   padding: 10px 16px;
-  border-radius: 999px;
+  border-radius: var(--prism-radius-pill);
   background: rgba(32, 48, 61, 0.94);
   color: #fff;
   font-size: 13px;
@@ -1354,7 +1354,7 @@ details.topic-card:not([open]) summary.topic-head {
 
   .hero-note {
     padding: 11px 12px;
-    border-radius: 11px;
+    border-radius: var(--prism-radius-action);
   }
 
   .guide {
@@ -1366,7 +1366,7 @@ details.topic-card:not([open]) summary.topic-head {
   .legend-card,
   .intro-panel {
     padding: 16px 14px;
-    border-radius: 16px;
+    border-radius: var(--prism-radius-card);
     box-shadow: none;
   }
 
@@ -1387,7 +1387,7 @@ details.topic-card:not([open]) summary.topic-head {
     gap: 9px 12px;
     margin-bottom: 12px;
     padding: 12px;
-    border-radius: 14px;
+    border-radius: var(--prism-radius-card);
     box-shadow: none;
   }
 
@@ -1416,7 +1416,7 @@ details.topic-card:not([open]) summary.topic-head {
   .profile-row {
     margin-bottom: 12px;
     padding: 12px 14px;
-    border-radius: 13px;
+    border-radius: var(--prism-radius-card);
   }
 
   .topics-grid {
@@ -1424,7 +1424,7 @@ details.topic-card:not([open]) summary.topic-head {
   }
 
   .topic-card {
-    border-radius: 16px;
+    border-radius: var(--prism-radius-card);
     box-shadow: 0 3px 14px rgba(32, 48, 61, 0.05);
   }
 
@@ -1452,7 +1452,7 @@ details.topic-card:not([open]) summary.topic-head {
   .summary-card {
     margin-top: 12px;
     padding: 16px 14px;
-    border-radius: 16px;
+    border-radius: var(--prism-radius-card);
     box-shadow: none;
   }
 }
@@ -1665,7 +1665,7 @@ details.topic-card:not([open]) summary.topic-head {
   height: 44px;
   padding: 4px;
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: var(--prism-form-control-radius);
   background: var(--bg);
   cursor: pointer;
 }
@@ -1723,7 +1723,7 @@ details.topic-card:not([open]) summary.topic-head {
   height: 38px;
   padding: 0 16px;
   border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
-  border-radius: 999px;
+  border-radius: var(--prism-radius-pill);
   background: color-mix(in srgb, var(--teal) 10%, transparent);
   color: var(--teal);
   font-size: 14px;

@@ -51,7 +51,7 @@ body {
 	font-size: 11px !important;
 	font-weight: 600 !important;
 	padding: 5px 16px !important;
-	border-radius: 40px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	margin-bottom: 14px !important;
 }
 
@@ -99,7 +99,7 @@ h1 {
 }
 
 .meta-item {
-	border-radius: 40px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	padding: 4px 12px !important;
 	font-size: 0.72rem !important;
 	color: #1e293b !important;
@@ -123,7 +123,7 @@ h1 {
 	margin: 24px 0 20px !important;
 	padding: 10px 16px !important;
 	justify-content: flex-start !important;
-	border-radius: 18px !important;
+	border-radius: var(--prism-radius-disclosure) !important;
 	overflow-x: auto !important;
 	overflow-y: hidden !important;
 	-webkit-overflow-scrolling: touch;
@@ -168,7 +168,7 @@ h1 {
 
 .filter-btn,
 .detail-btn {
-	border-radius: 999px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	transition: all 0.2s ease !important;
 }
 
@@ -202,7 +202,7 @@ h1 {
 }
 
 .table-wrapper {
-	border-radius: 18px !important;
+	border-radius: var(--prism-radius-card) !important;
 	background: transparent !important;
 	margin: 0 0 12px !important;
 	overflow-x: auto !important;
@@ -214,7 +214,7 @@ table {
 	border-collapse: collapse !important;
 	font-size: 0.82rem !important;
 	background: var(--analysis-surface) !important;
-	border-radius: 18px !important;
+	border-radius: var(--prism-radius-card) !important;
 	overflow: hidden !important;
 	box-shadow: var(--analysis-shadow) !important;
 	min-width: 1300px;
@@ -290,7 +290,7 @@ tbody tr:hover {
 .concept-en {
 	font-size: 0.6rem !important;
 	padding: 2px 8px !important;
-	border-radius: 20px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	margin-top: 3px !important;
 	white-space: nowrap !important;
 }
@@ -319,7 +319,7 @@ tbody tr:hover {
 
 .tag {
 	padding: 2px 8px !important;
-	border-radius: 20px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	font-size: 0.68rem !important;
 	font-weight: 500 !important;
 	white-space: nowrap !important;
@@ -333,7 +333,7 @@ tbody tr:hover {
 }
 
 .panel {
-	border-radius: 20px !important;
+	border-radius: var(--prism-radius-card) !important;
 	padding: 18px 16px !important;
 }
 
@@ -356,7 +356,7 @@ tbody tr:hover {
 }
 
 .legend-section {
-	border-radius: 20px !important;
+	border-radius: var(--prism-radius-card) !important;
 	padding: 22px 18px !important;
 	margin: 26px 0 22px !important;
 }
@@ -376,7 +376,7 @@ tbody tr:hover {
 
 .legend-item {
 	background: var(--analysis-surface) !important;
-	border-radius: 14px !important;
+	border-radius: var(--prism-radius-disclosure) !important;
 	display: flex !important;
 	align-items: center !important;
 	gap: 10px !important;
@@ -405,7 +405,7 @@ tbody tr:hover {
 .references {
 	background: var(--analysis-surface-2) !important;
 	padding: 18px !important;
-	border-radius: 14px !important;
+	border-radius: var(--prism-radius-card) !important;
 	font-size: 0.8rem !important;
 	color: var(--analysis-muted) !important;
 	line-height: 1.65 !important;
@@ -500,7 +500,7 @@ a[href^="#ref-"]:focus-visible {
 	align-items: center !important;
 	gap: 5px !important;
 	padding: 3px 9px !important;
-	border-radius: 40px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	font-weight: 600 !important;
 	font-size: 0.66rem !important;
 	box-shadow: none !important;
@@ -630,7 +630,7 @@ a[href^="#ref-"]:focus-visible {
 	gap: 7px !important;
 	padding: 8px 12px !important;
 	border: 1px solid rgba(24, 33, 47, 0.14) !important;
-	border-radius: 8px !important;
+	border-radius: var(--prism-radius-pill) !important;
 	background: rgba(255, 255, 255, 0.92) !important;
 	color: #6a7b8f !important;
 	font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif !important;
@@ -720,12 +720,12 @@ a[href^="#ref-"]:focus-visible {
 	}
 
 	.controls {
-		border-radius: 14px !important;
+		border-radius: var(--prism-radius-disclosure) !important;
 	}
 
 	table,
 	tbody tr {
-		border-radius: 18px !important;
+		border-radius: var(--prism-radius-card) !important;
 	}
 
 	.table-wrapper {
@@ -1067,7 +1067,7 @@ tbody tr[class*="row-"] td:first-child {
 }
 
 .extra-section {
-	border-radius: 22px !important;
+	border-radius: var(--prism-radius-card) !important;
 	box-shadow: none !important;
 }
 
@@ -1257,7 +1257,7 @@ tbody tr[class*="row-"] td:first-child {
 
 	.controls {
 		margin-inline: -2px !important;
-		border-radius: 12px !important;
+		border-radius: var(--prism-radius-disclosure) !important;
 		padding: 8px 8px 10px !important;
 	}
 
@@ -1267,7 +1267,7 @@ tbody tr[class*="row-"] td:first-child {
 
 	tbody tr {
 		padding: 14px !important;
-		border-radius: 14px !important;
+		border-radius: var(--prism-radius-card) !important;
 		box-shadow: 0 3px 12px rgba(36, 50, 74, 0.055) !important;
 	}
 
@@ -1292,6 +1292,6 @@ tbody tr[class*="row-"] td:first-child {
 	.panel,
 	.disclaimer,
 	.disclaimer-box {
-		border-radius: 14px !important;
+		border-radius: var(--prism-radius-card) !important;
 	}
 }
