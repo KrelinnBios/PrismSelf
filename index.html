@@ -171,6 +171,19 @@
       height: 32px;
     }
 
+    /* 浅色背景使用高对比度版本，暗色背景保留原有半透明渐变。 */
+    .site-badge-mark--dark {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .site-badge-mark--light {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .site-badge-mark--dark {
+      display: block;
+    }
+
     .site-badge-label {
       display: inline-block;
       font-size: 1.12em;
@@ -2180,7 +2193,8 @@
   </nav>
   <header>
     <div class="site-badge">
-      <img class="site-badge-mark" src="icon/logo.svg" alt="" aria-hidden="true">
+      <img class="site-badge-mark site-badge-mark--light" src="icon/logo-light.svg?v=202611063" alt="" aria-hidden="true">
+      <img class="site-badge-mark site-badge-mark--dark" src="icon/logo.svg" alt="" aria-hidden="true">
       <span class="site-badge-label">PrismSelf</span>
     </div>
     <h1 class="site-title">性别 · 心理 · 人际</h1>
