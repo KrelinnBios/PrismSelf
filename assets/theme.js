@@ -550,7 +550,7 @@
       '<div class="prism-support-dialog-inner">',
       '  <div class="prism-support-dialog-header">',
       '    <h2 id="prismDeviceDialogTitle">建议使用电脑浏览器</h2>',
-      '    <p id="prismDeviceDialogText">PrismSelf 的长文、表格、量表和工具在电脑屏幕上阅读与操作更舒适。手机浏览器也能正常使用，但部分页面的排版和交互体验一般。</p>',
+      '    <p id="prismDeviceDialogText">PrismSelf 在电脑端的阅读与操作体验更佳。手机浏览器也可正常使用，但部分页面的显示与交互体验可能受限。</p>',
       '  </div>',
       '  <div class="prism-device-actions">',
       '    <button class="prism-device-confirm" type="button">我知道了</button>',
