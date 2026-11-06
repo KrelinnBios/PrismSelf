@@ -1,15 +1,10 @@
-// Move a page path into a new ISO-date group when its content changes.
+// Move an actual content page into a new ISO-date group when its content changes.
+// Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
     date: '2026-11-04',
     pages: [
       './Tools/Relationship-Needs-Menu.html'
-    ]
-  },
-  {
-    date: '2026-11-03',
-    pages: [
-      'home'
     ]
   },
   {

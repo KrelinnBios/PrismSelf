@@ -2788,10 +2788,7 @@
         <div class="footer-update-line">
           <span class="footer-update-label">更新记录：</span>
           <div class="footer-update-marquee" aria-hidden="true">
-            <div class="footer-update-track" id="footerUpdateList">
-              <span class="footer-update-group"><span class="footer-update-item">首页</span></span>
-              <span class="footer-update-group"><span class="footer-update-item">首页</span></span>
-            </div>
+            <div class="footer-update-track" id="footerUpdateList"></div>
           </div>
         </div>
       </div>
@@ -2801,7 +2798,7 @@
 
   </footer>
 
-  <script src="./update-records.js?v=202611031"></script>
+  <script src="./update-records.js?v=202611071"></script>
   <script>
 
     // Live keyword filter over the content cards.
@@ -3020,10 +3017,11 @@
       return `${year}年${month}月${day}日`;
     };
     const updateRecords = (window.PrismSelfUpdateGroups || []).flatMap(({ date, pages }) =>
-      pages.map((page) => {
-        const name = page === 'home' ? '首页' : cardNamesByHref.get(page);
-        return name ? { name, date: formatUpdateDate(date) } : null;
-      }).filter(Boolean)
+      pages.filter((page) => page !== 'home' && page !== './index.html' && page !== 'index.html' && page !== './')
+        .map((page) => {
+          const name = cardNamesByHref.get(page);
+          return name ? { name, date: formatUpdateDate(date) } : null;
+        }).filter(Boolean)
     );
 
     if (updateList && updateRecords.length > 0) {
