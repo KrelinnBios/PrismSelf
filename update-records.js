@@ -2,6 +2,13 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-11-09',
+    pages: [
+      './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/LGBTQ-Comprehensive-Analysis.html'
+    ]
+  },
+  {
     date: '2026-11-08',
     pages: [
       './Tools/Relationship-Needs-Menu.html',
@@ -43,8 +50,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',
-      './Analyses/LGBTQ-Comprehensive-Analysis.html',
-      './Analyses/Gender-Theory-Panorama.html',
       './Topics/Asexual-Community-Survey.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
