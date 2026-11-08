@@ -12,7 +12,9 @@ window.PrismSelfUpdateGroups = [
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Aromantic-Comprehensive-Guide.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
-      './Glossaries/SOGIESC-Glossary.html'
+      './Glossaries/SOGIESC-Glossary.html',
+      './Guides/Greysexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html'
     ]
   },
   {
@@ -34,8 +36,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',
       './Guides/BDSM-Comprehensive-Guide.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/Psychosexual-Concepts-Panorama.html',
