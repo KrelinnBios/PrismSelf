@@ -2846,10 +2846,11 @@
 
       const sidebarEl = document.querySelector('.sidebar');
       const sidebarScrollEl = document.querySelector('.sidebar-scroll');
+      const scrollBehavior = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
       const setActive = (active) => {
         buttons.forEach((b) => b.setAttribute('aria-pressed', b === active ? 'true' : 'false'));
         if (active && sidebarEl && typeof active.scrollIntoView === 'function') {
-          try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) { }
+          try { active.scrollIntoView({ behavior: scrollBehavior(), inline: 'center', block: 'nearest' }); } catch (e) { }
         }
       };
 
@@ -2860,11 +2861,15 @@
           const cat = btn.dataset.filter;
           const isActive = btn.getAttribute('aria-pressed') === 'true';
 
-          if (search) { search.value = ''; }
+          // 恢复被搜索隐藏的卡片和分区，再执行分类跳转。
+          if (search && search.value) {
+            search.value = '';
+            search.dispatchEvent(new Event('input', { bubbles: true }));
+          }
 
           if (isActive) {
             setActive(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: scrollBehavior() });
           } else {
             setActive(btn);
             clickLock = true;
@@ -2875,7 +2880,7 @@
               const isMobileBar = window.matchMedia('(max-width: 640px)').matches;
               const stickyH = isMobileBar && sidebarEl ? sidebarEl.offsetHeight : 0;
               const top = rect.top + window.scrollY - Math.min(window.innerHeight * 2 / 5, 220) - stickyH - 12;
-              window.scrollTo({ top, behavior: 'smooth' });
+              window.scrollTo({ top, behavior: scrollBehavior() });
             }
           }
         });
