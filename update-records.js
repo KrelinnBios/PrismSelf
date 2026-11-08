@@ -15,6 +15,8 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/SOGIESC-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
+      './Glossaries/Philosophy-Glossary.html',
+      './Glossaries/Sexology-Glossary.html',
       './Guides/Greysexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/BDSM-Comprehensive-Guide.html',
@@ -43,8 +45,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Neurodiversity-Resonance.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Gender-Theory-Panorama.html',
-      './Glossaries/Sexology-Glossary.html',
-      './Glossaries/Philosophy-Glossary.html',
       './Topics/Asexual-Community-Survey.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
