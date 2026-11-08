@@ -274,10 +274,10 @@ function loadAnswersFromLocalStorage() {
 		if (!saved) return;
 		const answers = JSON.parse(saved);
 		const form = document.getElementById('sexualOrientationQuiz');
-	for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
-		const select = form.elements[`q${i}`];
-		if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== '') select.value = answers[`q${i}`];
-	}
+		for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+			const select = form.elements[`q${i}`];
+			if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== '') select.value = answers[`q${i}`];
+		}
 		updateProgress();
 	} catch (error) {
 		console.warn('无法恢复性取向量表暂存答案。', error);
