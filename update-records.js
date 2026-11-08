@@ -7,7 +7,10 @@ window.PrismSelfUpdateGroups = [
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Topics/Asexual-Community-Survey.html',
-      './Guides/Asexual-Comprehensive-Guide.html'
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   },
   {
@@ -17,15 +20,12 @@ window.PrismSelfUpdateGroups = [
       './Tools/Self-Intro-Card.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Gender-Exploration-Scale.html',
-      './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Aromantic-Comprehensive-Guide.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
       './Glossaries/SOGIESC-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
       './Glossaries/Sexology-Glossary.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/BDSM-Comprehensive-Guide.html',
       './Analyses/Psychosexual-Concepts-Panorama.html',
