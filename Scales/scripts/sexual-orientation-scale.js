@@ -261,19 +261,27 @@ function saveAnswersToLocalStorage() {
 		const select = form.elements[`q${i}`];
 		if (select) answers[`q${i}`] = select.value;
 	}
-	sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+	try {
+		sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+	} catch (error) {
+		console.warn('无法暂存性取向量表答案，当前作答仍可继续。', error);
+	}
 }
 
 function loadAnswersFromLocalStorage() {
-	const saved = sessionStorage.getItem(STORAGE_KEY);
-	if (!saved) return;
-	const answers = JSON.parse(saved);
-	const form = document.getElementById('sexualOrientationQuiz');
-	for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
-		const select = form.elements[`q${i}`];
-		if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== '') select.value = answers[`q${i}`];
+	try {
+		const saved = sessionStorage.getItem(STORAGE_KEY);
+		if (!saved) return;
+		const answers = JSON.parse(saved);
+		const form = document.getElementById('sexualOrientationQuiz');
+		for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+			const select = form.elements[`q${i}`];
+			if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== '') select.value = answers[`q${i}`];
+		}
+		updateProgress();
+	} catch (error) {
+		console.warn('无法恢复性取向量表暂存答案。', error);
 	}
-	updateProgress();
 }
 
 function getScores() {
@@ -642,7 +650,11 @@ function resetQuiz() {
 	for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
 		if (form.elements[`q${i}`]) form.elements[`q${i}`].value = '';
 	}
-	sessionStorage.removeItem(STORAGE_KEY);
+	try {
+		sessionStorage.removeItem(STORAGE_KEY);
+	} catch (error) {
+		console.warn('无法清除性取向量表暂存数据，当前表单仍会重置。', error);
+	}
 	document.getElementById('result').style.display = 'none';
 	['scoreSummary', 'typeJudgment', 'currentProfileAnalysis', 'mainInterpretation', 'deepPersonalAnalysis', 'sectionScores', 'personalizedSuggestions'].forEach(id => {
 		const element = document.getElementById(id);

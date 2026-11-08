@@ -51,7 +51,11 @@
       form.querySelectorAll('select').forEach(select => {
         if (select.value) answers[select.name] = select.value;
       });
-      sessionStorage.setItem(storageKey, JSON.stringify(answers));
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify(answers));
+      } catch (error) {
+        console.warn('无法暂存人格量表答案，当前作答仍可继续。', error);
+      }
       updateProgress();
     }
 
@@ -61,8 +65,13 @@
         form.querySelectorAll('select').forEach(select => {
           if (answers[select.name]) select.value = answers[select.name];
         });
-      } catch (_) {
-        sessionStorage.removeItem(storageKey);
+      } catch (error) {
+        try {
+          sessionStorage.removeItem(storageKey);
+        } catch (_) {
+          // 存储不可用时无法清理，仍应继续初始化表单。
+        }
+        console.warn('无法恢复人格量表暂存答案。', error);
       }
       updateProgress();
     }
@@ -352,7 +361,11 @@
     function resetScale() {
       if (!window.confirm('确定要清空本页全部答案和结果吗？')) return;
       form.reset();
-      sessionStorage.removeItem(storageKey);
+      try {
+        sessionStorage.removeItem(storageKey);
+      } catch (error) {
+        console.warn('无法清除人格量表暂存数据，当前表单仍会重置。', error);
+      }
       result.style.display = 'none';
       window.__prismPersonalityResult = null;
       updateProgress();

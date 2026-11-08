@@ -967,23 +967,31 @@ function saveAnswersToLocalStorage() {
 			answers[`q${i}`] = select.value;
 		}
 	}
-	sessionStorage.setItem('asexualQuizAnswers', JSON.stringify(answers));
+	try {
+		sessionStorage.setItem('asexualQuizAnswers', JSON.stringify(answers));
+	} catch (error) {
+		console.warn('无法暂存无性恋谱系量表答案，当前作答仍可继续。', error);
+	}
 }
 
 // 从 sessionStorage 加载答案
 function loadAnswersFromLocalStorage() {
-	const saved = sessionStorage.getItem('asexualQuizAnswers');
-	if (!saved) return;
+	try {
+		const saved = sessionStorage.getItem('asexualQuizAnswers');
+		if (!saved) return;
 
-	const answers = JSON.parse(saved);
-	const form = document.getElementById('asexualQuiz');
-	for (let i = 1; i <= 60; i++) {
-		const select = form.elements[`q${i}`];
-		if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
-			select.value = answers[`q${i}`];
+		const answers = JSON.parse(saved);
+		const form = document.getElementById('asexualQuiz');
+		for (let i = 1; i <= 60; i++) {
+			const select = form.elements[`q${i}`];
+			if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
+				select.value = answers[`q${i}`];
+			}
 		}
+		updateProgress(); // 刷新进度条
+	} catch (error) {
+		console.warn('无法恢复无性恋谱系量表暂存答案。', error);
 	}
-	updateProgress(); // 刷新进度条
 }
 
 document.getElementById('asexualQuiz').addEventListener('change', updateProgress);
@@ -2178,7 +2186,11 @@ function resetForm() {
 	const form = document.getElementById('asexualQuiz');
 	const resultDiv = document.getElementById('result');
 	form.reset();
-	sessionStorage.removeItem('asexualQuizAnswers');
+	try {
+		sessionStorage.removeItem('asexualQuizAnswers');
+	} catch (error) {
+		console.warn('无法清除无性恋谱系量表暂存数据，当前表单仍会重置。', error);
+	}
 	resultDiv.style.display = 'none';
 	document.querySelectorAll('.explanation').forEach(exp => exp.style.display = 'none');
 	if (window.PrismScale) window.PrismScale.destroyResultRadar('radarChart');

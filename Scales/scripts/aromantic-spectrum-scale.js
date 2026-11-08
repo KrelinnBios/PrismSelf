@@ -802,23 +802,31 @@ function saveAnswersToLocalStorage() {
 			answers[`q${i}`] = select.value;
 		}
 	}
-	sessionStorage.setItem('aromanticQuizAnswers', JSON.stringify(answers));
+	try {
+		sessionStorage.setItem('aromanticQuizAnswers', JSON.stringify(answers));
+	} catch (error) {
+		console.warn('无法暂存无浪漫谱系量表答案，当前作答仍可继续。', error);
+	}
 }
 
 // 从 sessionStorage 加载答案
 function loadAnswersFromLocalStorage() {
-	const saved = sessionStorage.getItem('aromanticQuizAnswers');
-	if (!saved) return;
+	try {
+		const saved = sessionStorage.getItem('aromanticQuizAnswers');
+		if (!saved) return;
 
-	const answers = JSON.parse(saved);
-	const form = document.getElementById('aromanticQuiz');
-	for (let i = 1; i <= 45; i++) {
-		const select = form.querySelector(`select[name="q${i}"]`);
-		if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
-			select.value = answers[`q${i}`];
+		const answers = JSON.parse(saved);
+		const form = document.getElementById('aromanticQuiz');
+		for (let i = 1; i <= 45; i++) {
+			const select = form.querySelector(`select[name="q${i}"]`);
+			if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
+				select.value = answers[`q${i}`];
+			}
 		}
+		updateProgress(); // 刷新进度条
+	} catch (error) {
+		console.warn('无法恢复无浪漫谱系量表暂存答案。', error);
 	}
-	updateProgress(); // 刷新进度条
 }
 
 // 为所有选择框添加change事件监听
@@ -2053,7 +2061,11 @@ function generateSectionScoresTable(scores) {
 
 function resetForm() {
 	document.getElementById('aromanticQuiz').reset();
-	sessionStorage.removeItem('aromanticQuizAnswers');
+	try {
+		sessionStorage.removeItem('aromanticQuizAnswers');
+	} catch (error) {
+		console.warn('无法清除无浪漫谱系量表暂存数据，当前表单仍会重置。', error);
+	}
 	document.getElementById('result').style.display = 'none';
 	document.querySelectorAll('.explanation').forEach(e => e.classList.remove('show'));
 	if (window.PrismScale) window.PrismScale.destroyResultRadar('radarChart');
