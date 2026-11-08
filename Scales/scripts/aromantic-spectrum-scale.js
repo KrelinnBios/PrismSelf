@@ -817,12 +817,12 @@ function loadAnswersFromLocalStorage() {
 
 		const answers = JSON.parse(saved);
 		const form = document.getElementById('aromanticQuiz');
-	for (let i = 1; i <= 45; i++) {
-		const select = form.querySelector(`select[name="q${i}"]`);
-		if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
-			select.value = answers[`q${i}`];
+		for (let i = 1; i <= 45; i++) {
+			const select = form.querySelector(`select[name="q${i}"]`);
+			if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
+				select.value = answers[`q${i}`];
+			}
 		}
-	}
 		updateProgress(); // 刷新进度条
 	} catch (error) {
 		console.warn('无法恢复无浪漫谱系量表暂存答案。', error);
