@@ -450,17 +450,21 @@ function saveFormData() {
         const select = form?.querySelector(`[name="q${item.id}"]`);
         if (select) answers[`q${item.id}`] = select.value;
     });
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    } catch (error) {
+        console.warn('无法暂存性别探索量表答案，当前作答仍可继续。', error);
+    }
     updateProgress();
 }
 
 function loadFormData() {
-    const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (!saved) {
-        updateProgress();
-        return false;
-    }
     try {
+        const saved = sessionStorage.getItem(STORAGE_KEY);
+        if (!saved) {
+            updateProgress();
+            return false;
+        }
         const answers = JSON.parse(saved);
         let restored = false;
         scaleItems.forEach(item => {
@@ -481,15 +485,19 @@ function loadFormData() {
 }
 
 function clearSavedFormData() {
-    sessionStorage.removeItem(STORAGE_KEY);
-    sessionStorage.removeItem('genderQuizAnswers');
+    try {
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem('genderQuizAnswers');
+    } catch (error) {
+        console.warn('无法访问性别探索量表的暂存数据，当前表单仍会清空。', error);
+    }
 }
 
 form?.addEventListener('change', saveFormData);
 updateProgress();
 
 function getLevel(score) {
-    return score === null ? '回答不足' : '描述性均值';
+    return score === null ? '无有效回答' : '描述性均值';
 }
 
 function calculateDimensionScore(dimension, scores) {
@@ -507,8 +515,7 @@ function scoreText(result) {
 
 function dimensionInterpretation(dimension, result) {
     if (result.score === null) return '本维度没有可用于计算的回答。没有相关经历时选择“不适用”是合理的。';
-    const level = getLevel(result.score);
-    const coverage = `有效回答 ${result.answered}/${result.total} 题，平均分处于${level}区间。`;
+    const coverage = `有效回答 ${result.answered}/${result.total} 题，平均分 ${result.score.toFixed(1)} / 5.0。`;
     switch (dimension.id) {
         case 'identityClarity':
             return `${coverage}这表示你目前对自己的性别体验、语言和概念边界的描述程度，不等于任何身份的确定程度。`;
