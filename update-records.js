@@ -16,7 +16,9 @@ window.PrismSelfUpdateGroups = [
       './Guides/Greysexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/BDSM-Comprehensive-Guide.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html'
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Analyses/Interpersonal-Conflict-Analysis.html',
+      './Analyses/Neutrality-Type-Analysis.html'
     ]
   },
   {
@@ -39,8 +41,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Neurodiversity-Resonance.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html',
       './Glossaries/Sexology-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
