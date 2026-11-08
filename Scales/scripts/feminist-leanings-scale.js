@@ -226,13 +226,17 @@ function saveAnswersToLocalStorage() {
             answers[q.id] = select.value;
         }
     }
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    } catch (error) {
+        console.warn('无法暂存女权倾向量表答案，当前作答仍可继续。', error);
+    }
 }
 
 function loadAnswersFromLocalStorage() {
-    const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (!saved) return;
     try {
+        const saved = sessionStorage.getItem(STORAGE_KEY);
+        if (!saved) return;
         const answers = JSON.parse(saved);
         const form = document.getElementById('feminismQuiz');
         for (let q of fullQuestions) {
@@ -247,7 +251,11 @@ function loadAnswersFromLocalStorage() {
 }
 
 function clearLocalStorage() {
-    sessionStorage.removeItem(STORAGE_KEY);
+    try {
+        sessionStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+        console.warn('无法清除女权倾向量表暂存数据，当前表单仍会重置。', error);
+    }
 }
 
 // 生成表单
