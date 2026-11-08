@@ -5,7 +5,8 @@ window.PrismSelfUpdateGroups = [
     date: '2026-11-09',
     pages: [
       './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/LGBTQ-Comprehensive-Analysis.html'
+      './Analyses/LGBTQ-Comprehensive-Analysis.html',
+      './Topics/Asexual-Community-Survey.html'
     ]
   },
   {
@@ -50,7 +51,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
       './Bingos/Neurodiversity-Resonance.html',
-      './Topics/Asexual-Community-Survey.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
   }
