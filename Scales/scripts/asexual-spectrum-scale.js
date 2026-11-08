@@ -982,12 +982,12 @@ function loadAnswersFromLocalStorage() {
 
 		const answers = JSON.parse(saved);
 		const form = document.getElementById('asexualQuiz');
-	for (let i = 1; i <= 60; i++) {
-		const select = form.elements[`q${i}`];
-		if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
-			select.value = answers[`q${i}`];
+		for (let i = 1; i <= 60; i++) {
+			const select = form.elements[`q${i}`];
+			if (select && answers[`q${i}`] !== undefined && answers[`q${i}`] !== "") {
+				select.value = answers[`q${i}`];
+			}
 		}
-	}
 		updateProgress(); // 刷新进度条
 	} catch (error) {
 		console.warn('无法恢复无性恋谱系量表暂存答案。', error);
