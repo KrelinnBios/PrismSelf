@@ -6,7 +6,8 @@ window.PrismSelfUpdateGroups = [
     pages: [
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
-      './Topics/Asexual-Community-Survey.html'
+      './Topics/Asexual-Community-Survey.html',
+      './Guides/Asexual-Comprehensive-Guide.html'
     ]
   },
   {
@@ -16,7 +17,6 @@ window.PrismSelfUpdateGroups = [
       './Tools/Self-Intro-Card.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Gender-Exploration-Scale.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Aromantic-Comprehensive-Guide.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
