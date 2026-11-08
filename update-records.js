@@ -2,6 +2,12 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-11-09',
+    pages: [
+      './Topics/Asexual-Community-Survey.html'
+    ]
+  },
+  {
     date: '2026-11-08',
     pages: [
       './Tools/Relationship-Needs-Menu.html',
@@ -45,7 +51,6 @@ window.PrismSelfUpdateGroups = [
       './Bingos/Neurodiversity-Resonance.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Gender-Theory-Panorama.html',
-      './Topics/Asexual-Community-Survey.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
   }
