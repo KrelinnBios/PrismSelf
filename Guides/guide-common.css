@@ -608,7 +608,7 @@ body.guide-ready #write {
   border-radius: var(--prism-radius-pill);
   background: rgba(255, 255, 255, 0.92);
   color: #6a7b8f;
-  font: 600 13px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  font: 600 13px/1.2 Inter, "Noto Sans SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
   text-decoration: none;
   box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10);
   backdrop-filter: blur(12px);
