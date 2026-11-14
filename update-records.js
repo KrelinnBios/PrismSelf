@@ -2,10 +2,19 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-11-09',
+    date: '2026-11-15',
     pages: [
       './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/Interpersonal-Attraction-Comparison.html',
+      './Analyses/Interpersonal-Conflict-Analysis.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
+      './Analyses/Neutrality-Type-Analysis.html',
+      './Analyses/Psychosexual-Concepts-Panorama.html'
+    ]
+  },
+  {
+    date: '2026-11-09',
+    pages: [
       './Topics/Asexual-Community-Survey.html',
       './Guides/Asexual-Comprehensive-Guide.html',
       './Guides/Aromantic-Comprehensive-Guide.html',
@@ -26,17 +35,13 @@ window.PrismSelfUpdateGroups = [
     pages: [
       './Tools/Relationship-Needs-Menu.html',
       './Tools/Self-Intro-Card.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html',
       './Glossaries/SOGIESC-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
       './Glossaries/Sexology-Glossary.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/BDSM-Comprehensive-Guide.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html'
+      './Guides/BDSM-Comprehensive-Guide.html'
     ]
   },
   {
