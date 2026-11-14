@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /Topics/scrollbar-test.html
 
 Sitemap: https://prismself.vip/sitemap.xml
