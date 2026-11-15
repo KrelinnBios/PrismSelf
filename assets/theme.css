@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
 /* Self-contained styling for the site-wide theme toggle button.
  * Colors are hardcoded (not page CSS variables) so the button looks correct on
@@ -398,7 +398,7 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   background: var(--prism-support-surface);
   color: inherit;
   box-shadow: 0 8px 28px rgba(11, 18, 32, 0.07);
-  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
   text-align: left;
 }
 
@@ -458,7 +458,7 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   display: block;
   margin: 0 0 5px;
   color: var(--prism-support-primary-ink) !important;
-  font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif !important;
+  font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif !important;
   font-size: 15px !important;
   font-weight: 600 !important;
   line-height: 1.45 !important;
@@ -483,7 +483,7 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   color: var(--prism-support-primary-ink) !important;
   box-shadow: none !important;
   cursor: pointer !important;
-  font: 600 13px/1.4 'Inter', 'Noto Sans SC', system-ui, sans-serif !important;
+  font: 600 13px/1.4 'Noto Sans SC', system-ui, sans-serif !important;
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
 }
 
@@ -517,7 +517,7 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   background: #ffffff;
   color: #1a2332;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
-  font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif !important;
+  font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif !important;
   font-size: 14px !important;
   line-height: 1.6 !important;
 }
@@ -764,7 +764,7 @@ body:not(.home-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn):is(:h
   color: #fff !important;
   box-shadow: none !important;
   cursor: pointer !important;
-  font: 600 14px/1 'Inter', 'Noto Sans SC', system-ui, sans-serif !important;
+  font: 600 14px/1 'Noto Sans SC', system-ui, sans-serif !important;
 }
 
 :root[data-theme] body .prism-device-confirm:hover {

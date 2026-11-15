@@ -21,7 +21,7 @@ html {
 }
 
 body {
-	font-family: 'Inter', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif !important;
+	font-family: 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif !important;
 	background: linear-gradient(180deg, #f7fafb 0%, #f4f7fb 52%, #f8fafc 100%) #f4f7fb !important;
 	color: #263241 !important;
 	padding: 20px 16px !important;
@@ -634,7 +634,7 @@ a[href^="#ref-"]:focus-visible {
 	border-radius: var(--prism-radius-pill) !important;
 	background: rgba(255, 255, 255, 0.92) !important;
 	color: #6a7b8f !important;
-	font: 600 13px/1.2 Inter, "Noto Sans SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif !important;
+	font: 600 13px/1.2 "Noto Sans SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif !important;
 	text-decoration: none !important;
 	box-shadow: 0 8px 24px rgba(24, 33, 47, 0.10) !important;
 	backdrop-filter: blur(12px);
