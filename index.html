@@ -384,8 +384,8 @@
       width: fit-content;
       max-width: calc(100vw - 24px);
       gap: 12px;
-      --corner-card-accent: var(--blue);
-      background: linear-gradient(120deg, rgba(37, 99, 235, 0.10), rgba(56, 189, 248, 0.04)), var(--bg-card);
+      --corner-card-tint: 9%;
+      background: color-mix(in srgb, var(--corner-card-accent) var(--corner-card-tint), var(--bg-card));
     }
 
     /* Keep the subscription entry distinct in dark mode. */
@@ -394,7 +394,7 @@
     }
 
     :root[data-theme="dark"] .whichme-card.resource {
-      background: linear-gradient(120deg, rgba(74, 155, 219, 0.18), rgba(56, 189, 248, 0.06)), var(--bg-card);
+      background: color-mix(in srgb, var(--corner-card-accent) var(--corner-card-tint), var(--bg-card));
     }
 
     .whichme-card:hover {
@@ -945,6 +945,10 @@
       flex-shrink: 0;
     }
 
+    .whichme-card.resource .card-arrow {
+      background: color-mix(in srgb, var(--ink) 3.5%, var(--bg));
+    }
+
     .card:hover .card-arrow,
     .card:focus-visible .card-arrow,
     .whichme-card:hover .card-arrow,
@@ -1093,6 +1097,10 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+    }
+
+    .qr-dialog-direction-stacked {
+      display: none;
     }
 
     .resource-list {
@@ -1685,6 +1693,14 @@
         gap: 12px;
       }
 
+      .qr-dialog-direction-inline {
+        display: none;
+      }
+
+      .qr-dialog-direction-stacked {
+        display: inline;
+      }
+
       footer {
         padding: 26px 16px calc(28px + env(safe-area-inset-bottom, 0px));
       }
@@ -2112,25 +2128,75 @@
       }
     }
 
+    .card[data-dialog-target="aceCommunityDialog"] {
+      background: color-mix(in srgb, var(--purple) 4%, var(--bg-card));
+    }
+
+    :root[data-theme="dark"] .card[data-dialog-target="aceCommunityDialog"] {
+      background: color-mix(in srgb, var(--purple) 6%, var(--bg-card));
+    }
+
+    .card.spade {
+      background: color-mix(in srgb, #111114 3%, var(--bg-card));
+    }
+
+    :root[data-theme="dark"] .card.spade {
+      background: #222224;
+    }
+
     .card.spade::before {
-      background: linear-gradient(90deg, #111114 0%, #28252e 75%, #735b8c 100%);
+      background: linear-gradient(90deg, #111114 0% 20%, #2a2132 50%, #755397 100%);
     }
 
     .card.spade:hover {
-      border-color: rgba(115, 91, 140, 0.3);
+      border-color: rgba(117, 117, 125, 0.28);
     }
 
     .card.spade .card-tag {
-      background: rgba(45, 39, 54, 0.08);
-      color: #332d3d;
+      background: linear-gradient(90deg, rgba(17, 17, 20, 0.08) 0% 20%, rgba(42, 33, 50, 0.10) 50%, rgba(117, 83, 151, 0.17) 100%);
+      color: #43434a;
     }
 
     :root[data-theme="dark"] .card.spade .card-tag {
-      background: rgba(167, 139, 250, 0.12);
-      color: #d3cadf;
+      background: linear-gradient(90deg, rgba(17, 17, 20, 0.50) 0% 20%, rgba(42, 33, 50, 0.48) 50%, rgba(117, 83, 151, 0.35) 100%);
+      color: #d6d6dc;
+    }
+
+    .card.guyuliang {
+      background: color-mix(in srgb, #916961 6%, var(--bg-card));
+    }
+
+    :root[data-theme="dark"] .card.guyuliang {
+      background: color-mix(in srgb, #916961 8%, var(--bg-card));
+    }
+
+    .card.guyuliang::before {
+      background: linear-gradient(90deg, #51302a 0%, #916961 45%, #fbdf62 100%);
+    }
+
+    .card.guyuliang:hover {
+      border-color: rgba(145, 105, 97, 0.35);
+    }
+
+    .card.guyuliang .card-tag {
+      background: linear-gradient(90deg, rgba(81, 48, 42, 0.13) 0%, rgba(145, 105, 97, 0.16) 45%, rgba(251, 223, 98, 0.34) 100%);
+      color: #51302a;
+    }
+
+    :root[data-theme="dark"] .card.guyuliang .card-tag {
+      background: linear-gradient(90deg, rgba(81, 48, 42, 0.45) 0%, rgba(145, 105, 97, 0.43) 45%, rgba(251, 223, 98, 0.18) 100%);
+      color: #fbdf62;
     }
 
     /* Which Me logo colours: https://whichme.xyz/ */
+    .card.whichme {
+      background: color-mix(in srgb, #7357ae 5%, var(--bg-card));
+    }
+
+    :root[data-theme="dark"] .card.whichme {
+      background: color-mix(in srgb, #7357ae 8%, var(--bg-card));
+    }
+
     .card.whichme::before {
       background: linear-gradient(90deg, #302b46, #7357ae);
     }
@@ -2140,12 +2206,12 @@
     }
 
     .card.whichme .card-tag {
-      background: rgba(115, 87, 174, 0.1);
-      color: #7357ae;
+      background: linear-gradient(90deg, rgba(48, 43, 70, 0.10), rgba(115, 87, 174, 0.16));
+      color: #5d448f;
     }
 
     :root[data-theme="dark"] .card.whichme .card-tag {
-      background: rgba(115, 87, 174, 0.22);
+      background: linear-gradient(90deg, rgba(48, 43, 70, 0.40), rgba(115, 87, 174, 0.28));
       color: #c5b0ee;
     }
 
@@ -2450,6 +2516,15 @@
             </div>
           </a>
 
+          <button class="card pride-ace" type="button" data-dialog-target="aceCommunityDialog" aria-controls="aceCommunityDialog">
+            <span class="card-tag tag-pride-ace">外部推荐</span>
+            <span class="card-title">无性恋社群</span>
+            <span class="card-meta">
+              <span class="card-type">无性恋话题交流</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </span>
+          </button>
+
           <button class="card spade" type="button" data-dialog-target="friendDialog" aria-controls="friendDialog">
             <span class="card-tag tag-purple">外部推荐</span>
             <span class="card-title">黑桃 Spade A</span>
@@ -2459,8 +2534,8 @@
             </span>
           </button>
 
-          <button class="card amber" type="button" data-dialog-target="guyuliangDialog" aria-controls="guyuliangDialog">
-            <span class="card-tag tag-amber">外部推荐</span>
+          <button class="card guyuliang" type="button" data-dialog-target="guyuliangDialog" aria-controls="guyuliangDialog">
+            <span class="card-tag">外部推荐</span>
             <span class="card-title">谷语粱</span>
             <span class="card-meta">
               <span class="card-type">福瑞与美国兽展相关内容</span>
@@ -2611,7 +2686,7 @@
       <section class="section" data-category="tool">
         <div class="section-header">
           <div class="section-icon tool">💬</div>
-          <h2 class="section-title">工具 · 自我表达与沟通</h2>
+          <h2 class="section-title">工具 · 表达沟通</h2>
           <span class="section-count">02 份</span>
         </div>
         <div class="card-grid">
@@ -2636,6 +2711,33 @@
 
         </div>
       </section>
+
+      <dialog class="qr-dialog wide" id="aceCommunityDialog" aria-labelledby="aceCommunityDialogTitle">
+        <div class="qr-dialog-inner">
+          <div class="qr-dialog-header">
+            <div class="qr-dialog-copy">
+              <h3 class="qr-dialog-title" id="aceCommunityDialogTitle">无性恋社群</h3>
+              <p class="qr-dialog-desc">若想加入更为严格的社群，请扫描<span class="qr-dialog-direction-inline">右边</span><span class="qr-dialog-direction-stacked">第二张</span>二维码。</p>
+            </div>
+            <button class="qr-dialog-close" type="button" data-dialog-close aria-label="关闭无性恋社群弹窗"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+          </div>
+          <div class="qr-dialog-grid">
+            <div class="qr-platform">
+              <a class="qr-dialog-image" href="https://qun.qq.com/universal-share/share?ac=1&amp;authKey=9%2BUQL3Jzc6kII5R5G6wgLe%2FPQlZBAE00yf1A2HY7z645DTMbrYbXC51q6RLodIAS&amp;busi_data=eyJncm91cENvZGUiOiIxNDQxMzY2MzgiLCJ0b2tlbiI6IkNZeXdBMHpMQlJpeW1paFRrdWlxNHpwMCtkczlqL21nejRNVXJQSEdHeW5uL1Y0SXNaRTdUT1JnWVZhb1g3bVQiLCJ1aW4iOiIyNjMxMTY5NTQ5In0%3D&amp;data=Fw7yzFMWC_45VVmsSSm2x-M4ARrgaAcbH-nNNzTolJYRYTfXl1w3948hAqzvnReZZ5eM6c-iogEF8dz-PrP3RQ&amp;svctype=4&amp;tempid=h5_group_info"
+                target="_blank" rel="noopener noreferrer" aria-label="加入ACE无性恋星球">
+                <img src="./assets/ace-planet-qq-qr.webp" alt="ACE无性恋星球 QQ 群二维码" loading="lazy" decoding="async">
+              </a>
+            </div>
+            <div class="qr-platform">
+              <a class="qr-dialog-image" href="https://qun.qq.com/universal-share/share?ac=1&amp;authKey=vSjNmg8RLGDxeT9%2B9BJj8FgAqibIIIl67MEY%2FiwbuqEcXYGQ96Frfi3X3vrK3naB&amp;busi_data=eyJncm91cENvZGUiOiI3NTU5NjA4NjgiLCJ0b2tlbiI6IkhlbENMdEVtaEVqTkc2T1FmRGVEOHc4ZUZNMzBSVndhUWdRdUtsTFYrYlJZVWwxeVkybTNuK20vbDRCTDBLWjAiLCJ1aW4iOiIyNjMxMTY5NTQ5In0%3D&amp;data=NynfOYioQ73AB2f518ieEQMqoJ9MKnMbuPec6VvrOgNjtFTD1kE5d35pv6Q9GwtVrk5lYU3bzCKyyYEA5J0z3g&amp;svctype=4&amp;tempid=h5_group_info"
+                target="_blank" rel="noopener noreferrer" aria-label="加入ACE群聊审核组">
+                <img src="./assets/ace-review-qq-qr.webp" alt="ACE群聊审核组 QQ 群二维码" loading="lazy" decoding="async">
+              </a>
+            </div>
+          </div>
+          <p class="qr-dialog-note">扫码或点击二维码可直接跳转入群页面。</p>
+        </div>
+      </dialog>
 
       <dialog class="qr-dialog" id="friendDialog" aria-labelledby="friendDialogTitle">
         <div class="qr-dialog-inner">
@@ -2677,7 +2779,7 @@
               </a>
             </div>
           </div>
-          <p class="qr-dialog-note">点击二维码也可以直接打开对应主页。</p>
+          <p class="qr-dialog-note">点击二维码可直接打开对应主页。</p>
         </div>
       </dialog>
 
