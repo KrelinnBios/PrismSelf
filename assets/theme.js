@@ -436,7 +436,6 @@
     if (dialog.open) return;
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
-    markShown();
   }
 
   function createCTA() {
@@ -578,6 +577,7 @@
 
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
+    markShown();
     // 焦点放在弹窗本身，避免一打开就给按钮画上焦点框；Tab 仍可切到按钮。
     dialog.focus();
   }
