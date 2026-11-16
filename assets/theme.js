@@ -553,8 +553,8 @@
     dialog.innerHTML = [
       '<div class="prism-support-dialog-inner">',
       '  <div class="prism-support-dialog-header">',
-      '    <h2 id="prismDeviceDialogTitle">建议使用电脑浏览器</h2>',
-      '    <p id="prismDeviceDialogText">PrismSelf 在电脑端的阅读与操作体验更佳。手机端也可正常使用，但部分页面的显示与交互体验可能受限。</p>',
+      '    <h2 id="prismDeviceDialogTitle">电脑端体验更佳</h2>',
+      '    <p id="prismDeviceDialogText">PrismSelf 在电脑端阅读与操作体验更佳，手机端也可正常使用，但部分页面的显示与交互可能受限。</p>',
       '  </div>',
       '  <div class="prism-device-actions">',
       '    <button class="prism-device-confirm" type="button">我知道了</button>',
