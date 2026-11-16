@@ -436,6 +436,7 @@
     if (dialog.open) return;
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
+    markShown();
   }
 
   function createCTA() {
@@ -524,7 +525,7 @@
 /* Mobile reading tip: on phones, remind once per visit (per tab session) that
  * desktop browsers give a better experience. Reuses the support dialog styles. */
 (function () {
-  var SHOWN_KEY = 'prismself-device-tip-shown';
+  var SHOWN_KEY = 'prismself-device-tip-shown-v2';
 
   // 按设备判断而非窗口宽度：触屏且无悬停、屏幕短边小于 768px 才视为手机，电脑上缩窄窗口不会误弹。
   function isPhone() {
@@ -543,7 +544,6 @@
 
   function showTip() {
     if (alreadyShown() || !isPhone() || document.getElementById('prismDeviceDialog')) return;
-    markShown();
     var dialog = document.createElement('dialog');
     dialog.id = 'prismDeviceDialog';
     dialog.className = 'prism-support-dialog prism-device-dialog';
