@@ -1170,6 +1170,11 @@ html.prism-overlay-scrollbar::-webkit-scrollbar {
   display: none !important;
 }
 
+/* 拖动自绘滚动条时关闭平滑滚动，让页面位置直接跟随鼠标，避免阻尼和跳变。 */
+html.prism-overlay-scrollbar.is-scrollbar-dragging {
+  scroll-behavior: auto !important;
+}
+
 .prism-overlay-thumb {
   position: fixed;
   top: 0;

@@ -202,6 +202,7 @@
       if (!dragging) return;
       dragging = false;
       thumb.classList.remove('is-dragging');
+      root.classList.remove('is-scrollbar-dragging');
       if (e && e.pointerId != null) {
         try { thumb.releasePointerCapture(e.pointerId); } catch (err) {}
       }
@@ -211,6 +212,8 @@
       if (e.button !== 0) return;
       dragging = true;
       thumb.classList.add('is-dragging');
+      // 页面普遍启用了平滑滚动；拖动期间改为即时滚动，避免滚动位置滞后于鼠标。
+      root.classList.add('is-scrollbar-dragging');
       dragOffset = e.clientY - thumb.getBoundingClientRect().top;
       thumb.setPointerCapture(e.pointerId);
       e.preventDefault();
@@ -226,6 +229,7 @@
     });
     thumb.addEventListener('pointerup', endDrag);
     thumb.addEventListener('pointercancel', endDrag);
+    thumb.addEventListener('lostpointercapture', endDrag);
 
     thumb.addEventListener('keydown', function (e) {
       var m = metrics();
