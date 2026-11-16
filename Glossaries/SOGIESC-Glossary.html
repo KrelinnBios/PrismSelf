@@ -23,7 +23,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../assets/theme.css?v=202611171">
-  <link rel="stylesheet" href="./glossary-common.css?v=202611152">
+  <link rel="stylesheet" href="./glossary-common.css?v=202611171">
   <style>
     /* 本页与标准词汇表的差异样式（基础样式见 glossary-common.css，需在其后加载） */
     :root {
@@ -406,8 +406,13 @@
       </p>
 
       <div class="tools">
-        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：非二元、pansexual"
-          aria-label="搜索术语">
+        <div class="search-field">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 20.3l-5.6-5.6a7.5 7.5 0 10-1.4 1.4l5.6 5.6 1.4-1.4zM5 10.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z" />
+          </svg>
+          <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：非二元、pansexual"
+            aria-label="搜索术语">
+        </div>
         <div class="filters" aria-label="分类筛选">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
           <button class="filter" type="button" data-filter="core" aria-pressed="false">基础框架</button>

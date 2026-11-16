@@ -63,7 +63,7 @@
     }
   </style>
   <link rel="stylesheet" href="../assets/theme.css?v=202611171">
-  <link rel="stylesheet" href="./glossary-common.css?v=202611152">
+  <link rel="stylesheet" href="./glossary-common.css?v=202611171">
   <script src="../assets/theme.js?v=202611171"></script>
   <script
     defer
@@ -113,7 +113,12 @@
       </p>
 
       <div class="tools">
-        <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：真理、free will" aria-label="搜索术语">
+        <div class="search-field">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 20.3l-5.6-5.6a7.5 7.5 0 10-1.4 1.4l5.6 5.6 1.4-1.4zM5 10.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z" />
+          </svg>
+          <input id="searchInput" class="search" type="search" placeholder="搜索中/英文或关键词，例如：真理、free will" aria-label="搜索术语">
+        </div>
         <div class="filters" aria-label="分类筛选">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
           <button class="filter" type="button" data-filter="method" aria-pressed="false">方法与问题</button>

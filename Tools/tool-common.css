@@ -22,6 +22,7 @@
   --prism-input-text: #1a2332;
   --prism-input-border: rgba(61, 81, 102, 0.16);
   --prism-input-placeholder: #64788c;
+  --prism-input-icon: #7a8ca0;
   --prism-input-focus-border: rgba(61, 81, 102, 0.32);
   --prism-input-focus-ring: rgba(61, 81, 102, 0.12);
 }
@@ -595,8 +596,24 @@ h1 em {
   overflow: visible;
 }
 
-/* 搜索框外观与其他输入框共用上方规则，这里只去掉浏览器自带的搜索框样式。 */
-.intro-editor .intro-font-search {
+.intro-font-search-field {
+  position: relative;
+}
+
+.intro-font-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  fill: var(--prism-input-icon);
+  pointer-events: none;
+}
+
+/* 搜索框外观与其他输入框共用上方规则，这里只调整图标内边距并去掉浏览器自带的搜索框样式。 */
+#introForm .intro-font-search {
+  padding-left: 36px !important;
   -webkit-appearance: none;
   appearance: none;
 }
@@ -1234,6 +1251,7 @@ details.topic-card:not([open]) summary.topic-head {
   --prism-input-text: #e7edf3;
   --prism-input-border: rgba(180, 193, 206, 0.22);
   --prism-input-placeholder: #a3b1bf;
+  --prism-input-icon: #b4c1ce;
   --prism-input-focus-border: rgba(180, 193, 206, 0.42);
   --prism-input-focus-ring: rgba(180, 193, 206, 0.14);
 }
