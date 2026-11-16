@@ -4,277 +4,277 @@
  *   localStorage, so a manual choice carries across every page (same origin).
  *   Other pages show no toggle; they simply follow the stored choice.
  * - While no manual choice exists, follows live OS theme changes.
- * Load this in <head> (blocking) so the theme is applied before first paint. */
+ *   Load this in <head> (blocking) so the theme is applied before first paint. */
 (function () {
-  var root = document.documentElement;
-  var KEY = 'theme';
-  // Resolve the homepage relative to this shared script, not the current page.
-  // This works under GitHub Pages project paths and local file:// previews.
-  var scriptUrl = document.currentScript && document.currentScript.src;
-  var homepageHref = scriptUrl ? new URL('../index.html', scriptUrl).href : '../index.html';
+   var root = document.documentElement;
+   var KEY = 'theme';
+   // Resolve the homepage relative to this shared script, not the current page.
+   // This works under GitHub Pages project paths and local file:// previews.
+   var scriptUrl = document.currentScript && document.currentScript.src;
+   var homepageHref = scriptUrl ? new URL('../index.html', scriptUrl).href : '../index.html';
 
-  function system() {
-    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
-  }
-  function stored() {
-    try { return localStorage.getItem(KEY); } catch (e) { return null; }
-  }
-  function current() {
-    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-  }
-  // The toggle shows the current mode; its accessible name adds what a click does.
-  function renderToggle(b, t) {
-    b.setAttribute('aria-label', t === 'dark' ? '深色模式，点击切换到浅色' : '浅色模式，点击切换到深色');
-    b.innerHTML = t === 'dark'
-      ? '<span class="header-link-mark" aria-hidden="true">☾</span>深色'
-      : '<span class="header-link-mark" aria-hidden="true">☀</span>浅色';
-  }
-  function syncThemeColor(theme) {
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) return;
-    // Only override the home page chrome colour to match the (sticky) top bar;
-    // other pages keep their own curated theme-color (guide purple, bingo, etc.)
-    var isHome = document.body && document.body.classList.contains('home-page');
-    if (!isHome) {
-      try {
-        var p = String(window.location.pathname || '').toLowerCase();
-        if (p === '/' || p === '/index.html' || p.endsWith('/index.html')) isHome = true;
-        else isHome = /<body[^>]*\bhome-page\b/i.test(document.documentElement.outerHTML);
-      } catch (e) {}
-    }
-    if (!isHome) return;
-    meta.setAttribute('content', theme === 'dark' ? '#0f141a' : '#f7f9fb');
-  }
-  function setGuideLinkPalette() {
-    var path = String(window.location.pathname || '').toLowerCase();
-    root.classList.remove('guide-links-green', 'guide-links-purple');
+   function system() {
+     return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+   }
+   function stored() {
+     try { return localStorage.getItem(KEY); } catch (e) { return null; }
+   }
+   function current() {
+     return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+   }
+   // The toggle shows the current mode; its accessible name adds what a click does.
+   function renderToggle(b, t) {
+     b.setAttribute('aria-label', t === 'dark' ? '深色模式，点击切换到浅色' : '浅色模式，点击切换到深色');
+     b.innerHTML = t === 'dark'
+       ? '<span class="header-link-mark" aria-hidden="true">☾</span>深色'
+       : '<span class="header-link-mark" aria-hidden="true">☀</span>浅色';
+   }
+   function syncThemeColor(theme) {
+     var meta = document.querySelector('meta[name="theme-color"]');
+     if (!meta) return;
+     // Only override the home page chrome colour to match the (sticky) top bar;
+     // other pages keep their own curated theme-color (guide purple, bingo, etc.)
+     var isHome = document.body && document.body.classList.contains('home-page');
+     if (!isHome) {
+       try {
+         var p = String(window.location.pathname || '').toLowerCase();
+         if (p === '/' || p === '/index.html' || p.endsWith('/index.html')) isHome = true;
+         else isHome = /<body[^>]*\bhome-page\b/i.test(document.documentElement.outerHTML);
+       } catch (e) {}
+     }
+     if (!isHome) return;
+     meta.setAttribute('content', theme === 'dark' ? '#0f141a' : '#f7f9fb');
+   }
+   function setGuideLinkPalette() {
+     var path = String(window.location.pathname || '').toLowerCase();
+     root.classList.remove('guide-links-green', 'guide-links-purple');
 
-    if (/(?:asexual|greysexual|graysexual|demisexual)/.test(path)) {
-      root.classList.add('guide-links-purple');
-    } else if (/aromantic/.test(path)) {
-      root.classList.add('guide-links-green');
-    }
-  }
+     if (/(?:asexual|greysexual|graysexual|demisexual)/.test(path)) {
+       root.classList.add('guide-links-purple');
+     } else if (/aromantic/.test(path)) {
+       root.classList.add('guide-links-green');
+     }
+   }
 
-  function installFloatingLayout() {
-    if (!document.head) return;
-    var existing = document.getElementById('prismFloatingLayout');
-    if (existing) {
-      // Move the override to the end after page-specific styles have loaded.
-      document.head.appendChild(existing);
-      return;
-    }
-    var style = document.createElement('style');
-    style.id = 'prismFloatingLayout';
-    style.textContent = [
-      ':root { --prism-corner-inset: 18px; --prism-corner-control-size: 44px; }',
-      'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max-width: var(--prism-corner-control-size) !important; height: var(--prism-corner-control-size) !important; min-height: var(--prism-corner-control-size) !important; max-height: var(--prism-corner-control-size) !important; }',
-      'body:not(.scale-page) .theme-toggle { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: auto !important; left: auto !important; }',
-      'body:not(.scale-page) .floating-toc { position: fixed !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: calc(var(--prism-corner-inset) + env(safe-area-inset-bottom, 0px)) !important; top: auto !important; left: auto !important; }',
-      'body.home-page > footer { padding-top: 32px !important; padding-bottom: 32px !important; }',
-      '@media (max-width: 640px) { body.home-page > footer { padding-top: 26px !important; padding-bottom: calc(26px + env(safe-area-inset-bottom, 0px)) !important; } }',
-      '@media (max-width: 620px) { :root { --prism-corner-inset: 12px; } }'
-    ].join('\n');
-    document.head.appendChild(style);
-  }
+   function installFloatingLayout() {
+     if (!document.head) return;
+     var existing = document.getElementById('prismFloatingLayout');
+     if (existing) {
+       // Move the override to the end after page-specific styles have loaded.
+       document.head.appendChild(existing);
+       return;
+     }
+     var style = document.createElement('style');
+     style.id = 'prismFloatingLayout';
+     style.textContent = [
+       ':root { --prism-corner-inset: 18px; --prism-corner-control-size: 44px; }',
+       'body:not(.scale-page) :is(.theme-toggle, .prism-back-home, .toc-toggle-btn) { width: var(--prism-corner-control-size) !important; min-width: var(--prism-corner-control-size) !important; max[...]
+       'body:not(.scale-page) .theme-toggle { position: fixed !important; top: calc(var(--prism-corner-inset) + env(safe-area-inset-top, 0px)) !important; right: calc(var(--prism-corner-inset) + en[...]
+       'body:not(.scale-page) .floating-toc { position: fixed !important; right: calc(var(--prism-corner-inset) + env(safe-area-inset-right, 0px)) !important; bottom: calc(var(--prism-corner-inset)[...]
+       'body.home-page > footer { padding-top: 32px !important; padding-bottom: 32px !important; }',
+       '@media (max-width: 640px) { body.home-page > footer { padding-top: 26px !important; padding-bottom: calc(26px + env(safe-area-inset-bottom, 0px)) !important; } }',
+       '@media (max-width: 620px) { :root { --prism-corner-inset: 12px; } }'
+     ].join('\n');
+     document.head.appendChild(style);
+   }
 
-  // 1) Apply page-specific link palette and theme as early as possible.
-  setGuideLinkPalette();
-  installFloatingLayout();
-  var initialTheme = stored() || system();
-  root.setAttribute('data-theme', initialTheme);
-  try { syncThemeColor(initialTheme); } catch (e) {}
+   // 1) Apply page-specific link palette and theme as early as possible.
+   setGuideLinkPalette();
+   installFloatingLayout();
+   var initialTheme = stored() || system();
+   root.setAttribute('data-theme', initialTheme);
+   try { syncThemeColor(initialTheme); } catch (e) {}
 
-  function apply(theme, persist) {
-    root.setAttribute('data-theme', theme);
-    syncThemeColor(theme);
-    var b = document.getElementById('themeToggle');
-    if (b) renderToggle(b, theme);
-    if (persist) { try { localStorage.setItem(KEY, theme); } catch (e) { } }
-  }
+   function apply(theme, persist) {
+     root.setAttribute('data-theme', theme);
+     syncThemeColor(theme);
+     var b = document.getElementById('themeToggle');
+     if (b) renderToggle(b, theme);
+     if (persist) { try { localStorage.setItem(KEY, theme); } catch (e) { } }
+   }
 
-  function installBackHome() {
-    if (document.body.classList.contains('home-page') || document.querySelector('.prism-back-home')) return;
-    var link = document.createElement('a');
-    link.className = 'prism-back-home';
-    link.href = homepageHref;
-    link.setAttribute('aria-label', '返回主页');
-    link.title = '返回主页';
-    link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"></path></svg>';
-    document.body.insertBefore(link, document.body.firstChild);
-  }
+   function installBackHome() {
+     if (document.body.classList.contains('home-page') || document.querySelector('.prism-back-home')) return;
+     var link = document.createElement('a');
+     link.className = 'prism-back-home';
+     link.href = homepageHref;
+     link.setAttribute('aria-label', '返回主页');
+     link.title = '返回主页';
+     link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7[...]
+     document.body.insertBefore(link, document.body.firstChild);
+   }
 
-  function build() {
-    if (!document.body) return;
-    installFloatingLayout();
-    installBackHome();
-    try { syncThemeColor(current()); } catch (e) {}
-    var btn = document.getElementById('themeToggle');
-    if (!btn || btn.hasAttribute('data-theme-bound')) return;
-    btn.setAttribute('data-theme-bound', '');
-    renderToggle(btn, current());
-    btn.addEventListener('click', function () {
-      apply(current() === 'dark' ? 'light' : 'dark', true);
-    });
-  }
+   function build() {
+     if (!document.body) return;
+     installFloatingLayout();
+     installBackHome();
+     try { syncThemeColor(current()); } catch (e) {}
+     var btn = document.getElementById('themeToggle');
+     if (!btn || btn.hasAttribute('data-theme-bound')) return;
+     btn.setAttribute('data-theme-bound', '');
+     renderToggle(btn, current());
+     btn.addEventListener('click', function () {
+       apply(current() === 'dark' ? 'light' : 'dark', true);
+     });
+   }
 
-  function forcedColors() {
-    return !!(window.matchMedia && window.matchMedia('(forced-colors: active)').matches);
-  }
+   function forcedColors() {
+     return !!(window.matchMedia && window.matchMedia('(forced-colors: active)').matches);
+   }
 
-  function installOverlayScrollbar() {
-    if (!document.body || forcedColors() || document.getElementById('prismOverlayThumb')) return;
-    var thumb = document.createElement('div');
-    thumb.id = 'prismOverlayThumb';
-    thumb.className = 'prism-overlay-thumb';
-    thumb.hidden = true;
-    thumb.tabIndex = 0;
-    thumb.setAttribute('role', 'scrollbar');
-    thumb.setAttribute('aria-orientation', 'vertical');
-    thumb.setAttribute('aria-label', '页面滚动条');
-    thumb.setAttribute('aria-valuemin', '0');
-    thumb.setAttribute('aria-valuemax', '100');
-    thumb.setAttribute('aria-valuenow', '0');
-    document.body.appendChild(thumb);
-    root.classList.add('prism-overlay-scrollbar');
+   function installOverlayScrollbar() {
+     if (!document.body || forcedColors() || document.getElementById('prismOverlayThumb')) return;
+     var thumb = document.createElement('div');
+     thumb.id = 'prismOverlayThumb';
+     thumb.className = 'prism-overlay-thumb';
+     thumb.hidden = true;
+     thumb.tabIndex = 0;
+     thumb.setAttribute('role', 'scrollbar');
+     thumb.setAttribute('aria-orientation', 'vertical');
+     thumb.setAttribute('aria-label', '页面滚动条');
+     thumb.setAttribute('aria-valuemin', '0');
+     thumb.setAttribute('aria-valuemax', '100');
+     thumb.setAttribute('aria-valuenow', '0');
+     document.body.appendChild(thumb);
+     root.classList.add('prism-overlay-scrollbar');
 
-    var dragging = false;
-    var dragOffset = 0;
-    var pending = false;
-    var isTouchDevice = window.matchMedia && (
-      window.matchMedia('(hover: none)').matches ||
-      window.matchMedia('(pointer: coarse)').matches
-    );
-    var scrollTimer = null;
-    var thumbVisible = false;
+     var dragging = false;
+     var dragOffset = 0;
+     var pending = false;
+     var isTouchDevice = window.matchMedia && (
+       window.matchMedia('(hover: none)').matches ||
+       window.matchMedia('(pointer: coarse)').matches
+     );
+     var scrollTimer = null;
+     var thumbVisible = false;
 
-    function metrics() {
-      var se = document.scrollingElement || document.documentElement;
-      var view = se.clientHeight;
-      var scroll = se.scrollHeight;
-      return { se: se, view: view, scroll: scroll, max: Math.max(0, scroll - view) };
-    }
+     function metrics() {
+       var se = document.scrollingElement || document.documentElement;
+       var view = se.clientHeight;
+       var scroll = se.scrollHeight;
+       return { se: se, view: view, scroll: scroll, max: Math.max(0, scroll - view) };
+     }
 
-    function update() {
-      var m = metrics();
-      if (m.max <= 0) {
-        thumb.hidden = true;
-        thumb.setAttribute('aria-valuenow', '0');
-        return;
-      }
-      var thumbH = Math.max(24, Math.round((m.view / m.scroll) * m.view));
-      var track = Math.max(1, m.view - thumbH);
-      var top = (m.se.scrollTop / m.max) * track;
+     function update() {
+       var m = metrics();
+       if (m.max <= 0) {
+         thumb.hidden = true;
+         thumb.setAttribute('aria-valuenow', '0');
+         return;
+       }
+       var thumbH = Math.max(24, Math.round((m.view / m.scroll) * m.view));
+       var track = Math.max(1, m.view - thumbH);
+       var top = (m.se.scrollTop / m.max) * track;
 
-      // 移动端：仅在滚动时显示
-      if (isTouchDevice && !dragging) {
-        thumb.hidden = !thumbVisible;
-      } else {
-        thumb.hidden = false;
-      }
+       // 移动端：仅在滚动时显示
+       if (isTouchDevice && !dragging) {
+         thumb.hidden = !thumbVisible;
+       } else {
+         thumb.hidden = false;
+       }
 
-      thumb.style.height = thumbH + 'px';
-      thumb.style.transform = 'translateY(' + top + 'px)';
-      thumb.setAttribute('aria-valuenow', String(Math.round((m.se.scrollTop / m.max) * 100)));
-    }
+       thumb.style.height = thumbH + 'px';
+       thumb.style.transform = 'translateY(' + top + 'px)';
+       thumb.setAttribute('aria-valuenow', String(Math.round((m.se.scrollTop / m.max) * 100)));
+     }
 
-    function schedule() {
-      if (pending) return;
-      pending = true;
-      requestAnimationFrame(function () {
-        pending = false;
-        update();
-      });
-    }
+     function schedule() {
+       if (pending) return;
+       pending = true;
+       requestAnimationFrame(function () {
+         pending = false;
+         update();
+       });
+     }
 
-    function showThumb() {
-      if (!isTouchDevice) return;
-      thumbVisible = true;
-      if (scrollTimer) clearTimeout(scrollTimer);
-      schedule();
-      scrollTimer = setTimeout(function() {
-        thumbVisible = false;
-        schedule();
-      }, 500);
-    }
+     function showThumb() {
+       if (!isTouchDevice) return;
+       thumbVisible = true;
+       if (scrollTimer) clearTimeout(scrollTimer);
+       schedule();
+       scrollTimer = setTimeout(function() {
+         thumbVisible = false;
+         schedule();
+       }, 500);
+     }
 
-    function endDrag(e) {
-      if (!dragging) return;
-      dragging = false;
-      thumb.classList.remove('is-dragging');
-      root.classList.remove('is-scrollbar-dragging');
-      if (e && e.pointerId != null) {
-        try { thumb.releasePointerCapture(e.pointerId); } catch (err) {}
-      }
-    }
+     function endDrag(e) {
+       if (!dragging) return;
+       dragging = false;
+       thumb.classList.remove('is-dragging');
+       root.classList.remove('is-scrollbar-dragging');
+       if (e && e.pointerId != null) {
+         try { thumb.releasePointerCapture(e.pointerId); } catch (err) {}
+       }
+     }
 
-    thumb.addEventListener('pointerdown', function (e) {
-      if (e.button !== 0) return;
-      dragging = true;
-      thumb.classList.add('is-dragging');
-      // 页面普遍启用了平滑滚动；拖动期间改为即时滚动，避免滚动位置滞后于鼠标。
-      root.classList.add('is-scrollbar-dragging');
-      dragOffset = e.clientY - thumb.getBoundingClientRect().top;
-      thumb.setPointerCapture(e.pointerId);
-      e.preventDefault();
-    });
-    thumb.addEventListener('pointermove', function (e) {
-      if (!dragging) return;
-      var m = metrics();
-      var thumbH = thumb.offsetHeight;
-      var track = m.view - thumbH;
-      if (track <= 0) return;
-      var y = Math.max(0, Math.min(track, e.clientY - dragOffset));
-      m.se.scrollTop = (y / track) * m.max;
-    });
-    thumb.addEventListener('pointerup', endDrag);
-    thumb.addEventListener('pointercancel', endDrag);
-    thumb.addEventListener('lostpointercapture', endDrag);
+     thumb.addEventListener('pointerdown', function (e) {
+       if (e.button !== 0) return;
+       dragging = true;
+       thumb.classList.add('is-dragging');
+       // 页面普遍启用了平滑滚动；拖动期间改为即时滚动，避免滚动位置滞后于鼠标。
+       root.classList.add('is-scrollbar-dragging');
+       dragOffset = e.clientY - thumb.getBoundingClientRect().top;
+       thumb.setPointerCapture(e.pointerId);
+       e.preventDefault();
+     });
+     thumb.addEventListener('pointermove', function (e) {
+       if (!dragging) return;
+       var m = metrics();
+       var thumbH = thumb.offsetHeight;
+       var track = m.view - thumbH;
+       if (track <= 0) return;
+       var y = Math.max(0, Math.min(track, e.clientY - dragOffset));
+       m.se.scrollTop = (y / track) * m.max;
+     });
+     thumb.addEventListener('pointerup', endDrag);
+     thumb.addEventListener('pointercancel', endDrag);
+     thumb.addEventListener('lostpointercapture', endDrag);
 
-    thumb.addEventListener('keydown', function (e) {
-      var m = metrics();
-      var map = {
-        ArrowDown: m.se.scrollTop + 40,
-        ArrowUp: m.se.scrollTop - 40,
-        PageDown: m.se.scrollTop + m.view * 0.9,
-        PageUp: m.se.scrollTop - m.view * 0.9,
-        Home: 0,
-        End: m.max
-      };
-      if (!(e.key in map)) return;
-      m.se.scrollTop = map[e.key];
-      e.preventDefault();
-    });
+     thumb.addEventListener('keydown', function (e) {
+       var m = metrics();
+       var map = {
+         ArrowDown: m.se.scrollTop + 40,
+         ArrowUp: m.se.scrollTop - 40,
+         PageDown: m.se.scrollTop + m.view * 0.9,
+         PageUp: m.se.scrollTop - m.view * 0.9,
+         Home: 0,
+         End: m.max
+       };
+       if (!(e.key in map)) return;
+       m.se.scrollTop = map[e.key];
+       e.preventDefault();
+     });
 
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('scroll', showThumb, { passive: true });
-    window.addEventListener('touchmove', showThumb, { passive: true });
-    window.addEventListener('resize', schedule);
-    window.addEventListener('load', schedule);
-    if (window.visualViewport) window.visualViewport.addEventListener('resize', schedule);
-    if (window.ResizeObserver) {
-      var ro = new ResizeObserver(schedule);
-      ro.observe(root);
-      ro.observe(document.body);
-    }
-    update();
-  }
+     window.addEventListener('scroll', schedule, { passive: true });
+     window.addEventListener('scroll', showThumb, { passive: true });
+     window.addEventListener('touchmove', showThumb, { passive: true });
+     window.addEventListener('resize', schedule);
+     window.addEventListener('load', schedule);
+     if (window.visualViewport) window.visualViewport.addEventListener('resize', schedule);
+     if (window.ResizeObserver) {
+       var ro = new ResizeObserver(schedule);
+       ro.observe(root);
+       ro.observe(document.body);
+     }
+     update();
+   }
 
-  function start() {
-    build();
-    installOverlayScrollbar();
-  }
+   function start() {
+     build();
+     installOverlayScrollbar();
+   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-  else start();
+   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+   else start();
 
-  // 2) Follow the OS live only while the user has not made a manual choice.
-  if (window.matchMedia) {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var onChange = function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light', false); };
-    if (mq.addEventListener) mq.addEventListener('change', onChange);
-    else if (mq.addListener) mq.addListener(onChange);
-  }
+   // 2) Follow the OS live only while the user has not made a manual choice.
+   if (window.matchMedia) {
+     var mq = window.matchMedia('(prefers-color-scheme: dark)');
+     var onChange = function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light', false); };
+     if (mq.addEventListener) mq.addEventListener('change', onChange);
+     else if (mq.addListener) mq.addListener(onChange);
+   }
 })();
 
 /* Keep dynamically rendered Chinese copy consistent with the site's spacing
@@ -320,7 +320,7 @@
       if (/[A-Za-z0-9+%#_]$/.test(previousValue) && /^[\p{Script=Han}]/u.test(currentValue)) {
         previous.nodeValue = previousValue + ' ';
       }
-      if (/[\p{Script=Han}]$/u.test(previousValue) && /^[A-Za-z0-9]/.test(currentValue)) {
+      if (/[$\p{Script=Han}]$/u.test(previousValue) && /^[A-Za-z0-9]/.test(currentValue)) {
         current.nodeValue = ' ' + currentValue;
       }
     }
@@ -554,7 +554,7 @@
       '<div class="prism-support-dialog-inner">',
       '  <div class="prism-support-dialog-header">',
       '    <h2 id="prismDeviceDialogTitle">建议使用电脑浏览器</h2>',
-      '    <p id="prismDeviceDialogText">PrismSelf 在电脑端的阅读与操作体验更佳。手机浏览器也可正常使用，但部分页面的显示与交互体验可能受限。</p>',
+      '    <p id="prismDeviceDialogText">PrismSelf 在电脑端的阅读与操作体验更佳。手机端也可正常使用，但部分页面的显示与交互体验可能受限。</p>',
       '  </div>',
       '  <div class="prism-device-actions">',
       '    <button class="prism-device-confirm" type="button">我知道了</button>',
