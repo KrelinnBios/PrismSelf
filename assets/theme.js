@@ -257,7 +257,7 @@
       ro.observe(root);
       ro.observe(document.body);
     }
-    update();
+    schedule();
   }
 
   function start() {
@@ -347,16 +347,72 @@
     while ((element = elementWalker.nextNode())) normalizeAttributes(element);
   }
 
+  function edgeText(node, last) {
+    if (!node) return null;
+    if (node.nodeType === Node.TEXT_NODE) return node;
+    var walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+    return last ? walker.lastChild() : walker.firstChild();
+  }
+
+  function normalizeEdges(node, parent) {
+    if (!node || !node.isConnected || !parent.contains(node)) return;
+    var walker = document.createTreeWalker(parent, NodeFilter.SHOW_TEXT);
+    var first = edgeText(node, false);
+    var last = edgeText(node, true);
+    // Empty elements (or a removed node's next sibling) may separate text.
+    walker.currentNode = first || node;
+    if (!first) first = walker.nextNode();
+    if (first) {
+      walker.currentNode = first;
+      var previous = walker.previousNode();
+      if (previous) normalizeTextBoundaries([previous, first]);
+    }
+    if (last) {
+      walker.currentNode = last;
+      var next = walker.nextNode();
+      if (next) normalizeTextBoundaries([last, next]);
+    }
+  }
+
   function install() {
     if (!document.body) return;
     normalizeSubtree(document.body);
     if (!window.MutationObserver) return;
     var observer = new MutationObserver(function (records) {
+      var subtrees = new Set();
+      var textNodes = new Set();
+      var attributes = new Set();
+      var edges = new Map();
       records.forEach(function (record) {
-        if (record.type === 'characterData') normalizeTextNode(record.target);
-        if (record.type === 'attributes') normalizeAttributes(record.target);
-        if (record.type === 'childList') normalizeSubtree(record.target);
+        if (!record.target.isConnected) return;
+        if (record.type === 'characterData') textNodes.add(record.target);
+        if (record.type === 'attributes') attributes.add(record.target);
+        if (record.type === 'childList') {
+          record.addedNodes.forEach(function (node) {
+            if (!node.isConnected) return;
+            subtrees.add(node);
+            edges.set(node, record.target);
+          });
+          if (record.nextSibling) edges.set(record.nextSibling, record.target);
+        }
       });
+      function covered(node) {
+        for (var parent = node.parentNode; parent; parent = parent.parentNode) {
+          if (subtrees.has(parent)) return true;
+        }
+        return false;
+      }
+      // Normalize each newly inserted subtree once, not its unchanged parent.
+      subtrees.forEach(function (node) {
+        if (!covered(node)) normalizeSubtree(node);
+      });
+      textNodes.forEach(function (node) {
+        if (!subtrees.has(node) && !covered(node)) normalizeTextNode(node);
+      });
+      attributes.forEach(function (node) {
+        if (!subtrees.has(node) && !covered(node)) normalizeAttributes(node);
+      });
+      edges.forEach(function (parent, node) { normalizeEdges(node, parent); });
     });
     observer.observe(document.body, {
       subtree: true,

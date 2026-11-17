@@ -21,12 +21,6 @@
         .filter(Boolean);
     }
 
-    function matchesTerm(term, query) {
-      if (!query) return true;
-      const haystack = `${term.zh} ${term.en || ""} ${term.aliases || ""} ${term.desc} ${term.note}`.toLowerCase();
-      return haystack.includes(query);
-    }
-
     function prepareTerm(term) {
       const seen = new Set();
       const aliasesList = splitAliases(term.aliases).filter((item) => {
@@ -42,45 +36,35 @@
       };
     }
 
-    function matchRank(term, query) {
+    function matchRank(entry, query) {
       if (!query) return 999;
       const q = query;
-      const prepared = prepareTerm(term);
-      const zh = normalize(prepared.zh);
-      const en = normalize(prepared.en);
-      const aliases = prepared.aliasesList.map((item) => normalize(item));
-      const desc = normalize(term.desc);
-      const note = normalize(term.note);
+      const { zh, en, aliases, description } = entry;
 
       if (zh === q || en === q || aliases.includes(q)) return 0;
       if (zh.startsWith(q) || en.startsWith(q) || aliases.some((item) => item.startsWith(q))) return 1;
       if (zh.includes(q) || en.includes(q) || aliases.some((item) => item.includes(q))) return 2;
-      if (`${desc} ${note}`.includes(q)) return 3;
+      if (description.includes(q)) return 3;
       return 9;
     }
 
-    function render() {
-      const query = normalize(searchInput.value);
-      const visible = terms
-        .map((term, index) => ({ term, index }))
-        .filter(({ term }) => {
-          const inCategory = currentFilter === "all" || term.cat === currentFilter;
-          return inCategory && matchesTerm(term, query);
-        });
-
-      if (query) {
-        visible.sort((a, b) => {
-          const rankDiff = matchRank(a.term, query) - matchRank(b.term, query);
-          if (rankDiff) return rankDiff;
-          return a.index - b.index;
-        });
-      }
-
-      grid.innerHTML = visible.map(({ term }) => {
-        const prepared = prepareTerm(term);
-        const tagKey = prepared.cardTag || prepared.cat;
-        const tagName = prepared.tag || categoryNames[tagKey] || categoryNames[prepared.cat] || "术语";
-        return `
+    // 数据预处理与卡片创建只做一次；搜索时保留已有节点和原始排序。
+    const entries = terms.map((term, index) => {
+      const prepared = prepareTerm(term);
+      return {
+        term: prepared,
+        index,
+        zh: normalize(term.zh),
+        en: normalize(term.en),
+        aliases: prepared.aliasesList.map(normalize),
+        description: `${normalize(term.desc)} ${normalize(term.note)}`,
+        haystack: `${term.zh} ${term.en || ""} ${term.aliases || ""} ${term.desc} ${term.note}`.toLowerCase()
+      };
+    });
+    grid.innerHTML = entries.map(({ term: prepared }) => {
+      const tagKey = prepared.cardTag || prepared.cat;
+      const tagName = prepared.tag || categoryNames[tagKey] || categoryNames[prepared.cat] || "术语";
+      return `
         <article class="term-card" data-category="${prepared.cat}">
           <div class="term-head">
             <h3 class="term-title">${prepared.zh}${prepared.en ? `<small>${prepared.en}</small>` : ""}</h3>
@@ -91,14 +75,41 @@
           <div class="note">${prepared.note}</div>
         </article>
       `;
-      }).join("");
+    }).join("");
+    Array.from(grid.children).forEach((card, index) => { entries[index].card = card; });
+    let renderedQuery = null;
+    let renderedFilter = null;
 
-      const intro = categoryIntros[currentFilter] || "";
-      categoryIntro.hidden = !intro;
-      if (intro) categoryIntro.innerHTML = `<b>${categoryNames[currentFilter]}</b>：${intro}`;
+    function render() {
+      const query = normalize(searchInput.value);
+      if (query === renderedQuery && currentFilter === renderedFilter) return;
+      const visible = entries
+        .filter(({ term, haystack }) =>
+          (currentFilter === "all" || term.cat === currentFilter) && (!query || haystack.includes(query)))
+        .map((entry) => ({ entry, rank: matchRank(entry, query) }));
+      if (query) visible.sort((a, b) => a.rank - b.rank || a.entry.index - b.entry.index);
 
-      resultCount.textContent = `${visible.length} 个结果`;
+      const visibleCards = new Set(visible.map(({ entry }) => entry.card));
+      Array.from(grid.children).forEach((card) => {
+        if (!visibleCards.has(card)) card.remove();
+      });
+      let nextCard = grid.firstElementChild;
+      visible.forEach(({ entry }) => {
+        if (entry.card === nextCard) nextCard = nextCard.nextElementSibling;
+        else grid.insertBefore(entry.card, nextCard);
+      });
+
+      if (currentFilter !== renderedFilter) {
+        const intro = categoryIntros[currentFilter] || "";
+        categoryIntro.hidden = !intro;
+        if (intro) categoryIntro.innerHTML = `<b>${categoryNames[currentFilter]}</b>：${intro}`;
+      }
+
+      const countText = `${visible.length} 个结果`;
+      if (resultCount.textContent !== countText) resultCount.textContent = countText;
       emptyState.style.display = visible.length ? "none" : "block";
+      renderedQuery = query;
+      renderedFilter = currentFilter;
     }
 
     termCount.textContent = String(terms.length);
