@@ -71,14 +71,85 @@ body {
   min-width: 0;
   margin-left: 0;
   margin-right: 0;
+}
+
+/* 对照表：文字继承正文；列按内容自然宽度，容器超宽时横向滚动 */
+#write .table-figure {
+  margin: 1.6rem 0 2rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-top: 2px solid var(--accent);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 45%, transparent) transparent;
+}
+
+#write .table-figure.guide-drag-scroll {
+  cursor: grab;
+}
+
+#write .table-figure.guide-drag-scroll.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+#write .table-figure::-webkit-scrollbar {
+  height: 10px;
+}
+
+#write .table-figure::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+#write .table-figure::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 6px;
 }
 
 #write .table-figure>table {
   width: max-content;
   min-width: 100%;
   max-width: none;
+  border-collapse: collapse;
+}
+
+#write .table-figure :is(th, td) {
+  width: 13rem;
+  min-width: 8rem;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: break-word;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+#write .table-figure :is(th, td):first-child {
+  width: 10rem;
+  min-width: 10rem;
+}
+
+#write .table-figure thead th {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: var(--accent-2);
+  vertical-align: bottom;
+  overflow-wrap: normal;
+}
+
+#write .table-figure tbody :is(th, td):first-child {
+  color: var(--accent);
+}
+
+/* 表内强调只保留字重，避免整张表被强调色铺满 */
+#write .term-card .term-desc .table-figure :is(th, td) :is(strong, b) {
+  color: inherit !important;
+}
+
+@media (hover: hover) {
+  #write .table-figure tbody tr:hover> :is(th, td) {
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+  }
 }
 
 #write pre {
@@ -211,8 +282,8 @@ header h1 {
 
 .category-title {
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
   color: var(--accent-2);
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -663,7 +734,8 @@ body.guide-ready #write {
   }
 
   .category-title {
-    font-size: 0.62rem;
+    font-size: 0.84rem;
+    letter-spacing: 0.14em;
     margin-bottom: 1.15rem;
   }
 
@@ -877,8 +949,8 @@ header {
   .category-title {
     gap: 0.75rem;
     margin-bottom: 0.9rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
   }
 
   .terms-grid,

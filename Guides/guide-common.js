@@ -180,6 +180,77 @@
     return main;
   };
 
+  // 列数较多的对照表在窄屏按行堆叠，把表头文字写入单元格供 ::before 使用
+  const enhanceTables = (root) => {
+    root.querySelectorAll('.table-figure > table').forEach((table) => {
+      const headerRow = table.querySelector('thead tr:last-child');
+      const heads = headerRow ? Array.from(headerRow.children).map(textOf) : [];
+      const rows = Array.from(table.querySelectorAll('tbody > tr'));
+      if (heads.length < 3 || !rows.length) return;
+      rows.forEach((tr) => {
+        Array.from(tr.children).forEach((cell, index) => {
+          if (cell.tagName !== 'TD' || !heads[index]) return;
+          cell.setAttribute('data-label', heads[index]);
+        });
+      });
+      table.classList.add('guide-table-matrix');
+      if (heads.length >= 5) {
+        table.classList.add('guide-table-wide');
+        const card = table.closest('.term-card');
+        if (card) card.classList.add('guide-card-wide');
+      }
+    });
+  };
+
+  // 有横向溢出的表格支持鼠标按住拖动滚动；触摸设备保留原生滑动
+  const enableTableDragScroll = (root) => {
+    root.querySelectorAll('.table-figure').forEach((box) => {
+      if (box.scrollWidth <= box.clientWidth) return;
+      box.classList.add('guide-drag-scroll');
+
+      let pending = false;
+      let dragging = false;
+      let startX = 0;
+      let startScroll = 0;
+      let pointerId = null;
+
+      const endDrag = () => {
+        if (!pending && !dragging) return;
+        pending = false;
+        dragging = false;
+        box.classList.remove('is-dragging');
+        pointerId = null;
+      };
+
+      box.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse' || e.button !== 0) return;
+        if (e.target.closest('a, button')) return;
+        pending = true;
+        startX = e.clientX;
+        startScroll = box.scrollLeft;
+        pointerId = e.pointerId;
+      });
+
+      box.addEventListener('pointermove', (e) => {
+        if (!pending && !dragging) return;
+        const dx = e.clientX - startX;
+        if (!dragging) {
+          if (Math.abs(dx) < 5) return;
+          pending = false;
+          dragging = true;
+          box.classList.add('is-dragging');
+          if (pointerId != null) box.setPointerCapture(pointerId);
+        }
+        e.preventDefault();
+        box.scrollLeft = startScroll - dx;
+      });
+
+      box.addEventListener('pointerup', endDrag);
+      box.addEventListener('pointercancel', endDrag);
+      box.addEventListener('lostpointercapture', endDrag);
+    });
+  };
+
   const buildFloatingToc = (sections) => {
     const floating = el('div', 'floating-toc');
     const btn = el('button', 'toc-toggle-btn', '≡');
@@ -304,6 +375,7 @@
 
     const intro = buildIntro(config, sections, manualToc);
     const main = buildMain(config, sections);
+    enhanceTables(main);
     const { floating, panel } = buildFloatingToc(sections);
 
     write.innerHTML = '';
@@ -311,6 +383,8 @@
     write.appendChild(intro);
     write.appendChild(main);
     write.appendChild(floating);
+
+    enableTableDragScroll(main);
 
     trackCurrentSection(write, panel, sections);
 
