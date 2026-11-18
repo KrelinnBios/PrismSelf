@@ -102,8 +102,9 @@
       p.innerHTML = config.introHtml;
       intro.appendChild(p);
     } else {
-      // 默认把第一章开头的两段移入导语
-      const introParas = sections[0].nodes.filter((n) => n && n.tagName === 'P').slice(0, 2);
+      // 默认把第一章开头的两段移入导语；可用 introParaCount 调整
+      const introCount = Number.isFinite(config.introParaCount) ? config.introParaCount : 2;
+      const introParas = sections[0].nodes.filter((n) => n && n.tagName === 'P').slice(0, introCount);
       if (introParas.length) {
         sections[0].nodes = sections[0].nodes.filter((n) => !introParas.includes(n));
         for (const p of introParas) intro.appendChild(p);
