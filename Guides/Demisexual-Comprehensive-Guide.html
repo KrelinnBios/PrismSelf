@@ -42,7 +42,7 @@
   </style>
 <script src="./guide-common.js?v=202611210"></script>
 <script>
-  PrismSelfGuide.init({
+  if (window.PrismSelfGuide) PrismSelfGuide.init({
     headerLabel: 'Demisexual Comprehensive Guide',
     fallbackTitle: '半性恋全景指南',
     headerSub: 'auto',
@@ -76,6 +76,15 @@
       '汇总专业资料、社群资源与延伸阅读入口。'
     ]
   });
+</script>
+<script>
+  // 兜底：guide-common.js 加载失败时仍显示原文，避免整页透明
+  document.addEventListener('DOMContentLoaded', function () {
+    if (document.body.classList.contains('guide-building')) {
+      document.body.classList.remove('guide-building');
+      document.body.classList.add('guide-ready');
+    }
+  }, { once: true });
 </script>
   <title>PrismSelf - 半性恋全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/Demisexual-Comprehensive-Guide">

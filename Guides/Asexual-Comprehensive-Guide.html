@@ -38,7 +38,7 @@
   </style>
 <script src="./guide-common.js?v=202611210"></script>
 <script>
-  PrismSelfGuide.init({
+  if (window.PrismSelfGuide) PrismSelfGuide.init({
     headerLabel: 'Asexual Comprehensive Guide',
     fallbackTitle: '无性恋全景指南',
     introParaCount: 1,
@@ -72,6 +72,15 @@
       '汇总参考资料、组织资源与适合继续阅读的延伸内容。'
     ]
   });
+</script>
+<script>
+  // 兜底：guide-common.js 加载失败时仍显示原文，避免整页透明
+  document.addEventListener('DOMContentLoaded', function () {
+    if (document.body.classList.contains('guide-building')) {
+      document.body.classList.remove('guide-building');
+      document.body.classList.add('guide-ready');
+    }
+  }, { once: true });
 </script>
   <title>PrismSelf - 无性恋全景指南</title>
   <link rel="canonical" href="https://prismself.vip/Guides/Asexual-Comprehensive-Guide">
