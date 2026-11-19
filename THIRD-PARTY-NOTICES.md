@@ -7,6 +7,7 @@
 - [Chart.js 4.4.1](https://github.com/chartjs/Chart.js)：`MIT`，通过 cdnjs 加载。
 - [html2canvas 1.4.1](https://github.com/niklasvh/html2canvas)：`MIT`，通过 cdnjs 加载。
 - 通过 Google Fonts 加载的 Noto Sans SC、Noto Serif SC、Inter、DM Sans、DM Mono、Cormorant Garamond 和 Space Mono 等字体：分别适用其上游字体许可证及 Google Fonts 服务条款。
+- 自我介绍卡在线字体经由 jsDelivr 分发的 npm 包加载：适用其上游字体许可证及 jsDelivr 服务条款。
 
 上述软件和字体不会因为被本项目引用而改用 PrismSelf 的 MIT License 或 CC BY-NC-SA 4.0。
 
@@ -33,6 +34,18 @@ IPIP 公有领域材料本身不因收录于本仓库而采用 CC BY-NC-SA 4.0�
 ## 外部服务
 
 部分页面运行时会连接 cdnjs 和 Google Fonts 下载脚本或字体。这些服务的可用性、日志处理、隐私政策和服务条款由各自运营方负责。
+
+### VibeCafé 访问统计
+
+生产环境（prismself.vip）的页面通过 [scripts/vibecafe-shim.js](./scripts/vibecafe-shim.js) 从 vibecafe.ai 加载 VibeCafé 遥测脚本，用于匿名统计页面浏览量，行为如下：
+
+- 在浏览器 localStorage 中以 `vc:telemetry:visitor:<product-id>` 为键保存一个随机生成的访客 ID，用于区分同一浏览器的重复访问。
+- 以不携带 Cookie 的跨域请求向 vibecafe.ai 上报 `pageview` 事件，请求内容仅包含访客 ID 和事件类型，不含页面标题、填写内容或本站其他数据。
+- 量表、关系工具、自我介绍卡和导出内容的处理不经过该脚本，仍全部在浏览器本地完成。
+- 浏览器处于“禁止跟踪”（Do Not Track）或 Global Privacy Control 状态时，该脚本不执行任何收集或上报。
+- localhost、127.0.0.1 和 file:// 本地预览环境不加载该脚本。
+
+vibecafe.ai 服务端对这些请求的日志与数据处理由其运营方负责；PrismSelf 不控制该服务端的存储与保留策略。
 
 ## 版本与反馈
 
