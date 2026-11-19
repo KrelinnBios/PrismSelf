@@ -4,16 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141a" media="(prefers-color-scheme: dark)">
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) { }
+      if (theme !== 'dark' && theme !== 'light') {
+        theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <title>PrismSelf - 页面未找到</title>
   <link rel="icon" href="/icon/favicon.svg?v=202611210" type="image/svg+xml">
   <style>
+    :root {
+      color-scheme: light;
+      --bg: #fff;
+      --fg: #000;
+      --muted: #52606d;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #0f141a;
+        --fg: #e7edf3;
+        --muted: #a8b5c2;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0f141a;
+      --fg: #e7edf3;
+      --muted: #a8b5c2;
+    }
+
     * { box-sizing: border-box; }
     body {
       min-height: 100vh;
       margin: 0;
-      color: #000;
-      background: #fff;
+      color: var(--fg);
+      background: var(--bg);
       font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
     }
     .not-found {
@@ -35,6 +69,7 @@
     }
     .not-found-message {
       margin: 0;
+      color: var(--muted);
       font-size: 16px;
       line-height: 1.5;
     }
