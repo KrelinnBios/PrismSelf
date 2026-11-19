@@ -2,6 +2,13 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-11-19',
+    pages: [
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Guides/Asexual-Comprehensive-Guide.html'
+    ]
+  },
+  {
     date: '2026-11-15',
     pages: [
       './Analyses/Gender-Theory-Panorama.html',
@@ -16,8 +23,6 @@ window.PrismSelfUpdateGroups = [
     date: '2026-11-09',
     pages: [
       './Topics/Asexual-Community-Survey.html',
-      './Guides/Asexual-Comprehensive-Guide.html',
-      './Guides/Aromantic-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html',
       './Scales/Gender-Exploration-Scale.html',
