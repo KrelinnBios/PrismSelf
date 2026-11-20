@@ -2,7 +2,7 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
-    date: '2026-11-19',
+    date: '2026-11-21',
     pages: [
       './Guides/Aromantic-Comprehensive-Guide.html',
       './Guides/Asexual-Comprehensive-Guide.html'
