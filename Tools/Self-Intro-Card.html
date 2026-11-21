@@ -237,7 +237,7 @@
 
         <section class="intro-panel" aria-labelledby="freeTitle">
           <h2 id="freeTitle"><span class="intro-step">03</span>我的小角落</h2>
-          <label class="intro-field"><span>补充文字</span><textarea id="notes" maxlength="600" rows="4" placeholder="写下任何你想补充的内容"></textarea></label>
+          <label class="intro-field"><span>补充文字</span><textarea id="notes" maxlength="600" rows="4" placeholder="写下任何你愿意分享的补充内容"></textarea></label>
           <div class="intro-image-toolbar">
             <label class="intro-field" for="imageInput"><span>添加本地图片</span></label>
             <div role="radiogroup" aria-label="图片排列" class="intro-options">
@@ -1363,7 +1363,7 @@
         setTimeout(() => URL.revokeObjectURL(url), 5000);
         status.textContent = "图片已生成，开始下载。";
       } catch (error) {
-        status.textContent = "图片生成失败，请重试；也可以截图保存右侧预览。";
+        status.textContent = "图片生成失败，请重试；也可以直接截取右侧预览保存。";
         window.alert(status.textContent);
       } finally {
         exportButton.disabled = false;
