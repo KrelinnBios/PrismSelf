@@ -9,24 +9,19 @@ window.PrismSelfUpdateGroups = [
       './Guides/BDSM-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html'
-    ]
-  },
-  {
-    date: '2026-11-15',
-    pages: [
+      './Guides/Greysexual-Comprehensive-Guide.html',
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
       './Analyses/Interpersonal-Conflict-Analysis.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Neutrality-Type-Analysis.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html'
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Topics/Asexual-Community-Survey.html'
     ]
   },
   {
     date: '2026-11-09',
     pages: [
-      './Topics/Asexual-Community-Survey.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html',
       './Scales/Gender-Exploration-Scale.html',
