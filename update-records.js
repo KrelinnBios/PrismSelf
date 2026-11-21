@@ -15,7 +15,6 @@ window.PrismSelfUpdateGroups = [
       './Tools/Relationship-Needs-Menu.html',
       './Tools/Self-Intro-Card.html',
       './Topics/Asexual-Community-Survey.html',
-      './Topics/A-Conversation-on-Asexuality.html',
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
       './Analyses/Interpersonal-Conflict-Analysis.html',
@@ -49,6 +48,12 @@ window.PrismSelfUpdateGroups = [
     pages: [
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html'
+    ]
+  },
+  {
+    date: '2026-10-26',
+    pages: [
+      './Topics/A-Conversation-on-Asexuality.html'
     ]
   }
 ];
