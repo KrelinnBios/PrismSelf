@@ -5,7 +5,9 @@ window.PrismSelfUpdateGroups = [
     date: '2026-11-21',
     pages: [
       './Guides/Aromantic-Comprehensive-Guide.html',
-      './Guides/Asexual-Comprehensive-Guide.html'
+      './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   },
   {
