@@ -15,7 +15,13 @@ window.PrismSelfUpdateGroups = [
       './Tools/Relationship-Needs-Menu.html',
       './Tools/Self-Intro-Card.html',
       './Topics/Asexual-Community-Survey.html',
-      './Topics/A-Conversation-on-Asexuality.html'
+      './Topics/A-Conversation-on-Asexuality.html',
+      './Analyses/Gender-Theory-Panorama.html',
+      './Analyses/Interpersonal-Attraction-Comparison.html',
+      './Analyses/Interpersonal-Conflict-Analysis.html',
+      './Analyses/LGBTQ-Comprehensive-Analysis.html',
+      './Analyses/Neutrality-Type-Analysis.html',
+      './Analyses/Psychosexual-Concepts-Panorama.html'
     ]
   },
   {
@@ -26,13 +32,7 @@ window.PrismSelfUpdateGroups = [
       './Guides/BDSM-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
       './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
-      './Analyses/Gender-Theory-Panorama.html',
-      './Analyses/Interpersonal-Attraction-Comparison.html',
-      './Analyses/Interpersonal-Conflict-Analysis.html',
-      './Analyses/LGBTQ-Comprehensive-Analysis.html',
-      './Analyses/Neutrality-Type-Analysis.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html'
+      './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   },
   {
