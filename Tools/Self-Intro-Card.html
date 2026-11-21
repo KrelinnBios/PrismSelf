@@ -51,7 +51,7 @@
   <main class="page">
     <header class="hero">
       <h1>自我<em>介绍卡</em></h1>
-      <p class="hero-lead">把称呼、代词、性别认同与取向整理成自己的介绍卡，方便他人了解你希望如何被称呼、如何介绍自己。每一项都可以填写或留白。</p>
+      <p class="hero-lead">把称呼、代词、性别认同与取向整理成自己的介绍卡，方便别人了解你希望如何被称呼、如何介绍自己。每一项都可以填写或留白。</p>
       <div class="hero-notes">
         <div class="hero-note">
           <strong>建议浏览器打开</strong>
@@ -84,7 +84,7 @@
               <label class="intro-field"><span>背景色</span><input id="customBackground" type="color" value="#f8f5ee"></label>
               <label class="intro-field"><span>文字色</span><input id="customInk" type="color" value="#2c3935"></label>
               <label class="intro-field"><span>强调色</span><input id="customAccent" type="color" value="#346c66"></label>
-              <p class="intro-hint">建议背景色与文字色保持足够对比，预览会实时更新。</p>
+              <p class="intro-hint">建议背景色与文字色保持足够的对比度，预览会实时更新。</p>
             </div>
           </fieldset>
           <div class="intro-field intro-font-field">
@@ -121,7 +121,7 @@
             </details>
             <input type="hidden" id="cardFontEn" name="cardFontEn" value="">
           </div>
-          <p class="intro-hint" id="fontHint">默认使用系统字体。展开后可选在线字体或搜索本机字体：在线字体仅在选中时从 jsDelivr 加载卡片所需字符，不安装到设备；本机字体首次读取需授权，列表仅在本地使用。均不上传内容；英文字体仅影响字母和数字。</p>
+          <p class="intro-hint" id="fontHint">默认使用系统字体。展开后可以选择在线字体，也可以搜索本机字体：在线字体只在选中时从 jsDelivr 下载卡片用到的字符，不安装到设备；本机字体首次读取需要授权，字体列表只在本地使用。两种方式都不会上传内容；英文字体只影响字母和数字。</p>
           <label class="intro-field"><span>卡片圆角</span><span class="intro-range"><input id="cardRadius" name="cardRadius" type="range" min="0" max="120" step="4" value="44"><output id="cardRadiusValue" for="cardRadius">44 px</output></span></label>
         </section>
 
@@ -183,7 +183,7 @@
             </details>
             <label class="intro-field"><span>代词使用补充</span><input id="pronounUsageNote" type="text" maxlength="160" placeholder="例如：不同场合希望使用不同代词"></label>
           </fieldset>
-          <label class="intro-field"><span>不希望使用的代词／称呼</span><input id="avoid" type="text" maxlength="160" placeholder="不希望被使用的称呼"></label>
+          <label class="intro-field"><span>不希望使用的代词 / 称呼</span><input id="avoid" type="text" maxlength="160" placeholder="不希望别人使用的称呼"></label>
           <label class="intro-field"><span>称呼边界补充</span><input id="avoidNote" type="text" maxlength="160" placeholder="例如：可以接受的替代称呼"></label>
           <label class="intro-field"><span>我的取向 / 吸引认同</span><input id="orientation" type="text" maxlength="160" placeholder="按自己的理解填写"></label>
           <label class="intro-field"><span>取向认同补充</span><input id="orientationNote" type="text" maxlength="160" placeholder="例如：浪漫取向与性取向可以分开描述"></label>
@@ -203,14 +203,14 @@
             <label class="intro-field"><span>气质表达补充</span><input id="expressionNote" type="text" maxlength="160" placeholder="也可以直接用自己的语言描述"></label>
           </fieldset>
           <fieldset>
-            <legend>我公开身份或认同的方式（可多选）</legend>
+            <legend>我表明身份或认同的方式（可多选）</legend>
             <details class="intro-multiselect" data-placeholder="选择公开倾向">
               <summary><span class="intro-multiselect-summary is-empty">选择公开倾向</span></summary>
               <div class="intro-multiselect-panel">
                 <div class="intro-multiselect-list">
                   <label><input type="checkbox" name="disclosure" value="现实公开表明">现实公开表明</label>
                   <label><input type="checkbox" name="disclosure" value="网络公开表明">网络公开表明</label>
-                  <label><input type="checkbox" name="disclosure" value="私下熟络表明">私下熟络表明</label>
+                  <label><input type="checkbox" name="disclosure" value="熟络后私下表明">熟络后私下表明</label>
                   <label><input type="checkbox" name="disclosure" value="不倾向公开表明">不倾向公开表明</label>
                   <label><input type="checkbox" name="disclosure" value="看具体情况">看具体情况</label>
                 </div>
@@ -237,7 +237,7 @@
 
         <section class="intro-panel" aria-labelledby="freeTitle">
           <h2 id="freeTitle"><span class="intro-step">03</span>我的小角落</h2>
-          <label class="intro-field"><span>补充文字</span><textarea id="notes" maxlength="600" rows="4" placeholder="写下任何你愿意分享的补充内容"></textarea></label>
+          <label class="intro-field"><span>补充文字</span><textarea id="notes" maxlength="600" rows="4" placeholder="写下任何你想补充的内容"></textarea></label>
           <div class="intro-image-toolbar">
             <label class="intro-field" for="imageInput"><span>添加本地图片</span></label>
             <div role="radiogroup" aria-label="图片排列" class="intro-options">
@@ -447,12 +447,12 @@
               localFonts = families.sort((a, b) => fontLabel(a).localeCompare(fontLabel(b), "zh-CN"));
               return;
             }
-            localFontsNote = "未获得读取字体列表的授权，以下为本机检测到的常见字体，也可直接输入字体名称";
+            localFontsNote = "未获得读取字体列表的授权，下面列出本机检测到的常见字体，也可直接输入字体名称";
           } catch (error) {
-            localFontsNote = "未获得读取字体列表的授权，以下为本机检测到的常见字体，也可直接输入字体名称";
+            localFontsNote = "未获得读取字体列表的授权，下面列出本机检测到的常见字体，也可直接输入字体名称";
           }
         } else {
-          localFontsNote = "当前浏览器不支持读取字体列表，以下为本机检测到的常见字体，也可直接输入字体名称";
+          localFontsNote = "当前浏览器不支持读取字体列表，下面列出本机检测到的常见字体，也可直接输入字体名称";
         }
         localFonts = knownFonts
           .map((names) => names.filter(isFontInstalled).sort((a, b) => Number(isAscii(b)) - Number(isAscii(a)))[0])
@@ -589,11 +589,11 @@
         ["显示名称 / 昵称", withNote(value("nickname"), "nicknameNote")],
         ["我的性别认同", withNote(value("identity"), "identityNote")],
         ["代词使用", withNote(selected("pronouns", "pronounNote"), "pronounUsageNote")],
-        ["不希望使用的代词／称呼", withNote(value("avoid"), "avoidNote")],
+        ["不希望使用的代词 / 称呼", withNote(value("avoid"), "avoidNote")],
         ["我的取向 / 吸引认同", withNote(value("orientation"), "orientationNote")],
-        ["我倾向这样的气质表达", selectedWithNote("expression", "expressionNote")],
-        ["对于表明身份 / 认同的倾向", selectedWithNote("disclosure", "disclosureNote")],
-        ["对目前认同的探索状态", selectedWithNote("exploration", "explorationNote")]
+        ["我偏好的气质表达", selectedWithNote("expression", "expressionNote")],
+        ["表明身份 / 认同的倾向", selectedWithNote("disclosure", "disclosureNote")],
+        ["我目前的认同探索状态", selectedWithNote("exploration", "explorationNote")]
       ];
     }
 
@@ -926,7 +926,7 @@
           const [moved] = images.splice(from, 1);
           images.splice(index, 0, moved);
           renderImages();
-          status.textContent = `图片顺序已调整：${moved.name} 现在排第 ${index + 1} 张。`;
+          status.textContent = `图片顺序已调整：${moved.name} 现在排在第 ${index + 1} 位。`;
         });
         tile.addEventListener("keydown", (event) => {
           if (event.target !== tile) return;
@@ -938,7 +938,7 @@
           images.splice(target, 0, moved);
           renderImages();
           document.getElementById("imageList").children[target].focus();
-          status.textContent = `图片顺序已调整：${moved.name} 现在排第 ${target + 1} 张。`;
+          status.textContent = `图片顺序已调整：${moved.name} 现在排在第 ${target + 1} 位。`;
         });
         tile.append(thumbnail, name);
         list.append(tile);
@@ -977,7 +977,7 @@
       images.splice(to, 0, item);
       pendingFocus = { item };
       renderImages();
-      status.textContent = `图片顺序已调整：${item.name} 现在排第 ${to + 1} 张。`;
+      status.textContent = `图片顺序已调整：${item.name} 现在排在第 ${to + 1} 位。`;
     }
 
     // 自由摆放的层级调整：列表次序即绘制次序，靠后的图片盖在靠前图片之上。
@@ -1316,7 +1316,7 @@
       let added = 0;
       try {
         for (const file of files) {
-          if (images.length >= 9) { errors.push("最多添加 9 张图片，其余图片未添加"); break; }
+          if (images.length >= 9) { errors.push("已达 9 张上限，其余图片未添加"); break; }
           // 部分手机浏览器不提供文件类型，留给解码结果判断。
           if ((file.type && !file.type.startsWith("image/")) || file.size > 20 * 1024 * 1024) {
             errors.push(`${file.name}：请选择不超过 20 MB 的图片`);
@@ -1361,9 +1361,9 @@
         link.click();
         link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 5000);
-        status.textContent = "图片已生成并发起下载。";
+        status.textContent = "图片已生成，开始下载。";
       } catch (error) {
-        status.textContent = "图片生成失败，请重试；也可截取右侧预览保存。";
+        status.textContent = "图片生成失败，请重试；也可以截图保存右侧预览。";
         window.alert(status.textContent);
       } finally {
         exportButton.disabled = false;

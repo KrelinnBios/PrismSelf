@@ -9,6 +9,8 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
       './Glossaries/Sexology-Glossary.html',
+      './Tools/Relationship-Needs-Menu.html',
+      './Tools/Self-Intro-Card.html',
       './Topics/Asexual-Community-Survey.html',
       './Topics/A-Conversation-on-Asexuality.html'
     ]
@@ -27,9 +29,7 @@ window.PrismSelfUpdateGroups = [
       './Analyses/Interpersonal-Conflict-Analysis.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Neutrality-Type-Analysis.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Tools/Relationship-Needs-Menu.html',
-      './Tools/Self-Intro-Card.html'
+      './Analyses/Psychosexual-Concepts-Panorama.html'
     ]
   },
   {
@@ -45,13 +45,6 @@ window.PrismSelfUpdateGroups = [
       './Scales/Feminist-Leanings-Scale.html',
       './Scales/Philosophical-Leanings-Scale.html',
       './Scales/Sexual-Orientation-Scale.html'
-    ]
-  },
-  {
-    date: '2026-11-08',
-    pages: [
-      './Tools/Relationship-Needs-Menu.html',
-      './Tools/Self-Intro-Card.html'
     ]
   },
   {
