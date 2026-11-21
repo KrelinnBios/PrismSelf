@@ -2,6 +2,16 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-11-22',
+    pages: [
+      './Glossaries/SOGIESC-Glossary.html',
+      './Glossaries/Psychology-Glossary.html',
+      './Glossaries/Sociology-Glossary.html',
+      './Glossaries/Philosophy-Glossary.html',
+      './Glossaries/Sexology-Glossary.html'
+    ]
+  },
+  {
     date: '2026-11-21',
     pages: [
       './Guides/Aromantic-Comprehensive-Guide.html',
@@ -16,7 +26,9 @@ window.PrismSelfUpdateGroups = [
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Neutrality-Type-Analysis.html',
       './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Topics/Asexual-Community-Survey.html'
+      './Topics/Asexual-Community-Survey.html',
+      './Tools/Relationship-Needs-Menu.html',
+      './Tools/Self-Intro-Card.html'
     ]
   },
   {
@@ -38,12 +50,7 @@ window.PrismSelfUpdateGroups = [
     date: '2026-11-08',
     pages: [
       './Tools/Relationship-Needs-Menu.html',
-      './Tools/Self-Intro-Card.html',
-      './Glossaries/SOGIESC-Glossary.html',
-      './Glossaries/Psychology-Glossary.html',
-      './Glossaries/Sociology-Glossary.html',
-      './Glossaries/Philosophy-Glossary.html',
-      './Glossaries/Sexology-Glossary.html'
+      './Tools/Self-Intro-Card.html'
     ]
   },
   {
