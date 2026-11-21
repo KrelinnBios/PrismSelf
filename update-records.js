@@ -21,7 +21,16 @@ window.PrismSelfUpdateGroups = [
       './Analyses/Interpersonal-Conflict-Analysis.html',
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Neutrality-Type-Analysis.html',
-      './Analyses/Psychosexual-Concepts-Panorama.html'
+      './Analyses/Psychosexual-Concepts-Panorama.html',
+      './Scales/Gender-Exploration-Scale.html',
+      './Scales/Sexual-Preference-Scale.html',
+      './Scales/Aromantic-Spectrum-Scale.html',
+      './Scales/Asexual-Spectrum-Scale.html',
+      './Scales/Big-Five-Personality-Scale.html',
+      './Scales/Feminist-Leanings-Scale.html',
+      './Scales/Philosophical-Leanings-Scale.html',
+      './Scales/Sexual-Orientation-Scale.html',
+      './Scales/Neurodiversity-Experience-Scale.html'
     ]
   },
   {
@@ -39,21 +48,7 @@ window.PrismSelfUpdateGroups = [
     date: '2026-11-09',
     pages: [
       './Guides/Demisexual-Comprehensive-Guide.html',
-      './Guides/Greysexual-Comprehensive-Guide.html',
-      './Scales/Gender-Exploration-Scale.html',
-      './Scales/Sexual-Preference-Scale.html',
-      './Scales/Aromantic-Spectrum-Scale.html',
-      './Scales/Asexual-Spectrum-Scale.html',
-      './Scales/Big-Five-Personality-Scale.html',
-      './Scales/Feminist-Leanings-Scale.html',
-      './Scales/Philosophical-Leanings-Scale.html',
-      './Scales/Sexual-Orientation-Scale.html'
-    ]
-  },
-  {
-    date: '2026-10-27',
-    pages: [
-      './Scales/Neurodiversity-Experience-Scale.html'
+      './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   }
 ];

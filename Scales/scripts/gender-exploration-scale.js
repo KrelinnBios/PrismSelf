@@ -3,7 +3,7 @@ const scaleItems = [
         id: 1,
         dimension: 'identityClarity',
         text: '我能用自己的语言描述当前的性别认同，即使不使用现成的身份标签。',
-        purpose: '观察你是否能以自己的方式理解和描述性别认同。清晰度可以存在于任何性别认同中，也可以随着时间变化。'
+        purpose: '观察你是否能以自己的方式理解和描述性别认同。任何性别认同都可能更清晰或更模糊，清晰度也会随时间变化。'
     },
     {
         id: 2,
@@ -27,13 +27,13 @@ const scaleItems = [
         id: 5,
         dimension: 'identityClarity',
         text: '我能描述哪些性别称呼或身份语言贴合自己，哪些不贴合自己。',
-        purpose: '观察对自己体验的描述，不考察术语知识。任何人都不需要熟悉性别概念才拥有真实的性别认同。'
+        purpose: '观察对自己体验的描述，不考察术语知识。任何人都不需要先熟悉性别概念，就能拥有真实的性别认同。'
     },
     {
         id: 6,
         dimension: 'nonbinaryExperience',
         text: '“男性”或“女性”单独一个标签都无法完整描述我的性别体验。',
-        purpose: '观察二元标签是否足够描述你的体验。分数高只表示描述上的不充分，不自动等同于某个非二元身份。'
+        purpose: '观察二元标签是否足够描述你的体验。分数高只表示描述得不够充分，不自动等同于某个非二元身份。'
     },
     {
         id: 7,
@@ -45,7 +45,7 @@ const scaleItems = [
         id: 8,
         dimension: 'nonbinaryExperience',
         text: '“没有性别”或“性别不适用于我”这样的描述，与我的内在体验有共鸣。',
-        purpose: '单独观察无性别或性别疏离相关体验，不把性别表达中性、对性别议题缺乏兴趣或不喜欢刻板印象混同于无性别认同。'
+        purpose: '单独观察无性别或性别疏离相关体验，不把性别表达中性、对性别议题缺乏兴趣或不喜欢刻板印象与无性别认同混为一谈。'
     },
     {
         id: 9,
@@ -63,7 +63,7 @@ const scaleItems = [
         id: 11,
         dimension: 'genderFluidity',
         text: '我的性别认同会随着时间发生变化。',
-        purpose: '观察性别认同本身是否具有时间变化。题目不把变化视为混乱或缺乏真实性。'
+        purpose: '观察性别认同本身是否随时间变化。题目不把变化视为混乱或缺乏真实性。'
     },
     {
         id: 12,
@@ -75,13 +75,13 @@ const scaleItems = [
         id: 13,
         dimension: 'genderFluidity',
         text: '我会在不同时间感到自己更接近不同性别、多个性别，或没有性别。',
-        purpose: '观察变化的方向和范围。流动的频率可以是每天、每周、每月或更长时间，不需要符合固定模式。'
+        purpose: '观察变化的方向和范围。流动的频率可以是每天、每周、每月或间隔更长时间一次，不需要符合固定模式。'
     },
     {
         id: 14,
         dimension: 'genderFluidity',
         text: '我的性别感受变化对我来说是内在体验的变化，而不只是为了适应他人的要求。',
-        purpose: '帮助区分认同流动与出于安全、工作或关系需要而调整表达。两种情况都值得记录，但含义不同。'
+        purpose: '帮助区分“认同在流动”与“出于安全、工作或关系需要而调整表达”。两种情况都值得记录，但含义不同。'
     },
     {
         id: 15,
@@ -141,7 +141,7 @@ const scaleItems = [
         id: 24,
         dimension: 'genderIncongruence',
         text: '性别相关的不适会影响我的情绪、社交、学习、工作或日常生活。',
-        purpose: '观察体验的功能影响，而不是把痛苦当作认同真实性的必要条件。'
+        purpose: '观察体验对功能的影响，而不是把痛苦当作认同真实性的必要条件。'
     },
     {
         id: 25,
@@ -195,7 +195,7 @@ const scaleItems = [
         id: 33,
         dimension: 'bodyRelation',
         text: '我对激素、手术或其他身体改变的兴趣，主要与自己的身体和性别体验有关。',
-        purpose: '观察医疗或身体改变意向的主观关联。兴趣、好奇、愿望和具体计划是不同程度，不能混为一谈。'
+        purpose: '观察医疗或身体改变意向与自我体验之间的主观关联。兴趣、好奇、愿望和具体计划是不同程度，不能混为一谈。'
     },
     {
         id: 34,
@@ -213,7 +213,7 @@ const scaleItems = [
         id: 36,
         dimension: 'expressionRolePressure',
         text: '我的服装、发型、声音、行为或兴趣有时不符合出生时被指派性别的常见规范。',
-        purpose: '观察性别表达的多样性。性别不符合规范本身不是性别认同，也不是心理问题。'
+        purpose: '观察性别表达的多样性。不符合性别规范本身不是性别认同，也不是心理问题。'
     },
     {
         id: 37,
@@ -267,7 +267,7 @@ const scaleItems = [
         id: 45,
         dimension: 'explorationAgency',
         text: '我担心公开或探索性别会带来失去关系、居住、学习、工作或经济支持等后果。',
-        purpose: '观察现实风险和支持损失的担忧。高分描述的是环境压力，不代表认同较弱或不够确定。'
+        purpose: '观察现实风险和对失去支持的担忧。高分描述的是环境压力，不代表认同较弱或不够确定。'
     }
 ];
 
@@ -518,7 +518,7 @@ function dimensionInterpretation(dimension, result) {
     const coverage = `有效回答 ${result.answered}/${result.total} 题，平均分 ${result.score.toFixed(1)} / 5.0。`;
     switch (dimension.id) {
         case 'identityClarity':
-            return `${coverage}这表示你目前对自己的性别体验、语言和概念边界的描述程度，不等于任何身份的确定程度。`;
+            return `${coverage}这表示你目前能把自己的性别体验、语言和概念边界描述到什么程度，不等于任何身份的确定程度。`;
         case 'nonbinaryExperience':
             return `${coverage}这表示单一男女性别框架对你的描述是否充分，不等于必须使用非二元或其他标签。`;
         case 'genderFluidity':
