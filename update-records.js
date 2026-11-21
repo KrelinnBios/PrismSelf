@@ -4,6 +4,9 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-11-22',
     pages: [
+      './Bingos/Aro-Ace-Spectrum-Resonance.html',
+      './Bingos/Gender-Spectrum-Resonance.html',
+      './Bingos/Neurodiversity-Resonance.html',
       './Glossaries/SOGIESC-Glossary.html',
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
@@ -51,14 +54,6 @@ window.PrismSelfUpdateGroups = [
     date: '2026-10-27',
     pages: [
       './Scales/Neurodiversity-Experience-Scale.html'
-    ]
-  },
-  {
-    date: '2026-10-26',
-    pages: [
-      './Bingos/Aro-Ace-Spectrum-Resonance.html',
-      './Bingos/Gender-Spectrum-Resonance.html',
-      './Bingos/Neurodiversity-Resonance.html'
     ]
   }
 ];
