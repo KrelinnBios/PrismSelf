@@ -8,7 +8,9 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
-      './Glossaries/Sexology-Glossary.html'
+      './Glossaries/Sexology-Glossary.html',
+      './Topics/Asexual-Community-Survey.html',
+      './Topics/A-Conversation-on-Asexuality.html'
     ]
   },
   {
@@ -26,7 +28,6 @@ window.PrismSelfUpdateGroups = [
       './Analyses/LGBTQ-Comprehensive-Analysis.html',
       './Analyses/Neutrality-Type-Analysis.html',
       './Analyses/Psychosexual-Concepts-Panorama.html',
-      './Topics/Asexual-Community-Survey.html',
       './Tools/Relationship-Needs-Menu.html',
       './Tools/Self-Intro-Card.html'
     ]
@@ -64,8 +65,7 @@ window.PrismSelfUpdateGroups = [
     pages: [
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
       './Bingos/Gender-Spectrum-Resonance.html',
-      './Bingos/Neurodiversity-Resonance.html',
-      './Topics/A-Conversation-on-Asexuality.html'
+      './Bingos/Neurodiversity-Resonance.html'
     ]
   }
 ];
