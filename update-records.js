@@ -6,7 +6,9 @@ window.PrismSelfUpdateGroups = [
     pages: [
       './Guides/Aromantic-Comprehensive-Guide.html',
       './Guides/Asexual-Comprehensive-Guide.html',
+      './Guides/BDSM-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
+      './Guides/Gender-Concepts-Comprehensive-Guide.html',
       './Guides/Greysexual-Comprehensive-Guide.html'
     ]
   },
@@ -46,9 +48,7 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/Psychology-Glossary.html',
       './Glossaries/Sociology-Glossary.html',
       './Glossaries/Philosophy-Glossary.html',
-      './Glossaries/Sexology-Glossary.html',
-      './Guides/Gender-Concepts-Comprehensive-Guide.html',
-      './Guides/BDSM-Comprehensive-Guide.html'
+      './Glossaries/Sexology-Glossary.html'
     ]
   },
   {
