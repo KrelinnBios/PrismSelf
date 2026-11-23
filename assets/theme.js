@@ -497,11 +497,11 @@
   function createCTA() {
     var section = document.createElement('aside');
     section.className = 'prism-support-cta';
-    section.setAttribute('aria-label', '支持 PrismSelf');
+    section.setAttribute('aria-label', '支持本站');
     section.innerHTML = [
       '<span class="prism-support-heart" aria-hidden="true">♡</span>',
       '<div class="prism-support-content">',
-      '  <strong>支持 PrismSelf</strong>',
+      '  <strong>支持本站</strong>',
       '  <p>PrismSelf 免费开放，由个人持续维护。如果这里对你有帮助，可以自愿支持项目。</p>',
       '</div>',
       '<button class="prism-support-button" type="button" data-prism-support-open>支持项目</button>'
