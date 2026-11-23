@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://prismself.vip/Analyses/Neutrality-Type-Analysis">
   <meta name="description" content="从 16 个观察角度辨析“不表态、延迟判断或强调中立”可能承担的功能与风险，区分证据审慎、情境约束与遮蔽风险，并给出识别与应对思路。">
   <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="../icon/favicon.svg?v=202611230" type="image/svg+xml">
+  <link rel="icon" href="../icon/favicon.svg?v=202611231" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - 中立类型全面分析表">
@@ -67,7 +67,7 @@
 
     .example-text {
       margin-top: 8px;
-      font-size: 0.7rem;
+      font-size: 0.79rem;
       padding: 6px 8px;
       border-radius: 12px;
       font-style: italic;
@@ -178,7 +178,7 @@
       }
 
       .concept-en {
-        font-size: 0.6rem !important;
+        font-size: 0.76rem !important;
         padding: 2px 8px !important;
         margin-top: 0 !important;
       }
@@ -187,7 +187,7 @@
         margin-top: 0 !important;
         margin-left: auto !important;
         flex-shrink: 0 !important;
-        font-size: 0.68rem !important;
+        font-size: 0.78rem !important;
         padding: 3px 9px !important;
       }
 
@@ -216,12 +216,12 @@
       }
 
       .concept-en {
-        font-size: 0.55rem !important;
+        font-size: 0.75rem !important;
         padding: 2px 6px !important;
       }
 
       .detail-btn {
-        font-size: 0.62rem !important;
+        font-size: 0.76rem !important;
         padding: 2px 7px !important;
       }
     }
@@ -258,9 +258,9 @@
       color: #c4b5fd;
     }
   </style>
-  <link rel="stylesheet" href="./analysis-common.css?v=202611153">
-  <link rel="stylesheet" href="../assets/theme.css?v=202611230">
-  <script src="../assets/theme.js?v=202611230"></script>
+  <link rel="stylesheet" href="./analysis-common.css?v=202611231">
+  <link rel="stylesheet" href="../assets/theme.css?v=202611231">
+  <script src="../assets/theme.js?v=202611231"></script>
   <script defer src="./analysis-common.js?v=202610221"></script>
   <script
     defer
@@ -682,7 +682,7 @@
         const d = details[key];
         if (!d) return;
         const badgeText = d.badge;
-        let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.group}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${badgeText}</span></div>`;
+        let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.group}" style="font-size:12px;padding:2px 12px"><span class="badge-dot"></span>${badgeText}</span></div>`;
         d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
         modalContent.innerHTML = html;
         modal.classList.add('open');

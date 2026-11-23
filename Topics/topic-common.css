@@ -544,7 +544,7 @@ li> :first-child {
 
 .footnote-line {
   margin-top: 0.714em;
-  font-size: 0.7em;
+  font-size: 0.8em;
 }
 
 a img,
@@ -948,7 +948,7 @@ mark .md-meta {
   position: relative;
   font-family: Ionicons;
   display: inline-block;
-  font-size: 8px;
+  font-size: 10px;
   vertical-align: middle;
 }
 

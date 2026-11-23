@@ -203,7 +203,7 @@ header::before {
 
 .header-label {
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.77rem;
   letter-spacing: 0.3em;
   color: rgba(15, 118, 110, 0.95);
   text-transform: uppercase;
@@ -363,7 +363,7 @@ header h1 {
 }
 
 .term-zh {
-  font-size: 0.7rem;
+  font-size: 0.79rem;
   font-family: 'Noto Sans SC', sans-serif;
   letter-spacing: 0.15em;
   color: var(--muted);
@@ -497,7 +497,7 @@ header h1 {
   display: block;
   margin-bottom: 0.25rem;
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -639,7 +639,7 @@ header h1 {
 
 .toc-index {
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.77rem;
   color: var(--accent);
   font-weight: 700;
   width: 24px;
@@ -970,7 +970,7 @@ header {
 
   .term-zh {
     margin-bottom: 0.65rem;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     letter-spacing: 0.1em;
   }
 

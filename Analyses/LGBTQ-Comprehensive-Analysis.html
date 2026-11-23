@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://prismself.vip/Analyses/LGBTQ-Comprehensive-Analysis">
   <meta name="description" content="结合近期研究，辨析 LGBTQ+ 身份、少数群体压力、权利运动、法律承认、支持实践与公共话语，厘清概念边界及证据的适用范围。">
   <meta name="theme-color" content="#2f6f73">
-  <link rel="icon" href="../icon/favicon.svg?v=202611230" type="image/svg+xml">
+  <link rel="icon" href="../icon/favicon.svg?v=202611231" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PrismSelf · prismself.vip">
   <meta property="og:title" content="PrismSelf - LGBTQ+ 概念全景辨析表">
@@ -53,7 +53,7 @@
 
     .highlight-text {
       margin-top: 4px;
-      font-size: 0.69rem;
+      font-size: 0.79rem;
       padding: 2px 8px;
       border-radius: 10px;
       font-style: italic;
@@ -81,7 +81,7 @@
       border-radius: 16px;
       padding: 14px 18px;
       margin: 18px 0;
-      font-size: 0.73rem;
+      font-size: 0.8rem;
       line-height: 1.5;
     }
 
@@ -186,7 +186,7 @@
       }
 
       .concept-en {
-        font-size: 0.58rem !important;
+        font-size: 0.75rem !important;
         padding: 2px 8px !important;
         margin-top: 0 !important;
       }
@@ -195,7 +195,7 @@
         margin-top: 0 !important;
         margin-left: auto !important;
         flex-shrink: 0 !important;
-        font-size: 0.65rem !important;
+        font-size: 0.77rem !important;
         padding: 2px 8px !important;
       }
 
@@ -209,7 +209,7 @@
       }
 
       .filter-btn {
-        font-size: 0.65rem;
+        font-size: 0.77rem;
         padding: 3px 8px;
       }
 
@@ -236,7 +236,7 @@
       }
 
       .meta-item {
-        font-size: 0.65rem;
+        font-size: 0.77rem;
         padding: 3px 8px;
       }
 
@@ -257,12 +257,12 @@
       }
 
       .concept-en {
-        font-size: 0.52rem !important;
+        font-size: 0.75rem !important;
         padding: 2px 6px !important;
       }
 
       .detail-btn {
-        font-size: 0.6rem !important;
+        font-size: 0.76rem !important;
         padding: 2px 6px !important;
       }
 
@@ -298,9 +298,9 @@
       color: #c4b5fd;
     }
   </style>
-  <link rel="stylesheet" href="./analysis-common.css?v=202611153">
-  <link rel="stylesheet" href="../assets/theme.css?v=202611230">
-  <script src="../assets/theme.js?v=202611230"></script>
+  <link rel="stylesheet" href="./analysis-common.css?v=202611231">
+  <link rel="stylesheet" href="../assets/theme.css?v=202611231">
+  <script src="../assets/theme.js?v=202611231"></script>
   <script defer src="./analysis-common.js?v=202610221"></script>
   <script
     defer
@@ -745,7 +745,7 @@
     function showDetail(key) {
       const d = details[key];
       if (!d) return;
-      let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:11px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
+      let html = `<div class="modal-title">${d.title}</div><div class="modal-subtitle">${d.en} &nbsp;|&nbsp; <span class="badge ${d.lv}" style="font-size:12px;padding:2px 12px"><span class="badge-dot"></span>${d.badge}</span></div>`;
       d.sections.forEach(s => { html += `<div class="modal-section"><h4>${s.h}</h4><p>${s.p}</p></div>`; });
       document.getElementById('modalContent').innerHTML = html;
       document.getElementById('modal').classList.add('open');

@@ -175,14 +175,14 @@ body {
 }
 
 .ldot {
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #f0f0f0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 11.5px;
   font-weight: 700;
   border: 1px solid #ccc;
   color: #555;
@@ -215,7 +215,7 @@ body {
 
 .ldot.lv0::after {
   content: '0';
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -294,7 +294,7 @@ body {
 }
 
 .sec-info p {
-  font-size: 11px;
+  font-size: 12px;
   opacity: 0.85;
   margin-top: 2px;
 }
@@ -316,7 +316,7 @@ body {
 }
 
 .sec-stats span:first-child {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   opacity: 0.9;
 }
@@ -328,7 +328,7 @@ body {
 }
 
 .sec-stats small {
-  font-size: 10px;
+  font-size: 11.5px;
   font-weight: 500;
   margin-left: 2px;
 }
@@ -384,7 +384,7 @@ body {
 }
 
 .cell-text {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
   color: #4b4b60;
   font-weight: 500;
@@ -396,8 +396,8 @@ body {
   position: absolute;
   top: 6px;
   right: 6px;
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #ffffffcc;
   backdrop-filter: blur(2px);
@@ -405,7 +405,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 11.5px;
   font-weight: 800;
   transition: all 0.2s cubic-bezier(0.2, 1.2, 0.4, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -413,7 +413,7 @@ body {
 
 .cell .ring::after {
   content: attr(data-label);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 800;
 }
 
@@ -582,7 +582,7 @@ body {
 .cell[data-level="0"] .ring::after {
   content: "0";
   color: #aaa;
-  font-size: 10px;
+  font-size: 11.5px;
 }
 
 .cell[data-level="25"] .ring {
@@ -675,19 +675,19 @@ body {
   }
 
   .ring {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     top: 4px;
     right: 4px;
   }
 
   .ring::after {
-    font-size: 7.5px;
+    font-size: 9.5px;
   }
 
   .sec-stats {
     padding: 3px 8px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .sec-stats .sec-ratio {
@@ -697,7 +697,7 @@ body {
 
 @media (max-width: 420px) {
   .cell-text {
-    font-size: 10px;
+    font-size: 11.5px;
   }
 }
 
@@ -1045,7 +1045,7 @@ body {
 
   .cell-text {
     max-width: 96%;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     line-height: 1.5;
   }
 

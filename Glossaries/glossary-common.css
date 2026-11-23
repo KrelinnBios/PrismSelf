@@ -327,7 +327,7 @@ main {
   border-radius: var(--prism-radius-pill);
   padding: 4px 9px;
   color: #ffffff;
-  font-size: 0.74rem;
+  font-size: 0.81rem;
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -675,7 +675,7 @@ main {
 
   .eyebrow {
     margin-bottom: 10px;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     letter-spacing: 0.12em;
   }
 
