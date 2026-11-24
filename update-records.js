@@ -2,6 +2,14 @@
 // Do not include the homepage: it is navigation, not a content update entry.
 window.PrismSelfUpdateGroups = [
   {
+    date: '2026-11-24',
+    pages: [
+      './Guides/Aromantic-Comprehensive-Guide.html',
+      './Scales/Aromantic-Spectrum-Scale.html',
+      './Topics/Asexual-Community-Survey.html'
+    ]
+  },
+  {
     date: '2026-11-22',
     pages: [
       './Bingos/Aro-Ace-Spectrum-Resonance.html',
@@ -14,7 +22,6 @@ window.PrismSelfUpdateGroups = [
       './Glossaries/Sexology-Glossary.html',
       './Tools/Relationship-Needs-Menu.html',
       './Tools/Self-Intro-Card.html',
-      './Topics/Asexual-Community-Survey.html',
       './Analyses/Gender-Theory-Panorama.html',
       './Analyses/Interpersonal-Attraction-Comparison.html',
       './Analyses/Interpersonal-Conflict-Analysis.html',
@@ -23,7 +30,6 @@ window.PrismSelfUpdateGroups = [
       './Analyses/Psychosexual-Concepts-Panorama.html',
       './Scales/Gender-Exploration-Scale.html',
       './Scales/Sexual-Preference-Scale.html',
-      './Scales/Aromantic-Spectrum-Scale.html',
       './Scales/Asexual-Spectrum-Scale.html',
       './Scales/Big-Five-Personality-Scale.html',
       './Scales/Feminist-Leanings-Scale.html',
@@ -35,7 +41,6 @@ window.PrismSelfUpdateGroups = [
   {
     date: '2026-11-21',
     pages: [
-      './Guides/Aromantic-Comprehensive-Guide.html',
       './Guides/Asexual-Comprehensive-Guide.html',
       './Guides/BDSM-Comprehensive-Guide.html',
       './Guides/Demisexual-Comprehensive-Guide.html',
