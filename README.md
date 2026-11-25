@@ -15,6 +15,11 @@
   <img src="https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-MIT%20%2F%20CC%20BY--NC--SA%204.0-1f5f9c?style=flat-square" alt="MIT / CC BY-NC-SA 4.0 License">
 </p>
 
+<p align="center">
+  <a href="README.md">简体中文</a> ·
+  <a href="README.zh-TW.md">繁體中文</a>
+</p>
+
 ## 项目简介
 
 PrismSelf 是围绕性别理论、心理概念与人际关系的中文知识库，提供概念分析、专题指南、术语索引、社群记录、共鸣刻度、自评量表和关系沟通工具。无需注册即可访问内容和使用工具。
