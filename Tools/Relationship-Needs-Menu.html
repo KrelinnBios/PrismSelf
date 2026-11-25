@@ -129,8 +129,11 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="../assets/opencc.js?v=202611261"></script>
+  <script src="../assets/language.js?v=202611263"></script>
   <script>
     const STORAGE_KEY = "prismself.relationship-needs-menu.v1";
+    const t = (text) => (window.PrismSelfLanguage ? window.PrismSelfLanguage.translate(text) : text);
 
     const statuses = [
       { id: "need", label: "核心需求" },
@@ -464,6 +467,7 @@
 
         const title = document.createElement("span");
         title.className = "item-title";
+        title.setAttribute("data-lang-preserve", "");
         title.textContent = item.title;
 
         const remove = document.createElement("button");
@@ -518,7 +522,7 @@
 
       const customItems = state.custom
         .filter((item) => state.answers[item.id])
-        .map((item) => ({ ...item, status: state.answers[item.id] }));
+        .map((item) => ({ ...item, isCustom: true, status: state.answers[item.id] }));
 
       if (customItems.length > 0) {
         modules.push({
@@ -596,12 +600,14 @@
       const measureContext = measureCanvas.getContext("2d");
 
       const rows = module.items.map((item) => {
+        const displayTitle = item.isCustom ? item.title : t(item.title);
+        const displayDesc = item.desc ? (item.isCustom ? item.desc : t(item.desc)) : "";
         measureContext.font = titleFont;
-        const titleLines = wrapCanvasText(measureContext, item.title, textWidth);
+        const titleLines = wrapCanvasText(measureContext, displayTitle, textWidth);
         let descLines = [];
-        if (item.desc) {
+        if (displayDesc) {
           measureContext.font = descFont;
-          descLines = wrapCanvasText(measureContext, item.desc, textWidth);
+          descLines = wrapCanvasText(measureContext, displayDesc, textWidth);
         }
         const textHeight = titleLines.length * titleLineHeight + (descLines.length ? 10 + descLines.length * 29 : 0);
         // 按实际字形范围居中，避免单行标题或带说明的文字块偏上。
@@ -666,19 +672,19 @@
       context.font = '500 13px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       context.textAlign = "left";
       context.textBaseline = "middle";
-      context.fillText("关系需求菜单", side + headerPaddingX + 12, headerY + 44);
+      context.fillText(t("关系需求菜单"), side + headerPaddingX + 12, headerY + 44);
 
       context.textAlign = "left";
       context.textBaseline = "top";
       context.fillStyle = "#ffffff";
       context.font = '600 42px "Noto Serif SC", "Songti SC", SimSun, serif';
-      context.fillText(module.title, side + headerPaddingX, headerY + 78);
+      context.fillText(t(module.title), side + headerPaddingX, headerY + 78);
       context.font = '400 17px "Noto Sans SC", "Microsoft YaHei", sans-serif';
       context.fillStyle = "rgba(255,255,255,0.84)";
-      context.fillText(module.subtitle, side + headerPaddingX, headerY + 150);
+      context.fillText(t(module.subtitle), side + headerPaddingX, headerY + 150);
 
-      const owner = state.profileName.trim() || "未命名视角";
-      const date = new Date().toLocaleDateString("zh-CN");
+      const owner = state.profileName.trim() || t("未命名视角");
+      const date = new Date().toLocaleDateString(window.PrismSelfLanguage?.isTraditional ? "zh-TW" : "zh-CN");
       const infoWidth = 220;
       const infoX = logicalWidth - side - headerPaddingX - infoWidth;
       context.beginPath();
@@ -692,7 +698,7 @@
       context.textBaseline = "top";
       context.fillStyle = "rgba(255,255,255,0.8)";
       context.font = '400 13px "Noto Sans SC", "Microsoft YaHei", sans-serif';
-      context.fillText("这份菜单属于", infoX, headerY + 36);
+      context.fillText(t("这份菜单属于"), infoX, headerY + 36);
 
       let ownerFontSize = 22;
       let ownerLines;
@@ -712,7 +718,7 @@
       context.fillStyle = "rgba(255,255,255,0.88)";
       context.fillText(date, infoX, headerY + 160);
       context.textAlign = "right";
-      context.fillText(`已填写 ${module.items.length} 项`, infoX + infoWidth, headerY + 160);
+      context.fillText(t(`已填写 ${module.items.length} 项`), infoX + infoWidth, headerY + 160);
 
       let y = rowsStartY;
       context.textBaseline = "top";
@@ -761,7 +767,7 @@
         context.font = '700 18px "Noto Sans SC", "Microsoft YaHei", sans-serif';
         context.textAlign = "center";
         context.textBaseline = "middle";
-        context.fillText(status ? status.label : "", badgeX + badgeWidth / 2, badgeY + 23);
+        context.fillText(status ? t(status.label) : "", badgeX + badgeWidth / 2, badgeY + 23);
 
         y += row.height + rowGap;
         context.textBaseline = "top";
@@ -771,10 +777,10 @@
       context.textAlign = "left";
       context.fillStyle = pal.footMuted;
       context.font = '400 16px "Noto Sans SC", "Microsoft YaHei", sans-serif';
-      context.fillText("图中只列出本模块已填写的条目。需求会随阶段、对象与情境而改变。", side, footerY + 16);
+      context.fillText(t("图中只列出本模块已填写的条目。需求会随阶段、对象与情境而改变。"), side, footerY + 16);
       context.fillStyle = pal.footBrand;
       context.font = '600 17px "Noto Sans SC", "Microsoft YaHei", sans-serif';
-      context.fillText("PrismSelf · 关系对话工具", side, footerY + 48);
+      context.fillText(t("PrismSelf · 关系对话工具"), side, footerY + 48);
 
       return canvas;
     }
@@ -809,7 +815,7 @@
           await document.fonts.ready;
         }
 
-        const owner = safeFileName(state.profileName.trim() || "未命名视角");
+        const owner = safeFileName(state.profileName.trim() || t("未命名视角"));
         for (let index = 0; index < modules.length; index += 1) {
           const module = modules[index];
           button.textContent = `正在生成 ${index + 1} / ${modules.length}`;
@@ -819,7 +825,7 @@
           const link = document.createElement("a");
           const order = String(index + 1).padStart(2, "0");
           link.href = url;
-          link.download = `${order}-${safeFileName(module.title)}-${owner}.png`;
+          link.download = `${order}-${safeFileName(t(module.title))}-${owner}.png`;
           document.body.appendChild(link);
           link.click();
           link.remove();

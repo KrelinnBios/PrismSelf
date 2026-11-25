@@ -260,11 +260,15 @@
       </form>
 
       <section class="intro-preview" id="preview" aria-label="卡片预览">
-        <canvas id="cardCanvas" width="1080" height="1400" role="img" aria-label="关于我，卡片预览">请使用支持 Canvas 的浏览器查看卡片。</canvas>      </section>
+        <canvas id="cardCanvas" width="1080" height="1400" role="img" aria-label="关于我，卡片预览" data-lang-preserve>请使用支持 Canvas 的浏览器查看卡片。</canvas>      </section>
     </div>
   </main>
   <noscript><p>请启用 JavaScript，以使用卡片预览与图片导出。</p></noscript>
+  <script src="../assets/opencc.js?v=202611261"></script>
+  <script src="../assets/language.js?v=202611263"></script>
   <script>
+    const t = (text) => (window.PrismSelfLanguage ? window.PrismSelfLanguage.translate(text) : text);
+    const toSimp = (text) => (window.PrismSelfLanguage ? window.PrismSelfLanguage.toSimplified(text) : text);
     const form = document.getElementById("introForm");
     const canvas = document.getElementById("cardCanvas");
     const context = canvas.getContext("2d");
@@ -340,7 +344,7 @@
     // 在线字体：开源可商用的中文网页字体，按字切分，只在选中时从 jsDelivr 下载卡片用到的字；
     // 不安装到设备，由浏览器缓存管理。选项值带 web: 前缀，与同名的本机字体区分。
     const WEB_FONT_CDN = "https://cdn.jsdelivr.net/npm/";
-    const FONT_HINT = document.getElementById("fontHint").textContent;
+    const FONT_HINT = toSimp(document.getElementById("fontHint").textContent);
     const webFonts = [
       { family: "Noto Sans SC", label: "思源黑体", css: "@fontsource/noto-sans-sc@5.3.1/index.css" },
       { family: "Noto Serif SC", label: "思源宋体", css: "@fontsource/noto-serif-sc@5.3.1/index.css" },
@@ -368,7 +372,7 @@
       if (!fontValue || (webFontOf(fontValue) && !loadedWebFonts.has(fontValue))) return "";
       return `${quoteFont(familyOf(fontValue))}, sans-serif`;
     }
-    const fontSearchKey = (family) => [family, ...(aliasOf.get(family.toLowerCase()) || [])].join(" ").toLowerCase();
+    const fontSearchKey = (family) => toSimp([family, ...(aliasOf.get(family.toLowerCase()) || [])].join(" ")).toLowerCase();
     // 绘制字体链：英文字体在前（只覆盖字母和数字），中文字体其次，都未选择或缺字时回退系统默认字体。
     function cardFamily() {
       return [value("cardFontEn"), value("cardFont")].filter(Boolean).map((fontValue) => quoteFont(familyOf(fontValue))).concat("sans-serif").join(", ");
@@ -396,7 +400,7 @@
     async function prepareWebFonts() {
       const used = [value("cardFont"), value("cardFontEn")].filter((fontValue) => webFontOf(fontValue));
       if (!used.length || !document.fonts) return;
-      const text = "关于我我的认同我的称呼我的表达PrismSelf自我介绍卡·" + (canvas.getAttribute("aria-label") || "")
+      const text = t("关于我我的认同我的称呼我的表达PrismSelf自我介绍卡·") + (canvas.getAttribute("aria-label") || "")
         + Array.from(form.querySelectorAll('input[type="text"], textarea'), (input) => input.value).join("");
       const hint = document.getElementById("fontHint");
       try {
@@ -406,7 +410,7 @@
           loadedWebFonts.add(fontValue);
         }
         hint.classList.remove("is-error");
-        hint.textContent = FONT_HINT;
+        hint.textContent = t(FONT_HINT);
       } catch (error) {
         hint.classList.add("is-error");
         hint.textContent = "在线字体下载失败，请检查网络后重试；当前已改用系统字体。";
@@ -444,7 +448,7 @@
             const families = [...new Set((await window.queryLocalFonts()).map((font) => font.family).filter(Boolean))];
             if (families.length) {
               localFontsNote = `已读取本机 ${families.length} 款字体`;
-              localFonts = families.sort((a, b) => fontLabel(a).localeCompare(fontLabel(b), "zh-CN"));
+              localFonts = families.sort((a, b) => fontLabel(a).localeCompare(fontLabel(b), window.PrismSelfLanguage?.isTraditional ? "zh-TW" : "zh-CN"));
               return;
             }
             localFontsNote = "未获得读取字体列表的授权，下面列出本机检测到的常见字体，也可直接输入字体名称";
@@ -482,9 +486,9 @@
         return;
       }
       const query = box.querySelector(".intro-font-search").value.trim();
-      const key = query.toLowerCase();
+      const key = toSimp(query).toLowerCase();
       const matches = localFonts.filter((family) => !key || fontSearchKey(family).includes(key));
-      const webMatches = webFonts.filter((font) => !key || `${font.label} ${font.family}`.toLowerCase().includes(key));
+      const webMatches = webFonts.filter((font) => !key || toSimp(`${font.label} ${font.family}`).toLowerCase().includes(key));
       const entries = (key ? [] : [{ family: "", label: defaultFontLabel(box) }])
         .concat(webMatches.length ? [{ group: "在线字体（选中时下载）" }] : [])
         .concat(webMatches.map((font) => ({ family: WEB_PREFIX + font.family, label: `${font.label} · ${font.family}` })))
@@ -574,14 +578,15 @@
       return known.concat(checked.filter((item) => !known.includes(item)));
     }
     function selected(name, extraId) {
-      const choices = orderedChecked(name);
+      const choices = orderedChecked(name).map((item) => t(item));
       if (extraId && value(extraId)) choices.push(value(extraId));
       return choices.join("、");
     }
     function withNote(text, noteId) {
       const note = value(noteId);
       if (!note) return text;
-      return text ? `${text}\nPS：${note}` : `PS：${note}`;
+      const prefix = t("PS：");
+      return text ? `${text}\n${prefix}${note}` : `${prefix}${note}`;
     }
     function selectedWithNote(name, noteId) { return withNote(selected(name), noteId); }
     function cardRows() {
@@ -632,10 +637,12 @@
       const rowsTop = avatarBox ? Math.max(240, avatarBox.y + avatarBox.size + 26) : 240;
       const rows = cardRows();
       context.font = `34px ${family}`;
+      const psPrefix = `\n${t("PS：")}`;
+      const psOnlyPrefix = t("PS：");
       const layout = rows.map(([label, answer]) => {
         const text = answer || "—";
-        const noteIndex = text.indexOf("\nPS：");
-        const noteOnly = text.startsWith("PS：");
+        const noteIndex = text.indexOf(psPrefix);
+        const noteOnly = text.startsWith(psOnlyPrefix);
         const main = noteOnly ? "" : noteIndex === -1 ? text : text.slice(0, noteIndex);
         const supplement = noteOnly ? text : noteIndex === -1 ? "" : text.slice(noteIndex + 1);
         context.font = `34px ${family}`;
@@ -644,7 +651,7 @@
           context.font = `28px ${family}`;
           lines.push(...wrapCanvasText(supplement, width).map((line) => ({ text: line, fontSize: 28, lineHeight: 40 })));
         }
-        return { label, lines };
+        return { label: t(label), lines };
       });
       // 按绘制时的 34px 字号测量换行，避免沿用上一行的补充小字号导致溢出右边界。
       context.font = `34px ${family}`;
@@ -675,10 +682,10 @@
       context.fillRect(side, 86, 6, 54);
       context.font = `600 60px ${family}`;
       context.fillStyle = palette.ink;
-      context.fillText("关于我", side + 24, 137);
+      context.fillText(t("关于我"), side + 24, 137);
       context.font = `24px ${family}`;
       context.fillStyle = palette.accent;
-      context.fillText("我的认同 · 我的称呼 · 我的表达", side + 24, 185);
+      context.fillText(t("我的认同 · 我的称呼 · 我的表达"), side + 24, 185);
       // 头像：按所选边框形状裁切并加细描边。
       if (avatarBox) {
         const { x: ax, y: ay, size } = avatarBox;
@@ -762,7 +769,7 @@
         y += 22;
         context.font = `26px ${family}`;
         context.fillStyle = palette.ink;
-        context.fillText("我的小角落", side, y);
+        context.fillText(t("我的小角落"), side, y);
         y += 48;
         context.font = `34px ${family}`;
         context.fillStyle = palette.accent;
@@ -783,10 +790,10 @@
       }
       context.font = `22px ${family}`;
       context.fillStyle = palette.ink;
-      context.fillText("PrismSelf · 自我介绍卡", side, logicalHeight - 55);
-      canvas.setAttribute("aria-label", "关于我。" + rows.map(([label, answer]) => `${label}：${answer || "未填写"}`).join("。")
-        + (value("notes") ? `\n\n我的小角落：\n${value("notes")}` : "")
-        + (images.length ? `\n\n附图（${images.length} 张）：${images.map((item) => item.name).join("、")}` : ""));
+      context.fillText(t("PrismSelf · 自我介绍卡"), side, logicalHeight - 55);
+      canvas.setAttribute("aria-label", t("关于我。") + rows.map(([label, answer]) => `${t(label)}：${answer || t("未填写")}`).join("。")
+        + (value("notes") ? `\n\n${t("我的小角落：")}\n${value("notes")}` : "")
+        + (images.length ? `\n\n${t(`附图（${images.length} 张）：`)}${images.map((item) => item.name).join("、")}` : ""));
     }
 
     function scheduleRender() {
@@ -1356,7 +1363,7 @@
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = "PrismSelf-自我介绍卡.png";
+        link.download = t("PrismSelf-自我介绍卡.png");
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -1380,8 +1387,10 @@
         avatarImage = image;
         avatarUrl = url;
         // 按钮旁直接显示所选文件名。
+        avatarStatus.setAttribute("data-lang-preserve", "");
         avatarStatus.textContent = file.name;
       } catch (error) {
+        avatarStatus.removeAttribute("data-lang-preserve");
         avatarStatus.textContent = "头像读取失败，请换一张图片";
       }
       avatarInput.value = "";
@@ -1400,6 +1409,7 @@
       avatarImage = null;
       avatarUrl = null;
       avatarInput.value = "";
+      avatarStatus.removeAttribute("data-lang-preserve");
       avatarStatus.textContent = "未选择头像";
       renderImages();
       renderCard();
@@ -1465,16 +1475,18 @@
       for (const box of multiselects) {
         if (box.classList.contains("intro-fontselect")) continue;
         const first = box.querySelector('input[type="checkbox"]');
-        const picked = first ? orderedChecked(first.name) : [];
+        const rawPicked = first ? orderedChecked(first.name) : [];
+        const picked = rawPicked.map((item) => t(item));
         for (const input of box.querySelectorAll('input[type="checkbox"]')) {
-          const rank = input.checked ? picked.indexOf(input.value) + 1 : 0;
+          const rank = input.checked ? rawPicked.indexOf(input.value) + 1 : 0;
           input.nextElementSibling.textContent = rank ? String(rank) : "";
-          input.setAttribute("aria-label", rank ? `${input.value}，第 ${rank} 位` : input.value);
+          input.setAttribute("aria-label", rank ? `${t(input.value)}，${t(`第 ${rank} 位`)}` : t(input.value));
         }
         const extra = box.querySelector('input[type="text"]');
         const shown = extra && extra.value.trim() ? picked.concat(extra.value.trim()) : picked;
         const label = box.querySelector(".intro-multiselect-summary");
-        label.textContent = shown.length ? shown.join("、") : box.dataset.placeholder;
+        label.setAttribute("data-lang-preserve", "");
+        label.textContent = shown.length ? shown.join("、") : t(box.dataset.placeholder);
         label.classList.toggle("is-empty", !shown.length);
       }
     }
@@ -1539,6 +1551,11 @@
     refreshWebFonts();
     renderImages();
     renderCard();
+    document.addEventListener("prismself:languagechange", () => {
+      syncMultiselects();
+      syncFontPickers();
+      scheduleRender();
+    });
   </script>
 </body>
 </html>

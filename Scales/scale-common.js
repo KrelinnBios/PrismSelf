@@ -94,12 +94,16 @@
 		const ink = cssColor('--scale-ink', dark ? '#e6edf5' : '#263447');
 		const line = cssColor('--scale-line', dark ? '#56677b' : '#dde5ee');
 
+		const translate = value => {
+			const text = String(value ?? '');
+			return window.PrismSelfLanguage ? window.PrismSelfLanguage.translate(text) : text;
+		};
 		const chart = new window.Chart(canvas.getContext('2d'), {
 			type: 'radar',
 			data: {
-				labels: config.labels,
+				labels: config.labels.map(translate),
 				datasets: [{
-					label: config.datasetLabel || '维度得分',
+					label: translate(config.datasetLabel || '维度得分'),
 					data: config.values,
 					backgroundColor: dark ? 'rgba(145, 173, 211, 0.22)' : 'rgba(62, 90, 128, 0.18)',
 					borderColor: accent,
@@ -424,7 +428,7 @@
 			const titleElement = question.querySelector('.question-title');
 			const variantSource = String(titleElement?.textContent || '').replace(/^\s*\d+[.、]\s*/, '').trim();
 			const declarativeSource = variantSource.replace(/^(?:您|你)是否/, '你').replace(/[？?]$/, '');
-			const paragraph = Array.from(question.querySelectorAll('.explanation p')).find(item => item.querySelector('strong')?.textContent.trim() === '具体案例：');
+			const paragraph = Array.from(question.querySelectorAll('.explanation p')).find(item => /^(?:具体案例|具體案例)[：:]$/.test(String(item.querySelector('strong')?.textContent || '').trim()));
 			if (!paragraph) return;
 			const parsed = parseLegacyExamples(paragraph.textContent);
 			const minimumLength = Number(options.minExampleLength) || 0;
@@ -512,8 +516,9 @@
 
 	function getExportFilename(extension, config = getConfig()) {
 		const safeExtension = String(extension || '').replace(/^\.+/, '').toLowerCase() || 'png';
-		const title = String(config.title || '量表').trim().replace(/自评量表$/, '').replace(/[\\/:*?"<>|]+/g, '-');
-		return `${title}自评结果.${safeExtension}`;
+		const rawTitle = String(config.title || '量表').trim().replace(/自评量表$/, '').replace(/[\\/:*?"<>|]+/g, '-');
+		const filename = window.PrismSelfLanguage ? window.PrismSelfLanguage.translate(`${rawTitle}自评结果`) : `${rawTitle}自评结果`;
+		return `${filename}.${safeExtension}`;
 	}
 
 	function captureDesktopResult(element, options = {}) {

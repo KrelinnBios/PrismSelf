@@ -489,8 +489,6 @@
       font-size: 0;
       line-height: 0;
       background-color: currentColor;
-      /* CJK fallback fonts sit high in the line box; lift the icon to the glyphs' optical center. */
-      transform: translateY(-0.4px);
       -webkit-mask: var(--header-link-icon) center / contain no-repeat;
       mask: var(--header-link-icon) center / contain no-repeat;
     }
@@ -498,7 +496,6 @@
     .header-link.support .header-link-mark {
       --header-link-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5z'/></svg>");
       color: #006d77;
-      transform: translateY(-0.5px);
     }
 
     .header-link.contact .header-link-mark {
@@ -513,14 +510,20 @@
     .header-link.theme .header-link-mark {
       --header-link-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'><circle cx='12' cy='12' r='4.5' fill='black'/><path d='M12 1.5v2M12 20.5v2M1.5 12h2M20.5 12h2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M4.6 19.4 6 18M18 6l1.4-1.4'/></svg>");
       color: #b45309;
-      /* The sun's small solid core needs a little more lift to read centered. */
-      transform: translateY(-0.8px);
+    }
+
+    .header-link.language .header-link-mark {
+      --header-link-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9.5'/><ellipse cx='12' cy='12' rx='4.3' ry='9.5'/><path d='M2.8 12h18.4'/></svg>");
+      color: var(--blue);
+    }
+
+    :root[data-theme="dark"] .header-link.language .header-link-mark {
+      color: var(--blue-lt);
     }
 
     :root[data-theme="dark"] .header-link.theme .header-link-mark {
       --header-link-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 13.6A9 9 0 1 1 10.4 3a7 7 0 0 0 10.6 10.6z'/></svg>");
       color: #f0c879;
-      transform: translateY(-0.4px);
     }
 
     @media (forced-colors: active) {
@@ -2220,6 +2223,8 @@
     <button class="header-link contact" type="button" data-dialog-target="contactDialog"
       aria-controls="contactDialog"><span class="header-link-mark" aria-hidden="true">@</span>联系方式</button>
     <span class="header-links-divider" aria-hidden="true"></span>
+    <button class="header-link language" id="languageToggle" type="button" aria-label="当前语言：简体中文；点击切换为繁體中文"><span
+        class="header-link-mark" aria-hidden="true">🌐</span>简体</button>
     <button class="header-link theme" id="themeToggle" type="button" aria-label="浅色模式，点击切换到深色"><span
         class="header-link-mark" aria-hidden="true">☀</span>浅色</button>
   </nav>
@@ -2865,7 +2870,9 @@
 
   </footer>
 
-  <script src="./update-records.js?v=202611211"></script>
+  <script src="./update-records.js?v=202611261"></script>
+  <script src="./assets/opencc.js?v=202611261"></script>
+  <script src="./assets/language.js?v=202611263"></script>
   <script>
 
     // Live keyword filter over the content cards.
@@ -2876,13 +2883,15 @@
       const cards = [...document.querySelectorAll('main .card')];
       const sections = [...document.querySelectorAll('main .section')];
       const haystack = new Map();
+      const normalize = (text) => (window.PrismSelfLanguage?.toSimplified(text) ?? text).trim().toLowerCase();
       cards.forEach((card) => {
-        haystack.set(card, [...card.querySelectorAll('.card-title, .card-tag, .card-type')]
-          .map((el) => el.textContent).concat(card.dataset.keywords || '').join(' ').toLowerCase());
+        const text = [...card.querySelectorAll('.card-title, .card-tag, .card-type')]
+          .map((el) => el.textContent).concat(card.dataset.keywords || '').join(' ');
+        haystack.set(card, normalize(text));
       });
 
       const applyFilter = (raw) => {
-        const q = raw.trim().toLowerCase();
+        const q = normalize(raw);
         let anyVisible = false;
         cards.forEach((card) => {
           const match = q === '' || haystack.get(card).includes(q);
@@ -3078,10 +3087,10 @@
     })();
 
     const updateList = document.getElementById('footerUpdateList');
-    const cardNamesByHref = new Map(
+    const cardTitleElsByHref = new Map(
       [...document.querySelectorAll('a.card[href]')].map((card) => [
         card.getAttribute('href'),
-        card.querySelector('.card-title')?.textContent?.trim()
+        card.querySelector('.card-title')
       ])
     );
     const formatUpdateDate = (date) => {
@@ -3091,8 +3100,8 @@
     const updateRecords = (window.PrismSelfUpdateGroups || []).flatMap(({ date, pages }) =>
       pages.filter((page) => page !== 'home' && page !== './index.html' && page !== 'index.html' && page !== './')
         .map((page) => {
-          const name = cardNamesByHref.get(page);
-          return name ? { name, date: formatUpdateDate(date) } : null;
+          const titleEl = cardTitleElsByHref.get(page);
+          return titleEl ? { titleEl, date: formatUpdateDate(date) } : null;
         }).filter(Boolean)
     );
 
@@ -3104,7 +3113,7 @@
         updateRecords.forEach((record) => {
           const item = document.createElement('span');
           item.className = 'footer-update-item';
-          item.textContent = `${record.name} ${record.date}`;
+          item.textContent = `${record.titleEl.textContent.trim()} ${record.date}`;
           group.append(item);
         });
         return group;
@@ -3149,6 +3158,7 @@
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) restartMarquee();
       });
+      document.addEventListener('prismself:languagechange', scheduleRender);
     }
 
     // Copy email to clipboard

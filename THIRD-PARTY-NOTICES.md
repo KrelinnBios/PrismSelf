@@ -6,6 +6,7 @@
 
 - [Chart.js 4.4.1](https://github.com/chartjs/Chart.js)：`MIT`，通过 cdnjs 加载。
 - [html2canvas 1.4.1](https://github.com/niklasvh/html2canvas)：`MIT`，通过 cdnjs 加载。
+- [OpenCC-JS 1.4.2](https://github.com/nk2028/opencc-js)：`MIT`，其转换字典数据源 `opencc-data` 采用 Apache-2.0；用于全站页面的本地简繁转换。许可文本见 [assets/OPENCC-LICENSE.txt](./assets/OPENCC-LICENSE.txt)。
 - 通过 Google Fonts 加载的 Noto Sans SC、Noto Serif SC、Inter、DM Sans、DM Mono、Cormorant Garamond 和 Space Mono 等字体：分别适用其上游字体许可证及 Google Fonts 服务条款。
 - 自我介绍卡在线字体经由 jsDelivr 分发的 npm 包加载：适用其上游字体许可证及 jsDelivr 服务条款。
 

@@ -244,7 +244,13 @@ const filterButtons = Array.from(document.querySelectorAll(".filter"));
 let currentFilter = "all";
 
 function normalize(value) {
-  return value.toLowerCase().trim();
+  return String(value || "").toLowerCase().trim();
+}
+
+function normalizeQuery(value) {
+  const language = window.PrismSelfLanguage;
+  const text = String(value || "");
+  return (language ? language.toSimplified(text) : text).toLowerCase().trim();
 }
 
 function matchesTerm(term, query) {
@@ -386,7 +392,7 @@ function defaultTermOrder(a, b) {
 }
 
 function render() {
-  const query = normalize(searchInput.value);
+  const query = normalizeQuery(searchInput.value);
   const visible = terms
     .map((term, index) => ({ term, index, cat: refinedCategory(term) }))
     .filter(({ term, cat }) => {

@@ -14,6 +14,12 @@
       return String(value || "").toLowerCase().trim();
     }
 
+    function normalizeQuery(value) {
+      const language = window.PrismSelfLanguage;
+      const text = String(value || "");
+      return (language ? language.toSimplified(text) : text).toLowerCase().trim();
+    }
+
     function splitAliases(value) {
       return String(value || "")
         .split(/[、，,;/]/)
@@ -51,6 +57,7 @@
     // 数据预处理与卡片创建只做一次；搜索时保留已有节点和原始排序。
     const entries = terms.map((term, index) => {
       const prepared = prepareTerm(term);
+      const rawTitle = normalize(term.zh + ' ' + (term.en || '') + ' ' + (term.aliases || '') + ' ' + term.desc + ' ' + term.note);
       return {
         term: prepared,
         index,
@@ -58,7 +65,7 @@
         en: normalize(term.en),
         aliases: prepared.aliasesList.map(normalize),
         description: `${normalize(term.desc)} ${normalize(term.note)}`,
-        haystack: `${term.zh} ${term.en || ""} ${term.aliases || ""} ${term.desc} ${term.note}`.toLowerCase()
+        haystack: rawTitle
       };
     });
     grid.innerHTML = entries.map(({ term: prepared }) => {
@@ -81,7 +88,7 @@
     let renderedFilter = null;
 
     function render() {
-      const query = normalize(searchInput.value);
+      const query = normalizeQuery(searchInput.value);
       if (query === renderedQuery && currentFilter === renderedFilter) return;
       const visible = entries
         .filter(({ term, haystack }) =>

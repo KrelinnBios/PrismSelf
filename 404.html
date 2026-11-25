@@ -81,5 +81,18 @@
     <h1 class="not-found-title" id="not-found-title">页面未找到</h1>
     <p class="not-found-message">这个网址可能已失效，或页面已经移动。</p>
   </main>
+  <script>
+    (function () {
+      var prefix = location.protocol === 'file:' ? './assets/' : '/assets/';
+      var opencc = document.createElement('script');
+      opencc.src = prefix + 'opencc.js?v=202611261';
+      opencc.onload = function () {
+        var lang = document.createElement('script');
+        lang.src = prefix + 'language.js?v=202611263';
+        document.body.appendChild(lang);
+      };
+      document.body.appendChild(opencc);
+    })();
+  </script>
 </body>
 </html>

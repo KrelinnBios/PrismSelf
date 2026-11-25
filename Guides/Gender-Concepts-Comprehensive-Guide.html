@@ -132,14 +132,14 @@
       display: none;
     }
   </style>
-<script src="./guide-common.js?v=202611210"></script>
+<script src="./guide-common.js?v=202611261"></script>
 <script>
   if (window.PrismSelfGuide) PrismSelfGuide.init({
     headerLabel: 'Gender Concepts Comprehensive Guide',
     fallbackTitle: '性别概念全景指南',
     headerSub: '认同 · 表达 · 代词 · 健康 · 教育 · 法律 · 媒体',
     introHtml: '本模块以<strong>去污名</strong>、<strong>可验证</strong>与<strong>尊重差异</strong>为原则，梳理性别相关核心概念与术语，帮助你在沟通、教育、职场与公共讨论中更准确地表达与理解。我们强调：性别是多维的（例如：性别认同、性别表达、身体特征与社会角色），个体体验存在差异；尊重他人的自我认同与称呼，是包容实践的最低标准。',
-    highlight: ({ title, first }) => title === '核心定义' || first,
+    highlight: ({ title, first }) => title === '核心定义' || title === '核心定義' || first,
     tocHighlights: [1, 8],
     tocLabels: [
       'Gender in Context',
@@ -906,6 +906,8 @@
       </p>
     </div>
   </div>
+  <script src="../assets/opencc.js?v=202611261"></script>
+  <script src="../assets/language.js?v=202611263"></script>
 </body>
 
 </html>

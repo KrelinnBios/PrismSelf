@@ -88,7 +88,7 @@
         }
       }
       const section = { id: node.id, title: textOf(node), nodes: children.slice(i + 1, end) };
-      if (!sections.length && !manualToc && /目录/.test(section.title)) manualToc = section;
+      if (!sections.length && !manualToc && /目录|目錄/.test(section.title)) manualToc = section;
       else sections.push(section);
       i = end - 1;
     }
@@ -138,10 +138,10 @@
 
   // 默认高亮：概述、匹配关键词的小节、全文第一张卡，以及篇幅较短的结语/总结
   const defaultHighlight = (pattern) => ({ title, first, nodeCount }) =>
-    title === '概述' || pattern.test(title) || first || (/结语|总结/.test(title) && nodeCount < 6);
+    title === '概述' || pattern.test(title) || first || (/结语|总结|結語|總結/.test(title) && nodeCount < 6);
 
   const buildMain = (config, sections) => {
-    const highlightOf = config.highlight || defaultHighlight(config.highlightPattern || /定义/);
+    const highlightOf = config.highlight || defaultHighlight(config.highlightPattern || /定义|定義/);
     const main = el('div', 'main-content');
     sections.forEach((s, sectionIndex) => {
       const sec = el('section', 'category-section');
@@ -360,7 +360,8 @@
     const originalElements = Array.from(write.children);
     const h1 = originalElements.find((n) => n.tagName === 'H1');
     const title = textOf(h1) || config.fallbackTitle;
-    document.title = 'PrismSelf - ' + title;
+    const displayTitle = window.PrismSelfLanguage ? window.PrismSelfLanguage.translate(title) : title;
+    document.title = 'PrismSelf - ' + displayTitle;
 
     const { sections, manualToc } = splitSections(originalElements.filter((n) => n !== h1));
     if (!sections.length) return;
