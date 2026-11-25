@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
+/* The Chinese preference is applied by assets/language.js near the end of the
+ * document. Hide the body until then so Traditional readers never see a
+ * Simplified flash; theme.js clears the class if that script is unavailable. */
+html.prism-lang-pending body { visibility: hidden !important; }
+
 /* Self-contained styling for the site-wide theme toggle button.
  * Colors are hardcoded (not page CSS variables) so the button looks correct on
  * every page regardless of that page's own variable system.

@@ -7,6 +7,15 @@
  * Load this in <head> (blocking) so the theme is applied before first paint. */
 (function () {
   var root = document.documentElement;
+
+  // Hide the body before first paint until the Chinese preference has been
+  // applied at the end of the document. The failsafe keeps the page usable if
+  // assets/language.js fails to load or throws.
+  root.classList.add('prism-lang-pending');
+  function revealPage() { root.classList.remove('prism-lang-pending'); }
+  document.addEventListener('DOMContentLoaded', revealPage);
+  window.__prismLangFallback = window.setTimeout(revealPage, 5000);
+
   var KEY = 'theme';
   // Resolve the homepage relative to this shared script, not the current page.
   // This works under GitHub Pages project paths and local file:// previews.

@@ -3,7 +3,16 @@
 (function () {
   var root = document.documentElement;
   var key = 'prismself-language';
-  if (!window.OpenCC || typeof window.OpenCC.Converter !== 'function') return;
+
+  function revealPage() {
+    try { window.clearTimeout(window.__prismLangFallback); } catch (e) {}
+    root.classList.remove('prism-lang-pending');
+  }
+
+  if (!window.OpenCC || typeof window.OpenCC.Converter !== 'function') {
+    revealPage();
+    return;
+  }
   var traditionalConverter = null;
   var simplifiedConverter = null;
   function traditional(text) {
@@ -139,6 +148,7 @@
   try { preference = localStorage.getItem(key); } catch (e) {}
   if (preference !== 'zh-CN' && preference !== 'zh-Hant') preference = null;
   setLanguage(preference || browserLanguage(), false);
+  revealPage();
 
   if (button) {
     button.addEventListener('click', function () {
