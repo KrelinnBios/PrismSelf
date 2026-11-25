@@ -468,13 +468,22 @@
       font-size: 13px;
       line-height: 1.4;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
       transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .header-link:hover {
-      color: var(--ink);
-      background: var(--search-bg);
-      border-color: var(--search-border);
+    /* Touch browsers can retain :hover after a tap. Only hover-capable
+       primary pointers should receive the hover highlight. */
+    @media (hover: hover) and (pointer: fine) {
+      .header-link:hover {
+        color: var(--ink);
+        background: var(--search-bg);
+        border-color: var(--search-border);
+      }
+    }
+
+    .header-link:focus:not(:focus-visible) {
+      outline: none;
     }
 
     .header-link:focus-visible {
